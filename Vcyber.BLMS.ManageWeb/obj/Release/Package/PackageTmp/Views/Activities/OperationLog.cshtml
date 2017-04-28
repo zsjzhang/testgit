@@ -1,0 +1,31 @@
+﻿@{
+    Layout = null;
+}
+
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>内容管理 - 活动操作记录</strong></div>
+</div>
+<div class="container panel panel-default">
+    
+    <div class="gridStyle" style="min-height: 410px; border: 1px solid rgb(212, 212, 212)" ng-grid="logOptions">
+    </div>
+</div>
+
+

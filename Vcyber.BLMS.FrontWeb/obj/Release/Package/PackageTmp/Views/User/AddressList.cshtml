@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Address>
+@{
+    Layout = null;
+}
+
+
+<ul class="address">
+    @{
+        if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <li style="border-top:1px solid #EEEEEE;border-bottom:1px solid #EEEEEE; height:85px; margin-top:10px;">
+                    <input value="@item.ID" type="radio" name="myAddressAddress" @{ if (item.IsDefault) { <text> checked="checked" </text> } }>
+                    <span>
+                        地址：
+                        <label>
+                            @item.PCC
+                        </label>
+                        <label>
+                            @item.Detail
+                        </label>
+                        <b>@item.ReceiveName</b>
+                    </span>
+                    <p>
+                        手机：
+                        <label>
+                            @item.Phone
+                        </label>
+                    </p>
+                    <input type="hidden" value="@item.ID" name="address_ID" />
+                    <input type="hidden" value="@item.ReceiveName" name="address_ReceiveName" />
+                    <input type="hidden" value="@item.Province" name="address_Province" />
+                    <input type="hidden" value="@item.City" name="address_City" />
+                    <input type="hidden" value="@item.County" name="address_County" />
+                    <input type="hidden" value="@item.Detail" name="address_Detail" />
+                    <input type="hidden" value="@item.ZipCode" name="address_ZipCode" />
+                    <input type="hidden" value="@item.Phone" name="address_Phone" />
+                    <a href="javascript:void(0);" name="btnEditAddress" style="margin-right:10px;">编辑</a>
+                    <a href="javascript:void(0);" name="btnCancelAddress" style="margin-right:10px; display:none;">取消</a>
+                </li>
+            }
+        }
+    }
+
+
+</ul>

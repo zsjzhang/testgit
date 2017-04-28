@@ -1,0 +1,74 @@
+﻿@{
+    Layout = null;
+}
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>服务管理</strong></div>
+</div>
+<div class="panel panel-default">
+
+    <div class="panel-body">
+        <form name="form" class="form-horizontal" novalidate>
+            <div class="form-group">
+                <label class="col-md-2 control-label">服务类型</label>
+                <div class="col-md-4 text-left">
+                    <select class="form-control" ng-model="serviceTypeDw.select">
+                        <option ng-repeat="it in serviceTypeDw.data" value="{{it.id}}">{{it.value}}</option>
+                    </select>
+                </div>
+           
+                <label class="col-md-2 control-label">手机号</label>
+                <div class="col-md-4 text-left">
+                    <input class="form-control" style="max-width: 800px" type="text" ng-model="phoneNumber" autocomplete="off" />
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">VIN</label>
+                <div class="col-md-4 text-left">
+                    <input class="form-control" style="max-width: 800px" type="text" ng-model="VIN" autocomplete="off" />
+
+                </div>
+           
+                
+                <label class="col-md-2 control-label">服务起止时间</label>
+                <div class="col-md-2 text-left">
+                    <input class="form-control datepicker" ng-model="repairStartTime" data-date-format="yyyy-mm-dd">
+                </div>
+                <div class="col-md-2 text-left">
+                    <input class="form-control datepicker" ng-model="repairEndTime" data-date-format="yyyy-mm-dd">
+                </div>
+                <script type="text/javascript">
+                    $('.datepicker').datepicker();
+                </script>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button class="btn btn-primary" type="submit" ng-click="search()">查询</button>
+                    </div>
+                </div>
+
+    </form>
+        <div class="gridStyle" style="min-height: 410px; border: 1px solid rgb(212, 212, 212)" ng-grid="gridOptions">
+        </div>
+    </div>
+</div>

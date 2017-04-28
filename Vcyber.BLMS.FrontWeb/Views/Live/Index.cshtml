@@ -1,0 +1,224 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "50个机场候机尊享服务";
+}
+
+<style type="text/css">
+    table.gridtable {
+        font-family: "微软雅黑",verdana,arial,sans-serif;
+        font-size: 14px;
+        color: #333333;
+        border-width: 1px;
+        border-color: #666666;
+        border-collapse: collapse;
+        width: 595px;
+    }
+
+        table.gridtable th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #dedede;
+        }
+
+        table.gridtable td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #eaf6fd;
+            border-collapse: collapse;
+            text-align: center;
+            color: #000;
+        }
+
+
+            table.gridtable td.name {
+                margin-right: 20px;
+                width: 40%;
+            }
+
+    tr td:nth-child(1) {
+        background-color: #fef4d6;
+    }
+
+    tr td:nth-child(2) {
+        background-color: #fef4d6;
+    }
+
+    .airpoint-cur {
+        background-color: #0c5194;
+        color: #fff;
+    }
+</style>
+<script>
+    function Airport() {
+        this.ports = [];
+        this.portrooms = [];
+        
+        this.getAirPorts = function () {
+            var that = this;
+            $.ajax({
+                url: "SelectAirportList",
+                type: "post",
+                dataType: "json",
+                success: function (result) {
+                    if (result && $.isArray(result) && result.length > 0) {
+                        var _airportcount = Math.ceil(result.length / 2);
+                        var _tableHtml = "";
+                        for (var i = 0, j = _airportcount; i < _airportcount; i++, j = i + _airportcount) {
+                            _tableHtml += "<tr>";
+                            _tableHtml += " <td>" + (i + 1) + "</td>";
+                            _tableHtml += " <td class='roomname' onmouseover='mouseover(this);' onmouseout='mouseout(this);' style=' cursor:pointer; ' >" + result[i].AirportName + "</td>";
+                            if (j + 1 <= result.length) {
+                                _tableHtml += " <td>" + (j + 1) + "</td>";
+                                _tableHtml += "<td class='roomname' onmouseover='mouseover(this);' onmouseout='mouseout(this);' style=' cursor:pointer; '  >" + result[j].AirportName + "</td>";
+                            }
+                            _tableHtml += "</tr>";
+                        }
+                        $(".gridtable>tbody").html(_tableHtml);
+                        that.ports = result;
+                    }
+                },
+                error: function () { },
+                complete: function (xhr) {
+                    xhr = null;
+                }
+            });
+        }
+        this.getAirPortRooms = function () {
+            //airportName
+            var that = this;
+            $.ajax({
+                url: "/Live/AllAirportRoomList",
+                type: "get",
+                dataType: "json",
+                success: function (result) {
+                    if (result && $.isArray(result) && result.length > 0) {
+                        that.portrooms = result;
+                    }
+                },
+                error: function () { },
+                complete: function (xhr) {
+                    xhr = null;
+                }
+            });
+        }
+        this.getAirPorts();
+        this.getAirPortRooms();
+    }
+</script>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Sonata" })
+    </div>
+    <div class="n_all_cont">
+
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+
+                @(this.User.Identity.IsAuthenticated ? this.Html.Action("HomeLogonSuccess", "Account") : this.Html.Action("HomeLogon", "Account"))
+
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+        </div>
+    
+        <div class="n_right_cont">
+            <p class="select_menu"><a href="/BlueVIP/Index">蓝缤权益</a> > <a href="/LifeService/Index">生活服务  </a> >50个机场候机尊享服务  </p>
+            <div class="gy_cont">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>50个机场候机尊享服务</h1>
+                        <span>50 Terminals Service For Honor</span>
+                    </div>
+                </div>
+
+                <div class="fwxq_box">
+
+                   
+                   
+                   
+                   
+
+                    <p> bluemembers银卡会员，自您升级之日起1年内，可享受北京现代为您提供的2次免费候机服务；金卡会员，可享受3次免费候机服务；每次候机服务不超过3小时。</p>
+                    <p> 机场候机尊享服务为您提供全国29个省及直辖市50家机场嘉宾休息室候机服务,嘉宾休息室可提供茶点、书刊、音像等服务。</p>
+                    <p> 除免费服务次数外，您还可以使用会员积分兑换机场候机服务。（1800积分/次）</p>
+                    <p> 服务对象：bluemembers会员</p>
+                    <p>预约方式：</p>
+                    <p>（1）线上预约：登录bluemembers门户网站、微信或App→选择“候机服务”免费预约/积分兑换→收到服务串码及二维码→到达指定机场出示服务串码或二维码即可享受服务。</p>
+                    <p>（2）电话预约：拨打北京现代24小时客服热线400-800-1100进行候机服务预约。</p>
+                    <img src="/img/35liucheng.png" />
+                    <h3>可享用候机尊享服务的机场列表：</h3>
+                    <div style="margin:0 40px;">
+                        <table class="gridtable">
+                            <thead>
+                                <tr>
+                                    <th style="background-color: #ed6d1e; color:#fff;">编号</th>
+                                    <th style="background-color: #ed6d1e; color: #fff; width:231px;">机场名称</th>
+                                    <th style="background-color: #0c5194; color: #fff;">编号</th>
+                                    <th style="background-color: #0c5194; color: #fff; width:231px ">机场名称</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <script>
+                            var _airports = new Airport();
+                            var _background_color;
+                            var _color;
+                            function mouseover(obj) {
+                                var _airportName = $(obj).html();
+                                _background_color = $(obj).css("background-color");
+                                _color = $(obj).css("color");
+                                $(obj).css({
+                                    "background-color": "#0c5194",
+                                    "color": "#fff",
+                                    "position": "relative"
+                                });
+                                $("<div  id='live_index_airpoint_rooms' style='position: absolute;background-color: #333;color: #fff; width: 248px;left: 0px; top:30px;'>").appendTo(obj);
+                                var _roomsHtml = "<ul>";
+                                if (_airports.portrooms.constructor === Array && _airports.portrooms.length > 0) {
+                                    $(_airports.portrooms).each(function (i, obj) {
+                                        if (obj.AirportName && obj.AirportName == _airportName) {
+                                            _roomsHtml += "<li style='margin:5px 0;'><p style='text-align: left;line-height:20px;font-size:12px; color:#FFCC33;font-weight: bold;'>" + obj.AirportRoomName + "</p><p style='text-align: left; font-size: 12px; text-indent: 24px; line-height: 15px;'>位置：" + obj.AirportAddress + "</p></li>";
+                                        }
+                                    });
+                                    _roomsHtml += "</ul>";
+                                }
+                                _roomsHtml += "</ul>";
+                                $("#live_index_airpoint_rooms").html(_roomsHtml);
+                            }
+                            function mouseout(obj) {
+                                $("#live_index_airpoint_rooms").remove();
+                                $(obj).css({
+                                    "background-color": _background_color,
+                                    "color": _color,
+                                    "position": ""
+                                });
+                                return false;
+                            }
+                        </script>
+                    </div>
+                    <input type="hidden" id="source" value="@ViewBag.source" />
+                    <a href="javascript:void(0);" id="btnSonataLiveReserve" class="yuyue befor_ac" style="margin-top:50px;">预<b style="margin: 0 6px;"></b>约</a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

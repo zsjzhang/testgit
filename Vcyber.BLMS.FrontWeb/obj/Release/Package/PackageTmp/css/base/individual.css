@@ -1,0 +1,259 @@
+.individual{
+	width: 1000px;
+	height: 158px;
+	margin: 0 auto;
+	margin-top: 30px;
+	background: #eee;
+}
+.individual_1{
+	width: 98px;
+	height: 98px;
+	float: left;
+    border: 1px solid #ccc;
+    margin-left: 22px;
+    margin-top: 25px;
+}
+.individual_1 img{
+	width: 98px;
+	height: 98px;
+	display: block;
+}
+table.individual_2{
+	width: 410px;
+	height: 110px;
+	display: block;
+	margin-left: 22px;
+	float: left;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	margin-top: 25px;
+}
+table.individual_2 tr{
+	width: 100%;
+}
+table.individual_2 tr th{
+	color: #075090;
+	font-family: "微软雅黑";
+	font-size: 20px;
+	text-align: left;
+}
+table.individual_2 tr td{
+	width:100px;
+	text-align: left;
+	line-height: 22px;
+}
+.individual_3{
+	width: 171px;
+	height: 100px;
+	display: block;
+	margin-left: 100px;
+	float: left;
+	margin-top: 25px;
+}
+.individual_4{
+	width: 101px;
+	height: 101px;
+	display: block;
+	margin-left: 40px;
+	float: left;
+	margin-top: 25px;
+}
+.individual_4 a{
+	display: block;
+}
+.individual_4 a img{
+	width: 101px;
+	height: 101px;
+	display: block;
+}
+.individual_5{
+	width: 1000px;
+	height: 27px;
+	margin: 0 auto;
+	margin-top: 40px;
+	border-bottom: 2px solid #075090;
+}
+.individual_5 span{
+	background: #075090;
+	padding: 0px 30px;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	color: #fff;
+	display: block;
+	line-height: 27px;
+	float: left;
+}
+.individual_5 div.bg{
+	float: left;
+	width: 15px;
+	height: 27px;
+	background: url(/img/weird_1.png) no-repeat;
+}
+.individual_6{
+	width: 1000px;
+	height: 248px;
+	margin: 0 auto;
+    border: 1px solid #EEEEEE;
+}
+.individual_6 li{
+	border: 1px solid #eee;
+	width: 292px;
+	height: 188px;
+	float: left;
+	margin-left: 28px;
+	margin-top: 28px;
+}
+.individual_6 li a{
+	cursor: pointer;
+	display: block;
+    margin-left:29px;
+    margin-top: 15px;
+}
+.individual_6 li a img{
+	display: block;
+	width: 236px;
+	height: 119px;
+}
+.individual_6 li span{
+	display: block;
+	width: 236px;
+	line-height: 22px;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	color: #3D3F43;
+}
+.individual_7{
+	width: 1000px;
+	height: 238px;
+	margin: 0 auto;
+    border: 1px solid #EEEEEE;
+}
+.individual_7>li{
+	border-right: 1px solid #eee;
+	width: 33%;
+	height: 238px;
+	float: left;
+}
+.individual_7>li span{
+  width: 276px;
+  line-height: 18px;
+  color: #3D3F43;
+  font-family: "微软雅黑";
+  font-size: 16px;
+  display: block;
+  background: #eee;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+.individual_7 .l_J{
+	width: 276px;
+	height: 34px;
+	line-height: 34px;
+	font-family: "微软雅黑";
+    font-size: 14px;
+    margin: 0 auto;
+    text-align: right;
+}
+.individual_7 li>ol{
+  width: 236px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.individual_7 li>ol>li{
+  line-height: 24px;
+  font-family: "微软雅黑";
+  font-size: 12px;
+  list-style-type:square;
+}
+.individual_7 li>ol>li a{
+  color: #3D3F43;
+  text-decoration: none;
+}
+.individual_8{
+  	width: 1000px;
+	height: 340px;
+	margin: 0 auto;
+	margin-top: 30px;
+}
+.individual_8_1{
+	width: 482px;
+}
+.individual_8_1 dl{
+	border: 1px solid #eee;
+	width: 482px;
+	height: 304px;
+	float: left;
+}
+.individual_8_1 dl dt{
+	margin-left: 45px;
+	float: left;
+}
+.individual_8_1 dl dt span{
+	font-family: "微软雅黑";
+	font-size: 16px;
+	line-height: 52px;
+}
+.individual_8_1 dl dt img{
+	width: 222px;
+	height: 222px;
+	display: block;
+	border: 1px solid #eee;
+}
+.individual_8_1 dl dd{
+	float: left;
+	margin-left: 15px;
+	width: 140px;
+}
+.individual_8_1 dl dd a{
+	display: block;
+	width: 83px;
+	text-align: center;
+	height: 28px;
+	line-height: 28px;
+	background: url(/img/pic_3.png) repeat-x;
+	border-radius: 6px;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	color: #fff;
+	margin-top: 200px;
+}
+.individual_8_1 dl dd b{
+	display: block;
+	line-height: 24px;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	color: #3D3F43;
+}
+.individual_8_1_1{
+	width:100%;
+	height: 27px;
+	margin: 0 auto;
+	margin-top: 40px;
+	border-bottom: 2px solid #075090;
+}
+.individual_8_1_1 span{
+	background: #075090;
+	padding: 0px 30px;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	color: #fff;
+	display: block;
+	line-height: 27px;
+	float: left;
+}
+.individual_8_1_1 div.bg{
+	float: left;
+	width: 15px;
+	height: 27px;
+	background: url(/img/weird_1.png) no-repeat;
+}
+.individual_8_1_1 a{
+	display: block;
+	float: right;
+	font-size: 12px;
+	color: #000;
+	margin-top: 10px;
+	text-decoration: none;
+	font-family: "微软雅黑";
+	font-size: 14px;
+}

@@ -1,0 +1,196 @@
+﻿@{
+    Layout = null;
+}
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+<style type="text/css">
+    table td { text-align:center;}
+     .table .nowrap > td { white-space: nowrap; }
+</style>
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>报表管理 - 权益使用分析</strong></div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="col-md-2 control-label">申请时间：</label>
+                <div class="col-md-2 text-left">
+                    <input id="begintime" class="form-control datepicker" ng-model="beginTime" data-date-format="yyyy-mm-dd">
+                </div>
+                <div class="col-md-2 text-left">
+                    <input id="endtime" class="form-control datepicker" ng-model="endTime" data-date-format="yyyy-mm-dd">
+                </div>
+
+                <button class="btn btn-primary" type="submit" onclick="search()">查询</button>
+                <input class="btn btn-primary" type="submit" onclick="ToExcel()" value="导出" />
+            </div>
+        </div>
+            @*开始*@
+            @*（0:100日上门关怀，1:3年9次免检，2：home to home，3：一对一专属，4：维保,5:机场服务)*@
+            <div id="divPageList">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr class="l1 nowrap" style="background-color: #eaeaea;">
+                                <td>序号</td>
+                                <td>服务权益</td>
+                                <td>有资格会员数</td>
+                                <td>享受该服务的会员数</td>
+                                <td>享受该服务的次数</td>
+                                <td>服务产品使用率(%)</td>
+
+                            </tr>
+
+                            @*<tr>
+                                <td>
+                                    1
+                                </td>
+
+                                <td>
+                                    24小时道路救援
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>*@
+                            <tr>
+                                <td>
+                                    2
+                                </td>
+
+                                <td>
+                                    上门关怀服务
+                                </td>
+                                <td></td>
+                                <td no="0"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    3
+                                </td>
+
+                                <td>
+                                    3年9次免费检测服务
+                                </td>
+                                <td></td>
+                                <td no="1"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    4
+                                </td>
+
+                                <td>
+                                    免费取送车服务
+                                </td>
+                                <td></td>
+                                <td no="2"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    5
+                                </td>
+
+                                <td>
+                                    一对一专属服务
+                                </td>
+                                <td></td>
+                                <td no="3"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    6
+                                </td>
+
+                                <td>
+                                    35个机场候机尊享服务
+                                </td>
+                                <td></td>
+                                <td no="5"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+            @*结束*@
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+    $(function ()
+    {
+        $('.datepicker').datepicker();
+        //search();
+    });
+    //查询
+    function search()
+    {
+        $("#divPageList tr:gt(0)").find("td:gt(1)").text("0");
+
+        var startTime = $("#begintime").val();
+        var endtime = $("#endtime").val();
+        $.ajax({
+            url: "Equity/GetEquity?startTime=" + startTime + "&endTime=" + endtime,
+            type: "POST",
+            cache: false,
+            dataType: "json",
+            success: function (msg)
+            {
+                if (msg != null && msg.data != null)
+                {
+                    var data = msg.data;
+                    $.each(data, function (i)
+                    {
+                      //  $("#divPageList td[no=" + data[i].OrderType + "]").prev("td").text(data[i].memberNo);
+                        $("#divPageList td[no=" + data[i].OrderType + "]").text(data[i].member);
+                        $("#divPageList td[no=" + data[i].OrderType + "]").next("td").text(data[i].total);
+                        $("#divPageList td[no=" + data[i].OrderType + "]").next("td").next("td").text(data[i].rate);
+                        if (data[i].OrderType==5)
+                        {
+                            $("#divPageList tr:gt(0)").find("td:eq(2)").text(data[i].memberNo);
+                        }
+                    })
+                }
+            }
+        });
+    }
+
+
+    //导出
+    function ToExcel()
+    {
+        var startTime = $("#begintime").val();
+        var endtime = $("#endtime").val();
+        window.location = '/Equity/EquityToExcel?startTime=' + startTime + '&endtime=' + endtime;
+        return false;
+    }
+</script>

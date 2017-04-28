@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Provinces xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Province>
+    <ID>2</ID>
+    <code>110000</code>
+    <letter>B</letter>
+    <name>北京市</name>
+    <EnName>Beijing Shi</EnName>
+    <ShortName>BJ</ShortName>
+  </Province>
+  <Province>
+    <ID>3</ID>
+    <code>120000</code>
+    <letter>T</letter>
+    <name>天津市</name>
+    <EnName>Tianjin Shi</EnName>
+    <ShortName>TJ</ShortName>
+  </Province>
+  <Province>
+    <ID>4</ID>
+    <code>130000</code>
+    <letter>H</letter>
+    <name>河北省</name>
+    <EnName>Hebei Sheng</EnName>
+    <ShortName>HE</ShortName>
+  </Province>
+  <Province>
+    <ID>5</ID>
+    <code>140000</code>
+    <letter>S</letter>
+    <name>山西省</name>
+    <EnName>Shanxi Sheng </EnName>
+    <ShortName>SX</ShortName>
+  </Province>
+  <Province>
+    <ID>6</ID>
+    <code>150000</code>
+    <letter>N</letter>
+    <name>内蒙古自治区</name>
+    <EnName>Nei Mongol Zizhiqu</EnName>
+    <ShortName>NM</ShortName>
+  </Province>
+  <Province>
+    <ID>7</ID>
+    <code>210000</code>
+    <letter>L</letter>
+    <name>辽宁省</name>
+    <EnName>Liaoning Sheng</EnName>
+    <ShortName>LN</ShortName>
+  </Province>
+  <Province>
+    <ID>8</ID>
+    <code>220000</code>
+    <letter>J</letter>
+    <name>吉林省</name>
+    <EnName>Jilin Sheng</EnName>
+    <ShortName>JL</ShortName>
+  </Province>
+  <Province>
+    <ID>9</ID>
+    <code>230000</code>
+    <letter>H</letter>
+    <name>黑龙江省</name>
+    <EnName>Heilongjiang Sheng</EnName>
+    <ShortName>HL</ShortName>
+  </Province>
+  <Province>
+    <ID>10</ID>
+    <code>310000</code>
+    <letter>S</letter>
+    <name>上海市</name>
+    <EnName>Shanghai Shi</EnName>
+    <ShortName>SH</ShortName>
+  </Province>
+  <Province>
+    <ID>11</ID>
+    <code>320000</code>
+    <letter>J</letter>
+    <name>江苏省</name>
+    <EnName>Jiangsu Sheng</EnName>
+    <ShortName>JS</ShortName>
+  </Province>
+  <Province>
+    <ID>12</ID>
+    <code>330000</code>
+    <letter>Z</letter>
+    <name>浙江省</name>
+    <EnName>Zhejiang Sheng</EnName>
+    <ShortName>ZJ</ShortName>
+  </Province>
+  <Province>
+    <ID>13</ID>
+    <code>340000</code>
+    <letter>A</letter>
+    <name>安徽省</name>
+    <EnName>Anhui Sheng</EnName>
+    <ShortName>AH</ShortName>
+  </Province>
+  <Province>
+    <ID>14</ID>
+    <code>350000</code>
+    <letter>F</letter>
+    <name>福建省</name>
+    <EnName>Fujian Sheng </EnName>
+    <ShortName>FJ</ShortName>
+  </Province>
+  <Province>
+    <ID>15</ID>
+    <code>360000</code>
+    <letter>J</letter>
+    <name>江西省</name>
+    <EnName>Jiangxi Sheng</EnName>
+    <ShortName>JX</ShortName>
+  </Province>
+  <Province>
+    <ID>16</ID>
+    <code>370000</code>
+    <letter>S</letter>
+    <name>山东省</name>
+    <EnName>Shandong Sheng </EnName>
+    <ShortName>SD</ShortName>
+  </Province>
+  <Province>
+    <ID>17</ID>
+    <code>410000</code>
+    <letter>H</letter>
+    <name>河南省</name>
+    <EnName>Henan Sheng</EnName>
+    <ShortName>HA</ShortName>
+  </Province>
+  <Province>
+    <ID>18</ID>
+    <code>420000</code>
+    <letter>H</letter>
+    <name>湖北省</name>
+    <EnName>Hubei Sheng</EnName>
+    <ShortName>HB</ShortName>
+  </Province>
+  <Province>
+    <ID>19</ID>
+    <code>430000</code>
+    <letter>H</letter>
+    <name>湖南省</name>
+    <EnName>Hunan Sheng</EnName>
+    <ShortName>HN</ShortName>
+  </Province>
+  <Province>
+    <ID>20</ID>
+    <code>440000</code>
+    <letter>G</letter>
+    <name>广东省</name>
+    <EnName>Guangdong Sheng</EnName>
+    <ShortName>GD</ShortName>
+  </Province>
+  <Province>
+    <ID>21</ID>
+    <code>450000</code>
+    <letter>G</letter>
+    <name>广西壮族自治区</name>
+    <EnName>Guangxi Zhuangzu Zizhiqu</EnName>
+    <ShortName>GX</ShortName>
+  </Province>
+  <Province>
+    <ID>22</ID>
+    <code>460000</code>
+    <letter>H</letter>
+    <name>海南省</name>
+    <EnName>Hainan Sheng</EnName>
+    <ShortName>HI</ShortName>
+  </Province>
+  <Province>
+    <ID>23</ID>
+    <code>500000</code>
+    <letter>C</letter>
+    <name>重庆市</name>
+    <EnName>Chongqing Shi</EnName>
+    <ShortName>CQ</ShortName>
+  </Province>
+  <Province>
+    <ID>24</ID>
+    <code>510000</code>
+    <letter>S</letter>
+    <name>四川省</name>
+    <EnName>Sichuan Sheng</EnName>
+    <ShortName>SC</ShortName>
+  </Province>
+  <Province>
+    <ID>25</ID>
+    <code>520000</code>
+    <letter>G</letter>
+    <name>贵州省</name>
+    <EnName>Guizhou Sheng</EnName>
+    <ShortName>GZ</ShortName>
+  </Province>
+  <Province>
+    <ID>26</ID>
+    <code>530000</code>
+    <letter>Y</letter>
+    <name>云南省</name>
+    <EnName>Yunnan Sheng</EnName>
+    <ShortName>YN</ShortName>
+  </Province>
+  <Province>
+    <ID>27</ID>
+    <code>540000</code>
+    <letter>X</letter>
+    <name>西藏自治区</name>
+    <EnName>Xizang Zizhiqu</EnName>
+    <ShortName>XZ</ShortName>
+  </Province>
+  <Province>
+    <ID>28</ID>
+    <code>610000</code>
+    <letter>S</letter>
+    <name>陕西省</name>
+    <EnName>Shanxi Sheng </EnName>
+    <ShortName>SN</ShortName>
+  </Province>
+  <Province>
+    <ID>29</ID>
+    <code>620000</code>
+    <letter>G</letter>
+    <name>甘肃省</name>
+    <EnName>Gansu Sheng</EnName>
+    <ShortName>GS</ShortName>
+  </Province>
+  <Province>
+    <ID>30</ID>
+    <code>630000</code>
+    <letter>Q</letter>
+    <name>青海省</name>
+    <EnName>Qinghai Sheng</EnName>
+    <ShortName>QH</ShortName>
+  </Province>
+  <Province>
+    <ID>31</ID>
+    <code>640000</code>
+    <letter>N</letter>
+    <name>宁夏回族自治区</name>
+    <EnName>Ningxia Huizu Zizhiqu</EnName>
+    <ShortName>NX</ShortName>
+  </Province>
+  <Province>
+    <ID>32</ID>
+    <code>650000</code>
+    <letter>X</letter>
+    <name>新疆维吾尔自治区</name>
+    <EnName>Xinjiang Uygur Zizhiqu</EnName>
+    <ShortName>XJ</ShortName>
+  </Province>
+</Provinces>

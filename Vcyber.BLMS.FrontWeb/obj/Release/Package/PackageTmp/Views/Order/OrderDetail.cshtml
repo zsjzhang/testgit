@@ -1,0 +1,345 @@
+﻿@model Vcyber.BLMS.Entity.Order
+@using Vcyber.BLMS.Common;
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "订单详情";
+}
+
+<style>
+    .tt_bg {
+        width: 128px;
+    }
+
+    .silder {
+        padding-top: 36px;
+        margin-left: 36px;
+        height: 24px;
+        margin-bottom: 10px;
+    }
+
+        .silder b {
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            text-align: center;
+            font-size: 16px;
+            border-radius: 12px;
+            display: block;
+            color: #FFFFFF;
+            float: left;
+            margin-right: 8px;
+        }
+
+    .yuan_e {
+        background: #a0a0a0;
+    }
+
+    .yuan_s {
+        background: #075090;
+    }
+
+    .silder img {
+        display: block;
+        margin-right: 8px;
+        float: left;
+    }
+</style>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "MyCenter" })
+    </div>
+    <div class="n_all_cont  ">
+        <div class="dd_title" style="padding-bottom:8px;">
+            @Html.ActionLink("个人中心>", "Index", "MyCenter", new { }, new { style = "color:#8B8B8B; font-size:12px; line-height:12px;" })
+            @Html.ActionLink("我的订单>", "MyOrders", "Order", new { }, new { style = "color:#8B8B8B; font-size:12px; line-height:12px;" })
+            <span>
+                @Html.ActionLink("订单详情", "OrderDetail", "Order", new { orderId = Request.QueryString["orderId"] }, new { style = "color:#004587; font-size:12px; line-height:12px;" })
+            </span>
+        </div>
+        <div class="gy_title" id="last_page">
+            <div class="gy_zi">
+                <h1>订单详情</h1>
+                <span>Account Information</span>
+            </div>
+        </div>
+        <div class="dd_left">
+        </div>
+        @{
+            if (Model != null && Model.ID > 0)
+            {
+                string _total = string.Empty;
+                string _totalScore = string.Format("{0}积分", Model.Integral);
+                string _totalBlueBean = string.Format("{0}蓝豆", Model.BlueBean);
+                if (Model.Integral > 0)
+                {
+                    _total += _totalScore;
+                }
+                if (Model.BlueBean > 0)
+                {
+                    if (Model.Integral > 0)
+                    {
+                        _total += "+";
+                    }
+                    _total += _totalBlueBean;
+                }
+                //获取物流信息
+                Vcyber.BLMS.Entity.OrderShipping _ordershippingEntity = ViewData["orderShipping"] as Vcyber.BLMS.Entity.OrderShipping;
+                //获取收货人信息
+                Vcyber.BLMS.Entity.OrderAddress _orderaddressEntity = ViewData["orderAddress"] as Vcyber.BLMS.Entity.OrderAddress;
+                _orderaddressEntity = _orderaddressEntity != null ? _orderaddressEntity : new Vcyber.BLMS.Entity.OrderAddress();
+                string tradeStatusEnum1 = "yuan_s";
+                string tradeStatusEnum2 = "yuan_s";
+                string tradeStatusEnum3 = "yuan_s";
+                string tradeStatusEnum4 = "yuan_s";
+                string tradeStatusBar1 = "/img/blue_j.png";
+                string tradeStatusBar2 = "/img/blue_j.png";
+                string tradeStatusBar3 = "/img/blue_j.png";
+                if ((int)Vcyber.BLMS.Entity.Enum.ETradeState.DFH == (int)Model.TradeState)
+                {
+                    tradeStatusEnum2 = "yuan_s";
+                    tradeStatusEnum3 = "yuan_e";
+                    tradeStatusEnum4 = "yuan_e";
+                    tradeStatusBar2 = "/img/grey_j.png";
+                    tradeStatusBar3 = "/img/grey_j.png";
+                }
+                else if ((int)Vcyber.BLMS.Entity.Enum.ETradeState.YFH == (int)Model.TradeState)
+                {
+                    tradeStatusEnum2 = "yuan_s";
+                    tradeStatusEnum3 = "yuan_s";
+                    tradeStatusEnum4 = "yuan_e";
+                    tradeStatusBar2 = "/img/blue_j.png";
+                    tradeStatusBar3 = "/img/grey_j.png";
+                }
+                else if ((int)Vcyber.BLMS.Entity.Enum.ETradeState.JYWC == (int)Model.TradeState)
+                {
+                    tradeStatusEnum2 = "yuan_s";
+                    tradeStatusEnum3 = "yuan_s";
+                    tradeStatusEnum4 = "yuan_s";
+                    tradeStatusBar2 = "/img/blue_j.png";
+                    tradeStatusBar3 = "/img/blue_j.png";
+                }
+                else
+                {
+                    tradeStatusEnum2 = "yuan_e";
+                    tradeStatusEnum3 = "yuan_e";
+                    tradeStatusEnum4 = "yuan_e";
+                    tradeStatusBar2 = "/img/grey_j.png";
+                    tradeStatusBar3 = "/img/grey_j.png";
+                }
+                <div class="xx_cont" style="min-height:780;">
+                    <div class="xx_left">
+                        <div class="ddxx">
+                            <h1>订单信息</h1>
+                            <p>订单编号：@Model.OrderId</p>
+                            <p>下单时间：@Model.Createtime </p>
+                        </div>
+                        <p class="spzj">
+                            <span>商品总价</span>
+                            <label>@_total</label>
+                        </p>
+                        <div class="ywc_yfzj">
+                            <p>
+                                <span>应付总价</span>
+                                <label>@_total</label>
+                            </p>
+                            <h2>@(((Vcyber.BLMS.Entity.Enum.ETradeState)Model.TradeState).GetDiscribe())</h2>
+                        </div>
+                        <div class="shr_news" style="font-size:14px; float:left;">
+                            <h1>收货人信息</h1>
+                            <p><span>收 货 人：</span>@_orderaddressEntity.ReceiveName</p>
+                            <p><span>联系电话：</span>@_orderaddressEntity.Phone</p>
+                            <p style="height: initial;"><span style="float:none; display:inline-block; vertical-align:top;">地　　址：</span><em style=" vertical-align:top;width: 140px; display:inline-block;line-height: 17px;padding-top: 10px; ">@_orderaddressEntity.PCC  @_orderaddressEntity.Detail </em></p>
+                            
+                        </div>
+                    </div>
+                    <div class="xx_right" style="min-width:694px;">
+                        <div class="dd_three">
+                            <div class="d1">
+                                <span>订单状态</span>
+                                <label>@(((Vcyber.BLMS.Entity.Enum.ETradeState)Model.TradeState).GetDiscribe())</label>
+                            </div>
+                            <div class="d1">
+                                <span>应付总价</span>
+                                <label style="font-size: 14px;">@_total</label>
+                            </div>
+                            <div class="d1">
+                                <span>配送方式</span>
+                                <b>快递</b>
+                            </div>
+                        </div>
+                        <div class="ddxx_num">
+                            <p class="silder">
+                                <b class="@tradeStatusEnum1">1</b>
+                                <img src="@tradeStatusBar1">
+                                <b class="@tradeStatusEnum2">2</b>
+                                <img src="@tradeStatusBar2">
+                                <b class="@tradeStatusEnum3">3</b>
+                                <img src="@tradeStatusBar3">
+                                <b class="@tradeStatusEnum4">4</b>
+                            </p>
+
+                            <label class="num3" style="left:38px;">下单<br />@Model.Createtime</label>
+                            <label class="num3" style="left:230px;">待发货</label>
+                            <label class="num3" style="left:420px;">已发货</label>
+                            <label class="num3" style="left:610px;">确认收货</label>
+                        </div>
+
+                        <div class="wl_zf">
+                            @{
+                                <div class="wl_cc_detail" style="width:50%; float:left;">
+                                    @if (Model.PayState == (int)Vcyber.BLMS.Entity.Enum.EPayState.ZFWC && Model.TradeState == (int)Vcyber.BLMS.Entity.Enum.ETradeState.YFH)
+                                    {
+                                        //已发货-物流信息
+                                        <table style="float:left; width:100%;word-break: break-all;">
+                                            <tr>
+                                                <td colspan="2">
+                                                    物流信息
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tt_bg">物流公司</td>
+                                                <td>@_ordershippingEntity.Name</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tt_bg">物流单号</td>
+                                                <td>@_ordershippingEntity.Number</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tt_bg">收货时间</td>
+                                                <td style="font-size:16px;color:#f8981d">
+                                                    @{
+                                        string _receiveTime = string.Empty;
+                                        if (Model.TradeState == (int)Vcyber.BLMS.Entity.Enum.ETradeState.JYWC)
+                                        {
+                                            _receiveTime = _ordershippingEntity.ReceiveTime.ToString();
+                                        }
+                                                    }
+                                                    @_receiveTime
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tt_bg">物流跟踪</td>
+                                                <td><a href="http://www.kuaidi100.com/chaxun?com=@_ordershippingEntity.Name&nu=@_ordershippingEntity.Number" target="_blank" style="text-decoration:underline">快递查询</a></td>
+                                            </tr>
+                                        </table>
+                                    }
+                                </div>
+                                <div class="zf_cc_detail" style="width:50%; float:left;">
+                                    @if (Model.PayState == (int)Vcyber.BLMS.Entity.Enum.EPayState.ZFWC)
+                                    {
+                                        //已支付-支付信息
+                                        <table style="float:left; width:100%;word-break: break-all;">
+                                            <tr>
+                                                <td colspan="2">
+                                                    支付信息
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tt_bg">支付时间</td>
+                                                <td>@Model.Updatetime</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tt_bg">支付金额</td>
+                                                <td>
+                                                    @{
+                                        string _zhifu = string.Empty;
+                                        if (Model.Integral > 0)
+                                        {
+                                            _zhifu = string.Format("{0}积分", Model.Integral);
+                                        }
+                                        if (Model.BlueBean > 0)
+                                        {
+                                            if (Model.Integral > 0)
+                                            {
+                                                _zhifu += "+";
+                                            }
+                                            _zhifu += string.Format("{0}蓝豆", Model.BlueBean);
+                                        }
+                                                    }
+                                                    @_zhifu
+                                                </td>
+                                            </tr>
+                                            @*<tr>
+                                                <td class="tt_bg"></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tt_bg"></td>
+                                                <td></td>
+                                            </tr>*@
+                                        </table>
+                                    }
+                                </div>
+                            }                         
+
+                        </div>
+                        <div class="ddxx_table">
+                            <table style="width:100%; word-break: break-all;">
+                                <tr class="table_title">
+                                    <td width="356">商品名称</td>
+                                    <td width="85">状态</td>
+                                    <td width="74">总价</td>
+                                    <td width="76">数量</td>
+                                    <td width="82">合计</td>
+                                </tr>
+                                @{
+                                    IEnumerable<Vcyber.BLMS.Entity.OrderProduct> _productList = Vcyber.BLMS.Application._AppContext.OrderApp.GetOrderProduct(Model.OrderId);
+                                    if (_productList != null && _productList.Any())
+                                    {
+                                        foreach (var productItem in _productList)
+                                        {
+                                            int _price = productItem.Integral;
+                                            string _priceUnit = "积分";
+                                            if (productItem.BlueBean > 0)
+                                            {
+                                                _price = productItem.BlueBean;
+                                                _priceUnit = "蓝豆";
+                                            }
+                                <tr class="table_title2" style="border-bottom:1px solid #eee;">
+                                    <td width="434" style="text-align:left">
+                                        <img src="@productItem.Img"  style="width:66px; height:66px;" />
+                                        <span style="margin-top:38px;margin-left:26px;float:left;font-size:12px;color:#3d3f43;line-height:16px;width:260px;display:block;">@productItem.Name</span>
+                                    </td>
+                                    <td width="96"><span>@(((Vcyber.BLMS.Entity.Enum.ETradeState)Model.TradeState).GetDiscribe())</span></td>
+                                    <td width="102">@(string.Format("{0}{1}", _price, _priceUnit))</td>
+                                    <td width="130">@productItem.Qty</td>
+                                    <td width="100">@(string.Format("{0}{1}", productItem.Qty * _price, _priceUnit))</td>
+                                </tr>
+                                        }
+                                    }
+                                }
+
+                            </table>
+                            <p>商品总价：<label>@_total</label></p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(".wl_zf li").hover(
+            function () {
+                if ($(this).hasClass("wl_cc")) {
+                    $(this).siblings("li").removeClass("wl_cc");
+                } else {
+                    $(this).addClass("wl_cc").siblings("li").removeClass("wl_cc");
+                }
+                var index = $(".wl_zf li").index(this);
+                if (index == 0) {
+                    $(".zf_cc_detail").hide();
+                    $(".wl_cc_detail").show();
+                } else if (index == 1) {
+                    $(".wl_cc_detail").hide();
+                    $(".zf_cc_detail").show();
+                }
+            },
+            function () {
+            });
+    });
+</script>

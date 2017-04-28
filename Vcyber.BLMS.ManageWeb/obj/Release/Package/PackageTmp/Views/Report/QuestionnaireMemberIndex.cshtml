@@ -1,0 +1,173 @@
+﻿@model List<Vcyber.BLMS.Entity.QuestionnaireVisitor>
+@{
+    ViewBag.Title = "参与问卷用户信息报表";
+    ViewBag.TitleFocus = "2-2-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    bool IsCs = Convert.ToBoolean(ViewBag.IsCs);
+}
+@using Vcyber.BLMS.ManageWeb.Helper
+<script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+<div class="panel panel-default">
+    <table class="table table-bordered table-responsive">
+        @if (!IsCs)
+        {
+            <tr>
+                <td>开始时间：</td>
+                <td>@(Html.TextBox("BeginTime", "", new { @class = "input_text1", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd',isShowWeek:true,isShowClear:true,readOnly:true})" }))</td>
+                <td>结束时间：</td>
+                <td>@(Html.TextBox("EndTime", "", new { @class = "input_text1", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd',isShowWeek:true,isShowClear:true,readOnly:true})" }))</td>
+                <td>问卷Id：</td>
+                <td><input type="text" class="input_text1" id="QuestionnaireId" /></td>
+            </tr>
+            <tr>
+                <td>年龄段：</td>
+                <td>
+                    <select id="Age">
+                        <option value="">请选择</option>
+                        <option value="20以下">20以下</option>
+                        <option value="20-30">21-30</option>
+                        <option value="30-40">31-40</option>
+                        <option value="40-50">41-50</option>
+                        <option value="50以上">51以上</option>
+                    </select>
+                </td>
+                <td>学历：</td>
+                <td>
+                    <select id="Education">
+                        <option value="">请选择</option>
+                        <option value="大学">大学</option>
+                        <option value="学士">学士</option>
+                        <option value="硕士">硕士</option>
+                        <option value="博士">博士</option>
+                        <option value="大专">大专</option>
+                        <option value="中专">中专</option>
+                        <option value="高中以下">高中以下</option>
+                    </select>
+                </td>
+                <td>会员等级：</td>
+                <td>
+                    <select id="MemberLevel">
+                        <option value="">请选择</option>
+                        <option value="0">游客</option>
+                        <option value="1">一星会员</option>
+                        <option value="2">二星会员</option>
+                        <option value="3">三星会员</option>
+                        <option value="4">银卡会员</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value="查询" onclick="search();" class="btn btn-primary" />
+                    <input class="btn btn-primary" type="submit" onclick="toReportExcel()" value="导出" />
+                </td>
+                @*<td>
+                        <input type="button" value="导出前一天日报" onclick="toReportPrveRb()" class="btn btn-primary" />
+                    </td>*@
+            </tr>
+        }
+        <tr>
+            <td>选择开始日期：</td>
+            <td>@(Html.TextBox("dayTime", "", new { @class = "input_text1", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd',isShowWeek:true,isShowClear:true,readOnly:true})" }))</td>
+            <td>选择结束日期：</td>
+            <td>@(Html.TextBox("endDayTime", "", new { @class = "input_text1", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd',isShowWeek:true,isShowClear:true,readOnly:true})" }))</td>
+            <td>问卷Id：</td>
+            <td><input type="text" class="input_text1" id="rbQuestionnaireId" /></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value="导出日报" onclick="toReportRb()" class="btn btn-primary" />
+            </td>
+        </tr>
+        <tr>
+            <td>问卷Id：</td>
+            <td><input type="text" class="input_text1" id="AQuestionnaireId" /></td>
+            <td>
+                <input type="button" value="导出结果" onclick="toReportAnswer()" class="btn btn-primary" />
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="divPageList">
+    @{
+        Html.RenderAction("QuestionnaireMemberPartialPage", new { index = 1, size = 10 });
+    }
+</div>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    //列表分页
+    function GetPageList(pageIndex) {
+        if ($("#QuestionnaireId").val() == "") {
+            alert("问卷id为必填");
+            return;
+        }
+
+        var data = {
+            BeginTime: $("#BeginTime").val(),
+            EndTime: $("#EndTime").val(),
+            QuestionnaireId: $("#QuestionnaireId").val(),
+            Age: $("#Age").val(),
+            Education: $("#Education").val(),
+            MemberLevel: $("#MemberLevel").val(),
+            index: pageIndex,
+            size: 10
+        };
+        var url = "@Url.Action("QuestionnaireMemberPartialPage")";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function (msg) {
+                $("#divPageList").html(msg);
+            }
+        });
+    }
+
+    function search() {
+        GetPageList(1);
+    }
+
+    function toReportExcel() {
+        if ($("#QuestionnaireId").val() == "") {
+            alert("问卷id为必填");
+            return;
+        }
+
+        var BeginTime = $("#BeginTime").val();
+        var EndTime = $("#EndTime").val();
+        var QuestionnaireId = $("#QuestionnaireId").val();
+        var Age = $("#Age").val();
+        var Education = $("#Education").val();
+        var MemberLevel = $("#MemberLevel").val();
+        window.location = "/Report/QuestionnaireMemberExport?BeginTime=" + BeginTime + "&EndTime=" + EndTime + "&QuestionnaireId=" + QuestionnaireId +
+            "&Age=" + Age + "&Education=" + Education + "&MemberLevel=" + MemberLevel;
+        return false;
+    }
+
+    function toReportRb() {
+
+        if ($("#rbQuestionnaireId").val() == "") {
+            alert("问卷id为必填");
+            return;
+        }
+        var day = $("#dayTime").val();
+        var endDay = $("#endDayTime").val();
+        var qId = $("#rbQuestionnaireId").val();
+        if (day != "") {
+            window.location = "/Report/QuestionnarieDayExport?day=" + day + "&endDay=" + endDay + "&qId=" + qId;
+        } else {
+            alert("请选择日期");
+            return false;
+        }
+    }
+
+    function toReportAnswer() {
+        if ($("#AQuestionnaireId").val() == "") {
+            alert("问卷id为必填");
+            return;
+        }
+        var qId = $("#AQuestionnaireId").val();
+        window.location = "/Report/AnswerExport?questionnaireId=" + qId;
+        return false;
+    }
+</script>

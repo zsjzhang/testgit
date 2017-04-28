@@ -1,0 +1,87 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="panel-default">
+    <div class="panel-body">
+        <div class="container">
+            <div><h2><span class="label label-primary">sql语句输入：</span></h2></div>
+            <br />
+            <div class="text-center">
+                <textarea id="sqlInput" rows="13"></textarea>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn btn-primary" type="button" onclick="Query()" style="margin-top:10px">查询</button>
+                    @*<a class="btn btn-primary" href="/newreport/exportdata" style="margin-top:10px">导出</a>*@
+                    <button class="btn btn-primary" type="button" onclick="toExcel()" style="margin-top:10px">导出</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <h2><span class="label label-success">查询结果：</span></h2>
+                </div>
+                <div id="warning" class="col-md-5 hidden">
+                </div>
+            </div>
+            <br />
+        </div>
+        <div id="divPageList">
+        </div>
+    </div>
+</div>
+    <style type="text/css">
+        #divPageList {
+            width: 100%;
+            max-width: 1200px;
+            overflow: auto;
+        }
+
+        #sqlInput {
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        #warning {
+            margin-top: 30px;
+            font-size: 20px;
+            color: red;
+        }
+    </style>
+    <script type="text/javascript">
+        function ValidateText(oField) {
+            re = /\W+update\s+|\W+delete\s+|\W+truncate\s+|\W+exec\s+|\W+insert\s+|\W+drop\s+/i;
+            if (re.test(oField)) {
+                //alert("您只能输入查询相关语句"); //注意中文乱码
+                $("#warning").html("功能只限sql查询！");
+                $("#warning").removeClass("hidden");
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+        function Query() {
+            if (ValidateText($("#sqlInput").val())) {
+                $.post("/newReport/sqlQueryPartial", { sqlStr: $("#sqlInput").val() }, function (result) {
+                    if (result.IsSuccess == null) {
+                        if (!$("#warning").hasClass("hidden")) {
+                            $("#warning").addClass("hidden");
+                        }
+                        $("#divPageList").html(result);
+                    }
+                    else {
+                        $("#warning").html(result.Message);
+                        $("#warning").removeClass("hidden");
+                        $("#divPageList").html("");
+                    }
+                })
+            }
+        }
+        function toExcel() {
+            window.location.href = "/newreport/exportdata?sql=" + $("#sqlInput").val();
+        }
+    </script>
+

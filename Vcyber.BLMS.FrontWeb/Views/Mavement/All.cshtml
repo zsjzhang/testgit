@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Activities>
+@{
+    Layout = null;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+@{
+    if (Model != null && Model.Any())
+    {
+        <div>
+            @foreach (var item in Model)
+            {
+                <dl>
+                    <dt>
+                        <span>
+                            @Html.ActionLink(item.Title, "Detail", "Mavement", new { id = item.Id }, new { })
+                        </span>
+                        <p>
+                            @Html.Raw(item.Summary)
+                        </p>
+                        
+                    </dt>
+                    <dd>
+                        <span>活动时间：@item.BeginTime.ToString("yyyy-MM-dd")至@(item.EndTime.ToString("yyyy-MM-dd"))</span>
+                        <div class="p_c">
+                            <img src="@item.TrueMajorImageUrl" />
+                            <a><img src="/img/pic_6.png" /></a>
+                        </div>
+                    </dd>
+                </dl>
+            }
+        </div>
+    }
+    @Html.Action("MallPager", "Pagers", new { pageIndex = ViewBag.PageIndex, pageSize = ViewBag.PageSize, totalCount = ViewBag.totalCount })
+
+}

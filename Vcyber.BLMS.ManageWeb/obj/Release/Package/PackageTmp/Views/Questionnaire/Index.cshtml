@@ -1,0 +1,67 @@
+﻿@model List<Vcyber.BLMS.Entity.Order>
+@{
+    ViewBag.Title = "调查问卷列表";
+    ViewBag.TitleFocus = "2-2-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";   
+}
+@using Vcyber.BLMS.ManageWeb.Helper
+<style type="text/css">
+    li span {
+        margin-left: 10px;
+    }
+</style>
+<div class="path">
+    <a href="#">问卷管理</a>><a href="/Questionnaire/Index">问卷列表</a>
+</div>
+<div class="box_m1" style="border:1px solid #dddddd;margin-top:10px;margin-bottom:10px;padding-top:10px">
+    <ul style="list-style:none;">
+        <li>
+            <span>问卷名称：</span>
+            <input type="text" class="input_text1" id="txtQName" />
+            <div style="height:10px;">&nbsp;</div>
+            <input type="button" value="查询" onclick="search();" class="btn btn-default" />&nbsp;&nbsp;
+            <a class="btn btn-default" role="button" href="~/Questionnaire/Create/0">添加问卷</a>
+        </li>
+    </ul>
+</div>
+
+<div id="divPageList">
+    @{
+        Html.RenderAction("PartialPage", new { index = 1, size = 10 });
+    }
+</div>
+
+<style>
+    .span {
+        width: 70px;
+        background-color: #00ADFF;
+        height: 30px;
+        border: 0;
+        padding: 0;
+        margin-top: 0;
+        text-align: center;
+    }
+</style>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    function GetPageList(pageIndex) {
+        var data = {
+            pageIndex: pageIndex,
+            pageSize: 10
+        };
+        var url = "@Url.Action("PartialPage")";
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: data,
+            success: function (msg) {
+                $("#divPageList").html(msg);
+            }
+        });
+    }
+
+    //保存查询条件
+    function search() {
+        GetPageList(1);
+    }
+</script>

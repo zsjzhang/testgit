@@ -1,0 +1,194 @@
+﻿@model System.Collections.Generic.List<Vcyber.BLMS.FrontWeb.Models.BBS.BBSColumns>
+
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "车主论坛";
+}
+
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "BBSHome" })
+    </div>
+    <div class="n_all_cont">
+
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+            </div>
+
+            <ul class="gynot">
+                <li>
+                    @Html.ActionLink("发表帖子", "Create", "BBSHome", new { @class = "fbtz" })
+                </li>
+                <li>
+                    @Html.ActionLink("发起活动", "Create", "BBSHome", new { @class = "fqhd" })
+                </li>
+            </ul>
+
+            <div class="gy_cont">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>热门活动</h1>
+                        <span>Popular Activities</span>
+                        <img src="../../img/arrow.png" class="arrow_n" />
+</div>
+                </div>
+                <div class="gy_nr">
+                    <a target="_blank" href="http://club.beijing-hyundai.com.cn/bluemembers-event/index.php?ly=bluemembers">
+                        <img src="../../img/luntan_left_pic1.jpg" class="erji_img" />
+                    </a>
+                        @*@{
+                var ac = Model.SingleOrDefault(c => c.Column_Name == "论坛活动").BBSGuestBook.Where(gb => gb.G_Recycle == 1 && gb.G_approved).Take(1);
+                foreach (var bbsGuestBook in ac)
+                {
+                    <span>
+                    @Html.ActionLink(bbsGuestBook.G_Title, "Comment", "BBSHome", new { id = bbsGuestBook.Id }, new { })
+                </span>
+                }
+            }*@
+
+                        <span>
+                            <a target="_blank" href="http://club.beijing-hyundai.com.cn/bluemembers-event/index.php?ly=bluemembers">蓝缤礼遇非凡尊享</a>
+                        </span>
+
+
+</div>
+            </div>
+            <div class="gy_cont">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>热帖排行</h1>
+                        <span>Hot Posts</span>
+                        @*<img src="/img/arrow.png" class="arrow_n" />*@
+                    </div>
+                </div>
+                <div class="gy_nr retie">
+                    @Html.Action("hoTipcs")
+                </div>
+            </div>
+
+
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+
+
+            @*<div class="gy_cont">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>热力会员</h1>
+                        <span>Active Member</span>
+                        <img src="../../img/arrow.png" class="arrow_n" />
+                    </div>
+                </div>
+                <div class="gy_nr retie">
+                    @Html.Action("ImageList", "BBSMember")
+                </div>
+            </div>*@
+
+
+        </div>
+
+        <div class="n_right_cont">
+            <div class="gy_title">
+                <div class="gy_zi">
+                    <h1>论坛</h1>
+                    <span>Forum</span>
+                </div>
+            </div>
+            <p class="tiezi_jl">今日：@ViewBag.CurDayBookCount/ 昨日：@ViewBag.PrevDayBookCount / 帖子：@ViewBag.GuestBookCount / 用户：@ViewBag.TotalGuest </p>
+            @Html.Action("TopBBSGuestBook")
+            <div class="fenx_lc">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>公告栏</h1>
+                        <span>Notice-board</span>
+                    </div>
+                </div>
+                <dl>
+                    <dt><img src="../../img/lt_gg.png"></dt>
+                    <dd>
+                        @{
+                            var a = Model.SingleOrDefault(c => c.Column_Name == "公告栏").BBSGuestBook.Where(gb => gb.G_Recycle == 1 && gb.G_approved).Take(5);
+                            foreach (var bbsGuestBook in a)
+                            {
+                                <p class="forum">
+
+                                    @Html.ActionLink(bbsGuestBook.G_Title, "Comment", "BBSHome", new { id = bbsGuestBook.Id }, new { })
+
+                                </p>
+
+                            }
+                        }
+
+                    </dd>
+                </dl>
+            </div>
+            <div class="fenx_lc">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>分享聊车</h1>
+                        <span>Share And Chat</span>
+                    </div>
+                </div>
+                <ul>
+                    <li>
+                        @Html.Action("columSection", new { columnName = "论坛活动" })
+                    </li>
+                    <li>
+                        @Html.Action("columSection", new { columnName = "爱车养护" })
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="fenx_lc">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>车友会</h1>
+                        <span>Friends</span>
+                    </div>
+                </div>
+                <ul>
+                    <li>
+                        @Html.Action("columSection", new { columnName = "北京" })
+                    </li>
+                    <li>
+                        @Html.Action("columSection", new { columnName = "上海" })
+                    </li>
+                </ul>
+            </div>
+
+
+            @*<span>
+                    会员:@ViewBag.MemberCount  &nbsp;|&nbsp;
+                    主题:@ViewBag.GuestBookCount &nbsp;|&nbsp;
+                    评论:@ViewBag.CommentCount &nbsp;|&nbsp;
+                    最新会员：@ViewBag.NewUser&nbsp;|&nbsp;
+                    <span>@Html.ActionLink("我要留言", "Create", "BBSHome")</span>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        //if (int.Parse(Session["User_qx"].ToString()) == 1 || 1==1)
+
+                        <span> @Html.ActionLink("留言管理", "Admin_GBook", "BBSAdmin", new { id = 1 }, null)</span>
+                        <span> @Html.ActionLink("栏目管理", "Columns", "BBSAdmin")</span>
+                        <span> @Html.ActionLink("会员管理", "Users", "BBSAdmin")</span>
+                        <span> @Html.ActionLink("回收站", "Recycle", "BBSAdmin")</span>
+
+                    }
+                </span>*@
+        </div>
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

@@ -1,0 +1,186 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html ng-app="vcyberapp">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - BLUE MEMBERS</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/angular/angular-1.3.0.js"></script>
+    <script src="~/Scripts/angular/angular-route.min.js"></script>
+    <script src="~/Scripts/angular/angular-animate.min.js"></script>
+    <script src="~/Scripts/app/app.js"></script>
+    <script src="~/Scripts/app/controller/menu.topmenu.js"></script>
+    <script src="~/Scripts/app/controller/home.statistic.js"></script>
+    <script src="~/Scripts/app/controller/account.updatepwd.js"></script>
+    <script src="~/Scripts/app/controller/integral.js"></script>
+    <script src="~/Scripts/app/controller/servicecard.js"></script>
+    <script src="~/Scripts/app/controller/member.js"></script>
+    <script src="~/Scripts/app/controller/bussiness.js"></script>
+    <script src="~/Scripts/app/controller/TreeData.js"></script>
+    <script src="~/Scripts/app/controller/system.manage.js"></script>
+    <script src="~/Scripts/app/ng-grid-2.0.12/ng-grid.min.js"></script>
+    <script src="~/Scripts/app/controller/membership.js"></script>
+    <script src="~/Scripts/app/controller/card.js"></script>
+    <script src="~/Scripts/app/controller/UserGuide.js"></script>
+    <script src="~/Scripts/app/controller/News.js"></script>
+    <script src="~/Scripts/app/controller/Activities.js"></script>
+    <script src="~/Scripts/app/controller/XDActivities.js"></script>
+    <script src="~/Scripts/app/controller/UserProofCheck.js"></script>
+    <script src="~/Scripts/app/controller/RepairRecord.js"></script>
+    <script src="~/Scripts/app/controller/consultant.js"></script>
+    <script src="~/Scripts/app/controller/dealerMembership.js"></script>
+    <script src="~/Scripts/app/controller/PopUpNotice.js"></script>
+    <script src="~/Scripts/app/controller/ShareResource.js"></script>
+    <script src="~/Scripts/app/controller/gamemanage.js"></script>
+    <script src="~/Scripts/webix.min.js"></script>
+    <script src="~/Scripts/angular/angular-cookies.min.js"></script>
+    <script src="~/Scripts/app/controller/freeRoadRescue.js"></script>
+    <script src="~/Scripts/app/controller/sendSMSSchedulePlan.js"></script>
+    <script src="~/Scripts/app/controller/AfterSaleService.js?11"></script>    
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Scripts/app/ng-grid-2.0.12/ng-grid.min.css" rel="stylesheet" />
+    <link href="~/Content/webix.min.css" rel="stylesheet" />
+
+    <link href="~/Scripts/bootstrap-datepicker/datepicker.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker/bootstrap-datepicker.zh-CN.js"></script>
+
+    @* 内容管理 *@
+    <script src="~/Scripts/app/controller/ImageCarousel.js"></script>
+    <script src="~/Scripts/app/controller/Magazine.js"></script>
+    <script src="~/Scripts/app/controller/ContentApprove.js"></script>
+    <script src="~/Scripts/angular/angular-file-upload-all.js" type="text/javascript"></script>
+    <script src="~/Scripts/angular/angular-file-upload-shim.js" type="text/javascript"></script>
+    <script src="~/Scripts/angular/angular-file-upload.js" type="text/javascript"></script>
+    <script src="~/Scripts/ueditor/ueditor.config.js" type="text/javascript"></script>
+    <script src="~/Scripts/ueditor/ueditor.all.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/ueditor/lang/zh-cn/zh-cn.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        //登录首次弹出提示信息
+        $(function() {
+            if (showFlag != undefined) {
+                $("#showInfoBtn").click();
+            }
+        });
+
+        function Service() {
+            if (window.confirm('您好，关于经销商后台问题，请选择05号客服咨询。如客服不在线，请拨打厂家老师电话咨询。')) {
+                window.open("http://ars.bhmc.com.cn:7003/");
+            } else {
+                return;
+            }
+        }
+    </script>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+
+    <script>
+
+        $(function () {
+            if (self == top) {
+                var theBody = document.getElementsByTagName('body')[0];
+                theBody.style.display = "block";
+            } else {
+                top.location = self.location;
+            }
+        });
+
+
+    </script>
+</head>
+<body>
+    @{
+        //当用户不是Admin的时候，登录首次弹出提示信息
+        if (User.Identity.Name.ToLower() != "admin" && ViewBag.showNoticeDiv)
+        {
+            if (Request.Cookies.Get("LoginFlag") == null || Request.Cookies.Get("LoginFlag").Value == "")
+            {
+                Response.Write("<script>var showFlag=true;</script>");
+                var ck = new HttpCookie("LoginFlag");
+                ck.Secure = HttpContext.Current.Request.IsSecureConnection;
+                ck.Value = "1";
+                Response.Cookies.Add(ck);
+            }
+            else
+            {
+                Response.Write("<script>var showFlag=undefined;</script>");
+            }
+        }
+        else
+        {
+            Response.Write("<script>var showFlag=undefined;</script>");
+        }
+    }
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 text-left">
+                <img src="~/Content/Image/logo1.png" />
+                <button id="showInfoBtn" type="button" data-toggle="modal" data-target="#showInfoModal" style=" display:none;"></button>
+            </div>
+            <div class="col-lg-6 text-right">
+                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <span> | 欢迎您 -@User.Identity.Name</span><a href="#/Account/UpdatePwd"> | 修改密码</a><span> | </span><a href="javascript:Service();" target="_blank" class="cs_bot pay_active" style="margin-bottom:40px; margin-top:100px;">联系客服</a><span> | </span><a href="javascript:document.getElementById('logoutForm').submit()">退出登录</a>
+                }
+
+            </div>
+        </div>
+    </div>
+    <div ng-controller="TopmenuCtrl">
+        <div class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li ng-repeat="topmenu in topmenus track by $index">
+                            <a ng-href="{{topmenu.href}}" ng-click="ActiveLeftMenu($index)">{{topmenu.value}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 container">
+                    <div class="list-group" >
+                        <a class="list-group-item" ng-class="{ active: isActive('{{item.href}}')}" ng-repeat="item in activeMenu.items" ng-href="{{item.href}}">{{item.value}}</a>
+                    </div>
+                </div>
+                <div class="col-lg-10" ng-view>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 登录首次弹出提示信息对话框 -->
+    <div class="modal fade" id="showInfoModal" tabindex="-1" role="dialog" aria-labelledby="showInfoModalLabel" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                @Html.Action("NoticeInfo", "Home")
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center">
+        <p>&copy; 2005-2014</p>
+    </footer>
+</body>
+</html>

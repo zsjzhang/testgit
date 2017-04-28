@@ -1,0 +1,147 @@
+﻿@model System.Data.DataTable
+@using System.Data;
+@{ViewBag.Title = "报表管理--车型渠道认证统计";
+Layout = "~/Views/Shared/_Layout.cshtml";
+int pageIndex = Convert.ToInt32(ViewBag.pageIndex);
+int pageSize = Convert.ToInt32(ViewBag.pageSize);
+int pcount = Convert.ToInt32(ViewBag.count);
+}
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/bootstrap")
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+<script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+
+
+
+<div class="panel-default">
+    @if (User.Identity.Name.ToLower().Equals("admin"))
+    {
+        <div class="panel-body">
+
+
+            
+
+            <div class="form-group" style=" clear: both">
+                <label class="col-md-2 control-label">会员认证时间：</label>
+                <input type="text" autocomplete="off" ng-model="formData.AuthenticationTimeStart" id="AuthenticationTimeStart" name="AuthenticationTimeStart" onfocus="WdatePicker({ startDate: '%y-%M-%d 00:00:00', skin: 'whyGreen', dateFmt: 'yyyy-MM-dd HH:mm:ss', onpicked: function () { $(this).trigger('change') }, maxDate: '#F{$dp.$D(\'AuthenticationTimeEnd\')}' }); " class="Wdate col-md-2 form-control datepicker" />
+                <span style="float:left">--</span>
+            
+                <input type="text" autocomplete="off" ng-model="formData.AuthenticationTimeEnd" id="AuthenticationTimeEnd" name="AuthenticationTimeEnd" onfocus="WdatePicker({ startDate: '%y-%M-{%d+1} 00:00:00', skin: 'whyGreen', dateFmt: 'yyyy-MM-dd HH:mm:ss', onpicked: function () { $(this).trigger('change') }, minDate: '#F{$dp.$D(\'AuthenticationTimeStart\')}' }); " class="Wdate col-md-2 form-control " />
+            </div>
+            <div class="form-group" style=" clear: both">
+                <label class="col-md-2 control-label">购车时间：</label>
+                <input type="text" autocomplete="off" ng-model="formData.BuyTimeStart" id="BuyTimeStart" name="BuyTimeStart" onfocus="WdatePicker({ startDate: '%y-%M-%d 00:00:00', skin: 'whyGreen', dateFmt: 'yyyy-MM-dd', onpicked: function () { $(this).trigger('change') }, maxDate: '#F{$dp.$D(\'BuyTimeEnd\')}' }); alwaysUseStartDate: true" class="Wdate col-md-2 form-control datepicker" />
+                @*<label class="col-md-2 control-label">购车时间：</label>*@
+                <span style="float:left">--</span>
+                @*<input class="Wdate col-md-2 form-control datepicker" id="BuyTimeEnd" placeholder="结束时间" data-date-format="yyyy-mm-dd" ng-model="formData.EndCreateTime" />*@
+                <input type="text" autocomplete="off" ng-model="formData.BuyTimeEnd" id="BuyTimeEnd" name="BuyTimeEnd" onfocus="WdatePicker({ startDate: '%y-%M-{%d+1} 00:00:00', skin: 'whyGreen', dateFmt: 'yyyy-MM-dd', onpicked: function () { $(this).trigger('change') }, minDate: '#F{$dp.$D(\'BuyTimeStart\')}' }); " class="Wdate col-md-2 form-control " />
+            </div>
+            <div class="form-group" style=" clear: both">
+                <label class="col-md-2 control-label">车型：</label>
+                
+                <select class=" col-md-2  form-control" id="CarCategory">
+                
+                </select>
+                
+            </div>
+            
+
+            <div class="form-group">
+                <label style="color:red">注：所有的时间段都是大于等于第一个时间，小于等于第二个时间 </label>
+
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn btn-primary" type="submit" onclick="search()" style="margin-top:10px">查询</button>
+                    <button class="btn btn-primary" type="submit" onclick="toReportExcel()" style="margin-top:10px">导出</button>
+                </div>
+
+            </div>
+            <div id="divPageList">
+
+                
+            </div>
+
+            <div id="Pagination" class="right flickr">
+            </div>
+
+
+        </div>
+    }
+
+</div>
+
+
+
+
+<script>
+    $(function () {
+        search();
+
+        var url = "@Url.Action("GetCarCategoryList")";
+        $.ajax({
+            type: "post",
+            //async: false,  //同步
+            url: url,
+            success: function (result)
+            {
+
+                var obj = JSON.parse(result);
+
+                var htmlstr = " <option value=''>请选择</option>";
+                if (obj.length > 0)
+                {
+
+                    for (var i = 0; i < obj.length; i++)
+                        {
+                        htmlstr += "<option value='" + obj[i].optionvalue + "'>" + obj[i].name + "</option>";
+                    }
+                }
+                $("#CarCategory").html(htmlstr);
+            }
+        });
+     
+
+    });
+    function search() {
+        var data = {
+            
+            AuthenticationTimeStart: $("#AuthenticationTimeStart").val(),
+            AuthenticationTimeEnd: $("#AuthenticationTimeEnd").val(),
+            BuyTimeStart: $("#BuyTimeStart").val(),
+            BuyTimeEnd: $("#BuyTimeEnd").val(),
+            CarCategory: $("#CarCategory").val(),
+            
+            pageIndex: 1,
+            pageSize: 10
+        };
+        var url = "@Url.Action("GetAuthenticationSourceByCarCategoryPage")";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function (msg) {
+                
+                $('#divPageList').html(msg);
+            }
+        });
+    }
+
+    function toReportExcel() {
+
+        var 
+         AuthenticationTimeStart = $("#AuthenticationTimeStart").val(),
+         AuthenticationTimeEnd = $("#AuthenticationTimeEnd").val(),
+         BuyTimeStart = $("#BuyTimeStart").val(),
+         BuyTimeEnd = $("#BuyTimeEnd").val(),         
+        CarCategory = $("#CarCategory").val();
+
+        window.location = '/Report/GetAuthenticationSourceByCarCategoryExport?AuthenticationTimeStart=' + AuthenticationTimeStart + "&AuthenticationTimeEnd=" + AuthenticationTimeEnd + "&BuyTimeStart=" + BuyTimeStart + "&BuyTimeEnd=" + BuyTimeEnd + "&CarCategory=" + CarCategory ;
+        return false;
+    }
+
+</script>

@@ -1,0 +1,37 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="f_y_1">
+    <div class="a_n">
+        <a href="javascript:goPager(1)">首页</a>
+    </div>
+    <div class="a_n">
+        <a href="javascript:goPager(@(ViewBag.pageIndex-1))">上一页</a>
+    </div>
+    <ul>
+        <li>......</li>
+        @{
+            for (int i = 1; i < ViewBag.pageCount; i++)
+            {
+                <li>
+                    <a href="javascript:goPager(@i)">@i</a>
+                </li>
+            }
+        }
+        <li>......</li>
+    </ul>
+    <div class="a_n">
+        <a href="javascript:goPager(@(ViewBag.pageIndex + 1))">下一页</a>
+    </div>
+    <div class="a_n">
+        <a href="javascript:goPager(@ViewBag.pageCount)">末页</a>
+    </div>
+    <div class="t_z">共 @ViewBag.pageCount 页，跳到第 <input /> 页</div>
+    <div class="a_n">确定</div>
+</div>
+<script type="text/javascript">
+    function goPager(pageIndex) {
+
+    }
+</script>

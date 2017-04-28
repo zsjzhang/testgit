@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BBSEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BBSColumns">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Column_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Info" Type="nvarchar" MaxLength="50" />
+          <Property Name="ImageSrc" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="BBSComment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GuestBookId" Type="int" />
+          <Property Name="MemberId" Type="char" MaxLength="36" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="100" />
+          <Property Name="C_Time" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BBSGuestBook">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberId" Type="char" MaxLength="36" Nullable="false" />
+          <Property Name="MemberName" Type="char" MaxLength="50" />
+          <Property Name="G_Content" Type="nvarchar" MaxLength="750" />
+          <Property Name="G_Time" Type="datetime" />
+          <Property Name="G_Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="G_HF_Content" Type="nvarchar" MaxLength="750" />
+          <Property Name="G_Recycle" Type="int" />
+          <Property Name="G_ReadCount" Type="int" Nullable="false" />
+          <Property Name="G_ResponseCount" Type="int" Nullable="false" />
+          <Property Name="LastUpdateMemberName" Type="char" MaxLength="50" />
+          <Property Name="LastUpdateTime" Type="datetime" Nullable="false" />
+          <Property Name="Column_Id" Type="int" Nullable="false" />
+          <Property Name="G_approved" Type="bit" Nullable="false" />
+          <Property Name="G_isTop" Type="bit" Nullable="false" />
+          <Property Name="G_isHot" Type="bit" />
+        </EntityType>
+        <EntityType Name="BBSMember">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="char" MaxLength="36" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PassWord" Type="nvarchar" MaxLength="50" />
+          <Property Name="Power" Type="nvarchar" MaxLength="10" />
+          <Property Name="Sex" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Head" Type="nvarchar" MaxLength="10" />
+          <Property Name="SetAtt" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_BBSComment_GuestBook">
+          <End Role="BBSGuestBook" Type="Self.BBSGuestBook" Multiplicity="0..1" />
+          <End Role="BBSComment" Type="Self.BBSComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BBSGuestBook">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BBSComment">
+              <PropertyRef Name="GuestBookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BBSComment_Member">
+          <End Role="BBSMember" Type="Self.BBSMember" Multiplicity="1" />
+          <End Role="BBSComment" Type="Self.BBSComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BBSMember">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BBSComment">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BBSGuestBook_Columns">
+          <End Role="BBSColumns" Type="Self.BBSColumns" Multiplicity="1" />
+          <End Role="BBSGuestBook" Type="Self.BBSGuestBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BBSColumns">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BBSGuestBook">
+              <PropertyRef Name="Column_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BBSGuestBook_Member">
+          <End Role="BBSMember" Type="Self.BBSMember" Multiplicity="1" />
+          <End Role="BBSGuestBook" Type="Self.BBSGuestBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BBSMember">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BBSGuestBook">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BBSEntitiesStoreContainer">
+          <EntitySet Name="BBSColumns" EntityType="Self.BBSColumns" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BBSComment" EntityType="Self.BBSComment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BBSGuestBook" EntityType="Self.BBSGuestBook" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BBSMember" EntityType="Self.BBSMember" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BBSComment_GuestBook" Association="Self.FK_BBSComment_GuestBook">
+            <End Role="BBSGuestBook" EntitySet="BBSGuestBook" />
+            <End Role="BBSComment" EntitySet="BBSComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BBSComment_Member" Association="Self.FK_BBSComment_Member">
+            <End Role="BBSMember" EntitySet="BBSMember" />
+            <End Role="BBSComment" EntitySet="BBSComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BBSGuestBook_Columns" Association="Self.FK_BBSGuestBook_Columns">
+            <End Role="BBSColumns" EntitySet="BBSColumns" />
+            <End Role="BBSGuestBook" EntitySet="BBSGuestBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BBSGuestBook_Member" Association="Self.FK_BBSGuestBook_Member">
+            <End Role="BBSMember" EntitySet="BBSMember" />
+            <End Role="BBSGuestBook" EntitySet="BBSGuestBook" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BBSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BBSColumns">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Column_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Info" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ImageSrc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BBSGuestBook" Relationship="Self.FK_BBSGuestBook_Columns" FromRole="BBSColumns" ToRole="BBSGuestBook" />
+        </EntityType>
+        <EntityType Name="BBSComment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GuestBookId" Type="Int32" />
+          <Property Name="MemberId" Type="String" MaxLength="36" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="C_Time" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="BBSGuestBook" Relationship="Self.FK_BBSComment_GuestBook" FromRole="BBSComment" ToRole="BBSGuestBook" />
+          <NavigationProperty Name="BBSMember" Relationship="Self.FK_BBSComment_Member" FromRole="BBSComment" ToRole="BBSMember" />
+        </EntityType>
+        <EntityType Name="BBSGuestBook">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="String" MaxLength="36" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="MemberName" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="G_Content" Type="String" MaxLength="750" FixedLength="false" Unicode="true" />
+          <Property Name="G_Time" Type="DateTime" Precision="3" />
+          <Property Name="G_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="G_HF_Content" Type="String" MaxLength="750" FixedLength="false" Unicode="true" />
+          <Property Name="G_Recycle" Type="Int32" />
+          <Property Name="G_ReadCount" Type="Int32" Nullable="false" />
+          <Property Name="G_ResponseCount" Type="Int32" Nullable="false" />
+          <Property Name="LastUpdateMemberName" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="LastUpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Column_Id" Type="Int32" Nullable="false" />
+          <Property Name="G_approved" Type="Boolean" Nullable="false" />
+          <Property Name="G_isTop" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="BBSColumns" Relationship="Self.FK_BBSGuestBook_Columns" FromRole="BBSGuestBook" ToRole="BBSColumns" />
+          <NavigationProperty Name="BBSComment" Relationship="Self.FK_BBSComment_GuestBook" FromRole="BBSGuestBook" ToRole="BBSComment" />
+          <NavigationProperty Name="BBSMember" Relationship="Self.FK_BBSGuestBook_Member" FromRole="BBSGuestBook" ToRole="BBSMember" />
+          <Property Name="G_isHot" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="BBSMember">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="36" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Power" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Sex" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Head" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SetAtt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BBSComment" Relationship="Self.FK_BBSComment_Member" FromRole="BBSMember" ToRole="BBSComment" />
+          <NavigationProperty Name="BBSGuestBook" Relationship="Self.FK_BBSGuestBook_Member" FromRole="BBSMember" ToRole="BBSGuestBook" />
+        </EntityType>
+        <Association Name="FK_BBSGuestBook_Columns">
+          <End Role="BBSColumns" Type="Self.BBSColumns" Multiplicity="1" />
+          <End Role="BBSGuestBook" Type="Self.BBSGuestBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BBSColumns">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BBSGuestBook">
+              <PropertyRef Name="Column_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BBSComment_GuestBook">
+          <End Role="BBSGuestBook" Type="Self.BBSGuestBook" Multiplicity="0..1" />
+          <End Role="BBSComment" Type="Self.BBSComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BBSGuestBook">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BBSComment">
+              <PropertyRef Name="GuestBookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BBSComment_Member">
+          <End Role="BBSMember" Type="Self.BBSMember" Multiplicity="1" />
+          <End Role="BBSComment" Type="Self.BBSComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BBSMember">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BBSComment">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BBSGuestBook_Member">
+          <End Role="BBSMember" Type="Self.BBSMember" Multiplicity="1" />
+          <End Role="BBSGuestBook" Type="Self.BBSGuestBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BBSMember">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BBSGuestBook">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BBSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BBSColumns" EntityType="Self.BBSColumns" />
+          <EntitySet Name="BBSComment" EntityType="Self.BBSComment" />
+          <EntitySet Name="BBSGuestBook" EntityType="Self.BBSGuestBook" />
+          <EntitySet Name="BBSMember" EntityType="Self.BBSMember" />
+          <AssociationSet Name="FK_BBSGuestBook_Columns" Association="Self.FK_BBSGuestBook_Columns">
+            <End Role="BBSColumns" EntitySet="BBSColumns" />
+            <End Role="BBSGuestBook" EntitySet="BBSGuestBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BBSComment_GuestBook" Association="Self.FK_BBSComment_GuestBook">
+            <End Role="BBSGuestBook" EntitySet="BBSGuestBook" />
+            <End Role="BBSComment" EntitySet="BBSComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BBSComment_Member" Association="Self.FK_BBSComment_Member">
+            <End Role="BBSMember" EntitySet="BBSMember" />
+            <End Role="BBSComment" EntitySet="BBSComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BBSGuestBook_Member" Association="Self.FK_BBSGuestBook_Member">
+            <End Role="BBSMember" EntitySet="BBSMember" />
+            <End Role="BBSGuestBook" EntitySet="BBSGuestBook" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BBSEntitiesStoreContainer" CdmEntityContainer="BBSEntities">
+          <EntitySetMapping Name="BBSColumns">
+            <EntityTypeMapping TypeName="BBSModel.BBSColumns">
+              <MappingFragment StoreEntitySet="BBSColumns">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Column_Name" ColumnName="Column_Name" />
+                <ScalarProperty Name="Info" ColumnName="Info" />
+                <ScalarProperty Name="ImageSrc" ColumnName="ImageSrc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BBSComment">
+            <EntityTypeMapping TypeName="BBSModel.BBSComment">
+              <MappingFragment StoreEntitySet="BBSComment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GuestBookId" ColumnName="GuestBookId" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="C_Time" ColumnName="C_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BBSGuestBook">
+            <EntityTypeMapping TypeName="BBSModel.BBSGuestBook">
+              <MappingFragment StoreEntitySet="BBSGuestBook">
+                <ScalarProperty Name="G_isHot" ColumnName="G_isHot" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+                <ScalarProperty Name="G_Content" ColumnName="G_Content" />
+                <ScalarProperty Name="G_Time" ColumnName="G_Time" />
+                <ScalarProperty Name="G_Title" ColumnName="G_Title" />
+                <ScalarProperty Name="G_HF_Content" ColumnName="G_HF_Content" />
+                <ScalarProperty Name="G_Recycle" ColumnName="G_Recycle" />
+                <ScalarProperty Name="G_ReadCount" ColumnName="G_ReadCount" />
+                <ScalarProperty Name="G_ResponseCount" ColumnName="G_ResponseCount" />
+                <ScalarProperty Name="LastUpdateMemberName" ColumnName="LastUpdateMemberName" />
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="Column_Id" ColumnName="Column_Id" />
+                <ScalarProperty Name="G_approved" ColumnName="G_approved" />
+                <ScalarProperty Name="G_isTop" ColumnName="G_isTop" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BBSMember">
+            <EntityTypeMapping TypeName="BBSModel.BBSMember">
+              <MappingFragment StoreEntitySet="BBSMember">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="Power" ColumnName="Power" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Head" ColumnName="Head" />
+                <ScalarProperty Name="SetAtt" ColumnName="SetAtt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

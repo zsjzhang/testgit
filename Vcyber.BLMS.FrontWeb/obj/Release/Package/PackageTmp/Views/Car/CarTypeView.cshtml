@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Generated.CSBaseCar>
+@{
+    Layout = null;
+}
+
+<select id="carType" name="carType">
+    @{
+        if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <option value="@item.Id">@item.SeriesName</option>
+            }
+        }
+        else
+        {
+            <option>请选择</option>
+        }
+    }
+</select>

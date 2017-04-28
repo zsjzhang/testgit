@@ -1,0 +1,105 @@
+﻿@model List<Vcyber.BLMS.Entity.IntegralOutReportInfo>
+@{
+    ViewBag.Title = "旧中间表查询";
+    ViewBag.TitleFocus = "2-2-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Vcyber.BLMS.ManageWeb.Helper
+<script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+<style type="text/css">
+    /*.input_text2 {
+        width: 100px;
+    }
+
+    .input_text1 {
+        width: 100px;
+    }*/
+</style>
+<div class="path">
+
+</div>
+<div style="height:20px;"></div>
+<div class="panel panel-default">
+    <table class="table table-bordered table-responsive">
+        <tr>
+            <td>
+                VIN：<input type="text" autocomplete="off" class="input_text1" id="txtvin" />
+                <input type="button" value="查询" onclick="searchCar();" class="btn btn-primary" />
+            </td>
+        </tr>
+    </table>
+
+    <table class="table table-bordered table-responsive" style="margin-top:10px;">
+        <tr>
+            <td>
+                姓名：<input type="text" autocomplete="off" class="input_text1" id="txtname" />
+            </td>
+            <td>
+                手机号：<input type="text" autocomplete="off" class="input_text1" id="txtphone" />
+            </td>
+            <td>
+                证件号：<input type="text" autocomplete="off" class="input_text1" id="txtidentitynumber" />
+            </td>
+            <td>
+                <input type="button" value="查询" onclick="searchCustomer();" class="btn btn-primary" />
+            </td>
+        </tr>
+    </table>
+    @{Html.RenderPartial("AddCustomer");}
+</div>
+<div id="divPageList">
+    @{
+        Html.RenderAction("FindCar");
+    }
+</div>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    //搜索VIN
+    function searchCar() {
+        var vinValue = $("#txtvin").val().trim();
+        if (vinValue == "") {
+            alert("请输入VIN。");
+            return;
+        }
+
+        var data = { vin: vinValue,whatType:1 };
+        var url = "@Url.Action("FindCar")";
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function (msg) {
+                $('#divPageList').html(msg);
+            }
+        });
+    }
+
+    function searchCustomer() {
+        var name = $("#txtname").val().trim();
+        var phone = $("#txtphone").val().trim();
+        var identityNumber = $("#txtidentitynumber").val().trim();
+
+        if (name == "" && phone == "" && identityNumber == "") {
+            alert("请输入客户查询条件。");
+            return;
+        }
+
+        var data = { Name: name, Phone: phone, IdentityNumber: identityNumber, whatType: 1 };
+        var url = "@Url.Action("FindCustomer")";
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function (msg) {
+                $('#divPageList').html(msg);
+            }
+        });
+    }
+
+    function addCustomerShow() {
+        $("#customerDiv").show(500);
+    }
+
+</script>

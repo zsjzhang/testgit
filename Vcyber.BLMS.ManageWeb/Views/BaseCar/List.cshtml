@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Generated.CSBaseCar>
+@{
+    ViewBag.Title = "车系列表";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("List", "BaseCar", FormMethod.Get, new { @class = "form-horizontal", @id = "QueryOrderForm" }))
+{
+    <div class="form-group col-md-6">
+        <label class="col-md-3 control-label">类型</label>
+        <select id="sType" name="sType" class="col-md-3 text-left form-control">
+            <option value="0">试驾</option>
+            <option value="1">订车</option>
+            @*<option value="2">预约</option>*@
+        </select>
+    </div>
+    <div class="form-group col-md-6">
+        <div class="btn-toolbar col-md-3 col-md-offset-3">
+            <button style="padding-left: -15px;" type="submit" id="btn-submit-cs" class=" btn btn-primary"><i class="fa"></i>查询</button>
+        </div>
+    </div>
+}
+<div class="data-container">
+        <div class="col-md-12">
+            <a class="btn btn-primary" href="/BaseCar/Create">添加车系</a>
+        </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>名称</th>
+                <th>类型</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model != null && Model.Any())
+                {
+                    int i = 0;
+                    foreach (var item in Model)
+                    {
+                        i++;
+                        <tr>
+                            <td>@i</td>
+                            <td>@item.SeriesName</td>
+                            @if (item.Type == 0)
+                            {
+                                <td>试驾</td>
+                            }
+                            else if (item.Type == 1)
+                            {
+                                <td>订车</td>
+                            }
+                            else
+                            {
+                                <td>预约</td>
+                            }
+                            <td>
+                                <a href="@Url.Action("Edit", "BaseCar", new { id = @item.Id })">编辑</a>
+                                <a href="javascript:return void()" onclick="del(@item.Id)">删除</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+    $(function() {
+        $('#sType').val("@ViewBag.Type");
+    });
+    function del(cid) {
+        if (confirm("确认删除么?")) {
+            var url = "@Url.Action("Del")";
+            $.post(url, { id: cid }, function (msg) {
+                switch (msg) {
+                    case "Y":
+                        window.location = "/BaseCar/List";
+                        break;
+                    default:
+                        alert(msg);
+                        break;
+                }
+            });
+        }
+    }
+</script>
+

@@ -1,0 +1,140 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "预约维保";
+}
+<script src="~/Content/laydate/laydate.js"></script>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "BlueVIP" })
+    </div>
+    <div class="n_all_cont" style="height:1200px;">
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+
+        </div>
+        <div class="n_right_cont">
+            <div class="gy_cont" style="margin-top:0;">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>预约维保</h1>
+                        <span>Reserve Maintenance</span>
+                    </div>
+                </div>
+                <div class="gy_nr" style="overflow:hidden">
+                    <div class="home_cont" style="margin-bottom:20px;">
+                        <p style="margin: 20px 10px 10px 10px; width:auto;">为了确保厂家和特约店为您提供更加快捷、周到的服务，请您正确填写以下资料信息，带"*"号为必填项，感谢您的支持！</p>
+                        <hr />
+                        <p>
+                            <span></span><label>车型：</label>
+                            @Html.Action("CarTypeViewForType", "Car", new { type = Vcyber.BLMS.Entity.Enum.ECarSeriesType.Maintenance })
+                        </p>
+                        <p>
+                            <span>*</span><label>选择经销商：</label>
+                            @Html.Action("ProvinceCity", "Car", new { IsWeibao = 1 })
+                        </p>
+                        <p>
+                            <span>*</span><label>车牌号码：</label>
+                            <input class="input_duan" type="text" id="carReserveMaintenanceCarNumber" name="carReserveMaintenanceCarNumber" placeholder="请输入车牌号" />
+                            <b>例如：京A8888</b>
+                        </p>
+                        <p>
+                            <span></span><label>车&nbsp;架&nbsp;号：</label>
+                            <input class="input_duan" type="text" id="carReserveMaintenanceCarFrameNumber" name="carReserveMaintenanceCarFrameNumber" placeholder="请输入车架号" />
+                        </p>
+                        <p>
+                            <span></span><label>行驶里程：</label>
+                            <input class="input_duan" type="text" id="carReserveMaintenanceRidesNumber" name="carReserveMaintenanceRidesNumber" placeholder="请输入行驶里程" />
+                            <b>公里</b>
+                        </p>
+                        <p>
+                            <span></span><label>购车年份：</label>
+                            <select id="carReserveMaintenanceBuyYears" name="carReserveMaintenanceBuyYears">
+                                @{
+                                    for (var _years = 2015; _years > 2000; _years--)
+                                    {
+                                        <option>@_years</option>
+                                    }
+                                }
+                            </select>
+                        </p>
+                        <p>
+                            <span></span><label>服务项目：</label>
+                            <input type="checkbox" id="chkMaintenance" name="carReserveMaintenanceMaintenance" value="0" checked="checked" class="radio_btn_cc" style=" border: none;" /><b>维修</b>
+                            <input type="checkbox" id="chkRepair" name="carReserveMaintenanceMaintenance" value="1" class="radio_btn_cc" style="margin-left:38px; border: none;" /><b>保养</b>
+
+                        </p>
+                        <p>
+                            <span>*</span><label>预计到店日期：</label>
+                            <input class="input_duan laydate-icon" type="text" id="carReserveMaintenanceEndTime" name="carReserveMaintenanceEndTime" placeholder="请选择" />
+                            <script>
+                                $(function () {
+                                    laydate({
+                                        elem: '#carReserveMaintenanceEndTime',
+                                        min: laydate.now(+1), //-1代表昨天，-2代表前天，以此类推
+                                        max: laydate.now(+60),
+                                        istoday: false
+                                    });
+                                });
+                            </script>
+                            <b style="margin-top:0;">
+                                尊敬的车主您好，预约维保到店服务<br/>
+                                有效期为提交预约后的60天。<br />
+                                感谢您的理解与支持，祝您用车愉快！
+                            </b>
+                        </p>
+
+                        <p>
+                            <span>*</span><label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
+                            <input class="input_duan" type="text" id="carReserveMaintenanceUserName" name="carReserveMaintenanceUserName" />
+                        </p>
+                        <p>
+                            <span></span><label>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</label>
+                            <input type="radio" name="carReserveMaintenanceGender" value="1" id="genderMan" checked="checked" class="radio_btn_cc" style=" border: none;" /><b>男</b>
+                            <input type="radio" name="carReserveMaintenanceGender" value="0" id="genderWoman" class="radio_btn_cc" style="margin-left:38px; border: none;" /><b>女</b>
+                        </p>
+
+                        <p>
+                            <span>*</span><label>手&nbsp;&nbsp;&nbsp;机&nbsp;&nbsp;&nbsp;号：</label>
+                            <input class="input_duan" type="text" id="carReserveMaintenanceUserMobile" name="carReserveMaintenanceUserMobile" />
+                        </p>
+                        @*<p style="height:auto;">
+                                <span></span><label>补充说明：</label>
+                                <textarea style="width:434px;min-height:130px; border:1px solid #c1c1c1" id="freeMotFormDescription" name="freeMotFormDescription"></textarea>
+                            </p>*@
+                        <p style="margin-left:200px;">
+                            <a id="btnReserveMaintenance" href="javascript:void(0);" style="display:block; width: 230px; height:32px; line-height:32px; text-align:center; cursor:pointer; background-color:#075090; margin:0; color:#FFF;">
+                                提<b style="margin: 0 6px;"></b>交
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    @Html.Action("Index", "Footer")
+</div>

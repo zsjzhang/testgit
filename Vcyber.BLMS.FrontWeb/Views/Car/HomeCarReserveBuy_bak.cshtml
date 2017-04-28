@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "订车";
+}
+
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Home" })
+    </div>
+    <div>
+        <div class="all_cont">
+            <div class="sjyy_title">
+                <p>订车</p>
+            </div>
+
+            <div class="yysj_cont">
+                <p class="p1">为了确保我们能够在第一时间内与您取得联系，提供更快捷、更周到的服务，请您正确填写以下资料信息，带"*"号的是必须填写项，感谢您的支持！</p>
+                <div class="p_input" style="margin-top:40px;">
+                    <span>*</span><label>订购车型：</label>
+                    @Html.Action("CarTypeView", "Car", new { })
+                </div>
+                <div class="p_input">
+                    <span></span><label>选择经销商：</label>
+                    @Html.Action("ProvinceCity", "Car", new { })
+                </div>
+                <div class="p_input">
+                    <span>*</span><label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
+                    <input type="text" id="homeCarReserveBuyUserName" name="homeCarReserveBuyUserName" />
+                </div>
+                <div class="p_input">
+                    <span>*</span><label>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</label>
+                    <input type="radio" class="radio_btn_cc" style="border: none;" name="homeCarReserveBuyGender" value="1" id="homeCarReserveBuyGenderMan" checked="checked" /><b>先生</b>
+                    <input type="radio" class="radio_btn_cc" style="margin-left:38px;border: none;" name="homeCarReserveBuyGender" value="0" id="homeCarReserveBuyGenderWoman" /><b>女士</b>
+                </div>
+                <div class="p_input">
+                    <span></span><label>电子邮箱：</label>
+                    <input type="text" id="homeCarReserveBuyUserEmail" name="homeCarReserveBuyUserEmail" />
+                    <ol></ol>
+                </div>
+                <div class="p_input">
+                    <span>*</span><label>手&nbsp;&nbsp;&nbsp;机&nbsp;&nbsp;&nbsp;号：</label>
+                    <input type="text" id="homeCarReserveBuyUserMobile" name="homeCarReserveBuyUserMobile" />
+                </div>
+
+                <div class="cc_submit_btn">
+                    <a href="javascript:void(0);" id="btnHomeCarReserveBuy" style="color: white; text-decoration: none;">提交</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

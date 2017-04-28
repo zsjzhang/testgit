@@ -1,0 +1,154 @@
+﻿<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<style>
+    .jfContBox {
+        position: relative;
+        width: 652px;
+        font-size: 14px;
+        line-height: 22px;
+        padding: 20px 20px 0 20px;
+    }
+
+    .jfInpBox {
+        height: 24px;
+        line-height: 24px;
+        margin-top: 10px;
+    }
+
+        .jfInpBox input {
+            margin-top: 5px;
+            margin-right: 7px;
+        }
+
+        .jfInpBox input, .jfInpBox label {
+            vertical-align: middle;
+        }
+
+    .regCon {
+        width: 650px;
+        background: #fff;
+        margin-left: -45px;
+    }
+
+        .regCon label {
+            margin-right: 10px;
+            line-height: 30px;
+            height: 30px;
+        }
+
+        .regCon p {
+            text-align: center;
+        }
+
+        .regCon select {
+            border: 1px solid #bdc7d8;
+            height: 30px;
+            line-height: 30px;
+        }
+
+    .regBtnZl {
+        display: inline-block;
+        padding: 5px;
+        text-align: center;
+        width: 192px;
+        position: relative;
+        background: #075090;
+        cursor: pointer;
+        margin: 10px 15px 0 15px;
+    }
+
+    a.regBtnZl:hover {
+        background: #0b63b7;
+        border: 1px solid #0b63b7;
+        color: #fff;
+        width: 192px;
+        height: 22px;
+    }
+
+    .rgeConClose {
+        display: block;
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        line-height: 30px;
+        text-align: center;
+        z-index: 10;
+        right: 0;
+        top: 0;
+        font-size: 25px;
+        color: #333;
+        background: #eee;
+        cursor: pointer;
+    }
+
+    #btnInputPayNumberToRegisterVip:hover, #btnApplyToDealer_AccountRegisterVip:hover {
+        background: #0b63b7;
+        border: 1px solid #0b63b7;
+        cursor: pointer;
+        color: #fff;
+    }
+</style>
+<script>
+   
+  
+
+    $(function () {
+        $('.jfjf').on('click', function () {
+            $('.regCon').toggle();
+
+        })
+    });
+</script>
+  
+
+        <div class="geren_box zh_xinxi">
+            <div class="gy_title">
+                <div class="gy_zi">
+                    <h1>缴费获取积分申请</h1>
+                    <span>Pay to Get Point Application</span>
+                </div>
+            </div>
+
+
+            <div class="jfContBox">
+
+                <p>
+                    亲爱的会员，您好。感谢您对北京现代Bluemembers的支持！马上缴费获取积分好礼，更有尊享权益等您
+                    享。具体详情请查看“会员权益”。<span></span>
+                </p>
+                <p class="jfInpBox">
+                    <input type="checkbox"  checked ="" name="jfjf" class="jfjf" ><label name="jfjf">缴费获取积分</label>
+                </p>
+
+                <div style=" display:none ;" class="regCon">
+
+                    <div style=" width: 100%; float: left; height: 30px; line-height: 30px; margin-top: 20px;">
+
+                        <span style=" float: left; margin-left: 125px; padding-bottom: 0; font-size: 16px; color:#3D3F43">选择入会特约店</span>
+                        <label style=" float: left; font-size: 12px; margin-left: 10px; color: #a0a0a0;">您可以选择购买车辆的特约店，也可以选择其他您常去的特约店。</label>
+
+
+                    </div>
+                    <div style=" float: left; width: 100%;  margin-top: 20px;">
+                        @Html.Action("AccountPageProvince", "Car")
+                        <div style=" width: 100%; float: left; margin-top: 26px; height: 26px; line-height: 26px;">
+                            <input type="hidden" id="accountPayNumber">
+                            <input type="hidden" id="accountActivityType">
+                            <span style="float: left; font-size: 16px; margin-left: 125px; color: #3D3F43; ">支付会费</span>
+                            <span style=" margin-left: 10px; float: left; font-size: 12px; color: #a0a0a0;">如果您已经与申请的特约店沟通并向其支付了会费，也可以选择向特约店申请。</span>
+                        </div>
+                        <div style="width: 80%; float: left; margin-top: 26px; position: relative; left: 50%; margin-left: -40%; ">
+                            <div style="width:50%; float:left; position:relative;">
+                                <a class="pay_active apply_member register_bot" id="btnApplyToDealer_AccountRegisterVip" style=" width: 200px; float: left; margin-top: 10px; margin-left: -100px; left: 50%; position: relative;text-align:center; cursor:pointer;">向特约店申请</a>
+                            </div>
+                            <div style="width:50%; float:left; position:relative;">
+                                <a target="_blank" href="http://detail.tmall.com/item.htm?spm=0.0.0.0.YYWYh4&amp;id=44232536739" class="pay_active lijizhufu register_bot" id="btnInputPayNumberToRegisterVip" style=" width: 200px; float: left; margin-top: 10px; margin-left: -100px; left: 50%; position: relative;text-align:center; cursor:pointer;">立即支付</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+  
+
+

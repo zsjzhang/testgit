@@ -1,0 +1,409 @@
+﻿@model Vcyber.BLMS.Entity.Product
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = Model.Name;
+}
+<style>
+    .tracetype {
+        background-color: #e0e0e0;
+        border: 1px solid;
+    }
+</style>
+<!--在线商城添加内容-->
+
+<style>
+    .Sclearfix:after {
+        display: block;
+        content: '';
+        clear: both;
+    }
+
+    .Sclearfix {
+        zoom: 1;
+    }
+
+    .shopColor, .shopType {
+        position: relative;
+        width: 100%;
+        font-size: 18px;
+        clear: both;
+    }
+
+        .shopColor dt, .shopType dt, .shopColor dd, .shopType dd {
+            float: left;
+            position: relative;
+        }
+
+        .shopColor dt, .shopType dt {
+            padding: 5px 0;
+        }
+
+        .shopColor dd, .shopType dd {
+            padding: 5px 8px;
+            margin-left: 10px;
+            border: 1px solid rgb(177, 177, 177);
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+            .shopColor dd i, .shopType dd i {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                background: url(img/colorAtypeBg.png) -62px -45px;
+                display: none;
+            }
+
+    dd.onPush {
+        border: 1px solid #be0106;
+    }
+</style>
+<script src="~/Scripts/controller/PraiseController.js"></script>
+<script>
+    var _producttype = '';
+    var _productcolor = '';
+    var isSetColor = false;
+    var isSetType = false;
+
+
+    $(function () {
+        function selColorAType(Emt) {
+            $(Emt).click(function () {
+                $(Emt).removeClass('onPush');
+                $(Emt).find('i').css('display', 'none');
+                $(this).addClass('onPush');
+                $(this).find('i').css('display', 'block');
+                if ($(this).attr("skutype") == "color") {
+                    // _productcolor = $(this).attr("colorid");
+                    _productcolor = $(this).attr("colortext");
+                }
+                if ($(this).attr("skutype") == "type") {
+                    //_producttype = $(this).attr("typeid")
+                    _producttype = $(this).attr("typetext");
+                }
+
+            });
+        }
+        selColorAType('.shopColor dd');
+        selColorAType('.shopType dd');
+
+    });
+</script>
+<div>
+    <input type="hidden" id="share_title" value="精美汽车礼品，便捷生活用品，尽在北京现代会员服务品牌bluemembers蓝缤官方网站。礼品多多，先到先得。欢迎速来围观兑换。" />
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Mall" })
+    </div>
+    <div class="center_s">
+
+        @if (ViewBag.isBlock)
+        {
+            <p class="product_menu"><a href="/Member/birthday">生日特权  > </a><a href="/Product/ProductDetail?productId=@ViewBag.productId">商品详情</a></p>
+        }
+        else if (ViewBag.isCarBlock)
+        {
+            <p class="product_menu"><a href="/Mall/Index">在线商城  > </a><a href="/MallCategory/Index?levelonecategory=@ViewBag.category">汽车精品  > </a><a href="/Product/ProductDetail?productId=@ViewBag.productId">商品详情</a></p>
+        }
+        else if (ViewBag.isLifeBlock)
+        {
+            <p class="product_menu"><a href="/Mall/Index">在线商城  > </a><a href="/MallCategory/Index?levelonecategory=@ViewBag.category">生活用品  > </a><a href="/Product/ProductDetail?productId=@ViewBag.productId">商品详情</a></p>
+        }
+        else
+        {
+            <p class="product_menu"><a href="/Mall/Index">在线商城  > </a><a href="/mall/index/levelonecategory=@ViewBag.category">商品列表  > </a><a href="/Product/ProductDetail?productId=@ViewBag.productId">商品详情</a></p>
+        }
+        @if (Model != null && Model.ID > 0)
+        {
+
+            <div class="product_buy">
+                <!--   图片展示  -->
+                <div class="pic_show">
+                    <div class="box">
+                        <div class="tb-booth tb-pic tb-s310">
+                            <a href="@Model.Image"><img src="@Model.Image" alt="仿淘宝展品细节展示放大镜特效" rel="@Model.Image" class="jqzoom" /></a>
+                        </div>
+                        <ul class="tb-thumb" id="thumblist">
+                            @{
+            if (Model.Images != null && Model.Images.Any())
+            {
+                int thumImgs = 0;
+                foreach (var item in Model.Images)
+                {
+                    if (thumImgs == 0)
+                    {
+                        <li class="tb-selected">
+                            <div class="tb-pic tb-s40"><a href="javascript:void(0);"><img src="/img/01_small.jpg" mid="/img/01_mid.jpg" big="/img/01.jpg"></a></div>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <div class="tb-pic tb-s40"><a href="javascript:void(0);"><img src="/img/01_small.jpg" mid="/img/03_mid.jpg" big="/img/03.jpg"></a></div>
+                        </li>
+                    }
+                    thumImgs++;
+                }
+            }
+                            }
+                        </ul>
+                    </div>
+                    <p class="fenxiang">
+                        @Html.Action("ShareLayer", "Home")
+                    </p>
+                </div>
+                <!--  商品选择  -->
+                <div class="product_choose">
+                    <div style="width:100%; height:36px; ">
+                        <div style="max-width:480px;float:left;  margin:0 5px 0 0; height:36px;">
+                            <input type="hidden" id="productDetailProductId" value="@Model.ID" />
+                            <input type="hidden" id="productDetailProductName" value="@Model.Name" />
+                            <input type="hidden" id="productDetailProductPrice" value="@Model.Price" />
+                            <input type="hidden" id="productDetailBuyImgUrl" value="@Model.Image" />
+
+                            <h2 style="height:36px; overflow: hidden;">
+                                @Model.Name
+
+
+                            </h2>
+                            @if (!string.IsNullOrEmpty(Model.IsIdentityText))
+                            {
+                                <p><span style="color:red  ;  font-size:18px">(@Model.IsIdentityText) </span></p>
+                            }
+                        </div>
+                        <div id="donghua-dianzan-position-auto" style="margin: 0 5px 0 0; width: 31px; height: 36px; line-height: 36px; color: #fff; border-radius: 18px; background: #f46428 url(/img/praise.png) no-repeat 8px 8px; float: left; position: relative; text-align: right; padding-right: 5px; "></div>
+                    </div>
+                    <p class="youhui">
+                        @{
+                            //判断该产品是否是生日商品。
+                            if (ViewBag.isBlock)
+                            {
+                                <label class="productDetailSkuItemVlaue" style="display:none;">0</label>
+                            }
+                            else
+                            {
+                                <span style="margin-right:0">类型：</span>
+                                if (Model.IsIdentity != 0)
+                                {
+                                    if (Model.IsIdentity == 10)
+                                    {
+                                        <span id="@("skuId_" + Model.ID + "_Integral")" class="tracetype" name="skuId" paytype="Integral" style="cursor:pointer; margin-right:50px">
+                                            普卡：
+                                            <b>(<label class="productDetailSkuItemVlaue">@Model.Integral</label>) </b>积分
+                                        </span>
+                                    }
+                                    else if (Model.IsIdentity == 11)
+                                    {
+                                        <span id="@("skuId_" + Model.ID + "_Integral")" class="tracetype" name="skuId" paytype="Integral" style="cursor:pointer;margin-right:50px">
+                                            银卡：
+                                            <b>(<label class="productDetailSkuItemVlaue">@Model.FrontSilverMemberIntegral</label>) </b>积分
+                                        </span>
+                                    }
+                                    else if (Model.IsIdentity == 12)
+                                    {
+                                        <span id="@("skuId_" + Model.ID + "_Integral")" class="tracetype" name="skuId" paytype="Integral" style="cursor:pointer;margin-right:50px">
+                                            金卡：
+                                            <b>(<label class="productDetailSkuItemVlaue">@Model.FrontGoldMemberIntegral</label>) </b>积分
+                                        </span>
+
+                                    }
+                                    else if (Model.IsIdentity == 13)
+                                    {
+                                        <span id="@("skuId_" + Model.ID + "_Integral")" @(ViewBag.mlevel == 12 ? "class=tracetype" : "") name="skuId" paytype="Integral" style="cursor:pointer;margin-right:50px">
+                                            金卡：
+                                            <b>(<label @(ViewBag.mlevel == 12 ? "class=productDetailSkuItemVlaue" : "")>@Model.FrontGoldMemberIntegral</label>) </b>积分
+                                        </span>
+                                        <span id="@("skuId_" + Model.ID + "_Integral")" @(ViewBag.mlevel == 11 ? "class=tracetype" : "") name="skuId" paytype="Integral" style="cursor:pointer;margin-right:50px">
+                                            银卡：
+                                            <b>(<label @(ViewBag.mlevel == 11 ? "class=productDetailSkuItemVlaue" : "")>@Model.FrontSilverMemberIntegral</label>) </b>积分
+                                        </span>
+                                    }
+                                }
+                                else
+                                {
+                                    <span id="@("skuId_" + Model.ID + "_Integral")" @(ViewBag.mlevel == 12 ? "class=tracetype" : "") name="skuId" paytype="Integral" style="cursor:pointer; margin-right:20px">
+                                        金卡：
+                                        <b>(<label @(ViewBag.mlevel == 12 ? "class=productDetailSkuItemVlaue" : "")>@Model.FrontGoldMemberIntegral</label>) </b>积分
+                                    </span>
+                                    <span id="@("skuId_" + Model.ID + "_Integral")" @(ViewBag.mlevel == 11 ? "class=tracetype" : "") name="skuId" paytype="Integral" style="cursor:pointer; margin-right:20px">
+                                        银卡：
+                                        <b>(<label @(ViewBag.mlevel == 11 ? "class=productDetailSkuItemVlaue" : "")>@Model.FrontSilverMemberIntegral</label>) </b>积分
+                                    </span>
+
+                                    <span id="@("skuId_" + Model.ID + "_Integral")" @(ViewBag.mlevel == 10 ? "class=tracetype" : "") name="skuId" paytype="Integral" style="cursor:pointer; margin-right:20px">
+                                        普卡：
+                                        <b>(<label @(ViewBag.mlevel == 10 ? "class=productDetailSkuItemVlaue" : "")>@Model.Integral</label>) </b>积分
+                                    </span>
+                                }
+                            }
+                        }
+                    </p>
+                    @*ViewBag.isBlock这个是判断该产品是否是生日特权产品*@
+                    <div>
+                        <p>
+                            <span>数<b style="margin: 0 8px;"></b>量：</span>
+                            <a @(ViewBag.isBlock ? "" : "id = productDetailQutityReduce") class="min"><img src="/img/min.png"></a>
+                            <input type="text" id="productDetailBuyProductQutity" @(ViewBag.isBlock ? "" : "disabled='disabled'") class="text_box" value="1">
+                            <a class="add" @(ViewBag.isBlock ? "" : "id = productDetailQutityPlus")>
+                                @(Html.Raw(ViewBag.isBlock ? "<img src='/img/add.png'>" : "<img src='/img/add.png'>"))
+                            </a>
+                        </p>
+                        @Html.Raw(ViewBag.isBlock ? "" : "<span class='kucun'>库<b style='margin: 0 8px;'></b>存：<label id='productStock'> " + Model.Qty + "</label> </span>")
+                    </div>
+                    <p style="color:#f39800;font-size: 16px;margin-left: 72px;">@*最多可兑换一个*@</p>
+                    <!--颜色-->
+                    @if (Model.ProductColorList != null && Model.ProductColorList.Count > 0)
+                    {
+                        <dl class="shopColor Sclearfix">
+                            <script>isSetColor = true;</script>
+                            <dt>颜<b style="margin: 0 8px;"></b>色：</dt>
+                            @foreach (Vcyber.BLMS.Entity.ProductColor color in Model.ProductColorList)
+                            {
+                                <dd colorid="@color.Id" colortext="@color.Text" skutype="color"> @color.Text <i></i> </dd>
+                            }
+                        </dl>
+                    }
+                    @if (Model.ProductTypeList != null && Model.ProductTypeList.Count > 0)
+                    {
+                        <dl class="shopType Sclearfix">
+                            <script>isSetType = true;</script>
+                            <dt>类<b style="margin: 0 8px  ;"></b>型：</dt>
+                            @foreach (Vcyber.BLMS.Entity.ProductType type in Model.ProductTypeList)
+                            {
+                                <dd typeid="@type.Id" typetext="@type.Text" skutype="type" style="font-size:16px"> @type.Text <i></i> </dd>
+                            }
+
+                        </dl>
+                    }
+                    <!-- 商品兑换按钮  -->
+                    <p class="active_p">
+                        @{
+            if (ViewBag.isBlock)
+            {
+                //生日商品点击领取
+                <a href="javascript:birthdayCollect(@Model.ID,'@Model.Name','@Model.Image');" class="active_p_cs">立即领取</a>
+            }
+            else
+            {
+                if (this.User.Identity.IsAuthenticated)
+                {
+                    if ((Model.IsIdentity == 0 || Model.IsIdentity == ViewBag.mlevel || (Model.IsIdentity == 13 && (ViewBag.mlevel == 11 || ViewBag.mlevel == 12))) && ViewBag.mlevel != 1)
+                    {
+                        <a href="javascript:void(0);" class="active_p_cs" id="btnOnceExchange">立即兑换</a>
+                            <a href="javascript:void(0);" class="active_p_ca" id="btnAddProductToCart">加入兑换车</a>
+                    }
+                    else
+                    {
+
+                        <a href="javascript:void(0);" class="active_p_cs" style=" pointer-events: none !important; cursor: default;color:Gray;">立即兑换</a>
+                            <a href="javascript:void(0);" class="active_p_ca" style=" pointer-events: none !important; cursor: default;color:Gray;">加入兑换车</a>
+                    }
+                }
+                else
+                {
+                    <a href="javascript:popWindownBlue('请先登录后购买');" class="active_p_cs" style=" cursor: default;">立即兑换</a>
+                            <a href="javascript:popWindownBlue('请先登录后购买');" class="active_p_ca" style="cursor: default;">加入兑换车</a>
+                }
+            }
+                        }
+
+
+                    </p>
+                    <!--放入弹出层中-->
+                    @*<div style="margin-top:5px;">
+                            <a style="width:120px; border:none; font-size:14px;" href="/Cart/Index">我的兑换车( <label id="productdetailmycartquantity">0</label>  )</a>
+                            <script type="text/javascript">
+                                $("#productdetailmycartquantity").html(ShoppingCart.MyCart().totalQuantity);
+                            </script>
+                        </div>*@
+                    <!-- 商品被抢光 按钮 -->
+                    <!--<p class="active_ps"><a href="" class="active_p_ch">您已兑过</a><a href="" class="active_p_ch">来晚了，被抢光了~</a></p>-->
+                </div>
+            </div>
+
+            <div style="clear: both;"></div>
+
+            <div class="product_referral">
+                <div class="biaoti_title">
+                    <dl>
+                        <dt></dt>
+                        <dd>
+                            <h3>商品介绍</h3>
+                            <p>Description of goods</p>
+                        </dd>
+                    </dl>
+                </div>
+                <style>
+                    #productdetail_description img {
+                        height: auto;
+                    }
+                </style>
+                <div class="product_r_c" id="productdetail_description">
+                    @Html.Raw(Model.Description)
+                </div>
+            </div>
+        }
+    </div>
+    <div style="display:none; z-index:10; clear:both; position:absolute; width:400px; height:200px; left:50%; top:50%; margin-left:-200px; margin-top:-100px; border:5px solid #e0e0e0; background-color:#fff;" id="productdetail_addcart_success_layer">
+        <div class="result-wrapper cf" id="yui_3_16_0_1_1428473550084_3107">
+            <div style="float: left; position: relative; width: 160px; min-height: 50px; _height: 50px; margin: 10px auto; padding-left: 60px; ">
+                <i></i>
+                <h5 style="font-size: 20px; line-height: 30px;">成功加入兑换车</h5>
+                <p style="font-size: 12px; color: #666;">兑换车内共有<strong><label id="productdetailmycartquantity">0</label></strong>种商品</p>
+            </div>
+            <div class="operate" id="yui_3_16_0_1_1428473550084_3113" style="float: right; margin: 23px 0; width: 330px;">
+                <a href="javascript:void(0);" onclick="document.getElementById('productdetail_addcart_success_layer').style.display = 'none';" style="color: #fff;
+  background-color: #2db3a6;
+  border-color: #008177;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF2EC3B4', endColorstr='#FF2DB3A6');
+  background-size: 100%;
+  background-image: -moz-linear-gradient(top,#2ec3b4,#2db3a6);
+  background-image: -webkit-linear-gradient(top,#2ec3b4,#2db3a6);
+  background-image: linear-gradient(to bottom,#2ec3b4,#2db3a6);  display: inline-block;
+  vertical-align: middle;
+  padding: 7px 20px 6px;
+  font-size: 14px;
+  font-weight: 700;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+  letter-spacing: .1em;
+  text-align: center;
+  text-decoration: none;
+  border-width: 0 0 1px;
+  border-style: solid;
+  background-repeat: repeat-x;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;" id="yui_3_16_0_1_1428473550084_3112" data-mod-mtt="1.deal/default.0.0.i88c9pfr">«继续浏览</a>
+                <a style=" color: #fff; background-color: #f76120; border-color: #da3f02; filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFFF8901', endColorstr='#FFF76120'); background-size: 100%; background-image: -moz-linear-gradient(top,#ff8901,#f76120); background-image: -webkit-linear-gradient(top,#ff8901,#f76120); background-image: linear-gradient(to bottom,#ff8901,#f76120); display: inline-block; vertical-align: middle; padding: 7px 20px 6px; font-size: 14px; font-weight: 700; -webkit-font-smoothing: antialiased; line-height: 1.5; letter-spacing: .1em; text-align: center; text-decoration: none; border-width: 0 0 1px; border-style: solid; background-repeat: repeat-x; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; -moz-user-select: -moz-none; -ms-user-select: none; -webkit-user-select: none; user-select: none; cursor: pointer;" href="/Cart/Index" gaevent="content/main/addtocart/cartcheckout" class="btn btn-hot btn-cart">去兑换车结算»</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>
+<script>
+    $(function () {
+        var praiseObj = new praise(2, '@Model.ID');
+        $("#donghua-dianzan-position-auto").click(function () {
+            praiseObj.do();
+        });
+
+
+        $("#donghua-dianzan-position-auto").hover(
+        function () {
+            praiseObj.mouseoverAnimate();
+        },
+        function () {
+            praiseObj.mouseoutAnimate();
+        });
+    });
+</script>

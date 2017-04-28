@@ -1,0 +1,37 @@
+﻿@using WebGrease
+@model System.Linq.IQueryable<Vcyber.BLMS.FrontWeb.Models.BBS.BBSGuestBook>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+
+    <tr>
+        <td style="width: 12px;"></td>
+        <td class="col_b bor havel" width="5%">
+            @if (item.G_isTop)
+            {
+                <img src="../../img/zhiding.png">
+            }
+        </td>
+        <td class="bor">
+            <p class="big_zi">@Html.ActionLink(item.G_Title, "Comment", "BBSHome", new { id = item.Id }, new { }) </p>
+            @{
+    var ctt = item.G_Content.Length > 20 ? item.G_Content.Substring(0, 20) + "..." : item.G_Content;
+            }
+
+            <p>@ctt</p>
+        </td>
+        <td class="bor cent">
+            <p>@item.BBSMember.UserName </p>
+            <p>@(((DateTime)item.G_Time).ToString("yyyy-MM-dd HH:mm"))</p>
+        </td>
+        <td class="bor havel cent">@item.G_ReadCount / @item.G_ResponseCount</td>
+        <td class="bor cent">
+            <p>@item.LastUpdateMemberName</p>
+            <p>@item.LastUpdateTime.ToString("yyyy-MM-dd HH:mm")</p>
+        </td>
+        <td style="width: 12px;"></td>
+    </tr>
+}

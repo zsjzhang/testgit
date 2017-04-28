@@ -1,0 +1,490 @@
+﻿@model Vcyber.BLMS.FrontWeb.Models.QuestionnaireModel
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    //Layout = null;
+    ViewBag.Title = "在线调研";
+}
+
+<style>
+    table {
+        margin-bottom: 8px;
+    }
+
+    .bg {
+        color: white;
+        background: #014488;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var _curLinkFrom = $(".Questionnaire #inputLinkFrom").val();
+        //检测问卷状态
+        Questionnaire.CheckQuestionnaireState(_curLinkFrom);
+    });
+</script>
+@*处理活动特殊监测*@
+<script type="text/javascript">
+    function GetRequest() {
+        var url = location.search; //获取url中"?"符后的字串
+        var theRequest = new Object();
+
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+
+    var Request = new Object();
+    Request = GetRequest();
+    var sourceId;
+    sourceId = Request['source'];
+
+    if (sourceId == 'blms_web')
+        _hmt.push(['_setCustomVar', 2, 'ques_visitor', 'APP', 3]);
+    else if (sourceId == 'blms')
+        _hmt.push(['_setCustomVar', 2, 'ques_visitor', '网站', 3]);
+    else if (sourceId == 'blms_wechat')
+        _hmt.push(['_setCustomVar', 2, 'ques_visitor', '微信', 3]);
+    else if (sourceId == 'blms_sms')
+        _hmt.push(['_setCustomVar', 2, 'ques_visitor', '短信', 3]);
+    else if (sourceId == 'blms_weibo')
+        _hmt.push(['_setCustomVar', 2, 'ques_visitor', '微博', 3]);
+    else if (sourceId == 'blms_edm')
+        _hmt.push(['_setCustomVar', 2, 'ques_visitor', 'EDM', 3]);
+    else
+        _hmt.push(['_setCustomVar', 2, 'ques_visitor', '未定义', 3]);
+
+</script>
+<script type="text/javascript">
+    var isRetSave = false;
+    $(function () {
+        $("td[data-tag='myddc']").mouseenter(function () {
+            //isRetSave = false;
+            //$(this).addClass("bg").prevAll().addClass("bg");
+            //$(this).nextAll().removeClass("bg");
+            //var soure = $(this).prevAll().length + 1;
+            //$("#resutVal").val(soure);
+        })
+        $("td[data-tag='myddc']").mouseleave(function () {
+            //if (!isRetSave) {
+            //    //$("td[data-tag='myddc']").removeClass("bg");
+            //    //$("#inputScore").val("");
+            //    $(this).nextAll().removeClass("bg");
+            //}
+        })
+        $("td[data-tag='myddc']").click(function () {
+            var qidTag = $(this).attr("data-qid");
+            var soureVal = $(this).text().trim();
+            $(this).addClass("bg").prevAll().addClass("bg");
+            $(this).nextAll().removeClass("bg");
+            $("input[name='myddcVal'][data-qid='" + qidTag + "'][type='hidden']").val(soureVal);
+            isRetSave = true;
+        })
+    })
+</script>
+
+<div class="header">
+    @Html.Action("HomeHeader", "Header", new { pageName = "BlueVIP" })
+</div>
+<div class="Questionnaire">
+    @*@if (string.IsNullOrEmpty(Model.QuestionnaireImage))
+        {
+            <input type="image" src="/Img/default_banner.png" alt="标题图片" style="display: block; margin: auto; float: none; outline: none; max-height: 305px;margin-top:15px;" />
+        }
+        else
+        {
+            <input type="image" src="@Model.QuestionnaireImage" alt="标题图片" style="display: block; margin: auto; float: none; outline: none; max-height: 305px; margin-top: 15px;" />
+        }*@
+    @if (!string.IsNullOrEmpty(Model.QuestionnaireImage))
+    {
+        <input type="image" src="@Model.QuestionnaireImage" alt="标题图片" style="display: block; margin: auto; float: none; outline: none; max-height: 305px; " />
+    }
+    @if (this.User.Identity.IsAuthenticated)
+    {
+        <div style="height: 39px; background-image: url('/Img/bg_resulttitle.png'); background-repeat: repeat-x;">
+            <p style="line-height: 30px; color: #F49600; font-size: 15px; margin-left: 20px; vertical-align: middle;">
+                亲爱的bluemembers会员 <span id="spanNickName" style="color: #075090;">@ViewBag.curUserNickName</span> ,您好！
+            </p>
+        </div>
+    }
+    else
+    {
+        <div style="height: 39px; background-image: url('/Img/bg_resulttitle.png'); background-repeat: repeat-x;">
+            <input type="button" id="inputIndexAccountLogin" style="margin-left:30px;" class="resultInputButton" value="登录" />
+            <input type="button" id="inputIndexAccountRegister" class="resultInputButton" value="注册" />
+        </div>
+    }
+
+    <p class="QuestionnaireTheme">
+        @Model.QuestionnaireTheme
+    </p>
+    <p class="QuestionnaireAltTheme">@Model.QuestionnaireAlteTheme</p>
+
+    <input type="hidden" id="inputUserID" value="@ViewBag.curUserId" />
+    <input type="hidden" id="inputUserName" value="@ViewBag.curUserName" />
+    <input type="hidden" id="inputUserNickName" value="@ViewBag.curUserNickName" />
+    <input type="hidden" id="questionnaireBlueBeanCount" value="@Model.BlueBeanCount" />
+    <input type="hidden" id="inputLinkFrom" value="@ViewBag.curLinkFrom" />
+    <input type="hidden" id="inputUserEmail" value="@ViewBag.curUserEmail" />
+    <input type="hidden" id="inputLinkSource" value="@ViewBag.curLinkSource" />
+
+    @*<p class="title">尊敬的车主朋友:</p>*@
+    <div style="margin:0 10px 0 20px;">@Html.Raw(Model.QuestionnaireRemark)</div>
+    <br />
+    <div id="divLine"></div>
+    <br />
+    <div class="divContent">
+        <input type="hidden" id="input_hidden_QuestionnaireId" value="@Model.QuestionnaireId" />
+        @*<p class="title">尊敬的车主朋友：</p>
+            <p class="title">您好，为了给您提供更好的服务，特别举办一次调查研究。您的意见对我们的进步和改善非常重要，希望您能花一分钟帮助我们完成以下的问卷，成功提交问卷会有好礼答谢。谢谢您的合作！</p>*@
+
+        @if (Model != null && Model.listQuestion != null && Model.listQuestion.Any())
+        {
+            int tempIndex = 1;
+            foreach (var question in Model.listQuestion.OrderBy(f => f.QuestionSort))
+            {
+                string tempContent = tempIndex + "、 " + question.QuestionTitle;
+                tempIndex++;
+                <p style="line-height: 20px;color:#0057a5; " data-qid="@question.QuestionId" data-type="@question.QuestionType" data-required="@question.IsRequired">
+                    @tempContent
+                    @if (question.IsRequired)
+                    {
+                        <b style="color:#FF0000;width:20px;text-align:right;">*</b>
+                    }
+                    @if (question.QuestionType == 10)
+                    {
+                        <input type="text" style="width: 150px; border: none; border-bottom: 1px solid gray; background-color: transparent; margin-bottom: 15px;  margin-left: 10px; outline:none;" data-qid="@question.QuestionId" data-qtype="single_fill" />
+                    }
+                </p>
+
+                switch (question.QuestionType)
+                {
+
+                    case 0:            //单选
+                        {
+                            List<Vcyber.BLMS.Entity.Option> newOptionList = question.ListOption.OrderBy(f => f.Sort).ToList();
+                            int _tolCount = newOptionList.Count;
+                            int _curIndex = 1;
+                            int _tolRowCount = newOptionList.Count % 5 == 0 ? newOptionList.Count / 5 : newOptionList.Count / 5 + 1;
+                            <table style="max-width: 96%; font-size: 14px;margin-top:10px;">
+                                @while (_curIndex <= _tolRowCount)
+                                {
+                                    <tr style="height:45px;">
+                                        @for (int i = (_curIndex - 1) * 5; i < (_tolCount <= _curIndex * 5 ? _tolCount : _curIndex * 5); i++)
+                                        {
+                                            var option = newOptionList[i];
+                                            if (option.OType == 1)
+                                            {
+                                                <th colspan="4">
+                                                    <label for="@option.Id" style="margin-left: 30px;text-align: left; height: 45px; display: block; ">
+                                                        @option.OContent
+                                                        <input type="text" data-qid="@question.QuestionId" data-for="@option.Id" style="width: 100px; border: none; border-bottom: 1px solid gray; background-color: transparent; padding-left: 10px; outline: none;" data-qtype="after_fill" />
+                                                    </label>
+                                                </th>
+
+                                            }
+                                            else if (option.OType == 4)
+                                            {
+                                                <th>
+                                                    <input type="radio" value="@option.Id" id="@option.Id" style="width: 30px; line-height: 45px; margin-top: 15px" name="@question.QuestionId" data-type="@option.OType" />
+                                                </th>
+                                                <th>
+                                                    <label for="@option.Id" style="min-width:50px; max-width: 140px; text-align: left; height: 45px; ">
+                                                        @option.OContent
+                                                        <input type="text" data-qid="@question.QuestionId" data-for="@option.Id" style="width: 100px; border: none; border-bottom: 1px solid gray; background-color: transparent; padding-left: 10px;  outline: none;" data-qtype="after_fill" />
+                                                    </label>
+                                                </th>
+                                            }
+                                            else
+                                            {
+                                                <th>
+                                                    <input type="radio" value="@option.Id" id="@option.Id" style="width: 30px; line-height: 45px; margin-top: 15px" name="@question.QuestionId" data-type="@option.OType" />
+                                                </th>
+                                                <th>
+                                                    <label for="@option.Id" style="width: 140px; text-align: left; height: 45px; display: block; ">
+                                                        @option.OContent
+                                                    </label>
+                                                </th>
+                                            }
+
+                                        }
+                                    </tr>
+                                        _curIndex++;
+                                }
+                            </table>
+
+                                break;
+                        }
+                    case 1:             //复选
+                        {
+                            List<Vcyber.BLMS.Entity.Option> newOptionList = question.ListOption.OrderBy(f => f.Sort).ToList();
+                            int _tolCount = newOptionList.Count;
+                            int _curIndex = 1;
+                            int _tolRowCount = newOptionList.Count % 5 == 0 ? newOptionList.Count / 5 : newOptionList.Count / 5 + 1;
+                            <table style="max-width: 96%; font-size: 14px;margin-top:10px;">
+                                @while (_curIndex <= _tolRowCount)
+                                {
+                                    <tr style="height:45px;">
+                                        @for (int i = (_curIndex - 1) * 5; i < (_tolCount <= _curIndex * 5 ? _tolCount : _curIndex * 5); i++)
+                                        {
+                                            var option = newOptionList[i];
+                                            if (option.OType == 1)
+                                            {
+                                                <th colspan="4">
+                                                    <label for="@option.Id" style="margin-left: 30px;height: 45px; text-align: left; ">
+                                                        @option.OContent
+                                                        <input type="text" data-qid="@question.QuestionId" data-for="@option.Id" style=" width: 100px; border: none; border-bottom: 1px solid gray; background-color: transparent; padding-left: 10px; outline: none;" data-qtype="after_fill" />
+                                                    </label>
+                                                </th>
+                                            }
+                                            else if (option.OType == 4)
+                                            {
+                                                <th>
+                                                    <input type="checkbox" style="width: 30px; line-height: 45px; outline: none;" value="@option.Id" name="@question.QuestionId" data-type="@option.OType" id="@option.Id" />
+                                                </th>
+                                                <th>
+                                                    <label for="@option.Id" style="min-width:40px;max-width: 140px; height: 45px; text-align: left;">
+                                                        @option.OContent
+                                                        <input type="text" data-qid="@question.QuestionId" data-for="@option.Id" style="max-width: 100px; border: none; border-bottom: 1px solid gray; background-color: transparent; padding-left: 10px; outline: none;" data-qtype="after_fill" />
+                                                    </label>
+                                                </th>
+                                            }
+                                            else
+                                            {
+                                                <th>
+                                                    <input type="checkbox" style="width: 30px; line-height: 45px; outline: none;" value="@option.Id" name="@question.QuestionId" data-type="@option.OType" id="@option.Id" />
+                                                </th>
+                                                <th>
+                                                    <label for="@option.Id" style="width: 140px; height: 45px; text-align: left; display: block; ">
+                                                        @option.OContent
+                                                    </label>
+                                                </th>
+                                            }
+                                        }
+                                    </tr>
+                                        _curIndex++;
+                                }
+
+                            </table>
+                                break;
+                        }
+                    case 2:              //判断
+                        {
+                            <table style="max-width: 96%; font-size: 14px;">
+                                <tr style="height:45px;">
+                                    <td>
+                                        <label>
+                                            <input type="radio" style="width: 30px; outline: none;" value="true" name="@question.QuestionId" />是
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label>
+                                            <input type="radio" style="width: 30px; outline: none;" value="false" name="@question.QuestionId" />不是
+                                        </label>
+                                    </td>
+                                </tr>
+                            </table>
+                            break;
+                        }
+                    case 3:              //留言
+                        {
+                            string tempName = "txtUserSuggest" + question.QuestionId;
+                            <br />
+                            <textarea name="userSuggest" data-qid="@question.QuestionId" placeholder="在此处编辑您的宝贵意见..."></textarea>
+                            break;
+                        }
+                    case 4:              //矩阵单选
+                        {
+                            <table style="max-width: 96%; font-size: 14px;">
+                                @foreach (var childQ in question.ListChildQurstion.OrderBy(q => q.QuestionSort))
+                                {
+                                    <tr style="height:45px;">
+                                        <td>
+                                            <label data-qid="@question.QuestionId" data-tag="@childQ.QuestionId" style="margin-left:20px;">
+                                                @childQ.QuestionTitle
+                                            </label>
+                                        </td>
+                                        @foreach (var option in question.ListOption.OrderBy(f => f.Sort))
+                                        {
+                                            <td>
+                                                <label>
+                                                    <input type="radio" value="@option.Id" style="width: 30px; outline: none;" name="@childQ.QuestionId" />@option.OContent
+                                                </label>
+                                            </td>
+                                        }
+                                    </tr>
+                                }
+                            </table>
+                                break;
+                        }
+                    case 5:              //矩阵多选
+                        {
+                            <table style="max-width: 96%; font-size: 14px;">
+                                @foreach (var childQ in question.ListChildQurstion.OrderBy(q => q.QuestionSort))
+                                {
+                                    //string tempQId = question.QuestionId + "," + childQ.QuestionId;
+                                    <tr style="height:45px;">
+                                        <td>
+                                            <label data-qid="@question.QuestionId" data-tag="@childQ.QuestionId" style="margin-left:20px;">
+                                                @childQ.QuestionTitle
+                                            </label>
+                                        </td>
+                                        @foreach (var option in question.ListOption.OrderBy(f => f.Sort))
+                                        {
+                                            <td>
+                                                <label>
+                                                    <input type="checkbox" value="@option.Id" style="width: 30px; outline: none;" name="@childQ.QuestionId" />@option.OContent
+                                                </label>
+                                            </td>
+                                        }
+                                    </tr>
+                                }
+                            </table>
+                                break;
+                        }
+                    case 7:              //满意度调查
+                        {
+                            <table style="max-width: 96%; font-size: 14px;margin-left:20px; margin-top:10px;margin-bottom:10px;">
+                                <tr style="height:40px;">
+                                    @foreach (var option in question.ListOption.OrderBy(f => f.Sort))
+                                    {
+                                        if (option.OType != 1)
+                                        {
+                                            <td id="@option.Id" data-qid="@question.QuestionId" style="min-width: 50px;vertical-align:middle; border: 1px solid lightgray; text-align: center;cursor:pointer;" data-tag="myddc">
+                                                @option.OContent
+                                            </td>
+                                        }
+                                    }
+                                </tr>
+                                @if (question.ListOption.Where(f => f.OType == 1).Count() > 0)
+                                {
+                                    var optionModel = question.ListOption.Where(f => f.OType == 1);
+                                    foreach (var optionMol in optionModel)
+                                    {
+                                        <tr>
+                                            <td colspan="@question.ListOption.Count">
+                                                <span>@optionMol.OContent</span>
+                                                <input type="text" data-type="reason" data-qid="@question.QuestionId" data-for="@optionMol.Id"
+                                                       style=" border: none; border-bottom: 1px solid gray; margin: 15px 20px; padding-left: 10px; background-color: transparent;width:300px;outline:none;" />
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </table>
+                            <input type="hidden" data-qid="@question.QuestionId" name="myddcVal" value="" />
+                                break;
+                        }
+                    case 8:              //多项填空题 循环
+                        {
+                            <table style="max-width: 96%; font-size: 14px; margin-left: 20px; margin-top: 10px;">
+                                @for (int i = 1; i <= question.QuestionCycle; i++)
+                                {
+                                    <tr style="height:45px;">
+                                        @*<th style="line-height: 45px; width: 80px; text-align:left;"><span>第</span>@i<span>项：</span></th>*@
+                                        @foreach (var option in question.ListOption.OrderBy(f => f.Sort))
+                                        {
+                                            if (option.OType == 1)  //普通填空
+                                            {
+                                                var tag = i + "." + option.OContent;
+                                                if (question.QuestionTextIsBefore)
+                                                {
+                                                    <td>
+                                                        <span style="float:left;display:block;">@option.OContent</span>
+                                                        <input type="text" data-qid="@question.QuestionId" data-order="@tag" style="border: none; border-bottom: 1px solid gray; margin: auto 20px; padding-left: 10px; background-color: transparent; max-width: 100px; outline: none;" data-qtype="fill" data-valuetype="@option.OValueType"
+                                                               @if (i == 1) { <text> data-first="true" </text>      } />
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td>
+                                                        <input type="text" data-qid="@question.QuestionId" data-order="@tag" style="border: none; border-bottom: 1px solid gray; margin: auto 20px; padding-left: 10px; background-color: transparent; max-width: 100px; outline: none; " data-qtype="fill" data-valuetype="@option.OValueType"
+                                                               @if (i == 1) { <text> data-first="true" </text>       } />@option.OContent
+                                                        </td>
+                                                }
+                                            }
+                                            else            //下拉列表
+                                            {
+                                                var tag = i + "." + option.OContent;
+                                                var optionlist = Vcyber.BLMS.Application._AppContext.OptionApp.GetOptionsByQIdAndOType(option.Id, 3).FirstOrDefault().OContent.Split('|');
+                                                <td>
+                                                    @if (question.QuestionTextIsBefore)
+                                                    {
+                                                        <span style="float: left; display: block; height: 25px; line-height: 25px;">@option.OContent</span>
+                                                        <select style="height: 25px; border: 1px solid gray; margin: auto 20px; text-align:center; color:gray; width: 100px;float:left;" data-qid="@question.QuestionId" data-order="@tag"
+                                                                @if (i == 1) { <text> data-first="true" </text>      }>
+                                                            <option value="-1" style="color:gray;">请选择</option>
+                                                            @if (optionlist != null || optionlist.Length > 0)
+                                                            {
+                                                                foreach (var item in optionlist)
+                                                                {
+                                                                    <option value="@item" data-qid="@question.QuestionId" data-order="@tag">@item</option>
+                                                                }
+                                                            }
+                                                        </select>
+                                                    }
+                                                    else
+                                                    {
+                                                        <select style="height: 25px; border: 1px solid gray; margin: auto 20px; text-align: center; color: gray; width: 100px; float: left;" data-qid="@question.QuestionId" data-order="@tag"
+                                                                @if (i == 1) { <text> data-first="true" </text>     }>
+                                                            <option value="-1" style="color:gray;">请选择</option>
+                                                            @if (optionlist != null || optionlist.Length > 0)
+                                                            {
+                                                                foreach (var item in optionlist)
+                                                                {
+                                                                    <option value="@item" data-qid="@question.QuestionId" data-order="@tag">@item</option>
+                                                                }
+                                                            }
+                                                        </select>
+                                                        <span style="float: left; display: block; height: 25px;line-height:25px;">@option.OContent</span>
+                                                    }
+                                                </td>
+                                            }
+                                        }
+                                    </tr>
+                                }
+                            </table>
+                                break;
+                        }
+                    case 9:              //排序题
+                        {
+                            <table style="max-width: 96%; font-size: 14px; margin-left: 20px; margin-top: 10px; ">
+                                @foreach (var option in question.ListOption.OrderBy(f => f.Sort))
+                                {
+                                    int optionCount = question.ListOption.Count;
+                                    <tr>
+                                        <th style="line-height: 45px;">
+                                            <input type="number" data-tag="@option.Id" data-qid="@question.QuestionId" style="border: 1px solid gray; padding-left: 10px; width: 50px; margin-right: 20px; height: 25px; line-height: 25px;" data-qtype="order"
+                                                   min="1" value="1" max="@optionCount" />
+                                        </th>
+                                        <td style="min-width: 200px; line-height: 45px; ">@option.OContent</td>
+                                    </tr>
+                                }
+                            </table>
+                                break;
+                        }
+                }
+                <div style="width: 100%; background-color: lightgray;height:1px;margin-bottom:10px;"></div>
+            }
+        }
+        else
+        {
+            <div style="margin:auto;float:left;">不存在任何问卷内容！</div>
+        }
+    </div>
+    @if (ViewBag.curLinkFrom != 1)
+    {
+        <div style="width:100%;float:none;margin-left:20px;margin-top:20px;">
+            @Html.Action("PasserbyInfo", "Questionnaire")
+        </div>
+    }
+
+    @*<a id="btnQuestionnaireSubmit" href="javascript:void(0);">提交问卷</a>*@
+    <input type="button" id="btnQuestionnaireSubmit" value="提交问卷" />
+</div>
+<div class="footer" style="width:100%;">
+    @Html.Action("Index", "Footer")
+</div>

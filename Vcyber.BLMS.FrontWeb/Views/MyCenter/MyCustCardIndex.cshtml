@@ -1,0 +1,152 @@
+﻿@using System.Configuration
+@model  List<Vcyber.BLMS.Entity.UserCustomCardModel>
+<link rel="stylesheet" type="text/css" href="/layer/skin/layer.css">
+<script type="text/javascript" src="~/Scripts/layer.js"></script>
+@{
+    Layout = null;
+}
+
+
+<dl>
+    <dt>
+        @{
+            var imgPath = ConfigurationManager.AppSettings["ImgPath"];
+            var partnerList = Model[0];
+            var partnerReceived = 0;
+            var partnerUsed = 0;
+            var partnerExpired = 0;
+            if (partnerList.ReceivedCustomCardList != null)
+            {
+                partnerReceived = partnerList.ReceivedCustomCardList.Count;
+            }
+            if (partnerList.UsedCustomCardList != null)
+            {
+                partnerUsed = partnerList.UsedCustomCardList.Count;
+            }
+            if (partnerList.ExpiredCustomCardList != null)
+            {
+                partnerExpired = partnerList.ExpiredCustomCardList.Count;
+            }
+            var tujia = ConfigurationManager.AppSettings["tujiatype"];
+        }
+        <span class="on">未使用(@partnerReceived)</span>
+        <span>已使用(@partnerUsed)</span>
+        <span>已过期(@partnerExpired)</span>
+    </dt>
+    <!--未使用-->
+    <dd class="couponsBox" style="display: block;">
+
+        @{
+            foreach (var n in partnerList.ReceivedCustomCardList)
+            {
+                var cardDate = string.Format("{0}至{1}", n.CardBeginDate.ToString("yyyy-MM-dd"), n.CardEndDate.ToString("yyyy-MM-dd"));
+                var merchantLogoUrl = imgPath + n.MerchantLogoUrl;
+                <div class="couOnlyBox">
+                    @*href="/MyCenter/MyCustomCardDetail?id=@n.Id"*@
+                    <a href="@(tujia == n.CardType ? "javascript:popWindownBlue('请到微信或App端领取')" : "/MyCenter/MyCustomCardDetail?id=" + n.Id)" class="couContentBox merchants xbk" style="background: @n.CardColor">
+                        <i></i><!--没有class不显示，有couUsed时是已使用状态，有couOverdue是已过期状态-->
+                        <div class="couConTop">
+                            <span></span>
+                            <h2>
+                                <img src="@merchantLogoUrl" />
+                                <em>@n.CardName</em>
+                            </h2>
+                            <h3>@n.ActivityName</h3>
+
+                            <b>有效期：@cardDate</b>
+
+                        </div>
+                        <p>
+                            <em></em>
+                            <span>详情</span>
+                        </p>
+                    </a>
+                </div>
+            }
+        }
+    </dd>
+    <!--已使用-->
+    <dd class="couponsBox">
+        @{
+            
+            foreach (var n in partnerList.UsedCustomCardList)
+            {
+                var cardDate = string.Format("{0}至{1}", n.CardBeginDate.ToString("yyyy-MM-dd"), n.CardEndDate.ToString("yyyy-MM-dd"));
+                var merchantLogoUrl = imgPath + n.MerchantLogoUrl;
+
+                <div class="couOnlyBox">
+                    @*href="/MyCenter/MyCustomCardDetail?id=@n.Id"*@
+                    <a href="@(tujia == n.CardType ? "javascript:popWindownBlue('请到微信或App端领取')" : "/MyCenter/MyCustomCardDetail?id=" + n.Id)" class="couContentBox merchants xbk" style="background: @n.CardColor">
+                        <i class="couUsed"></i><!--没有class不显示，有couUsed时是已使用状态，有couOverdue是已过期状态-->
+                        <div class="couConTop">
+                            <span></span>
+                            <h2>
+                                <img src="@merchantLogoUrl" />
+                                <em>@n.CardName</em>
+                            </h2>
+                            <h3>@n.ActivityName</h3>
+                            <b>有效期：@cardDate</b>
+
+                        </div>
+                        <p>
+                            <em></em>
+                            <span>详情</span>
+                        </p>
+                    </a>
+                </div>
+
+            }
+        }
+
+
+
+    </dd>
+    <!--已过期-->
+    <dd class="couponsBox">
+        @{
+            foreach (var n in partnerList.ExpiredCustomCardList)
+            {
+                var cardDate = string.Format("{0}至{1}", n.CardBeginDate.ToString("yyyy-MM-dd"), n.CardEndDate.ToString("yyyy-MM-dd"));
+                var merchantLogoUrl = imgPath + n.MerchantLogoUrl;
+
+                <div class="couOnlyBox">
+                    @*href="/MyCenter/MyCustomCardDetail?id=@n.Id"*@
+                    <a href="@(tujia == n.CardType ? "javascript:popWindownBlue('请到微信或App端领取')" : "/MyCenter/MyCustomCardDetail?id=" + n.Id)" class="couContentBox merchants bgOverdue">
+                        <i class="couOverdue"></i><!--没有class不显示，有couUsed时是已使用状态，有couOverdue是已过期状态-->
+                        <div class="couConTop">
+                            <span></span>
+                            <h2>
+                                <img src="@merchantLogoUrl" />
+                                <em>@n.MerchantName</em>
+                            </h2>
+                            <h3>@n.CardName</h3>
+                            <b>有效期：@cardDate</b>
+
+                        </div>
+                        <p>
+                            <em></em>
+                            <span>详情</span>
+                        </p>
+                    </a>
+                </div>
+
+            }
+        }
+    </dd>
+
+</dl>
+<script>
+    $(function () {
+        tabCoup('.tabConBox:eq(1) dt span', '.couponsBox', '.tabConBox:eq(1)');
+
+    });
+    function tabCoup(btn, con, par) { //btn:按钮; con:内容层; par:父级
+        $(btn).on('click', function () {
+            $(btn).removeClass('on');
+            $(this).addClass('on');
+            $(con).closest(par).find(con).hide();
+            $(con).closest(par).find(con).eq($(this).index()).show();
+        });
+    }
+</script>
+

@@ -1,0 +1,206 @@
+﻿@{
+    ViewBag.Title = "推荐好友";
+    Layout = "~/Views/Shared/_LayoutYuena.cshtml";
+}
+
+<div class="main">
+    <div class="recommendfriend">
+        <h2 class="common_title"><img src="~/Contents/yuena/images/recommend_01.png"></h2>
+        <div class="fill_msg">
+            <form>
+                <dl>
+                    <dt>我的姓名：</dt>
+                    <dd><input name="UserName" type="text"></dd>
+                </dl>
+                <div class="line"></div>
+                <div class="addFriend">
+                    <div id="content-l" class="content">
+                        <div class="friends_msg">
+                            <div class="friendMsg">
+                                <dl>
+                                    <dt>好友姓名：</dt>
+                                    <dd><input name="friendname" type="text"></dd>
+                                </dl>
+                                <dl>
+                                    <dt>好友电话：</dt>
+                                    <dd><input name="friendnumber" type="text"></dd>
+                                </dl>
+                            </div>
+                            @*<div class="friendMsg">
+                                <dl>
+                                    <dt>好友姓名：</dt>
+                                    <dd><input name="friendname" type="text"></dd>
+                                </dl>
+                                <dl>
+                                    <dt>好友电话：</dt>
+                                    <dd><input name="friendnumber" type="text"></dd>
+                                </dl>
+                            </div>*@
+                        </div>
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="btn_add_wrap">
+                    <p>多推荐几个好友，会增加中奖机会哟！ &gt;&gt;&gt;</p>
+                    <a id="btn_addFri" href="javascript:;"><img src="~/Contents/yuena/images/add.png"></a>
+                </div>
+                <div class="btn_add_wrap">
+                    <p>*请准确填写好友信息，以便好友成功购车后为您增加奖励积分 5000分/人，最高享20,000分。</p>
+                </div>
+                <a id="saveInfo" class="btn_sub" href="javascript:;"><img src="~/Contents/yuena/images/btn_sub.png"></a>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="cover"></div>
+<!--推荐成功弹窗开始-->
+<div class="recommend_suc">
+    <a class="close" style="cursor:default;" href="/Yuena/LoginAfter"><img src="~/Contents/yuena/images/close.png"></a>
+    <div class="rd_suc_con">
+        <h2>恭喜您 推荐成功</h2>
+        <a href="/Yuena/LoginAfter"><img src="~/Contents/yuena/images/btn_super2.png"></a>
+    </div>
+</div>
+<!--推荐成功弹窗结束-->
+<script>
+    $(function () {
+        $(window).load(function () {
+            $.mCustomScrollbar.defaults.scrollButtons.enable = true; //enable scrolling buttons by default
+            $.mCustomScrollbar.defaults.axis = "yx"; //enable 2 axis scrollbars by default
+            $("#content-l").mCustomScrollbar({ theme: "light-3" });
+        });
+
+        $(document).on("blur", "[name='friendnumber']", function () {
+            var $self = $(this);
+            var phone = $self.val();
+            $.post("/Yuena/IsPhoneExist", { phone: phone }, function (rsp) {
+                if (rsp) {
+                    $self.val("");
+                    popWindownBlue("手机号" + phone + "已经被推荐，快去推荐其他小伙伴吧！");
+                }
+            });
+        })
+
+
+        var is_request_submit = false;
+        $("#saveInfo").on("click", function () {
+            if (!is_request_submit) {
+                is_request_valid_code = true;
+                var user_name = $("[name='UserName']").val();
+                if (user_name == "") {
+                    popWindownBlue("我的姓名不能为空");
+                    is_request_submit = false;
+                    return false;
+                }
+                //var friend_is_error = false;
+                //var friend_error_message = "";
+                //var friends = "";
+                //$(".friends_msg .friendMsg").each(function () {
+                //    var name = $(this).find("[name='friendname']").val();
+                //    var phone = $(this).find("[name='friendnumber']").val();
+                //    if (name == "") {
+                //        friend_is_error = true;
+                //        friend_error_message = "好友姓名不能为空！";
+                //        return;
+                //    }
+                //    if (phone == "") {
+                //        friend_is_error = true;
+                //        friend_error_message = "好友电话不能为空！";
+                //        return;
+                //    }
+                //    var reg_phone = /^[1][3587][0-9]{9}$/;
+                //    if (!reg_phone.test(phone)) {
+                //        friend_is_error = true;
+                //        friend_error_message = "好友电话格式不正确！";
+                //        return;
+                //    }
+                //    if (friends.indexOf(phone) > -1) {
+                //        friend_is_error = true;
+                //        friend_error_message = "好友电话不能重复！";
+                //        return;
+                //    }
+                //    friends += name + "-" + phone + ",";
+                //});
+                //if (friend_is_error) {
+                //    popWindownBlue(friend_error_message);
+                //    is_request_submit = false;
+                //    return false;
+                //}
+                var $firstFri = $(".friends_msg .friendMsg:first");
+                var firstName = $firstFri.find("[name='friendname']").val();
+                var firstPhone = $firstFri.find("[name='friendnumber']").val();
+                if (firstName == "") {
+                    popWindownBlue("好友姓名不能为空！");
+                    is_request_submit = false;
+                    return;
+                }
+                if (firstPhone == "") {
+                    popWindownBlue("好友电话不能为空");
+                    is_request_submit = false;
+                    return;
+                }
+                var reg_phone = /^[1][3587][0-9]{9}$/;
+                if (!reg_phone.test(firstPhone)) {
+                    popWindownBlue("好友电话格式不正确！");
+                    is_request_submit = false;
+                    return;
+                }
+                var friend_is_error = false;
+                var friend_error_message = "";
+                var friends = "";
+                $(".friends_msg .friendMsg").each(function () {
+                    var name = $(this).find("[name='friendname']").val();
+                    var phone = $(this).find("[name='friendnumber']").val();
+                    if (name != "" || phone != "") {
+                        if (phone != "") {
+                            var reg_phone = /^[1][3587][0-9]{9}$/;
+                            if (!reg_phone.test(phone)) {
+                                friend_is_error = true;
+                                friend_error_message = "好友电话格式不正确！";
+                                return;
+                            }
+                            if (friends.indexOf(phone) > -1) {
+                                friend_is_error = true;
+                                friend_error_message = "好友电话不能重复！";
+                                return;
+                            }
+                        }
+                        else {
+                            friend_is_error = true;
+                            friend_error_message = "好友电话不能为空！";
+                            return;
+                        }
+                        if (name == "") {
+                            friend_is_error = true;
+                            friend_error_message = "好友姓名不能为空！";
+                            return;
+                        }
+                        friends += name + "-" + phone + ",";
+                    }
+                });
+                if (friend_is_error) {
+                    popWindownBlue(friend_error_message);
+                    is_request_submit = false;
+                    return false;
+                }
+                var data = { userName: user_name, friends: friends }
+                $.post("/Yuena/SaveRecommendFriend", data, function (rsp) {
+                    is_request_submit = false;
+                    $("[name='UserName'],[name='friendname'],[name='friendnumber']").val("")
+                    if (rsp.Errors == "200") {
+                        $('.cover').css('display', 'block');
+                        $(".recommend_suc").css("display", "block");
+                        
+                    }
+                    else {
+                        popWindownBlue(result.Message);
+                    }
+                })
+            }
+        });
+
+    })
+
+
+
+</script>

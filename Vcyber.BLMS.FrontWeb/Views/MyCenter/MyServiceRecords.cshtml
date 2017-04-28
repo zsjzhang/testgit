@@ -1,0 +1,359 @@
+﻿@using PetaPoco
+@using Vcyber.BLMS.Common
+@using Vcyber.BLMS.Entity
+@using Vcyber.BLMS.Entity.CarService
+@using Vcyber.BLMS.Entity.Enum
+@using Vcyber.BLMS.Entity.Generated
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "经销商查询";
+}
+<link href="~/css/MyServiceRecords/myservice.css" rel="stylesheet" />
+<link href="~/css/MyServiceRecords/dd.css" rel="stylesheet" />
+<script src="~/Scripts/base/js.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.three_nav ul li').hover(function () {
+            $(this).addClass("zz_click").siblings().removeClass("zz_click");
+            $(".three_cont>div").eq($(this).index()).show().siblings().hide();
+        });
+
+    })
+</script>
+
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Car" })
+    </div>
+    <div class="n_all_cont" style="height:1200px;">
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+
+        </div>
+        @{
+            Page<CSSonataServiceV> listServiceV = (Page<CSSonataServiceV>)ViewBag.ServiceV;
+        }
+        <div class="n_right_cont" >
+            <div class="new_menu">
+                <p class="select_menu"><a href="/MyCenter/Index?pageName='Mycenter'">个人中心</a> >享受的服务</p>
+                </div>
+            <div style="border:1px solid #eee; width:100%; min-height:800px;">
+
+                <div class="three_tab">
+                    <div class="three_nav">
+                        <ul>
+                            <li style="margin-left:0;" class="zz_click">
+                                <img src="/img/ff1.png" />
+                                <span>预约记录</span>
+                            </li>
+                            <li>
+                                <img src="/img/ff2.png" />
+                                <span>服务记录</span>
+                            </li>
+                            <li>
+                                <img src="/img/ff3.png" />
+                                <span>消费记录</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="three_cont">
+                        <div class="first_c" style="margin-top:0">
+                            @*<div class="sx_sel">
+                            <span>筛选</span>
+                            <select>
+                                <option></option>
+                            </select>
+                        </div>*@
+                            @for (int i = 0; i < listServiceV.Items.Count; i++)
+                            {
+                                var entity = listServiceV.Items[i];
+                                if (entity.OrderType == EOrderType.CommonMaintain)
+                                {
+                            <div class="table_list">
+                                <p>
+                                    <span>服务名称: @entity.OrderType.DisplayName()</span><label>服务状态：@entity.State.DisplayName()</label>
+                                </p>
+                                <ul>
+                                    <li><strong>预约时间：</strong><span>@entity.ScheduleDate</span></li>
+                                    <li><strong>车型：</strong><span>@entity.CarSeries</span></li>
+                                    <li><strong>行驶里程：</strong><span>@entity.MileAge</span></li>
+                                    <li><strong>预约4S店：</strong>@entity.DealerName<span></span></li>
+                                </ul>
+                                <ul style="margin-left: 50px;">
+                                    <li><strong>确认时间：</strong><span>@entity.UpdateTime</span></li>
+                                    <li><strong>车牌：</strong><span>@entity.LicensePlate</span></li>
+                                    <li><strong>购车年份：</strong><span>@entity.PurchaseYear</span></li>
+                                    <li><strong>补充说明：</strong><span>@entity.Comment</span></li>
+                                </ul>
+                                <ul style="margin-left: 50px;">
+                                    @*<li><strong>服务时间：</strong><span>@entity.</span></li>*@
+                                    <li><strong>VIN码：</strong><span>@entity.VIN</span></li>
+                                    @*<li><strong>预计到店时间：</strong><span>@entity.ReturnDate</span></li>*@
+                                </ul>
+                            </div>
+
+                                }
+
+                                if (entity.OrderType == EOrderType.OrderCar)
+                                {
+                            <div class="table_list">
+                                <p>
+                                    <span>服务名称: @entity.OrderType.DisplayName()</span><label>服务状态：@entity.State.DisplayName()</label>
+                                </p>
+                                <ul>
+                                    <li><strong>预约时间：</strong><span>@entity.ScheduleDate</span></li>
+                                    <li><strong>补充说明：</strong><span>@entity.Comment</span></li>
+                                </ul>
+                                <ul style="margin-left: 50px;">
+                                    <li><strong>车型：</strong><span>@entity.CarSeries</span></li>
+                                </ul>
+                                <ul style="margin-left: 50px;">
+                                    <li><strong>预约4S店：</strong>@entity.DealerName<span></span></li>
+                                </ul>
+                            </div>
+                                }
+                                else if (entity.OrderType == EOrderType.TestDrive)
+                                {
+                            <div class="table_list">
+                                <p>
+                                    <span>服务名称: @entity.OrderType.DisplayName()</span><label>服务状态：@entity.State.DisplayName()</label>
+                                </p>
+                                <ul>
+                                    <li><strong>预约时间：</strong><span>@entity.ScheduleDate</span></li>
+
+                                    <li><strong>备注：</strong><span>@entity.Comment</span></li>
+                                </ul>
+                                <ul style="margin-left: 50px;">
+                                    <li><strong>车型：</strong><span>@entity.CarSeries</span></li>
+                                    @*<li><strong>预计到店时间：</strong><span>@entity.ReturnDate</span></li>*@
+                                    <li><strong>预约4S店：</strong><span>@entity.DealerName</span></li>
+                                </ul>
+                                <ul style="margin-left: 50px;">
+                                    <li><strong>确认时间：</strong><span>@entity.UpdateTime</span></li>
+                                </ul>
+                            </div>
+                                }
+                                else if (entity.OrderType == EOrderType.Care)
+                                {
+                            <div class="table_list">
+                                <p>
+                                    <span>服务名称: @entity.OrderType.DisplayName()</span><label>服务状态：@entity.State.DisplayName()</label>
+                                </p>
+                                <ul>
+                                    <li><strong>预约时间：</strong><span>@entity.ScheduleDate</span></li>
+                                    <li><strong>车牌号：</strong><span>@entity.LicensePlate</span></li>
+                                    <li><strong>备注：</strong><span>@entity.Comment</span></li>
+
+                                </ul>
+                                <ul style="margin-left: 50px;">
+
+                                    <li><strong>上门地点：</strong><span>@entity.TakeAddress</span></li>
+                                    <li><strong>预约4S店：</strong><span>@entity.DealerName</span></li>
+                                    <li><strong>车架号：</strong><span>@entity.VIN</span></li>
+                                </ul>
+                                <ul style="margin-left: 50px;">
+                                    <li><strong>确认时间：</strong><span>@entity.UpdateTime</span></li>
+                                    <li><strong>车型：</strong><span>@entity.CarSeries</span></li>
+                                </ul>
+                            </div>
+                                }
+                                else if (entity.OrderType == EOrderType.FreeCheck)
+                                {
+                            <div class="table_list">
+                                <p>
+                                    <span>服务名称: @entity.OrderType.DisplayName()</span><label>服务状态：@entity.State.DisplayName()</label>
+                                </p>
+                                <ul>
+                                    <li><strong>预约时间：</strong><span>@entity.ScheduleDate</span></li>
+                                    <li><strong>车牌号：</strong><span>@entity.LicensePlate</span></li>
+                                    <li><strong>购车年份：</strong><span>@entity.PurchaseYear</span></li>
+                                </ul>
+                                <ul style="margin-left: 50px;">
+                                    <li><strong>预约4S店：</strong><span>@entity.DealerName</span></li>
+                                    <li><strong>车架号：</strong><span>@entity.VIN</span></li>
+                                    <li><strong>里程：</strong><span>@entity.MileAge</span></li>
+                                </ul>
+                                <ul style="margin-left: 50px;">
+                                    <li><strong>确认时间：</strong><span>@entity.UpdateTime</span></li>
+                                    <li><strong>车型：</strong><span>@entity.CarSeries</span></li>
+                                    <li><strong>备注：</strong><span>@entity.Comment</span></li>
+                                </ul>
+                            </div>
+                                }
+                                else if (entity.OrderType == EOrderType.Home2Home)
+                                {
+                            <div class="table_list">
+                                <p>
+                                    <span>服务名称: @entity.OrderType.DisplayName()</span><label>服务状态：@entity.State.DisplayName()</label>
+                                </p>
+                                <ul>
+                                    <li><strong>取车地点：</strong><span>@entity.TakeAddress</span></li>
+                                    <li><strong>送车地点：</strong><span>@entity.ReturnAddress</span></li>
+                                    <li><strong>车牌号：</strong><span>@entity.LicensePlate</span></li>
+                                    <li><strong>里程：</strong><span>@entity.MileAge</span></li>
+                                </ul>
+                                <ul style="margin-left: 50px;">
+                                    <li><strong>取车时间：</strong><span>@entity.ScheduleDate</span></li>
+                                    <li><strong>送车地点：</strong><span>@entity.ReturnDate</span></li>
+                                    <li><strong>预约4S店：</strong><span>@entity.DealerName</span></li>
+                                    <li><strong>车架号：</strong><span>@entity.VIN</span></li>
+                                </ul>
+                                <ul style="margin-left: 50px;">
+                                    <li><strong>确认时间：</strong><span>@entity.UpdateTime</span></li>
+                                    <li><strong>车型：</strong><span>@entity.CarSeries</span></li>
+                                    <li><strong>备注：</strong><span>@entity.Comment</span></li>
+                                </ul>
+                            </div>
+                                }
+                                else if (entity.OrderType == EOrderType.SpecialMaintain)
+                                {
+                            <div class="table_list">
+                                <p>
+                                    <span>服务名称: @entity.OrderType.DisplayName()</span><label>服务状态：@entity.State.DisplayName()</label>
+                                </p>
+                                <ul>
+                                    <li><strong>预约时间：</strong><span>@entity.ScheduleDate</span></li>
+                                    <li><strong>备注：</strong><span>@entity.Comment</span></li>
+                                </ul>
+                                <ul style="margin-left: 50px;">
+                                    <li><strong>车型：</strong><span>@entity.CarSeries</span></li>
+                                    <li><strong>预约4S店：</strong><span>@entity.DealerName</span></li>
+                                </ul>
+                                <ul style="margin-left: 50px;">
+                                    <li><strong>顾问：</strong><span>@entity.ConsultantName</span></li>
+                                    <li><strong>确认时间：</strong><span>@entity.UpdateTime</span></li>
+                                </ul>
+                            </div>
+                                }
+                            }
+                        </div>
+                        @{
+                            List<RepairRecord> _records = (List<RepairRecord>)ViewBag.RepairRecord;
+                        }
+                        <div style="display: none;margin-top:0" class="tt_two">
+                            @*<div class="sx_sel">
+                            <span>筛选</span>
+                            <select>
+                                <option></option>
+                            </select>
+                        </div>*@
+                            @foreach (var entity in _records)
+                            {
+                                EDMSServiceType serviceType;
+                                string serviceName = entity.ServiceType;
+                                foreach (var item in Enum.GetValues(typeof(EDMSServiceType)))
+                                {
+                                    if (((EDMSServiceType)item).DisplayName().Equals(entity.ServiceType))
+                                    {
+                                        serviceName = ((EDMSServiceType)item).GetDiscribe();
+                                    }
+                                }
+
+                            <div class="table_list">
+                                <p>
+                                    <span>服务名称: @serviceName</span><label>服务状态：@entity.Status</label>
+                                </p>
+                                <ul>
+                                    <li><strong>维修时间：</strong><span>@entity.RepairTime.ToString("yyyy/MM/dd")</span></li>
+                                    <li><strong>VIN码：</strong><span>@entity.VINCode</span></li>
+                                    <li><strong>人工费：</strong><span>@entity.LaborCost</span></li>
+                                </ul>
+                                <ul style="margin-left: 20px;">
+                                    <li><strong>完成时间：</strong><span>@entity.FinishTime.ToString("yyyy/MM/dd")</span></li>
+                                    <li><strong>配件费：</strong><span>@entity.FittingsCost</span></li>
+                                    <li><strong>外包费用：</strong><span>@entity.DelegateCost</span></li>
+                                </ul>
+                                <ul style="margin-left: 20px;">
+                                    <li><strong>经销商名称：</strong><span>@entity.DealerName</span></li>
+                                </ul>
+                            </div>
+                            }
+                        </div>
+
+                        @{
+                            Page<CSConsume> listConsumeV = (Page<CSConsume>)ViewBag.ConsumeV;
+                        }
+                        <div style="display:none" class="tel_cc">
+                            @*<div class="sx_sel">
+                            <span>筛选</span>
+                            <select>
+                                <option></option>
+                            </select>
+                        </div>*@
+                            @for (int i = 0; i < listConsumeV.Items.Count; i++)
+                            {
+                                var entity = listConsumeV.Items[i];
+                            <div class="table_list">
+                                <p>
+                                    <span>
+                                        服务名称:
+                                        @{
+                                string value = string.Empty;
+                                if (entity.ConsumeType == 2)
+                                {
+                                    value = "维修";
+                                }
+                                else if (entity.ConsumeType == 3)
+                                {
+                                    value = "保养";
+                                }
+                                else
+                                {
+                                    value = "购车";
+                                }
+                                        }@value
+                                    </span><label>积分状态：@{ string status = entity.PointStatus == 0 ? "未发放" : "已发放";}@status</label>
+                                </p>
+                                <ul>
+                                    <li><strong>消费时间：</strong><span>@(entity.ConsumeDate == null ? "" : ((DateTime)entity.ConsumeDate).ToString("yyyy/MM/dd"))</span></li>
+                                    <li><strong>工单号：</strong><span>@entity.OrderNo</span></li>
+                                    <li><strong>预约单号：</strong><span>@entity.ScheduleOrderNo</span></li>
+
+                                </ul>
+                                <ul style="margin-left: 50px;">
+                                    <li><strong>工时费：</strong><span>@entity.LaborCost</span></li>
+                                    <li><strong>购车费：</strong><span>@entity.PurchaseCost</span></li>
+                                    <li><strong>材料费：</strong><span>@entity.MaterialCost</span></li>
+
+                                </ul>
+                                <ul style="margin-left: 50px;">
+                                    <li><strong>总费用：</strong><span>@entity.TotalCost</span></li>
+                                    <li><strong>经销商：</strong><span>@entity.DealerName</span></li>
+                                    <li><strong>配件费：</strong><span>@entity.PartCost</span></li>
+                                </ul>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+</div>
+<div class="footer">
+    @Html.Action("Index", "Footer")
+</div>

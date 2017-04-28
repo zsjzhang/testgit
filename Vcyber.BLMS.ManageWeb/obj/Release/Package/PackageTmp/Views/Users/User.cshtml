@@ -1,0 +1,231 @@
+﻿@*@{
+        ViewBag.Title = "权限- 账号管理";
+    }
+
+    @Scripts.Render("~/Scripts/Manage/User.js")
+    @Scripts.Render("~/Scripts/Manage/AddUser.js")
+    @Scripts.Render("~/Scripts/Manage/EditUser.js")
+    <div class="g_page_content"><div id="listA" ></div></div>*@
+
+@{
+    ViewBag.Title = "权限- 账号管理";
+    Layout = null;
+}
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>权限- 账号管理</strong></div>
+</div>
+<div class="container panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">账户名称：</label>
+                        <input class="col-md-2 form-control" type="text" ng-model="userName" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">角色类型：</label>
+                        <select class="col-md-2 form-control" ng-model="select" ng-options="m.Id as m.Name for m in roles">
+                            <option value="">全部</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="btn btn-primary col-md-offset-2" type="button" ng-click="searchUser()" value="查询" />
+                    </div>
+                </form>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#addUserModal" type="button">添加账号</button>
+            </div>
+            <div class="col-md-12">
+                <div class="gridStyle" style="height: 410px; border: 1px solid rgb(212,212,212)" ng-grid="gridOptions">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="addUserModalLabel">添加账号</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form role="form" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">账户名称</label>
+                            <div class="col-md-10"><input class="form-control disabled" ng-model="newUser.UserName" placeholder="建议使用名字的全拼" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">邮箱地址</label>
+                            <div class="col-md-10"><input class="form-control disabled" ng-model="newUser.Email" placeholder="建议使用公司内部邮箱" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">密码</label>
+                            <div class="col-md-10"><input type="password" class="form-control" ng-model="newUser.Password" placeholder="6-20个字母/数字/符号" required /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">确认密码</label>
+                            <div class="col-md-10"><input type="password" class="form-control" ng-model="newUser.RepeatPassword" placeholder="6-20个字母/数字/符号" required /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">手机号</label>
+                            <div class="col-md-10"><input class="form-control disabled" ng-model="newUser.Phone" placeholder="建议使用真实手机号" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">特约店所在省</label>
+                            <div class="col-md-10 text-left">
+                                <select class="form-control" ng-model="provinceDw.select" ng-change="provinceChange()">
+                                    <option ng-repeat="it in provinceDw.data" value="{{it.id}}">{{it.value}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">特约店所在市</label>
+                            <div class="col-md-10 text-left">
+                                <select class="form-control" ng-model="cityDw.select" ng-change="cityChange()">
+                                    <option ng-repeat="it in cityDw.data" value="{{it.id}}">{{it.value}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">特约店</label>
+                            <div class="col-md-10 text-left">
+                                <select class="form-control" ng-model="dealerDw.select">
+                                    <option ng-repeat="it in dealerDw.data" value="{{it.id}}">{{it.value}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">是否启用</label>
+                            <div class="col-md-10">
+                                <label class="radio-inline">
+                                    <input type="radio" name="optionsRadios" value="1" ng-model="newUser.Status">
+                                    是
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="optionsRadios" value="0" ng-model="newUser.Status">
+                                    否
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" ng-click="addUser()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalTitle" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="editUserModalTitle">账号管理-编辑账号</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">账户名:</label>
+                        <div class="col-md-10"><label class="form-control" ng-bind="editData.UserName"></label></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">邮箱地址:</label>
+                        <div class="col-md-10"><input type="text" class="form-control" ng-model="editData.Email" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">手机号:</label>
+                        <div class="col-md-10"><input type="text" class="form-control" ng-model="editData.Phone" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">行政部门:</label>
+                        <div class="col-md-10"><input type="text" class="form-control" ng-model="editData.Department" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">是否启用</label>
+                        <div class="col-md-10">
+                            <label class="radio-inline">
+                                <input type="radio" name="optionsRadios" value="1" ng-model="editData.Status">
+                                是
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optionsRadios" value="0" ng-model="editData.Status">
+                                否
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" ng-click="editUser()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="resetpwModal" tabindex="-1" role="dialog" aria-labelledby="resetpwModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="resetpwModalLabel">重置密码</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form role="form" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">账户名称:</label>
+                            <div class="col-md-10"><label class="form-control disabled" ng-bind="resetData.UserName"></label></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">密码:</label>
+                            <div class="col-md-10"><input type="password" class="form-control" ng-model="resetData.Password" required /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">确认密码:</label>
+                            <div class="col-md-10"><input type="password" class="form-control" ng-model="resetData.ConfirmPassword" required /></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" ng-click="resetUserPw()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+

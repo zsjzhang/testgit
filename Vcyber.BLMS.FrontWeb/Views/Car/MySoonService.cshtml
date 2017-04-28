@@ -1,0 +1,63 @@
+﻿@using PetaPoco
+@using Vcyber.BLMS.Common
+@using Vcyber.BLMS.Entity
+@using Vcyber.BLMS.Entity.CarService
+@using Vcyber.BLMS.Entity.Enum
+@using Vcyber.BLMS.Entity.Generated
+
+@{
+    Layout = null;
+    var soonServiceItem = ViewData["soonService"] as PetaPoco.Page<Vcyber.BLMS.Entity.CarService.CSSonataServiceV>;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+                top.location.hostname;
+                if (top.location.hostname != window.location.hostname) {
+                top.location.href =window.location.href;
+            }
+            }
+                catch(e){
+                top.location.href = window.location.href;
+            }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+<div class="gy_cont">
+    <div class="gy_title">
+        <div class="gy_zi">
+            <h1>享受的服务</h1>
+            <span>Enjoy The Service</span>
+            <a href="/MyCenter/MyServiceRecords"><img src="/img/arrow.png" class="arrow_n" /></a>
+        </div>
+    </div>
+    <div class="gy_nr">
+        @{
+            <img src="/img/geren_pic.png" class="erji_img" />
+            if (soonServiceItem != null && soonServiceItem.Items != null && soonServiceItem.Items.Any())
+            {
+                <p>@soonServiceItem.Items.FirstOrDefault().OrderType.DisplayName()</p>
+                <span>服务日期：@soonServiceItem.Items.FirstOrDefault().ScheduleDate </span>
+            }
+            else
+            {
+                <p>目前没有享受服务记录</p>
+            }
+        }
+
+    </div>
+</div>

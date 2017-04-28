@@ -1,0 +1,64 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "Index";
+}
+<style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    #divfooter {
+        position: relative !important;
+        bottom: 0px;
+        _position: absolute;
+        _top: expression_r(eval_r(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight));
+    }
+    #diverror ol li {
+        height: 24px;
+        line-height: 24px;
+    }
+
+    .backhome {
+        color: blue;
+        text-decoration: underline;
+    }
+
+        .backhome:hover {
+            color: #B2C6D9;
+        }
+
+        .backhome:link, .backhome:active {
+            color: purple;
+        }
+</style>
+<div>
+    @Html.Action("HomeHeader", "Header")
+</div>
+<div style="width: 1000px; height: auto; float: none; margin: auto; min-height: calc(100%-143px); min-height: -moz-calc(100%-143px); min-height: -webkit-calc(100%-143px); min-height: -o-calc(100%-143px); " id="diverror">
+    <div style="width: 200px; height: 80px; float: none; margin: auto; padding-top: 10px; margin-top: 20px; margin-bottom: 20px;display:none;">
+        <span style="font-family: 'Microsoft YaHei'; font-size: 80px; color: #3D3F43">404</span>
+    </div>
+    <div style="width:100%;float:left;margin:20px auto;">
+        <img src="../Img/iconmaximg.jpg" style="height:400px;display:block;float:none;margin:auto;" />
+    </div>
+    <div style="width:100%;float:left;">
+        <img src="../Img/iconError.png" style=" width: 60px;float:left;display:block;" />
+        <h1 style="font-size: 30px; height: 60px; line-height: 60px; color: #3D3F43; float: left; display: block;margin-left:20px;">
+            很抱歉，您要访问的页面不存在或访问出错！
+        </h1>
+    </div>
+    <div style="width: 100%; float: left; margin-top: 20px; color: gray; ">
+        <h1 style="height:50px;line-height:50px;font-size:16px;">温馨提示：</h1>
+        <ol style="list-style-type:decimal;font-size:15px;margin-left:40px;">
+            <li>请检查您访问的网址是否正确</li>
+            <li>请尝试关闭并重启浏览器后，重新访问网站</li>
+            <li>请检查网络及防火墙等相关安全设置</li>
+            <li>如果仍未解决问题，或者有任何意见或建议，请及时反馈给我们，24小时客服热线：400-800-1100。</li>
+        </ol>
+    </div>
+</div>
+<div style="width:100%;float:left;display:block;" id="divfooter">
+    @Html.Action("Index", "Footer")
+</div>
+
+

@@ -1,0 +1,401 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "一对一专属服务";
+}
+<script src="~/Scripts/controller/SonataController.js"></script>
+<script src="~/Content/laydate/laydate.js"></script>
+<script src="~/Scripts/controller/DealerController.js"></script>
+<script src="~/Scripts/controller/DealerControllerTwo.js"></script>
+<script src="~/Content/layer/layer.min.js"></script>
+<style>
+    #sltProvince {
+        width: 138px;
+        margin-right: 4px;
+        margin-left: 0px;
+    }
+
+    #sltCity {
+        width: 138px;
+        margin-right: 4px;
+    }
+</style>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Sonata" })
+    </div>
+    <div class="n_all_cont">
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+
+        </div>
+        <div class="n_right_cont">
+
+            <div class="new_menu">
+                <p class="select_menu"><a href="/Home/Default">首页 &gt;</a><a href="">一对一专属服务</a></p>
+            </div>
+            <p class="select_menu"><a href="/Sonata/Index">第九代索纳塔会员专区 ></a><a href="/Sonata/OTwoOIndex">一对一专属服务 ></a><a href="">预约</a></p>
+            <div class="gy_cont">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>一对一专属服务</h1>
+                        <span>One To One Specific Service Reservation</span>
+                        <input type="hidden" id="source" value="@ViewBag.source" />
+                    </div>
+                </div>
+                <div class="gy_nr" style="overflow:hidden">
+                    <div class="home_cont" style="margin-bottom:20px;">
+                        <div class="tixing_oto">
+                            为了确保我们能够在第一时间内与您取得联系，提供更快捷、更周到的服务，请您正确填写以下资料信息，
+                            带"*"号的是必须填写项，感谢您的支持！
+                        </div>
+                        <p style="margin-top: 18px;">
+                            <span>*</span><label>车辆型号:</label>
+                            <input class="input_duan" type="text" readonly="readonly" value="第九代索纳塔" id="carType" />
+                            <img src="/img/map_sel.png" style="cursor:pointer;margin-top:0; margin-left:5px; display:none" onclick="OODealerMap.Open()" />
+                        </p>
+                        <p>
+                            <span>*</span><label>经销商:</label>@Html.Action("ProvinceCity", "Car", new { })
+                            <span id="dealerError" message="请选择经销商。"></span>
+                        </p>
+                        <p>
+                            <span></span>
+                            <input type="hidden" value="" id="personId" />
+                            <label>服务顾问:</label>
+                            <i id="servicePerson"></i><strong style="width:120px;margin-left:0px;" id="otwooserviceselectservicepersion" onclick="oo.ServicePerson();">选择专属服务顾问</strong>
+                            <label id="servicePersonError" message="请选择顾问。"></label>
+                        </p>
+                        <p>
+                            <span>*</span>
+                            <label>车牌号码:</label>
+                            <input class="input_duan" type="text" id="carNumber" />
+                            <b>例如：京A88888</b>
+                            <label id="carNumberError" message="请输入车牌号。"></label>
+                        </p>
+                        <p style="width:auto;">
+                            <span>*</span><label>预计到店时间:</label>
+                            <input type="text" id="time" placeholder="请选择日期" class="input_duan laydate-icon" />
+                            <script>
+                                $(function () {
+                                    laydate({
+                                        elem: '#time',
+                                        min: laydate.now(), //-1代表昨天，-2代表前天，以此类推
+                                        max: laydate.now(+7),
+                                        istoday: false
+                                    });
+                                });
+                            </script>
+                            <b style="margin-left:0;float:none">尊敬的车主您好，预约有效期为提交预约后的7个工作日，特约店受理服务时间为9:00-17:00。感谢您的理解与支持，祝您用车愉快！</b>
+                            <label id="timeError" message="请选择到店时间。"></label>
+                        </p>
+                        <p>
+                            <span>*</span><label>客户姓名:</label>
+                            <input type="text" id="realName" class="input_duan" />
+                            <label id="realNameError" message="请输入姓名。"></label>
+                        </p>
+                        <p>
+                            <span>*</span> <label>性别:</label>
+                            <input type="radio" value="1" id="nan" class="radio_btn_cc" name="sex" checked="checked" style=" border: none;" /><b>男</b>
+                            <input type="radio" value="0" id="nv" name="sex" class="radio_btn_cc" style=" border: none;" /><b>女</b>
+                        </p>
+                        <p>
+                            <span>*</span>
+                            <label>手机号:</label>
+                            <input class="input_duan" type="text" id="phone" />
+                            <label id="phoneError" message="请输入手机号。"></label>
+                        </p>
+                        <p style="height:auto">
+                            <span></span>
+                            <label>服务需求:</label>
+                            <textarea style="width:434px;min-height:130px; border:1px solid #c1c1c1" rows="5" id="remark"></textarea>
+                        </p>
+                        <a href="javascript:void(0);" class="yy_a" style="margin-top:20px; margin-bottom:20px;" onclick="oo.Save();">确认提交</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="servicePersonDiv" style="width:600px;z-index:100;position:absolute;top: 120px; left: 300px;background-color:#F8F8FF;display:none">
+        <div>
+            <h2 id="dealerName"></h2><input type="button" value="关闭" onclick="oo.CloseServicePerson()" />
+        </div>
+        <div id="personDiv" style="width:900px;height:400px;overflow:auto;">
+            <div style="width:200px;height:200px;margin:5px;float:left;border:1px solid red;" onclick="oo.SelectServicePerson(this)">
+                <div style="float:left"><img src="" style="width:100px;height:100px;" /></div>
+                <div style="float:left">
+                    <p>姓名</p>
+                    <p>男</p>
+                    <p>备注</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="dealerDiv" style="z-index: 110; position: absolute; top: 120px; left: 300px; background-color: #F8F8FF;display:none">
+        <div>
+            <label>经销商查询:</label>@Html.Action("ProvinceCity", "Sonata", new { })<input type="button" value="关闭" onclick=" OODealerMap.Close()" />
+        </div>
+        <div id="dealerMap" style="width:900px;height:300px;">
+        </div>
+        <div id="dealerDataDiv" style="width:900px;height:300px;overflow:auto">
+        </div>
+    </div>
+</div>
+<div class="footer">
+    @Html.Action("Index", "Footer")
+</div>
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.3&key=434378a9ebc771afdb9ecf0f7060dba9"></script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/MapDealer.js"></script>
+<script src="~/Scripts/MapDealerHtml.js"></script>
+<script type="text/javascript">
+    var oo = {};
+
+    oo.ValidatePhone = function () {
+        var phone = $("#phone").val().trim();
+
+        if (phone == "") {
+            // $("#phoneError").text("请输入手机号。");
+            popWindownBlue( "请输入手机号。");
+            return false;
+        }
+
+        var reg = new RegExp("^1[0-9]{10}$");
+
+        if (phone.length != 11 || !reg.test(phone)) {
+            //$("#phoneError").text("手机号格式不正确。");
+            popWindownBlue( "手机号格式不正确。");
+            return false;
+        }
+
+        $("#phoneError").text("");
+        return true;
+    };
+
+    oo.ValidateData = function () {
+        var result = true;
+
+        //$(":text").each(function () {
+        //    var idName = $(this).attr("id");
+
+        //    if ($(this).val().trim() == "") {
+        //        //$("#" + idName + "Error").text($("#" + idName + "Error").attr("message"));
+        //        popWindownBlue( $("#" + idName + "Error").attr("message"));
+        //        result = false;
+        //        return false;
+        //    } else {
+        //        $("#" + idName + "Error").text("");
+        //    }
+        //});
+
+        //if ($("#servicePerson").text() == "") {
+        //    $("#servicePersonError").text($("#servicePersonError").attr("message"));
+        //    result = false;
+        //}
+
+        return result;
+    };
+
+    oo.ValidateDealer = function () {
+
+        var value = $("#sltDealer").val();
+
+        if (value == "-1") {
+            //$("#dealerError").val($("#dealerError").attr("message"));
+            popWindownBlue( $("#dealerError").attr("message"));
+            return false;
+        }
+
+        $("#dealerError").val("");
+        return true;
+    };
+
+    oo.Save = function () {
+
+        var isData = oo.ValidateData();
+
+        if (!isData) {
+            return;
+        }
+
+        var isPhone = oo.ValidatePhone();
+
+        if (!isPhone) {
+            return;
+        }
+
+        var isDealer = oo.ValidateDealer();
+
+        if (!isDealer) {
+            return;
+        }
+
+        if (isPhone && isData && isDealer) {
+            var carType = $("#carType").val();
+            var provinceName = $("#sltProvince").val();
+            var cityName = $("#sltCity").val();
+            var dealerId = $("#sltDealer").val();
+            var servicePersonName = $("#servicePerson").text();
+            var personId = $("#personId").val();
+            var carNumber = $("#carNumber").val();
+            var time = $("#time").val();
+            var realName = $("#realName").val();
+            var sex = $('input:radio[name="sex"]:checked').val();
+            var phone = $("#phone").val();
+            var remark = $("#remark").val();
+
+            var source = $("#source").val();
+            if (source == "" || source == undefined) {
+                source = "blms";
+            }
+
+            //if (servicePersonName == "") { popWindownBlue( "请选择顾问"); return false; }
+            if (carNumber == "") { popWindownBlue( "请输入车牌号"); return false; }
+            if (realName == "") { popWindownBlue( "请输入姓名"); return false; }
+            if (sex == "") { popWindownBlue( "请选择性别"); return false; }
+            if (time == "") { popWindownBlue( "请选择到店时间"); return false; }
+            if (sex == "") { popWindownBlue( "请选择性别"); return false; }
+
+
+            $.post("/Sonata/OTwoOServiceSave", {
+                "CarSeries": carType,
+                "DealerId": dealerId,
+                "DealerProvince": provinceName,
+                "DealerCity": cityName,
+                "ConsultantName": servicePersonName,
+                "LicensePlate": carNumber,
+                "ScheduleDate": time,
+                "UserName": realName,
+                "UserSex": sex,
+                "Phone": phone,
+                "Comment": remark,
+                "ConsultantId": personId,
+                "DataSource": source
+            }, function (data) {
+                if (data.Status == "11") {
+                    popWindownBlue( "提交成功。");
+                    window.location = "/Sonata/Index";
+                    return false;
+                } else {
+                    popWindownBlue( data.message);
+                    return false;
+                }
+            });
+        }
+    };
+
+    oo.SelectServicePerson = function (instance) {
+        $("#personId").val($(instance).attr("personId"));
+        $("#servicePerson").text($(instance).attr("personName"));
+        layer.close(document.getElementById('personDiv').value);
+    };
+
+    oo.CloseServicePerson = function () {
+
+        $("#servicePersonDiv").hide();
+    };
+
+    oo.ServicePerson = function () {
+        var dealerId = $("#sltDealer").val();
+        var dealerName = $("#sltDealer").find("option:selected").text();
+
+        if (dealerId == "-1") {
+            popWindownBlue( "请先选择经销商。");
+            return false;
+        }
+
+        $("#dealerName").text(dealerName);
+
+        $.post("/Sonata/ServicePerson", { "dealerId": dealerId }, function (data) {
+            $("#personDiv").html("");
+            var html = $("#personDiv").html();
+            if (data.Status == "11") {
+                $(data.Datas).each(function (index, object) {
+
+                    var sexName = object.Sex == "0" ? "女" : "男";
+
+                    html += " <div style='width:205px;height:128px;margin:15px;margin-right:5px;margin-bottom:0px;float:left;border:1px solid #0f6387;cursor:pointer;color:#6c6c6c;background-color:#ededed;'  onclick='oo.SelectServicePerson(this)' personId='" + object.Id + "' personName='" + object.Name + "'>";
+                    html += " <div style='float:left;width:90px;margin-left:10px;'>";
+                    html += " <h3 style='margin-top:10px;color:#37698c;height:25px;'>" + object.Name + "</h3>";
+                    if (object.Age != undefined && object.Age != null && object.Age != 'null')
+                        html += " <p style='font-size:10px;line-height:1.5;margin-top:1px;'>" + sexName + "/" + object.Age + "岁" + "</p>";
+                    else
+                        html += " <p style='font-size:10px;line-height:1.5;margin-top:1px;'>" + sexName + "</p>";
+                    if (object.Tel != undefined && object.Tel != null && object.Tel != 'null')
+                        html += " <p style='font-size:10px;line-height:1.3;margin-top:8px;color:#3285e8c;width:100px;'>手机：" + object.Tel + "</p>";
+                    else
+                        html += " <p style='font-size:10px;line-height:1.3;margin-top:8px;color:#3285e8c;'></p>";
+                    if (object.Title != undefined && object.Title != null && object.Title != 'null')
+                        html += " <p style='font-size:10px;line-height:1.3;margin-top:8px;color:#3285e8c;'>" + object.Title + "</p>";
+                    else
+                        html += " <p style='font-size:10px;line-height:1.3;margin-top:8px;color:#3285e8c;'></p>";
+                    html += " </div>"
+                    html += " <div style='float:right;height:80px;'><img style='margin-top:3px;margin-right:5px;' onload='javascript:if(this.height>this.width){this.width = parseInt((80 / this.height) * (this.width * 1));this.height=80;}else if(this.height<this.width){this.height = parseInt((80 / this.width) * (this.height * 1));this.width=80;}else{this.width=80;this.height=80;}' src='" + object.Photo + "' /></div>";
+                    html += " <div style='float:left;margin-left:10px;margin-top:2px;width:193px;height:28px;overflow:hidden;cursor: default;'><p style='font-size:10px;line-height:1.5;overflow:hidden;' title='" + object.Comment + "' >简介：" + object.Comment + "</p></div>";
+                    html += " </div>";
+
+
+                    //$("#personDiv").html(html);
+                });
+
+                //$("#servicePersonDiv").show();
+            }
+            if (html.length > 0) {
+               var pagei1= layer.open({
+                    type: 1,   //0-4的选择,
+                    title: false,
+                    border: [10, 0.3, '#000'],
+                    closeBtn: [1,true],
+                    shadeClose: false,
+                    area: ['480px', '453px'],
+                   content:"<div style='width:480px;height:453px;overflow-y: auto;overflow-x: hidden;'>" + html + "</div>"
+                  //  }
+                });
+
+                $("#personDiv").val(pagei1);
+            }
+            else { popWindownBlue( "很抱歉，该店没有维护顾问信息！"); }
+        });
+    };
+
+    oo.OverDealerDiv = function (instance) {
+        $(instance).siblings().css("background-color", "#F8F8FF");
+        $(instance).css("background-color", "Lavender");
+    }
+
+    oo.OutDealerDiv = function (instance) {
+        $(instance).css("background-color", "#F8F8FF");
+    }
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        mapObject.Init("dealerMap");
+
+        //$("span").css("display", "inline");
+        //$("span").css("float", "none");
+        //$("b").css("color", "red");
+    })
+</script>
+<script src="~/Content/layer/layer.min.js"></script>

@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "经销商顾问管理";
+    Layout = null;
+}
+
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>经销商顾问管理</strong></div>
+</div>
+<div class="container panel panel-default">
+    <div class="row panel-body">
+        <form name="form" class="form-horizontal" role="form" ng-submit="create()" novalidate>
+            <div class="form-group">
+                <label class="col-md-4 text-right"><span style="color:red">*</span>姓名:</label>
+                <div class="col-md-8">
+                    <input type="text" name="Name" ng-model="newConsultant.Name" class="form-control" placeholder="请输入姓名" required />
+                </div>
+            </div>
+            <div class="form-group" ng-show="isShowDealerDw">
+                <label class="col-md-4 control-label"><span style="color:red">*</span>特约店所在省：</label>
+                <div class="col-md-8 text-left">
+                    <select class="form-control" ng-model="provinceDw.select" ng-change="provinceChange()">
+                        <option ng-repeat="it in provinceDw.data" value="{{it.id}}">{{it.value}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group" ng-show="isShowDealerDw">
+                <label class="col-md-4 control-label"><span style="color:red">*</span>市：</label>
+                <div class="col-md-8 text-left">
+                    <select class="form-control" ng-model="cityDw.select" ng-change="cityChange()">
+                        <option ng-repeat="it in cityDw.data" value="{{it.id}}">{{it.value}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group" ng-show="isShowDealerDw">
+                <label class="col-md-4 control-label"><span style="color:red">*</span>特约店：</label>
+                <div class="col-md-8 text-left">
+                    <select class="form-control" ng-model="myOptions" ng-required="isShowDealerDw">
+                        <option ng-repeat="it in dealerDw.data" value="{{it}}">{{it.value}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 text-right"><span style="color:red">*</span>头像:</label>
+                <div class="col-md-8">
+                    @*<label class="form-control" ng-model="newConsultant.MajorImageUrl" ng-show="0" />*@
+                    <img ng-src="{{newConsultant.Photo}}" style="height:100px;width:200px" class="img-responsive">
+                    <input type="file" ng-file-select ng-file-change="upload($files)" multiple accept="image/*">
+                    <div class="button" ng-file-select ng-file-change="upload($files)" data-multiple="true"></div>
+                    <p class="label-warning">支持gif、jpeg、jpg、png格式，建议上传尺寸：100*100px</p>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 text-right"><span style="color:red">*</span>电话:</label>
+                <div class="col-md-8">
+                    <input type="text" name="Tel" ng-model="newConsultant.Tel" class="form-control" placeholder="请输入电话" required autofocus />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label"><span style="color:red">*</span>性别:</label>
+                <div class="col-md-8 text-left">
+                    <select class="form-control" ng-model="newConsultant.Sex" required>
+                        <option value="">请选择</option>
+                        <option value="1">男</option>
+                        <option value="0">女</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 text-right"><span style="color:red">*</span>备注:</label>
+                <div class="col-md-8">
+                    <textarea type="text" name="Comment" ng-model="newConsultant.Comment" class="form-control" placeholder="请输入备注" required autofocus />
+                </div>
+            </div>
+            <div class="col-md-offset-4 col-md-8">
+                <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">确定</button>
+                <a class="btn btn-primary" href="#/Consultant/Index">返回</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+

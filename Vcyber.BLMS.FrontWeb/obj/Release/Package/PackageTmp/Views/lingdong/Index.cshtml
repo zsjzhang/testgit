@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>北京现代领动上市活动</title>
+    <script type="text/javascript">
+        var system = {
+            win: false,
+            mac: false,
+            xll: false
+        };
+        //检测平台
+        var p = navigator.platform;
+        system.win = p.indexOf("Win") == 0;
+        system.mac = p.indexOf("Mac") == 0;
+        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+        //跳转语句
+        if (!(system.win || system.mac || system.xll)) {//转向电脑界面
+            window.location.href = "/lingdong/wap" + window.location.search;
+        } else {
+            window.location.href = "/lingdong/pc" + window.location.search;
+        }
+
+    </script>
+</head>
+<body>
+</body>
+</html>

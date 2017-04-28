@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "车系- 新增车系";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    @using (Html.BeginForm("Create", "BaseCar", FormMethod.Post, new { @class = "form-horizontal", @id = "basecaraddform" }))
+    {
+        <div class="form-group">
+            <label class="col-md-2 text-right"><span style="color: red">*</span>车系名称:</label>
+            <div class="col-md-8">
+                <input type="text" id="sName" name="sName" class="form-control" placeholder="请输入车系名称" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">类型</label>
+            <div class="col-md-4 text-left">
+                <select id="sType" name="sType" class="form-control">
+                    <option value="0">试驾</option>
+                    <option value="1">订车</option>
+                    @*<option value="2">预约</option>*@
+                </select>
+            </div>
+        </div>
+        <div class="col-md-offset-2 col-md-8">
+            <button type="button" class="btn btn-primary" onclick="save()" ng-disabled="form.$invalid">确定</button>
+            <a class="btn btn-primary" href="/BaseCar/List">返回车系列表</a>
+        </div>
+
+    }
+</div>
+<script type="text/javascript">
+    function save() {
+        if ($("#sName").val() == "") {
+            alert("请填写车系名称！");
+            return;
+        }
+        var url = "/BaseCar/Create";
+        $.ajax({
+            type: "POST",
+            url: url,
+            dateType: "json",
+            data: {
+                sName: $("#sName").val(),
+                sType: $("#sType option:selected").val()
+            },
+            success: function (msg) {
+                switch (msg) {
+                    case "Y":
+                        alert("添加成功");
+                        window.location = "/BaseCar/List";
+                        break;
+                    default:
+                        alert("添加失败");
+                        break;
+                }
+            },
+            error: function (e) {
+                //
+            }
+
+        });
+    }
+</script>

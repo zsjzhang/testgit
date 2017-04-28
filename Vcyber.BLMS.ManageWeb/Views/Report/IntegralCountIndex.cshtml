@@ -1,0 +1,257 @@
+﻿@model List<Vcyber.BLMS.Entity.IntegralCountReportInfo>
+@{
+    ViewBag.Title = "特约店积分结算报表";
+    ViewBag.TitleFocus = "2-2-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Vcyber.BLMS.ManageWeb.Helper
+<script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+<link href="~/Scripts/bootstrap-datepicker/datepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+<script src="~/Scripts/bootstrap-datepicker/bootstrap-datepicker.zh-CN.js"></script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+
+    //列表分页
+    function GetPageList(pageIndex) {
+        var data = {
+            StartTime: $("#StartTime").val(),
+            EndTime: $("#EndTime").val(),
+            DealerId: $("#DealerId").val(),
+            Region: $("#Region").val(),
+            SettlementState: $("#SettlementState").val(),
+            Area: $("#DealerArea").val(),
+            ConsumeType: $("#ConsumeType").val(),
+            index: pageIndex,
+            size: 10
+        };
+        var url = "@Url.Action("IntegralCountPartialPage")";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function (msg) {
+                $('#divPageList').html(msg);
+            }
+        });
+    }
+    //结算
+    function settlement(state) {
+        var data = {
+            startDate: $("#StartTime").val(),
+            endDate: $("#EndTime").val(),
+            dealerId: $("#DealerId").val(),
+            consumeType:$("#ConsumeType").val(),
+            SettlementState: state
+        };
+
+        if (data.startDate == '' || data.endDate == '') {
+            alert("请选择结算开始和结束日期");
+            return false;
+        }
+        //如果第二次点击结算时间与上一次时间相同，返回
+        if (data.startDate == $("#recordStartTime").val() || data.endDate == $("#recordEndTime").val()) {
+            alert("两次结算时间相同，请重新选择时间");
+            return false;
+        }
+
+        if (confirm("确定要结算" + data.startDate + "到" + data.endDate + "期间的消费数据吗？")) {
+            var url = "@Url.Action("Settlement")";
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: data,
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        alert("结算完成");
+                        $("#recordStartTime").val(data.startDate);
+                        $("#recordEndTime").val(data.endDate);
+                    } else {
+                        alert(result.Message);
+                        return false;
+                    }
+                },
+                error: function (err) {
+                    alert("err");
+                }
+            });
+        }
+    }
+
+    //保存查询条件
+    function search() {
+        GetPageList(1);
+    }    
+
+    function toReportExcel() {
+        var StartTime;
+        var EndTime;
+        var DealerId;
+        var Region;
+        var SettlementState;
+        var Area ;
+        var ConsumeType;
+
+        if (!$("#StartTime").val()) {
+            StartTime = "";
+        } else {
+            StartTime = $("#StartTime").val();
+        }
+
+        if (!$("#EndTime").val()) {
+            EndTime = "";
+        } else {
+            EndTime = $("#EndTime").val();
+        }
+
+        if (!$("#DealerId").val()) {
+            DealerId = "";
+        } else {
+            DealerId = $("#DealerId").val();
+        }
+
+        if (!$("#Region").val()) {
+            Region = "";
+        } else {
+            Region = $("#Region").val();
+        }
+
+        if (!$("#SettlementState").val()) {
+            SettlementState = 0;
+        } else {
+            SettlementState = $("#SettlementState").val();
+        }
+
+        if (!$("#DealerArea").val()) {
+            Area = "";
+        } else {
+            Area = $("#DealerArea").val();
+        }
+
+        if (!$("#ConsumeType").val()) {
+            ConsumeType = "";
+        } else {
+            ConsumeType = $("#ConsumeType").val();
+        }
+        
+        window.location = '/Report/IntegralCountExport?' +
+            "&StartTime=" + StartTime + "&EndTime=" + EndTime + "&DealerId=" + DealerId + "&Region=" + Region + "&Area=" + Area + "&ConsumeType=" + ConsumeType + "&SettlementState=" + SettlementState;
+        return false;
+    }
+</script>
+<style type="text/css">
+    li {
+        margin: 5px;
+    }
+
+        li span {
+            margin-left: 10px;
+            text-align: left;
+        }
+
+    .input_text2 {
+        width: 100px;
+    }
+
+    .input_text1 {
+        width: 100px;
+    }
+    .row{width:1450px;}
+    .col-lg-2.container{width:210px}
+</style>
+<div class="path">
+
+</div>
+<div style="height:20px;"></div>
+<div class="panel panel-default">
+    <input id="recordStartTime" autocomplete="off" type="hidden" value="" />
+    <input id="recordEndTime" autocomplete="off" type="hidden" value="" />
+    @if(!ViewBag.IsEnable)
+    {
+        <table class="table table-bordered table-responsive">
+            <tr>
+                <td style=" width:80px">状态</td>
+                <td>
+                    <select id="SettlementState">
+                        <option value="0" selected>全部</option>
+                        <option value="2">待确认</option>
+                        <option value="1">已确认</option>
+                        <option value="3">待复核</option>
+                    </select>
+                </td>
+                <td style=" width:120px">积分获取时间：</td>
+                <td>@(Html.TextBox("StartTime", "", new { @class = "input_text1", @autocomplete = "off", @onfocus = "WdatePicker({dateFmt:'yyyy-MM',isShowWeek:true,isShowClear:true,readOnly:true})" }))至@(Html.TextBox("EndTime", "", new { @class = "input_text1", @onfocus = "WdatePicker({dateFmt:'yyyy-MM',isShowWeek:true,isShowClear:true,readOnly:true})" }))</td>
+                <td colspan="4">
+                    <input type="button" value="查询" onclick="search();" class="btn btn-primary" />
+                    <input class="btn btn-primary" type="submit" onclick="toReportExcel()" value="导出" />
+                </td>
+            </tr>
+        </table>
+    }
+    else
+    {
+        <table class="table table-bordered table-responsive">
+            <tr>
+                <td>办事处</td>
+                <td>
+                     @Html.DropDownList("Region", StoreHelpr.GetRegionList(), new { @class = "input_text2" })
+                </td>
+                <td>区域：</td>
+                <td>
+                    @Html.DropDownList("DealerArea", StoreHelpr.GetAreaList(), new { @class = "input_text2" })
+                </td>
+                <td style=" width:90px">店代码：</td>
+                <td>
+                   <input type="text" autocomplete="off" class="input_text1" id="DealerId" value="@ViewBag.DealerId" />
+                </td>
+                <td style=" width:80px">状态</td>
+                <td>
+                    <select id="SettlementState">
+                        <option value="0" selected>全部</option>
+                        <option value="2">待确认</option>
+                        <option value="1">已确认</option>
+                        <option value="3">待复核</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>消费类型</td>
+                <td>
+                    <select id="ConsumeType">
+                        <option value="-1" selected>请选择</option>
+                        <option value="3">定期保养</option>
+                        @* <option value="1">保养</option>
+                            <option value="2">购车</option>*@
+                        <option value="1">首次保养</option>
+                        <option value="8">钣喷</option>
+                        <option value="0">事故车维修（普通）</option>
+                        <option value="2">购车</option>
+                    </select>
+                </td>
+                <td style=" width:120px">积分获取时间：</td>
+                <td>@(Html.TextBox("StartTime", "", new { @class = "input_text1", @autocomplete = "off", @onfocus = "WdatePicker({dateFmt:'yyyy-MM',isShowWeek:true,isShowClear:true,readOnly:true})" }))至@(Html.TextBox("EndTime", "", new { @class = "input_text1", @onfocus = "WdatePicker({dateFmt:'yyyy-MM',isShowWeek:true,isShowClear:true,readOnly:true})" }))</td>
+                @*<td colspan="4">@(Html.TextBox("StartTime", "", new { @class = "input_text1", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd',isShowWeek:true,isShowClear:true,readOnly:true})" }))至@(Html.TextBox("EndTime", "", new { @class = "input_text1", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd',isShowWeek:true,isShowClear:true,readOnly:true})" }))</td>*@
+
+                <td colspan="4">
+                    <input type="button" value="查询" onclick="search();" class="btn btn-primary" />
+                    <input class="btn btn-primary" type="submit" onclick="toReportExcel()" value="导出" />
+                    <input type="button" value="确认结算" onclick="settlement(2)" class="btn btn-primary" />                    
+                    @*else
+                    {
+                        <input type="button" value="已确认" onclick="settlement(1)" class="btn btn-primary" />
+                        <input type="button" value="待复核" onclick="settlement(3)" class="btn btn-primary" />
+                    }*@
+                </td>
+            </tr>
+        </table>
+
+    }
+
+</div>
+<div id="divPageList">
+    @{
+        Html.RenderAction("IntegralCountPartialPage", new { index = 1, size = 10 });
+    }
+</div>
+
+

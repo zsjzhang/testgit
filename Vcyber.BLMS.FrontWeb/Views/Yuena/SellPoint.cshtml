@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "卖点展示";
+    Layout = "~/Views/Shared/_LayoutYuena.cshtml";
+}
+
+@*<h2>SellPoint</h2>*@
+    <input type="hidden" id="curr_date" value="@(DateTime.Parse("2016-10-18")-DateTime.Now.Date)"/>
+    <div class="swiper-slide count">
+        <img src="~/Contents/yuena/images/count0.jpg">
+        <img src="~/Contents/yuena/images/count1.jpg">
+        <img src="~/Contents/yuena/images/count2.jpg">
+        <img src="~/Contents/yuena/images/count3.jpg">
+        <img src="~/Contents/yuena/images/count4.jpg">
+        <img src="~/Contents/yuena/images/count5.jpg">
+        <img src="~/Contents/yuena/images/count6.jpg">
+        <img src="~/Contents/yuena/images/count7.jpg">
+        <img src="~/Contents/yuena/images/count8.jpg">
+        <ul class="slideDot">
+            <li class="btn_sell1"><a href="javascript:;"></a></li>
+            <li class="btn_sell2"><a href="javascript:;"></a></li>
+            <li class="btn_sell3"><a href="javascript:;"></a></li>
+            <li class="btn_sell4"><a href="javascript:;"></a></li>
+        </ul>
+        <a href="/Yuena/LogOn"><span class="down" style="bottom:70px;"><img src="~/Contents/yuena/images/down.png">点击翻页</span></a>
+    </div>
+    <div class="selldot"><img src="~/Contents/yuena/images/selling1.jpg"><a class="close3" href="javascript:;"><img src="~/Contents/yuena/images/close3.png"></a></div>
+    <div class="selldot"><img src="~/Contents/yuena/images/selling2.jpg"><a class="close3" href="javascript:;"><img src="~/Contents/yuena/images/close3.png"></a></div>
+    <div class="selldot"><img src="~/Contents/yuena/images/selling3.jpg"><a class="close3" href="javascript:;"><img src="~/Contents/yuena/images/close3.png"></a></div>
+    <div class="selldot"><img src="~/Contents/yuena/images/selling4.jpg"><a class="close3" href="javascript:;"><img src="~/Contents/yuena/images/close3.png"></a></div>
+

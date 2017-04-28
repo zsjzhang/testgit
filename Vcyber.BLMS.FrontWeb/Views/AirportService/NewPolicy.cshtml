@@ -1,0 +1,58 @@
+﻿@{
+    Layout = null;
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+                top.location.hostname;
+                if (top.location.hostname != window.location.hostname) {
+                top.location.href =window.location.href;
+            }
+            }
+                catch(e){
+                top.location.href = window.location.href;
+            }
+    </script>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="user-scalable=no, width=device-width,initial-scale=1.0, maximum-scale=1.0" />
+    <title>政策更新</title>
+    @*<link href="~/css/base/common.css" rel="stylesheet" />
+    <link href="~/css/base/airportservice.css" rel="stylesheet" />*@
+    <link href="~/css/AirportService/index.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/controller/Main.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="~/Scripts/controller/AirportServiceController.js"></script>
+</head>
+<body>
+    <div class="wrapper3">
+        <div class="ckjcfw">
+            <a href="/AirportService/AirportList?source=@ViewBag.source&oid=@ViewBag.oid"><img src="/img/airportservice/ckjcfw.png" /></a>
+        </div>
+    </div>
+    <!-- 横屏出现提示 -->
+    <div class="turn"></div>
+    <div class="fxlayer"></div>
+
+</body>
+</html>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+

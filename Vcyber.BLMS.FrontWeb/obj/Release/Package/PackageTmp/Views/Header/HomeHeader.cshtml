@@ -1,0 +1,382 @@
+﻿@{
+    Layout = null;
+}
+<style>
+    .levelTwoNN {
+        background: #075090 !important;
+    }
+
+    .leveltwo li {
+        border-bottom: 1px dotted #808080;
+    }
+
+    #searchForm {
+        float: right;
+    }
+
+        #searchForm a {
+            width: 23px;
+            height: 23px;
+            background: #3382f8 url(/img/icon_search.png) no-repeat center;
+            float: right;
+            margin-top: 4px;
+        }
+
+    #search_keyword {
+        float: left;
+        margin-top: 4px;
+    }
+
+    .megBox {
+        position: relative;
+        display: inline-block;
+        width: 21px;
+        height: 20px;
+        background: url(/img/megIcon.png) no-repeat center;
+        top: 5px;
+    }
+
+    .megBoxOn {
+        position: absolute;
+        display: block;
+        width: 7px;
+        height: 7px;
+        background: #f49600;
+        border-radius: 50%;
+        right: -4px;
+        top: -1px;
+    }
+
+    #menus li {
+        position: relative;
+        text-align: center;
+    }
+
+        #menus li a {
+            display: inline-block;
+        }
+
+      
+.megBox{ position: relative; display:inline-block; width:21px; height:20px; background:url(/img/megIcon.png) no-repeat center; top:5px;}
+.megBoxOn{ position:absolute; display:block; width:7px; height:7px; background:#f49600; border-radius:50%; right:-4px; top:-1px;}
+#menus li{position:relative; width:120px; background:url(/img/line.png) no-repeat right center;padding-left:0; padding-right:0; text-align:center; }
+#menus li a{ display:inline-block; width:100%; height:100%;}
+#menus li:hover{ background:#075090;}
+#menus li.width156{ width:156px;}
+#menus li.width156a a{ display:inline;}
+#menus .MeHomeLi{ width:85px; height:100%; padding-left:0; padding-right:0; text-align:center;}
+
+.geren_card dd p{ width:183px; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;}
+.geren_card dt{ margin-right:15px;}
+.navIconNew{ position: absolute;display:inline-block; width:44px; height:20px; left:7px; top:-12px; background:url(/Img/VipImg/navNew.gif) no-repeat; }
+
+
+    .zzDivBoxComSoon {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .zzDivBg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: .5;
+        filter: alpha(opacity:50);
+    }
+
+    .zzConBoxComming {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -204px;
+        margin-top: -112px;
+        width: 408px;
+        height: 224px;
+        background: url(/Img/VipImg/comminSoon.png) no-repeat;
+        border-radius: 5px;
+        padding: 0 5px 5px 5px;
+        color: #3d3f43;
+    }
+
+    .closeIcon {
+        position: absolute;
+        display: block;
+        width: 30px;
+        height: 31px;
+        right: -14px;
+        top: -12px;
+        background: url(/Img/VipImg/closeIcon.png) no-repeat center;
+        cursor: pointer;
+    }
+
+        .closeIcon:hover {
+            background: url(/Img/VipImg/closeIcon_1.png) no-repeat center;
+        }
+
+    .zzConBtn {
+        position: relative;
+        left: 50%;
+        margin-left: -60px;
+        margin-top: 7px;
+        width: 120px;
+        height: 30px;
+        background: #075090;
+        color: #fff;
+        line-height: 30px;
+        font-size: 14px;
+        text-align: center;
+        letter-spacing: 5px;
+        cursor: pointer;
+    }
+
+        .zzConBtn:hover {
+            background: #0b63b7;
+        }
+
+    .commingSoon {
+        position: absolute;
+        top: 245px;
+        width: 157px;
+        height: 30px;
+        margin-left: -77px;
+    }
+</style>
+<script>
+    $(function () {
+    
+        $(".closeIcon").on("click", function () {
+            $(".zzDivBoxComSoon").css('display', 'none');
+        });
+    });
+</script>
+<div class="zzDivBoxComSoon" style="display:none;" id="zzDivBox">
+    <div class="zzDivBg"></div>
+    <div class="zzConBoxComming">
+        <span class="closeIcon"></span>
+    </div>
+</div>
+<div class="fix_nav">
+
+    <ul class="fix_ul">
+        <li id="rightShortcutsRegion">
+            <img src="/img/right_shoushuo.png" style="margin-top:0;">
+        </li>
+
+        <li><a href="/Home/OnLineService"><img src="/Img/f6.png" /></a></li>
+        <li><a href="/Home/WechatCode"><img src="/Img/f8.png"></a></li>
+        <li><a href="/Home/AppDownLoad#AppDownLoadTerminal"><img src="/Img/f7.png"></a></li>
+        <li><a href="/Dealer/Index"><img src="/img/f2.png"></a></li>
+        <li><a href="/MsgCenter/Index"><img src="/img/VipImg/f6_1.png" /></a></li>
+
+    </ul>
+    <ul class="hide_ul">
+        <li style="display: none; width: 1px;"></li>
+        <li onclick="window.location ='/Home/OnLineService'; return false;" style="margin-bottom: 184px; display: none;">在线客服</li>
+        <li onclick="window.location = '/Home/WechatCode'; return false;" style="margin-bottom: 138px; display: none;">公众号</li>
+        <li onclick="window.location = '/Home/AppDownLoad#AppDownLoadWeixinFollow'; return false;" style="margin-bottom: 92px; display: none;">APP下载</li>
+        <li onclick="window.location = '/Dealer/Index'; return false;" style="margin-bottom: 46px; display: none;">经销商查询</li>
+        <li onclick="window.location = '/MsgCenter/Index'; return false;" style="margin-bottom: 0; display: none;">消息中心</li>
+
+    </ul>
+   
+</div>
+
+<div class="top_title">
+    <div class="title_cont">
+        <form id="searchForm" action="/search/index">
+            <div>
+                <input type="text" name="key" id="search_keyword" />
+                <a onclick="document.getElementById('searchForm').submit();"></a>
+            </div>
+        </form>
+        <script>
+            function GetRequest() {
+                var url = decodeURI(location.search); //获取url中"?"符后的字串
+                var theRequest = new Object();
+                if (url.indexOf("?") != -1) {
+                    var str = url.substr(1);
+                    strs = str.split("&");
+                    for (var i = 0; i < strs.length; i++) {
+                        theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+                    }
+                }
+                return theRequest;
+            }
+
+            var Request = new Object();
+            Request = GetRequest();
+
+            function onkeydownSearch(event, obj) {
+                var _event = event || window.event;
+                if (_event.keyCode === 13) {
+                    window.location.href = "/search/index?key=" + $(obj).val();
+                }
+                return false;
+            }
+        </script>
+
+        <span>24小时客服热线：400-800-1100</span>
+    </div>
+</div>
+<div class="logo_cont">
+    <div class="logo_width">
+        <a href="/"><img src="/img/logo1.png" class="ll_img" /></a>
+        <a href="http://www.beijing-hyundai.com.cn/" target="_blank"><img src="/img/bx.png" class="ll_img1" style="float:right" /></a>
+
+    </div>
+</div>
+
+<div class="nav">
+    <ul id="menus">
+        <li onclick="window.location = '/Home/Default?pageName=Home'; return false;" @{if (ViewBag.curPageName == "Home") { <text> class="MeHomeLi nn" </text>   } else {  <text> class="MeHomeLi" </text> }  }>
+            <a href="/" target="_self"><img src="/img/home.png" style="left:0px;" /></a>
+        </li>
+        <li style="position: relative;" @{if (ViewBag.curPageName == "BlueVIP") { <text> class="nn" </text>                                                               }}>
+            @Html.ActionLink("蓝缤权益", "Index", "BlueVIP", new { }, new { })
+            <ul class="leveltwo" style="list-style: none; position: absolute; left: 0px; width:120px; z-index: 999; float: left; display: none; background-color: rgb(61, 63, 67);">
+                <li style="background-image: inherit; background-color: #3d3f43; width: 100%;"><a href="/Member/Index" target="_blank" style="float: left;">会员计划</a></li>
+                <li style="background-image: inherit; background-color: #3d3f43; width: 100%;"><a href="/LifeService/Index" target="_blank" style="float: left;">生活服务</a></li>
+                <li style="background-image: inherit; background-color: #3d3f43; width: 100%;"><a href="/CarService/Index" target="_blank" style="float: left;">车辆服务</a></li>
+                @*<li style=" background-image: inherit; background-color: #3d3f43; width: 100%;"><a href="/Dealer/Index" target="_blank" style=" float: left;">查询经销商</a></li>*@
+                @*<li style=" background-image: inherit; background-color: #3d3f43; width: 100%;"><a href="/DealerNew/Index" target="_blank" style=" float: left;">特约商户</a></li>
+    <li style=" background-image: inherit; background-color: #3d3f43; width: 100%;"><a href="/Car/HomeReserveDrive" target="_blank" style=" float: left;">预约试驾</a></li>
+    <li style=" background-image: inherit; background-color: #3d3f43; width: 100%;"><a href="/Car/HomeCarReserveBuy" target="_blank" style=" float: left;">订车</a></li>
+    <li style=" background-image: inherit; background-color: #3d3f43; width: 100%;"><a href="/Car/HomeCarReserveMaintenance" target="_blank" style=" float: left;">预约维保</a></li>
+    <li style=" background-image: inherit; background-color: #3d3f43; width: 100%;"><a href="/BlueVip/MaintOnLine" target="_blank" style=" float: left; ">线上保养产品</a></li>
+    <li style=" background-image: inherit; background-color: #3d3f43; width: 100%;"><a href="/Car/HomeFittingValidate" target="_blank" style=" float: left;">纯正配件查询</a></li>
+    <li style=" background-image: inherit; background-color: #3d3f43; width: 100%;"><a href="/Dealer/Index" target="_blank" style=" float: left;">查询经销商</a></li>window.location = '/zhihuan?s=blms';
+    <li style=" background-image: inherit; background-color: #3d3f43; width: 100%;"><a href="/Questionnaire/Index" target="_blank" style=" float: left;">问卷调查</a></li>*@
+            </ul>
+        </li>
+
+        <li onclick="window.location = '/Mavement/Index?pageName=Mavement'; return false;" @{if (ViewBag.curPageName == "Mavement") { <text> class="nn" </text>                                                               }}>
+            @Html.ActionLink("活动中心", "Index", "Mavement", new { }, new { style = "text-decoration:none; color:white", target = "_self" })
+        </li>
+
+        <li style="position: relative;" @{if (ViewBag.curPageName == "OrderChange"){ <text> class="nn" </text>                                                                }}>
+            @Html.ActionLink("置换专区", "ExChangePolicy", "OrderChange", new { }, new { }) <i class="navIconNew"></i>
+            <ul class="leveltwo" style="list-style: none; position: absolute; left: 0px; width:120px; z-index: 999; float: left; display: none; background-color: rgb(61, 63, 67);">
+                <li style="background-image: inherit; background-color: #3d3f43; width: 100%;"><a href="/OrderChange/ExChangePolicy" target="_self" style="float: left;">置换政策</a></li>
+                <li style="background-image: inherit; background-color: #3d3f43; width: 100%;"><a href="/OrderChange/ExChangeActivity" target="_self" style="float: left;">置换活动</a></li>
+            </ul>
+        </li>
+
+        <li onclick="window.location = '/Mall/Index?pageName=Mall'; return false;" @{if (ViewBag.curPageName == "Mall")
+                                                                                     { <text> class="nn" </text>                                                                }}>
+            @Html.ActionLink("在线商城", "Index", "Mall", new { }, new { style = "text-decoration:none; color:white;", target = "_self" })
+        </li>
+        <li onclick="window.location = 'https://www.bluemembers.com.cn/BBS'; return false;" @{if (ViewBag.curPageName == "BBS")
+                                                                                              { <text> class="nn" </text>                                                  }}>
+            @* @Html.ActionLink("车主论坛", "Index", "BBSHome", new { }, new { style = "text-decoration:none; color:white;", target = "_self" })*@
+            <a href="https://www.bluemembers.com.cn/BBS" style="text-decoration:none; color:white;" target="_self">车主论坛</a>
+        </li>
+        <li onclick="window.location = '/MyCenter/Index?pageName=Mycenter'; return false;"  @{if (ViewBag.curPageName == "Mycenter")
+                                                                                              { <text> class="width156 width156a nn" </text> }
+                                                                                              else
+                                                                                              { <text> class="width156 width156a" </text> }   }>
+            @Html.ActionLink("个人中心", "Index", "MyCenter", new { }, new { style = "text-decoration:none; color:white;", target = "_self" })
+            @{
+
+                if (User.Identity.IsAuthenticated && ViewBag.IsHasUnReadMsg)
+                {
+                    <span class="megBox">
+                        <em class="megBoxOn"></em><!--有未读消息时是“megBoxOn”，没有就去掉megBoxOn-->
+                    </span>
+                }
+                else if (User.Identity.IsAuthenticated)
+                {
+                    <span class="megBox">
+                    </span>
+                }
+
+            }
+        </li>
+
+        @*<li style="position: relative; padding:0 45px; " @{if (ViewBag.curPageName == "Sonata") { <text> class="nn" </text>                                                        }}>
+                @Html.ActionLink("银卡会员专区", "Index", "Sonata", new { }, new { })
+                <img src="/img/vip.gif" style=" position: absolute; left: 20px; top: -10px;" />
+                <ul class="leveltwo" style="list-style: none; display:none; position: absolute; left: 0px; width: 160px; z-index: 999; background-color: #3d3f43; float: left; ">
+                    <li style=" background-image: inherit; background-color: #3d3f43; width: 100%;"><a href="/Live/Index" target="_blank" style=" float: left;">50个机场候机尊享服务</a></li>
+                    <li style=" background-image: inherit; background-color: #3d3f43; width: 100%;"><a href="/Sonata/FiveY10KM" target="_blank" style=" float: left;">5年10万公里整车包修期</a></li>
+                    <li style=" background-image: inherit; background-color: #3d3f43; width: 100%;"><a href="/Sonata/OTwoOIndex" target="_blank" style=" float: left;">一对一专属服务</a></li>
+                    <li style=" background-image: inherit; background-color: #3d3f43; width: 100%;"><a href="/Sonata/GoHomeIndex" target="_blank" style=" float: left;">上门关怀服务</a></li>
+                    <li style=" background-image: inherit; background-color: #3d3f43; width: 100%;"><a href="/Sonata/ServiceToHome" target="_blank" style=" float: left; ">免费取送车服务</a></li>
+                    <li style=" background-image: inherit; background-color: #3d3f43; width: 100%;"><a href="/Sonata/FreeRoadRescue" target="_blank" style=" float: left; ">24小时免费道路救援服务</a></li>
+                    <li style=" background-image: inherit; background-color: #3d3f43; width: 100%;"><a href="/Sonata/FreeMotIndex" target="_blank" style=" float: left; "><font style="display:block;">3年9次免费检测服务</font><font style="font-size: 12px; color: #aaa; margin-top: -14px; display: block; float:left;">(第九代索纳塔专享)</font></a></li>
+                    <li style=" background-image: inherit; background-color: #3d3f43; width: 100%;"><a href="/Sonata/Travel" target="_blank" style=" float: left; "><font style="display:block;">长途旅行关怀</font><font style="font-size: 12px; color: #aaa; margin-top: -14px; display: block; float:left;">(全新途胜专享)</font></a></li>
+                </ul>
+            </li>*@
+
+        <li onclick="window.open('http://www.beijing-hyundai.com.cn/','_blank'); return false;" class="width156"><a href="http://www.beijing-hyundai.com.cn/" target="_blank">北京现代官网</a></li>
+    </ul>
+</div>
+<script type="text/javascript">
+    var mouseover_tid = [];
+    var mouseout_tid = [];
+    var _cookieHelper = new Cookie();
+    (function () {
+        if (_cookieHelper.getCookie("rightShortcutsRegion") != null && _cookieHelper.getCookie("rightShortcutsRegion") != "") {
+            $("#rightShortcutsRegion").show().siblings("li").hide();
+        } else {
+            $("#rightShortcutsRegion").siblings("li").show();
+        }
+    })();
+
+    $(function () {
+        //一级导航
+        $('#menus>li').each(function (index) {
+            $(this).hover(
+                // 取消淡出菜单的线程, 延时淡入菜单
+                function () {
+                    var _self = this;
+                    clearTimeout(mouseout_tid[index]);
+                    mouseover_tid[index] = setTimeout(function () {
+                        $(_self).find('ul:eq(0)').fadeIn(100);
+                    }, 10);
+                },
+
+                // 取消淡入菜单的线程, 延时淡出菜单
+                function () {
+                    var _self = this;
+                    clearTimeout(mouseover_tid[index]);
+                    mouseout_tid[index] = setTimeout(function () {
+                        $(_self).find('ul:eq(0)').fadeOut(100);
+                    }, 10);
+                }
+
+            );
+        });
+
+        //二级导航
+        $(".leveltwo").find("li").each(function () {
+            $(this).hover(
+                function () {
+                    $(this).addClass("levelTwoNN");
+                },
+                function () {
+                    $(this).removeClass("levelTwoNN");
+                }
+                );
+        });
+
+        //收起
+        $("#rightShortcutsRegion").click(function () {
+            if (_cookieHelper.getCookie("rightShortcutsRegion") != null && _cookieHelper.getCookie("rightShortcutsRegion") != "") {
+                $(this).siblings("li").show();
+                _cookieHelper.setCookie("rightShortcutsRegion", "");
+                return false;
+            } else {
+                $(this).show().siblings("li").hide();
+                _cookieHelper.setCookie("rightShortcutsRegion", "isshowregion;path=/");
+                return false;
+            }
+        });
+    });
+</script>

@@ -1,0 +1,56 @@
+﻿@model Vcyber.BLMS.ManageWeb.Models.ResponseMessage
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width" />
+    <title>ImportCoustomer</title>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+<body>
+    <div>
+        @if (Model.Status == 200)
+        {
+            <div>
+                执行结果：<b>批量导入成功</b>
+            </div><br />
+        }
+        else
+        {
+            <div>
+                执行结果：部分经销商信息导入失败
+            </div><br />
+            <div>错误列表：</div><br />
+
+            if (!string.IsNullOrEmpty(Model.Message))
+            {
+                <div>@Model.Message</div>
+            }
+
+            if (Model.Errors != null)
+            {
+                foreach (var error in Model.Errors)
+                {
+                    <div>@error</div>
+                }
+            }
+
+        }
+    </div>
+</body>
+</html>

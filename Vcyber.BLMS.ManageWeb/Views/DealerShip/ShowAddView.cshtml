@@ -1,0 +1,334 @@
+﻿
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+</head>
+@Html.AntiForgeryToken()
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+<style type="text/css">
+    .container panel panel-default {
+        background: rgba(255, 255, 255, 0.8) none repeat scroll 0 0 !important;
+        filter: Alpha(opacity=80);
+        background: #fff;
+    }
+
+    .panel-body form-horizontal {
+        background: rgba(255, 255, 255, 0.8) none repeat scroll 0 0 !important;
+        filter: Alpha(opacity=80);
+        background: #fff;
+    }
+
+    .form-group {
+        background: rgba(255, 255, 255, 0.8) none repeat scroll 0 0 !important;
+        filter: Alpha(opacity=80);
+        background: #fff;
+    }
+
+    #dealerView {
+        /*width: 945px;
+        height: 200px;
+        background-color: red;
+        z-index: 21;
+        top: 55px;
+        left: 15px;
+        position: absolute;
+        background: rgba(255, 255, 255, 0.8) none repeat scroll 0 0 !important;
+        filter: Alpha(opacity=80);
+        background: #fff;*/
+        display: none;
+    }
+</style>
+
+<div id="dealerView">
+    <div class="container panel panel-default">
+        <div class="panel-body form-horizontal">
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red">*</b>店代码：</label>
+                <div class="col-md-4 text-left">
+                    <input type="text" id="DealerId" class="input_text2 form-control" style="width:300px;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red">*</b>全称：</label>
+                <div class="col-md-4 text-left">
+                    <input type="text" id="Name" class="input_text2 form-control" style="width:300px;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red">*</b>简称：</label>
+                <div class="col-md-4 text-left">
+                    <input type="text" id="Abbreviation" class="input_text2 form-control" style="width:300px;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red">*</b>省市：</label>
+                <div class="col-md-4 text-left">
+                    @Html.Action("ProvinceCity", "DealerShip", new { })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red">*</b>地址：</label>
+                <div class="col-md-4 text-left">
+                    <input type="text" id="Address" class="input_text2 form-control" style="width:300px;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red">*</b>办事处：</label>
+                <div class="col-md-4 text-left">
+                    <input type="text" id="Region" class="input_text2 form-control" style="width:300px;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red">*</b>区域：</label>
+                <div class="col-md-4 text-left">
+                    <input type="text" id="Area" class="input_text2 form-control" style="width:300px;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red">*</b>销售电话：</label>
+                <div class="col-md-4 text-left">
+                    <input type="text" id="Phone" class="input_text2 form-control" style="width:300px;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red">*</b>售后电话：</label>
+                <div class="col-md-4 text-left">
+                    <input type="text" id="AfterSalesPhone" class="input_text2 form-control" style="width:300px;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red"></b>道路救援电话：</label>
+                <div class="col-md-4 text-left">
+                    <input type="text" id="FreeRoadRescuePhone" class="input_text2 form-control" style="width:300px;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red"></b>淘宝账号：</label>
+                <div class="col-md-4 text-left">
+                    <input type="text" id="TBAccount" class="input_text2 form-control" style="width:300px;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red"></b>支付账户：</label>
+                <div class="col-md-4 text-left">
+                    <input type="text" id="AlipayAccount" class="input_text2 form-control" style="width:300px;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">邮箱：</label>
+                <div class="col-md-4 text-left">
+                    <input type="text" id="Email" class="input_text2 form-control" style="width:300px;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red"></b>地址坐标：</label>
+                <div class="col-md-4 text-left">
+                    <input type="text" id="WD" class="input_text2 form-control" style="width:300px;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red"></b>是否前台显示：</label>
+                <div class="col-md-4 text-left">
+               
+                    <input type="radio" name="IsDel" value="0" id="IsDel" checked="checked" />是&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="IsDel" value="1" id="IsDel" />否
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red"></b>经销商：</label>
+                <div class="col-md-4 text-left">
+             
+                    <input type="checkbox" value="Istestserver1" name="Istestserver1" id="Istestserver1" />试驾&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" value="IsDingChe1" name="IsDingChe1" id="IsDingChe1" />订车&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" value="IsWeibao1" name="IsWeibao1" id="IsWeibao1" />维保&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+            </div>
+            @*<div class="form-group">
+                    <label class="col-md-2 control-label"><b style="color:red"></b>经度：</label>
+                    <div class="col-md-4 text-left">
+                        <input type="text" id="JD"  class="input_text2 form-control" style="width:300px;" />
+                    </div>
+                </div>*@
+            <div class="col-md-12" style="padding-left:200px;">
+                <a href="#" class="btn-lg btn-primary " onclick="submitForm(); ">提交</a>&nbsp;&nbsp;&nbsp;
+                <a href="#" class="btn-lg btn-primary " onclick="cancel(); ">取消</a>
+            </div>
+            <div style="display:none">
+                <input type="hidden" id="Id" value="" />
+                <input type="hidden" id="dsCity" value="" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function cancel() {
+
+        $(":text").each(function (index, element) {
+            $(this).val("");
+        });
+
+        $("#sltProvince").val("-1");
+        $("#sltCity").val("-1");
+        $("#DealerId").removeAttr("readonly");
+        $("#Id").val("");
+        //$('input:radio[name=IsDel]:checked').val();
+
+        //$("#Istestserver").prop("checked") == true ? $("#Istestserver").prop("checked") : 0;
+        //$("#IsDingChe").prop("checked") == true ? $("#IsDingChe").prop("checked") : 0;
+        //$("#IsWeibao").prop("checked") == true ? $("#IsWeibao").prop("checked") : 0;
+        $("#dealerView").hide(500);
+    }
+
+    function editData(dealerId) {
+
+        $.post("/DealerShip/FindOne", { dealerId: dealerId }, function (dataResult) {
+            if (dataResult.Status == 200) {
+                var dealerData = dataResult.Data;
+                $("#Id").val(dealerData.Id);
+                $("#DealerId").val(dealerData.DealerId); $("#DealerId").attr("readonly", "readonly");
+
+                $("#dsCity").val(dealerData.City);
+                $("#sltProvince").val(dealerData.Province); $("#sltProvince").change();
+                $("#sltCity").val(dealerData.City);
+
+                $("#Address").val(dealerData.Address);
+                $("#Name").val(dealerData.Name);
+                $("#Phone").val(dealerData.Phone);
+                $("#TBAccount").val(dealerData.TBAccount);
+                $("#AlipayAccount").val(dealerData.AlipayAccount);
+                $("#AfterSalesPhone").val(dealerData.AfterSalesPhone);
+                $("#Email").val(dealerData.Email);
+                $("#Abbreviation").val(dealerData.Abbreviation);
+                $("#WD").val(dealerData.Position);
+                //$("#JD").val(dealerData.X);
+                $("#FreeRoadRescuePhone").val(dealerData.FreeRoadRescuePhone);
+                $("#Region").val(dealerData.Region);
+                $("#Area").val(dealerData.Area);
+                $("#dealerView").show(500);
+
+                //$("#dealerView").show(500);
+                console.log(dealerData);
+                console.log(dealerData.Isdel);
+                console.log(dealerData.Istestserver);
+                if(dealerData.Isdel=1)
+                {
+                    $("#Isdel").prop("checked", "checked")
+                }
+               
+                if (dealerData.Istestserver=1) {
+                    $("#Istestserver1").prop("checked", "checked");
+                }
+                if (dealerData.IsDingChe=1) {
+                    $("#IsDingChe1").prop("checked", "checked");
+                }
+                if (dealerData.IsWeibao=1) {
+                    $("#IsWeibao1").prop("checked", "checked");
+                }
+                //$("#Istestserver").prop("checked") == true ? $("#Istestserver").prop("checked") : 0;
+                //$("#IsDingChe").prop("checked") == true ? $("#IsDingChe").prop("checked"): 0;
+                //$("#IsWeibao").prop("checked") == true ? $("#IsWeibao").prop("checked") : 0;
+               // $("input:checkbox[name='Istestserver']").prop('checked') == true ? $("input:checkbox[name='Istestserver']").val() :2;
+
+            }
+        });
+    }
+    
+    function submitForm() {
+
+        var gender = "";
+
+        $(":checked").each(function (index, object) {
+            gender = $(this).val();
+        });
+
+        var Id = $("#Id").val().trim();
+        var DealerId = $("#DealerId").val().trim();
+        var Position = "";
+
+        if ($("#WD").val().trim() != "") {
+            Position = $("#WD").val().trim();
+        }
+
+        //if ($("#JD").val().trim() != "") {
+        //    Position = Position + "," + $("#JD").val().trim();
+        //}
+
+        var Province = $("#sltProvince").val();
+        var City = $("#sltCity").val();
+        var Address = $("#Address").val();
+        var Name = $("#Name").val();
+        var Phone = $("#Phone").val();
+        var TBAccount = $("#TBAccount").val();
+        var AlipayAccount = $("#AlipayAccount").val();
+        var AfterSalesPhone = $("#AfterSalesPhone").val();
+        var Email = $("#Email").val();
+        var Abbreviation = $("#Abbreviation").val();
+        var FreeRoadRescuePhone = $("#FreeRoadRescuePhone").val();
+        var Region = $("#Region").val();
+        var Area = $("#Area").val();
+
+        var IsDel = $("input:radio:checked").val();
+        //var test = document.getElementById("Istestserver").checked;
+        //var test = document.getElementById("IsDingChe").checked;
+        //var test = document.getElementById("IsWeibao").checked;
+        var Istestserver = $("#Istestserver1").prop("checked") == true ? 1: 0;
+        var IsDingChe = $("#IsDingChe1").prop("checked")  == true ? 1: 0;
+        var IsWeibao = $("#IsWeibao1").prop("checked") == true ? 1 : 0;
+
+        var url = Id == "" ? "/DealerShip/Save" : "/DealerShip/Edit";
+
+        $.post(url, {
+            Id: Id,
+            DealerId: DealerId,
+            Position: Position,
+            Province: Province,
+            City: City,
+            Address: Address,
+            Name: Name,
+            Phone: Phone,
+            TBAccount: TBAccount,
+            AlipayAccount: AlipayAccount,
+            AfterSalesPhone: AfterSalesPhone,
+            Email: Email,
+            Abbreviation: Abbreviation,
+            FreeRoadRescuePhone: FreeRoadRescuePhone,
+            Isdel: IsDel,
+            Istestserver: Istestserver,
+            IsDingChe: IsDingChe,
+            IsWeibao:IsWeibao,
+            Region: Region,
+            Area: Area,
+            "__RequestVerificationToken": document.getElementsByName('__RequestVerificationToken')[0].value
+        }, function (dataResult) {
+            if (dataResult.Status == 200) {
+
+                $(":text").each(function (index, element) {
+                    $(this).val("");
+                });
+
+                $("#sltProvince").val("-1");
+                $("#sltCity").val("-1");
+                $("#Id").val("");
+                $("#DealerId").removeAttr("readonly");
+
+                alert("保存成功。");
+                location.href = '/DealerShip/Index';
+            } else {
+                alert(dataResult.Message);
+            }
+        })
+    }
+</script>

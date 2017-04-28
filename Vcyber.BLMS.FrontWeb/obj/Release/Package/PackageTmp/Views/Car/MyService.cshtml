@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "我享受的服务";
+}
+
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Mall" })
+    </div>
+    <div class="myservice">
+        <div class="services">
+            <ul class="treat">
+                @{
+                    @*var myservices = ViewData["myservices"];
+                        if (myservices != null)
+                        {
+                            foreach (var item in myservices)
+                            {
+                                <li>
+                                    <div class="t">
+                                        服务状态
+                                    </div>
+                                    <img src="img/treat_1.png" />
+                                    <div class="b">
+                                        <span>3年9次免年检</span>
+                                        <b>服务日期：2015-02-28</b>
+                                    </div>
+                                </li>
+                            }
+                        }*@
+                }
+            </ul>
+        </div>
+        <div class="pager">
+            @Html.Action("Pager1", "Pagers", new { })
+        </div>
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

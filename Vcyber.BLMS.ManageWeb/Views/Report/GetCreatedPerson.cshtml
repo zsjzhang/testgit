@@ -1,0 +1,101 @@
+﻿@model System.Data.DataTable
+@using System.Data;
+@{ViewBag.Title = "报表管理--会员创建渠道管理";
+  Layout ="~/Views/Shared/_Layout.cshtml";
+
+}
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/bootstrap")
+
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+<script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+
+@*<script src="~/Scripts/app/ng-grid-2.0.12/ng-grid.min.js"></script>*@
+
+
+
+<div class="panel-default">
+    @if (User.Identity.Name.ToLower().Equals("admin"))
+    {
+        <div class="panel-body">
+
+
+            
+            <div class="form-group" style=" clear: both">
+                <label class="col-md-2 control-label">渠道归属状态：</label>
+                <select class=" col-md-2  form-control" id="qType">
+                    <option value="0">未分配</option>
+                    <option value="1">已分配</option>
+                    <option value="2">所有</option>
+                </select>
+
+                <label class="col-md-2 control-label">会员创建来源：</label>
+                <input class="col-md-2 form-control" type="text" id="CreatedPerson" placeholder="会员创建来源" ng-model="formData.CreatedPerson" />
+            </div>
+
+            
+            
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn btn-primary" type="submit" onclick="search()" style="margin-top:10px">查询</button>
+                    <button class="btn btn-primary" type="submit" onclick="toReportExcel()" style="margin-top:10px">导出</button>
+                </div>
+
+            </div>
+            <div id="divPageList">
+
+                @*@{
+                        Html.RenderAction("CommonPartialPage", new { index = 1, size = 10 });
+                    }*@
+            </div>
+
+
+
+
+        </div>
+    }
+
+</div>
+
+
+
+
+<script>
+    $(function () {
+        search();
+
+
+    });
+    function search() {
+        var data = {
+            qType: $("#qType").val(),
+            CreatedPerson: $("#CreatedPerson").val(),
+                        
+            pageIndex: 1,
+            pageSize: 10
+        };
+        var url = "@Url.Action("GetCreatedPersonPage")";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function (msg) {
+                //alert("123ok");
+                $('#divPageList').html(msg);
+            }
+        });
+    }
+
+    function toReportExcel() {
+        var
+            qType = $("#qType").val(),
+        CreatedPerson = $("#CreatedPerson").val();
+        window.location = '/Report/GetCreatedPersonExport?qType=' + qType + "&CreatedPerson=" + CreatedPerson;
+        return false;
+    }
+
+</script>

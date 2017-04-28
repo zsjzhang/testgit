@@ -1,0 +1,56 @@
+﻿@{
+    Layout = null;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<script >
+    function closelayer()
+    {
+        layer.close(document.getElementById('AccountSonataActiveCancelLayerIndex').value);
+        window.location = "/MyCenter/Index?pageName=MyCenter";
+    }
+
+
+
+</script>
+<style>
+.closeIcon{ position:absolute; display:block; width:30px; height:31px; right:-14px; top:-12px; background:url(/Img/VipImg/closeIcon.png) no-repeat center; cursor:pointer;}
+.closeIcon:hover{background:url(/Img/VipImg/closeIcon_1.png) no-repeat center; }
+</style>
+<div style="position:relative;background: url(/img/car_tanchuang2.png) no-repeat; width:413px; position: fixed;  left: 50%; margin-left: -206px;top: 50%;margin-top: -110px;height: 220px; ">
+    <div style="margin: 0 auto; margin-top: 40px; margin-bottom: 20px; margin-left: 67px; ">
+        <span style=" font-size: 18px;">请填写您在天猫上购买的付款码：</span>
+        <input type="text" id="TmallPayNumber" style="height: 30px;line-height: 30px;text-indent: 12px;width: 282px;margin-top: 18px;" />
+        <p style="height: 32px; margin-top: 34px;">
+            <input type="hidden" id="AccountSonataActiveCancelLayerIndex" />
+            @*<a style="  display: block;float: left;text-align: center;width: 134px;height: 30px;line-height: 30px;color: #FFFFFF;font-size: 14px;background: #075090;border: 1px solid #075090;margin-right: 16px;" href="javascript:void(0);" onclick="closelayer()">放 弃</a>*@
+            <a style="  display: block;text-align: center;width: 134px;height: 30px;line-height: 30px;color: #FFFFFF;font-size: 14px;background: #075090;border: 1px solid #075090;margin-left:20%;" href="javascript:void(0);" onclick="User.InputPayNumberToActiveSave(document.getElementById('TmallPayNumber').value,document.getElementById('sltDealer').value); ">确认提交</a>
+        </p>
+    </div>
+    <span class="closeIcon" onclick="closelayer()"></span>
+</div>

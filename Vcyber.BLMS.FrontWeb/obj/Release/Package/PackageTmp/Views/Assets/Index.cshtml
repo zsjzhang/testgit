@@ -1,0 +1,62 @@
+﻿@{
+    Layout = null;
+}
+
+<div>
+    <div class="individual_5">
+        <span>我的钱包</span>
+        <div class="bg"></div>
+    </div>
+    <ul class="individual_7">
+        @{
+            IEnumerable<Vcyber.BLMS.Entity.UserIntegral> myscores = ViewData["myscore"] as IEnumerable<Vcyber.BLMS.Entity.UserIntegral>;
+            IEnumerable<Vcyber.BLMS.Entity.UserblueBean> myvirtualcurrency = ViewData["myvirtualcurrency"] as IEnumerable<Vcyber.BLMS.Entity.UserblueBean>;
+            var myexperience = ViewData["myexperience"];
+        }
+        <li>
+            <span>&nbsp;&nbsp;积分：@ViewBag.totalScore</span>
+            <ol>
+                @if (myscores != null && myscores.Any())
+                {
+                    foreach (var item in myscores)
+                    {
+                        <li><a href="#">首次购车获得400积分（2015-01-02）</a></li>
+                    }
+                }
+            </ol>
+            <div class="l_J">
+                <a>查看所有记录>></a>
+                @Html.Action("MyScore", "Assets")
+            </div>
+        </li>
+        <li>
+            <span>&nbsp;&nbsp;蓝豆：@ViewBag.totalBlueBean</span>
+            <ol>
+                @{
+                    if (myvirtualcurrency != null && myvirtualcurrency.Any())
+                    {
+                        foreach (var item in myvirtualcurrency)
+                        {
+                            <li><a href="#">首次购车获得400积分（2015-01-02）</a></li>
+                        }
+                    }
+                }
+            </ol>
+        </li>
+        <li style="border: none;">
+            <span>&nbsp;&nbsp;经验值：@ViewBag.totalEmpiric</span>
+            <ol>
+                @*@{
+                        if (myexperience != null)
+                        {
+
+                            foreach (var item in myexperience)
+                            {
+                                <li><a href="#">首次购车获得400积分（2015-01-02）</a></li>
+                            }
+                        }
+                    }*@
+            </ol>
+        </li>
+    </ul>
+</div>

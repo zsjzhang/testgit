@@ -1,0 +1,178 @@
+﻿@model IList<Vcyber.BLMS.Entity.Product>
+@{
+    Layout = null;
+}
+
+<style>
+    .product_show ul {
+        height: 260px;
+    }
+
+    .carName {
+        font-size: 12px;
+        text-align: center;
+        line-height: 20px;
+    }
+
+         .carName span {
+            display: block;
+            color: #f49600;
+            height: 25px;
+            overflow:hidden;
+            text-align:left;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+            width:100%;
+        }
+
+        .carName b {
+            display: block; /*color:#065090;*/
+            color: #f49600;
+            height: 25px;
+            overflow:hidden;
+            text-align:left;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+            width:100%;
+        }
+
+        .carName em {
+            display: block; /*color:#777;*/
+            color: #f49600;
+            height: 25px;
+            overflow:hidden;
+            text-align:left;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+            width:100%;
+        }
+
+    .list_show dl {
+        height: 125px;
+    }
+</style>
+<div class="product_show">
+
+    @{
+        int _totalCount = ViewBag.totalCount;
+        string _html = string.Empty;
+        if (Model != null && Model.Any())
+        {
+            int i = 0;
+            foreach (var item in Model)
+            {
+                string _ulStart = "<ul>";
+                string _ulEnd = "</ul>";
+                if (i % 3 == 0)
+                {
+                    _html += _ulStart;
+                }
+
+                string _liHtml = @"<li><a href='/Product/ProductDetail?productId=" + item.ID + "'>  <span style=' width:110px; height:110px; display:inline-block;'><img src='" +
+                    item.Image + "' style='width:110px;height:110px;' /> </span> </a> <h3><a href='/Product/ProductDetail?productId=" + item.ID + "'>";
+                _liHtml += item.Name + " </a></h3>";
+                _liHtml +=" <p class='carName'>";
+
+                if (item.IsIdentity == 12)
+                {
+                    _liHtml += "<span>金卡：" + item.GoldMemberIntegral + "积分</span> ";
+                }
+                else if (item.IsIdentity == 11)
+                {
+                    _liHtml += "<b>银卡：" + item.SilverMemberIntegral + "积分</b> ";
+                }
+                else if (item.IsIdentity == 10)
+                {
+                    _liHtml += "<em>普卡：" + item.Integral + "积分</em> ";
+                }
+                else if (item.IsIdentity == 13)
+                {
+                    _liHtml += "<span>金卡：" + item.GoldMemberIntegral + "积分</span> ";
+                    _liHtml += "<b>银卡：" + item.SilverMemberIntegral + "积分</b> ";
+
+                }
+                else
+                {
+                    _liHtml += "<span>金卡：" + item.GoldMemberIntegral + "积分</span> ";
+                    _liHtml += "<b>银卡：" + item.SilverMemberIntegral + "积分</b> ";
+                    _liHtml += "<em>普卡：" + item.Integral + "积分</em> ";
+
+                }
+               
+                _html += _liHtml;
+
+                if (i % 3 == 2 || _totalCount < i)
+                {
+                    _html += _ulEnd;
+                }
+                i++;
+            }
+        }
+        @Html.Raw(_html)
+    }     
+    
+   
+    @*@{
+            int _totalCount = ViewBag.totalCount;
+            string _html = string.Empty;
+            if (Model != null && Model.Any())
+            {
+                int i = 0;
+                foreach (var item in Model)
+                {
+                    string _ulStart = "<ul class='zhanshi'>";
+                    string _ulEnd = "</ul>";
+                    if (i % 3 == 0)
+                    {
+                        _html += _ulStart;
+                    }
+
+                    string _liHtml = "<li><a href='/Product/ProductDetail?productId=" + item.ID + "'><img src='" + item.Image + "' style='width:120px;height:120px;' /></a><a href='/Product/ProductDetail?productId=" + item.ID + "'><h3>";
+                    _liHtml += item.Name + "</h3></a><p><a href='' class='col_e'>";
+                    _liHtml += "积分：" + item.Integral;
+                    if (item.BlueBean > 0)
+                    {
+                        _liHtml += " / 蓝豆：" + item.BlueBean;
+                    }
+                    _liHtml += "</a></p><p><a href='' class='col_o'></a> <a href='' class='col_b'></a></p></li>";
+
+                    _html += _liHtml;
+
+                    if (i % 3 == 2 || _totalCount < i)
+                    {
+                        _html += _ulEnd;
+                    }
+                    i++;
+                }
+            }
+            @Html.Raw(_html)
+        }*@
+    @*<ul>
+        @{
+    if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <li>
+                        <a href="/Product/ProductDetail?productId=@item.ID" target="_blank">
+                            <span style=" width:110px; height:110px; display:inline-block;">
+                                <img src="@item.Image" style="width:110px; height:110px;" />
+                            </span>
+                        </a>
+                        <h3>
+                            <a href="/Product/ProductDetail?productId=@item.ID">
+                                @item.Name
+                            </a>
+                        </h3>
+                        <p class="carName">
+                            <span>金卡：@Html.Raw(string.Format("{0}积分", item.Integral))</span>
+                            <b>银卡：@Html.Raw(string.Format("{0}积分", item.SilverMemberIntegral))</b>
+                            <em>普卡：@Html.Raw(string.Format("{0}积分", item.GoldMemberIntegral))</em>
+                        </p>
+                    </li>
+
+                }
+            }
+        }
+    </ul>*@
+</div>

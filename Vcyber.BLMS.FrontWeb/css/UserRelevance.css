@@ -1,0 +1,17 @@
+﻿  .Relevance{
+        background-color: #ccc;
+        height: 100px;
+        text-align: left;
+        Z-index: 999;
+        position: absolute;
+        left:650px;
+        top:50px;
+        display:none;
+    }
+
+    .Relevance div{
+         background-color: #ccc;
+    }
+    .Relevance div div{
+         background-color: #ccc;
+    }

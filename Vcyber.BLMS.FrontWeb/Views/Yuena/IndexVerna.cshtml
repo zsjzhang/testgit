@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "悦己纳新";
+    Layout = "~/Views/Shared/_LayoutYuena.cshtml";
+}
+
+@*<h2>IndexVerna</h2>*@
+<style>
+    body {
+        background-color: #fff;
+    }
+</style>
+<div class="logo"><a href="#"><img src="~/Contents/yuena/images/logoverna.png" /></a></div>
+<div class="right-icon"><img src="~/Contents/yuena/images/right-iconverna.png" /></div>
+<div class="indexVerna">
+    <p class="vouchers">已有@{@ViewBag.Count}人领券</p>
+    @{
+        if (DateTime.Now > DateTime.Parse("2016-10-18 00:00:00"))
+        {   
+            <a id="VernaaId" class="btn_start" @*href="/Yuena/LogOn" *@></a>
+        }
+        else
+        {
+            <a id="VernaaId" class="btn_start" @*href="/Yuena/SellPoint" *@></a>
+        }
+    }
+</div>
+

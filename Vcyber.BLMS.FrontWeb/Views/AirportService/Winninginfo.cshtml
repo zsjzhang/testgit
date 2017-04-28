@@ -1,0 +1,225 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.WinningInfo>
+@{
+    Layout = null;
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+                top.location.hostname;
+                if (top.location.hostname != window.location.hostname) {
+                top.location.href =window.location.href;
+            }
+            }
+                catch(e){
+                top.location.href = window.location.href;
+            }
+    </script>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="user-scalable=no, width=device-width,initial-scale=1.0, maximum-scale=1.0" />
+    <title>拼手气</title>
+    <link href="~/css/base/common.css" rel="stylesheet" />
+    <link href="~/css/AirportService/alert.css" rel="stylesheet" />
+    <link href="~/css/AirportService/index.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="~/Scripts/controller/AirportServiceController.js"></script>
+    <script>
+        $(function () {
+            //中奖信息滚动
+            var scrollInterval = window.setInterval(function () {
+                var html = $('div.zj_list').find('p:first').html();
+                $('div.zj_list').find('p:first').fadeOut(1000).remove();
+                $('div.zj_list').append('<p style="height:30px;line-height:30px;">' + html + '</p>');
+            }, 1000);
+        })
+    </script>
+
+</head>
+<body>
+    <div class="wrapper2">
+        @if (Model != null || Model.Any())
+        {
+            <div class="zj_list" style="top:20vh; height:60vh;">
+                <div style="height:30px;line-height:30px;">
+                    <span class=" left_cont" style="width:25%">
+                        姓名
+                    </span>
+                    <span class="left_cont">
+                        电话号码
+                    </span>
+                    <span class="right_cont" style="overflow:hidden;width:30%;">
+                        奖品
+                    </span>
+                </div>
+                @foreach (var item in Model)
+                {
+                    <p style="height:30px;line-height:30px;">
+                        <span class="left_cont" style="width:25%">
+                            @if (item.UserName.Length == 2)
+                            {
+                                <text>@item.UserName.Substring(0, 1)*</text>
+                            }
+                            else
+                            {
+                                <text>@item.UserName.Substring(0, 1)**</text>
+                            }
+                        </span>
+                        <span class="left_cont">
+                            @item.UserTel.Substring(0, 3)****@item.UserTel.Substring(7)
+                        </span>
+                        <label class="right_cont" style="overflow:hidden;width:30%;height:30px;">
+                            @Vcyber.BLMS.Application._AppContext.PrizesInfoApp.GetPrizeInfoMode(item.PrizesId).Title
+                        </label>
+                    </p>
+                }
+            </div>
+
+        }
+        <div class="tjyy" style="bottom:8%;">
+            <a href="javascript:history.go(-1);">
+                <img src="/Img/AirportService/retrun.png" />
+            </a>
+        </div>
+
+        <div class="content2">
+            <a href="javascript:AirportCtr.togglerShow('#divActivityInfo');" target="_blank">
+                <img src="/Img/AirportService/y_btn1.png" />
+            </a>
+            <a href="javascript:AirportCtr.togglerShow('#divActivityRule');" target="_blank">
+                <img src="/Img/AirportService/y_btn2.png" />
+            </a>
+            <a href="javascript:AirportCtr.togglerShow('#divNoticeInfo');" target="_blank">
+                <img src="/Img/AirportService/y_btn3.png" />
+            </a>
+            <a href="/AirportService/WinningInfo" target="_self">
+                <img src="/Img/AirportService/y_btn4.png" />
+            </a>
+        </div>
+    </div>
+
+    <!--  活动规则      -->
+
+    <div class="alert_box play_rule" style="top: 15vh; height: 70vh; width: 90%;" id="divActivityRule">
+        <span style="height: 10%;"><img src="/Img/AirportService/close.png" onclick="$('#divActivityRule').fadeOut(200);"></span>
+        <div style="height:90%; ">
+            <h2 style="height:20%;"><img src="/Img/AirportService/paly_rule.png" /></h2>
+            <div class="rule_txt" style="height: 75%; margin-bottom:5%; overflow-y: scroll; color: #fff; margin-top: 0; display: block; ">
+                <p>
+                    <b>1)</b>
+                    <span>活动期间，每位用户每天均有一次参与机会。</span>
+                </p>
+                <div style="clear: both;"></div>
+                <p>
+                    <b>2)</b>
+                    <span>本活动奖品分为实物奖及服务奖两种。如同时抽中两种奖品，请按个人喜好选择其一。</span>
+                </p>
+                <p>
+                    <b>3)</b>
+                    <span>本活动奖品分为实物奖及服务奖两种；实物奖在活动结束后统一安排邮寄，虚拟奖在抽中后会以短信形式发送</span>
+                </p>
+                <p>
+                    <b>4)</b>
+                    <span>为便于发奖，抽中奖品的会员，请务必正确填写个人邮寄信息，并保持手机畅通。</span>
+                </p>
+                <p>
+                    <b>5)</b>
+                    <span>本活动最终解释权归北京现代汽车有限公司所有如有疑问请及时与bluemembers网站在线客服联系。</span>
+                </p>
+                <p>
+                    <b>6)</b>
+                    <span>活动中如有疑问请及时拨打北京现代24小时客服热线：400-800-1100（手机拨打）或咨询bluemembers在线客服。</span>
+                </p>
+                <p>
+                    <b>7)</b>
+                    <span>特别申明：您于本网站提供的个人信息只用于北京现代本次活动与您沟通联络时使用。</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <!--  活动简介      -->
+
+    <div class="alert_box play_rule" style="top:15vh; height:70vh; width:90%;" id="divActivityInfo">
+        <span style="height:10%;"><img src="/Img/AirportService/close.png" onclick="$('#divActivityInfo').fadeOut(200);"></span>
+        <div style="height:90%; ">
+            <h2 style="height:20%;"><img src="/Img/AirportService/paly_show.png" /></h2>
+            <div style="height: 75%; margin-bottom: 5%; overflow-y: scroll;">
+                <h3 style="margin-top:0;">暖心候机礼，服务再升级，惊喜摇不停！尊享候机服务码、定制旅行四件套等惊喜大奖等你来抢。活动期间到店试驾即获两次免费候机服务、购车更享超值礼包！</h3>
+                <h4>
+                    bluemembers蓝缤邀您共享候机服务。即日起尊享候机服务全面升级：
+                </h4>
+                <div class="rule_txt">
+                    <p>
+                        <b>1)</b>
+                        <span>候机服务码有效期由7天延长至3个月</span>
+                    </p>
+                    <div style="clear: both;"></div>
+                    <p>
+                        <b>2)</b>
+                        <span>候机服务码可转发给亲友使用</span>
+                    </p>
+                    <div style="clear: both;"></div>
+                    <p>
+                        <b>3)</b>
+                        <span>服务码无机场限制，持有效服务码可在全国50家机场指定休息室畅享候机服务。</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--  注意事项      -->
+
+
+    <div class="alert_box play_rule p_bot" id="divNoticeInfo" style="top:15vh; height:70vh; width:90%;">
+        <span style="height:10%;"><img src="/Img/AirportService/close.png" onclick="$('#divNoticeInfo').fadeOut(200);"></span>
+        <div style="height:90%; ">
+            <h2 style="height:20%;"><img src="/Img/AirportService/play_care.png" /></h2>
+            <div class="rule_txt" style="height: 75%; margin-bottom:5%; overflow-y: scroll; color: #fff; margin-top: 0; display: block; ">
+                <p>
+                    <b>1)</b>
+                    <span>活动期间，每位用户每天均有一次参与摇一摇赢大奖的机会。</span>
+                </p>
+                <div style="clear: both;"></div>
+                <p>
+                    <b>2)</b>
+                    <span>中奖并选择中意奖品后，填写准确个人信息以便我们为您寄送礼品或发送服务码。</span>
+                </p>
+                <div style="clear: both;"></div>
+                <p>
+                    <b>3)</b>
+                    <span>本活动奖品分为实物奖品和虚拟奖品；实物奖品在活动结束后统一安排物流，虚拟奖品在抽中后以短信形式进行发送候机服务码。</span>
+                </p>
+                <div style="clear: both;"></div>
+                <p>
+                    <b>4)</b>
+                    <span>您在本次活动中获取的候机服务码在2016年3月31日前有效，请及时使用。</span>
+                </p>
+                <h3>温馨提示：尊享候机码为9位数字服务码，如若抽中会以短信形式发送。乘机出行时到达指定机场休息室出示该服务码短信即可使用。</h3>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+

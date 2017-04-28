@@ -1,0 +1,204 @@
+﻿.gy_nr span{
+	font-size: 14px;
+	color: #707070;
+	margin-left: 10px;
+	padding-bottom: 10px;
+	display: block;
+}
+
+.gynot{
+	width: 100%;
+	height: 36px;
+	margin-top: 20px;
+}
+
+.gynot li{
+	width: 136px;
+	height: 36px;
+	line-height: 36px;
+	text-align: center;
+	float: left;
+	background: #f49600;
+	font-size: 14px;
+	margin-right: 14px;
+}
+
+.gynot li:last-child{
+	margin-right: 0;
+}
+
+.gynot li .fbtz{
+	color: #FFFFFF;
+	background: url(../../img/luntan_yiezi.png) no-repeat left center;
+	padding-left: 18px;
+}
+
+.gynot li .fqhd{
+	color: #FFFFFF;
+	background: url(../../img/luntan_huod.png) no-repeat left center;
+	padding-left: 28px;
+}
+
+.gy_nr p{
+	font-size: 14px;
+	color: #767575;
+	line-height:18px;
+	background: url(../../img/jilu_d2.png) no-repeat left center;
+	padding-left:16px;
+	margin-left:16px;
+}
+
+.retie{
+	padding:18px 0 10px 0;
+	display: table;
+	width: 99%;
+}
+
+.retie img{
+	width: 100px;
+	height: 100px;
+	display: block;
+	float: left;
+	margin-left: 25px;
+}
+
+.tiezi_jl{
+	font-size: 12px;
+	text-align: right;
+	margin-top: 24px;
+}
+
+.fenx_lc{
+	margin-top: 20px;
+	width: 100%;
+	border: 1px solid #EEEEEE;
+	display: table;
+}
+
+.fenx_lc ul{
+	padding:20px 16px;
+}
+
+.fenx_lc li{
+	width: 318px;
+	float: left;
+	padding-bottom: 10px;
+	margin-right: 26px;
+}
+
+.fenx_lc li:last-child{
+	margin-right: 0;
+}
+
+.fenx_lc li h2{
+	width: 100%;
+	font-size: 16px;
+}
+
+.fenx_lc li h2 b{
+	width: 2px;
+	height: 16px;
+	display: block;
+	background: #f49600;
+	float: left;
+	margin-right: 8px;
+}
+
+.fenx_lc li h2 a{
+	float: right;
+	font-size: 12px;
+	color: #767575;
+	line-height: 16px;
+}
+
+.fenx_lc li img{
+	width: 318px;
+	height: 124px;
+	margin-top: 10px;
+	margin-bottom: 12px;
+}
+
+.fenx_lc p{
+	font-size: 12px;
+	color: #767575;
+	line-height:24px;
+	background: url(../../img/jilu_d2.png) no-repeat left center;
+	padding-left:16px;
+}
+
+.fenx_lc dl{
+	padding: 24px 8px;
+}
+
+.fenx_lc dt{
+	float: left;
+	margin-right: 20px;
+}
+
+.fenx_lc dd{
+	margin-left: 338px;
+}
+
+.fabu_tiez{
+	width: 100%;
+	margin-top: 14px;
+		border: 1px solid #EEEEEE;
+}
+
+.fabu_tiez thead{
+	height: 40px;
+	background: #EEEEEE;
+	line-height: 40px;
+	font-size: 12px;
+}
+
+.fabu_tiez thead td{
+	text-align: center;
+}
+
+.fabu_tiez tbody{
+	font-size: 12px;
+}
+
+.fabu_tiez tbody tr{
+	height: 74px;
+}
+
+.bor{
+	border-bottom: 1px dashed #EEEEEE;
+	color: #767575;
+}
+
+.havel{
+	line-height: 74px;
+}
+
+.big_zi{
+	font-size: 14px;
+}
+
+.cent{
+	text-align: center;
+}
+
+.col_b a{
+	width: 24px;
+	height: 24px;
+	display: block;
+	position: relative;
+	top:12px;
+	cursor: pointer;
+}
+
+.col_b a img{
+	width: 24px;
+	height: 24px;
+	display: block;
+}
+
+.bor p{
+	line-height: 20px;
+	position: relative;
+	top: -9px;
+}
+

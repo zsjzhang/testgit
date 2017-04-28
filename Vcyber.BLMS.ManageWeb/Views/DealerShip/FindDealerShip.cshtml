@@ -1,0 +1,102 @@
+﻿@model List<Vcyber.BLMS.Entity.Generated.CSCarDealerShip>
+@using Vcyber.BLMS.Entity.Enum;
+@using Vcyber.BLMS.Common;
+@using Vcyber.BLMS.ManageWeb.Helper;
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function() {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+</script>
+
+
+<div class="data-container" style="padding-top:30px">
+    <table class="table table-bordered">
+        <thead>
+            <tr class="l1">
+                <td>操作</td>
+
+                @*<th>经销商编号</th>*@
+                <th>店代码</th>
+                <th>经销商名称</th>
+                <th>销售电话</th>
+                <th>淘宝账号</th>
+                <th>支付账户</th>
+                <th>邮箱</th>
+                <th>售后电话</th>
+                @*<th>地址</th>*@
+                <th>地址坐标</th>
+                <th>是否前台显示</th>
+            </tr>
+        </thead>
+            @{int count = 0;}
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><a href="#" onclick="editData('@item.DealerId');">编辑</a></td>
+                    <td>@item.DealerId</td>
+                    <td>@item.Name</td>
+                    <td>@item.Phone</td>
+                    <td>@item.TBAccount</td>
+                    <td>@item.AlipayAccount</td>
+                    <td>@item.Email</td>
+                    <td>@item.AfterSalesPhone</td>
+                    @*<td>@item.Address</td>*@
+                    <td>@item.Position</td>
+                    @{
+                     var temp = item.IsDel == 0 ? "是" : "否";
+                    }
+                    <td>@temp</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="box_a2">
+    <div class="pagbox">
+            <span>共@{@ViewBag.Total}条<</span>
+            <a href="javascript:void(0);" onclick="GetPageList(1)">首页</a>
+            <a href="javascript:void(0);" onclick="ShowPages('Pre')"><<</a>
+            <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.PrePage)">上一页</a>
+            @{
+                int PageIndex = (int)ViewBag.PageIndex;
+                int PageCurrentGroup = (int)(PageIndex / 10);
+            }
+            @for (int i = 1; i <= (int)ViewBag.EndPage; i++)
+            {
+                if ((i < PageCurrentGroup * 10) || (i >= (PageCurrentGroup + 1) * 10))
+                {
+                    <a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)" style="display:none;">@i</a>
+                }
+                else
+                {
+                    if (i == (int)ViewBag.PageIndex)
+                    {<a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)" style="color: blue">@i</a> }
+                    else
+                    {<a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)">@i</a> }
+                }
+            }
+            <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.NextPage, 10)">下一页</a>
+            <a href="javascript:void(0);" onclick="ShowPages('Next')">>></a>
+            <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.EndPage, 10)">尾页</a>
+        </div>
+</div>
+<input type="hidden" id="hidCurrentPage" value="@ViewBag.PageIndex" />
+    <input type="hidden" id="hidEndPage" value="@ViewBag.EndPage" />
+    <input type="hidden" id="hidCurrentGroup" value="@PageCurrentGroup" />
+
+
+
+

@@ -1,0 +1,330 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "上门关怀服务";
+}
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.3&key=434378a9ebc771afdb9ecf0f7060dba9"></script>
+<script src="~/Content/laydate/laydate.js"></script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/GoHomeMap.js"></script>
+<script src="~/Scripts/controller/SonataController.js"></script>
+<script src="~/Scripts/controller/DealerControllerThree.js"></script>
+<script type="text/javascript">
+
+    $(function () {
+        mapObject.Init("divMap");
+
+        mapObject.AddressPoint = function (x, y, addresssName) {
+            $("#hidAddress").attr("lngLat", x + "," + y);
+            $("#hidAddress").attr("addressName", addresssName);
+        };
+
+        mapObject.SetAddress = function () {
+            $("#txtAddress").val($("#hidAddress").attr("addressName"));
+            $("#txtPostion").val($("#hidAddress").attr("lngLat"));
+
+            if ($("#txtAddress").val() != "") {
+                var gLat = $("#txtPostion").val().split(',')[0];
+                var gLng = $("#txtPostion").val().split(',')[1];
+
+                mapObject.SearchDealer(gLat, gLng);
+            }
+        };
+
+        mapObject.DealerAddress = function (x, y, dealerId, dealerName, addressName) {
+            $("#dealerAddress").attr("dealerAddressd", addressName);
+            $("#dealerName").attr("dealerNamed", dealerName);
+            $("#dealerId").attr("dealerId", dealerId);
+
+            $("#dealerPoint").attr("lat", x);
+            $("#dealerPoint").attr("lng", y);
+        }
+
+        mapObject.SetDealer = function () {
+            $("#dealerAddress").val($("#dealerAddress").attr("dealerAddressd"));
+            $("#dealerName").val($("#dealerName").attr("dealerNamed"));
+            $("#dealerId").val($("#dealerId").attr("dealerId"));
+
+            var point = new AMap.LngLat($("#dealerPoint").attr("lng"), $("#dealerPoint").attr("lat"));
+            mapObject.Object.setZoomAndCenter(15, point);
+        }
+
+        mapObject.SearchDealer = function (glat, glng) {
+            var provinceName = $("#sltProvince2").val();
+            var cityName = $("#sltCity2").val();
+
+            mapObject.ClearDealerToken();
+
+            $.ajax({
+                url: "/Sonata/Dealers",
+                type: "get",
+                data: { cityValue: cityName, provinceValue: provinceName },
+                dataType: "json",
+                success: function (data) {
+                    var index = 0;
+
+                    if (data.Status == "11") {
+                        var getIndex = 0;
+                        var getArray = new Array();
+
+                        for (var i = 0; i < data.Datas.length; i++) {
+                            var object = data.Datas[i];
+
+                            if (object.Y != "" && object.X != "") {
+                                if (mapObject.DistanceLngLat(glng, glat, object.X, object.Y) <= 20000) {
+                                    getArray[getIndex] = object; getIndex++;
+                                }
+                            }
+                        }
+
+                        if (getIndex != 0) {
+                            for (var i = 0; i < getIndex; i++) {
+
+                                mapObject.AddToken(getArray[i].X, getArray[i].Y, getArray[i].DealerId, getArray[i].Name, getArray[i].Address, "<p>地址：" + getArray[i].Address + "</p>");
+                                index++;
+
+                            }
+                        }
+
+                        mapObject.Object.setFitView();
+                    }
+
+                    if (index == 0) {
+                        popWindownBlue( "没有找到20公里以内的经销商。");
+                    }
+                },
+                error: function (err) {
+                    popWindownBlue( "error");
+                }
+            });
+        }
+
+    });
+
+    function searchMap() {
+        if ($("#sltProvince2").val() == "-1" || $("#sltCity2").val() == "-1") {
+            popWindownBlue( "请选择省市");
+        }
+        var city = $("#sltCity2").val();
+        var add = $("#txtAdd").val();
+
+        mapObject.ClearMap();
+        mapObject.Search(city, add);
+    }
+
+    function action() { }
+
+    action.ValidatePhone = function () {
+        var phone = $("#txtPhone").val().trim();
+
+        if (phone == "") {
+            popWindownBlue( "请输入手机号。");
+            return false;
+        }
+
+        var reg = new RegExp("^1[0-9]{10}$");
+
+        if (phone.length != 11 || !reg.test(phone)) {
+            popWindownBlue( "手机号格式不正确。");
+            return false;
+        }
+
+        $("#phoneError").text("");
+        return true;
+    }
+
+    action.Save = function () {
+
+        var add = $("#txtAddress").val().trim();
+        if (add == "") {
+            popWindownBlue( "请选择上门地点");
+            return false;
+        }
+
+        var dea = $("#dealerId").val();
+        if (dea == "") {
+            popWindownBlue( "请选择4S店");
+            return false;
+        }
+
+
+        var isPhone = action.ValidatePhone();
+
+        if (isPhone) {
+            var takeAddress = $("#txtAddress").val();//上门地点
+            var dealerId = $("#dealerId").val();//4S店
+            var carSeries = $("#txtCarType").val();//车型
+            var licensePlate = $("#txtLicensePlate").val();//车牌号
+            var vin = $("#txtVIN").val();//车架号
+            var scheduleDate = $("#time").val();//预计上门时间
+            var userName = $("#txtUserName").val();//姓名
+            var userSex = $('input:radio[name="rdoUserSex"]:checked').val();//性别
+            var phone = $("#txtPhone").val();//手机号
+            var comment = $("#txtComment").val();//备注
+
+            var provinceName = $("#sltProvince").val();
+            var city = $("#sltCity").val();//经销商城市
+
+            if (takeAddress == "") { popWindownBlue( "请选择上门地点"); return false; }
+            if (dealerId == "") { popWindownBlue( "请选择4S店"); return false; }
+            if (carSeries == "") { popWindownBlue( "请选择车型"); return false; }
+            if (licensePlate == "") { popWindownBlue( "请选择车牌号"); return false; }
+            //if (vin == "") {popWindownBlue( "请选择车架号");return false;}
+            if (scheduleDate == "") { popWindownBlue( "请选择上门时间"); return false; }
+            if (userName == "") { popWindownBlue( "请输入姓名"); return false; }
+            if (userSex == "") { popWindownBlue( "请选择性别"); return false; }
+
+            var source = $("#source").val();
+            if (source == "" || source == undefined) {
+                source = "blms";
+            }
+
+            Sonata.goHomeFormSave(takeAddress, dealerId, carSeries, licensePlate, vin, scheduleDate, userName, userSex, phone, comment, city, provinceName, source);
+        }
+    }
+
+</script>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Sonata" })
+    </div>
+    <div class="all_cont" style="overflow: hidden;">
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+
+        </div>
+        <div class="n_right_cont">
+            <p class="select_menu"><a href="/Sonata/Index">第九代索纳塔会员专区 ></a><a href="/Sonata/GoHomeIndex">上门关怀服务 ></a><a href="">预约</a></p>
+            <div class="gy_cont" style="margin-top:0;">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>上门关怀服务预约</h1>
+                        <span>Door To Door Care Service</span>
+                        <img src="/img/arrow.png" class="arrow_n" />
+                        <input type="hidden" id="source" value="@ViewBag.source" />
+                    </div>
+                </div>
+                <div class="gy_nr" style="overflow:hidden">
+                    <div class="home_cont" style="margin-top:20px;">
+                        <p style="margin-left:0px">
+                            @Html.Action("ProvinceAndCity", "Sonata", new { })
+
+                            <span>*</span><label id="serviceToHomeFormAddressLabel" style="width:40px"> 地点:</label>
+                            <input id="txtAdd" type="text" class="input_duan" style="height: 28px;" />
+                            <button onclick="searchMap();" style="padding-left: 10px;height: 28px; float: right;">搜索地图</button>
+                        </p>
+                    </div>
+                    <div id="divMap" style="width:674px;height:400px; margin:10px;">
+                    </div>
+                    <div class="home_cont" style="margin-bottom:20px;">
+                        @*@Html.Action("ProvinceAndCity", "Sonata", new { })
+                            <p>
+                                <span>*</span><label id="serviceToHomeFormAddressLabel"> 地点:</label>
+                                <input id="txtAdd" type="text" class="input_duan" />
+                                <button onclick="searchMap();" style="width:120px;height: 33px; margin-left: 2px; background-color: #075090; color: white; border: none;">搜索地图</button>
+                            </p>*@
+                        <p>
+                            <span>*</span><label>上门地点：</label>
+                            <input type="text" id="txtAddress" placeholder="请从地图上选择上门地点" />
+                            <input type="text" id="txtPostion" hidden />
+                            <input type="hidden" id="hidAddress" lnglat="" addressname="" disabled />
+                        </p>
+                        <p>
+                            <span>*</span>
+                            <label>经销商：</label><input type="hidden" id="dealerPoint" lat="" lng="" />
+                            <input type="text" id="dealerName" placeholder="请从地图上选择经销商" dealernamed="" disabled />
+                        </p>
+                        <p>
+                            <span></span>
+                            <label>地址：</label><input type="text" id="dealerAddress" dealeraddressd="" disabled />
+                            <input type="text" id="dealerId" dealernamed="" hidden />
+                        </p>
+
+                        <p>
+                            <span>*</span>
+                            <label>车辆型号：</label>
+                            <input class="input_duan" type="text" id="txtCarType" value="第九代索纳塔" readonly />
+                        </p>
+
+                        <p>
+                            <span>*</span>
+                            <label>车牌号码：</label>
+                            <input class="input_duan" type="text" id="txtLicensePlate" />
+                        </p>
+
+                        <p>
+                            <span></span>
+                            <label>车架号：</label>
+                            <input class="input_duan" type="text" id="txtVIN" />
+                        </p>
+
+                        <p>
+                            <span>*</span>
+                            <label>预计上门时间：</label>
+                            <input type="text" id="time" name="carReserveMaintenanceEndTime" placeholder="请选择" class="laydate-icon input_duan" />
+                            <script>
+                                $(function () {
+                                    laydate({
+                                        elem: '#time',
+                                        min: laydate.now(), //-1代表昨天，-2代表前天，以此类推
+                                        max: laydate.now(+7),
+                                        istoday: false
+                                    });
+                                });
+                            </script>
+                            <b style="margin-left:0;float:none">尊敬的车主您好，预约有效期为提交预约后的7个工作日，特约店受理服务时间为9:00-17:00。感谢您的理解与支持，祝您用车愉快！</b>
+                        </p><p>
+                            <span>*</span>
+                            <label>客户姓名：</label>
+                            <input class="input_duan" type="text" id="txtUserName" />
+                        </p>
+
+                        <p>
+                            <span>*</span><label>性别：</label>
+                            <input type="radio" value="0" id="rdoWoman" checked="checked" name="rdoUserSex" class="radio_btn_cc" style=" border: none;" /><b>女</b>
+                            <input type="radio" value="1" id="rdoMan" name="rdoUserSex" class="radio_btn_cc" style=" border: none;" /><b>男</b>
+                        </p>
+
+                        <p>
+                            <span>*</span><label>手机号：</label>
+                            <input class="input_duan" type="text" id="txtPhone" /><label id="phoneError"></label>
+                        </p>
+
+                        <p style="height:auto;">
+                            <span></span><label>服务需求：</label>
+                            <textarea style="width:434px;min-height:130px; border:1px solid #c1c1c1" id="txtComment" rows="5"></textarea>
+                        </p>
+                        <p style="margin-left: 200px;">
+                            <a href="#btnSubmit" onclick="action.Save()" id="btnSubmit" style="background-image:url(/Img/qryy.png); width:232px; height:33px; display:inline-block;"></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    @Html.Action("Index", "Footer")
+</div>

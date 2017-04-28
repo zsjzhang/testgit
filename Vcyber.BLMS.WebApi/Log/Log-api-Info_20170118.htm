@@ -1,0 +1,345 @@
+<HR COLOR=blue>
+日志时间：2017-01-18 17:14:58,638 [3] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 对象名 'CS_DMS_Consume' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 117
+ClientConnectionId:71865ac2-5fca-4035-942f-d7c339455c03
+Error Number:208,State:1,Class:16
+<HR COLOR=blue>
+日志时间：2017-01-18 17:14:58,892 [3] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 对象名 'CS_DMS_Consume' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 117
+ClientConnectionId:71865ac2-5fca-4035-942f-d7c339455c03
+Error Number:208,State:1,Class:16
+<HR COLOR=blue>
+日志时间：2017-01-18 17:15:15,213 [3] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单(成功) [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.WebApi\Controllers\SettlementController.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-18 17:18:16,116 [9] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 对象名 'CS_DMS_Consume' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 117
+ClientConnectionId:35cc0b13-1fdc-4041-926a-e7bfb706b46d
+Error Number:208,State:1,Class:16
+<HR COLOR=blue>
+日志时间：2017-01-18 17:18:16,230 [9] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 对象名 'CS_DMS_Consume' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 117
+ClientConnectionId:35cc0b13-1fdc-4041-926a-e7bfb706b46d
+Error Number:208,State:1,Class:16
+<HR COLOR=blue>
+日志时间：2017-01-18 17:18:16,233 [9] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单(成功) [(null)] <BR>
+信息：Vcyber.BLMS.Entity.DMSIntergralListV <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.WebApi\Controllers\SettlementController.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-18 17:31:54,221 [8] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单(成功) [(null)] <BR>
+信息：Vcyber.BLMS.Entity.DMSIntergralListV <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.WebApi\Controllers\SettlementController.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-18 17:45:53,899 [8] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 在与 SQL Server 建立连接时出现与网络相关的或特定于实例的错误。未找到或无法访问服务器。请验证实例名称是否正确并且 SQL Server 已配置为允许远程连接。 (provider: Named Pipes Provider, error: 40 - 无法打开到 SQL Server 的连接) ---> System.ComponentModel.Win32Exception (0x80004005): 找不到网络路径。
+   在 System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling)
+   在 System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   在 System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 89
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 180
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:53,State:0,Class:20
+<HR COLOR=blue>
+日志时间：2017-01-18 17:45:53,982 [8] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 在与 SQL Server 建立连接时出现与网络相关的或特定于实例的错误。未找到或无法访问服务器。请验证实例名称是否正确并且 SQL Server 已配置为允许远程连接。 (provider: Named Pipes Provider, error: 40 - 无法打开到 SQL Server 的连接) ---> System.ComponentModel.Win32Exception (0x80004005): 找不到网络路径。
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 89
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 180
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:53,State:0,Class:20
+<HR COLOR=blue>
+日志时间：2017-01-18 17:45:54,015 [8] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 在与 SQL Server 建立连接时出现与网络相关的或特定于实例的错误。未找到或无法访问服务器。请验证实例名称是否正确并且 SQL Server 已配置为允许远程连接。 (provider: Named Pipes Provider, error: 40 - 无法打开到 SQL Server 的连接) ---> System.ComponentModel.Win32Exception (0x80004005): 找不到网络路径。
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 89
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 211
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:53,State:0,Class:20
+<HR COLOR=blue>
+日志时间：2017-01-18 17:45:54,048 [8] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 在与 SQL Server 建立连接时出现与网络相关的或特定于实例的错误。未找到或无法访问服务器。请验证实例名称是否正确并且 SQL Server 已配置为允许远程连接。 (provider: Named Pipes Provider, error: 40 - 无法打开到 SQL Server 的连接) ---> System.ComponentModel.Win32Exception (0x80004005): 找不到网络路径。
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 89
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 211
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:53,State:0,Class:20
+<HR COLOR=blue>
+日志时间：2017-01-18 17:46:54,022 [8] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（成功），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1472659200123)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":34,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/18 17:46:53 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-18 17:46:54,022 [8] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（成功），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1472659200123)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":34,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/18 17:46:53 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-18 17:48:35,553 [8] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（成功），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1472659200123)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":34,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/18 17:48:35 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-18 17:48:35,553 [8] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（成功），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1472659200123)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":34,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/18 17:48:35 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-18 17:53:09,178 [8] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 在与 SQL Server 建立连接时出现与网络相关的或特定于实例的错误。未找到或无法访问服务器。请验证实例名称是否正确并且 SQL Server 已配置为允许远程连接。 (provider: Named Pipes Provider, error: 40 - 无法打开到 SQL Server 的连接) ---> System.ComponentModel.Win32Exception (0x80004005): 找不到网络路径。
+   在 System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling)
+   在 System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   在 System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 89
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 182
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:53,State:0,Class:20
+<HR COLOR=blue>
+日志时间：2017-01-18 17:53:09,251 [8] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 在与 SQL Server 建立连接时出现与网络相关的或特定于实例的错误。未找到或无法访问服务器。请验证实例名称是否正确并且 SQL Server 已配置为允许远程连接。 (provider: Named Pipes Provider, error: 40 - 无法打开到 SQL Server 的连接) ---> System.ComponentModel.Win32Exception (0x80004005): 找不到网络路径。
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 89
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 182
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:53,State:0,Class:20
+<HR COLOR=blue>
+日志时间：2017-01-18 17:53:09,281 [8] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（失败），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1472659200123)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":34,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/18 17:53:09 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-18 17:53:09,281 [8] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（失败），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1472659200123)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":34,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/18 17:53:09 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-18 17:53:09,310 [8] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（失败），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1472659200123)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":34,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/18 17:53:09 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-18 17:53:09,310 [8] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（失败），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1472659200123)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":34,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/18 17:53:09 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-18 17:53:09,343 [8] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 在与 SQL Server 建立连接时出现与网络相关的或特定于实例的错误。未找到或无法访问服务器。请验证实例名称是否正确并且 SQL Server 已配置为允许远程连接。 (provider: Named Pipes Provider, error: 40 - 无法打开到 SQL Server 的连接) ---> System.ComponentModel.Win32Exception (0x80004005): 找不到网络路径。
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 89
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 118
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:53,State:0,Class:20
+<HR COLOR=blue>
+日志时间：2017-01-18 17:53:09,373 [8] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 在与 SQL Server 建立连接时出现与网络相关的或特定于实例的错误。未找到或无法访问服务器。请验证实例名称是否正确并且 SQL Server 已配置为允许远程连接。 (provider: Named Pipes Provider, error: 40 - 无法打开到 SQL Server 的连接) ---> System.ComponentModel.Win32Exception (0x80004005): 找不到网络路径。
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 89
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 118
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:53,State:0,Class:20
+<HR COLOR=blue>
+日志时间：2017-01-18 17:53:09,374 [8] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（失败），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1472659200123)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":34,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/18 17:53:09 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-18 17:53:09,374 [8] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（失败），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1472659200123)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":34,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/18 17:53:09 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-18 17:53:53,252 [8] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（成功），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1472659200123)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":34,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/18 17:53:53 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-18 17:53:53,252 [8] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（成功），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1472659200123)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":34,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/18 17:53:53 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1>

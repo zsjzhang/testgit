@@ -1,0 +1,198 @@
+﻿@model System.Data.DataTable
+@using System.Data;
+@{
+    Layout = null;
+    int pageIndex = Convert.ToInt32(ViewBag.pageIndex);
+    int pageSize = Convert.ToInt32(ViewBag.pageSize);
+    int pcount = Convert.ToInt32(ViewBag.count);
+
+}
+
+<div class="data-container" style="padding-top:30px">
+    <table class="table table-bordered">
+        @if (Model != null)
+        {
+            <thead>
+                <tr>
+                    @for (int i = 0; i < Model.Columns.Count; i++)
+                    {
+                        <th>@Model.Columns[i].ColumnName</th>
+                    }
+                    <th style="color:blue; font-weight:bold; ">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (DataRow row in Model.Rows)
+                {
+                    <tr>
+                        @foreach (var item in row.ItemArray)
+                        {
+                            <td>@item</td>
+                        }
+                        <td><a style="color:red; font-weight:bold; " href="#" data-toggle="modal" data-target="#addFunctionModal"  onclick="show('@row.ItemArray[0]')">编辑</a></td>
+                        
+                    </tr>
+                    
+                }
+
+            </tbody>
+        }
+    </table>
+</div>
+<div class="box_a2">
+    <div class="pagbox">
+        <span>共@{@ViewBag.count}条</span>
+                <a href="javascript:void(0);" onclick="GetPageList(1,10)">首页</a>
+
+
+                <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.PrePage,10)">上一页</a>
+                @{
+                    int PageIndex = (int)ViewBag.pageIndex;
+                    int PageCurrentGroup = (int)(PageIndex / 10);
+                }
+                @for (int i = 1; i <= (int)ViewBag.EndPage; i++)
+                {
+                    if ((i < PageCurrentGroup * 10) || (i >= (PageCurrentGroup + 1) * 10))
+                    {
+                        <a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)" style="display:none;">@i</a>
+                    }
+                    else
+                    {
+                        if (i == (int)ViewBag.pageIndex)
+                        {<a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)" style="color: red">@i</a> }
+                        else
+                        {<a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)">@i</a> }
+                    }
+                }
+                <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.NextPage, 10)">下一页</a>
+
+                <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.EndPage, 10)">尾页</a>
+            </div>
+        </div>
+
+        @*<div id="Pagination" class="right flickr">
+        </div>*@
+<!-- Modal -->
+<div class="modal fade" id="addFunctionModal" tabindex="-1" role="dialog" aria-labelledby="addFunctionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="addFunctionModalLabel">编辑渠道归属</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form name="form" class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">创建来源:</label>
+                            <div class="col-md-9"><input class="form-control" readonly="readonly" id="CreatedPersonModal" @*ng-model="AddFunctionData.name"*@ /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">渠道归属:</label>
+                            <div class="col-md-9">
+                                @*<textarea class="form-control" rows="3" ng-model="AddFunctionData.description"></textarea>*@
+                               
+                                <select class="form-control" id="qTypeSon" >
+                                    <option value="PC">网站</option>
+                                    <option value="APP">APP</option>
+                                    <option value="WX">微信</option>
+                                    <option value="WAP">WAP</option>
+                                    <option value="JXS">经销商</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        @*<div class="form-group">
+                            <label class="col-md-3 control-label">页面路由:</label>
+                            <div class="col-md-9">
+                                <select class="form-control" ng-model="routeDw.select">
+                                    <option value="0">Angularjs Route</option>
+                                    <option value="1">Asp.net MVC</option>
+                                </select>
+                            </div>
+                        </div>*@
+
+
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" @*ng-click="addFunction()"*@ onclick="addFunction()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <input type="hidden" autocomplete="off" id="hidCurrentPage" value="@ViewBag.pageIndex" />
+        <input type="hidden" autocomplete="off" id="hidEndPage" value="@ViewBag.pageSize" />
+        <input type="hidden" autocomplete="off" id="hidCurrentGroup" value="@ViewBag.count" />
+        <input type="hidden" autocomplete="off" id="hidCurrentGroup" value="@ViewBag.PrePage" />
+        <input type="hidden" autocomplete="off" id="hidCurrentGroup" value="@ViewBag.NextPage" />
+        <input type="hidden" autocomplete="off" id="hidCurrentGroup" value="@ViewBag.EndPage" />
+        <script>
+
+
+    function GetPageList(pageIndex,pageSize) {
+        var data = {
+            qType: $("#qType").val(),
+            CreatedPerson: $("#CreatedPerson").val(),
+            pageIndex: pageIndex,
+            pageSize: pageSize
+        };
+        var url = "@Url.Action("GetCreatedPersonPage")";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function (msg) {
+                //alert("123ok");
+                $('#divPageList').html(msg);
+            }
+        });
+    }
+
+            function show(obj)
+            {
+               
+                $("#CreatedPersonModal").val(obj);
+               // $("#CreatedPersonModal").text=obj;
+            }
+
+            function addFunction()
+            {
+                var data = {
+                    CreatedPerson: $("#CreatedPersonModal").val(),
+                    qType: $("#qTypeSon").val()
+                    
+                };
+                var url = "@Url.Action("SaveCreatedType")";
+                $.ajax({
+                    type: "post",
+                    data:data,
+                    url: url,
+                    success: function (result) {
+
+                        if (result == 1)
+                        {
+                            alert("保存成功！");
+                        }
+                        else if (result == -1)
+                        {
+                            alert("创建渠道为空！保存失败！");
+                        }
+                        else if (result == -2) {
+                            alert("渠道归属为空！保存失败！");
+                        }
+                        else if (result == -3) {
+                            alert("保存出现异常！");
+                        }
+                        else {
+                            alert(result);
+                        }
+                    }
+
+                });
+
+            }
+        </script>

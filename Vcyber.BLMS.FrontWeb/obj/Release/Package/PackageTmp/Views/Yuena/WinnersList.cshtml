@@ -1,0 +1,124 @@
+﻿@model  List<Vcyber.BLMS.Entity.WinningInfo>
+@{
+    ViewBag.Title = "中奖名单";
+    Layout = "~/Views/Shared/_LayoutYuena.cshtml";
+}
+
+<div class="main">
+    <div class="nav">
+        <img src="~/Contents/yuena/images/nav3.png" usemap="#Map">
+    </div>
+    <div class="winners">
+        <div class="winners_top clearfix">
+            <div class="winners_title"><a href="/Yuena/CarOwerAuthentication"><img src="~/Contents/yuena/images/winners_title.png"></a></div>
+            <div class="search_wrap">
+                <label>输入手机号查询</label>
+                <input id="phoneNum" type="text" value="">
+                <a id="btn_search" class="btn-search" href="javascript:;"><img src="~/Contents/yuena/images/btn_search.png"></a>
+            </div>
+        </div>
+        <div class="winners_con">
+            <div id="content-dtk" class="table_content">
+                <table>
+                    <tr>
+                        <th width="25%">手机号</th>
+                        <th width="25%">奖品</th>
+                        <th width="25%">手机号</th>
+                        <th width="25%">奖品</th>
+                    </tr>
+                    <tbody id="winningLists">
+                        @*@foreach (var m in ViewBag.winnerList)
+                            {
+
+                                var tel = "";
+                                if (!string.IsNullOrEmpty(m.PhoneNumber))
+                                {
+                                    int entlen = m.PhoneNumber.Length - 4;
+                                    tel = string.Format("{0}****{1}", m.PhoneNumber.Substring(0, 3), m.PhoneNumber.Substring(entlen, 4));
+                                }
+                                <tr>
+                                    <td>@tel</td>
+                                    <td>@m.Title</td>
+                                </tr>
+                            }*@
+                        @for (int i = 1; i <= ((Model.Count()) / 2) + 1; i++)
+                        {
+                            <tr>
+                                @for (int j = 1; j <= 2; j++)
+                                {
+
+                                    if (Model.Count <= ((i - 1) * 2 + j - 1))
+                                    {
+                                        <td></td>
+                                        <td></td>
+                                    }
+                                    else
+                                    {
+                                        var tel = "";
+                                        if (!string.IsNullOrEmpty(Model[(i - 1) * 2 + j - 1].PhoneNumber))
+                                        {
+                                            int entlen = Model[i * j - 1].PhoneNumber.Length - 4;
+                                            tel = string.Format("{0}****{1}", Model[(i - 1) * 2 + j - 1].PhoneNumber.Substring(0, 3), Model[(i - 1) * 2 + j - 1].PhoneNumber.Substring(entlen, 4));
+                                        }
+                                        <td>@tel</td>
+                                        <td>@Model[i * j - 1].Title</td>
+                                    }
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+            <p>*获得的服务卡券，请在bluemembers微信/APP/网站，个人中心—卡券中查找。</p>
+        </div>
+    </div>
+</div>
+
+<div class="cover"></div>
+<!--查询结果开始-->
+<div class="search—result">
+    <a class="close" href="javascript:;"><img src="~/Contents/yuena/images/close.png"></a>
+    <div class="search—result-con">
+        <h2>很遗憾<br />没有您的中奖信息</h2>
+        <!--<h2>恭喜您获得</h2>
+        <p>50元保养券 + 悦纳试驾礼品券</p>-->
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $(window).load(function () {
+            $("#content-dtk").mCustomScrollbar({ theme: "outside" });
+
+        })
+        //中奖信息查询 根据手机号
+        $("#btn_search").on("click", function () {
+            
+            var phoneNum = $("#phoneNum").val();
+            if (phoneNum == "" || phoneNum == null) {
+                popWindownBlue("手机号不能为空");
+                return false;
+            }
+            var data = { phoneNumber: phoneNum };
+            $.post("/Yuena/WinnersInfo", data, function (result) {
+                if (result.Data != null) {
+                    if (result.Data.length == 1) {
+                        $("#winningLists").empty();
+                        $("#winningLists").append("<tr><td>" + result.Data[0].PhoneNumber + "</td><td>" + result.Data[0].Title + "</td></tr>");
+                    } else if (result.Data.length > 1) {
+                        $("#winningLists").empty();
+                        $("#winningLists").append('<tr id="data0"><td>' + result.Data[0].PhoneNumber + "</td><td>" + result.Data[0].Title + "</td></tr>");
+                        $("#data0").append("<td>" + result.Data[1].PhoneNumber + "</td><td>" + result.Data[1].Title + "</td>");
+                        //$("#winningLists").append("<tr><td>" + result.Data[2].PhoneNumber + "</td><td>" + result.Data[2].Title + "</td></tr>");
+
+                    }
+                }
+            });
+        });
+    })
+
+
+
+
+</script>

@@ -1,0 +1,67 @@
+﻿@{
+    Layout = null;
+}
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>非车主激活索九会员</strong></div>
+</div>
+<div class="container panel panel-default">
+    <div class="row panel-body">
+        <form name="form" class="form-horizontal" role="form" ng-submit="active()" novalidate>
+            <div class="form-group">
+                <label class="col-md-4 text-right"><span style="color:red">*</span>手机号:</label>
+                <div class="col-md-8">
+                    <input type="text" name="PhoneNumber" ng-model="newMembership.PhoneNumber" class="form-control" placeholder="请输入手机号" required autofocus pattern="1[3|4|5|7|8|][0-9]{9}" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 text-right"><span style="color:red">*</span>验证码:</label>
+                <div class="col-md-8">
+                    <input type="text" name="ValideCode" ng-model="newMembership.ValideCode" class="form-control" placeholder="请输入验证码" required autofocus />
+                    <button type="button" ng-disabled="mySwitch" ng-click="sendValideCode()" class="btn btn-primary">获取验证码</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 text-right"><span style="color:red">*</span>车主姓名:</label>
+                <div class="col-md-8">
+                    <input type="text" name="RealName" ng-model="newMembership.RealName" class="form-control" placeholder="请输入车主姓名" required autofocus />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 text-right"><span style="color:red">*</span>车主身份证:</label>
+                <div class="col-md-8">
+                    <input type="text" name="IdentityNumber" ng-class="" ng-model="newMembership.IdentityNumber" class="form-control" placeholder="请输入车主身份证" required autofocus />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-4">
+                    <input type="checkbox" ng-model="agree" required="required">该用户购买了索九汽车，并已缴纳100元入会费，申请成为会员。<br />该用户已经同意入会协议。
+                </div>
+            </div>
+            <div class="col-md-offset-4 col-md-8">
+                <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">确定</button>
+                <a class="btn btn-primary" href="#/Membership/Index">返回会员列表</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+

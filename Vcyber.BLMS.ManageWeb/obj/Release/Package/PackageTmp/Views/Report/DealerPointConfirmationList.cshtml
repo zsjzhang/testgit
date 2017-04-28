@@ -1,0 +1,243 @@
+﻿
+@{
+    ViewBag.Title = "经销商积分最终结算";//DealerPointConfirmationList
+    ViewBag.TitleFocus = "2-2-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+<link href="~/Scripts/bootstrap-datepicker/datepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+<script src="~/Scripts/bootstrap-datepicker/bootstrap-datepicker.zh-CN.js"></script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+
+    //列表查询+分页BM
+    function GetPageList(pageIndex) {
+        //执行查询
+        var data = {
+            StartTime: $("#StartTime").val(),
+            EndTime: $("#EndTime").val(),
+            DealerId: $("#DealerId").val(),
+            index: pageIndex,
+            size: 10//,
+            //indexdms: pageIndexdms,
+            //sizedms: 10
+        };
+
+        var url = "@Url.Action("DealerPointConfirmationPageInfo")";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function (msg) {
+                $('#divPageList').html(msg);
+            }
+        });
+    }
+
+    //列表查询+分页DMS
+    function GetPageListdms(pageIndex) {
+        //执行查询
+        var data = {
+            StartTime: $("#StartTime").val(),
+            EndTime: $("#EndTime").val(),
+            DealerId: $("#DealerId").val(),
+            //index: pageIndex,
+            //size: 10//,
+            indexdms: pageIndex,
+            sizedms: 10
+        };
+
+        var url = "@Url.Action("CS_DMS_ConsumeinfoPageInfo")";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function (msg) {
+                $('#divPageListdms').html(msg);
+            }
+        });
+    }
+
+    //结算
+    function settlement(state) {
+
+        //经销商ID不能为空
+        if ($("#DealerId").val() == "") {
+            alert("查询条件店代码不能为空!");
+            return;
+        }
+
+        //积分获取开始时间不能为空
+        if ($("#StartTime").val() == "") {
+            alert("查询条件结算开始时间不能为空!");
+            return;
+        }
+
+        //积分获截止时间不能为空
+        if ($("#EndTime").val() == "") {
+            alert("查询条件结算截止时间不能为空!");
+            return;
+        }
+
+        //沟通信息不能为空
+        if ($("#dealerremark").val() == "") {
+            alert("沟通信息不能为空!");
+            return;
+        }
+
+        //最终结算金额不能为空
+        if ($("#dealercost").val() == "") {
+            alert("结算金额不能为空!");
+            return;
+        }
+
+        var data = {
+            startDate: $("#StartTime").val(),
+            endDate: $("#EndTime").val(),
+            dealerId: $("#DealerId").val(),
+            SettlementState: state,
+            remark: $("#dealerremark").val(),
+            cost: $("#dealercost").val()
+        };
+
+        if (data.startDate == '' || data.endDate == '') {
+            alert("请选择结算开始和结束日期");
+            return false;
+        }
+
+        if (confirm("确定要结算经销商【" + data.dealerId +"】"+ data.startDate + "到" + data.endDate + "期间的消费数据吗？")) {
+            var url = "@Url.Action("DealerPointConfirmationSettlement")";
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: data,
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        alert("结算完成");
+                        $("#dealercost").val("");
+                        $("#dealerremark").val("");
+                    } else {
+                        alert(result.Message);
+                        return false;
+                    }
+                },
+                error: function (err) {
+                    alert("err");
+                }
+            });
+        }
+    }
+
+    //保存查询条件
+    function search() {
+        GetPageList(1);
+        GetPageListdms(1);
+    }
+
+    //导出信息
+    function toReportExcel() {
+        var StartTime = $("#StartTime").val();
+        var EndTime = $("#EndTime").val();
+        var DealerId = $("#DealerId").val();        
+        window.location = '/Report/DealerPointConfirmationExport?' +
+            "&StartTime=" + StartTime + "&EndTime=" + EndTime + "&DealerId=" + DealerId;
+        return false;
+    }
+</script>
+
+<style type="text/css">
+    li {
+        margin: 5px;
+    }
+
+        li span {
+            margin-left: 10px;
+            text-align: left;
+        }
+
+    .input_text2 {
+        width: 100px;
+    }
+
+    .input_text1 {
+        width: 100px;
+    }
+    .row{width:1450px;}
+    .col-lg-2.container{width:210px}
+</style>
+
+<div class="path">
+
+</div>
+<div style="height:20px;"></div>
+<div class="panel panel-default">
+    <input name="StartTime" type="hidden" value="@ViewBag.StartTime" />
+    <input name="EndTime" type="hidden" value="@ViewBag.EndTime" />
+    <input name="DealerId" type="hidden" value="@ViewBag.DealerId" />
+    <p style="color:red;">注意：结算时每次只能结算一个经销商，查询时请填写好将要结算的经销商ID及结算开始截止时间</p>
+    <table class="table table-bordered table-responsive">
+        <tr>            
+            <td style="width:90px">店代码：</td>
+            <td>
+                <input type="text" class="input_text1" id="DealerId" name="DealerId" value="@ViewBag.DealerId" />
+            </td>
+            <td style=" width:100px">结算时间：</td>
+            <td>@(Html.TextBox("StartTime", "", new { @class = "input_text1", @onfocus = "WdatePicker({dateFmt:'yyyy-MM',isShowWeek:true,isShowClear:true,readOnly:true})" }))至@(Html.TextBox("EndTime", "", new { @class = "input_text1", @onfocus = "WdatePicker({dateFmt:'yyyy-MM',isShowWeek:true,isShowClear:true,readOnly:true})" }))</td>
+            <td colspan="4">
+                <input type="button" value="查询" onclick="search();" class="btn btn-primary" />
+                <input class="btn btn-primary" type="submit" onclick="toReportExcel()" value="导出" />
+                <button type="button" data-toggle="modal" data-target="#DealerPointConfirmationSettlementModle" class="btn btn-primary col-md-offset-1">结算</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+@*BM*@
+<div id="divPageList">
+    @{
+        Html.RenderAction("DealerPointConfirmationPageInfo", new { index = 1, size = 10/*, indexdms = 1, sizedms = 10 */});
+    }
+</div>
+
+@*DMS*@
+<div id="divPageListdms">
+    @{
+        Html.RenderAction("CS_DMS_ConsumeinfoPageInfo", new { /*index = 1, size = 10,*/ indexdms = 1, sizedms = 10 });
+    }
+</div>
+
+@*确认*@
+<div class="modal fade" id="DealerPointConfirmationSettlementModle" tabindex="-1" role="dialog" aria-labelledby="DealerPointConfirmationSettlementModal" aria-hidden="true"
+     style="width:100%;height:100%;padding:0;margin:0">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="addRoleModalLabel">确认信息</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">结算金额:</label>
+                            <div class="col-md-10"><input class="col-md-9 form-control" type="text" id="dealercost" name="dealercost" placeholder="最终结算金额" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">沟通信息:</label>
+                            <div class="col-md-10">
+                                <textarea id="dealerremark" name="dealerremark" class="form-control" rows="8" ng-model=""></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="settlement(1)">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+

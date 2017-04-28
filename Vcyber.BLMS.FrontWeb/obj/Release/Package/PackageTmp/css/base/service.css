@@ -1,0 +1,25 @@
+.service{
+	width: 1000px;
+	margin: 0 auto;
+	margin-top: 30px;
+	height: auto;
+	overflow: -webkit-paged-y;
+}
+.service .service_l{
+	float: left;
+	width: 740px;
+}
+.service_l_1 a{
+	display: block;
+	cursor: pointer;
+	margin-top: 20px;
+}
+.service .service_r{
+	float: right;
+	width: 248px;
+}
+.service_r_1 a{
+	display: block;
+	cursor: pointer;
+	margin-top: 20px;
+}

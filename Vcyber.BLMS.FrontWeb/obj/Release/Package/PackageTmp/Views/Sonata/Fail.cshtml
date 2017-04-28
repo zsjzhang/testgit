@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "预约失败";
+}
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Sonata" })
+    </div>
+    <div>
+        <div>
+           
+            <div>
+                <div>
+                    
+                    <span>
+                        @ViewBag.Message预约失败
+                    </span>
+                </div>
+                
+            </div>
+           
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div></div>

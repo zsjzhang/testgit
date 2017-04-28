@@ -1,0 +1,356 @@
+
+input[type="text"]{
+	background: #ffF;
+}
+
+.shipping_a{
+	width: 100%;
+	height: 18px;
+	font-size: 14px;
+	text-indent: 30px;
+	margin-top: 20px;
+	color: #3D3F43;
+	font-weight: bold;
+	margin-bottom: -24px;
+	margin-left: 26px;
+}
+
+.address li{
+	width: 100%;
+	height: 28px;
+	line-height: 28px;
+	margin-top: 32px;
+	font-size: 14px;
+}
+
+.address li input{
+	margin-left: 30px;
+	width: 17px;
+	height: 17px;
+	position: relative;
+	top: 4px;
+	cursor: pointer;
+}
+
+.address li span{
+	margin-left:4px;
+	color: #656565;
+}
+
+.address li p{
+	color: #656565;
+	margin-left: 60px;
+}
+
+.address li span b{
+	margin: 0 50px 0 20px;
+}
+
+.address li a{
+	float: right;
+	margin-right: 30px;
+	text-decoration: none;
+	color: #075090;
+}
+
+/* 新增收货地址按钮默认状态 样式*/
+
+.add_new_st{
+	border: 1px solid #075090;
+	background: #FFFFFF;
+	width:230px;
+	height:34px;
+	font-size: 14px;
+	margin-left: 30px;
+	display: block;
+	margin-top: 44px;
+	outline: none;
+	font-family: "微软雅黑";
+	color: #075090;
+	cursor: pointer;
+}
+
+
+/* 重新填写收货地址时 ，按钮的状态 样式*/
+
+.add_new_a{
+	border: 1px solid #BEBEBE;
+	background: #FFFFFF;
+	width:230px;
+	height:34px;
+	font-size: 14px;
+	margin-left: 30px;
+	display: block;
+	margin-top: 44px;
+	outline: none;
+	font-family: "微软雅黑";
+	color: #BEBEBE;
+	cursor: pointer;
+}
+
+
+
+.center_s form{
+	margin-left: 30px;
+}
+
+.center_s form p{
+	margin-top: 28px;
+}
+
+.center_s form p label{
+	font-size: 16px;
+}
+
+.center_s form p input{
+	height:30px;
+	line-height: 30px;
+	text-indent: 12px;
+	border: 1px solid #CBCBCB;
+	margin-left: 24px;
+}
+
+.center_s form p b,.choose_ad p b{
+	color: #FE0000;
+	margin-right: 4px;
+	font-weight: bold;
+}
+
+.choose_ad{
+	height: 34px;
+	margin-top: 28px;
+}
+
+.choose_ad p{
+	float: left;
+}
+
+.choose_A{
+	width: 226px;
+	height: 30px;
+	display: block;
+	margin-left:136px;
+	float: left;
+	margin-left: 22px;
+}
+
+.choose_A select{
+	width: 226px;
+	padding: 5px 0;
+	line-height: 30px;
+	border: 1px solid #CBCBCB;
+	text-indent: 12px;
+}
+
+.choose_A input{
+	height: 32px;
+	border: none;
+	border-right: 1px solid #CBCBCB;
+	line-height: 32px;
+	text-indent: 12px;
+	width: 180px;
+	padding-right: 10px;
+	outline: none;
+}
+
+/*--------------邮寄纸质杂志用户地址样式 Start-------------------*/
+.choose_B{
+	width: 150px;
+	height: 30px;
+	display: block;
+    float: left;
+}
+
+.choose_B select{
+	width: 150px;
+	padding: 5px 0;
+	line-height: 30px;
+	border: 1px solid #CBCBCB;
+	text-indent: 12px;
+}
+
+.choose_B input{
+	height: 32px;
+	border: none;
+	border-right: 1px solid #CBCBCB;
+	line-height: 32px;
+	text-indent: 12px;
+	width: 150px;
+	padding-right: 10px;
+	outline: none;
+}
+/*--------------邮寄纸质杂志用户地址样式 End-------------------*/
+
+.choose_p{
+	position: relative;
+	top: -34px;
+	right: -202px;
+	width: 32px;
+	height: 32px;
+}
+
+.choose_p li{
+	width:32px;
+	height: 14px;
+}
+
+.width_226{
+	width: 226px;
+}
+
+.width_94{
+	width: 94px;
+	margin-right: 37px;
+}
+
+.width_474{
+	width: 474px;
+}
+
+.center_s form p button{
+	width:94px;
+	height: 34px;
+	border: 1px solid #BEBEBE;
+	color: #BEBEBE;
+	background: #EEEEEE;
+	cursor: pointer;
+}
+
+
+.moren_a span{
+	font-size: 14px;
+	line-height: 60px;
+	margin-left: 112px;
+	display: block;
+}
+
+.moren_a span input{
+	width: 16px;
+	height: 16px;
+	position: relative;
+	top: 3px;
+}
+
+.moren_a a{
+	width: 230px;
+	height:32px;
+	background: #075090;
+	text-decoration: none;
+	text-align: center;
+	line-height: 32px;
+	font-size: 14px;
+	color: #FFFFFF;
+	display: block;
+	margin-left: 112px;
+	border: 1px solid #075090;
+}
+
+
+/*.moren_a a:hover,
+.submit_indent:hover
+{
+	background: #EEEEEE;
+	border: 1px solid #BEBEBE;
+	color: #909090;
+}*/
+
+
+.marg_t{
+	margin-top: 54px;
+	margin-bottom: 30px;
+}
+
+
+.center_s table thead{
+	background: #a0a0a0;
+	height: 28px;
+	line-height: 28px;
+	font-size: 16px;
+}
+
+.center_s table thead td{
+	text-align: center;
+	color: #FFFFFF;
+}
+
+.center_s table tbody{
+	border: 1px solid #EEEEEE;
+	margin-top: 10px;	
+	font-family: "微软雅黑";
+}
+
+
+.center_s table tbody td a{
+	margin-left: 28px;
+	width: 66px;
+	height: 66px;
+	display: block;
+	margin-right: 12px;
+	float: left;
+}
+
+.center_s table tbody td a img{
+	position: relative;
+	top: -18px;
+}
+
+.f_14{
+	font-size: 12px;
+	color: #3D3F43;
+	line-height: 20px;
+	position: relative;
+	top: -6px;
+}
+
+.text_c{
+	text-align: center;
+	line-height: 92px;
+	font-size: 12px;
+}
+
+.col_r{
+	color: #f8a039;
+}
+
+.have_bor{
+	border-bottom: 1px solid #EEEEEE;
+}
+
+.f_18{
+	font-size: 16px;
+	margin-left: 20px;
+	
+}
+
+.zongji{
+	margin-top: 30px;
+	text-align: right;
+	font-size: 14px;
+}
+
+
+.marg_left{
+	text-indent: 40px;
+}
+
+.submit_indent{
+	width: 230px;
+	height: 32px;
+	text-decoration: none;
+	text-align: center;
+	float: right;
+	line-height: 32px;
+	font-size: 14px;
+	color: #FFFFFF;
+	background: #075090;
+	margin-top:30px;
+	border: 1px solid #075090;
+}
+
+
+
+
+.have_r_bd{
+	background: url(/img/ad_line.png) no-repeat right center;
+}
+

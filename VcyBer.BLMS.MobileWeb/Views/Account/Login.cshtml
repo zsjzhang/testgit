@@ -1,0 +1,868 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/user.login.js"></script>
+<script src="~/Scripts/common.method.js"></script>
+
+<!doctype html>
+<html>
+<head>
+    <title>用户登录</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/NewCss/reset.css" />
+    <script type="text/javascript">
+        $(function () {
+            //发送手机验证码
+            //var is_request_valid_code = false;
+            $("#btnSendVerCode").click(function () {
+                //if (!is_request_valid_code) {                    
+                    var mobile = $("#PhoneNumber1").val();
+                    var code = $("#verCode").val();
+                    if (!mobile) {
+                        layer.open({
+                            type: 1,
+                            skin: 'bmPopErr',
+                            title: 0,
+                            shift: 2,
+                            closeBtn: 0,
+                            shadeClose: true,
+                            area: ['5.4rem', '3.23rem'],
+                            btn: ['确定'],
+                            content: '<img src="../img/boy_err.png" /><span>手机号码不能为空</span>'
+                        });
+                        //is_request_valid_code = false;
+                        return false;
+                    }
+                    var reg = /^[1][3587][0-9]{9}$/;
+                    if (!reg.test(mobile)) {
+                        layer.open({
+                            type: 1,
+                            skin: 'bmPopErr',
+                            title: 0,
+                            shift: 2,
+                            closeBtn: 0,
+                            shadeClose: true,
+                            area: ['5.4rem', '3.23rem'],
+                            btn: ['确定'],
+                            content: '<img src="../img/boy_err.png" /><span>手机格式不正确</span>'
+                        });
+                        //is_request_valid_code = false;
+                        return false;
+                    }
+                    //if ($(this).attr("disabled")) {
+                    //    is_request_valid_code = false;
+                    //    return false;
+                    //}
+                    if ($(this).attr("disabled")) {
+                        return false;
+                    }
+                    $(this).attr("disabled", "");
+                    
+                    //发送前就显示倒计时
+                        $("#btnSendVerCode").css('display', 'none');
+                    //倒计时60s
+                        $("#sysj").css('display', 'block');
+                        var t = 60;
+                        if (t > 0)
+                            var timer = setInterval(function () {
+                                if (t > 0) {
+                                    t--;
+                                    $("#sysj").html(t + "秒");
+                                }
+                                else {
+                                    clearInterval(timer);
+                                    $("#sysj").hide();
+                                    $("#btnSendVerCode").show();
+
+                                }
+                            }, 1000);
+
+                    //发送验证码
+                    $.ajax({
+                        url: "/Account/SendCaptchaAndCheckImageCode",
+                        dataType: "json",
+                        type: "post",
+                        data: { mobile: mobile, imageCode: code },
+                        success: function (result) {
+                            if (!result || result.code == "400") {
+                                layer.open({
+                                    type: 1,
+                                    skin: 'bmPopErr',
+                                    title: 0,
+                                    shift: 2,
+                                    closeBtn: 0,
+                                    shadeClose: true,
+                                    area: ['5.4rem', '3.23rem'],
+                                    btn: ['确定'],
+                                    content: '<img src="../img/boy_err.png" /><span>' + result.msg + '</span>'
+                                });
+                                return false;
+                            }
+                            else if (!result || result.code == "401") {
+                                layer.open({
+                                    type: 1,
+                                    skin: 'bmPopErr',
+                                    title: 0,
+                                    shift: 2,
+                                    closeBtn: 0,
+                                    shadeClose: true,
+                                    area: ['5.4rem', '3.23rem'],
+                                    btn: ['确定'],
+                                    content: '<img src="../img/boy_err.png" /><span>图形验证码输入错误</span>'
+                                });
+                                return false;
+                            }
+                            else if (result.code == "200") {
+                                //更新剩余时长
+                                countDown(this, 60);
+                                layer.open({
+                                    type: 1,
+                                    skin: 'bmPopErr',
+                                    title: 0,
+                                    shift: 2,
+                                    closeBtn: 0,
+                                    shadeClose: true,
+                                    area: ['5.4rem', '3.23rem'],
+                                    btn: ['确定'],
+                                    content: '<img src="../img/boy_err.png" /><span>短信验证码已发送</span>'
+                                });
+                                //return false;
+                            }
+
+                            //$("#btnSendVerCode").hide();
+                            //$("#sysj").show();
+                            //var t = 60;
+                            //if (t > 0)
+                            //    var timer = setInterval(function () {
+                            //        if (t > 0) {
+                            //            t--;
+                            //            $("#sysj").html(t + "秒");
+                            //        }
+                            //        else {
+                            //            clearInterval(timer);
+                            //            $("#sysj").hide();
+                            //            $("#btnSendVerCode").show();
+
+                            //        }
+                            //    }, 1000);
+                        },
+                        error: function (err) {
+                            layer.open({
+                                type: 1,
+                                skin: 'bmPopErr',
+                                title: 0,
+                                shift: 2,
+                                closeBtn: 0,
+                                shadeClose: true,
+                                area: ['5.4rem', '3.23rem'],
+                                btn: ['确定'],
+                                content: '<img src="../img/boy_err.png" /><span>err</span>'
+                            });
+                        }
+                    });
+                    $(this).removeAttr("disabled");
+                //}
+            });
+            console.log(window.location);
+            $("#btn").click(function () {
+                if ($("#logintype").hasClass("log_in_active")) {
+                    //使用 用户名、密码、验证码登录
+                    var account = $('#phoneoremail').val();
+                    var passwd = $('#loginpwd').val();
+                    var captcha = $("#verCode").val();
+                    if (account === null || account === "") {
+                        layer.open({
+                            type: 1,
+                            skin: 'bmPopErr',
+                            title: 0,
+                            shift: 2,
+                            closeBtn: 0,
+                            shadeClose: true,
+                            area: ['5.4rem', '3.23rem'],
+                            btn: ['确定'],
+                            content: '<img src="../img/boy_err.png" /><span>请输入手机/用户名/邮箱/会员卡号</span>'
+                        });
+                        return false;
+                    }
+                    if (passwd === null || passwd === "") {
+                        layer.open({
+                            type: 1,
+                            skin: 'bmPopErr',
+                            title: 0,
+                            shift: 2,
+                            closeBtn: 0,
+                            shadeClose: true,
+                            area: ['5.4rem', '3.23rem'],
+                            btn: ['确定'],
+                            content: '<img src="../img/boy_err.png" /><span>请输入密码</span>'
+                        });
+                        return false;
+                    }
+                    if (captcha === null || captcha === "") {
+                        layer.open({
+                            type: 1,
+                            skin: 'bmPopErr',
+                            title: 0,
+                            shift: 2,
+                            closeBtn: 0,
+                            shadeClose: true,
+                            area: ['5.4rem', '3.23rem'],
+                            btn: ['确定'],
+                            content: '<img src="../img/boy_err.png" /><span>请输入验证码</span>'
+                        });
+                        return false;
+                    }
+
+                    //登录
+                    $.ajax({
+                        url: "/Account/DoLogin",  //DoAccountLogon
+                        type: "post",
+                        dataType: "json",
+                        data: { UserName: account, Password: passwd, captcha: captcha, t: (new Date()).getTime(), Url: $("#StrUrl").val() },
+                        success: function (result) {
+                            
+                            if (result === null || result.code === null || result.code == "400") {
+                                layer.open({
+                                    type: 1,
+                                    skin: 'bmPopErr',
+                                    title: 0,
+                                    shift: 2,
+                                    closeBtn: 0,
+                                    shadeClose: true,
+                                    area: ['5.4rem', '3.23rem'],
+                                    btn: ['确定'],
+                                    content: '<img src="../img/boy_err.png" /><span>' + result.msg + '</span>'
+                                });
+                                return false;
+                            }
+                            if (result.code == "401") {
+                                layer.open({
+                                    type: 1,
+                                    skin: 'bmPopErr',
+                                    title: 0,
+                                    shift: 2,
+                                    closeBtn: 0,
+                                    shadeClose: true,
+                                    area: ['5.4rem', '3.23rem'],
+                                    btn: ['确定'],
+                                    content: '<img src="../img/boy_err.png" /><span>验证码错误</span>'
+                                });
+                                return false;
+                            }
+                            if (result.code == "402") {
+                                layer.open({
+                                    type: 1,
+                                    skin: 'bmPopErr',
+                                    title: 0,
+                                    shift: 2,
+                                    closeBtn: 0,
+                                    shadeClose: true,
+                                    area: ['5.4rem', '3.23rem'],
+                                    btn: ['确定'],
+                                    content: '<img src="../img/boy_err.png" /><span>账号或密码有误</span>'
+                                });
+                                return false;
+                            }
+                            if (result.code == "902") {
+                                //popWindownBlue(result.msg);
+                                layer.open({
+                                    type: 1,
+                                    skin: 'bmPopErr',
+                                    title: 0,
+                                    shift: 2,
+                                    closeBtn: 0,
+                                    shadeClose: true,
+                                    area: ['5.4rem', '3.23rem'],
+                                    btn: ['确定'],
+                                    content: '<img src="../img/boy_err.png" /><span>' + result.msg + '</span>'
+                                });
+                                return false;
+                            }
+                            if (result.code == "901") {
+                                //popWindownBlue(result.msg);
+                                layer.open({
+                                    type: 1,
+                                    skin: 'bmPopErr',
+                                    title: 0,
+                                    shift: 2,
+                                    closeBtn: 0,
+                                    shadeClose: true,
+                                    area: ['5.4rem', '3.23rem'],
+                                    btn: ['确定'],
+                                    content: '<img src="../img/boy_err.png" /><span>' + result.msg + '</span>'
+                                });
+                                return false;
+                            }
+                            if (result.code == "300") {
+
+                                popWindownBlue(result.msg, function () {
+                                    window.location.href = "/Account/ResetPasswd?source=" + source;
+
+                                });
+                                return false;
+                            }
+                            if (result.code == "200") {
+                                //debugger
+                                //跳转页面
+                                window.location.href = $("#StrUrl").val();
+                            }
+                        },
+                        error: function (err) {
+
+                        }
+                    });
+                }
+                else {
+                    //使用 手机号、验证码、短信验证码登录
+                    var account = $('#PhoneNumber1').val();
+
+                    var captcha = $("#verCode").val();
+                    var SMScaptcha = $("#Captcha").val();
+
+                    if (account === null || account === "") {
+                        layer.open({
+                            type: 1,
+                            skin: 'bmPopErr',
+                            title: 0,
+                            shift: 2,
+                            closeBtn: 0,
+                            shadeClose: true,
+                            area: ['5.4rem', '3.23rem'],
+                            btn: ['确定'],
+                            content: '<img src="../img/boy_err.png" /><span>请输入手机号码</span>'
+                        });
+                        return false;
+                    } else {
+                        var PhoneReg = /^(1[3|4|5|7|8|][0-9]{9})$/;
+                        if (!PhoneReg.test(account)) {
+                            layer.open({
+                                type: 1,
+                                skin: 'bmPopErr',
+                                title: 0,
+                                shift: 2,
+                                closeBtn: 0,
+                                shadeClose: true,
+                                area: ['5.4rem', '3.23rem'],
+                                btn: ['确定'],
+                                content: '<img src="../img/boy_err.png" /><span>请正确输入手机号码</span>'
+                            });
+                            return false;
+                        }
+                    }
+                    if (captcha === null || captcha === "") {
+                        layer.open({
+                            type: 1,
+                            skin: 'bmPopErr',
+                            title: 0,
+                            shift: 2,
+                            closeBtn: 0,
+                            shadeClose: true,
+                            area: ['5.4rem', '3.23rem'],
+                            btn: ['确定'],
+                            content: '<img src="../img/boy_err.png" /><span>请输入图片验证码</span>'
+                        });
+                        return false;
+                    }
+
+                    if (SMScaptcha === null || SMScaptcha === "") {
+                        layer.open({
+                            type: 1,
+                            skin: 'bmPopErr',
+                            title: 0,
+                            shift: 2,
+                            closeBtn: 0,
+                            shadeClose: true,
+                            area: ['5.4rem', '3.23rem'],
+                            btn: ['确定'],
+                            content: '<img src="../img/boy_err.png" /><span>请输入短信验证码</span>'
+                        });
+                        return false;
+                    }
+                    //User.LogonByPhone(account, captcha, SMScaptcha, "BLMS");
+                    
+                    var password = "Bm" + account.substring(5, 11);
+                    // 登录
+                    $.ajax({
+                        url: "/Account/DoLoginByPhone",  //DoAccountLogon
+                        type: "post",
+                        dataType: "json",
+                        data: { UserName: account, Password: password, Captcha: captcha, SMSCaptcha: SMScaptcha, t: (new Date()).getTime() },
+                        success: function (result) {
+                            if (result === null || result.code === null || result.code == "400") {
+                                //popWindownBlue(result.msg);
+                                layer.open({
+                                    type: 1,
+                                    skin: 'bmPopErr',
+                                    title: 0,
+                                    shift: 2,
+                                    closeBtn: 0,
+                                    shadeClose: true,
+                                    area: ['5.4rem', '3.23rem'],
+                                    btn: ['确定'],
+                                    content: '<img src="../img/boy_err.png" /><span>' + result.msg + '</span>'
+                                });
+                                return false;
+                            }
+                            if (result.code == "300") {
+                                layer.open({
+                                    type: 1,
+                                    skin: 'bmPopErr',
+                                    title: 0,
+                                    shift: 2,
+                                    closeBtn: 0,
+                                    shadeClose: true,
+                                    area: ['5.4rem', '3.23rem'],
+                                    btn: ['确定'],
+                                    content: '<img src="../img/boy_err.png" /><span>' + result.msg + '</span>'
+                                });
+                                window.location.href = "/Account/ResetPasswd?source=BLMS";
+                                return false;
+                            }
+                            if (result.code == "200") {
+                                //if (result.first == 1) {
+                                //    layer.open({
+                                //        type: 1,
+                                //        skin: 'bmPopErr',
+                                //        title: 0,
+                                //        shift: 2,
+                                //        closeBtn: 0,
+                                //        shadeClose: true,
+                                //        area: ['5.4rem', '3.23rem'],
+                                //        btn: ['确定'],
+                                //        content: '<img src="../img/boy_err.png" /><span>请完善您的个人信息，绑定车辆享受更多权益哦</span>'
+                                //    });
+                                //    window.location.href = "/MyCenter/SetUserInfo";
+                                //    return false;
+                                //}
+
+                                //跳转页面
+                                window.location.href = $("#StrUrl").val();
+                            }
+                        },
+                        error: function (err) {
+
+                        }
+                    });
+                }
+            });
+        });
+
+        //通过className获取元素
+        function getClass(oParent, sClass) {
+            if (oParent.getElementsByClassName) {
+                return oParent.getElementsByClassName(sClass);
+            } else {
+                // 获取所有子级
+                var aTmp = oParent.getElementsByTagName('*');
+                var aRes = [];
+
+                for (var i = 0; i < aTmp.length; i++) {
+                    var arr = aTmp[i].className.split(' ');
+
+                    for (var j = 0; j < arr.length; j++) {
+                        if (arr[j] == sClass) {
+                            aRes.push(aTmp[i]);
+                        }
+                    }
+                }
+
+                return aRes;
+            }
+        }
+
+        /*手机自适应设置*/
+        window.onload = window.onresize = window.onscroll = function () {
+            fontSize();
+            pageShow();
+        };
+
+        function pageShow() {
+            var oBox = document.getElementsByTagName('body')[0];
+            var oWap = getClass(oBox, 'wrapper')[0];
+            oWap.style.visibility = 'visible';
+        }
+
+        function fontSize() {
+            document.documentElement.style.fontSize = 100 * (document.documentElement.clientWidth / 640) + 'px';
+        }
+        /*手机自适应设置end*/
+
+        $(function () {
+            //登陆方式切换
+            $('.log_in div').click(function () {
+                $('.log_in div').removeClass('log_in_active');
+                $('.log_inbox').hide();
+                $(this).addClass('log_in_active');
+                $('.log_inbox').eq($(this).index()).show();
+                if ($('.log_in div').eq(1).hasClass('log_in_active')) {
+                    $('.log_btnforget').hide();
+                    $('.log_btnregister').hide();
+                } else {
+                    $('.log_btnforget').show();
+                    $('.log_btnregister').show();
+                }
+            });
+            //手机号邮箱删除
+            $('.lanbing_nameclose').click(function () {
+                $(this).parent().find('input').val('');
+            })
+            //明码显示
+            $('.lanbing_pwshow').click(function () {
+                if ($('.lanbing_pwshow').parent().find('input').attr('type') == "password") {
+                    $(this).parent().find('input').attr('type', 'text');
+                    $(this).css({
+                        "background": "url(@Url.Content("../img/newimg/lanbing_pwblue.png")) no-repeat",
+                        "background-size": "100% 100%"
+                    });
+                } else {
+                    $(this).parent().find('input').attr('type', 'password');
+                    $(this).css({
+                        "background": "url(@Url.Content("../img/newimg/lanbing_pwgray.png")) no-repeat",
+                        "background-size": "100% 100%"
+                    });
+                }
+            })
+        });
+
+        function countDown(obj, second) {
+            // 如果秒数还是大于0，则表示倒计时还没结束
+            if (second >= 0) {
+                $(obj).addClass('reSend1')
+                // 获取默认按钮上的文字
+                if (typeof buttonDefaultValue === 'undefined') {
+                    buttonDefaultValue = $(obj).html();
+                }
+                // 按钮置为不可点击状态
+                $(obj).attr("disabled", "true");
+                // 按钮里的内容呈现倒计时状态
+                $(obj).html(second + "S后重新获取");
+                // 时间减一
+                second--;
+                // 一秒后重复执行
+                setTimeout(function () { this.countDown(obj, second); }, 1000);
+                // 否则，按钮重置为初始状态
+            } else {
+                // 按钮置未可点击状态
+                $(obj).removeAttr("disabled");
+                $(obj).removeClass('reSend1')
+
+                // 按钮里的内容恢复初始状态
+                $(obj).html(buttonDefaultValue);
+            }
+        };
+    </script>
+
+    <style>
+        body {
+            height: 100%;
+            background-color: #f5f5f5;
+            min-height: 8.8rem;
+        }
+
+        .wrapper {
+            position: relative;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .log_in_box {
+            padding-top: 0.36rem;
+            background-color: #fff;
+            height: 100%;
+        }
+        
+        .wrapper h1 {
+            width: 2.82rem;
+            height: 0.32rem;
+            background: url(@Url.Content("../img/newimg/lanbing_logo.png")) no-repeat;
+            background-size: 100% 100%;
+            text-indent: -99999em;
+            margin: 0 auto 0.36rem;
+        }
+
+            .wrapper h1 a {
+                display: block;
+                height: 100%;
+            }
+
+        .log_in {
+            width: 100%;
+            height: 0.66rem;
+        }
+
+            .log_in div {
+                width: 50%;
+                text-align: center;
+                line-height: 0.66rem;
+                font-size: 0.27rem;
+                float: left;
+            }
+
+        .log_in_active {
+            color: #3487d7;
+            border-bottom: 0.04rem solid #3487d7;
+        }
+
+        .log_ground {
+            display: block;
+            width: 100%;
+            height: 0.3rem;
+            background-color: #f5f5f5;
+            border-bottom: 0.02rem solid #e5e5e5;
+        }
+
+        .log_in_telbox p {
+            width: 100%;
+            height: 0.98rem;
+            line-height: 0.98rem;
+            position: relative;
+        }
+
+        .log_in_smsbox {
+            display: none;
+        }
+
+            .log_in_smsbox p {
+                width: 100%;
+                height: 0.98rem;
+                line-height: 0.98rem;
+                position: relative;
+            }
+
+                .log_in_telbox p span, .log_in_smsbox p span, .lanbing_codebox span {
+                    width: 0.37rem;
+                    height: 0.36rem;
+                    margin-left: 0.42rem;
+                    margin-top: 0.33rem;
+                    float: left;
+                    display: block;
+                }
+
+            .log_in_smsbox .lanbing_tel {
+                width: 0.26rem;
+                height: 0.4rem;
+                background: url(@Url.Content("../img/newimg/lanbing_tel.png"));
+                background-size: 100% 100%;
+                margin-left: 0.46rem;
+            }
+
+            .log_in_smsbox .lanbing_telbtn {
+                width: 2.38rem;
+                height: 0.64rem;
+                line-height: 0.64rem;
+                text-align: center;
+                color: #3487d7;
+                position: absolute;
+                top: 0.2rem;
+                right: 0;
+                border-left: 0.02rem solid #d7d7d7;
+                display: block;
+                cursor: pointer;
+                font-size: 0.26rem;
+            }
+
+        .log_in_telbox p input {
+            float: left;
+            border: none;
+            outline: none;
+            width: 5.13rem;
+            height: 0.3rem;
+            padding-left: 0.22rem;
+            padding-bottom: 0.32rem;
+            margin-top: 0.32rem;
+            margin-left: 0.26rem;
+            border-bottom: 0.02rem solid #e5e5e5;
+            font-size: 0.26rem;
+        }
+
+        .log_in_smsbox .lanbing_teltext {
+            margin-left: 0.33rem;
+        }
+
+        .log_in_smsbox p input {
+            float: left;
+            border: none;
+            outline: none;
+            width: 5.13rem;
+            height: 0.3rem;
+            padding-left: 0.22rem;
+            padding-bottom: 0.32rem;
+            margin-top: 0.32rem;
+            margin-left: 0.26rem;
+            border-bottom: 0.02rem solid #e5e5e5;
+            font-size: 0.26rem;
+        }
+
+        .lanbing_codebox {
+            width: 100%;
+            height: 0.98rem;
+            line-height: 0.98rem;
+            position: relative;
+        }
+
+            .lanbing_codebox input {
+                float: left;
+                border: none;
+                outline: none;
+                width: 5.13rem;
+                height: 0.3rem;
+                padding-left: 0.22rem;
+                padding-bottom: 0.32rem;
+                margin-top: 0.32rem;
+                margin-left: 0.26rem;
+                font-size: 0.26rem;
+            }
+
+        .log_in_telbox p i {
+            display: block;
+            position: absolute;
+            right: 0.3rem;
+        }
+
+        .log_in_telbox .lanbing_nameclose {
+            width: 0.26rem;
+            height: 0.26rem;
+            background: url(@Url.Content("../img/newimg/lanbing_namepic.png")) no-repeat;
+            background-size: 100% 100%;
+            top: 0.43rem;
+        }
+
+        .log_in_telbox .lanbing_pwshow {
+            width: 0.33rem;
+            height: 0.21rem;
+            background: url(@Url.Content("../img/newimg/lanbing_pwgray.png")) no-repeat;
+            background-size: 100% 100%;
+            top: 0.44rem;
+        }
+
+        .lanbing_codebox img {
+            position: absolute;
+            width: 2.05rem;
+            height: 0.52rem;
+            right: 0.3rem;
+            top: 0.24rem;
+            cursor: pointer;
+        }
+
+        .log_in_telbox .lanbing_name {
+            background: url(@Url.Content("../img/newimg/lanbing_name.png")) no-repeat center center;
+            background-size: 100% 100%;
+        }
+
+        .log_in_telbox .lanbing_pw {
+            background: url(@Url.Content("../img/newimg/lanbing_pw.png")) no-repeat center center;
+            background-size: 100% 100%;
+        }
+
+        .lanbing_code {
+            background: url(@Url.Content("../img/newimg/lanbing_code.png")) no-repeat center center;
+            background-size: 100% 100%;
+        }
+
+
+        .log_in_btnbox {
+            width: 100%;
+            height: 4.42rem;
+            background-color: #f5f5f5;
+            padding-top: 0.6rem;
+            border-top: 0.02rem solid #e5e5e5;
+        }
+
+            .log_in_btnbox .log_in_btn {
+                width: 6rem;
+                height: 0.7rem;
+                line-height: 0.7rem;
+                text-align: center;
+                background-color: #3487d7;
+                border-radius: 5px;
+                margin: 0 auto;
+                color: #ffffff;
+                font-size: 0.32rem;
+            }
+
+        .log_in_btn a {
+            height: 100%;
+            display: block;
+            color: #ffffff;
+        }
+
+        .log_btnforget {
+            display: block;
+            color: #3487d7;
+            font-size: 0.26rem;
+            float: right;
+            margin-right: 0.3rem;
+            margin-top: 0.18rem;
+        }
+
+        .log_in_btnbox p {
+            text-align:center;
+            height: 0.28rem;
+            font-size: 0.28rem;
+            margin: 1.02rem auto 0rem;
+            color: #494949;
+        }
+
+            .log_in_btnbox p a {
+                color: #3487d7;
+            }
+    </style>
+</head>
+
+<body>
+    <input type="hidden" value="@Request.QueryString["return"]" id="returnUrl" />
+    <div class="wrapper" id="wrapper" style="padding-bottom:0;">
+        <input type="hidden" name="openId" id="openId" value="@ViewBag.OpenId" /><!--value=@ViewBag.OpenId-->
+        <input type="hidden" name="StrUrl" id="StrUrl" value="@ViewBag.Url" /><!--value=@ViewBag.Url-->
+        <div class="log_in_box">
+            <h1>
+                <a href="javascript:;">bluemembers蓝缤</a>
+            </h1>
+            <div class="log_in clearfix">
+                <div class="log_in_active" id="logintype">账号登录</div>
+                <div>动态密码登录</div>
+            </div>
+            <i class="log_ground"></i>
+            <div class="log_in_telbox log_inbox">
+                <p class="clearfix">
+                    <span class="lanbing_name"></span>
+                    <input type="text" name="" value="" placeholder="用户名" id="phoneoremail" autocomplete="off">
+                    <i class="lanbing_nameclose"></i>
+                </p>
+                <p class="clearfix">
+                    <span class="lanbing_pw"></span>
+                    <input type="password" name="" value="" placeholder="密码" id="loginpwd" autocomplete="off">
+                    <i class="lanbing_pwshow"></i>
+                </p>
+            </div>
+            <div class="log_in_smsbox log_inbox">
+                <p class="clearfix">
+                    <span class="lanbing_tel"></span>
+                    <input type="text" id="PhoneNumber1" placeholder="手机号码" class="lanbing_teltext" autocomplete="off">
+                    <em class="lanbing_telbtn" id="btnSendVerCode">获取验证码</em>
+                    <em class="lanbing_telbtn" id="sysj" style="display:none"></em>
+                </p>
+                <p class="clearfix">
+                    <span class="lanbing_code"></span>
+                    <input type="text" name="" id="Captcha" placeholder="手机验证码" autocomplete="off">
+                </p>
+            </div>
+            <p class="lanbing_codebox clearfix">
+                <span class="lanbing_code"></span>
+                <input type="text" name="VerCode" value="" id="verCode" placeholder="验证码" autocomplete="off">
+                <img id="getcode" src="@Url.Content("~/VerifyCodeHandler.ashx")" alt="验证码" onclick="document.getElementById('getcode').src='@Url.Content("~/VerifyCodeHandler.ashx")?temp='+ (new Date().getTime().toString(36)); return false">
+            </p>
+            <div class="log_in_btnbox">
+                <div class="log_in_btn">
+                    <a href="javascript:;" id="btn">登录</a>
+                </div>
+                <a class="log_btnforget" href="@Url.Action("ForgetPwd")">忘记密码?</a>
+                <p class="log_btnregister">
+                    还不是会员？<a href="@Url.Action("Register")">立即注册</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

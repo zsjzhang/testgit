@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Product>
+@{ List<Vcyber.BLMS.Entity.ProductDetail> pdlist = (List<Vcyber.BLMS.Entity.ProductDetail>)ViewBag.pdetailList;}
+@foreach (var item in Model)
+{
+    //7.18版本
+    <dl>
+        <dt><a href="/Product/ProductDetail?productId=@item.ID"><img src="@item.Image" /></a></dt>
+        <dd class="giftTit"><a href="javascript:;">@item.Name</a></dd>
+        @*<dd class="giftBtn">立即领取</dd>*@
+    </dl>
+    @*<li class="MediaListLeft">  7.18之前的版本
+        <div class="MediaListImg">
+            <a href="https://www.bluemembers.com.cn/media/Player?id=12">
+                <img src="@item.Image" class="medialistdefaultimg">
+            </a>
+        </div>
+        <div class="MediaListContent">
+            <div class="MediaListContentTitle">@item.Name</div>
+            <div class="MediaListContentSubTitle"></div>
+            <div class="MediaListContentIntroduction">
+                @{
+    string des = pdlist.Where(t => t.ProductID == item.ID).ToList().FirstOrDefault() != null ? pdlist.Where(t => t.ProductID == item.ID).ToList().FirstOrDefault().Description : "";
+            @Html.Raw(System.Web.HttpUtility.UrlDecode(des));
+                }
+            </div>
+            <span>
+                <a class="MediaListPlayButton" href="javaScript:birthdayCollect(@item.ID,'@item.Name','@item.Image');">领取</a>
+            </span>
+        </div>
+    </li>*@
+}

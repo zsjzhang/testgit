@@ -1,0 +1,592 @@
+﻿@{
+    Layout = null;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<!--证件上传认证开始-->
+<style type="text/css" media="screen">
+    .upload_doc {
+        position: relative;
+        top: 0;
+        left: 0;
+        font-size: 14px;
+        color: #333333;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+
+    .upload_picbox {
+        height: 434px;
+    }
+
+        .upload_picbox h5 {
+            position: absolute;
+            top: 74px;
+            left: 20px;
+        }
+
+    .clearfix2:after {
+        height: 0;
+        clear: both;
+        display: block;
+        content: "";
+    }
+
+    .clearfix2 {
+        zoom: 1;
+    }
+
+    .upload_pic {
+        height: 92px;
+        position: absolute;
+        left: 49px;
+        top: 108px;
+        line-height: 92px;
+    }
+
+    .upload_pic2 {
+        top: 215px;
+        left: 49px;
+    }
+
+    .upload_pic3 {
+        top: 322px;
+        left: 36px;
+    }
+
+    .upload_picpro {
+        float: left;
+    }
+
+    .upload_text {
+        width: 273px;
+        float: left;
+        margin-left: 4px;
+        position: relative;
+
+    }
+        .upload_text span {
+            font-size:15px;
+            color:#919191;
+            position:absolute;
+            left:0px;
+            top:25px;
+    }
+    .upload_text span {
+            font-size:13px;
+            color:#919191;
+            position:absolute;
+            left:0px;
+            top:25px;
+        }
+
+
+        .upload_text .upload_address {
+            width: 180px;
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid #bdc7d8;
+            border-right: none;
+            outline: none;
+            float: left;
+            margin-top: 31px;
+            margin-bottom: 31px;
+            padding: 0;
+        }
+
+        .upload_text .upload_file {
+            width: 90px;
+            height: 30px;
+            line-height: 30px;
+            margin-top: 31px;
+            margin-bottom: 31px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 99;
+            overflow: hidden;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+
+        .upload_text .upload_btn {
+            width: 90px;
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid #248bff;
+            background-color: #075090;
+            color: #fff;
+            margin-top: 31px;
+            margin-bottom: 31px;
+            float: left;
+            text-align: center;
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 20;
+        }
+
+    .upload_preview {
+        float: left;
+        margin-left: 40px;
+    }
+
+    .preview_text {
+        color: #777777;
+        float: left;
+    }
+
+    .preview_over {
+        width: 142px;
+        height: 92px;
+        border: 1px solid #d7d7d7;
+        border-radius: 4px;
+        float: left;
+        overflow: hidden;
+    }
+
+        .preview_over img {
+            width: 100%;
+            display: block;
+        }
+
+    .upload_picpro span {
+        color: red;
+    }
+
+    .upload_sub, .upload_cancel {
+        width: 164px;
+        height: 36px;
+        text-align: center;
+        line-height: 36px;
+        color: #fff;
+        font-size: 16px;
+        position: absolute;
+        top: 454px;
+        background-color: #075090;
+    }
+
+    .upload_sub {
+        left: 176px;
+    }
+
+    .upload_cancel {
+        left: 366px;
+    }
+
+    .upload_jfProgBox {
+        position: relative;
+        width: 460px;
+        height: 75px;
+        margin: 40px auto 10px auto;
+        font-size: 14px;
+        line-height: 22px;
+        display: none;
+    }
+
+        .upload_jfProgBox dl {
+            position: relative;
+            float: left;
+            margin-right: 95px;
+            width: 66px;
+            height: 75px;
+            text-align: center;
+        }
+
+        .upload_jfProgBox .uploadTwo {
+            width: 114px;
+        }
+
+        .upload_jfProgBox dl.jfpNoMar {
+            margin-right: 0;
+        }
+
+        .upload_jfProgBox dl dt {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            z-index: 10;
+        }
+
+            .upload_jfProgBox dl dt.upon {
+                background: url(/img/bgProgOn.png) no-repeat center top;
+            }
+
+        .upload_jfProgBox dl dd {
+            color: #075192;
+            font-size: 16px;
+        }
+
+    .upload_jfpLine1, .upload_jfpLine2, .upload_jfpLine3 {
+        height: 3px;
+        background: #075192;
+        position: absolute;
+        left: 0;
+        top: 18px;
+        z-index: 1;
+    }
+
+    .upload_jfProgBox dl dd.uporg {
+        background: #f49600;
+    }
+
+    .upload_jfProgBox dl dd.uptxtOrg {
+        color: #f49600;
+    }
+
+    .upload_jfpLine1 {
+        width: 32px;
+    }
+
+    .upload_jfpLine2 {
+        left: -132px;
+        width: 200px;
+    }
+
+    .upload_jfpLine3 {
+        left: -142px;
+        width: 210px;
+    }
+
+    #haveProored {
+        display: none;
+    }
+
+    .bluePopup .layui-layer-content {
+        height: 90px;
+    }
+</style>
+
+@*审核进度部分
+    当上传表中有记录时，判断 审核状态，以显示审核进度
+*@
+<div class="geren_box upload_doc" id="userProof">
+    <div class="gy_title">
+        <div class="gy_zi">
+            <h1>上传身份凭证</h1>
+            <span>Upload Identity Certificate</span>
+        </div>
+    </div>
+    <div class="upload_picbox" id="uploadProofImages">
+        
+        <form id="userProofImgs" method="post" action="" enctype="multipart/form-data">
+
+            @*上传信息部分*@
+
+            <h5>支持jpg、jpeg、png格式，图片大小3M以内</h5>
+            <div class="upload_pic clearfix2">
+                <p class="upload_picpro">
+                    <span>＊</span>
+                    1&nbsp;&nbsp;身份证正面照：
+                </p>
+                <div class="upload_text">
+                    <input type="text" class="upload_address" id="txtUserProofFront" name="txtUserProofFront" value="" placeholder="" onclick="">
+                    <input class="upload_file" type="file" id="userProofFront" name="userProofFront" value="" placeholder="" onchange="frontPreview()">
+                    <div class="upload_btn">浏览...</div>
+                    <span>请上传您购车身份证正面照</span>
+                </div>
+                <div class="upload_preview">
+                    <p class="preview_text">预览：</p>
+                    <div class="preview_over">
+                        <img id="previewProofFront" src="/img/upload_front.jpg" alt="证件正面" title="证件正面" />
+                    </div>
+                </div>
+               
+            </div>
+            <div class="upload_pic clearfix2 upload_pic2">
+                <p class="upload_picpro">
+                    <span>＊</span>
+                    2&nbsp;&nbsp;行驶证正面照：
+                </p>
+                <div class="upload_text">
+                    <input type="text" class="upload_address" id="txtUserProofVerso" name="txtUserProofVerso" value="" placeholder="" onclick="">
+                    <input class="upload_file" type="file" id="userProofVerso" name="userProofVerso" value="" placeholder="" onchange="versoPreview()">
+                    <div class="upload_btn">浏览...</div>
+                    <span>请上传您行驶证正面照</span>
+                </div>
+                <div class="upload_preview">
+                    <p class="preview_text">预览：</p>
+                    <div class="preview_over">
+                        <img id="previewProofVerso" src="/img/upload_reverse.jpg" alt="证件反面" title="证件反面" />
+                    </div>
+                </div>
+              
+            </div>
+            <div class="upload_pic clearfix2 upload_pic3">
+                <p class="upload_picpro">
+                    <span>＊</span>
+                    3&nbsp;&nbsp;手持证件头部照：
+                </p>
+                <div class="upload_text">
+                    <input type="text" class="upload_address" id="txtUserProofByHand" name="txtUserProofByHand" value="" placeholder="" onclick="">
+                    <input class="upload_file" type="file" id="userProofByHand" name="userProofByHand" value="" placeholder="" onchange="byHandPreview()">
+                    <div class="upload_btn">浏览...</div>
+                    <span>请上传手持身份证/护照/军官证/行驶证头部照</span>
+                </div>
+                <div class="upload_preview">
+                    <p class="preview_text">预览：</p>
+                    <div class="preview_over">
+                        <img id="previewProofByHand" src="/img/upload_head.jpg" alt="手持证件头部照" title="手持证件头部照" />
+                    </div>
+                </div>
+                
+            </div>
+            <a href="javascript:;" id="uploadsUsersProofImg" class="upload_sub">提交</a>
+            <a href="javascript:;" id="cancelUploadsUsersProofImg" class="upload_cancel">取消</a>
+            @*<input id="uploadsUsersProofImg" type="button" class="upload_sub" value="提交">
+                <input type="button" class="upload_cancel" value="取消">*@
+            <input id="isUpdate" name="isUpdate" type="hidden" value="" />
+        </form>
+    </div>
+    <div class="upload_jfProgBox" id="upload_jfProgBox">
+        <dl>
+            <!--以下元素:dt 加"upon",dd1加"uporg", dd2加"uptxtOrg"会变成完成状态-->
+            <dt class="upon"></dt>
+            <dd class="upload_jfpLine1 uporg"></dd>
+            <dd class="uptxtOrg">上传证件</dd>
+        </dl>
+        <dl class="uploadTwo">
+            <dt class="upon"></dt>
+            <dd class="upload_jfpLine2 uporg"></dd>
+            <dd class="uptxtOrg">证件照片审核中 </dd>
+        </dl>
+
+
+        @*审核中*@
+        <div id="noProofed">
+            <dl class="jfpNoMar">
+                <dt></dt>
+                <dd class="upload_jfpLine3"></dd>
+                <dd>
+                    审核成功
+                </dd>
+            </dl>
+        </div>
+        @*审核完成*@
+        <div id="haveProored">
+            <dl class="jfpNoMar">
+                <dt class="upon"></dt>
+                <dd class="upload_jfpLine3 uporg"></dd>
+                <dd class="uptxtOrg">审核成功</dd>
+            </dl>
+        </div>
+    </div>
+
+</div>
+
+
+
+<!--证件上传认证结束-->
+<script type="text/javascript">
+    $(function () {
+        //判断是否已上传过
+        IsUploadProof();
+        //上传凭证
+        uploadImgsBtnClick();
+        //取消
+        cancelUploadsUsersProofImg();
+
+    });
+    function imageFormat(ext) {
+        // gif在IE浏览器暂时无法显示
+        if (ext != 'png' && ext != 'jpg' && ext != 'jpeg') {
+            popWindownBlue("图片必须为png或jpg或jpeg格式！");
+            return false;
+        }
+    }
+    //提交照片
+    function uploadImgsBtnClick() {
+        $("#uploadsUsersProofImg").click(function () {
+            if ($("#userProofFront").val() == "" || $("#userProofVerso").val() == "" || $("#userProofByHand").val() == "") {
+                popWindownBlue("请按要求上传三张图片");
+                return false;
+            }
+            var front = $("#txtUserProofFront").val();
+            var verso = $("#txtUserProofVerso").val()
+            var byHand = $("#txtUserProofByHand").val();
+            var frontLastImg = front.substring(front.lastIndexOf(".") + 1).toLowerCase();
+            if (frontLastImg != 'png' && frontLastImg != 'jpg' && frontLastImg != 'jpeg') {
+                popWindownBlue("图片必须为png或jpg或jpeg格式！");
+                return false;
+            }
+            if (verso != "") {
+                var versoLastImg = verso.substring(verso.lastIndexOf(".") + 1).toLowerCase();
+                if (versoLastImg != 'png' && versoLastImg != 'jpg' && versoLastImg != 'jpeg') {
+                    popWindownBlue("图片必须为png或jpg或jpeg格式！");
+                    return false;
+                }
+            }
+           
+            var byHandLastImg = byHand.substring(byHand.lastIndexOf(".") + 1).toLowerCase();
+            if (byHandLastImg != 'png' && byHandLastImg != 'jpg' && byHandLastImg != 'jpeg') {
+                popWindownBlue("图片必须为png或jpg或jpeg格式！");
+                return false;
+            }
+            //var ImgFileSzie = Math.round(file.fileSize / (1024 * 1024));
+            //if (ImgFileSzie > 3) {
+            //    popWindownBlue("图片大小3M以内！");
+            //    return;
+            //}
+            $("#userProofImgs").ajaxSubmit({
+                url: "/MyCenter/ImgUpload",
+                type: "post",
+                success: function (result) {
+                    var data = $.parseJSON(result)
+                    if (data == null || data.code == null || data.code == 400) {
+                        popWindownBlue(data.msg);
+                        return false;
+                    }
+                    else {
+                        $("#upload_jfProgBox").css({ "display": "block" });
+                        $("#uploadProofImages").css({ "display": "none" });
+                        popWindownBlue(data.msg);
+                        return false;
+
+                    }
+                },
+                error: function () { }
+            });
+        })
+    }
+    //取消
+    function cancelUploadsUsersProofImg() {
+        $("#cancelUploadsUsersProofImg").click(function () {
+            $("#txtUserProofFront").val("");
+            $("#userProofFront").val("");
+            $("#txtUserProofVerso").val("");
+            $("#userProofVerso").val("");
+            $("#txtUserProofByHand").val("");
+            $("#userProofByHand").val("");
+
+            $("#previewProofFront").attr("src", "/img/upload_front.jpg");
+            $("#previewProofVerso").attr("src", "/img/upload_reverse.jpg");
+            $("#previewProofByHand").attr("src", "/img/upload_head.jpg");
+        })
+    }
+    //查询是否已上传过凭证
+    function IsUploadProof() {
+        $.ajax({
+            url: "/MyCenter/IsUploadProof",
+            type: "post",
+            success: function (result) {
+                //issuccess==true：已上传过凭证
+                if (result.IsSuccess) {
+                    
+                    $("#upload_jfProgBox").css({ "display": "block" });
+                    $("#uploadProofImages").css({ "display": "none" });
+
+                    //205 审核通过
+                    if (result.Errors == 205) {
+                        $("#uploadProofImages").css({ "display": "none" });
+                        $("#upload_jfProgBox").css({ "display": "block" });
+                        $("#haveProored").css({ "display": "block" });
+                        $("#noProofed").css({ "display": "none" });
+                        return false;
+                    }
+                    if (result.Errors == 204) {
+                        $("#uploadProofImages").css({ "display": "block" });
+                        $("#upload_jfProgBox").css({ "display": "none" });
+
+                        $("#isUpdate").val("1")
+                        return false;
+                    }
+                    return false;
+                }
+                else
+                {
+                    $("#uploadProofImages").css({ "display": "block" });
+                    $("#upload_jfProgBox").css({ "display": "none" });
+
+                }
+            },
+            error: function () { }
+        });
+    };
+    //展示正面证件照
+    function frontPreview() {
+
+        var file = document.getElementById("userProofFront"),
+            pic = document.getElementById("previewProofFront");
+        change(file, pic);
+        //var imgName = file.value.substring(file.value.lastIndexOf("\\") + 1).toString();
+        $("#txtUserProofFront").val(getImgName(file));
+    }
+    //展示反面证件照
+    function versoPreview() {
+        var file = document.getElementById("userProofVerso"),
+            pic = document.getElementById("previewProofVerso");
+        change(file, pic);
+        $("#txtUserProofVerso").val(getImgName(file));
+    }
+    //展示手持证件照
+    function byHandPreview() {
+        var file = document.getElementById("userProofByHand"),
+            pic = document.getElementById("previewProofByHand");
+        change(file, pic);
+        $("#txtUserProofByHand").val(getImgName(file));
+    }
+
+    function getImgName(file) {
+        return file.value.substring(file.value.lastIndexOf("\\") + 1).toString();
+    }
+    function change(file, pic) {
+        var ext = file.value.substring(file.value.lastIndexOf(".") + 1).toLowerCase();
+       
+        // gif在IE浏览器暂时无法显示
+        if (ext != 'png' && ext != 'jpg' && ext != 'jpeg') {
+            popWindownBlue("图片必须为png或jpg或jpeg格式！");
+            return;
+        }
+        
+
+        var isIE = navigator.userAgent.match(/MSIE/) != null,
+            isIE6 = navigator.userAgent.match(/MSIE 6.0/) != null;
+
+        if (isIE) {
+            file.select();
+            var reallocalpath = document.selection.createRange().text;
+            // IE6浏览器设置img的src为本地路径可以直接显示图片
+            if (isIE6) {
+                pic.src = reallocalpath;
+            } else {
+                // 非IE6版本的IE由于安全问题直接设置img的src无法显示本地图片，但是可以通过滤镜来实现
+                pic.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src=\"" + reallocalpath + "\")";
+                // 设置img的src为base64编码的透明图片 取消显示浏览器默认图片
+                pic.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
+            }
+        } else {
+            var reader = new FileReader();
+            reader.readAsDataURL(file.files[0]);
+            reader.onload = function (e) {
+                pic.src = this.result;
+            }
+        }
+    }
+</script>

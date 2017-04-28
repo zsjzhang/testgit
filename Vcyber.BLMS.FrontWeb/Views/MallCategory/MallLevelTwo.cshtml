@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Category>
+@{
+    Layout = null;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<style>
+   .classfiy_li ul {
+    float: left;
+    width: 542px;
+    margin-left: 15px;
+}
+</style>
+<div class="banner_show" style="height:auto;">
+    <h2>全部商品</h2>
+    <div class="classfiy">
+        <div class="classfiy_li">
+            <span>分<b style="margin-left: 23px;"></b>类:</span>
+            <ul>
+                @{
+                    int _levelTwo = 0;
+                    if (!string.IsNullOrEmpty(Request.QueryString["levelTwoCategory"]))
+                    {
+                        int.TryParse(Request.QueryString["levelTwoCategory"], out _levelTwo);
+                    }
+                    <li @{if (_levelTwo == 0)
+                          { <text> class="click" </text>            
+                          
+                    }
+                                                                     
+                       }><a href="javascript:void(0);" onclick="productQuery(this);">全部 <input type="hidden" name="leveltwocategory" value="@ViewBag.levelOneCategory" /> </a></li>
+                    if (Model != null && Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <li @{if (item.ID.ToString() == _levelTwo.ToString()) { <text> class="click" </text>            }}>
+                                <a href="javascript:void(0);" onclick="productQuery(this);">@item.Name<input type="hidden" name="leveltwocategory" value="@item.ID" /> </a>
+                            </li>
+                        }
+
+                    }
+                }
+            </ul>
+        </div>
+        <div class="classfiy_li">
+            <span>兑换方式:</span>
+            <ul>
+                <li>
+                    <a href="javascript:void(0);" onclick="productQuery(this);">积分 <input type="hidden" name="exchangetype" value="1" /></a>
+                </li>
+                @*<li><a href="javascript:void(0);" onclick="productQuery(this);">蓝豆<input type="hidden" name="exchangetype" value="2" /></a></li>*@
+            </ul>
+        </div>
+    </div>
+</div>

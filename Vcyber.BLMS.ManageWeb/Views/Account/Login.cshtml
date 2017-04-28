@@ -1,0 +1,170 @@
+﻿@using Vcyber.BLMS.ManageWeb.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "登录";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    @Html.AntiForgeryToken()
+
+
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+            }
+            }
+                catch(e){
+                top.location.href = window.location.href;
+            }
+    </script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - BLUE MEMBERS</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/base64.js"></script>
+    <script src="~/Scripts/angular/angular-1.3.0.js"></script>
+    <script src="~/Scripts/angular/angular-route.min.js"></script>
+    <script src="~/Scripts/angular/angular-animate.min.js"></script>
+    <script>
+        var app = angular.module('loginModule', []);
+        app.controller('loginCtrl', ['$scope', '$location', '$http', function ($scope, $location, $http) {
+            $scope.credentials = { UserName: "", Password: "", RememberMe: false, __RequestVerificationToken: document.getElementsByName('__RequestVerificationToken')[0].value };
+            $scope.message = '';
+            $scope.returnUrl = '';
+            $scope.login = function () {
+                console.log($scope.credentials);
+                $scope.postData = angular.copy($scope.credentials);
+                $scope.postData.Password = encode64($scope.postData.Password);
+                //$scope.postData.__RequestVerificationToken = document.getElementsByName('__RequestVerificationToken').value;
+                
+                $.ajax({
+                    type: "post",
+                    //headers:{__RequestVerificationToken:document.getElementsByName('__RequestVerificationToken').value},
+                    url: "/Account/Login?returnUrl=" + $scope.returnUrl,
+                    data:$scope.postData,
+                    success: function (data) {
+                        console.log(data.code);
+                        if (data.code == 0) {
+                            console.log(data.url);
+                            window.location.replace(data.url);
+
+                            $.ajax({
+                                type: "post",
+                                url: "/Account/LoginMemRecordApp_Add",
+                                success: function (data) {
+
+                                }
+                            });
+                        }
+                        else {
+                            $scope.$apply(function () {
+                                $scope.message = '用户名或者密码错误，请重新输入.';
+                            });
+                        }
+                    }
+                });
+
+                //$.post('/Account/Login?returnUrl=' + $scope.returnUrl,$scope.postData).success(function (data) {
+                //    console.log(data.code);
+                //    if (data.code == 0) {
+                //        console.log(data.url);
+                //        window.location.replace(data.url);
+
+                //        $.ajax({
+                //            type: "post",
+                //            url: "/Account/LoginMemRecordApp_Add",
+                //            success: function (data) {
+                                
+                //            }
+                //        });
+                //    }
+                //    else {
+                //        $scope.$apply(function () {
+                //            $scope.message = '用户名或者密码错误，请重新输入.';
+                //        });
+                //    }
+                //});
+                
+            }
+
+        }]);
+
+        //检测浏览器
+        var Browser = {  
+            isIE:navigator.userAgent.indexOf("MSIE")!=-1,  
+            isFF:navigator.userAgent.indexOf("Firefox")!=-1,  
+            isOpera:navigator.userAgent.indexOf("Opera")!=-1,  
+            isSafari:navigator.userAgent.indexOf("Safari")!=-1,  
+            isChrome:navigator.userAgent.indexOf("Chrome")!=-1  
+        }; 
+        var BrowserEngine = {  
+            isIE:navigator.userAgent.indexOf("MSIE")>-1 && !window.opera,  
+            isGecko:navigator.userAgent.indexOf("Gecko")>-1 && !window.opera&& navigator.userAgent.indexOf("KHTML") ==-1, 
+            isKHTML:navigator.userAgent.indexOf("KHTML")>-1,  
+            isOpera:navigator.userAgent.indexOf("Opera")>-1  
+        }; 
+        $(function () {
+
+            if (Browser.isChrome == false) {
+                $("#browserTipDiv").show();
+            } else {
+                $("#browserTipDiv").hide();
+            }
+        });
+    </script>
+</head>
+<body ng-app="loginModule">
+    <div id="browserTipDiv" style="border-bottom:1px solid #cdcdcd; width:100%;height:30px; background-color:#f1f1f1; line-height:30px; display:none;">
+        <img style=" margin-left:15px;" src="~/Content/Image/title.png" /><span style="margin-left:5px; font-size:12px;">当前浏览器可能不支持，</span><a style="cursor:pointer;font-size:12px; color:#000;" href="https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=chrome%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AE%98%E6%96%B9%E4%B8%8B%E8%BD%BD&rsv_pq=ac88382d00001333&rsv_t=c93f%2BbzNg1MRuMO0b7Y1dokuMc9rP39K8ka8lL4EdJwBIHo28g%2BkQX%2B%2BRjA&rsv_enter=0&oq=Chrome%E6%B5%8F%E8%A7%88%E5%99%A8&inputT=3996&rsv_sug3=11&rsv_sug1=10&rsv_sug4=2097&rsv_sug=1" target="_blank">点击这里下载Chrome浏览器。</a>
+    </div>
+    <div class="container" style="margin: 100px auto" ng-controller="loginCtrl">
+        <div class="row">
+            <div class="col-lg-offset-3 col-md-6 panel panel-default panel-body">
+                <form class="form-horizontal" accept-charset="UTF-8" role="form" name="form">                    
+                    <fieldset>
+                        <legend>帐户登录</legend>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">账户名</label>
+                            <div class="col-md-10">
+                                <input class="form-control" placeholder="账户名" name="email" type="text" ng-model="credentials.UserName" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">密码</label>
+                            <div class="col-md-10">
+                                <input class="form-control" placeholder="密码" name="password" type="password" value="" ng-model="credentials.Password" autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="remember" type="checkbox" value="Remember Me" ng-model="credentials.RememberMe">记住我
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <p class="text-danger" ng-show="message">{{message}}</p>
+                                <input class="btn btn-primary" ng-click="login()" ng-disabled="form.$invalid" type="submit" value="登录">
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+                <input type="hidden" value="@ViewBag.ReturnUrl" ng-model="returnUrl" />
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+﻿@using Vcyber.BLMS.Entity;
+@using Vcyber.BLMS.Entity.Enum;
+@using Vcyber.BLMS.Common;
+@{
+    ViewBag.Title = "Detail";
+}
+@{
+    var orderDatas = ViewBag.OrderDatas as OrderCollection;
+    var productMoney = (decimal)ViewBag.ProductMoney;
+    var rowspan = orderDatas.ProductArray.Count;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<link href="~/css/UserTradeDetail.css" rel="stylesheet" />
+<div>
+    <h2>会员交易详情</h2>
+    <div class="oneDiv">
+        <div><label>当前交易状态：</label><label>@{ETradeType tradeType = (ETradeType)orderDatas.OrderData.TradeStatus;}@tradeType.GetDiscribe()</label></div>
+        <div><label>交易时间：</label><label>@orderDatas.OrderData.CreateTime.ToString()</label></div>
+        <div><label>商城平台：</label><label>@orderDatas.OrderData.MallName</label></div>
+    </div>
+    <div class="twoDiv">
+        <h4>订单信息</h4>
+        <hr />
+        <div>
+            <div><label>商城订单号：</label><label>@orderDatas.OrderData.OrderCode</label></div>
+            <div><label>交易号：</label><label>@orderDatas.OrderData.FlowNumber</label></div>
+        </div>
+        <table >
+            <tr>
+                <th>交易类型</th>
+                <th>商品名称</th>
+                <th>价格</th>
+                <th>数量</th>
+                <th>工时费</th>
+                <th>商品总金额</th>
+                <th>快递费</th>
+                <th>支付总金额</th>
+            </tr>
+            @if(rowspan>0)
+            {
+                var procut=orderDatas.ProductArray[0];
+                <tr>
+                    <td rowspan="@rowspan">订单支付</td>
+                    <td>@procut.Name</td>
+                    <td>@procut.PayMoney</td>
+                    <td>@procut.Quantity</td>
+                    <td>@procut.ServiceFee</td>
+                    <td rowspan="@rowspan">@productMoney</td>
+                    <td rowspan="@rowspan">@orderDatas.OrderData.ExpressFee</td>
+                    <td rowspan="@rowspan">@orderDatas.OrderData.PayTotalMoney</td>
+                </tr>
+            }
+           
+            @for (int i = 1; i < rowspan; i++)
+            {
+                var procut = orderDatas.ProductArray[i];
+                <tr>
+                    <td>@procut.Name</td>
+                    <td>@procut.PayMoney</td>
+                    <td>@procut.Quantity</td>
+                    <td>@procut.ServiceFee</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+

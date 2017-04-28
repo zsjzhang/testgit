@@ -1,0 +1,29 @@
+﻿@model IList<Vcyber.BLMS.Entity.News>
+@{
+    Layout = null;
+}
+
+@{
+                    if (Model != null && Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <div class="news_li">
+                                <dl style="min-width:673px;">
+                                    <dt><img src="@item.TureMajorImageUrl" style="width: 228px;" href="/NewsDetail/News?id=@item.Id"></dt>
+                                    <dd style="width:430px; float:right;">
+                                        <h3>
+                                            @Html.ActionLink(item.Title, "NewsDetail", "News", new { id = item.Id }, new { })
+
+                                        </h3>
+                                        <span>发布时间：@item.CreateTime.ToString("yyyy-MM-dd")</span>
+                                        <p>@Html.Raw(item.Summary)</p>
+                                    </dd>
+                                </dl>
+                            </div>
+
+                        }
+                    }
+                }
+
+

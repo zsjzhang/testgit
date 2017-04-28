@@ -1,0 +1,931 @@
+<HR COLOR=blue>
+日志时间：2017-01-19 10:00:52,126 [13] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 对象名 'CS_DMS_Consume' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 118
+ClientConnectionId:26c3ca2c-a7b3-4966-b8f6-f26be5570c79
+Error Number:208,State:1,Class:16
+<HR COLOR=blue>
+日志时间：2017-01-19 10:00:52,225 [13] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 对象名 'CS_DMS_Consume' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 118
+ClientConnectionId:26c3ca2c-a7b3-4966-b8f6-f26be5570c79
+Error Number:208,State:1,Class:16
+<HR COLOR=blue>
+日志时间：2017-01-19 10:00:54,619 [13] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（成功），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1472659200123)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:00:54 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:00:54,619 [13] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（成功），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1472659200123)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:00:54 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:07:01,257 [10] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（成功），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1472659200123)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:07:01 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:07:01,257 [10] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（成功），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1472659200123)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:07:01 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:08:39,408 [10] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（成功），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1472659200123)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:08:39 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:08:39,408 [10] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（成功），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1472659200123)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:08:39 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:08:58,874 [10] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 182
+<HR COLOR=blue>
+日志时间：2017-01-19 10:08:58,916 [10] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 182
+<HR COLOR=blue>
+日志时间：2017-01-19 10:08:58,942 [10] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（失败），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(-62135596800000)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:08:58 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:08:58,942 [10] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（失败），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(-62135596800000)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:08:58 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:08:58,972 [10] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（失败），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(-62135596800000)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:08:58 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:08:58,972 [10] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（失败），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(-62135596800000)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:08:58 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:08:59,646 [10] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 118
+<HR COLOR=blue>
+日志时间：2017-01-19 10:08:59,675 [10] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 118
+<HR COLOR=blue>
+日志时间：2017-01-19 10:09:09,656 [10] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（失败），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(-62135596800000)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:09:09 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:09:09,656 [10] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（失败），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(-62135596800000)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:09:09 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:11:11,560 [9] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 182
+<HR COLOR=blue>
+日志时间：2017-01-19 10:11:11,645 [9] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 182
+<HR COLOR=blue>
+日志时间：2017-01-19 10:11:11,677 [9] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（失败），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(-62135596800000)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:11:11 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:11:11,677 [9] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（失败），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(-62135596800000)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:11:11 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:11:11,707 [9] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（失败），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(-62135596800000)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:11:11 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:11:11,707 [9] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（失败），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(-62135596800000)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:11:11 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:11:12,556 [9] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 118
+<HR COLOR=blue>
+日志时间：2017-01-19 10:11:12,585 [9] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 118
+<HR COLOR=blue>
+日志时间：2017-01-19 10:11:17,628 [9] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：{
+  "DealerId": "D1100",
+  "FromTime": "2016-09-01 00:00:00.123",
+  "EndTime": "20160901000000123",
+  "TotalPoint": "5000",
+  "TotalMony": "500",
+  "ISAgree": "Y",
+  "IntegraList": [
+    {
+      "UserId": "sample string 1",
+      "Phone": "sample string 2",
+      "ConsumeType": "sample string 3",
+      "PointCost": null,
+      "TotalCost": 45,
+      "ConsumePoints": 100,
+      "RewardPoints": 20,
+      "ConsumeDate": "2016-09-01 00:00:00.123",
+     "Comment": "sample string 9",
+      "IdentityNumber": "sample string 10",
+      "VIN": "sample string 11"
+    },
+    {
+      "UserId": "sample string 1",
+      "Phone": "sample string 2",
+      "ConsumeType": "sample string 3",
+      "PointCost": 40,
+      "TotalCost": 50,
+      "ConsumePoints": 500,
+      "RewardPoints": 70,
+      "ConsumeDate": "2016-09-01 00:00:00.123",
+     "Comment": "sample string 9",
+      "IdentityNumber": "sample string 10",
+      "VIN": "sample string 11"
+    }
+  ]
+} <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:11:17,628 [9] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：{
+  "DealerId": "D1100",
+  "FromTime": "2016-09-01 00:00:00.123",
+  "EndTime": "20160901000000123",
+  "TotalPoint": "5000",
+  "TotalMony": "500",
+  "ISAgree": "Y",
+  "IntegraList": [
+    {
+      "UserId": "sample string 1",
+      "Phone": "sample string 2",
+      "ConsumeType": "sample string 3",
+      "PointCost": null,
+      "TotalCost": 45,
+      "ConsumePoints": 100,
+      "RewardPoints": 20,
+      "ConsumeDate": "2016-09-01 00:00:00.123",
+     "Comment": "sample string 9",
+      "IdentityNumber": "sample string 10",
+      "VIN": "sample string 11"
+    },
+    {
+      "UserId": "sample string 1",
+      "Phone": "sample string 2",
+      "ConsumeType": "sample string 3",
+      "PointCost": 40,
+      "TotalCost": 50,
+      "ConsumePoints": 500,
+      "RewardPoints": 70,
+      "ConsumeDate": "2016-09-01 00:00:00.123",
+     "Comment": "sample string 9",
+      "IdentityNumber": "sample string 10",
+      "VIN": "sample string 11"
+    }
+  ]
+} <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:36:19,702 [8] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 对象名 'CS_DMS_Consume' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 118
+ClientConnectionId:5f79e70f-9bfd-45f3-9678-97707beb789a
+Error Number:208,State:1,Class:16
+<HR COLOR=blue>
+日志时间：2017-01-19 10:36:19,795 [8] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 对象名 'CS_DMS_Consume' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 118
+ClientConnectionId:5f79e70f-9bfd-45f3-9678-97707beb789a
+Error Number:208,State:1,Class:16
+<HR COLOR=blue>
+日志时间：2017-01-19 10:36:19,797 [8] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（成功），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1475164800123)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:36:19 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:36:19,797 [8] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（成功），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1475164800123)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:36:19 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:38:12,229 [8] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 对象名 'CS_DMS_Consume' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 118
+ClientConnectionId:5f79e70f-9bfd-45f3-9678-97707beb789a
+Error Number:208,State:1,Class:16
+<HR COLOR=blue>
+日志时间：2017-01-19 10:38:12,259 [8] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 对象名 'CS_DMS_Consume' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 118
+ClientConnectionId:5f79e70f-9bfd-45f3-9678-97707beb789a
+Error Number:208,State:1,Class:16
+<HR COLOR=blue>
+日志时间：2017-01-19 10:38:12,260 [8] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（成功），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1475164800123)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:38:12 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:38:12,260 [8] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（成功），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1475164800123)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:38:12 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:39:31,795 [8] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 对象名 'CS_DMS_Consume' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 118
+ClientConnectionId:5f79e70f-9bfd-45f3-9678-97707beb789a
+Error Number:208,State:1,Class:16
+<HR COLOR=blue>
+日志时间：2017-01-19 10:39:31,822 [8] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 对象名 'CS_DMS_Consume' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 118
+ClientConnectionId:5f79e70f-9bfd-45f3-9678-97707beb789a
+Error Number:208,State:1,Class:16
+<HR COLOR=blue>
+日志时间：2017-01-19 10:39:31,823 [8] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（成功），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1475164800123)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:39:31 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:39:31,823 [8] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（成功），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1475164800123)\/","TotalPoint":5000,"TotalMoney":0,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:39:31 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:39:52,195 [8] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 对象名 'CS_DMS_Consume' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 118
+ClientConnectionId:5f79e70f-9bfd-45f3-9678-97707beb789a
+Error Number:208,State:1,Class:16
+<HR COLOR=blue>
+日志时间：2017-01-19 10:39:52,220 [8] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 对象名 'CS_DMS_Consume' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 118
+ClientConnectionId:5f79e70f-9bfd-45f3-9678-97707beb789a
+Error Number:208,State:1,Class:16
+<HR COLOR=blue>
+日志时间：2017-01-19 10:39:52,222 [8] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（成功），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1475164800123)\/","TotalPoint":5000,"TotalMoney":500,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:39:52 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:39:52,222 [8] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（成功），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1475164800123)\/","TotalPoint":5000,"TotalMoney":500,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:39:52 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:41:26,209 [8] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 对象名 'CS_DMS_Consume' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 118
+ClientConnectionId:5f79e70f-9bfd-45f3-9678-97707beb789a
+Error Number:208,State:1,Class:16
+<HR COLOR=blue>
+日志时间：2017-01-19 10:41:26,234 [8] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 对象名 'CS_DMS_Consume' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 118
+ClientConnectionId:5f79e70f-9bfd-45f3-9678-97707beb789a
+Error Number:208,State:1,Class:16
+<HR COLOR=blue>
+日志时间：2017-01-19 10:41:26,236 [8] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（成功），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1475164800123)\/","TotalPoint":5000,"TotalMoney":500,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:41:26 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:41:26,236 [8] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（成功），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1475164800123)\/","TotalPoint":5000,"TotalMoney":500,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:41:26 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:43:10,206 [10] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 对象名 'CS_DMS_Consume' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 118
+ClientConnectionId:42d7f57f-1013-42af-b8c9-a1f7469cba65
+Error Number:208,State:1,Class:16
+<HR COLOR=blue>
+日志时间：2017-01-19 10:43:10,290 [10] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 对象名 'CS_DMS_Consume' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 118
+ClientConnectionId:42d7f57f-1013-42af-b8c9-a1f7469cba65
+Error Number:208,State:1,Class:16
+<HR COLOR=blue>
+日志时间：2017-01-19 10:43:32,748 [10] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：{
+  "DealerId": "D1100",
+  "FromTime": "2016-09-01 00:00:00.123",
+  "EndTime": "2016-09-30 00:00:00.123",
+  "TotalPoint": "5000",
+  "TotalMoney": "500",
+  "ISAgree": "Y",
+  "IntegraList": [
+    {
+      "UserId": "sample string 1",
+      "Phone": "sample string 2",
+      "ConsumeType": "sample string 3",
+      "PointCost": null,
+      "TotalCost": 45,
+      "ConsumePoints": 100,
+      "RewardPoints": 20,
+      "ConsumeDate": "2016-09-01 00:00:00.123",
+     "Comment": "sample string 9",
+      "IdentityNumber": "sample string 10",
+      "VIN": "sample string 11"
+    },
+    {
+      "UserId": "sample string 1",
+      "Phone": "sample string 2",
+      "ConsumeType": "sample string 3",
+      "PointCost": 40,
+      "TotalCost": 50,
+      "ConsumePoints": 500,
+      "RewardPoints": 70,
+      "ConsumeDate": "2016-09-01 00:00:00.123",
+     "Comment": "sample string 9",
+      "IdentityNumber": "sample string 10",
+      "VIN": "sample string 11"
+    }
+  ]
+} <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:43:32,748 [10] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：{
+  "DealerId": "D1100",
+  "FromTime": "2016-09-01 00:00:00.123",
+  "EndTime": "2016-09-30 00:00:00.123",
+  "TotalPoint": "5000",
+  "TotalMoney": "500",
+  "ISAgree": "Y",
+  "IntegraList": [
+    {
+      "UserId": "sample string 1",
+      "Phone": "sample string 2",
+      "ConsumeType": "sample string 3",
+      "PointCost": null,
+      "TotalCost": 45,
+      "ConsumePoints": 100,
+      "RewardPoints": 20,
+      "ConsumeDate": "2016-09-01 00:00:00.123",
+     "Comment": "sample string 9",
+      "IdentityNumber": "sample string 10",
+      "VIN": "sample string 11"
+    },
+    {
+      "UserId": "sample string 1",
+      "Phone": "sample string 2",
+      "ConsumeType": "sample string 3",
+      "PointCost": 40,
+      "TotalCost": 50,
+      "ConsumePoints": 500,
+      "RewardPoints": 70,
+      "ConsumeDate": "2016-09-01 00:00:00.123",
+     "Comment": "sample string 9",
+      "IdentityNumber": "sample string 10",
+      "VIN": "sample string 11"
+    }
+  ]
+} <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:44:39,685 [9] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（成功），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1475164800123)\/","TotalPoint":5000,"TotalMoney":500,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:44:39 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 10:44:39,685 [9] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：调用GetDMSIntegralList接口积分结算过程中，DMS的积分清单（成功），方法：GetDMSIntegralList 传入参数：{"DealerId":"D1100","FromTime":"\/Date(1472659200123)\/","EndTime":"\/Date(1475164800123)\/","TotalPoint":5000,"TotalMoney":500,"ISAgree":"Y","IntegraList":[{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":0,"TotalCost":45,"ConsumePoints":100,"RewardPoints":20,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"},{"UserId":"sample string 1","Phone":"sample string 2","ConsumeType":"sample string 3","PointCost":40,"TotalCost":50,"ConsumePoints":500,"RewardPoints":70,"ConsumeDate":"\/Date(1472659200123)\/","Comment":"sample string 9","IdentityNumber":"sample string 10","VIN":"sample string 11"}]}||时间：2017/1/19 10:44:39 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 11:11:02,349 [9] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：请求内容:{
+  "DealerId": "D2233",
+  "FromTime": "2016-09-01 00:00:00.123",
+  "EndTime": "2016-09-30 00:00:00.123",
+  "TotalPoint": "5000",
+  "TotalMoney": "500",
+  "ISAgree": "Y",
+  "IntegraList": [
+    {
+      "UserId": "sample string 1",
+      "Phone": "sample string 2",
+      "ConsumeType": "sample string 3",
+      "PointCost": null,
+      "TotalCost": 45,
+      "ConsumePoints": 100,
+      "RewardPoints": 20,
+      "ConsumeDate": "2016-09-01 00:00:00.123",
+     "Comment": "sample string 9",
+      "IdentityNumber": "sample string 10",
+      "VIN": "sample string 11"
+    },
+    {
+      "UserId": "sample string 1",
+      "Phone": "sample string 2",
+      "ConsumeType": "sample string 3",
+      "PointCost": 40,
+      "TotalCost": 50,
+      "ConsumePoints": 500,
+      "RewardPoints": 70,
+      "ConsumeDate": "2016-09-01 00:00:00.123",
+     "Comment": "sample string 9",
+      "IdentityNumber": "sample string 10",
+      "VIN": "sample string 11"
+    }
+  ]
+} <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 11:11:02,349 [9] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：请求内容:{
+  "DealerId": "D2233",
+  "FromTime": "2016-09-01 00:00:00.123",
+  "EndTime": "2016-09-30 00:00:00.123",
+  "TotalPoint": "5000",
+  "TotalMoney": "500",
+  "ISAgree": "Y",
+  "IntegraList": [
+    {
+      "UserId": "sample string 1",
+      "Phone": "sample string 2",
+      "ConsumeType": "sample string 3",
+      "PointCost": null,
+      "TotalCost": 45,
+      "ConsumePoints": 100,
+      "RewardPoints": 20,
+      "ConsumeDate": "2016-09-01 00:00:00.123",
+     "Comment": "sample string 9",
+      "IdentityNumber": "sample string 10",
+      "VIN": "sample string 11"
+    },
+    {
+      "UserId": "sample string 1",
+      "Phone": "sample string 2",
+      "ConsumeType": "sample string 3",
+      "PointCost": 40,
+      "TotalCost": 50,
+      "ConsumePoints": 500,
+      "RewardPoints": 70,
+      "ConsumeDate": "2016-09-01 00:00:00.123",
+     "Comment": "sample string 9",
+      "IdentityNumber": "sample string 10",
+      "VIN": "sample string 11"
+    }
+  ]
+} <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 11:11:07,803 [9] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D2233 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 对象名 'CS_DMS_Consume' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 118
+ClientConnectionId:8efe6cad-99eb-4a42-b5e3-da786ba1a7fc
+Error Number:208,State:1,Class:16
+<HR COLOR=blue>
+日志时间：2017-01-19 11:11:07,848 [9] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D2233 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 对象名 'CS_DMS_Consume' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 118
+ClientConnectionId:8efe6cad-99eb-4a42-b5e3-da786ba1a7fc
+Error Number:208,State:1,Class:16
+<HR COLOR=blue>
+日志时间：2017-01-19 11:11:07,850 [9] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2017-01-19 11:11:07,850 [9] <BR>
+日志级别：INFO      <BR>
+日志类：loginfo [(null)] <BR>
+信息：                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\LogService.cs <BR>
+ <HR Size=1>

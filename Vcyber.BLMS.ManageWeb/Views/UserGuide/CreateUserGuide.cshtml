@@ -1,0 +1,89 @@
+﻿@{
+    Layout = null;
+}
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+<div class="container panel panel-default">
+    <div class="panel-body">
+        <strong>内容管理 - 创建电子手册</strong>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="row">
+        <form class="form-horizontal" name="form" ng-submit="createUserGuide(form.$valid)" novalidate>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><span style="color:red">*</span>标题:</label>
+                <div class="col-md-8">
+                    <input class="form-control" name="title" ng-model="createData.Title" placeholder="20个字以内" ng-maxlength="20" ng-required="true" />
+                    <span ng-show="form.title.$invalid">不能为空,20个字符内</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><span style="color:red">*</span>缩略图:</label>
+                <div class="col-md-8">
+                    <input class="form-control" ng-model="createData.ImageUrl" ng-show="0" />
+                    <img ng-src="{{createData.image}}" style="height: 100px; width: 200px" class="img-responsive">
+                    <input type="file" ng-file-select ng-file-change="upload($files,'uploadimage')" multiple accept="image/*">
+                    <div class="button" ng-file-select ng-file-change="upload($files,'uploadimage')" data-multiple="true"></div>
+                    <p class="label-warning">支持gif、jpeg、jpg、png格式，图片最大?建议上传尺寸：?</p>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><span style="color:red">*</span>资源:</label>
+                <div class="col-md-8">
+                    <input class="form-control" ng-model="createData.LinkUrl" ng-show="1" disabled />
+                    <input type="file" ng-file-select ng-file-change="upload($files,'uploadSource')" multiple>
+                    <div class="button" ng-file-select ng-file-change="upload($files,'uploadSource')" data-multiple="true"></div>
+                    <p class="label-warning">支持zip格式，最大?建议上传尺寸：?</p>
+
+                </div>
+            </div>
+           
+            <div class="form-group">
+                <label class="col-md-2 control-label"><span style="color:red">*</span>显示:</label>
+                <div class="col-md-8">
+                    <label class="radio-inline">
+                        <input type="radio" name="displayRadios" value="1" ng-model="createData.IsDisplay">
+                        是
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="displayRadios" value="0" ng-model="createData.IsDisplay" ng-checked="true">
+                        否
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><span style="color:red">*</span>简介:</label>
+                <div class="col-md-8">
+                    <textarea name="content" class="form-control" rows="4" ng-model="createData.Summary" ng-required="true" />
+                    <span ng-show="form.content.$invalid">不能为空</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    
+                    <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">保存</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

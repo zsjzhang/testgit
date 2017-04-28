@@ -1,0 +1,126 @@
+﻿@{
+    ViewBag.Title = "Rule";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>游戏规则</title>
+        <meta charset="utf-8">
+        <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="black" name="apple-mobile-web-app-status-bar-style">
+        <meta content="telephone=no" name="format-detection">
+        <meta content="email=no" name="format-detection">
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link href="~/css/MoreMemberMobile.css" rel="stylesheet" />
+        <link href="~/css/MoreMember.css" rel="stylesheet" />
+        <link href="~/css/MoreMemberMobile.css" rel="stylesheet" />
+        <style type="text/css">
+            .choose_btn {
+                width: 70%;
+                background: url('/Img/MoreMember/green.png') repeat-x;
+                color: #ffffff;
+                border: 0px;
+                height: 30px;
+            }
+
+            .choose {
+                position: fixed;
+                top: 40%;
+                text-align: center;
+                width: 300px;
+                height: 220px;
+                background: url('/Img/MoreMember/alertbg.png') no-repeat;
+            }
+        </style>
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Content/layer/layer.min.js"></script>
+        <script>
+            $(function () {
+                var objlyear = null;
+                //判断是否登录
+                $("#startGame").click(function () {
+                    $.ajax({
+                        url: "/MoreMemberMobile/GetLogin",
+                        type: "get",
+                        success: function (result) {
+                            if (result.msg == "true") { //已登录
+                                location.href = "/MoreMemberMobile/Game";
+                            }
+                            else {  //未登录
+                                objlyear = $.layer({
+                                    type: 1,   //0-4的选择,
+                                    title: false,
+                                    border: [0],
+                                    closeBtn: [0],
+                                    shadeClose: false,
+                                    area: ['92%', ''],
+                                    page: { dom: '.choose' }
+                                });
+                            }
+                            $(".xubox_shade").click(function () {
+                                layer.close(objlyear);
+                            })
+                        },
+                        error: function () {
+
+                        }
+
+                    })
+
+
+                });
+                $(".wati").click(function () {
+                    layer.close(objlyear);
+                })
+                //登录注册跳转
+                $("#register").click(function () {
+                    layer.close(objlyear);
+                    var returnUrl = "/MoreMemberMobile/Game";
+                    location.href = "/WapQuestionnaire/WapRegister?returnUrl=" + encodeURIComponent(returnUrl);
+                })
+                $("#login").click(function () {
+                    layer.close(objlyear);
+                    var returnUrl = "/MoreMemberMobile/Game";
+                    location.href = "/WapQuestionnaire/WapLogin?returnUrl=" + encodeURIComponent(returnUrl);
+                })
+            })
+        </script>
+    </head>
+    <body class="ruleBody">
+        <div id="wrap">
+            <div class="title" style="height:18px; width:100%;">
+            </div>
+            <div id="ruleTit" class="ruleTit">
+                <span>游戏规则</span>
+            </div>
+            <div id="content">
+                <p>在闽南地区4是福气如意的意思，所以以骰子中4点为标准评判获奖等级；具体规则如下：</p>
+                <p>1、两枚骰子点数相同且均为4点为状元，对应礼品为三星Gear 2 Neo智能手表</p>
+                <p>2、两枚骰子点数相同但不是4点为榜眼，对应礼品为卓棒Jawbone UP24智能手环</p>
+                <p>3、两枚骰子中有一枚为4点另一枚点数大于4为探花，对应礼品为旅行收纳四件套</p>
+                <p>4、两枚骰子中有一枚为4点另一枚点数小于4为进士，对应礼品为卡片式移动电源</p>
+                <p>5、两枚骰子点数均大于4点为举人，对应礼品为车载usb充电器</p>
+            </div>
+            <div id="footer">
+                <a href="/MoreMemberMobile/introduction" id="introduction">
+                    活动介绍
+                </a>
+                <a href="#" id="startGame">开始游戏</a>
+            </div>
+            <div class="choose" style="display:none">
+                <span>
+                    <a href="#" id="login"><input type="button" style="  margin-top: 80px;" class="choose_btn" value="登录" /></a>
+                    <a href="#" id="register"><input type="button" style="margin-top:15px;" class="choose_btn" value="注册" /></a>
+
+                </span>
+                <div style="margin-top:20px;">
+                    <a href="" class="wati">稍后再说</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+

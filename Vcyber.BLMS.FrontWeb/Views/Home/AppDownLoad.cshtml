@@ -1,0 +1,132 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "手机客户端下载&微信关注";
+}
+
+<div>
+    <style>
+        .kaquan_box {
+            height: 350px;
+            width: 99.8%;
+            border: 1px solid #EEEEEE;
+            margin-top: 20px;
+        }
+
+            .kaquan_box h2 {
+                height: 50px;
+                line-height: 50px;
+                font-size: 14px;
+                text-align: center;
+                background: #EEEEEE;
+            }
+
+            .kaquan_box ul {
+                width: 630px;
+                margin: 0 auto;
+                margin-top: 30px;
+            }
+
+            .kaquan_box li {
+                width: 300px;
+                height: 300px;
+                background: #eeeeee;
+                float: left;
+            }
+
+                .kaquan_box li:last-child {
+                    margin-right: 0;
+                }
+
+                .kaquan_box li img {
+                    display: block;
+                    margin: 0 auto;
+                    width: 200px;
+                    height: 200px;
+                    margin-top: 18px;
+                }
+
+        .kaquan_b {
+            color: #004587;
+        }
+
+        .kaquan_box li a {
+            height: 38px;
+            line-height: 38px;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 21px;
+        }
+
+        .kaquan_box li span {
+            font-size: 12px;
+            text-align: center;
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "APPDownLoad" })
+    </div>
+    <div class="n_all_cont">
+
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+        </div>
+        <div class="n_right_cont">
+            <p class="select_menu"><a href="/Home/Default">首页 ></a><a href="">手机客户端下载&微信关注</a></p>
+            <div class="gy_cont" id="AppDownLoadTerminal" style="margin-top:0;">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>bluemembers手机客户端下载</h1>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="kaquan_box">
+                    <ul>
+                        <!--<li>
+                            <img src="/img/anzhuoAppAddress.png">
+                            <a href="http://app.beijing-hyundai.com.cn/app/hclub.apk"><img style="width:140px;height:40px;" src="/img/anzhuo.png"></a>
+                        </li>-->
+                        <li style="margin-left: 160px;">
+                            <a href="http://itunes.apple.com/us/app/id652757799">
+                                <img src="/img/iosAppAddress.png">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+         
+
+        </div>
+
+
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>
+
+

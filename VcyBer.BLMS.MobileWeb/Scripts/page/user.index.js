@@ -1,0 +1,6 @@
+﻿var UserIndexScripts = function () {
+	
+	$(function () {
+	});
+
+}();

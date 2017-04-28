@@ -1,0 +1,121 @@
+﻿@model List<Vcyber.BLMS.Entity.MemberReportInfo>
+@{
+    ViewBag.Title = "会员信息总表";
+    ViewBag.TitleFocus = "2-2-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Vcyber.BLMS.ManageWeb.Helper
+<script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+<style type="text/css">
+    li {
+        margin: 5px;
+    }
+
+        li span {
+            margin-left: 10px;
+            text-align: left;
+        }
+
+    .input_text2 {
+        width: 200px;
+    }
+
+    .input_text1 {
+        width: 200px;
+    }
+</style>
+<div class="path">
+    
+</div>
+<div style="height:20px;"></div>
+<div class="panel panel-default">
+    <table class="table table-bordered table-responsive">
+        <tr>
+            <td>姓名：</td>
+            <td><input type="text" class="input_text1" id="txtname" /></td>
+            <td>手机号：</td>
+            <td><input type="text" class="input_text1" id="txtphone" /></td>
+            <td>身份证号：</td>
+            <td><input type="text" class="input_text1" id="txtidentity" /></td>
+        </tr>
+        <tr>
+            <td>特约店:</td>
+            <td>@Html.DropDownList("dealerName", StoreHelpr.GetDealerList(), new { @class = "input_text2" })</td>
+            <td>车型:</td>
+            <td>@Html.DropDownList("carCategoryName", StoreHelpr.GetCarCategoryList(), new { @class = "input_text2" })</td>
+            <td>银卡申请状态:</td>
+            <td>@Html.DropDownList("ykStatus", StoreHelpr.GetYKStatus(), new { @class = "input_text2" })</td>
+        </tr>
+        <tr>
+            <td>会员等级:</td>
+            <td>@Html.DropDownList("mlevel", StoreHelpr.GetMLevel(), new { @class = "input_text2" })</td>
+            <td>入会方式:</td>
+            <td colspan="4">@Html.DropDownList("inputMode", StoreHelpr.GetInputMode(), new { @class = "input_text2" })</td>
+        </tr>
+        <tr>
+            <td>注册时间：</td>
+            <td colspan="4">@(Html.TextBox("startTime", "", new { @class = "input_text1", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd',isShowWeek:true,isShowClear:true,readOnly:true})" }))至@(Html.TextBox("endTime", "", new { @class = "input_text1", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd',isShowWeek:true,isShowClear:true,readOnly:true})" }))</td>
+            <td>
+                <input type="button" value="查询" onclick="search();" class="btn btn-primary" />
+                <input class="btn btn-primary" type="submit" onclick="toReportExcel()" value="导出" />
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="divPageList">
+    @{
+        Html.RenderAction("MemberPartialPage", new { index = 1, size = 10 });
+    }
+</div>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    //列表分页
+    function GetPageList(pageIndex) {
+        var data = {
+            RealName: $("#txtname").val().trim(),
+            PhoneNumber: $("#txtphone").val().trim(),
+            IdentityNumber: $("#txtidentity").val().trim(),
+            Mlevel: $("#mlevel").val(),
+            DearlerId: $("#dealerName").val(),
+            CategoryName: $("#carCategoryName").val(),
+            InputMode: $("#inputMode").val(),
+            YKStatus: $("#ykStatus").val(),
+            RigerStartTime: $("#startTime").val(),
+            RigerEndTime: $("#endTime").val(),
+            index: pageIndex,
+            size: 10
+        };
+        var url = "@Url.Action("MemberPartialPage")";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function (msg) {
+                $('#divPageList').html(msg);
+            }
+        });
+    }
+
+    //保存查询条件
+    function search() {
+        GetPageList(1);
+    }
+
+    function toReportExcel() {
+
+        var RealName = $("#txtname").val().trim();
+        var PhoneNumber = $("#txtphone").val().trim();
+        var IdentityNumber = $("#txtidentity").val().trim();
+        var Mlevel = $("#mlevel").val();
+        var DearlerId = $("#dealerName").val();
+        var CategoryName = $("#carCategoryName").val();
+        var InputMode = $("#inputMode").val();
+        var YKStatus = $("#ykStatus").val();
+        var RigerStartTime = $("#startTime").val();
+        var RigerEndTime = $("#endTime").val();
+        window.location = '/Report/MemberExport?RealName=' + RealName + '&PhoneNumber=' + PhoneNumber + "&IdentityNumber=" + IdentityNumber +
+            "&Mlevel=" + Mlevel + "&DearlerId=" + DearlerId + "&CategoryName=" + CategoryName + "&InputMode=" + InputMode + "&YKStatus=" + YKStatus +
+            "&RigerStartTime=" + RigerStartTime + "&RigerEndTime=" + RigerEndTime;
+        return false;
+    }
+</script>

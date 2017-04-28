@@ -1,0 +1,70 @@
+﻿@model IEnumerable<string>
+@{
+    Layout = null;
+}
+
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+                top.location.hostname;
+                if (top.location.hostname != window.location.hostname) {
+                top.location.href =window.location.href;
+            }
+            }
+                catch(e){
+                top.location.href = window.location.href;
+            }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<div style="width: 568px; float: left; padding-left: 125px;">
+    <span style="width: 40%; float: left; margin-left:0;">
+        <label style=" width: 50px; float: left; height: 35px; line-height: 35px; color: #3D3F43;">省份：</label>
+        <select id="sltProvince" style="height: 35px; width:150px;" onchange="Dealer.city(this);">
+            <option value="-1">请选择</option>
+            @{
+                if (Model != null && Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <option>@item</option>
+                    }
+                }
+            }
+        </select>
+    </span>
+    <span style="width: 50%; float: left; margin-left: 0;">
+        <label style="width: 50px; float: left; height: 35px; line-height: 35px; color: #3D3F43; ">市：</label>
+        <select id="sltCity" style="height: 35px; width:200px;" onchange="Dealer.list(this, document.getElementById('sltProvince'));">
+            <option value="-1">请选择</option>
+        </select>
+    </span>
+</div>
+<div style="width: 568px; float: left; padding-left: 125px; margin-top:26px;">
+    <label style="font-size: 14px; height: 35px; width: 50px; float: left; line-height: 35px; color: #3D3F43;">
+        特约店:
+    </label>
+    <select id="sltDealer" style="width: 426px; height:35px;">
+        <option value="-1">请选择</option>
+    </select>
+</div>
+
+
+
+
+
+
+

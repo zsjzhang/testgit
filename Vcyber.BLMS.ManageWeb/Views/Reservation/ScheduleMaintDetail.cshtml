@@ -1,0 +1,76 @@
+﻿@model Vcyber.BLMS.Entity.Generated.CSSonataService
+
+@{
+    ViewBag.Title = "服务详情";
+    ViewBag.TitleFocus = "4-1-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">基本信息</div>
+    <table class="table table-bordered table-responsive">
+        <tr>
+            <td style="width: 10%">车型</td>
+            <td style="width: 40%">@Model.CarSeries</td>
+            <td style="width: 10%">经销商</td>
+            <td style="width: 40%">@Model.DealerName</td>
+        </tr>
+        <tr>
+            <td style="width: 10%">车牌号</td>
+            <td style="width: 40%">@Model.LicensePlate</td>
+            <td style="width: 10%">车架号</td>
+            <td style="width: 40%">@Model.VIN</td>
+        </tr>
+        <tr>
+            <td style="width: 10%">行车里程</td>
+            <td style="width: 40%">@Model.MileAge</td>
+            <td style="width: 10%">购车年份</td>
+            <td style="width: 40%">@Model.PurchaseYear</td>
+        </tr>
+        <tr>
+            <td style="width: 10%">服务项目</td>
+            <td style="width: 40%">
+                @{
+                string typevalue = "";
+                if (Model.MaintainType == 0)
+                {
+                    typevalue = "维修";
+                }
+                else if (Model.MaintainType == 1)
+                {
+                    typevalue = "保养";
+                }
+                else
+                {
+                    typevalue = "维保";
+                }
+            }@typevalue
+        </td>
+        <td style="width: 10%">预计到店时间</td>
+        <td style="width: 40%">@(Model.ScheduleDate == null ? "" : ((DateTime)Model.ScheduleDate).ToString("yyyy/MM/dd"))</td>
+    </tr>
+    <tr>
+        <td style="width: 10%">姓名</td>
+        <td style="width: 40%">@Model.UserName</td>
+        <td style="width: 10%">性别</td>
+        <td style="width: 40%">@{ string value = Model.UserSex==1 ? "男" : "女";}@value</td>
+    </tr>
+    <tr>
+        <td style="width: 10%">电子邮箱</td>
+        <td style="width: 40%">@Model.Email</td>
+        <td style="width: 10%">手机号</td>
+        <td style="width: 40%">@Model.Phone</td>
+    </tr>
+</table>
+<div class="panel-footing" style="padding: 10px 0px 10px 20px">
+    <button type="button" id="btn-submit-cs" class=" btn btn-primary"><i class="fa"></i>返回</button>
+</div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn-submit-cs').click(function () {
+            parent.history.back();
+            return false;
+        });
+    });
+</script>

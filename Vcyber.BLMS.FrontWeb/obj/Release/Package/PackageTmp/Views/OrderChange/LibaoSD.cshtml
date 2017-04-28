@@ -1,0 +1,72 @@
+﻿@{
+    Layout = null;
+}
+
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/ExChangeStyle.css">
+    <link rel="stylesheet" type="text/css" href="/css/ExChangeAward.css">
+    <link rel="stylesheet" type="text/css" href="/layer/skin/layer.css">
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <!--转动插件rotate,js-->
+    <script type="text/javascript" src="~/Scripts/ExChangeAwardRotate.js"></script>
+    <!--抽奖-->
+    <script type="text/javascript" src="~/Scripts/ExChangeAward.js"></script>
+    <!--弹出层layer-->
+    <script type="text/javascript" src="/layer/layer.js"></script>
+    <title>置换月活动_领取礼包（全新胜达）</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="mainBox libaoBoxSd">
+            <div class="header">
+                <dl>
+                    <dd class="on"><a href="/OrderChange/Index">首　页</a></dd>
+                    <dd><a href="/OrderChange/JieShao">活动介绍</a></dd>
+                    <dt><a href="/"></a></dt>
+                    <dd><a href="/OrderChange/JiangPing">奖品设置</a></dd>
+                    <dd><a href="/OrderChange/ZhongJiang">中奖名单</a></dd>
+                </dl>
+            </div>
+            <div class="mainCont bangding libaoCon">
+
+                <p>即日起至7月17日<br>预约试驾（置换）全新胜达即可参与抽奖</p>
+                <h3>全新胜达置换大礼包</h3>
+                <p>
+                    1、	购车分期2年期全贴息<br>
+                    2、	购车4000元置换补贴<br>
+                    3、	置换7000积分（参与置换）<br>
+                    或购车4000积分（成功购车）
+                </p>
+                <h3>蓝缤礼包（共100名）</h3>
+                <p>
+                    1、电子电影票*2<br>
+                    2、运动手环
+                </p>
+                <a href="/OrderChange/ShiJia?flag=2&source=@ViewBag.Source" class="btnLibao1">领取礼包</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?0b4e366e453f3524b50e08dc17833d51";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        _hmt.push(['_trackPageview', "/OrderChange/LibaoSD?Source=@ViewBag.Source"]);
+    </script>
+
+    <script type="text/javascript">
+        try {
+            if (/Android|webOS|iPhone|iPod|BlackBerry|iPad/i.test(navigator.userAgent)) {
+                window.location.href = window.location.protocol + "//" + window.location.host + "/weixin/OrderChange/GiftSD?Source=@ViewBag.Source";
+            }
+        } catch (e) { }
+    </script> 
+</body>
+</html>

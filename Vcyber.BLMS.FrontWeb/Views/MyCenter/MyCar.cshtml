@@ -1,0 +1,167 @@
+﻿@model Vcyber.BLMS.FrontWeb.Models.ApplicationUser
+@{
+    Layout = null;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<style>
+   .bluePopup .layui-layer-btn{ margin-top:-55px !important; padding-top:0px !important;}
+</style>
+<div class="geren_box me_car" style="position:relative;">
+    <div class="gy_title">
+        <div class="gy_zi">
+            <h1>我的爱车</h1>
+            <span>My Car</span>
+        </div>
+        <div class="gy_right">
+            <p> 如果车辆信息有误，</p>
+            <p>请及时拨打北京现代24小时服务热线400-800-1100咨询。</p>
+        </div>
+    </div>
+    @{
+        if (Model != null)
+        {
+            if ((Model.SystemMType == 1 && Model.MType == 1) || string.IsNullOrEmpty(Model.IdentityNumber))
+            {
+                <!--  我要认证开始  -->
+                <div class="renzheng_box">
+                    <p>您还没有认证车主，无法查看爱车信息。</p>
+                    <a href="javascript:void(0);" style="font-size:18px; border:1px solid #808080" id="mycenter_mycar_tocheck_carowner">我要绑定车辆</a>
+                </div>
+                <!--  我要认证结束  -->
+            }
+            else
+            {
+                IEnumerable<Vcyber.BLMS.Entity.Car> _carList = ViewData["mycarlist"] as IEnumerable<Vcyber.BLMS.Entity.Car>;
+                if (_carList != null && _carList.Any())
+                {
+                    <ul class="individual_6" style="width:610px;border:0; height:auto;float:left;">
+                        @foreach (var item in _carList)
+                        {
+                            <li style="width:250px;max-height:190px;">
+                                <a href="/MyCenter/MyCarDetail/@item.VIN" style="margin:0px;">
+                                    <img src="@item.PictureUrl" style="width:250px;">
+                                    <p style="text-align:center;">@item.CarCategory</p>
+                                </a>
+                                <span onclick="doModifyCarInfo('@item.VIN','@item.LicencePlate','@item.Mileage');" style=" cursor:pointer ;text-align: center; border: 1px solid #a0a0a0; width: 100px; background-color: #cbcbcb; margin-left: 70px; color: #444;">完善车辆信息</span>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <!--  车主没匹配到车开始  -->
+                    <div class="no_car">
+                        <p>尊敬的车主您好，您的车主身份尚在审核中，审核工作会在5个工作 </p>
+                        <p>日内结束，请您耐心等待。若5个工作日后，仍无法查看爱车信息， </p>
+                        <p>请及时致电北京现代24小时服务热线400-800-1100进行咨询。</p>
+                    </div>
+                    <!--  车主没匹配到车结束  -->
+                }
+            }
+
+        }
+    }
+    <div id="mycenter_mycar_setcarinfo_layer" style="display:none;width: 450px; height: 200px; z-index: 10; clear: both; position: absolute;border: 5px solid rgb(224, 224, 224); top: 100px; left: 110px; background-color: rgb(255, 255, 255);">
+        <iframe style="width:0; height:0; margin-top:-10px;" name="submitFrame" src="about:blank"></iframe>
+        <form class="container form-horizontal">
+            <div class="row form-group" style="width: 100%;float: left; margin:10px 0;">
+                <input type="hidden" id="mycenter_mycar_vin" name="vin" />
+                <label for="LicencePlate" class="col-md-4 control-label" style=" text-align: right; width: 20%; float: left; height: 48px; line-height: 48px;">车牌号：</label>
+                <div class="col-md-8" style="width: 80%;float: left;">
+                    <input name="LicencePlate" id="LicencePlate" type="text" style="display: block; width: 60%; height: 34px; padding: 6px 12px; font-size: 14px; line-height: 1.42857143; color: #555; background-color: #fff; background-image: none; border: 1px solid #ccc; border-radius: 4px; -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075); box-shadow: inset 0 1px 1px rgba(0,0,0,.075); -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s; -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s; transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s; " class="form-control" placeholder="车牌号" />
+                </div>
+            </div>
+            <div class="row form-group" style="width: 100%; float: left; margin: 10px 0;">
+                <label for="Mileage" class="col-md-4 control-label" style=" text-align: right; width: 20%; float: left; height: 48px; line-height: 48px;">行驶里程：</label>
+                <div class="col-md-8" style="width: 80%;float: left;">
+                    <input name="Mileage" id="Mileage" type="text" class="form-control" style="display: block;width: 60%;height: 34px;padding: 6px 12px; font-size: 14px;line-height: 1.42857143;color: #555;background-color: #fff;background-image: none;border: 1px solid #ccc; border-radius: 4px;-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);box-shadow: inset 0 1px 1px rgba(0,0,0,.075);-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s; transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;" placeholder="行驶里程" />
+                </div>
+            </div>
+            <div class="row form-group" style="float: left; width: 100%;">
+                <div class="col-md-6" style="float: left;width: 50%;text-align: center;">
+                    <input type="button" id="mycenter_car_save" style="display: inline-block; padding: 6px 12px; margin-bottom: 0; font-size: 14px; font-weight: 400; line-height: 1.42857143; text-align: center; white-space: nowrap; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; background-image: none; border: 1px solid transparent; border-radius: 4px; color: #fff; background-color: #337ab7; border-color: #2e6da4;" class="btn btn-primary" value="提交" onclick="doMycenterCarSave();" />
+                </div>
+                <div class="col-md-6" style="float: left;width: 50%;text-align: center;">
+                    <input type="button" style="display: inline-block; padding: 6px 12px; margin-bottom: 0; font-size: 14px; font-weight: 400; line-height: 1.42857143; text-align: center; white-space: nowrap; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; background-image: none; border: 1px solid transparent; border-radius: 4px; color: #333; background-color: #fff; border-color: #ccc; " class="btn btn-default" onclick="document.getElementById('mycenter_mycar_setcarinfo_layer').style.display = 'none';" value="取消" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@Html.Action("UploadProof","MyCenter")
+<script>
+    function doModifyCarInfo(vin, licencePlate, mileage) {
+        $("#mycenter_mycar_setcarinfo_layer").show();
+        $("#mycenter_mycar_vin").val(vin);
+        $("#Mileage").val(mileage);
+        $("#LicencePlate").val(licencePlate);
+        return false;
+    }
+
+    function doMycenterCarSave() {
+        var _vin = $("#mycenter_mycar_vin").val();
+        var _LicencePlate = $("#LicencePlate").val();
+        var _Mileage = $("#Mileage").val();
+        if (_vin == null || _vin == "") {
+            return false;
+        }
+        if (_LicencePlate == null || _LicencePlate == "") {
+            popWindownBlue( '请填写车牌号');
+            return false;
+        }
+        if (_Mileage == null || _Mileage == "" || isNaN(_Mileage)) {
+            $("#Mileage").val("")
+            popWindownBlue( '请填写行驶里程');
+            return false;
+        }
+        $.ajax({
+            url: "/MyCenter/ModifyCarInfo",
+            type: "post",
+            dataType: "json",
+            data: { vin: _vin, LicencePlate: _LicencePlate, Mileage: _Mileage },
+            success: function (result) {
+                if (result == null || !result.IsSuccess) {
+                    popWindownBlue( '更新失败');
+                    return false;
+                }
+                else if (result.IsSuccess) {
+                    popWindownBlue('更新成功', function () {   
+                        window.location = window.location;
+                    });
+                   
+                    return false;
+                }
+            },
+            error: function (err) {
+                popWindownBlue( "系统异常");
+                return false;
+            }
+        });
+    }
+</script>

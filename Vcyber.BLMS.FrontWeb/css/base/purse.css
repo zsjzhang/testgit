@@ -1,0 +1,43 @@
+.purse{
+	width: 1000px;
+	margin: 0 auto;
+	margin-top: 30px;
+	border: 1px solid #eee;
+	border-top: 2px solid #075090;
+	font-family: "微软雅黑";
+}
+.purse p{
+	width: 100%;
+	font-size: 16px;
+	line-height: 26px;
+	background: #eee;
+	color: #3D3D3D;
+	font-weight: bold;
+	height: 26px;
+	margin-top: 20px;
+}
+.purse p span{
+	margin-left: 180px;
+	float: left;
+}
+.purse p b{
+	float: right;
+	margin-right: 90px;
+}
+.purse ul{
+	overflow: -webkit-paged-y;
+}
+.purse li{
+	height: 79px;
+	border-bottom: 1px solid #eee;
+	width: 945px;
+	margin: 0 auto;
+	line-height: 79px;
+}
+.purse li span{
+	margin-left: 90px;
+	float: left;
+}
+.purse li b{
+	float: right;
+}

@@ -1,0 +1,116 @@
+﻿@model Vcyber.BLMS.Entity.CarService.OrderCarEntity
+@{
+    ViewBag.Title = "Add";
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+<h2>Add</h2>
+
+@using (Html.BeginForm())
+{
+    @*@Html.HiddenFor(model => model.UserId)*@
+    @Html.Hidden("UserId","010")
+    <div class="form-group">
+        @Html.LabelFor(model => model.CarSeries)
+        @Html.EditorFor(model => model.CarSeries)
+        @Html.ValidationMessageFor(model => model.CarSeries)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DealerId)
+        @Html.EditorFor(model => model.DealerId)
+        @Html.ValidationMessageFor(model => model.DealerId)
+
+    </div>
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.DealerName)
+        @Html.EditorFor(model => model.DealerName)
+        @Html.ValidationMessageFor(model => model.DealerName)
+
+    </div>
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.DealerCity)
+        @Html.EditorFor(model => model.DealerCity)
+        @Html.ValidationMessageFor(model => model.DealerCity)
+
+    </div>
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.DealerProvince)
+        @Html.EditorFor(model => model.DealerProvince)
+        @Html.ValidationMessageFor(model => model.DealerProvince)
+
+    </div>
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.UserName)
+        @Html.EditorFor(model => model.UserName)
+        @Html.ValidationMessageFor(model => model.UserName)
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.UserSex)
+        @Html.EditorFor(model => model.UserSex)
+        @Html.ValidationMessageFor(model => model.UserSex)
+
+    </div>
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.Phone)
+        @Html.EditorFor(model => model.Phone)
+        @Html.ValidationMessageFor(model => model.Phone)
+
+    </div>
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.Email)
+        @Html.EditorFor(model => model.Email)
+        @Html.ValidationMessageFor(model => model.Email)
+
+    </div>
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.ContactTime)
+        @Html.EditorFor(model => model.ContactTime)
+        @Html.ValidationMessageFor(model => model.ContactTime)
+
+    </div>
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.Comment)
+        @Html.EditorFor(model => model.Comment)
+        @Html.ValidationMessageFor(model => model.Comment)
+
+    </div>
+     <div class="btn-toolbar">
+        <button type="submit" class="btn btn-primary"><i class="fa"></i>提交</button>
+    </div>
+}
+

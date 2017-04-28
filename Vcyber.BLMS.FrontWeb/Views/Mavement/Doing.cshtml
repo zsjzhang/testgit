@@ -1,0 +1,285 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Activities>
+@{
+    Layout = null;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<div class="hot_Ac">
+    <div class="gy_title">
+        <div class="gy_zi">
+            <h1>热门活动</h1>
+            <span>Popular activities</span>
+        </div>
+    </div>
+    @{
+        if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+
+                <dl>
+                    <dt>
+                        <a href="/Mavement/Detail?id=@item.Id">
+                            <img src="@item.TrueMajorImageUrl">
+                        </a>
+                    </dt>
+                    <dd style="margin-left: 240px;">
+                        <a style="color: black; width: 100%; text-align: left; height: 36px; position:relative;" target="_blank" href="/Mavement/Detail?id=@item.Id">
+                            <h3 style=" width: 333px; overflow: hidden; height: 36px; float: left;">@item.Title</h3>
+                            <div id="@("donghua-dianzan-position-auto"+item.Id)" data-id="@item.Id" class="donghua_dianzan" style="margin: 0;  width: 31px; height: 36px; line-height: 36px; color: #fff; border-radius: 18px; background: #f46428 url(/img/praise.png) no-repeat 8px 8px; float: left; position: absolute; text-align: right; padding-right: 5px; left:338px; "></div>
+                        </a>
+
+                        <span style=" height: 32px; float: left; width: 413px; line-height:32px;">活动时间：@item.BeginTime.ToString("yyyy/MM/dd") 至 @item.EndTime.ToString("yyyy/MM/dd")</span>
+
+
+                        @if (item.BeginTime > DateTime.Now)
+                        {
+                            <a href="javascript:void();" class="jjks" style="cursor: default; width: 108px; float: left; margin-right: 320px; margin-top: 0;">即将开始</a>
+                        }
+                        else
+                        {
+                            <a href="/Mavement/Detail?id=@item.Id" class="jjks" style="  width: 108px;float: left;margin-right: 320px; margin-top:0;">正在进行</a>
+                        }
+                        <p>
+                            @item.Summary
+                        </p>
+                    </dd>
+                </dl>
+            }
+        }
+    }
+</div>
+<script>
+    var praiseLib = function (typeValue, idValue) {
+        this._type = typeValue;
+        this._id = idValue;
+        //是否登录可以点赞
+        this._isTrue = false;
+        //点赞数量
+        this._praiseCount = 0;
+        //判断是否重复点击
+        this._isDobble = true;
+        //当前用户状态
+        this._status = -1;
+        //当前用户点赞获得的蓝豆奖励
+        this._praiseBlueBean = 15;
+        //当前用户的级别
+        this._mlevel = 3;
+
+        this.isPraise = function () {
+            var that = this;
+            $.ajax({
+                url: "/Account/IsParaise",
+                type: "get",
+                data: { type: that._type, id: that._id, t: (new Date()).getTime() },
+                dataType: "json",
+                success: function (resultData) {
+                    if (!resultData || !resultData.code || resultData.curCount < -1) {
+                        that._status = "400";
+                        return false;
+                    }
+                    else if (resultData.code == "200") {
+                        that._status = resultData.code;
+                        _count = resultData.curCount;
+                        that._mlevel = Number(resultData.level);
+                        if (that._mlevel <= 1) {
+                            that._praiseBlueBean = 0;
+                        } else if (that._mlevel == 2) {
+                            that._praiseBlueBean = 10;
+                        }
+                        return false;
+                    } else {
+                        that._status = resultData.code;
+                        _count = resultData.curCount;
+                        return false;
+                    }
+                },
+                complete: function (xhr) {
+                    that._isTrue = true;
+                    xhr = null;
+                }
+            });
+        };
+        this.praiseCount = function () {
+            var that = this;
+            $.ajax({
+                url: "/Account/PraiseCount",
+                type: "get",
+                data: { type: that._type, id: that._id, t: (new Date()).getTime() },
+                dataType: "json",
+                success: function (resultCount) {
+                    that._praiseCount = resultCount.content;
+                },
+                error: function (xhrcount) {
+                    xhrcount = null;
+                    return false;
+                }
+            });
+        };
+        this.animatePraise = function () {
+            var that = this;
+            if (!that._isDobble) {
+                return false;
+            }
+            if (window.addEventListener) {
+                //第一：获得点赞数直接赋值给将要拉伸的div
+                var _donghua = $("#donghua-dianzan-position-auto" + that._id);
+                
+                var _content = parseInt(that._praiseCount) + 1;
+                //第四：将相加的结果重新赋值给拉伸的div
+                $(_donghua).animate({ width: '75px' }, 500, function () {
+                    $(_donghua).html(_content);
+                });
+
+                if (that._mlevel > 1) {
+                    $(_donghua).animate({ width: '75px' }, 500);
+                    //第五：拉伸的div恢复原始大小，并且去掉点赞的背景图
+                    $(_donghua).animate({ width: '31px' }, 100, function () {
+                        $(_donghua).css({ "background-image": "" });
+                        $(_donghua).html("<div id='donghua-content" + that._id + "' style='text-align: center; margin:0; font-size:14px; color:#fff;margin-top:10px;  line-height: 18px; '>已获得" + that._praiseBlueBean + "蓝豆</div>");
+                    });
+                    //第六：将恢复原始大小的div放大
+                    $(_donghua).animate({ width: '60px', height: '60px', "padding-right": "0", "border-radius": "30px", top: "-80px", "line-height": "60px" }, 200);
+                    $(_donghua).animate({ width: '60px', height: '60px', "padding-right": "0", "border-radius": "30px", top: "-80px", "line-height": "60px" }, 500, function () {
+                        var _donghuacount = 0;
+                        var s = setInterval(function () {
+                            $("#donghua-content" + that._id).animate({ "font-size": "12px", "color": "#f00" }, 50);
+                            $("#donghua-content" + that._id).animate({ "font-size": "14px", "color": "#fff" }, 20);
+                            _donghuacount++;
+                            if (_donghuacount == 2) {
+                                clearInterval(s);
+                                $(_donghua).animate({ "top": "0", "left": "338px", "width": "75px", "height": "36px", "line-height": "36px", "color": "#fff", "border-radius": "18px", "float": "left", "position": "absolute", "padding-right": "5px" }, 500, function () {
+                                    $(_donghua).css({ background: "#f46428 url(/img/praise.png) no-repeat 8px 8px" });
+                                    $(_donghua).html(_content);
+                                });
+                            }
+                        }, 70);
+                    });
+                    return false;
+                }
+            }
+            else if (navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion.split(";")[1].replace(/[ ]/g, "") == "MSIE8.0") {
+                console.info("ie8");
+            }
+        }
+
+        //鼠标放在上面
+        this.mouseoverAnimate = function () {
+            var that = this;
+            var _donghua = $("#donghua-dianzan-position-auto" + that._id);
+            $(_donghua).html(that._praiseCount);
+            //第二：div拉伸
+            $(_donghua).animate({ width: '75px' }, 100);
+            return false;
+        }
+
+        this.mouseoutAnimate = function () {
+            var that = this;
+            var _donghua = $("#donghua-dianzan-position-auto" + that._id);
+            $(_donghua).animate({ width: '31px' }, 100, function () {
+                $(_donghua).html("");
+            });
+            return false;
+        }
+        this.doPraise = function () {
+            var that = this;
+            if (!that._isDobble) {
+                return false;
+            }
+            that._isDobble = false;
+            $.ajax({
+                url: "/Account/DoPraise",
+                type: "get",
+                data: { type: that._type, id: that._id, t: (new Date()).getTime() },
+                dataType: "json",
+                success: function (resultDo) {
+                    that._praiseCount++;
+                    _count++;
+                    that._isDobble = true;
+                },
+                complete: function (xhr) {
+                    xhr = null;
+                    that._isDobble = true;
+                }
+            });
+        };
+        this.do = function () {
+            if (this._isTrue) {
+                if (!this._isDobble) {
+                    return false;
+                }
+                if (this._status == "400") {
+                    var _index = layer.tips("参数错误", '#donghua-dianzan-position-auto' + this._id, {
+                        tips: [1, '#3595CC'],
+                        time: 4000
+                    });
+                    setTimeout(function () { layer.close(_index); }, 3000);
+                    return false;
+                } else if (this._status == "401") {
+                    var _index = layer.tips("登录后才能点赞哦", '#donghua-dianzan-position-auto' + this._id, {
+                        tips: [1, '#3595CC'],
+                        time: 4000
+                    });
+                    setTimeout(function () { layer.close(_index); }, 3000);
+                    return false;
+                }
+                else if (this._status == "201" || _count >= 3) {// 
+                    var _index = layer.tips('您点赞的次数已经超过规定的3次', '#donghua-dianzan-position-auto' + this._id, {
+                        tips: [1, '#3595CC'],
+                        time: 4000
+                    });
+                    setTimeout(function () { layer.close(_index); }, 3000);
+                    return false;
+                }
+                this.animatePraise();
+                this.doPraise();
+            }
+        }
+        this.isPraise();
+        this.praiseCount();
+    }
+
+    $(function () {
+        _count = -1;
+        $(".donghua_dianzan").each(function (i, obj) {
+            var praiseObj = new praiseLib(1, $(obj).attr("data-id"));
+            $(obj).on("click", function () {
+                praiseObj.do();
+                return false;
+            });
+            $(obj).hover(
+                function () {
+                    praiseObj.mouseoverAnimate();
+                },
+                function () {
+                    praiseObj.mouseoutAnimate();
+                }
+            );
+        });
+    });
+</script>

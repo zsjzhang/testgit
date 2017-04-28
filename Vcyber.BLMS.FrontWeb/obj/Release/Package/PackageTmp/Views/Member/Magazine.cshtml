@@ -1,0 +1,46 @@
+﻿
+<div>
+    @Html.Action("HomeHeader", "Header")
+    <div class="download">
+        @{
+            var magazineList = ViewData["MagazineList"];
+            if (magazineList != null && MagazineList.Any())
+            {
+                foreach (var items in magazineList)
+                {
+                    <div class="download_1">
+                        <span>@items.years</span>
+                        <div class="bg"></div>
+                    </div>
+                    <div class="download_2">
+                        @foreach (var item in items)
+                        {
+
+                            <dl>
+                                <dt>
+                                    <a href="#">
+                                        <img src="img/weird_2.png" />
+                                    </a>
+                                    <span>@item.title</span>
+                                </dt>
+                                <dd>
+                                    <div class="dd_1">本期看点</div>
+                                    <div class="subst">
+                                        <p>正青春</p>
+                                        <p>新能量</p>
+                                        <p>独特的12条路</p>
+                                    </div>
+                                    <a>
+                                        <span>下载</span>
+                                        <b>></b>
+                                    </a>
+                                </dd>
+                            </dl>
+                        }
+                    </div>
+                }
+            }
+        }
+    </div>
+    @Html.Action("Index", "Footer")
+</div>

@@ -1,0 +1,96 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.3&key=434378a9ebc771afdb9ecf0f7060dba9"></script>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/MapSearch.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>详细信息</title>
+
+    <script>
+        function GetRequest() {
+            var url = location.search; //获取url中"?"符后的字串
+            var theRequest = new Object();
+
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                strs = str.split("&");
+                for (var i = 0; i < strs.length; i++) {
+                    theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+                }
+            }
+            return theRequest;
+        }
+
+        $(function () {
+            mapObject.Init("mapDiv");
+
+            var Request = new Object();
+            Request = GetRequest();
+            var phoneNumber = Request['PhoneNumber'];
+            var createTime = Request['Time'].replace('%20', ' ');
+            var state = Request['State'];
+            var pos = Request['Position'];
+            var address = decodeURIComponent(Request['Address']);
+
+            var posArr = pos.split(',');
+
+            $("#phoneNumber").text(phoneNumber);
+            $("#createTime").text(createTime);
+            $("#state").text(state);
+            $("#address").text(address);
+
+            mapObject.AddToken(posArr[0], posArr[1], "位置", address, address);
+
+            var posotion = new AMap.LngLat(posArr[0], posArr[1]);
+            mapObject.Object.setZoomAndCenter(16, posotion);
+
+        });
+
+    </script>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+
+    <script>
+
+        $(function () {
+            if (self == top) {
+                var theBody = document.getElementsByTagName('body')[0];
+                theBody.style.display = "block";
+            } else {
+                top.location = self.location;
+            }
+        });
+
+
+    </script>
+</head>
+<body>
+    <div>
+        <div style="width: 800px; position: relative; margin-left: -400px; left: 50%;">
+            <ul style="list-style:none; height:35px; line-height:35px; margin-bottom:20px;">
+                <li style="float:left; width:30%;">手机号：<label id="phoneNumber"></label>  </li>
+                <li style="float: left; width: 30%;">时间：<label id="createTime"></label></li>
+                <li style="float: left; width: 30%;">已处理：<label id="state"></label></li>
+            </ul>
+        </div>
+        <div style="width:800px;position:relative; margin-left:-400px; margin-top:20px; left:50%;">
+            <ul style="list-style:none; height:35px; line-height:35px; margin-bottom:20px;">
+                <li style="float:left; width:50%;">地址：<label style="text-align:center" id="address"></label>  </li>
+                <li style="float: left; width: 50%;"></li>
+            </ul>
+        </div>
+        <div id="mapDiv" style="width:800px;height:400px; position:relative; margin-left:-400px; left:50%;">
+        </div>
+    </div>
+</body>
+</html>

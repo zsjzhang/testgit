@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Address>
+@{
+    Layout = null;
+}
+
+<div>
+    <div class="biaoti_title">
+        <dl>
+            <dt></dt>
+            <dd>
+                <h3>用户信息--收货地址</h3>
+                <p>User Information</p>
+            </dd>
+        </dl>
+    </div>
+
+    <div style="border: 1px solid #EEEEEE;padding-bottom: 60px;margin-bottom: 20px;">
+        <p class="shipping_a" style="display:none;">
+            收货地址：
+            <input type="hidden" id="myOrderAddressUserId" value="@ViewBag.userId" />
+        </p>
+        <div id="myOrderAddressList">
+            @Html.Action("AddressList", "User", new { userId = ViewBag.userId })
+        </div>
+        <input type="button" value="新增收货地址" id="btnOrderAddressCreateNewAddress" class="add_new_st">
+        <div id="OrderAddressCreateNewAddress" style="display:none;">
+            <form>
+                <p>
+                    <b>*</b>
+                    <input type="hidden" value="" id="myAddress_ID" />
+                    <label>收<span style="margin: 0 1px;"></span>货<span style="margin: 0 1px;"></span>人：</label>
+                    <input type="text" class="width_226" id="myOrderAddressReceiveName" name="myOrderAddressReceiveName">
+                </p>
+                <div class="choose_ad">
+                    <p style="margin-top: 6px;"><b>*</b><label>所在地区：</label></p>
+                    <span class="choose_A">
+                        <select id="myOrderAddressProvince" onchange="User.FindCityByProvince(this);">
+                            <option value="-1">请选择</option>
+                            @{
+                                List<Vcyber.BLMS.Common.City.Provinces> _provinceList = ViewData["provinceList"] as List<Vcyber.BLMS.Common.City.Provinces>;
+                                if (_provinceList != null && _provinceList.Any())
+                                {
+                                    foreach (var province in _provinceList)
+                                    {
+                                        <option value="@province.Code" title="@province.ID">@province.Name</option>
+                                    }
+                                }
+                            }
+                        </select>
+                    </span>
+                    <span class="choose_A" id="myOrderAddressCitySpan">
+                        <select id="myOrderAddressCity" onchange="User.FindAreasByCity(this);">
+                            <option value="-1">请选择</option>
+                        </select>
+                    </span>
+                    <span class="choose_A" id="myOrderAddressAreaSpan">
+                        <select id="myOrderAddressCounty">
+                            <option value="-1">请选择</option>
+                        </select>
+                    </span>
+                </div>
+                <p><b>*</b><label>详细地址：</label><input type="text" class="width_474" style="width:510px;" id="myOrderAddressDetail" name="myOrderAddressDetail" placeholder="不需要重复填写地区信息，只写明街道地址"></p>
+                <p><b>&nbsp;&nbsp;</b><label>邮政编码：</label><input type="text" class="width_226" id="myOrderAddressZipCode" name="myOrderAddressZipCode"></p>
+                <p><b>*</b><label>联系电话：</label><input type="text" class="width_226" @*style="width:120px; margin-right:11px;"*@ id="myOrderAddressPhone" name="myOrderAddressPhone">@*<button>获取验证码</button>*@</p>
+                <div class="moren_a">
+                    <span>
+                        <label for="myAddressIsDefault">
+                            <input type="checkbox" value="1" checked="checked" id="myOrderAddressIsDefault" name="myOrderAddressIsDefault">设置为默认收货地址
+                        </label>
+                    </span>
+                    <a id="btnOrderAddressSaveNewAddress" href="javascript:void(0);">确  认</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,173 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "Game";
+    string source = ViewBag.source;
+    
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>蓝缤车主汇-游戏</title>
+    <link rel="stylesheet" href="~/css/reset.css" />
+    <link rel="stylesheet" href="~/css/MemberMobile.css" />
+    <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+    <!--bootstrap-->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/buttons.css" rel="stylesheet">
+    <!--layer-->
+    <script src="~/Content/layer/layer.min.js"></script>
+    <script src="~/Scripts/MoreMember.js"></script>
+    <script src="~/Scripts/MoreMember.mobile.js"></script>
+
+</head>
+<body>
+    <div class="wrap">
+        <img src="/Img/MoreMember/MobileGmImg.jpg" class="bgImg" />
+        <div class="gamebg">
+            <canvas id="gameCanvas" width="320" height="210">
+                你的游览器不支持html5的画布元素，请升级到IE9+或使用firefox、chrome这类高级的智能游览器！
+            </canvas>
+            <img id="imgCar" src="~/Img/MoreMember/car.png" style="display:none;" />
+            <img id="imgGame" src="~/Img/MoreMember/gamebg.png" style="display:none;" />
+            @*<img src="/Img/MoreMember/mobilegame.png" />*@
+        </div>
+        <div class="point">
+            <span class="point_span">
+                <img id="imgPointA" class="point_img" src="/Img/MoreMember/point4.png" />
+            </span>
+            <span class="point_span">
+                <img id="imgPointB" class="point_img" src="/Img/MoreMember/point1.png" />
+            </span>
+        </div>
+        <div class="point">
+            <a href="@Url.Action("Index")" class="foot_game">
+                <input type="button" name="name" class="btn_happy" value="返回活动首页" style="width:120px;" />
+            </a>
+        </div>
+    </div>
+
+    <!--非车主会员-->
+    <div id="divJoin" class="lydiv lyjoin">
+        <div class="content">
+            <h3>非常抱歉，非车主会员不能参加！</h3>
+            <div class="op">
+                <a href="javascript:void(0)" onclick="hideLayer()"
+                   class="lybtn lybtn-position lybtn-ok"></a>
+            </div>
+        </div>
+    </div>
+    <!--已参加过-->
+    <div id="divAgain" class="lydiv lyagain">
+        <div class="content">
+            <div class="op">
+                <a href="javascript:void(0)" onclick="hideLayer()"
+                   class="lybtn lybtn-position lybtn-ok"></a>
+            </div>
+        </div>
+    </div>
+    <!--注册登录层-->
+    <div id="divLogin" class="lydiv lylogin">
+        <div class="content">
+            @*<h3>蓝缤车主汇 入会就有礼</h3>*@
+            <div class="op">
+                <a href="@Url.Action("AccountRegister", "Account", new { returnUrl = "/MoreMember/Index?source=" + ViewBag.source, source = ViewBag.source })"
+                   class="lybtn lybtn-reg"></a>
+            </div>
+            <div class="op">
+                <a href="@Url.Action("LogonPage", "Account", new { returnUrl = "/MoreMember/Index?source=" + ViewBag.source, source = ViewBag.source })"
+                   class="lybtn lybtn-log"></a>
+            </div>
+            <div class="op">
+                <a href="javascript:void(0)" onclick="hideLayer()">稍后再说</a>
+            </div>
+        </div>
+    </div>
+    <!--实体奖品登录层-->
+    <div id="divGoods" class="lydiv lygoods">
+        <div class="content">
+            <h3 id="hGoods"></h3>
+            <p id="pGoods"></p>
+            <div class="op">
+                <a href="javascript:void(0)" onclick="showInfos()"
+                   class="lybtn lybtn-get"></a>
+            </div>
+            <div class="op">
+                <a href="javascript:void(0)" onclick="hideLayer()">算了，不要了</a>
+            </div>
+        </div>
+    </div>
+    <!--填写信息层-->
+    <div id="divInfos" class="lydiv lyinfos">
+        <div class="content">
+            <h3 id="hLevel">恭喜您，抽中车载usb充电器奖品!</h3>
+            <p>为了能及时将礼品邮寄给您，请您准确填写邮寄信息</p>
+            <div class="ipuinfo">
+                <label>姓名</label>
+                <input type="text" class="iput" id="userName">
+            </div>
+            <div class="ipuinfo">
+                <label>手机号</label>
+                <input type="text" class="iput" id="userPhone">
+            </div>
+            <div class="ipuinfo">
+                <label>邮寄地址</label>
+                <select id="Province" onchange="FindCityByProvince(this);">
+                    <option value="-1">省</option>
+                    @{
+                        List<Vcyber.BLMS.Common.City.Provinces> _provinceList = ViewData["provinceList"] as List<Vcyber.BLMS.Common.City.Provinces>;
+                        if (_provinceList != null && _provinceList.Any())
+                        {
+                            foreach (var province in _provinceList)
+                            {
+                                <option value="@province.Code" title="@province.ID">@province.Name</option>
+                            }
+                        }
+                    }
+                </select>
+                <select id="City" onchange="FindAreasByCity(this);">
+                    <option value="-1">市</option>
+                </select>
+                <select id="Area">
+                    <option value="-1">区</option>
+                </select>
+            </div>
+            <div class="ipuinfo">
+                <label></label>
+                <input type="text" class="iput" id="userAddress" placeholder="详细地址">
+            </div>
+            <div class="op">
+                <a href="javascript:void(0)" onclick="editInfos()"
+                   class="lybtn lybtn-position lybtn-info"></a>
+            </div>
+        </div>
+    </div>
+    <!--信息完善提示层-->
+    <div id="divIknow" class="lydiv lykonws">
+        <div class="content">
+            <div class="op">
+                <a href="javascript:void(0)" onclick="hideLayer()"
+                   class="lybtn lybtn-position lybtn-know"></a>
+            </div>
+        </div>
+    </div>
+    <!--虚拟蓝豆层-->
+    <div id="divBeans" class="lydiv lybeans">
+        <div class="content">
+            <div class="op">
+                <a href="javascript:void(0)" onclick="hideLayer()"
+                   class="lybtn lybtn-position lybtn-know"></a>
+            </div>
+        </div>
+    </div>
+    @Html.Hidden("winningId")
+    @Html.Hidden("source", source)
+</body>
+</html>

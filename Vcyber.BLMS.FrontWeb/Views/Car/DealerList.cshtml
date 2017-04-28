@@ -1,0 +1,62 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "经销商查询";
+}
+
+<div>
+    @Html.Action("HomeHeader", "Header")
+    <div>
+        <div><label>经销商查询</label></div>
+        <div>
+            <div>
+                <span>
+                    <img alt="" />
+                </span>
+                <span>
+                    <label>北京市</label>
+                </span>
+                <span>
+                    <label>经销商查询</label>
+                </span>
+                <span>
+                    @Html.Action("ProvinceCity", "Car", new { })
+                </span>
+                <span>
+                    <button onclick="popWindownBlue( '查询经销商');">查询</button>
+                </span>
+            </div>
+            <div class="baidumap">
+
+            </div>
+            <div>
+                @{
+                    var dealerList = ViewData["queryDealerList"];
+                    if (dealerList != null)
+                    {
+                        foreach (var item in dealerList)
+                        {
+                            <div>
+                                <span>
+                                    <label>北京京汉新港汽车销售服务有限公司</label>
+                                </span>
+                                <span>
+                                    <label>位置：</label>
+                                    <label></label>
+                                </span>
+                                <span>
+                                    <label>咨询电话：</label>
+                                    <label></label>
+                                </span>
+                                <span>
+                                    <label>售后服务：</label>
+                                    <label></label>
+                                </span>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    @Html.Action("Index", "Footer")
+</div>

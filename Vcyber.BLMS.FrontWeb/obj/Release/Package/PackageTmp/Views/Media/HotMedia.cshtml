@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.ShareResources>           
+@{
+   var product = (Vcyber.BLMS.Entity.Product)ViewBag.hotProduct;
+    Layout = null;
+}
+
+<script>
+    $(document).ready(function () {
+        var curElem = $("#hotMediaMainTitle");
+        var lenval = curElem.text().length;
+        var wdiv = curElem.width();
+        var fsval = curElem.css("font-size");
+        var fsize = parseInt(fsval.substr(0, fsval.indexOf("px") + 1));
+        var lspanc = (wdiv - (lenval * fsize)) / (lenval - 1);
+        curElem.width(wdiv + lspanc);
+        if (lspanc > 0) {
+            curElem.css("letter-spacing", lspanc + "px");
+        }
+    });
+
+    /*TAB切换*/
+    $(function () {
+        function tabBoxEmp(btn, box, onAct, fn) {//btn=按钮;box=切换内容盒子;onAct=按钮切换状态;fn=触发事件
+            $(btn).on(fn, function () {
+                var n = $(this).index();
+                $(btn).removeClass(onAct);
+                $(this).addClass(onAct);
+                $(box).hide();
+                $(box).eq(n).show();
+
+
+            });
+        }
+        tabBoxEmp('.gy_titleA', '.brthDay', 'onActive', 'mouseover');
+
+    });
+</script>
+
+@if (Model != null)
+{
+    <div class="zzdow">
+        <div class="gy_cont">
+            <div class="gy_title">
+                @*<div class="gy_zi">
+                    <a href="/Media/List?pageName=Home">
+                        <h1>原创视频</h1>
+                        <span>Video Download</span>
+                        <img src="/img/arrow.png" class="arrow_n" />
+                    </a>
+                </div>*@
+                <a href="javascript:;" class="gy_titleA onActive">原创视频</a>
+                <a href="/Member/birthday" class="gy_titleA">生日特权</a>
+            </div>
+            @if (Model != null && Model.Any())
+            {
+                string _domain = System.Web.Configuration.WebConfigurationManager.AppSettings["ImgPath"];
+                foreach (var item in Model)
+                {
+                    <div class="gy_nr brthDay" style="display:block">
+                        <span style="float: left; margin: 0; width: 165px;">
+                            <a href="/media/Player?id=@item.Id">
+                                <img style="width: 145px; height: 211px; float: left;" src="@(string.Format("{0}/{1}", _domain, item.ListImageUrl))" />
+                            </a>
+                        </span>
+                        <span style=" width: 119px; margin: 0; float: right;">
+                            <h2 style="overflow: hidden; font-size: 20px; letter-spacing: 2.1px; font-family: 微软雅黑; line-height: 20px; text-align: right;margin-right:8px; margin-bottom: 5px; padding: 0; width:110px" id="hotMediaMainTitle">@item.Title</h2>
+                            <p style="overflow: hidden; font-size: 14px;font-family: 微软雅黑; line-height: 20px; text-align: right;margin: 0; margin-right: 11px;margin-bottom:5px; padding: 0; color: #474747; ">
+                                @item.SubTitle
+                            </p>
+                            <p class="gr_p" style="text-indent: 2em; font-size: 12px; padding-right: 8px; height: 118px; margin-bottom: 6px; overflow: hidden; line-height: 18px; text-align: justify; width: 110px; color: #767575; text-overflow: ellipsis;margin-left:0px; ">
+                                @item.Summary
+                            </p>
+                            <a onclick="addBlueBean()" href="/media/Player?id=@item.Id" style="margin-top: 7px; display: block; background: #075090; width: 110px; height: 30px; line-height: 30px; cursor: pointer;  float: left; text-align: center; color: white;">
+                                播放
+                            </a>
+                        </span>
+                    </div>
+                }
+            }
+            
+            <div class="gy_nr brthDay" style="display:none;">
+                <span style="float: left; margin: 0; width: 165px;">
+                    <a href="/Product/ProductDetail?productId=@product.ID">
+                        <img style="width: 145px; height: 211px; float: left;" src="@product.Image">
+                    </a>
+                </span>
+                <span style=" width: 119px; margin: 0; float: right;">
+                    <h2 style="overflow: hidden; font-size: 20px;  font-family: 微软雅黑; line-height: 20px; margin-right: 8px; margin-bottom: 5px; padding: 0px; width: 120px;" id="hotMediaMainTitle"></h2>
+                  
+                    <p class="gr_p" style="text-indent: 2em; font-size: 12px; padding-right: 8px; height: 143px; margin-bottom: 6px; overflow: hidden; line-height: 18px; text-align: justify; width: 110px; color: #767575; text-overflow: ellipsis;margin-left:0px; ">
+                        特别的礼遇，给特别的你!北京现代bluemembers打造专属您的生日礼遇。
+                    </p>
+                    <a href="/Member/birthday" style="margin-top: 27px; display: block; background: #075090; width: 110px; height: 30px; line-height: 30px; cursor: pointer;  float: left; text-align: center; color: white;">
+                        查看更多
+                    </a>
+                </span>
+            </div>
+
+        </div>
+    </div>
+}

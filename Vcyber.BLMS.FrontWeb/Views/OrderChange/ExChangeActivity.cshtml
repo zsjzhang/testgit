@@ -1,0 +1,570 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "置换活动";
+    var topActivity = (Vcyber.BLMS.Entity.XDActivity)ViewBag.topActivity;
+    var activityList = (IEnumerable<Vcyber.BLMS.Entity.XDActivity>)ViewBag.activityList;
+
+}
+@model  IEnumerable<Vcyber.BLMS.Entity.XDLotteryRecord>
+
+<style>
+    .gy_cont, .gy_list {
+        margin-top: 0;
+    }
+
+    .news .gy_nr2 dd h3, .gy_list_box dd h3 {
+        font-size: 16px;
+        font-weight: 600;
+        padding-top: 15px;
+    }
+
+    .gy_list_box dd p {
+        height: 63px;
+        overflow: hidden;
+        margin-top: 20px;
+    }
+
+    .zhihuanBox {
+        position: relative;
+        width: 693px;
+        border: 1px solid #eee;
+        margin-bottom: 40px;
+    }
+
+    .zhBanner {
+        width: 100%;
+        height: 262px;
+    }
+
+        .zhBanner img {
+            width: 100%;
+            height: 100%;
+        }
+
+    .zhTitleBox {
+        position: relative;
+        /*margin-top: 30px;
+        padding-left: 60px;*/
+        margin-top: 20px;
+        padding-left: 35px;
+        padding-right:35px;
+    }
+
+    .zhTitleBox p {
+        /*height: 24px;
+        line-height: 24px;*/
+        line-height: 24px;
+        font-size: 14px;
+    }
+
+    .zhTitleBox p span {
+        color: #0f61aa;
+        font-weight: bold;
+    }
+
+    .zhTitleBox p i {
+        color: #333;
+    }
+
+    .winListZh {
+        position: relative;
+        width: 100%;
+        height: 320px;
+        z-index: 88;
+    }
+
+        .winListZh .ListoverZh {
+            position: relative;
+            width: 120%;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .winListZh ul li {
+            float: left;
+            width: 270px;
+            height: 38px;
+            line-height: 38px;
+            padding-left: 18px;
+            border-bottom: 2px dotted #eee;
+            font-size: 14px;
+            color: #075090;
+            overflow: hidden;
+            font-family: '微软雅黑';
+            margin-right: 50px;
+        }
+
+            .winListZh ul li span {
+                display: block;
+                width: 85px;
+                float: left;
+            }
+
+            .winListZh ul li i {
+                margin-left: 50px;
+            }
+
+    .zhongjiangMD {
+        position: relative;
+        width: 640px;
+        border-top: 1px dashed #eee;
+        margin: 30px auto 0 auto;
+    }
+
+        .zhongjiangMD h2 {
+            color: #f58700;
+            font-size: 24px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+    .zjSearBox {
+        position: relative;
+        margin: 30px auto 45px auto;
+        height: 34px;
+        width: 352px;
+        overflow: hidden;
+    }
+
+        .zjSearBox input {
+            float: left;
+            width: 238px;
+            height: 29px;
+            border: 0;
+            padding-left: 12px;
+            background: #f8fbfd;
+            color: #333;
+            border: 1px solid #eee;
+            border-right: 0;
+            outline: none;
+        }
+
+        .zjSearBox span {
+            float: left;
+            display: block;
+            width: 100px;
+            height: 33px;
+            line-height: 33px;
+            background: #075090;
+            color: #fff;
+            text-align: center;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+            .zjSearBox span:hover {
+                background: #0b63b7;
+            }
+
+    .zjListTitBox {
+        position: relative;
+        width: 100%;
+        border-bottom: 1px dashed #eee;
+        color: #f58700;
+        font-weight: bold;
+        overflow: hidden;
+        height: 24px;
+        margin-bottom: 20px;
+    }
+
+        .zjListTitBox li {
+            float: left;
+        }
+
+    .zjTit1 {
+        padding-left: 18px;
+        width: 85px;
+    }
+
+    .zjTit2 {
+        padding-left: 50px;
+        width: 185px;
+    }
+
+    .zjTit3 {
+        padding-left: 50px;
+        width: 85px;
+    }
+
+    .apply_array div.zhStay {
+        width: 100%;
+        height: 187px;
+        line-height: 187px;
+        margin: 0;
+        background: #e6e6e6;
+        font-size: 16px;
+        text-align: center;
+        color: #666;
+    }
+    .yyrk_cont a.czpjOpt {
+        position: absolute;
+        top: 232px;
+        left: 0;
+        width: 100%;
+        height: 53px;
+        line-height: 53px;
+        text-align: center;
+        border-top: 3px solid #fff;
+        background: #eee;
+        font-weight: bold;
+        color: #3d3f43;
+        font-size: 15px;
+        color: #757575;
+    }
+
+    .czpjOpt span {
+        display: inline-block;
+        width: 100px;
+        height: 19px;
+        line-height: 19px;
+        padding-left: 25px;
+        background: url(/img/n5.png) no-repeat;
+    }
+    .logon h1{ white-space:nowrap; text-overflow:ellipsis; overflow:hidden;height: 20px; font-size:16px; font-weight:bold; width:126px; margin:0; margin-bottom:9px; color:#0a5090;}
+.tuNiuImg{ width:100%; height:32px; margin-bottom:9px; overflow:hidden; }
+.logon dl dt{ float:left; width: 119px; height:119px; border:1px solid #a6a6a6; padding:4px; overflow:hidden; border-radius:3px; background:#fff; margin-top:25px; margin-left:14px;}
+.logon dl dt img{ width:100%; height:100%; text-align:center; vertical-align:middle;}
+.logon dl dd{ float:left; width:126px; height:140px; margin-top:25px; margin-left:12px;}
+.logon em{ display:block; background: url(img/logMeg.png) no-repeat left center; padding-left:31px; font-size:14px;color:#f49600; line-height:20px; overflow:hidden;}
+.logon span{color:#0a5090; font-size:14px; line-height:25px; }
+    .fywz_name {
+        height: 230px;
+    }
+    .megBox{ position: relative; display:inline-block; width:21px; height:20px; background:url(img/megIcon.png) no-repeat center; top:5px;}
+.megBoxOn{ position:absolute; display:block; width:7px; height:7px; background:#f49600; border-radius:50%; right:-4px; top:-1px;}
+#menus li{ position:relative; text-align:center;}
+#menus li a{ display:inline-block;}
+
+</style>
+<script type="text/javascript">
+    $(function () {
+        //中奖名单滚动数值
+        var oLiH = $('.ListoverZh').find('li:eq(1)').height();
+        var oUlH = oLiH * Math.ceil($('.ListoverZh').find('li').length / 2);
+        $('.ListoverZh').find("ul").css('height', oUlH);
+
+        $('.ListoverZh').myScroll({
+            speed: 30, //数值越大，速度越慢
+            rowHeight: 40 //li的高度
+        });
+
+    });
+    // 中奖名单滚动
+    (function ($) {
+        $.fn.myScroll = function (options) {
+            //默认配置
+            var defaults = {
+                speed: 30,  //滚动速度,值越大速度越慢
+                rowHeight: 24 //每行的高度
+            };
+            var opts = $.extend({}, defaults, options), intId = [];
+            function marquee(obj, step) {
+
+
+                obj.find("ul").animate({
+                    marginTop: '-=1'
+                }, 0, function () {
+                    var s = Math.abs(parseInt($(this).css("margin-top")));
+                    if (s >= step) {
+                        $(this).find("li").slice(0, 2).appendTo($(this));
+                        $(this).css("margin-top", 0);
+                    }
+                });
+            }
+
+            this.each(function (i) {
+                var sh = opts["rowHeight"], speed = opts["speed"], _this = $(this);
+                intId[i] = setInterval(function () {
+                    if (_this.find("ul").height() <= _this.height()) {
+                        clearInterval(intId[i]);
+                    } else {
+                        marquee(_this, sh);
+                    }
+                }, speed);
+
+                _this.hover(function () {
+                    clearInterval(intId[i]);
+                }, function () {
+                    intId[i] = setInterval(function () {
+                        if (_this.find("ul").height() <= _this.height()) {
+                            clearInterval(intId[i]);
+                        } else {
+                            marquee(_this, sh);
+                        }
+                    }, speed);
+                });
+            });
+        }
+    })(jQuery);
+
+    //input输入框光标点入，默认文字消失
+    function inpTextF(id, text, att) {
+        $(id).focus(function () {
+            if ($(this).attr('placeholder')) {
+                $(this).attr(att, '');
+            }
+        });
+        $(id).blur(function () {
+
+            if ($(this).attr(att) == '') {
+                $(this).attr(att, text);
+            }
+        });
+    }
+    $(function () {
+        inpTextF('#searTel', '请输入手机号', 'placeholder');
+
+        $("#searchLottery").click(function () {
+            window.location.href = "/OrderChange/ExChangeActivity?activityId=@topActivity.ActivityId&searchActivityId=@topActivity.ActivityId&phone=" + $("#searTel").val();
+        });
+    });
+</script>
+
+
+
+
+
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "OrderChange" })
+    </div>
+    <div class="n_all_cont" style="height:1200px;">
+        <div class="n_left_cont">
+            <div class="center logon" style="width: 286px; height: auto; margin-top:0;">
+
+                <div class="logon" style=" margin-top:0px">
+                    @{
+                        if (this.User.Identity.IsAuthenticated)
+                        {
+                            @Html.Action("HomeLogonSuccess", "Account")
+                        }
+                        else
+                        {
+                            @Html.Action("HomeLogon", "Account")
+                        }
+                    }
+                </div>
+            </div>
+            <div class="homereserve">
+                @Html.Action("FindDealer", "Home")
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            @*<div class="homeproduct">
+                    @Html.Action("HotExchangeProductList", "Product")
+                </div>
+                <div class="homehotnews">
+                    @Html.Action("HotNewsRegion", "home")
+                </div>*@
+        </div>
+        <div class="n_right_cont">
+
+            <div class="zhihuanBox">
+                <div class="zhBanner">
+                    <img src="@topActivity.ActivityImage" />
+                </div>
+                <div class="zhTitleBox">
+                    @*<p>
+                        <span>活动主题：</span>
+                        <i>@topActivity.ActivityName</i>
+                    </p>
+                    <p>
+                        <span>推广车型：</span>
+                        <i>@topActivity.ActivityCarType</i>
+                    </p>
+                    <p>
+                        <span>活动时间：</span>
+                        <i>@Convert.ToDateTime(topActivity.ActivityStartTime).ToString("yyyy年MM月dd日")—@Convert.ToDateTime(topActivity.ActivityEndTime).ToString("MM月dd日")</i>
+                    </p>
+                    <p>
+                        <span>活动礼品：</span>
+                        <i>@topActivity.ActivityLotteryName</i>
+                    </p>*@
+                    <p>
+                        @Html.Raw(topActivity.TrueContent)
+                    </p>
+
+                </div>
+                <div class="zhongjiangMD">
+                    <h2>中奖名单</h2>
+                    <div class="zjSearBox">
+                        <input type="tel" placeholder="请输入手机号" id="searTel" />
+                        <span id="searchLottery">查询</span>
+                        
+                    </div>
+                    <ul class="zjListTitBox">
+                        <li class="zjTit1">中奖用户</li>
+                        <li class="zjTit2">奖品</li>
+                        <li class="zjTit1">中奖用户</li>
+                        <li class="zjTit3">奖品</li>
+                    </ul>
+                    <div class="winListZh">
+                        <div class="ListoverZh">
+                            <ul>
+                                @foreach (var m in Model)
+                                {
+                                    var tel = "";
+                                    if (!string.IsNullOrEmpty(m.UserMobile))
+                                    {
+                                        int entlen = m.UserMobile.Length - 4;
+                                        tel = string.Format("{0}****{1}", m.UserMobile.Substring(0, 3),
+                                            m.UserMobile.Substring(entlen, 4));
+                                    }
+                                    <li><span>@tel</span><i>@m.LotteryName</i></li>
+                                }
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="gy_cont product_show">
+
+                <div class="hot_Ac">
+                    <div class="gy_title">
+                        <div class="gy_zi">
+                            <h1>往期置换活动</h1>
+                            <span>Completed Displacement Activity</span>
+                        </div>
+                    </div>
+
+                    <div class="apply">
+
+                        <div class="img_l"><img src="~/Img/prev.png" id="pastPrevMovement"></div>
+
+                        <div class="apply_nav">
+                            <div class="apply_w" style="width:auto;" id="past_container">
+                                @{
+                                    int last = 0;
+                                    string id = "pastmovementid";
+                                    if (activityList != null && activityList.Any())
+                                    {
+                                        int initstartindex = 0;
+                                        int index = 0;
+
+                                        foreach (var item in activityList)
+                                        {
+                                            string _pastmovementid = "pastmovementid" + index;
+                                            <div class="apply_array" style="margin-right: 3px;" id="@_pastmovementid">
+                                                <a href="/OrderChange/ExChangeActivityDetail?activityId=@item.ActivityId">
+                                                    <img src="@item.ActivityImage">
+                                                </a>
+                                                <h3 style="height:24px; overflow:hidden;">
+                                                    <a href="/OrderChange/ExChangeActivityDetail?activityId=@item.ActivityId" style="background: #ffffff; color: #000000; font-size:18px; height:30px; line-height:30px; ">@item.ActivityName</a>
+                                                </h3>
+                                                @if (item.ActivityStartTime > DateTime.Now)
+                                                {
+                                                    <div>未开始</div>
+
+                                                }
+                                                else if (item.ActivityEndTime < DateTime.Now)
+                                                {
+                                                    <div>已结束</div>
+                                                }
+                                                else
+                                                {
+                                                    <div>进行中</div>
+                                                }
+                                            </div>
+                                                index++;
+                                                last = index;
+                                                @*<div class="apply_array" style="margin-right: 3px;" id="pastmovementid0">
+                                                        <a href="/OrderChange/ExChangeActivity?searchActivityId=@item.ActivityId">
+                                                            <img src="@item.ActivitySubImage">
+                                                        </a>
+                                                        <h3 style="height:24px; overflow:hidden;">
+                                                            <a href="/OrderChange/ExChangeActivity?searchActivityId=@item.ActivityId" style="background:#ffffff; color:#000000; font-size:18px; height:30px; line-height:30px; ">@item.ActivityName</a>
+                                                        </h3>
+                                                        <div>已结束</div>
+                                                    </div>*@
+                                        }
+                                        id = "pastmovementid" + last;
+                                <!--敬请期待-->
+                                        <div class="apply_array" style="margin-right: 3px;" id="@id">
+                                            <div class="zhStay">
+                                                敬请期待
+                                            </div>
+                                        </div>
+
+                                        <div style="display:none;">
+                                            <input type="hidden" id="pastmovementtotalcount" value="@activityList.Count()">
+                                            <input type="hidden" id="pastmovementstartindex" value="@initstartindex">
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+
+                        <div class="img_r"><img src="~/Img/next.png" id="pastNextMovement"></div>
+                    </div>
+                </div>
+
+                <script>
+                    $(function () {
+                        var totalCount = $("#pastmovementtotalcount").val();
+                        $("#pastPrevMovement").click(function () {
+                            try {
+                                var startIndex = $("#pastmovementstartindex").val();
+                                startIndex = parseInt(startIndex);
+                                if (totalCount <= 3 || startIndex <= 0) {
+                                    return;
+                                }
+                                var newStartIndexId = startIndex - 1;
+                                var startIndexId = "pastmovementid" + newStartIndexId;
+                                $("#" + startIndexId).show();
+                                $("#pastmovementstartindex").val(newStartIndexId);
+                            }
+                            catch (e) {
+                                console.log(e.message);
+                            }
+                            finally {
+
+                            }
+
+                        });
+                        $("#pastNextMovement").click(function () {
+                            try {
+                                var startIndex = $("#pastmovementstartindex").val();
+                                startIndex = parseInt(startIndex);
+                                if (totalCount <= 3 || startIndex + 3 >= totalCount) {
+                                    return;
+                                }
+                                var startIndexId = "pastmovementid" + startIndex;
+                                $("#" + startIndexId).hide();
+                                var newStartIndexId = parseInt(startIndex) + 1;
+                                $("#pastmovementstartindex").val(newStartIndexId);
+                            }
+                            catch (e) {
+                                console.log(e.message);
+                            }
+                            finally {
+
+                            }
+                        });
+                    });
+                </script>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="footer" style="float:left;">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?0b4e366e453f3524b50e08dc17833d51";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    _hmt.push(['_trackPageview', "/OrderChange/ZhongJiang?Source=@ViewBag.Source"]);
+</script>
+

@@ -1,0 +1,120 @@
+﻿@model List<Vcyber.BLMS.ManageWeb.Models.BBS.BBSGuestBook>
+@{
+    ViewBag.Title = "发帖管理";
+    ViewBag.TitleFocus = "2-2-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Vcyber.BLMS.ManageWeb.Helper
+<style type="text/css">
+    li span{
+        margin-left:10px;
+    }
+</style>
+<div class="path">
+    <a href="#">论坛管理</a>><a href="/BBSAdmin/Index">发帖管理</a>
+</div>
+<div style="height:20px;"></div>
+<div class="box_m1" style="border: 1px solid #dddddd; margin-bottom: 10px; padding-top: 10px">
+    <ul style="list-style:none;">
+        <li>
+            <span>标题：</span>
+            <input type="text" class="input_text1" id="txtname" />
+            <span>栏目： </span>
+            @Html.DropDownList("column", BBSHelper.GetColums(), new { @class = "input_text2" })
+            <span>是否审核： </span>             
+            @Html.DropDownList("approved", BBSHelper.GetApprovedState(), new { @class = "input_text2" })
+            <span>是否置顶： </span>
+            @Html.DropDownList("isTopped", BBSHelper.GetToppedState(), new { @class = "input_text2" })
+            <span>是否加精： </span>
+            @Html.DropDownList("isHoted", BBSHelper.GetHotState(), new { @class = "input_text2" })
+
+            <input type="button" value="查询" onclick="search();" class="btn btn-defaul" />&nbsp;&nbsp;
+
+        </li>
+    </ul>
+</div>
+<div id="divPageList">
+    @{
+        Html.RenderAction("PartialPage", new { index = 1, size = 10 });
+    }
+</div>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+    //列表分页
+    function GetPageList(pageIndex) {
+        var data = {
+            columnId: $('#column').val(),
+            title: $('#txtname').val(),
+            approved: $('#approved').val(),
+            isTopped: $('#isTopped').val(),
+            isHoted : $('#isHoted').val(),
+            index: pageIndex,
+            size: 10
+        };
+        var url = "@Url.Action("PartialPage")";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function (msg) {
+                $('#divPageList').html(msg);
+            }
+        });
+    }
+
+    //保存查询条件
+    function search() {
+        GetPageList(1);
+    }
+
+    function approve(id) {
+        $.post('/BBSAdmin/Approve', { id: id }, function (data) {
+            if (data == 'ok') {
+                $('#state-' + id).text('审核通过');
+
+                $("[productid='" + id + "']").filter("a").each(function () {
+                    if ($(this).is(":hidden")) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            } else {
+                alert('操作失败');
+            }
+        });
+    }
+    
+    //置顶、取消置顶
+    function zd(id,instance) {
+        $.post('/BBSAdmin/Top', { id: id }, function (data) {
+            if (data=="ok") {
+
+                var s = $(instance).text()=="取消置顶" ? '置顶' : '取消置顶';
+                $(instance).text(s); 
+                $(instance).parent().prev().text($(instance).text() == "取消置顶" ? 'True' : 'False');
+            } else {
+                alert('操作失败');
+            }
+        });
+    }
+
+    //加精、取消加精
+    function hot(id, instance) {
+        $.post('/BBSAdmin/Hot', { id: id }, function (data) {
+            if (data == "ok") {
+
+                var s = $(instance).text() == "取消加精" ? '加精' : '取消加精';
+                $(instance).text(s);
+                $(instance).parent().prev().text($(instance).text() == "取消加精" ? 'True' : 'False');
+            } else {
+                alert('操作失败');
+            }
+        });
+    }
+
+    function Delete() {
+        var result = confirm("确定要删除吗？");
+        return result;
+    }
+</script>

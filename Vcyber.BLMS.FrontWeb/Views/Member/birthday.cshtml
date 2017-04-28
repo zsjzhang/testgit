@@ -1,0 +1,460 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Product>
+@{
+    List<Vcyber.BLMS.Entity.ProductDetail> pdlist = (List<Vcyber.BLMS.Entity.ProductDetail>)ViewBag.pdetailList;
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "生日特权";
+}
+<style>
+    .zsyIntr {
+        width: 655px;
+        padding: 20px 10px;
+        line-height: 22px;
+        color: #3d3f43;
+    }
+
+        .zsyIntr p {
+            margin: 10px 0;
+            font-size: 12px;
+        }
+
+    .MediaListContentTitle {
+        font-size: 16px;
+        text-align: center;
+        font-weight: bold;
+        margin-top: 6px;
+        margin-bottom: 4px;
+    }
+
+    .MediaListContentSubTitle {
+        text-align: center;
+    }
+
+    .zsyIntr h2 {
+        font-size: 16px;
+        color: #3d3f43;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .zsyIntr p strong {
+        font-weight: bold;
+    }
+
+    .zsyIntr ol {
+        list-style-type: decimal;
+    }
+
+        .zsyIntr ol li {
+            font-size: 12px;
+            color: #767575;
+            margin-left: 20px;
+            width: 100%;
+            color: #3d3f43;
+        }
+
+    #slider ul li img {
+        width: 695px;
+        height: 262px;
+    }
+
+    #slider {
+        overflow: hidden;
+        height: 262px;
+        position: relative;
+        width: 695px;
+    }
+
+        #slider ol li {
+            cursor: pointer;
+        }
+
+    .imgBannerBox {
+        width: 695px;
+        height: 262px;
+    }
+
+        .imgBannerBox img {
+            width: 695px;
+            height: 262px;
+        }
+
+    .MediaList {
+        float: left;
+        width: 693px;
+        border: 1px solid #eee;
+    }
+
+    .MediaListLeft {
+        width: 305px;
+        float: left;
+        overflow: hidden;
+        margin: 20px;
+    }
+
+    .MediaListImg {
+        width: 150px;
+        height: 211px;
+        float: left;
+    }
+
+    .MediaListContent {
+        float: left;
+        width: 140px;
+        margin-left: 15px;
+    }
+
+    .medialistdefaultimg {
+        width: 147px;
+        height: 211px;
+    }
+
+    .MediaListContentTitle {
+        font-size: 20px;
+        font-family: 微软雅黑;
+        margin-bottom: 10px;
+        text-align: right;
+        overflow: hidden;
+        text-overflow: clip;
+        margin-right: 10px;
+        width: 122px;
+        height: 20px;
+    }
+
+    .MediaListContentSubTitle {
+        font-size: 14px;
+        width: 122px;
+        font-family: 微软雅黑;
+        margin-bottom: 10px;
+        text-align: right;
+        overflow: hidden;
+    }
+
+    .MediaListContentBrief {
+        margin: 10px 0;
+        font-size: 15px;
+        letter-spacing: 2px;
+        text-align: right;
+        font-family: 微软雅黑;
+        padding-right: 13px;
+    }
+
+    .MediaListContentIntroduction {
+        text-indent: 2em;
+        font-size: 12px;
+        padding-right: 13px;
+        height: 124px;
+        margin-bottom: 5px;
+        overflow: hidden;
+        line-height: 18px;
+        text-align: justify;
+        color: #767575;
+        width: 122px;
+        text-overflow: ellipsis;
+    }
+
+    .MediaListPlayButton {
+        width: 122px;
+        background: #075090;
+        display: block;
+        color: #fff;
+        text-align: center;
+        padding: 5px 0;
+    }
+
+    .RelatedListTitle {
+        height: 50px;
+        background: #ccc;
+        width: 695px;
+        position: relative;
+    }
+
+    .RelatedListTitleTag {
+        position: absolute;
+        height: 30px;
+        top: 10px;
+        background: #F49600;
+        width: 3px;
+        left: 30px;
+    }
+
+    .NavTitile {
+        margin-left: 50px;
+        line-height: 50px;
+        height: 50px;
+        font-size: 25px;
+        color: #333;
+    }
+
+    .pager {
+        margin: 20px 0;
+        float: left;
+    }
+
+    .pager-item {
+        border: 1px solid #eee;
+        margin-left: 5px;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        float: left;
+        text-align: center;
+        padding: 5px;
+        font-size: 12px;
+    }
+
+    .pager-item-first {
+        border: 1px solid #eee;
+        line-height: 20px;
+        float: left;
+        padding: 5px 10px;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    .pager-item-end {
+        border: 1px solid #eee;
+        margin-left: 5px;
+        line-height: 20px;
+        float: left;
+        padding: 5px 10px;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    .pager-cur {
+        background: #075090;
+        border: 1px solid #eee;
+    }
+
+        .pager-cur a {
+            color: #fff;
+        }
+
+    .curr {
+        background: #075090;
+        color: #fff;
+    }
+
+    .zsyIntr p {
+        font-size: 14px;
+    }
+
+    .zsyIntr ol li {
+        font-size: 14px;
+    }
+
+    .giftListBox {
+        height: 420px;
+        position: relative;
+        width: 693px;
+        margin: 0 auto;
+        border: 1px solid #efefef;
+        padding-bottom: 26px;
+    }
+
+        .giftListBox dl {
+            float: left;
+            width: 33.3%;
+            margin-top: 26px;
+        }
+
+            .giftListBox dl dt {
+                width: 110px;
+                height: 110px;
+                margin: 0 auto;
+                margin-bottom: 15px;
+            }
+
+                .giftListBox dl dt img {
+                    width: 100%;
+                    height: 100%;
+                }
+
+            .giftListBox dl dd.giftTit {
+                position: relative;
+                width: 80%;
+                margin: 0 auto;
+                text-align: center;
+                line-height: 20px;
+                color: #333;
+                font-size: 14px;
+                margin-bottom: 15px;
+                height: 42px;
+                overflow: hidden;
+            }
+
+                .giftListBox dl dd.giftTit a {
+                    color: #333;
+                }
+            /*.giftListBox dl dd.giftBtn{ position:relative; width:140px; height:30px; background:#004587; color:#fff; text-align:center; line-height:30px; font-size:14px; margin:0 auto;}*/
+            .giftListBox dl dd.giftBtn:hover {
+                background: #0b63b7;
+                cursor: pointer;
+            }
+
+    .giftListLiBox {
+        position: relative;
+        border-top: 1px solid #efefef;
+        margin: 0 2%;
+        margin-top: -1px;
+    }
+</style>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "BlueVIP" })
+    </div>
+    <div class="n_all_cont">
+        <div class="n_left_cont">
+            <div class="center logon" style="width: 286px; height: auto; margin-top: 0;">
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+        </div>
+        <div class="n_right_cont">
+            <div class="gy_title">
+                <div class="gy_zi">
+                    <h1>生日特权</h1>
+                    <span>Birthday Privileges</span>
+                </div>
+            </div>
+            <div class="imgBannerBox">
+                <a href="javaScript:;"><img src="/img/birthday_banner.jpg"></a>
+            </div>
+            <!-- <div id="slider">
+                <ul style="width: 5000px; left: 0px;">
+                    <li><a href="https://www.bluemembers.com.cn/Mavement/Detail?id=228" target="_blank"><img src="./index滚动_files/6359726721240689692173505.png" onerror="this.src = '/img/default_banner.png'"></a></li>
+                    <li><a href="https://www.bluemembers.com.cn/lingdong/pc" target="_blank"><img src="./index滚动_files/6359547379947654136870995.jpg" onerror="this.src = '/img/default_banner.png'"></a></li>
+                    <li><a href="https://www.bluemembers.com.cn/Mavement/Detail?id=224" target="_blank"><img src="./index滚动_files/6359435766284784407439565.jpg" onerror="this.src = '/img/default_banner.png'"></a></li>
+                    <li><a href="https://www.bluemembers.com.cn/Mavement/Detail?id=222" target="_blank"><img src="./index滚动_files/6359392059976618322521539.png" onerror="this.src = '/img/default_banner.png'"></a></li>
+                    <li><a href="https://www.bluemembers.com.cn/Mavement/Detail?id=220" target="_blank"><img src="./index滚动_files/6359305118961751846866949.jpg" onerror="this.src = '/img/default_banner.png'"></a></li>
+
+                </ul>
+
+            </div>-->
+            <script>
+                @*此JS放到页面底下*@
+                $('#slider').slider({
+                    nextBtn: ".next",
+                    prevBtn: ".prev",
+                    nums: true,
+                    numsClass: '.add',
+                    times: true,
+                    timer: 5000
+                });
+            </script>
+            <div class="zsyIntr">
+                <h2>金卡会员生日特别心意礼</h2>
+                <p>特别的礼遇，给特别的你!北京现代bluemembers打造专属金卡会员的生日礼遇。生日期间，您可以免费选择心仪的生日礼物一件，bluemembers给您过生日。</p>
+                <p><strong>服务对象：</strong>bluemembers金卡会员</p>
+                <p><strong>服务方式：</strong>生日当月，您可直接通过登录北京现代bluemembers官方网站生日专区，领取专属生日心意礼 </p>
+                <p><strong>客户流程：</strong></p>
+                <p>登录bluemembers——生日特权——选择心仪礼品——填写邮寄地址——提交完成——领取生日心意礼</p>
+                <p><strong>注意事项：</strong></p>
+                <ol type="1">
+                    <li>仅限生日当月的金卡会员领取，逾期视为自动放弃。</li>
+                    <li>请正确填写邮寄地址，以便礼品能够顺利寄出。实物礼品将在5个工作日内寄出，如遇节假日则顺延。卡券类礼品自动下发至个人中心我的钱包卡券。</li>
+                    <li>实物礼品随机寄出，不得指定颜色、型号等。</li>
+                    <li>您提供的个人信息只用于北京现代本次活动与您沟通联络时使用。本活动最终解释权归北京现代汽车有限公司所有，如有疑问请及时拨打北京现代24小时客服热线：400-800-1100（手机拨打）或咨询bluemembers在线客服。</li>
+                </ol>
+            </div>
+            <div class="gy_title">
+                <div class="gy_zi">
+                    <h1>特权礼品</h1>
+                    <span>The Golden Card Gift</span>
+
+                </div>
+            </div>
+            @*7.18号版本*@
+            <div class="giftListBox">
+                <div class="giftListLiBox clearfix">
+                    @foreach (var item in Model)
+                    {
+                        <dl>
+                            <dt><a href="/Product/ProductDetail?productId=@item.ID"><img src="@item.Image" /></a></dt>
+                            <dd class="giftTit"><a href="javascript:;">@item.Name</a></dd>
+                            @*<dd class="giftBtn">立即领取</dd>*@
+                        </dl>
+                    }
+
+                </div>
+            </div>
+            @*7.18之前的版本*@
+            @*<ul class="MediaList" id="MediaList">
+                    @foreach (var item in Model)
+                    {
+                        <li class="MediaListLeft">
+                            <div class="MediaListImg">
+                                <a href="#">
+                                    <img src="@item.Image" class="medialistdefaultimg">
+                                </a>
+                            </div>
+                            <div class="MediaListContent">
+                                <div class="MediaListContentTitle">@item.Name</div>
+                                <div class="MediaListContentSubTitle"></div>
+                                <div class="MediaListContentIntroduction">
+                                    @{
+                        string des = pdlist.Where(t => t.ProductID == item.ID).ToList().FirstOrDefault() != null ? pdlist.Where(t => t.ProductID == item.ID).ToList().FirstOrDefault().Description : "";
+                        @Html.Raw(System.Web.HttpUtility.UrlDecode(des));
+                                    }
+                                </div>
+                                <span>
+                                    <a class="MediaListPlayButton" href="javaScript:birthdayCollect(@item.ID,'@item.Name','@item.Image');">立即领取</a>
+                                </span>
+                            </div>
+                        </li>
+                    }
+                </ul>*@
+            <!--新增修改(新增160519)end-->
+            <ul class="pager">
+                @Html.Action("MallPager", "Pagers", new { pageIndex = ViewBag.pageIndex, pageSize = ViewBag.pageSize, totalCount = ViewBag.totalCount })
+                <script type="text/javascript">
+                            var goPager = function (pageIndex) {
+                                $.ajax({
+                                    url: "/Pagers/MallPager",
+                                    type: "get",
+                                    data: { pageIndex: pageIndex, pageSize: '@ViewBag.pageSize', totalCount: '@ViewBag.totalCount', t: (new Date()).getTime() },
+                                    success: function (pagerResult) {
+                                        $(".pager").html(pagerResult);
+                                    },
+                                    error: function (err) { }
+                                });
+                                $.ajax({
+                                    url: "/Member/ajaxBirthday",
+                                    type: "post",
+                                    data: { pageNum: pageIndex,categoryId:@ViewBag.categoryId, t: (new Date()).getTime() },
+                                    success: function (result) {
+                                        $(".giftListLiBox").html(result);
+                                    },
+                                    error: function (err) { }
+                                });
+
+                            }
+                </script>
+            </ul>
+        </div>
+
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

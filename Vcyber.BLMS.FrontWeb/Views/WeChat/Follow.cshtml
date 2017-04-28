@@ -1,0 +1,121 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <link rel="stylesheet" href="/css/reset.css" />
+    <title>剧院魅影</title>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+
+    <style>
+        .wrap {
+            width: 100%;
+            height: 100vh;
+        }
+
+        .background {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: block;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .wrap a {
+            display: block;
+            padding-top: 20px;
+        }
+
+            .wrap a img {
+                width: 40%;
+                height: auto;
+                float: right;
+                margin-right: 5%;
+                display: block;
+            }
+
+        .gj_ban {
+            padding-top: 40px;
+        }
+
+            .gj_ban img {
+                width: 90%;
+                display: block;
+                margin: 0 auto;
+            }
+
+        .sm_ew {
+            width: 40%;
+            margin: 0 auto;
+            margin-top: 30px;
+            background: #FFFFFF;
+        }
+
+            .sm_ew img {
+                width: 90%;
+                height: 90%;
+                padding: 5% 0;
+                margin: 0 auto;
+                display: block;
+            }
+
+        .wrap h2 {
+            text-align: center;
+            line-height: 40px;
+            font-size: 1.3em;
+            font-family: "微软雅黑";
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrap">
+        <img src="/img/musical/background.png" class="background" />
+        <a href=""><img src="/img/musical/web-bmlogo.png" /></a>
+        <div class="gj_ban">
+            <img src="/img/musical/gj_banner.png" />
+        </div>
+        <div class="sm_ew">
+            <img src="/img/musical/ewm.png" />
+        </div>
+        <h2>关注bluemembers，参与活动</h2>
+    </div>
+
+
+</body>
+</html>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>

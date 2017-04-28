@@ -1,0 +1,94 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "特约商户";
+}
+
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "BlueVIP" })
+    </div>
+    <div class="n_all_cont">
+
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+        </div>
+        <div class="n_right_cont">
+            <div class="gy_cont" style="margin-top:0;">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>途牛五星会员权益</h1>
+                        <span>Star Member Rights</span>
+                        <a href="/DealerNew/TuniuIndex"><img src="/img/arrow.png" class="arrow_n" /></a>
+                        @*<img src="/img/arrow.png" class="arrow_n" />*@
+                    </div>
+                </div>
+                <div class="hot_Ac" style="margin-top:0px;height: 193px;">
+                    <dl>
+                        <dt style="width:300px;">
+                            <a href="/DealerNew/TuniuIndex">
+                                <img src="/img/DealerNew/tuniu.jpg"
+                                     style="width: 296px;height: 174px;">
+                            </a>
+                        </dt>
+                        <dd>
+                            <h3><a href="/DealerNew/TuniuIndex" style="font-size: 24px;font-family: '微软雅黑';font-weight: normal;display: inline;color: #3D3F43;">途牛五星会员权益</a></h3>
+                            <p>bluemembers联合途牛旅游网为北京现代车主会员提供超值五星会员特权通道，享受全方位旅游服务贵宾权益。</p>
+                        </dd>
+                    </dl>
+                </div>
+
+            </div>
+
+            <div class="gy_cont" style="margin-top:0;margin-bottom:0;">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>礼悦会钻石会员权益</h1>
+                        <span>Diamond Membership</span>
+                        <a href="/DealerNew/LiyueIndex"><img src="/img/arrow.png" class="arrow_n" /></a>
+                    </div>
+                </div>
+                <div class="hot_Ac" style="margin-top:0px;height: 193px;">
+                    <dl>
+                        <dt style="width:300px"><a href="/DealerNew/LiyueIndex"><img src="/img/DealerNew/haihang.jpg" style="width: 296px;height: 174px;"></a></dt>
+                        <dd>
+                            <h3><a href="/DealerNew/LiyueIndex" style="font-size: 24px;font-family: '微软雅黑';font-weight: normal;display: inline;color: #3D3F43;">礼悦会钻石会员权益</a></h3>
+                            <p>bluemembers联合海航酒店集团忠诚计划——礼悦会为北京现代车主会员提供超值钻石级会员特权通道，享受高端完美酒店服务。</p>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            @Html.Action("HotProductsRegion", "Home")
+        </div>
+
+
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>
+
+

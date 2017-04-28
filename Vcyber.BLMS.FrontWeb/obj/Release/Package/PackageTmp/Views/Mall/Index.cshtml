@@ -1,0 +1,200 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "在线商城";
+}
+<!--商城首页-->
+<link href="~/css/base/Online-Store.css" rel="stylesheet" />
+<style>
+    /*   焦点图     */
+
+    .tab_silder {
+        width: 490px;
+        background: #000;
+        float: left;
+    }
+
+    #slider {
+        overflow: hidden;
+        height: 262px;
+        position: relative;
+        width: 490px;
+    }
+
+        #slider ul li {
+            float: left;
+            width: 490px;
+        }
+
+            #slider ul li img {
+                width: 490px;
+                height: 262px;
+            }
+
+        #slider ul {
+            position: relative;
+        }
+
+        #slider ol {
+            position: absolute;
+            bottom: 10px;
+            left: 34px;
+            color: #cecece;
+            z-index: 999;
+        }
+
+            #slider ol li {
+                float: left;
+                width: 9px;
+                height: 9px;
+                margin: 0 5px;
+                background: #fff;
+                border: 3px solid #fff;
+                border-radius: 10px;
+                text-align: center;
+            }
+
+                #slider ol li.add {
+                    background: #075090;
+                }
+
+    .center_r_2 {
+        height: 282px;
+        margin-top: 1px;
+        background: #EEE;
+    }
+
+        .center_r_2 input {
+            background: #fff;
+            width: 235px;
+            height: 28px;
+            border: 1px solid #BEBEBE;
+            margin: 0 auto;
+            display: block;
+            float: left;
+            margin-top: 20px;
+            margin-left: 18px;
+            outline: medium;
+            padding-left: 10px;
+            font-size: 12px;
+        }
+
+        .center_r_2 div.test {
+            width: 248px;
+            float: left;
+            height: 32px;
+            margin-top: 20px;
+        }
+
+        .center_r_2 input.test_1 {
+            width: 108px;
+            margin-top: 0px;
+        }
+
+        .center_r_2 div.land {
+            width: 248px;
+            float: left;
+            height: 32px;
+            margin-top: 20px;
+        }
+
+            .center_r_2 div.land a.z_h {
+                display: block;
+                background: none;
+                height: 30px;
+                width: 56px;
+                line-height: 30px;
+                cursor: pointer;
+                float: left;
+                font-size: 14px;
+                padding-left: 10px;
+                margin-left: 0px;
+                padding-top: 6px;
+            }
+
+        .center_r_2 div.enroll {
+            margin-top: 40px;
+            width: 100%;
+            font-size: 12px;
+            float: left;
+            text-align: center;
+        }
+
+            .center_r_2 div.enroll a {
+                color: #7F7F7F;
+                cursor: pointer;
+            }
+
+    .logConBox {
+        height:285px;
+    }
+    #btnHomePhoneLogon {
+        color:#fff;
+    }
+</style>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Mall" })
+    </div>
+
+    <div class="center_s">
+        <div class="online_left" style="width:286px; margin-top:1px;">
+            <div style="margin-bottom:1px;">
+                @Html.Action("CartByMall", "Cart")
+            </div>
+            @{
+                <div class="center" style="width: 286px; height: auto; margin-top:0;">
+                    <div class="logon" style=" margin-top :0px">
+                        @{
+                            if (this.User.Identity.IsAuthenticated)
+                            {
+                                @Html.Action("HomeLogonSuccess", "Account")
+                            }
+                            else
+                            {
+                                @Html.Action("HomeLogon", "Account")
+                            }
+                        }
+                    </div>
+                </div>
+            }
+
+
+            @Html.Action("ExchangeList", "Mall")
+        </div>
+
+
+        <div class="online_right">
+
+            <div>
+                <div class="banner_show">
+                    @Html.Action("MallBanner", "Banner")
+
+
+                    @Html.Action("MallLevelOne", "MallCategory")
+
+                </div>
+            </div>
+
+
+            @Html.Action("NewProduct", "Mall")
+
+            @Html.Action("HotProduct", "Mall")
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+    <script type="text/javascript">
+        $('#slider').slider({
+            nextBtn: ".next",
+            prevBtn: ".prev",
+            nums: true,
+            numsClass: '.add',
+            times: true,
+            timer: 5000
+        });
+    </script>
+</div>

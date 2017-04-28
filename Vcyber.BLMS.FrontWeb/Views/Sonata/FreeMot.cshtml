@@ -1,0 +1,135 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "3年9次免检服务详情";
+}
+<script src="~/Content/laydate/laydate.js"></script>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Sonata" })
+    </div>
+    <div class="n_all_cont" style="height:1200px;">
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+
+        </div>
+        <div class="n_right_cont">
+            <p class="select_menu"><a href="/Sonata/Index">第九代索纳塔会员专区 ></a><a href="/Sonata/FreeMotIndex">3年9次免费检测 ></a><a href="">预约</a></p>
+            <div class="gy_cont" style="margin-top:0;">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>3年9次免费年检服务预约</h1>
+                        <span>3 Years Of 9 Free Inspection Service</span>
+                        <img src="/img/arrow.png" class="arrow_n" />
+                        <input type="hidden" id="source" value="@ViewBag.source" />
+                    </div>
+                </div>
+                <div class="gy_nr" style="overflow:hidden">
+                    <div class="home_cont" style="margin-bottom:20px;">
+                        <p style="margin: 20px 10px 10px 10px; width:auto;">为了确保我们能够在第一时间内与您取得联系，提供更快捷、更周到的服务，请您正确填写以下资料信息，带"*"号的是必须填写项，感谢您的支持！</p>
+                        <hr />
+                        <p>
+                            <span>*</span><label>车型：</label>
+                            <input class="input_duan" type="text" id="carType" name="carType" value="第九代索纳塔" disabled="true"/>
+                            @*@Html.Action("CarTypeViewForService", "Car", new { })*@
+                        </p>
+                        <p>
+                            <span>*</span><label>选择经销商：</label>
+                            @Html.Action("ProvinceCity", "Car", new { })
+                        </p>
+                        <p>
+                            <span>*</span><label>车牌号码：</label>
+                            <input class="input_duan" type="text" id="freeMotFormCarNumber" name="freeMotFormCarNumber" placeholder="请输入车牌号" />
+                            <b>例如：京A8888</b>
+                        </p>
+                        <p>
+                            <span></span><label>车架号：</label>
+                            <input class="input_duan" type="text" id="freeMotFormVinNumber" name="freeMotFormVinNumber" placeholder="请输入车架号" />
+                        </p>
+                        <p>
+                            <span>*</span><label>行驶里程：</label>
+                            <input class="input_duan" type="text" id="freeMotFormidesNumber" name="freeMotFormidesNumber" placeholder="请输入行驶里程" />
+                            <b>公里</b>
+                        </p>
+                        <p>
+                            <span>*</span><label>购车年份：</label>
+                            <select id="freeMotFormBuyYears" name="freeMotFormBuyYears">
+                                @{
+                                    for (var _years = 2015; _years > 2000; _years--)
+                                    {
+                                        <option>@_years</option>
+                                    }
+                                }
+                            </select>
+                        </p>
+                        <p>
+                            <span>*</span><label>预计到店日期：</label>
+                            <input class="input_duan laydate-icon" type="text" id="freeMotFormArriveTime" placeholder="有效期7天内" />
+                            <script>
+                                $(function () {
+                                    laydate({
+                                        elem: '#freeMotFormArriveTime',
+                                        min: laydate.now(), //-1代表昨天，-2代表前天，以此类推
+                                        max: laydate.now(+7),
+                                        istoday: false
+                                    });
+                                });
+                            </script>
+                            <b style="margin-left:0;float:none">尊敬的车主您好，预约有效期为提交预约后的7个工作日，特约店受理服务时间为9:00-17:00。感谢您的理解与支持，祝您用车愉快！</b>
+
+                        </p>
+
+                        <p>
+                            <span>*</span><label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
+                            <input class="input_duan" type="text" id="freeMotFormRealName" name="freeMotFormRealName" />
+                        </p>
+                        <p>
+                            <span>*</span><label>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</label>
+                            <input type="radio" name="gender" value="1" id="genderMan" checked="checked" class="radio_btn_cc" style=" border: none;" /><b>男</b>
+                            <input type="radio" name="gender" value="0" id="genderWoman" class="radio_btn_cc" style="margin-left:38px; border: none;" /><b>女</b>
+                        </p>
+
+                        <p>
+                            <span>*</span><label>手&nbsp;&nbsp;&nbsp;机&nbsp;&nbsp;&nbsp;号：</label>
+                            <input class="input_duan" type="text" id="freeMotFormUserMobile" name="freeMotFormUserMobile" />
+                        </p>
+                        <p style="height:auto;">
+                            <span></span><label>补充说明：</label>
+                            <textarea style="width:434px;min-height:130px; border:1px solid #c1c1c1" id="freeMotFormDescription" name="freeMotFormDescription"></textarea>
+                        </p>
+                        <p style="margin-left:200px;">
+                            <a id="freeMotFormSave" href="javascript:void(0);" style="display:block; width: 230px; height:32px; line-height:32px; text-align:center; cursor:pointer; background-color:#075090; margin:0; color:#FFF;">
+                                提<b style="margin: 0 6px;"></b>交
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    @Html.Action("Index", "Footer")
+</div>

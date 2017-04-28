@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BLMS_Eentity_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CS_Consultant">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" />
+    <Property Name="DealerId" Type="varchar" MaxLength="50" />
+    <Property Name="DealerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Photo" Type="nvarchar" MaxLength="128" />
+    <Property Name="Tel" Type="varchar" MaxLength="50" />
+    <Property Name="Sex" Type="int" />
+    <Property Name="Comment" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Age" Type="int" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="NickNameLibrary">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NickName" Type="nvarchar" MaxLength="100" />
+    <Property Name="IsUse" Type="int" />
+  </EntityType>
+  <EntityType Name="UserCarIntegralRecord">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CarCategory" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="VIN" Type="varchar" MaxLength="30" />
+    <Property Name="Value" Type="int" />
+    <Property Name="CreateTime" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="BLMS_Eentity_ModelStoreContainer">
+    <EntitySet Name="CS_Consultant" EntityType="Self.CS_Consultant" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NickNameLibrary" EntityType="Self.NickNameLibrary" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserCarIntegralRecord" EntityType="Self.UserCarIntegralRecord" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

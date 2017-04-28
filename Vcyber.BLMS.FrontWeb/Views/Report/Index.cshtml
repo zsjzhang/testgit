@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "报表查询/导出";
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<link href="~/css/base/reset.css" rel="stylesheet" />
+<script src="~/Content/laydate/laydate.js"></script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<style>
+    div{
+        top:0px;
+        padding-left:10px;
+    }
+    h2{
+        font-size:20px;
+        padding-left:10px;
+        font-style:inherit;
+    }
+</style>
+<h2>报表查询/导出</h2>
+<div style="margin-top:10px;">
+    <label>报表类型：</label>
+    <select id="reportType">
+        <option value="[dbo].[BLMS_Game_Report_Register_DataSource]">活动会员注册-来源渠道</option>
+        <option value="[dbo].[BLMS_Game_Report_Register_CarCategory]">活动会员注册-车型</option>
+    </select>
+
+    <label>时间：</label>
+    <input type="text" id="StartTime" placeholder="请选择" class="laydate-icon input_duan" />
+    <script>
+        $(function () {
+            laydate({
+                elem: '#StartTime',
+                istoday: false
+            });
+        });
+    </script>
+    <input type="text" id="EndTime" placeholder="请选择" class="laydate-icon input_duan" />
+    <script>
+        $(function () {
+            laydate({
+                elem: '#EndTime',
+                istoday: false
+            });
+        });
+    </script>
+    <button type="submit" onclick="search()">查询</button>
+    <button type="submit" onclick="toReportExcel()">导出</button>
+
+</div>
+
+<div id="divPageList">
+    
+</div>
+
+<script>
+    function search() {
+        var data = {
+            tableName: $("#reportType").val(),
+            startTime: $("#StartTime").val(),
+            endTime: $("#EndTime").val()
+        };
+        var url = "@Url.Action("PartialPageForIndex")";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function (msg) {
+                $('#divPageList').html(msg);
+            }
+        });
+    }
+
+    function toReportExcel() {
+        var _t = $("#reportType").val();
+        var _sTime = $("#StartTime").val();
+        var _eTime = $("#EndTime").val();
+        window.location = '/Report/Export?tableName=' + _t + '&startTime=' + _sTime + "&endTime=" + _eTime;
+        return false;
+    }
+</script>

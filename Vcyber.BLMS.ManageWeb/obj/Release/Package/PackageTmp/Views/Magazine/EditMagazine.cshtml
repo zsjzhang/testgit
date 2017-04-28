@@ -1,0 +1,243 @@
+﻿@{
+    Layout = null;
+}
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+<div class="container panel panel-default">
+    <div class="panel-body">
+        <strong>内容管理 - 编辑报刊</strong>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <form class="form-horizontal" name="form" ng-submit="edit(form.$valid)" novalidate>
+                <div class="form-group">
+                    <input class="form-control" ng-model="editData.Id" ng-show="0" />
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label"><span style="color:red">*</span>标题:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" name="title" ng-model="editData.Title" placeholder="20个字以内" ng-maxlength="20" ng-required="true" autofocus />
+                        <span ng-show="form.title.$invalid">不能为空</span>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label"><span style="color:red">*</span>缩略图:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" name="imageurl" ng-model="editData.ImageUrl" ng-show="0" required />
+                        <img ng-src="{{editData.image}}" style="height: 100px; width: 200px" class="img-responsive">
+                        <input type="file" ng-file-select ng-file-change="upload($files,'uploadimage')" multiple accept="image/*">
+                        <div class="button" ng-file-select ng-file-change="upload($files,'uploadimage')" data-multiple="true"></div>
+                        <p class="label-warning">支持gif、jpeg、jpg、png格式，图片最大?建议上传尺寸：?</p>
+                        <span ng-show="form.imageurl.$invalid">不能为空</span>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label"><span style="color:red"></span>资源:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" ng-model="editData.LinkUrl" name="source" disabled />
+                        <input type="file" ng-file-select ng-file-change="upload($files,'uploadSource')" multiple>
+                        <div class="button" ng-file-select ng-file-change="upload($files,'uploadSource')" data-multiple="true"></div>
+                        <p class="label-warning">支持zip格式，最大?建议上传尺寸：?</p>
+                        <span ng-show="form.source.$invalid">不能为空</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label"><span style="color:red"></span>阅读链接:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" ng-model="editData.ReadLink" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label"><span style="color:red">*</span>所属年份:</label>
+                    <div class="col-md-8">
+                        <input type="number" class="form-control" ng-model="editData.Year" required ng-minlength="4" ng-maxlength="4" pattern="19|20\d{2}" />
+                        <span ng-show="form.source.$invalid">年份区间1900-2999</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label"><span style="color:red">*</span>所属月份:</label>
+                    <div class="col-md-8">
+                        <input type="number" class="form-control" ng-model="editData.Month" required ng-minlength="1" ng-maxlength="2" />
+                        <span ng-show="form.source.$invalid">月份区间1-12</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label"><span style="color:red">*</span>简介:</label>
+                    <div class="col-md-8">
+                        @*<textarea class="form-control" rows="4" ng-model="editData.Summary" required ng-maxlength="500" />*@
+                        <script id="editor" type="text/plain" style="width: 400px; height: 150px;">
+                        </script>
+                        <span ng-show="form.source.$invalid">不能为空，最多500个字符</span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">调查问卷URL:</label>
+                    <div class="col-md-8">
+                        <input name="questionUrl" class="form-control" ng-model="editData.QuestionUrl" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">获奖名单URL:</label>
+                    <div class="col-md-8">
+                        <input name="resultUrl" class="form-control" ng-model="editData.ResultUrl" />
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        @*<button type="button" class="btn btn-primary" ng-click="edit()">保存</button>*@
+                        <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">保存</button>
+
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    // var ue = UE.getEditor('editor');
+    var ue = new baidu.editor.ui.Editor({
+        toolbars: [['source']],
+        autoHeightEnabled: true,
+        autoFloatEnabled: true
+    });
+
+    ue.render('editor');
+
+    function isFocus(e) {
+        alert(UE.getEditor('editor').isFocus());
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function setblur(e) {
+        UE.getEditor('editor').blur();
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function insertHtml() {
+        var value = prompt('插入html代码', '');
+        UE.getEditor('editor').execCommand('insertHtml', value)
+    }
+    function createEditor() {
+        enableBtn();
+        UE.getEditor('editor');
+    }
+    function getAllHtml() {
+        alert(UE.getEditor('editor').getAllHtml())
+    }
+    
+    function setContent(isAppendTo) {
+        var test = isAppendTo;
+        var editor_a = UE.getEditor('editor');
+        editor_a.ready(function () {
+
+            editor_a.setContent(test, isAppendTo);  //赋值给UEditor
+        });
+        // UE.getEditor('editor').setContent(test, isAppendTo);
+
+    }
+    function getContent() {
+        return UE.getEditor('editor').getContent();
+    }
+    function getPlainTxt() {
+        var arr = [];
+        arr.push("使用editor.getPlainTxt()方法可以获得编辑器的带格式的纯文本内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('editor').getPlainTxt());
+        alert(arr.join('\n'))
+    }
+    function setDisabled() {
+        UE.getEditor('editor').setDisabled('fullscreen');
+        disableBtn("enable");
+    }
+
+    function setEnabled() {
+        UE.getEditor('editor').setEnabled();
+        enableBtn();
+    }
+
+    function getText() {
+        //当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
+        var range = UE.getEditor('editor').selection.getRange();
+        range.select();
+        var txt = UE.getEditor('editor').selection.getText();
+        alert(txt)
+    }
+
+    function getContentTxt() {
+        var arr = [];
+        arr.push("使用editor.getContentTxt()方法可以获得编辑器的纯文本内容");
+        arr.push("编辑器的纯文本内容为：");
+        arr.push(UE.getEditor('editor').getContentTxt());
+        alert(arr.join("\n"));
+    }
+    function hasContent() {
+        var arr = [];
+        arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
+        arr.push("判断结果为：");
+        arr.push(UE.getEditor('editor').hasContents());
+        alert(arr.join("\n"));
+    }
+    function setFocus() {
+        UE.getEditor('editor').focus();
+    }
+    function deleteEditor() {
+        disableBtn();
+        UE.getEditor('editor').destroy();
+    }
+    function disableBtn(str) {
+        var div = document.getElementById('btns');
+        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            if (btn.id == str) {
+                UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+            } else {
+                btn.setAttribute("disabled", "true");
+            }
+        }
+    }
+    function enableBtn() {
+        var div = document.getElementById('btns');
+        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+        }
+    }
+
+    function getLocalData() {
+        alert(UE.getEditor('editor').execCommand("getlocaldata"));
+    }
+
+    function clearLocalData() {
+        UE.getEditor('editor').execCommand("clearlocaldata");
+        alert("已清空草稿箱")
+    }
+</script>

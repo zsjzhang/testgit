@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "Prize";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>蓝缤车主汇-奖品</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/MemberMobile.css" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Content/layer/layer.min.js"></script>
+    <script src="~/Scripts/controller/Main.js"></script>
+    <script>
+        $(function () {
+            //中奖信息滚动
+            var scrollInterval = window.setInterval(function () {
+                var html = $('#trScroll').find('tr:first').html();
+                $('#trScroll').find('tr:first').fadeOut(1000).remove();
+                $('#trScroll').append('<tr>' + html + '</tr>');
+            }, 1000);
+        })
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <img src="/Img/MoreMember/prize.jpg" class="bgImg" />
+        <div class="info">
+            @*<p class="lead">获奖名单</p>*@
+            <div style="padding-top: 45%;">
+                <div id="divWinning">
+                    <table class="table table-cus" style="width: 94%;margin: 0 auto;">
+                        <thead>
+                            <tr>
+                                <th>获奖车主信息</th>
+                                <th>获奖车主电话</th>
+                                <th>获奖情况</th>
+                            </tr>
+                        </thead>
+                        <tbody id="trScroll">
+                            @{
+                                List<Vcyber.BLMS.Entity.WinningModel> wmList = ViewBag.wmList as List<Vcyber.BLMS.Entity.WinningModel>;
+                            }
+                            @foreach (Vcyber.BLMS.Entity.WinningModel item in wmList)
+                            {
+                                <tr>
+                                    <td>@item.UserName</td>
+                                    <td>@item.UserPhone</td>
+                                    <td>@item.PrizeTitle</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="foot" style="top:90%">
+        <a href="@Url.Action("Index")" class="foot_game"><input type="button" name="name" class="btn_happy" value="我要参加" /></a>
+    </div>
+    <script>
+        $(function () {
+            var wrapHeight = parseInt($(".wrap").height());
+            $(".bgImg").height(wrapHeight + 50);
+
+        })
+
+    </script>
+</body>
+</html>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>

@@ -1,0 +1,142 @@
+﻿
+@{
+    Layout = null;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>内容管理 - 共享资源文件</strong></div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <form name="form" class="form-horizontal" novalidate>
+            <div class="form-group">
+                <button class="btn btn-primary" style=" margin-left:15px;" type="submit" data-toggle="modal" ng-click="addShareRes()">添加共享资源</button>
+            </div>
+        </form>
+        <div class="gridStyle" style="min-height: 410px; border: 1px solid rgb(212, 212, 212)" ng-grid="gridOptions">
+        </div>
+    </div>
+
+</div>
+
+<!-- Modal 添加对话框 -->
+<!-- Modal 更新内容对话框 -->
+<div class="modal fade" id="AddShareResource" tabindex="-1" role="dialog" aria-labelledby="AddShareResourceLabel" aria-hidden="false">
+    <div class="modal-dialog" style="width:800px;">
+        <div class="modal-content">
+            <form class="form-horizontal" name="form" ng-submit="create(form.$valid)" novalidate>
+                <div class="modal-header">
+                    <input name="id" ng-model="createData.Id" type="hidden" />
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="AddShareResourceLabel">添加共享资源</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label"><span style="color:red">*</span>资源名称:</label>
+                        <div class="col-md-10">
+                            <input class="form-control" name="title" ng-model="createData.Title" placeholder="30个字以内" ng-required="true" ng-maxlength="30" />
+                            <span ng-show="form.title.$invalid">不能为空,30个字符内</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label"><span style="color:red">*</span>资源副标题:</label>
+                        <div class="col-md-10">
+                            <input class="form-control" name="title" ng-model="createData.SubTitle" placeholder="8个字以内" ng-required="true" ng-maxlength="8" />
+                            <span ng-show="form.title.$invalid">不能为空,8个字符内</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label"><span style="color:red">*</span>资源:</label>
+                        <div class="col-md-10">
+                            <input class="form-control" ng-model="createData.LinkUrl" name="source" required />
+                            <input type="file" ng-file-select ng-file-change="upload($files,'uploadSource','source')" multiple>
+                            <div class="button" ng-file-select ng-file-change="upload($files,'uploadSource','source')" data-multiple="true"></div>
+                            <p class="label-warning">支持zip格式和视频格式</p>
+                            <span ng-show="form.source.$invalid">不能为空</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label"><span style="color:red">*</span>简介:</label>
+                        <div class="col-md-10">
+                            <textarea class="form-control" rows="2" name="summary" ng-model="createData.Summary" required ng-maxlength="500" />
+                            <span ng-show="form.summary.$invalid">不能为空，最多500个字符</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label"><span style="color:red">*</span>显示:</label>
+                        <div class="col-md-10">
+                            <label class="radio-inline">
+                                <input type="radio" name="optionsRadios" value="1" ng-model="createData.IsDisplay" ng-checked="true">
+                                是
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optionsRadios" value="0" ng-model="createData.IsDisplay">
+                                否
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label"><span style="color:red">*</span>文件类型：</label>
+                        <select class="col-md-10 form-control" style="margin-left:15px" ng-model="selectFileType">
+                            <option value="1">后台资源</option>
+                            <option value="2">前台视频</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">资源标签:</label>
+                        <div class="col-md-10">
+                            <input class="form-control" name="category" ng-model="createData.Category" placeholder="30个字以内" ng-required="true" ng-maxlength="30" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">视频列表缩略图:</label>
+                        <div class="col-md-8">
+                            <label class="form-control" ng-model="createData.ListImageUrl" ng-show="0" />
+                            <img ng-src="{{createData.ListImage}}" style="height:100px;width:200px" class="img-responsive">
+                            <input type="file" ng-file-select ng-file-change="upload($files,'uploadimage','list')" multiple accept="image/*">
+                            <div class="button" ng-file-select ng-file-change="upload($files,'uploadimage','list')" data-multiple="true"></div>
+                            <p class="label-warning">支持gif、jpeg、jpg、png格式，建议上传尺寸：(宽147像素，高211像素)</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">视频播放预览图:</label>
+                        <div class="col-md-8">
+                            <label class="form-control" ng-model="createData.PlayImageUrl" ng-show="0" />
+                            <img ng-src="{{createData.PlayImage}}" style="height:100px;width:200px" class="img-responsive">
+                            <input type="file" ng-file-select ng-file-change="upload($files,'uploadimage','play')" multiple accept="image/*">
+                            <div class="button" ng-file-select ng-file-change="upload($files,'uploadimage','play')" data-multiple="true"></div>
+                            <p class="label-warning">支持gif、jpeg、jpg、png格式，建议上传尺寸：(宽640像素，高347像素)</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

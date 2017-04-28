@@ -1,0 +1,227 @@
+	.fl{
+		float:left;
+	}
+	.fr{
+		float:right;
+	}
+	body{ 
+			height:100%;
+			background-color:#ffffff;
+		}
+	.wrapper{
+		position: relative;
+	    margin: 0 auto;
+		min-height:100%; 
+	}
+	.replace_font{
+		width:100%;
+		padding-bottom:0.2rem;
+		border-bottom:2px solid #e6e6e6;
+	}	
+	.replace_tit{
+	    width: 2.07rem;
+	    font-size: 0.30rem;
+	    height: 0.54rem;
+	    line-height: 0.54rem;
+	    background: url(../../img/home/replace_tit.png) no-repeat;
+	    background-size: cover;
+	    font-weight: 900;
+	    color: #075090;
+	    margin:0.24rem 0 0.18rem 0.2rem;
+	}
+	.replace_font p{
+		width:5.90rem;
+		font-size:0.24rem;
+		color:#333333;
+		text-indent:2em;
+		margin:0 auto;
+		line-height:0.36rem;
+	}
+	.replace_order{
+		width:100%;
+		padding-bottom:0.3rem;
+		border-bottom:2px solid #e6e6e6;
+	}
+	.replace_info{
+		width:4.34rem;
+		margin:0 auto;
+		color:#333333;
+	}
+	.replace_info h4{ 
+		text-align:center;
+		font-size:0.24rem;
+		margin-bottom:0.1rem;	
+	}
+	.replace_info p{
+		padding-bottom:0.12rem;
+		padding-top:0.2rem;
+		font-size:0.24rem;
+	}
+	.replace_info select{
+		height:0.48rem;
+		line-height:0.48rem;
+		background-color:#dddddd;
+		border-radius:0.06rem;
+		-webkit-border-radius:0.06rem;
+		border:1px solid #c5c5c5;
+		outline:none;
+		float:left;
+		padding-left:0.18rem;
+	}
+	.replace_info input{
+		width:4.16rem;
+		height:0.5rem;
+		line-height:0.5rem;
+		border-radius:0.06rem;
+		-webkit-border-radius:0.06rem;
+		border:1px solid #c5c5c5;
+		float:left;
+		padding-left:0.18rem;
+		outline:none;
+		-webkit-appearance:none;
+	}
+	.replace_info textarea{
+		width:100%;
+		height:0.88rem;
+		border-radius:0.06rem;
+		-webkit-border-radius:0.06rem;
+		border:1px solid #c5c5c5;
+		float:left;
+		outline:none;
+	}
+	.sle_one{
+		width:100%;
+		
+	}
+	.sle_two{
+		width:2.12rem;
+		margin-right:0.08rem;
+	}
+	.sle_three{
+		width:2.12rem;
+	}
+
+	.replace_orderNow{
+        width: 3.78rem;
+        height: 0.88rem;
+        line-height: 0.88rem;
+        text-align: center;
+        background-color: #3487d7;
+        margin: 0.5rem auto 0;
+        display: block;
+        border-radius: 0.06rem;
+        -webkit-border-radius: 0.06rem;
+        color: #f7f7f7;
+        font-size: 0.32rem;    
+        border: 0;
+        font-family: "Microsoft YaHei", SimHei, helvetica, arial, verdana, tahoma, sans-serif;
+	}
+	.pastwinners{
+		width:100%;
+		padding-top:0.28rem;
+	}
+	.replace_tit2{
+    	width: 2.71rem;
+	    font-size: 0.30rem;
+	    height: 0.54rem;
+	    line-height: 0.54rem;
+	    background: url(../../img/home/replace_tit2.png) no-repeat;
+	    background-size: cover;
+	    font-weight: 900;
+	    color: #075090;
+	    margin-left:0.2rem;
+    }
+    .listbox{
+		width:5.76rem;
+		margin:0.28rem auto 0.24rem;
+		border:2px solid #e8e8e8;
+		background-color:#f5f5f5;
+		padding-bottom:0.3rem;
+	}
+	.listbox .listbox_com{
+		width:100%;
+		color:#424242;
+		font-size:0.28rem;
+		padding-top:0.32rem;
+		padding-bottom:0.12rem;
+		border-bottom: 2px solid #b4b4b4;
+		font-weight:900;
+	}
+	.listname{
+		margin-left:0.62rem;
+		float:left;
+	}
+	.listaward{
+		margin-left:1.48rem;
+		float:left;
+	}
+	.Listover{
+		position: relative;
+    	overflow: hidden;
+    	height:238px;
+	}
+    .listbox ul{
+    	width:4.78rem;
+    	transform: translateX(-50%);
+    	-webkit-transform: translateX(-50%);
+    	-moz-transform: translateX(-50%);
+    }
+    .listbox ul li{
+    	background:url(../../img/home/replace_list.png) no-repeat center bottom;
+   		height:34px;
+   		line-height:34px;
+    	color:#075090;
+    	font-size:0.28rem;
+    }
+    .listbox ul li i{
+    	margin-left:0.14rem;
+    }
+    .listbox ul li span{
+    	margin-left:0.78rem;
+
+    }
+
+    .replace_attention{
+    	width:5.8rem;
+    	padding-top:0.3rem;
+    	padding-bottom:0.38rem;
+    	margin:0 auto;
+
+    }
+    .replace_attention h4{
+    	font-size:0.28rem;
+  		color:#075090;
+  		font-weight:900;
+  		padding-bottom:0.14rem;
+    }
+	.replace_attention p{
+		width:100%;
+	}
+    .replace_attention i,.replace_attention span{
+    	display:block;
+    	float:left;
+		line-height:0.4rem;
+		color:#424242;
+		font-size:0.24rem;
+    }
+    .replace_attention span{
+    	width:5.52rem;
+    }
+
+	ul.move{ position:absolute; left:50%; top:0; }
+	.move{
+		-webkit-animation-name:move;
+		-webkit-animation-duration:60s;
+		-webkit-animation-timing-function:linear;
+		-webkit-animation-iteration-count:infinite;
+	}
+
+	@-webkit-keyframes move{
+		to{
+			top:-3400px;		
+		}	
+	}
+
+
+
+

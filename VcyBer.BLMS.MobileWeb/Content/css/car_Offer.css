@@ -1,0 +1,206 @@
+	/*部分全局样式开始*/
+		body{ 
+			height:100%;
+			background-color:#f5f5f5;
+			box-sizing:border-box;
+			-webkit-box-sizing:border-box;
+			-moz-box-sizing:border-box; 
+		}
+		.fl{ 
+			float:left;
+		}
+		.fr{ 
+			float:right;
+		}
+		.wrapper{
+			position: relative;
+		    margin: 0 auto;
+			min-height:100%;
+			background-color:#f5f5f5; 
+		}
+		/*内容开始*/
+		.service_Box{ 
+			position: relative;
+			top:0.4rem;
+			left:0;
+			width:100%;
+		}
+		a.car_drive{ 
+		    position: absolute;
+		    display: block;
+		    left: 4.72rem;
+		    top: 0.04rem;
+		    width: 1.28rem;
+		    height: 0.62rem;
+		    line-height: .62rem;
+		    border-radius: 0 0.1rem 0.1rem 0;
+		    font-size: 0.28rem;
+		    background: #3487d7;
+		    cursor: pointer;
+		    text-align: center;
+		    color: #fff;
+		    z-index: 200;
+		}
+		.car_Tab{
+			width:6.0rem;
+			height:0.62rem;
+			position: relative;
+			margin:0 auto;
+			color:#fff;
+			border: 0.04rem solid #3487d7;
+    		background: #3487d7;
+    		border-radius: 0.1rem;
+    		overflow:hidden;
+		}
+		.car_Tab li{ 
+			float:left;
+			width:1.48rem;
+			height:0.62rem;
+			font-size:0.28rem;
+			text-align:center;
+			line-height:0.62rem;
+			position:relative;
+		}
+		.car_Tab li:nth-child(1){ 
+			border-right:1px solid #c2dbf3;
+		}
+		.car_Tab li:nth-child(3){ 
+			border-left:1px solid #c2dbf3;
+		
+		}
+		.car_Tab li.active{ 
+			background:#fff;
+			color:#3487d7;
+		}
+
+		.carPrice_table{ 
+			width:100%;
+			position:relative;
+			margin-top:0.95rem;
+		}
+		.carPrice_table table {
+			width:100%;
+			font-size:0.26rem;
+			color:#333333;
+			border-collapse:collapse;
+		}
+		.carPrice_table table thead{
+			font-size:0.28rem;
+			color:#333333;
+			background-color:#e7f3ff;
+		}
+		.carPrice_table table td{  
+			padding:0;
+			height:0.74rem;
+			border:1px solid #d7d7d7;
+		}
+		.carPrice_table table th{ 
+			padding:0;
+			height:0.8rem;
+			border:1px solid #d7d7d7;
+		
+		}
+		.carPrice_table .carPrice_borl{ 
+			border-left:none;
+		}
+		.carPrice_table .carPrice_borr{ 
+			border-right:none;
+		}
+
+    /*底部开始*/
+		footer{
+			width: 100%; 
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			font-size:0.16rem;
+			height:1.21rem;
+		}
+		.footNavTit{ 
+			position:relative;
+			width: 100%;
+			height:.18rem;
+			background: url(../newimg/footer_line.png) no-repeat center top;
+			background-size: 100% auto;
+			z-index: 9;
+		}
+		.fontNavCon{ position:relative; width:100%; height:1.03rem; overflow:hidden; background:#fff;}
+
+		.fontNavCon a{ display:block; width:1.14rem; height:100%; line-height:1.6rem; float:left;text-align: center; color: #878787;  }
+
+		.nav-1{ 
+			background-image: url(../newimg/nav_m1.png);
+			background-repeat:no-repeat;
+			background-position:center  20%;
+			background-size: 35% auto;
+		}
+		.nav-2{ 
+			background-image: url(../newimg/nav_m2.png);
+			background-repeat:no-repeat;
+			background-position:center 30%;
+			background-size: 50% auto;
+		}
+		.nav-3{ 
+			background-image: url(../newimg/nav_m3.png);
+			background-repeat:no-repeat;
+			background-position:center 30%;
+			background-size: 50% auto;
+
+		}
+		.nav-4{ 
+			background-image: url(../newimg/nav_m4.png) ;
+			background-repeat:no-repeat;
+			background-position:center 15%;
+			background-size: 50% auto;
+		}
+		.fontNavCon a.nav-5{
+			width:1.24rem;
+			margin:0 0.3rem;
+			background-image: url(../newimg/nav_m5.png);
+			background-repeat:no-repeat;
+			background-position:center bottom;
+			background-size:100% 100%;
+			color:#fff;
+		}
+
+		.fontNavCon a.nav-5a {
+			width:1.24rem;
+			margin:0 0.3rem;
+			background-image: url(../newimg/nav_m5_a.png);
+			background-repeat:no-repeat;
+			background-position:center bottom;
+			background-size:100% 100%;
+			color:#fff;
+		}
+
+		a.nav-1a{ 
+			background-image: url(../newimg/nav_m1_a.png);
+			background-repeat:no-repeat;
+			background-position:center  20%;
+			background-size: 35% auto;
+			color:#054487;
+		}
+		a.nav-2a{ 
+			background-image: url(../newimg/nav_m2_a.png);
+			background-repeat:no-repeat;
+			background-position:center 30%;
+			background-size: 50% auto;
+			color:#054487;
+		}
+		a.nav-3a{ 
+			background-image: url(../newimg/nav_m3_a.png);
+			background-repeat:no-repeat;
+			background-position:center 30%;
+			background-size: 50% auto;
+			color:#054487;
+
+		}
+		a.nav-4a{ 
+			background-image: url(../newimg/nav_m4_a.png) ;
+			background-repeat:no-repeat;
+			background-position:center 15%;
+			background-size: 50% auto;
+			color:#054487;
+		}
+
+

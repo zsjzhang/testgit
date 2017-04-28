@@ -1,0 +1,32 @@
+﻿@model Vcyber.BLMS.FrontWeb.Models.ApplicationUser
+
+<style>
+    .jj_cont li {
+        width: 140px;
+        text-align: center;
+        background: #eee;
+    }
+</style>
+<div class="yyrk_cont" style="height:142px;">
+    <div class="yyrk">
+        <span>我的钱包</span>
+        <label>My Wallet</label>
+    </div>
+    <ul class="jj_cont">
+        <li id="partialmyscore" style="margin-left:0; position:relative;" onclick="window.location = '/Mycenter/walletrecords';">
+            <img src="/img/j1.png" />
+            <p style="width:100%; left:0; top:50px; position:absolute; "><label style="width:100%; text-align:center; float:left;">积分</label><span style="width:100%; text-align:center; float:left;">(@ViewBag.totalScore)</span></p>
+        </li>
+        <li style= "  display :none ;  position:relative;" id="partialmywalletbluebean" onclick="window.location = '/Mycenter/walletrecords';">
+            <img src="/img/j2.png" />
+            <p style="width: 100%; left: 0; top: 50px; position: absolute;"><label style="width:100%; text-align:center; float:left;">蓝豆</label><span style="width:100%; text-align:center; float:left;">(@ViewBag.totalBlueBean)</span></p>
+        </li>
+        <li style=" position:relative;" id="partialmymycardrecord" onclick="window.location = '/Mycenter/MyCustomCardIndex';">
+            <img src="/img/j3.png" />
+            <p style="width: 100%; left: 0; top: 50px; position: absolute; "><label style="width:100%; text-align:center; float:left;">卡券</label><span style="width:100%; text-align:center; float:left;">@*(@ViewBag.totalCard)*@</span></p>
+        </li>
+    </ul>
+</div>
+
+
+

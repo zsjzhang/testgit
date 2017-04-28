@@ -1,0 +1,443 @@
+﻿@using WebGrease
+@model System.Linq.IQueryable<Vcyber.BLMS.FrontWeb.Models.BBS.BBSGuestBook>
+
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+
+    ViewBag.Title = "车主论坛";
+}
+
+
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "BBSHome" })
+    </div>
+    <div class="n_all_cont">
+
+        <style>
+            .gy_nr span {
+                font-size: 14px;
+                color: #707070;
+                margin-left: 10px;
+                padding-bottom: 10px;
+                display: block;
+            }
+
+            .gynot {
+                width: 100%;
+                height: 36px;
+                margin-top: 20px;
+            }
+
+                .gynot li {
+                    width: 136px;
+                    height: 36px;
+                    line-height: 36px;
+                    text-align: center;
+                    float: left;
+                    background: #f49600;
+                    font-size: 14px;
+                    margin-right: 14px;
+                }
+
+                    .gynot li:last-child {
+                        margin-right: 0;
+                    }
+
+                    .gynot li .fbtz {
+                        color: #FFFFFF;
+                        background: url(../..//img/luntan_yiezi.png) no-repeat left center;
+                        padding-left: 18px;
+                    }
+
+                    .gynot li .fqhd {
+                        color: #FFFFFF;
+                        background: url(../../img/luntan_huod.png) no-repeat left center;
+                        padding-left: 28px;
+                    }
+
+            .gy_nr p {
+                font-size: 14px;
+                color: #767575;
+                line-height: 18px;
+                background: url(../../img/jilu_d.png) no-repeat left center;
+                padding-left: 16px;
+                margin-left: 16px;
+            }
+
+            .retie {
+                padding: 18px 0 10px 0;
+                display: table;
+                width: 99%;
+            }
+
+                .retie img {
+                    width: 100px;
+                    height: 100px;
+                    display: block;
+                    float: left;
+                    margin-left: 25px;
+                }
+
+            .lt_title {
+                width: 100%;
+                height: 28px;
+            }
+
+            .lt_luj {
+                width: 300px;
+                float: left;
+                font-size: 12px;
+                color: #888888;
+            }
+
+                .lt_luj a {
+                    color: #888888;
+                }
+
+            .ly_list {
+                width: 350px;
+                float: right;
+            }
+
+                .ly_list p {
+                    font-size: 12px;
+                    text-align: right;
+                }
+
+                    .ly_list p span {
+                        margin-right: 4px;
+                    }
+
+            .lt_table {
+                width: 100%;
+                border: 1px solid #eeeeee;
+                border-top: 2px solid #075090;
+                float: left;
+            }
+
+                .lt_table tr td {
+                    height: 79px;
+                    line-height: 79px;
+                    font-size: 12px;
+                    text-align: center;
+                    padding-left: 10px;
+                    color: #767675;
+                }
+
+            .ninety {
+            }
+
+            .nine_l {
+                text-align: left !important;
+            }
+
+                .nine_l img {
+                    float: left;
+                    margin-top: 30px;
+                    cursor: pointer;
+                    margin-right: 10px;
+                }
+
+            .nn_sl .nn_span {
+                line-height: 18px;
+                display: block;
+                margin-top: 23px;
+                margin-left: 10px;
+                font-size: 14px;
+                color: #3d3f43;
+                cursor: pointer;
+            }
+
+            .nn_sl span label {
+                font-size: 12px;
+                color: #767575;
+                cursor: pointer;
+            }
+
+            .nn_sl span {
+                line-height: 18px;
+                display: block;
+                margin-top: 23px;
+                margin-left: 10px;
+                font-size: 12px;
+                color: #767575;
+                cursor: pointer;
+            }
+
+            .nn_sl td {
+                color: #767575 !important;
+            }
+
+
+            .tz_cont {
+                width: 100%;
+                border: 1px solid #eeeeee;
+                border-top: 2px solid #075090;
+                float: left;
+                margin-top: 16px;
+            }
+
+            .tz_c_title {
+                width: 98%;
+                margin: 0 auto;
+                height: 80px;
+                border-bottom: 1px solid #eeeeee;
+            }
+
+            .tz_p1 {
+                font-size: 18px;
+                color: #3d3f43;
+                margin-top: 16px;
+            }
+
+                .tz_p1 span {
+                    float: right;
+                    color: #767575;
+                    font-size: 12px;
+                }
+
+            .tz_p2 {
+                margin-top: 30px;
+            }
+
+                .tz_p2 img {
+                    float: left;
+                    margin-right: 4px;
+                }
+
+                .tz_p2 span {
+                    float: left;
+                    font-size: 12px;
+                    color: #767575;
+                }
+
+                .tz_p2 label {
+                    float: left;
+                    font-size: 12px;
+                    color: #767575;
+                    margin-left: 270px;
+                    margin-top: 4px;
+                }
+
+            .indent_p {
+                width: 95%;
+                margin: 0 auto;
+                line-height: 24px;
+                font-size: 14px;
+                color: #3d3f43;
+                margin-top: 4px;
+            }
+
+            .tz_pl {
+                width: 100%;
+                border: 1px solid #eeeeee;
+                height: 260px;
+                float: left;
+                margin-top: 20px;
+            }
+
+                .tz_pl img {
+                    float: left;
+                    margin-top: 38px;
+                    margin-left: 74px;
+                }
+
+                .tz_pl textarea {
+                    width: 434px;
+                    min-height: 128px;
+                    border: 1px solid #c1c1c1;
+                    margin-top: 38px;
+                    margin-left: 32px;
+                }
+
+            .luntan_kuang {
+                width: 550px;
+                height: 298px;
+                background: url(../img/luntan_kuang.png) no-repeat;
+                position: absolute;
+                top: 200px;
+                left: 70px;
+            }
+
+            .ly_kuang_title {
+                width: 90%;
+                height: 58px;
+                line-height: 58px;
+                margin: 0 auto;
+            }
+
+                .ly_kuang_title span {
+                    color: #3d3f43;
+                    font-size: 16px;
+                }
+
+                .ly_kuang_title label {
+                    color: #949494;
+                    font-size: 14px;
+                    float: right;
+                }
+
+            .luntan_kuang textarea {
+                width: 483px;
+                min-height: 128px;
+                border: 1px solid #c1c1c1;
+                float: left;
+                margin-left: 30px;
+            }
+
+            .cc_btn {
+                width: 227px;
+                height: 31px;
+                display: block;
+                text-align: center;
+                line-height: 31px;
+                float: left;
+                font-size: 14px;
+                cursor: pointer;
+                margin-top: 30px;
+            }
+
+            .curr {
+                background-color: #075090;
+                color: white;
+            }
+        </style>
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+            </div>
+
+            <ul class="gynot">
+                <li>
+                    @Html.ActionLink("发表帖子", "Create", "BBSHome", new { @class = "fbtz" })
+                </li>
+                <li>
+                    @Html.ActionLink("发起活动", "Create", "BBSHome", new { @class = "fqhd" })
+                </li>
+            </ul>
+
+            <div class="gy_cont">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>热门活动</h1>
+                        <span>Popular Activities</span>
+                        <img src="../../img/arrow.png" class="arrow_n" />
+                    </div>
+                </div>
+                <div class="gy_nr">
+                    <img src="../../img/luntan_left_pic1.jpg" class="erji_img" />
+                    <span>置换盛享月第2季活动盛大开启</span>
+                </div>
+            </div>
+            <div class="gy_cont">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>热帖排行</h1>
+                        <span>Hot Posts</span>
+                        <img src="../../img/arrow.png" class="arrow_n" />
+                    </div>
+                </div>
+                <div class="gy_nr retie">
+                    @Html.Action("hoTipcs")
+                </div>
+            </div>
+
+
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+
+
+            <div class="gy_cont">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>热力会员</h1>
+                        <span>Active Member</span>
+                        <img src="../../img/arrow.png" class="arrow_n" />
+                    </div>
+                </div>
+                <div class="gy_nr retie">
+                    @Html.Action("ImageList", "BBSMember")
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="n_right_cont">
+
+
+            <div class="lt_luj">
+                <a href="@Url.Action("index","Home") ">首页</a>>
+                <a href="@Url.Action("index","BBShome") ">车主论坛</a>>@ViewBag.ColumnName
+            </div>
+            <div class="tiezi_jl">今日：@ViewBag.CurDayBookCount / 昨日：@ViewBag.PrevDayBookCount / 帖子：@ViewBag.ReCordCount / 用户：@ViewBag.TotalGuest</div>
+
+            <table cellpadding="0" cellspacing="0" class="fabu_tiez">
+                <thead>
+                    <tr>
+                        <td class="col_b" colspan="2">置顶</td>
+                        <td></td>
+                        <td>作者/发布时间</td>
+                        <td>查看/回复</td>
+                        <td colspan="2">最后发表</td>
+                    </tr>
+                </thead>
+                <tbody id="Show_PostList">
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td style="width: 12px;"></td>
+                            <td class="col_b bor havel" width="5%">
+                                @if (item.G_isTop)
+                                {
+                                    <img src="../../img/zhiding.png">
+                                }
+                            </td>
+                            <td class="bor">
+                                <p class="big_zi">@Html.ActionLink(item.G_Title, "Comment", "BBSHome", new { id = item.Id }, new { }) </p>
+                                @{
+                        var ctt = item.G_Content.Length > 20 ? item.G_Content.Substring(0, 20) + "..." : item.G_Content;
+                                }
+
+                                <p>@ctt</p>
+                            </td>
+                            <td class="bor cent">
+                                <p>@item.BBSMember.UserName </p>
+                                <p>@(((DateTime)item.G_Time).ToString("yyyy-MM-dd HH:mm"))</p>
+                            </td>
+                            <td class="bor havel cent">@item.G_ReadCount / @item.G_ResponseCount</td>
+                            <td class="bor cent">
+                                <p>@item.LastUpdateMemberName</p>
+                                <p>@item.LastUpdateTime.ToString("yyyy-MM-dd HH:mm")</p>
+                            </td>
+                            <td style="width: 12px;"></td>
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+            <div class="pagers">
+                @Html.Action("BBSPager", "Pagers", new { dataViewPath = "/BBSHome/AjaxPagerShow", conatinerid = "Show_PostList", pageIndex = ViewBag.PageIndex, pageSize = ViewBag.PageSize, totalCount = ViewBag.ReCordCount })
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

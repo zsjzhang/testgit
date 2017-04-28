@@ -1,0 +1,156 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Shopping>
+
+@{
+    Layout = null;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<div>
+    <div class="biaoti_title">
+        <dl>
+            <dt></dt>
+            <dd>
+                <h3>确认订单信息</h3>
+                <p>Confirm Order Information</p>
+            </dd>
+        </dl>
+    </div>
+    <table cellpadding="0" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>
+                </th>
+                <td width="32%">商品名称</td>
+                <td width="12%">颜色</td>
+                <td width="12%">类型</td>
+                <td width="12%">单价</td>
+                <td width="12%">数量</td>
+                <td width="20%">总价</td>
+
+            </tr>
+        </thead>
+    </table>
+    <table cellpadding="0" cellspacing="0" width="100%">
+        <tbody id="OrderItemList"></tbody>
+    </table>
+
+    <table cellpadding="0" cellspacing="0" width="100%">
+        <tbody>
+            @{
+                string _comfirmOrderTotalPrice = string.Empty;
+                float _totalIntegral = 0;
+                float _totalBlueBean = 0;
+                float _totalQty = 0;
+                if (Model != null && Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        _totalQty += item.Qty;
+                        float _itemTotalPrice = 0;
+                        int _price = 0;
+                        string _unitText = "积分";
+                        if (item.BuyMode == 1)
+                        {
+                            _price = item.Integral;
+                            _totalIntegral += item.Integral * item.Qty;
+                        }
+                        if (item.BuyMode == 2)
+                        {
+                            _price = item.BlueBean;
+                            _totalBlueBean += item.BlueBean * item.Qty;
+                            _unitText = "蓝豆";
+                        }
+                        _itemTotalPrice = _price * item.Qty;
+                        string _myshoppingcartitemid = "myshoppingcartitemid" + item.ID;
+
+                        <tr class="have_bor he_84">
+                            <td width="32%" class="have_r_bd">
+                                <input type="hidden" id="@_myshoppingcartitemid" value="@item.ID">
+                                <a href="/product/productdetail?productid=@item.ProductID"><img src="@item.Image" style="max-width: 66px; max-height: 66px;"></a>
+                                <span class="f_14 mar_t_10">@item.Name </span>
+                            </td>
+                            <td width="12%" class="text_c have_r_bd">
+                               @if (!string.IsNullOrEmpty (item .ProductColor) )
+                               {
+                                @item.ProductColor
+                               }
+                               else
+                               {
+                                <span>标准</span>
+                               }
+                            </td>
+                            <td width="12%" class="text_c have_r_bd">
+                               @if (!string.IsNullOrEmpty(item.ProductType))
+                               { 
+                                @item.ProductType
+                               }
+                               else
+                               { 
+                               <span>通用</span>
+                               }
+                                
+                                
+                            </td>
+                            <td width="12%" class="text_c have_r_bd">
+                                @_price
+                            </td>
+                            <td width="12%" class="text_c have_r_bd">@item.Qty
+                            </td>
+                            <td width="20%" class="text_c">
+                                @(_itemTotalPrice + _unitText)
+                            </td>
+                        </tr>
+                    }
+                    if (_totalIntegral > 0)
+                    {
+                        _comfirmOrderTotalPrice = _totalIntegral + "积分";
+                    }
+                    if (_totalBlueBean > 0)
+                    {
+                        if (!string.IsNullOrEmpty(_comfirmOrderTotalPrice))
+                        {
+                            _comfirmOrderTotalPrice += "<span style='width:3px'></span>";
+                        }
+                        _comfirmOrderTotalPrice += _totalBlueBean + "蓝豆";
+                    }
+                }
+            }
+        </tbody>
+    </table>
+    <p class="zongji">（共<b class="col_r"><label id="comfirmOrderTotalQuantity">@_totalQty</label></b>件商品）<span class="f_18">应付总价：<b class="col_r f_bold"><label id="comfirmOrderTotalPrice">@Html.Raw(string.IsNullOrEmpty(_comfirmOrderTotalPrice)?"0积分":_comfirmOrderTotalPrice)</label></b></span></p>
+    <a href="javascript:void(0);" target="_self" class="submit_indent" id="btnConfirmOrderAddOrder">提交订单</a>
+
+</div>
+<script type="text/javascript">
+    //第一步：后台将购物车数据添加到数据库中
+    //第二步：将购物车之前的用户数据删除（逻辑）
+    //第三部：清空cookie中的购物车
+    //ShoppingCart.RemoveAll();
+
+    
+</script>

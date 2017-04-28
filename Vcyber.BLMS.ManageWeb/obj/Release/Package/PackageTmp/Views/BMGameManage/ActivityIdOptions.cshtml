@@ -1,0 +1,34 @@
+﻿@model List<int>
+@{
+    Layout = null;
+}
+
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+@if (Model != null && Model.Any())
+{
+    foreach (var item in Model)
+    {       
+        <option value="@item">@item</option>
+    }
+}
+else
+{
+    <option value="0">不存在活动</option>
+}
+

@@ -1,0 +1,279 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="user-scalable=no, width=device-width,initial-scale=1.0, maximum-scale=1.0" />
+    <title>完善信息</title>
+    @*<link href="~/css/base/common.css" rel="stylesheet" />
+        <link href="~/css/base/airportservice.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+    <link href="~/css/AirportService/index.css" rel="stylesheet" />
+    <link href="~/css/AirportService/alert.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    @*<script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Scripts/controller/Main.js"></script>*@
+    <script src="~/Scripts/controller/AirportServiceController.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="~/Scripts/controller/UserController.js"></script>
+    <style type="text/css">
+        /* WebKit browsers */
+        ::-webkit-input-placeholder {
+            color: #fff;
+        }
+        /* Mozilla Firefox 4 to 18 */
+        :-moz-placeholder {
+            color: #fff;
+            opacity: 1;
+        }
+        /* Mozilla Firefox 19+ */
+        ::-moz-placeholder {
+            color: #fff;
+            opacity: 1;
+        }
+        /* Internet Explorer 10+ */
+        :-ms-input-placeholder {
+            color: #fff;
+        }
+
+        input {
+            width: 96%;
+        }
+
+        input, select {
+            color: #fff;
+            -webkit-appearance: none;
+        }
+
+        select {
+            background-color: transparent;
+            width: 30%;
+            border: none;
+            font-size: 14px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var _source = $("#from_source").val();
+            var _oid = $("#from_oid").val();
+            $.ajax({
+                url: "/AirportService/IsRepeatWin",
+                data: { activityId: 5, oid: _oid },
+                datatype: "json",
+                type: "post",
+                success: function (result) {
+                    if (result) {
+                        //重复提交
+                        location.href = "/AirportService/Index?source=" + _source + "&oid=" + _oid;
+                        return false;
+                    }
+                    return false;
+                },
+                error: function () { }
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <div class="wrapper2">
+        <div class="message">
+            <input type="hidden" id="from_oid" name="from_oid" value="@ViewBag.oid" />
+            <input type="hidden" id="from_source" name="from_source" value="@ViewBag.source" />
+            <input type="hidden" value="@ViewBag.prizeType" id="inputPrizeType" />
+            <input type="hidden" value="@ViewBag.prizeId" id="inputPrizeId" />
+            <p class="op1">
+                <input type="text" id="airportUserName" maxlength="20" placeholder="用户姓名" />
+            </p>
+            <p class="op1">
+                <input type="text" id="airportUserTel" class="op2" placeholder="电话号码" />
+            </p>
+            @if (ViewBag.prizeType == 2)
+            {
+                <p class="op3">
+                    <select id="myOrderAddressProvince" class="airport-select-address" onchange="User.FindCityByProvince(this);">
+                        <option value="-1">省</option>
+                        @{
+                List<Vcyber.BLMS.Common.City.Provinces> _provinceList = ViewData["provinceList"] as List<Vcyber.BLMS.Common.City.Provinces>;
+                if (_provinceList != null && _provinceList.Any())
+                {
+                    foreach (var province in _provinceList)
+                    {
+                        <option value="@province.Code" title="@province.ID">@province.Name</option>
+                    }
+                }
+                        }
+                    </select>
+                    <span id="myOrderAddressCitySpan">
+                        <select id="myOrderAddressCity" onchange="User.FindAreasByCity(this);">
+                            <option value="-1">市</option>
+                        </select>
+                    </span>
+                    <span id="myOrderAddressAreaSpan" style="margin-right:0;">
+                        <select id="myOrderAddressCounty">
+                            <option value="-1">区</option>
+                        </select>
+                    </span>
+                </p>
+                <p class="op4">
+                    <input type="text" id="airportDetailAddress" class="op4" placeholder="详细地址" />
+                </p>
+            }
+        </div>
+
+        <div class="tjyy">
+            <a href="javascript:AirportCtr.completeuserinfo();">
+                <img src="/Img/AirportService/tjxx.png" />
+            </a>
+        </div>
+        <div class="content2">
+            <a href="javascript:AirportCtr.togglerShow('#divActivityInfo');" target="_blank">
+                <img src="/Img/AirportService/y_btn1.png" />
+            </a>
+            <a href="javascript:AirportCtr.togglerShow('#divActivityRule');" target="_blank">
+                <img src="/Img/AirportService/y_btn2.png" />
+            </a>
+            <a href="javascript:AirportCtr.togglerShow('#divNoticeInfo');" target="_blank">
+                <img src="/Img/AirportService/y_btn3.png" />
+            </a>
+            <a href="/AirportService/WinningInfo" target="_self">
+                <img src="/Img/AirportService/y_btn4.png" />
+            </a>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- 横屏出现提示 -->
+    <div class="turn"></div>
+    <div class="fxlayer"></div>
+
+    <!--  活动规则      -->
+
+    <div class="alert_box play_rule" style="top: 15vh; height: 70vh; width: 90%;" id="divActivityRule">
+        <span style="height: 10%;"><img src="/Img/AirportService/close.png" onclick="$('#divActivityRule').fadeOut(200);"></span>
+        <div style="height:90%; ">
+            <h2 style="height:20%;"><img src="/Img/AirportService/paly_rule.png" /></h2>
+            <div class="rule_txt" style="height: 75%; margin-bottom:5%; overflow-y: scroll; color: #fff; margin-top: 0; display: block; ">
+                <p>
+                    <b>1)</b>
+                    <span>活动期间，每位用户每天均有一次参与机会。</span>
+                </p>
+                <div style="clear: both;"></div>
+                <p>
+                    <b>2)</b>
+                    <span>本活动奖品分为实物奖及服务奖两种。如同时抽中两种奖品，请按个人喜好选择其一。</span>
+                </p>
+                <p>
+                    <b>3)</b>
+                    <span>本活动奖品分为实物奖及服务奖两种；实物奖在活动结束后统一安排邮寄，虚拟奖在抽中后会以短信形式发送</span>
+                </p>
+                <p>
+                    <b>4)</b>
+                    <span>为便于发奖，抽中奖品的会员，请务必正确填写个人邮寄信息，并保持手机畅通。</span>
+                </p>
+                <p>
+                    <b>5)</b>
+                    <span>本活动最终解释权归北京现代汽车有限公司所有如有疑问请及时与bluemembers网站在线客服联系。</span>
+                </p>
+                <p>
+                    <b>6)</b>
+                    <span>活动中如有疑问请及时拨打北京现代24小时客服热线：400-800-1100（手机拨打）或咨询bluemembers在线客服。</span>
+                </p>
+                <p>
+                    <b>7)</b>
+                    <span>特别申明：您于本网站提供的个人信息只用于北京现代本次活动与您沟通联络时使用。</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <!--  活动简介      -->
+
+    <div class="alert_box play_rule" style="top:15vh; height:70vh; width:90%;" id="divActivityInfo">
+        <span style="height:10%;"><img src="/Img/AirportService/close.png" onclick="$('#divActivityInfo').fadeOut(200);"></span>
+        <div style="height:90%; ">
+            <h2 style="height:20%;"><img src="/Img/AirportService/paly_show.png" /></h2>
+            <div style="height: 75%; margin-bottom: 5%; overflow-y: scroll;">
+                <h3 style="margin-top:0;">暖心候机礼，服务再升级，惊喜摇不停！尊享候机服务码、定制旅行四件套等惊喜大奖等你来抢。活动期间到店试驾即获两次免费候机服务、购车更享超值礼包！</h3>
+                <h4>
+                    bluemembers蓝缤邀您共享候机服务。即日起尊享候机服务全面升级：
+                </h4>
+                <div class="rule_txt">
+                    <p>
+                        <b>1)</b>
+                        <span>候机服务码有效期由7天延长至3个月</span>
+                    </p>
+                    <div style="clear: both;"></div>
+                    <p>
+                        <b>2)</b>
+                        <span>候机服务码可转发给亲友使用</span>
+                    </p>
+                    <div style="clear: both;"></div>
+                    <p>
+                        <b>3)</b>
+                        <span>服务码无机场限制，持有效服务码可在全国50家机场指定休息室畅享候机服务。</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--  注意事项      -->
+
+    <div class="alert_box play_rule p_bot" id="divNoticeInfo" style="top:15vh; height:70vh; width:90%;">
+        <span style="height:10%;"><img src="/Img/AirportService/close.png" onclick="$('#divNoticeInfo').fadeOut(200);"></span>
+        <div style="height:90%; ">
+            <h2 style="height:20%;"><img src="/Img/AirportService/play_care.png" /></h2>
+            <div class="rule_txt" style="height: 75%; margin-bottom:5%; overflow-y: scroll; color: #fff; margin-top: 0; display: block; ">
+                <p>
+                    <b>1)</b>
+                    <span>活动期间，每位用户每天均有一次参与摇一摇赢大奖的机会。</span>
+                </p>
+                <div style="clear: both;"></div>
+                <p>
+                    <b>2)</b>
+                    <span>中奖并选择中意奖品后，填写准确个人信息以便我们为您寄送礼品或发送服务码。</span>
+                </p>
+                <div style="clear: both;"></div>
+                <p>
+                    <b>3)</b>
+                    <span>本活动奖品分为实物奖品和虚拟奖品；实物奖品在活动结束后统一安排物流，虚拟奖品在抽中后以短信形式进行发送候机服务码。</span>
+                </p>
+                <div style="clear: both;"></div>
+                <p>
+                    <b>4)</b>
+                    <span>您在本次活动中获取的候机服务码在2016年3月31日前有效，请及时使用。</span>
+                </p>
+                <h3>温馨提示：尊享候机码为9位数字服务码，如若抽中会以短信形式发送。乘机出行时到达指定机场休息室出示该服务码短信即可使用。</h3>
+            </div>
+        </div>
+    </div>
+
+
+    <!--  提交完个人信息提示      -->
+
+    <div class="alert_box wzj" id="divCompleteWinUserInfo">
+        <span>
+            <img src="/Img/AirportService/close.png"
+                 onclick="$('#divCompleteWinUserInfo').hide(500); location = '/AirportService/Index?source=@ViewBag.source&oid=@ViewBag.oid';">
+        </span>
+        <p>信息已提交成功，预约试驾大奖再来一份！</p>
+        <div class="a_bot">
+            <a href="/AirportService/TestDriveInfo?source=@ViewBag.source&oid=@ViewBag.oid"><img src="/Img/AirportService/jkyy.png" /></a>
+            <a href="/AirportService/Index?source=@ViewBag.source&oid=@ViewBag.oid"><img src="/Img/AirportService/cancel.png" /></a>
+        </div>
+
+    </div>
+</body>
+</html>

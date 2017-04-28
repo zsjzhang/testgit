@@ -1,0 +1,113 @@
+﻿@model Vcyber.BLMS.Entity.QuestionnaireVisitor
+<style type="text/css">
+    .spanSelectAddress > select, select {
+        width: 120px;
+        padding: 0px;
+        padding-left: 10px;
+        height: 30px;
+        border: 1px solid gray;
+        margin-right: 12px;
+    }
+
+    option {
+        width: auto;
+        padding: 0px;
+        padding-left: 10px;
+    }
+
+    .spanSelectAddress {
+        width: 150px;
+    }
+
+    /*#carType {
+        width: 262px;
+        padding-left: 10px;
+    }*/
+</style>
+<div id="hidden_div_info_of_passerby" style="width:100%;float:none;margin-left:20px;margin-top:20px;">
+    <p class="left">
+        请留下您的一些基本信息：（请您准确填写，便于获奖后我们与您取得联系）
+    </p>
+    <br />
+    <b style="color:#f00;vertical-align:middle;margin-right:10px;">*</b>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：
+    <input id="inputPasserbyName" type="text" maxlength="20" style="height: 25px; width: 110px; font-size: 14px; border:none; padding:0px; padding-left:10px; border:1px solid gray; outline:none;"
+           value="@Model.VName" />
+    <span style="margin:0px 20px;">
+        <b style="color:#f00;vertical-align:middle;margin-right:10px;">*</b>性别：
+        <label>
+            <input type="radio" value="man" style="outline:none;margin:0px 10px 0px 10px;" name="radioPasserbySex"
+                   @if (Model.Sex == 0 || Model.Sex == 1) { <text> checked="checked" </text>            } />男
+        </label>
+        <label>
+            <input type="radio" value="woman" style="outline: none; margin: 0px 10px 0px 20px;" name="radioPasserbySex"
+                   @if (Model.Sex == 2) { <text> checked="checked" </text>             } />女
+        </label>
+    </span>
+    <b style="color:#f00;vertical-align:middle;margin-right:10px;">*</b>年龄：
+    <select id="inputPasserbyAge">
+        <option value="-1">@(string.IsNullOrEmpty(Model.Age) ? "请选择" : Model.Age)</option>
+        <option value="20以下">20以下</option>
+        <option value="20-30">21-30</option>
+        <option value="30-40">31-40</option>
+        <option value="40-50">41-50</option>
+        <option value="50以上">51以上</option>
+    </select>
+
+    <b style="color: #f00; vertical-align: middle; margin-left: 20px; margin-right: 10px;">*</b>学历：
+    <select id="inputPasserbyEducation">
+        <option value="-1">@(string.IsNullOrEmpty(Model.Education) ? "请选择" : Model.Education)</option>
+        <option value="大学">大学</option>
+        <option value="学士">学士</option>
+        <option value="硕士">硕士</option>
+        <option value="博士">博士</option>
+        <option value="大专">大专</option>
+        <option value="中专">中专</option>
+        <option value="高中以下">高中以下</option>
+    </select>
+    <br /><br />
+
+    <b style="color: #f00; vertical-align: middle; margin-right: 10px; ">*</b>联系电话：
+    <input type="text" id="inputPasserbyPhone" style="height: 27px; width: 250px; font-size: 14px; border: none; padding-left: 10px; border: 1px solid gray; outline: none;"
+           value="@Model.PhoneNumber" />
+
+    @*<b style="color: #f00; vertical-align: middle; margin-right: 10px;margin-left:10px; ">*</b>Email地址：
+    <input type="text" id="inputPasserbyEmail" style="height: 25px; width: 250px; font-size: 14px; border: none; padding-left: 10px; border: 1px solid gray; outline: none;"
+           value="@Model.Email" />*@
+    <b style="color: #f00; vertical-align: middle; margin-right: 10px;">*</b>车型：
+    @Html.Action("CarTypeView", "Car", new { })
+    <label style="margin-left:10px;"><input type="checkbox" value="其它品牌" name="inputPasserbyCar" id="inputPasserbyCarOtherType" onclick="Questionnaire.OtherTypeOwnerClick(this)" />其它品牌</label>
+    <label style="margin-left:10px;"><input type="checkbox" value="非车主" name="inputPasserbyCar" id="inputPasserbyCarOtherNotOwner" onclick="Questionnaire.OtherTypeClick(this)" />非车主</label>
+
+    <br /><br />
+
+    <b style="color: #f00; vertical-align: middle; margin-right: 10px; ">*</b>详细地址：
+    <select id="selectPasserbyAddressProvince" onchange="User.FindCityByProvince(this);">
+        <option value="-1">@(string.IsNullOrEmpty(Model.Provency) ? "请选择" : Model.Provency)</option>
+        @{
+            List<Vcyber.BLMS.Common.City.Provinces> _provinceList = ViewData["provinceList"] as List<Vcyber.BLMS.Common.City.Provinces>;
+            if (_provinceList != null && _provinceList.Any())
+            {
+                foreach (var province in _provinceList)
+                {
+                    <option value="@province.Code" title="@province.ID">@province.Name</option>
+                }
+            }
+        }
+    </select>
+    <span id="myOrderAddressCitySpan" class="spanSelectAddress">
+        <select id="myOrderAddressCity" onchange="User.FindAreasByCity(this);">
+            <option value="-1">@(string.IsNullOrEmpty(Model.City) ? "请选择" : Model.City)</option>
+        </select>
+    </span>
+    <span id="myOrderAddressAreaSpan" class="spanSelectAddress">
+        <select id="myOrderAddressCounty">
+            <option value="-1">@(string.IsNullOrEmpty(Model.Area) ? "请选择" : Model.Area)</option>
+        </select>
+    </span>
+    @*<b style="color: #f00; vertical-align: middle; margin-right: 10px; ">*</b>街道住址：*@
+    <input type="text" id="passerbyinfoAddress" name="Address" value="@Model.MailAddress"
+           style="height: 25px; width: 350px; font-size: 14px; border:none;padding-left:10px; border:1px solid gray; outline:none;" />
+    <br /><br />
+    @*<b style="color: #f00; vertical-align: middle; margin-right: 10px;">*</b>邮址：
+        <input type="text" id="inputPasserbyAddress" style="height: 25px; width: 75%; font-size: 14px; border: none; padding-left: 10px; border-bottom: 1px solid gray; outline: none;" />*@
+</div>

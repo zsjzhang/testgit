@@ -1,0 +1,689 @@
+﻿@model Vcyber.BLMS.FrontWeb.Models.ApplicationUser
+@{
+    Layout = null;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<script src="~/Content/laydate/laydate.js"></script>
+<script src="~/Scripts/controller/DealerControllerThree.js"></script>
+<script type="text/javascript">
+    function checkFaceImgType(obj) {
+        if ($(obj).val() == null || $(obj).val() == "") {
+            popWindownBlue( "请选择后缀名为.jpg或者.png类型的文件作为头像");
+            return false;
+        }
+        var _index = $(obj).val().length;
+        var _extenssionName = $(obj).val().substring(_index - 3);
+        if (_index < 0) {
+            popWindownBlue( "请选择后缀名为.jpg或者.png类型的文件作为头像");
+            return false;
+        }
+        if (_extenssionName != "jpg" && _extenssionName != "png" && _extenssionName != "PNG" && _extenssionName != "JPG") {
+            popWindownBlue( "请选择后缀名为.jpg或者.png类型的文件作为头像");
+            return false;
+        }
+        InitImgUrl();
+          $(".user_base_info_upload").click();
+
+    }
+    function InitImgUrl() {
+        var objUrl = getObjectURL(document.getElementById("file").files[0]);
+        if (objUrl) {
+            $("#img_upload").attr("src", objUrl);
+        }
+    }
+    function getObjectURL(file) {
+        var url = null;
+        if (window.createObjectURL != undefined) { // basic
+            url = window.createObjectURL(file);
+        } else if (window.URL != undefined) { // mozilla(firefox)
+            url = window.URL.createObjectURL(file);
+        } else if (window.webkitURL != undefined) { // webkit or chrome
+            url = window.webkitURL.createObjectURL(file);
+        }
+        return url;
+    }
+    function BeforUpload() {
+        $("#img_upload").attr("src", "/Img/img_process.gif");
+        return true;
+    }
+    function update_upload_img_src(imgsrc) {
+        $("#img_upload").attr("src", imgsrc);
+        $("#faceimage").val(imgsrc);
+    }
+    $(function () {
+        $("#img_upload").click(function () {
+            $("#file").click();
+        })
+
+        var _update_identitynumber = '@Model.IdentityNumber';
+        if (_update_identitynumber != null || _update_identitynumber != '') {
+            if ($("#setbaseinfoUserPaperWork").val() == null || Number($("#setbaseinfoUserPaperWork").val()) < 1) {
+                $("#setbaseinfoUserPaperWork").val(-1);
+            }
+            $("#setbaseinfoUserPaperWork").attr("disabled", "disabled");
+            $("#setbaseinfoUserIdentityNumber").attr("disabled", "disabled");
+        }
+    })
+
+</script>
+<style>
+    .user_info_description {
+        position: relative;
+        left: 20px;
+        top: 8px;
+        font-size: 14px;
+        color: #aaa;
+        float: left;
+        height: 30px;
+    }
+
+    #sms_code, #mycenterresetpasswdcaptcha {
+        width: 130px;
+    }
+
+    #mycenterresetpasswdsendsms_code {
+        margin-right: 160px;
+        cursor: pointer;
+        border: 1px solid #a0a0a0;
+        padding: 6px 0;
+        font-size: 12px;
+        display: inline-block;
+        height: 21px;
+        float:right;
+        margin-top:11px;
+        vertical-align: middle;
+        line-height: 21px;
+        text-align: center;
+    }
+
+    #mycenterresetpasswdsendcaptcha {
+        margin-right: 160px;
+        cursor: pointer;
+        border: 1px solid #a0a0a0;
+        padding: 6px 0;
+        font-size: 12px;
+        float:right;
+        margin-top:11px;
+        display: inline-block;
+        height: 21px;
+        vertical-align: middle;
+        line-height: 21px;
+        text-align: center;
+    }
+
+    .user_base_info {
+        border-top: 1px solid #eee;
+        padding-top: 15px;
+        margin-bottom: 20px;
+        float: left;
+    }
+
+    .user_detail_info {
+        border-top: 1px solid #eee;
+        padding-top: 15px;
+        float: left;
+    }
+
+        .user_detail_info p {
+            width: 100%;
+            float: left;
+        }
+
+    .first_c p {
+        float: left;
+    }
+
+    .first_c .left_property_name {
+        width: 220px;
+        height: 52px;
+        float: left;
+        margin-left: 0;
+        text-align: right;
+    }
+
+    .zz_click {
+        border-left: 1px solid #fff;
+        border-right: 1px solid #fff;
+        background-color: #eaeaea !important;
+    }
+
+    .first_c .tips {
+        font-size: 12px;
+        text-align: center;
+        color: #666;
+    }
+
+    .first_c .radioText {
+        float: left;
+        width: 30px;
+    }
+
+    .first_c .radioButton {
+        width: 15px;
+        line-height: 50px;
+        height: 50px;
+        float: left;
+    }
+
+    .first_c .checkButton {
+        width: 15px;
+        line-height: 52px;
+        height: 52px;
+        float: left;
+    }
+
+    .first_c .user_base_info_img_parent {
+        width: 120px;
+        height: 100px;
+        border: 1px solid #eee;
+        margin-left: 0;
+    }
+
+    .first_c .user_base_info_img_parent_container {
+        height: 100px;
+        line-height: 100px;
+    }
+
+    .first_c .user_base_info_img {
+        width: 120px;
+        height: 100px;
+    }
+
+    .first_c .user_base_info_file_parent {
+        width: 80px;
+        margin-left: 20px;
+    }
+
+    .first_c .user_base_info_file {
+        border: medium none;
+        height: 33px;
+        width: 70px;
+        position:absolute;
+        top:50px;
+        margin-top:-16px;
+        z-index:99;
+        opacity:0;
+
+    }
+
+    .first_c .user_base_info_upload_parent {
+        width: 60px;
+        margin-left: 20px;
+    }
+
+    .first_c .user_base_info_upload {
+        width: 60px;
+        height: 31px;
+    }
+
+    .first_c p span {
+        margin-left: 20px;
+    }
+
+    .first_c p label {
+        width: 150px;
+    }
+
+    .first_c .user_base_info_select {
+        width: 391px;
+        padding-left: 10px;
+    }
+
+    .first_c p input {
+        width: 380px;
+    }
+
+    .user_base_info_checkbox {
+        float: left;
+        padding: 0 15%;
+        -webkit-column-count: 2;
+        column-count: 2;
+        -moz-column-count: 2;
+    }
+
+        .user_base_info_checkbox .left_property_name span, label {
+            float: left;
+            color: #3d3f43;
+            font-size: 14px;
+        }
+
+    #setbaseinfoUserRemark {
+        margin: 0px;
+        width: 385px;
+        height: 59px;
+        resize: none;
+    }
+
+    .choose_A {
+        width: 131px;
+        height: 52px;
+        float: left;
+        margin-left: 2px;
+    }
+
+        .choose_A select {
+            width: 150px;
+            padding: 5px 0;
+            line-height: 30px;
+            border: 1px solid #CBCBCB;
+        }
+
+    .first_c p select {
+        width: 123px;
+        height: 31px;
+        border: 1px solid #c1c1c1;
+    }
+
+    .first_c p b {
+        margin-left: 2px;
+    }
+
+    #mycentersetbaseinfosave {
+        float: left;
+        cursor: pointer;
+        margin-top: 20px;
+        margin-bottom: 40px;
+        width: 232px;
+        position: relative;
+        left: 50%;
+        margin-left: -116px;
+    }
+
+    .first_c .Remark_Container {
+        height: auto;
+    }
+
+    .qrxg {
+        margin-top: 30px;
+        margin-bottom: 40px;
+    }
+
+    .tt_two p input {
+        vertical-align: middle;
+        width:226px;
+    }
+    .user_base_info_file_div {
+        width: 70px;
+        height: 30px;
+        line-height: 30px;
+        border: 1px solid #248bff;
+        background-color: #075090;
+        color: #fff;
+        margin-top: -16px;
+        float: left;
+        text-align: center;
+        cursor: pointer;
+        position:absolute;
+        top:50px;
+        z-index:20;
+        font-size:14px;
+    }
+</style>
+
+<div class="first_c">
+    @{
+        string _personerInfoValue = string.Empty;
+        string _allInfoValue = string.Empty;
+        if (Model.MLevel == 2)
+        {
+            _personerInfoValue = "50";
+            _allInfoValue = "100";
+        }
+        if (Model.MLevel == 3)
+        {
+            _personerInfoValue = "75";
+            _allInfoValue = "150";
+        }
+    }
+
+    @*<div class="user_info_description">个人中心</div>*@
+    <div class="user_base_info">
+        <form method="post" action="/MyCenter/UpLoadUserFaceImg" enctype="multipart/form-data" target="abcdefg12345678">
+            <p class="user_base_info_img_parent_container">
+                <span class="left_property_name">
+                    <span>&nbsp;</span>
+                    <label>头&nbsp;&nbsp;像：</label>
+                </span>
+                <span class="user_base_info_img_parent">
+                   
+                    <img id="img_upload" src="@Model.FaceImage" class="user_base_info_img" />
+                </span>
+                <span class="user_base_info_file_parent" style="position:relative;">
+                    <input type="file" id="file" name="file" class="user_base_info_file" value="@Model.FaceImage" onchange="checkFaceImgType(this);" />
+                    <i class="user_base_info_file_div" >浏览...</i>
+                    <input type="hidden" id="faceimage" name="faceimage" value="@Model.FaceImage" />
+                   </span>
+                <span class="user_base_info_upload_parent">
+                    <input type="submit" class="user_base_info_upload" style="display:none;" value="上传" />
+                </span>
+
+            </p>
+        </form>
+        <iframe name="abcdefg12345678" style="display:none"></iframe>
+        <p>
+            <span class="left_property_name">
+                <span>&nbsp;</span><label>用户名：</label>
+            </span>
+            <input placeholder="请输入用户名" type="text" id="setbaseinfoUserNickname" name="NickName" value="@Model.NickName" /><b onclick="return false;">最多6个汉字</b>
+        </p>
+        <p>
+            <span class="left_property_name">
+                <span>&nbsp;</span>
+                <label style="width:150px;">真实姓名：</label>
+            </span>
+            <input type="text" id="setbaseinfoUserRealName" name="RealName" placeholder="请输入真实姓名" value="@Model.RealName" />
+        </p>
+        <p>
+            <span class="left_property_name">
+                <span>&nbsp;</span><label>证件类型：</label>
+            </span>
+            <select id="setbaseinfoUserPaperWork" name="PaperWork" class="user_base_info_select">
+                <option value="-1">请选择</option>
+                @{
+                    int _paperwork = -1;
+                    if (!string.IsNullOrEmpty(Model.PaperWork))
+                    {
+                        int.TryParse(Model.PaperWork, out _paperwork);
+                    }
+                }
+                <option @{if (_paperwork == (int)Vcyber.BLMS.Entity.Enum.ECustomerIdentificationType.IdentityCard) { <text> selected="selected" </text>      }} value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerIdentificationType.IdentityCard)">身份证</option>
+                <option @{if (_paperwork == (int)Vcyber.BLMS.Entity.Enum.ECustomerIdentificationType.Passport) { <text> selected="selected" </text>      }} value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerIdentificationType.Passport)">护照</option>
+                <option @{if (_paperwork == (int)Vcyber.BLMS.Entity.Enum.ECustomerIdentificationType.Officer) { <text> selected="selected" </text>       }} value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerIdentificationType.Officer)">军官证</option>
+
+            </select>
+        </p>
+        <p>
+            <span class="left_property_name">
+                <span>&nbsp;</span>
+                <label style="width:150px;">证件号码：</label>
+            </span>
+            <input type="text" id="setbaseinfoUserIdentityNumber" name="IdentityNumber" placeholder="请输入有效证件号,英文字母注意大写" value="@Model.IdentityNumber" />
+        </p>
+        <p>
+            <span class="left_property_name">
+                <span style="color:#fff;">&nbsp;</span><label>生&nbsp;&nbsp;日：</label>
+            </span>
+            <input type="text" id="setbaseinfoUserBirthday" name="Birthday" value="@(string.IsNullOrEmpty(Model.Birthday) ? "" : Convert.ToDateTime(Model.Birthday).ToString("yyyy-MM-dd"))" onclick="laydate()"  disabled="disabled" />
+        </p>
+        <p style="height: 20px; line-height: 12px; margin-left: 230px; font-size: 12px; color: rgb(149, 149, 149);">
+            生日日期以身份证证件号码为准，如需修改请致电400客服。
+        </p>
+        <p>
+            <span class="left_property_name">
+                <span>&nbsp;</span><label>邮&nbsp;&nbsp;箱：</label>
+            </span>
+            <input type="text" id="setbaseinfoEmail" name="Email" value="@Model.Email"   placeholder="请输入正确的邮箱,以便我们能够与你联系 "/><b>50字以内</b>
+        </p>
+        <p>
+            <span class="left_property_name">
+                <span>&nbsp;</span><label>性&nbsp;&nbsp;别：</label>
+            </span>
+            @{
+                int _gender = -1;
+                if (!string.IsNullOrEmpty(Model.Gender))
+                {
+                    int.TryParse(Model.Gender, out _gender);
+                }
+            }
+            <input type="radio" id="setbaseinfoUserGenderMan" name="Gender" class="radioButton" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerGenderType.Man == _gender) { <text> checked="checked" </text>     }} value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerGenderType.Man)" />
+            <label for="setbaseinfoUserGenderMan" class="radioText">
+                男
+            </label>
+            <input type="radio" id="setbaseinfoUserGenderWomen" name="Gender" class="radioButton" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerGenderType.Women == _gender) { <text> checked="checked" </text>      }} value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerGenderType.Women)" />
+            <label for="setbaseinfoUserGenderWomen" class="radioText">
+                女
+            </label>
+
+        </p>
+        <p>
+            <span class="left_property_name">
+                <span>&nbsp;</span><label>住&nbsp;&nbsp;址：</label>
+            </span>
+            <b class="choose_A">
+                <select id="myOrderAddressProvince" onchange="User.FindCityByProvince(this);">
+                    <option value="-1">@(string.IsNullOrEmpty(Model.Provency) ? "请选择" : Model.Provency)</option>
+                    @{
+                        List<Vcyber.BLMS.Common.City.Provinces> _provinceList = ViewData["provinceList"] as List<Vcyber.BLMS.Common.City.Provinces>;
+                        if (_provinceList != null && _provinceList.Any())
+                        {
+                            foreach (var province in _provinceList)
+                            {
+                                <option value="@province.Code" title="@province.ID">@province.Name</option>
+                            }
+                        }
+                    }
+                </select>
+            </b>
+            <b id="myOrderAddressCitySpan" class="choose_A">
+                <select id="myOrderAddressCity" onchange="User.FindAreasByCity(this);">
+                    <option value="-1">@(string.IsNullOrEmpty(Model.City) ? "请选择" : Model.City)</option>
+                </select>
+            </b>
+            <b id="myOrderAddressAreaSpan" class="choose_A">
+                <select id="myOrderAddressCounty">
+                    <option value="-1">@(string.IsNullOrEmpty(Model.Area) ? "请选择" : Model.Area)</option>
+                </select>
+            </b>
+        </p>
+        <p>
+            <span class="left_property_name">
+                <span>&nbsp;</span><label>详细住址：</label>
+            </span>
+            <input type="text" id="setbaseinfoAddress" name="Address" value="@Model.Address" placeholder=" 请填写详细街道 、楼牌号等" /><b>100字以内</b>
+        </p>
+        @*<p class="tips">
+                尊敬的会员您好，完善个人信息，保存成功即可获得<font>@_personerInfoValue</font>蓝豆奖励，累计蓝豆，兑换您的心仪礼品吧。
+            </p>*@
+    </div>
+    <div class="user_info_description">详细信息</div>
+    <div class="user_detail_info">
+        <p>
+            <span class="left_property_name">
+                <span>&nbsp;</span><label>主要联系方式：</label>
+            </span>
+            @{
+                int _mainContact = -1;
+                if (!string.IsNullOrEmpty(Model.MainContact))
+                {
+                    int.TryParse(Model.MainContact, out _mainContact);
+                }
+            }
+            <input type="radio" id="setbaseinfoUserMainContactPhone" name="MainContact" class="radioButton" @{if (1 == _mainContact) { <text> checked="checked" </text>      }} />
+            <label for="setbaseinfoUserMainContactPhone" class="radioText">
+                电话
+            </label>
+            <input type="radio" id="setbaseinfoUserMainContactEmail" name="MainContact" class="radioButton" @{if (2 == _mainContact) { <text> checked="checked" </text>     }} />
+            <label for="setbaseinfoUserMainContactEmail" class="radioText">
+                邮件
+            </label>
+        </p>
+        <p>
+            <span class="left_property_name">
+                <span>&nbsp;</span><label>主要电话号码：</label>
+            </span>
+            <input placeholder=" 请输入主要电话号码" type="text" id="setbaseinfoUserMainTelePhone" name="MainTelePhone" value="@Model.MainTelePhone" />
+        </p>
+        <p>
+            <span class="left_property_name">
+                <span>&nbsp;</span><label>固定电话：</label>
+            </span>
+            <input type="text" id="setbaseinfoUserTelePhone" name="TelePhone" value="@Model.TelePhone" placeholder=" 请填写固定电话号码" />
+        </p>
+        <p>
+            <span class="left_property_name">
+                <span>&nbsp;</span><label>购车时间：</label>
+            </span>
+            <input placeholder="请选择购车时间 " type="datetime" id="setbaseinfoUserTransactionTime" name="TransactionTime" value="@(string.IsNullOrEmpty(Model.TransactionTime) ? "" : Convert.ToDateTime(Model.TransactionTime).ToString("yyyy-MM-dd"))" onclick="laydate()" />
+        </p>
+        <p>   
+            <span class="left_property_name">
+                <span>&nbsp;</span><label>选择职业：</label>
+            </span>
+            <select id="setbaseinfoUserIndustry" name="Industry" class="user_base_info_select">
+                <option value="-1">其他</option>
+                @{
+                    int _industry = -1;
+                    if (!string.IsNullOrEmpty(Model.Industry))
+                    {
+                        int.TryParse(Model.Industry, out _industry);
+                    }
+                }
+                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerJob.Entertainment)" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerJob.Entertainment == _industry){ <text> selected="selected" </text>      }}>娱乐|服务</option>
+                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerJob.Advertising)" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerJob.Advertising == _industry) { <text> selected="selected" </text>        }}>广告|营销|公关</option>
+                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerJob.Architecture)" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerJob.Architecture == _industry) { <text> selected="selected" </text>        }}>建筑</option>
+                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerJob.Organ)" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerJob.Organ == _industry) { <text> selected="selected" </text>        }}>政府|军事|公共服务</option>
+                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerJob.Teacher)" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerJob.Teacher == _industry) { <text> selected="selected" </text>        }}>教师</option>
+                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerJob.Education)" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerJob.Education == _industry) { <text> selected="selected" </text>        }}>教育|培训</option>
+                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerJob.Traveling)" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerJob.Traveling == _industry) { <text> selected="selected" </text>        }}>旅游交通</option>
+                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerJob.Consumer)" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerJob.Consumer == _industry)
+                                                                                        { <text> selected="selected" </text>         }}>消费品</option>
+                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerJob.Telecom)" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerJob.Telecom == _industry)
+                                                                                       { <text> selected="selected" </text>         }}>电信</option>
+                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerJob.Energy)" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerJob.Energy == _industry)
+                                                                                      { <text> selected="selected" </text>         }}>能源|采矿</option>
+                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerJob.Space)" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerJob.Space == _industry)
+                                                                                     { <text> selected="selected" </text>         }}>航天</option>
+                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerJob.IT)" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerJob.IT == _industry)
+                                                                                         { <text> selected="selected" </text>         }}>计算机网络</option>
+            </select>
+        </p>
+        <p>
+            <span class="left_property_name">
+                <span>&nbsp;</span><label>选择职位：</label>
+            </span>
+            <select id="setbaseinfoUserJob" name="Job" class="user_base_info_select">
+                <option value="-1">其他</option>
+                @{
+                    int _job = -1;
+                    if (!string.IsNullOrEmpty(Model.Job))
+                    {
+                        int.TryParse(Model.Job, out _job);
+                    }
+                }
+                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerPost.Clerk)" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerPost.Clerk == _job)
+                                                                                     { <text> selected="selected" </text>      }}>普通职员</option>
+                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerPost.Officer)" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerPost.Officer == _job)
+                                                                                        { <text> selected="selected" </text>       }}>政府官员</option>
+                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerPost.Entrepreneur)" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerPost.Entrepreneur == _job)
+                                                                                             { <text> selected="selected" </text>       }}>私营企业主</option>
+                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerPost.DepartmentManager)" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerPost.DepartmentManager == _job)
+                                                                                                  { <text> selected="selected" </text>       }}>部门经理</option>
+                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerPost.President)" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerPost.President == _job)
+                                                                                          { <text> selected="selected" </text>       }}>董事长</option>
+                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerPost.Management)" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerPost.Management == _job)
+                                                                                           { <text> selected="selected" </text>       }}>高级管理人员</option>
+            </select>
+        </p>
+        <p>
+            <span class="left_property_name">
+                <span>&nbsp;</span><label>婚姻状况：</label>
+            </span>
+            @{
+                int _ismarriage = -1;
+                if (!string.IsNullOrEmpty(Model.IsMarriage))
+                {
+                    int.TryParse(Model.IsMarriage, out _ismarriage);
+                }
+            }
+            <input type="radio" id="setbaseinfoUserIsMarriageYes" class="radioButton" name="IsMarriage" @{if (_ismarriage == (int)Vcyber.BLMS.Entity.Enum.ECustomerMarriageType.Is) { <text> checked="checked" </text>     }} value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerMarriageType.Is)" />
+            <label for="setbaseinfoUserIsMarriageYes" class="radioText">
+                已婚
+            </label>
+            <input type="radio" id="setbaseinfoUserIsMarriageNo" @{if (_ismarriage == (int)Vcyber.BLMS.Entity.Enum.ECustomerMarriageType.No) { <text> checked="checked" </text>       }} class="radioButton" name="IsMarriage" value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerMarriageType.No)" />
+            <label for="setbaseinfoUserIsMarriageNo" class="radioText">
+                未婚
+            </label>
+
+        </p>
+        <p>
+            <span class="left_property_name">
+                <span>&nbsp;</span><label>婚姻纪念日：</label>
+            </span>
+            <input placeholder="请选择婚姻纪念日 " type="text" id="setbaseinfoUserMarriageDay" name="MarriageDay" value="@(string.IsNullOrEmpty(Model.MarriageDay)?"":Convert.ToDateTime(Model.MarriageDay??"").ToString("yyyy-MM-dd"))" onclick="laydate()" />
+        </p>
+        <p>
+            <span class="left_property_name">
+                <span>&nbsp;</span><label>教育程度：</label>
+            </span>
+            <select id="setbaseinfoUserEducational" name="Educational" class="user_base_info_select">
+                <option value="-1">其他</option>
+                @{
+                    int _educational = -1;
+                    if (!string.IsNullOrEmpty(Model.Educational))
+                    {
+                        int.TryParse(Model.Educational, out _educational);
+                    }
+                }
+                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerEducational.University)" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerEducational.University == _educational)
+                                                                                                  { <text> selected="selected" </text>   }}>大学</option>
+
+                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerEducational.Bachelor)" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerEducational.Bachelor == _educational)
+                                                                                                { <text> selected="selected" </text>   }}>学士</option>
+
+                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerEducational.Master)" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerEducational.Master == _educational)
+                                                                                              { <text> selected="selected" </text>   }}>硕士</option>
+
+                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerEducational.Dr)" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerEducational.Dr == _educational)
+                                                                                          { <text> selected="selected" </text>   }}>博士</option>
+                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerEducational.JuniorCollege)" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerEducational.JuniorCollege == _educational)
+                                                                                                     { <text> selected="selected" </text>    }}>大专</option>
+                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerEducational.Polytechnic)" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerEducational.Polytechnic == _educational)
+                                                                                                   { <text> selected="selected" </text>    }}>中专</option>
+                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerEducational.MiddleSchool)" @{if ((int)Vcyber.BLMS.Entity.Enum.ECustomerEducational.MiddleSchool == _educational)
+                                                                                                  { <text> selected="selected" </text>    }}>高中以下</option>
+            </select>
+        </p>
+        <p class="Remark_Container">
+            <span class="left_property_name">
+                <span>&nbsp;</span><label>备注：</label>
+            </span>
+            <textarea id="setbaseinfoUserRemark" name="Remark">@Model.Remark</textarea>
+        </p>
+        @*<div class="user_base_info_checkbox">
+                <span class="left_property_name">
+                    <span>&nbsp;</span><label>不要发短信：</label>
+                    <input type="checkbox" id="setbaseinfoUserSendEmail" name="SendEmail" class="checkButton" value="@Model.SendEmail" />
+                </span>
+                <span class="left_property_name">
+                    <span>&nbsp;</span><label>不要打电话：</label>
+                    <input type="checkbox" id="setbaseinfoUserMakePhone" name="MakePhone" class="checkButton" value="@Model.MakePhone" />
+                </span>
+                <span class="left_property_name">
+                    <span>&nbsp;</span><label>不要发信件：</label>
+                    <input type="checkbox" id="setbaseinfoUserSendLetter" name="SendLetter" class="checkButton" value="@Model.SendLetter" />
+                </span>
+                <span class="left_property_name">
+                    <span>&nbsp;</span><label>不要发Email：</label>
+                    <input type="checkbox" id="setbaseinfoUserSendSms" name="SendSms" class="checkButton" value="@Model.SendSms" />
+                </span>
+            </div>*@
+    </div>
+
+    <img src="/img/querenxiugai.png" class="qrxg" id="mycentersetbaseinfosave" />
+</div>

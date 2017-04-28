@@ -1,0 +1,457 @@
+*{
+	font-family: '微软雅黑';
+}
+span,p,h1,h2,label,a,ul,li,ol,b{
+	font-family: '微软雅黑';
+}
+.sonata{
+	width: 1000px;
+	height: 400px;
+	margin-top: 44px;
+}
+.sona_left{
+	width: 428px;
+	float: left;
+	height: 100%;
+}
+.sona_left p{
+	height: 50px;
+	border-top: 1px solid #3d3f43;
+	border-bottom: 1px solid #3d3f43;
+	line-height: 50px;
+}
+.sona_left label{
+	display: block;
+	width: 80px;
+	float: left;
+	margin-left: 20px;
+}
+.sona_right{
+	width: 532px;
+	float: right;
+}
+
+.bx_all{
+	width: 1000px;
+	margin:0 auto;
+}
+.name_title{
+	height: 100px;
+	background: #eeeeee;
+	margin-top: 30px;
+	padding:28px 0;
+}
+.pic_car{
+	float: left;
+	margin-left: 30px;
+	margin-right: 14px;
+}
+.name_title .name_list{
+	width: 300px;
+	float: left;
+}
+.name_list h1{
+	width: 100%;
+	height: 30px;
+	font-size: 22px;
+	color: #075090;
+	font-family: '微软雅黑';
+}
+.name_list .n_span{
+	display: block;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	background: #3d3f43;
+	color: #fff;
+	width: 90px;
+	font-size: 12px;
+	cursor: pointer;
+	float: left;
+	margin-right: 2px;
+	margin-bottom: 6px;
+}
+.name_list p{
+	height: 20px;
+	line-height: 20px;
+	width: 100%;
+	float: left;
+	font-size: 12px;
+	color: #3d3f43;
+}
+.name_list p span{
+	margin-right: 20px;
+}
+.vip_kuang{
+	width: 184px;
+	height: 100px;
+	background: url(../img/vip_bg.png) no-repeat;
+	float: left;
+	margin-left: 170px;
+	position: relative;
+}
+.vip_kuang span{
+	text-align: right;
+	display: block;
+	font-size: 16px;
+	color: #fff;
+	margin-top: 16px;
+	margin-right: 16px;
+}
+.luntan{
+	cursor: pointer;
+	float: right;
+	margin-right: 30px
+}
+.car_per{
+	width: 100%;
+	height: 64px;
+	background: url(../img/320pic.png) no-repeat;
+	margin-top: 4px;
+	line-height: 64px;
+}
+.car_per span{
+	display: block;
+	width: 170px;
+	font-size: 16px;
+	color: #3d3f43;
+	margin-left: 30px;
+	float: left;
+}
+.car_per label{
+	font-size: 14px;
+	margin-right: 78px;
+}
+
+.my_love_car{
+	width: 100%;
+	height: 284px;
+	margin-top: 42px;
+}
+.love_car_title .weird_1{
+	width: 100%;
+	height: 27px;
+	border-bottom: 2px solid #075090;
+}
+.love_car_title .weird_1 span{
+	background: #075090;
+	padding: 0px 30px;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	color: #fff;
+	display: block;
+	line-height: 27px;
+	float: left;
+}
+.love_car_title .weird_1 div.bg{
+	float: left;
+	width: 15px;
+	height: 27px;
+	background: url(../img/weird_1.png) no-repeat;
+}
+.love_car_title .weird_1 a{
+	display: block;
+	float: right;
+	font-size: 12px;
+	color: #000;
+	margin-top: 10px;
+	text-decoration: none;
+}
+.car_list{
+	width: 998px;
+	height: 252px;
+	border:1px solid #eeeeee;
+	border-top: none;
+}
+.car_list ul li{
+	width: 295px;
+	float: left;
+	margin-left: 28px;
+}
+.car_list ul li img{
+	margin-top: 30px;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+.car_list ul li p{
+	height: 20px;
+	line-height: 16px;
+	font-size: 14px;
+	color: #3d3f43
+}
+
+.my_burse{
+	width: 100%;
+	height: 268px;
+	margin-top: 43px;
+}
+.burse_cont{
+	width: 999px;
+	height: 237px;
+	border:1px solid #eeeeee;
+	border-top: none;
+
+}
+.burse_cont .burse_list{
+	width: 295px;
+	padding-top: 22px;
+	float: left;
+	border-left: 1px solid #eee;
+	height: 215px;
+	margin-right: 37px;
+}
+.burse_cont .burse_list p{
+	height: 28px;
+	line-height: 28px;
+	background: #eeeeee;
+	font-size: 16px;
+	color:#3d3f43;
+	padding-left: 40px;
+}
+.burse_list ul{
+	display: block;
+	margin-left: 46px;
+	margin-top: 14px;
+}
+.burse_list ul li{
+	list-style: inside;
+	font-size: 12px;
+	color: #3d3f43;
+	height: 18px;
+	line-height: 18px;
+	cursor: pointer;
+
+}
+.burse_list span{
+	font-size: 12px;
+	color: #3d3f43;
+	text-align: right;
+	display: block;
+	margin-top: 30px;
+	cursor: pointer;
+}
+
+.lp_help{
+	width: 100%;
+	height: 314px;
+	margin-top: 43px;
+	margin-bottom: 100px;
+}
+.lp_help .dhlp{
+	width: 482px;
+
+}
+
+.dhlp .weird_1{
+	width: 100%;
+	height: 27px;
+	border-bottom: 2px solid #075090;
+}
+.dhlp .weird_1 span{
+	background: #075090;
+	padding: 0px 30px;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	color: #fff;
+	display: block;
+	line-height: 27px;
+	float: left;
+}
+.dhlp .weird_1 div.bg{
+	float: left;
+	width: 15px;
+	height: 27px;
+	background: url(../img/weird_1.png) no-repeat;
+}
+.dhlp .weird_1 a{
+	display: block;
+	float: right;
+	font-size: 12px;
+	color: #000;
+	margin-top: 10px;
+	text-decoration: none;
+}
+.dhlp_c{
+	width: 416px;
+	height: 220px;
+	border:1px solid #eeeeee;
+	border-top: none;
+	padding:32px;
+}
+.dhlp_c img{
+	float: left;
+}
+.dhlp_r{
+	width: 191px;
+	float: left;
+	height: 224px;
+	background: #eeeeee;
+}
+.dhlp_r h1{
+	font-size: 16px;
+	color: #3d3f43;
+	margin-top: 50px;
+	margin-left: 26px
+}
+.dhlp_r span{
+	display: block;
+	width: 66px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	color: #fff;
+	background:#3d3d3d;
+	font-size: 12px;
+	cursor: pointer;
+	margin-left: 26px;
+	margin-top: 30px;
+	margin-bottom: 18px;
+}
+.dhlp_r p{
+	font-size: 12px;
+	margin-left: 26px;
+	height: 16px;
+	line-height: 16px;
+
+}
+
+
+.xs_help .weird_1{
+	width: 100%;
+	height: 27px;
+	border-bottom: 2px solid #075090;
+}
+.xs_help .weird_1 span{
+	background: #075090;
+	padding: 0px 30px;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	color: #fff;
+	display: block;
+	line-height: 27px;
+	float: left;
+}
+.xs_help .weird_1 div.bg{
+	float: left;
+	width: 15px;
+	height: 27px;
+	background: url(../img/weird_1.png) no-repeat;
+}
+.xs_help .weird_1 a{
+	display: block;
+	float: right;
+	font-size: 12px;
+	color: #000;
+	margin-top: 10px;
+	text-decoration: none;
+}
+
+
+
+
+.p_t{
+	height: 48px;
+	line-height: 48px;
+	width: 100%;
+	background: #eeeeee;
+	margin-top: 29px;
+	margin-bottom: 3px;
+	text-align: center;
+	font-size: 18px;
+	color: #3d3f43;
+	font-family: '微软雅黑';
+}
+.p_name{
+	width: 100%;
+	height: 86px;
+	line-height: 86px;
+	background: url(../img/vip_p.png) no-repeat;
+}
+.p_name span{
+	font-size: 16px;
+	color: #3d3f43;
+	margin-right: 60px;
+}
+.p_name label{
+	font-size: 10px;
+	float: right;
+	margin-top: 70px;
+	display: block;
+	line-height: 0;
+	margin-right: 20px;
+}
+
+.hjfw{
+	width: 100%;
+	height: 447px;
+	margin-top: 48px;
+}
+
+
+.weird_1{
+	width: 100%;
+	height: 27px;
+	border-bottom: 2px solid #075090;
+}
+.weird_1 span{
+	background: #075090;
+	padding: 0px 30px;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	color: #fff;
+	display: block;
+	line-height: 27px;
+	float: left;
+}
+.weird_1 div.bg{
+	float: left;
+	width: 15px;
+	height: 27px;
+	background: url(../img/weird_1.png) no-repeat;
+}
+.weird_1 a{
+	display: block;
+	float: right;
+	font-size: 12px;
+	color: #000;
+	margin-top: 10px;
+	text-decoration: none;
+}
+.hjfw_cont{
+	width: 998px;
+	height: 416px;
+	border:1px solid #eeeeee;
+	border-top: none;
+}
+.hjfw_erwei{
+	width: 256px;
+	height: 330px;
+	background: url(../img/erwei_bg.png) no-repeat;
+	margin-top: 42px;
+	float: left;
+	margin-left: 60px;
+}
+.hjfw_erwei img{
+	margin-top: 25px;
+	margin-left: 25px;
+}
+.hjfw_erwei span{
+	width: 100%;
+	display: block;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	color: #3d3f43;
+	font-size: 14px;
+	margin-top: 40px;
+}
+.hjfw_erwei p{
+	height: 30px;
+	line-height: 30px;
+	width: 100%;
+	text-align: center;
+	font-size: 14px;
+	color: #3d3f43;
+	margin-top: 30px;
+}
+

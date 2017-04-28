@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ClientConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Clients>
+    <Client>
+      <Id>123456</Id>
+      <Secret>abcdef</Secret>
+      <RedirectUrl></RedirectUrl>
+      <IsTrusted>true</IsTrusted>
+      <RequiredVerificationCode>true</RequiredVerificationCode>
+      <ClientScope>
+        <string>basic</string>
+      </ClientScope>
+    </Client>
+    <Client>
+      <Id>654321</Id>
+      <Secret>qwerty</Secret>
+      <RedirectUrl></RedirectUrl>
+      <IsTrusted>true</IsTrusted>
+      <RequiredVerificationCode>true</RequiredVerificationCode>
+      <ClientScope>
+        <string>ivr</string>
+      </ClientScope>
+    </Client>
+    <Client>
+      <Id>opc07e5ad3f3fe297e</Id>
+      <Secret>931efbdc1ba967e8b72c9e4a15a07d46</Secret>
+      <RedirectUrl></RedirectUrl>
+      <IsTrusted>true</IsTrusted>
+      <RequiredVerificationCode>true</RequiredVerificationCode>
+      <ClientScope>
+        <string>basic</string>
+      </ClientScope>
+    </Client>
+  </Clients>
+</ClientConfig>

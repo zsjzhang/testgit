@@ -1,0 +1,102 @@
+ol.exercise{
+	width: 1000px;
+	height: 27px;
+	margin: 0 auto;
+	margin-top: 30px;
+	border-bottom: 2px solid #075090;
+}
+ol.exercise li{
+	background: #3D3D3D;
+	padding: 0px 30px;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	color: #fff;
+	display: block;
+	line-height: 27px;
+	float: left;
+	cursor: pointer;
+}
+ol.exercise li.on{
+	background: #075090;
+}
+.exercise_2{
+	width: 1000px;
+	margin: 0 auto;
+	border: 1px solid #eee;
+	overflow: -webkit-paged-y;
+	font-family: "微软雅黑";
+}
+.exercise_2>div{
+	width: 955px;
+	height: 100%;
+	margin: 0 auto;
+	display: none;
+}
+.exercise_2>div.curTags{
+	display: block;
+}
+.exercise_2>div dl{
+	width: 955px;
+	overflow: -webkit-paged-y;
+	border: 1px solid #eee;
+	margin: 10px auto;
+}
+.exercise_2>div dl dt{
+	width: 645px;
+	padding-left: 30px;
+	float: left;
+}
+.exercise_2>div dl dt span{
+	font-size: 20px;
+	line-height: 40px;
+}
+.exercise_2>div dl dt p{
+	font-size: 14px;
+	padding: 10px 0px;
+	line-height: 26px;
+}
+.exercise_2>div dl dd{
+	width: 240px;
+	padding-right: 30px;
+	float: right;
+}
+.exercise_2>div dl dd span{
+	font-size: 14px;
+	line-height: 40px;
+	color: #F8981D;
+}
+.exercise_2>div dl dd .p_c{
+	width: 236px;
+	height: 119px;
+	position: relative;
+}
+.exercise_2>div dl dd .p_c>img{
+	width: 236px;
+	height: 119px;
+    display: block;
+}
+.exercise_2>div dl dd .p_c a{
+	width: 83px;
+	height: 29px;
+    display: block;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+.exercise_2>div dl dd .p_c a>img{
+	display: block;
+	width: 83px;
+	height: 29px;
+}
+
+
+
+
+
+
+
+
+
+
+
+

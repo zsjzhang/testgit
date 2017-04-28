@@ -1,0 +1,706 @@
+﻿@{
+    Layout = null;
+    var oid = ViewBag.oid ?? "";
+    var isover = ViewBag.isover ?? "";
+    var isBind = ViewBag.isBind ?? "";
+    var isSubDrive = ViewBag.isSubDrive ?? "";
+    var isRecommand = ViewBag.isRecommand ?? "";
+    var isSubDriveAward = ViewBag.isSubDriveAward ?? "";
+    var isRecommandAward = ViewBag.isRecommandAward ?? "";
+    var awardTypeOfSubDriv = ViewBag.awardTypeOfSubDriv ?? "";
+    var awardTypeOfRecommand = ViewBag.awardTypeOfRecommand ?? "";
+    var awardNameOfSubDriv = ViewBag.awardNameOfSubDriv ?? "";
+    var awardNameOfRecommand = ViewBag.awardNameOfRecommand ?? "";
+    string[] listProvince = ViewBag.ListProvince as string[];
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>北京现代领动上市活动</title>
+    <link href="~/Contents/css/lingdong/main.css" rel="stylesheet" />
+    <style>
+        .hide {
+            display: none !important;
+        }
+
+        .myinput {
+            width: 42vw;
+            background: #dfe3ea;
+            line-height: 28px;
+            height: 28px;
+            padding: 1px 0 1px 6px;
+            border: 0;
+        }
+
+        .mybtn {
+            width: 18vw;
+            background: #5671b0;
+            border: 0;
+            border-radius: 0.2em;
+            color: #fff;
+            height: 26px;
+            margin-left: 4vw;
+        }
+
+        .mainbtn {
+            width: 32vw;
+            background: #97a2b1;
+            border: 0;
+            border-radius: 0.2em;
+            color: #fff;
+            height: 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .myarea {
+            width: 28vw;
+            background: #dfe3ea;
+            padding: 2px;
+            height: 90px;
+            font-size: 0.8rem;
+            margin-left: 9vw;
+            border: 0;
+        }
+
+        .simple {
+            padding-top: 20px;
+        }
+
+        .double {
+            padding-top: 10px;
+        }
+
+        .commoninput {
+            width: 50vw;
+            height: 28px;
+            background-color: transparent;
+            padding: 1px 0 1px 6px;
+            border: none;
+            outline: none;
+            border-bottom:1px solid #97a2b1;
+        }
+
+        .halfinput {
+            width: 35vw;
+            height: 28px;
+            background-color: transparent;
+            padding: 1px 0 1px 6px;
+            border: none;
+            outline: none;
+            border-bottom: 1px solid #97a2b1;
+        }
+
+        .phoneinput {
+            width: 25vw;
+            background-color: transparent;
+            height: 28px;
+            padding: 1px 0 1px 6px;
+            border: none;
+            outline: none;
+            border-bottom: 1px solid #97a2b1;
+        }
+
+        .phonebtn {
+            width: 23.5vw;
+            background: #97a2b1;
+            border: 0;
+            border-radius: 0.2em;
+            color: #fff;
+            height: 28px;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .thirdselect {
+           width: 16.3vw;
+             background-color: transparent;
+            height: 28px;
+            padding: 1px 0 1px 6px;
+           border: none;
+            outline: none;
+            border-bottom: 1px solid #97a2b1;
+        }
+
+        .commontitle {
+            width: 22vw;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+
+        .commonrow {
+            width: 100%;
+            font-size: 0.8rem;
+            line-height: 32px;
+            clear: both;
+            height: 32px;
+        }
+
+        .commonrow2 {
+            width: 100%;
+            font-size: 0.8rem;
+            height: 40px;
+            clear: both;
+        }
+
+        .commonrow3 {
+            width: 100%;
+            font-size: 0.8rem;
+            height: 120px;
+            clear: both;
+        }
+
+        .commonrow4 {
+            width: 100%;
+            font-size: 0.8rem;
+            height: 64px;
+            clear: both;
+        }
+
+        .formtitle {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .weightsmall {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .localtitle {
+            width: 13vw;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+
+        .left {
+            text-align: left;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .red {
+            color: #901d22;
+        }
+
+        .error {
+            font-size: 0.8rem;
+        }
+
+        .v0_bt1 {
+        }
+
+        .v0_bt2 {
+        }
+
+        .v0_bt3 {
+        }
+
+        .v0_bt4 {
+        }
+
+        .v0_bt5 {
+        }
+
+        .v0_bt6 {
+        }
+
+        .v0_bt7 {
+        }
+
+        .v0_bt8 {
+        }
+
+        .v0_bt10 {
+        }
+
+        .v0_bt12 {
+        }
+
+        .v0_bt13 {
+        }
+
+        .v0_bt22 {
+        }
+
+        .v0_bt23 {
+        }
+
+        .v0_bt24 {
+        }
+
+        .v0_bt25 {
+        }
+
+        .v0_bt101 {
+            background: url(../Contents/images/lingdong/button_sj.png) no-repeat;
+            background-size: 100% 100%;
+            overflow: hidden;
+        }
+
+        .v0_bt102 {
+            background: url(../Contents/images/lingdong/button_tj.png) no-repeat;
+            background-size: 100% 100%;
+            overflow: hidden;
+        }
+
+        .v0_bt103 {
+            background: url(../Contents/images/lingdong/button_lx.png) no-repeat;
+            background-size: 100% 100%;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="index-main">
+        <div class="logo">
+            <img src="~/Contents/images/lingdong/logo.png" />
+        </div>
+        <div id="closeBtn" class="close">
+            <img src="~/Contents/images/lingdong/quantou_close.png" style="width:8%;display:none" class="v0_bt8" />
+        </div>
+        <div style="width: 100vw;height:64vh;margin-top: 8vh;text-align:center;display:none" id="div00">
+
+            <div class="scroll-out scroll-bg" id="div5">
+                <div class="scroll">
+                    <img src="~/Contents/images/lingdong/read3.png" style="width:100%;" />
+                </div>
+            </div>
+            <div class="scroll-out scroll-bg" id="div3">
+                <div class="scroll">
+                    <img src="~/Contents/images/lingdong/read2.png" style="width:100%;" />
+                </div>
+            </div>
+            <div class="scroll-out scroll-bg" id="div6">
+                <div class="scroll">
+
+                    <div style="width: 100%;height:11vh;padding-top:3vh;">
+                        <img src="~/Contents/images/lingdong/j1.png" style="width:36%; opacity: 0.7;" />
+                    </div>
+                    <div class="commonrow">
+                        <input type="text" id="userTel" placeholder="请输入手机号" maxlength="11" class="myinput" />
+                        <button class="mybtn" id="queryAwardBtn">查询</button>
+                    </div>
+                    <div class="commonrow">
+                        <img src="~/Contents/images/lingdong/j3.png" style="width:20%;" />
+                    </div>
+                    <div class="commonrow3">
+                        <img src="~/Contents/images/lingdong/j4.png" style="height:90px;" />
+                        <marquee direction="up" scrollamount="1" class="myarea" id="areaDrivAward1">
+                            @{
+                                int i = 0;
+                            }
+                            @foreach (var item in ViewBag.drvAwardList)
+                            {
+                                if (i > 20)
+                                {
+                                    break;
+                                }
+                                if (string.IsNullOrWhiteSpace(item.PhoneNumber) || item.PhoneNumber.Length < 11)
+                                {
+                                    continue;
+                                }
+                                string p = item.PhoneNumber.Substring(0, 3) + "****" + item.PhoneNumber.Substring(7, 4) + " ";
+                                string s = item.AwardName + " " + p;
+                                i++;
+                                @p<br />
+                            }
+                        </marquee>
+                        <textarea class="myarea" id="areaDrivAward" disabled="disabled" style="display:none"></textarea>
+                    </div>
+                    <div class="commonrow">
+                        <img src="~/Contents/images/lingdong/j5.png" style="width:20%;" />
+                    </div>
+                    <div class="commonrow3">
+                        <img src="~/Contents/images/lingdong/j6.png" style="height:90px;" />
+                        <marquee direction="up" scrollamount="1" class="myarea" id="areaRcmdAward1">
+                            @{ i = 0;}
+                            @foreach (var item in ViewBag.rmdAwardList)
+                            {
+                                if (i > 20)
+                                {
+                                    break;
+                                }
+                                if (string.IsNullOrWhiteSpace(item.PhoneNumber) || item.PhoneNumber.Length < 11)
+                                {
+                                    continue;
+                                }
+                                string p = item.PhoneNumber.Substring(0, 3) + "****" + item.PhoneNumber.Substring(7, 4) + " ";
+                                string s = item.AwardName + " " + p;
+                                i++;
+                                @p<br />
+                            }
+
+                        </marquee>
+                        <textarea class="myarea" id="areaRcmdAward" disabled="disabled" style="display:none" >                     
+                        </textarea>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="scroll-out scroll-bg" id="div4">
+                <div class="scroll">
+
+                    <img src="~/Contents/images/lingdong/read1.png" style="width:100%;" />
+
+                </div>
+            </div>
+
+            <div id="div11" class="scroll-out scroll-bg">
+                <div class="scroll">
+                    <div style="width: 100%;height:10vh;padding-top:20px;text-align:center;">
+                        <span class="formtitle">填写预约信息</span>
+                    </div>
+                    <div style="" class="commonrow">
+                        <span class="commontitle">车&emsp;&emsp;型：</span>
+                        <select id="CarSeries" name="CarSeries" class="commoninput">
+                            <option value="领动">领动</option>
+                        </select>
+                    </div>
+                    <div style="" class="commonrow">
+                        <span class="commontitle">特&ensp;约&ensp;店：</span>
+                        <select id="DealerProvince" name="DealerProvince" class="thirdselect">
+                            <option value="0">省</option>
+                            @foreach (var item in listProvince)
+                            {
+                                if (!string.IsNullOrWhiteSpace(item))
+                                {
+                                    <option value="@item">@item</option>
+                                }
+                            }
+                        </select>
+                        <select id="DealerCity" name="DealerCity" class="thirdselect">
+                            <option value="">市</option>
+                        </select>
+                        <input type="hidden" id="DealerName" name="DealerName" />
+                        <select id="DealerId" name="DealerId" class="thirdselect">
+                            <option value="">店</option>
+                        </select>
+
+                    </div>
+                    <div class="commonrow">
+                        <span class="commontitle">试驾时间：</span>
+                        <input type="date" class="commoninput" name="ScheduleDate" id="ScheduleDate" />
+                    </div>
+                    <div style="padding-top:0.8vh;" class="commonrow">
+                        <span class="commontitle">性&emsp;&emsp;别：</span>
+                        <div style="display:inline-block;width: 49vw;text-align: left;margin-left: 4px;">
+                            <input type="radio" name="UserSex" value="1" id="sex1" checked />先生
+                            <input type="radio" name="UserSex" value="0" />女士
+                        </div>
+                    </div>
+                    <div style="" class="commonrow">
+                        <span class="commontitle">您的姓名：</span>
+                        <input type="text" class="commoninput" name="UserName" maxlength="20" id="UserName" />
+                    </div>
+                    <div style="" class="commonrow">
+                        <span class="commontitle">您的手机：</span>
+                        <input type="text" class="phoneinput" id="Phone1" maxlength="11" name="Phone" />
+                        <button class="phonebtn" id="validateCodeBtn1">发送验证码</button>
+                    </div>
+                    <div style="" class="commonrow">
+                        <span class="commontitle">短信验证：</span>
+                        <input type="text" class="commoninput" maxlength="6" id="validateCode1" name="validateCode" />
+                    </div>
+                    @*<div style="" class="commonrow">
+                        <img src="~/Contents/images/lingdong/j8.png" style="width:55%;" />
+                    </div>*@
+                    <div class="commonrow4">
+                        <button class="mainbtn v0_bt12">提交</button>
+                    </div>
+                </div>
+            </div>
+            <div id="div12" class="scroll-out scroll-bg">
+                <div class="scroll">
+                    <div style="width: 100%;height:10vh;padding-top:4vh;text-align:center;">
+                        <span class="formtitle">您已成功预约试驾</span>
+                    </div>
+                    <div class="commonrow">
+                        <span class="weightsmall">恭喜您中奖啦！</span>
+                    </div>
+                    <div class="commonrow">
+                        <span class="weightsmall">获得</span>
+                        <span class="weightsmall red" id="subDrivAwadName">@ViewBag.awardNameOfSubDriv</span>
+                        <span class="weightsmall">礼品</span>
+                    </div>
+                    <div class="commonrow">
+                        <span class="localtitle right">地&emsp;址</span>
+                        <select id="Province" name="Province" class="halfinput">
+                            <option value="">省份</option>
+                        </select>
+                    </div>
+                    <div class="commonrow">
+                        <span class="localtitle"></span>
+                        <select id="City" name="City" class="halfinput">
+                            <option value="">城市</option>
+                        </select>
+                    </div>
+                    <div class="commonrow">
+                        <span class="localtitle"></span>
+                        <select id="Area" name="Area" class="halfinput">
+                            <option value="">地区</option>
+                        </select>
+                    </div>
+                    <div class="commonrow">
+                        <span class="localtitle"></span>
+                        <input type="text" class="halfinput" id="addPart4" />
+                        <span class="localtitle left">街道</span>
+                    </div>
+                    <div class="commonrow">
+                        <span class="localtitle"></span>
+                        <input type="text" class="halfinput" id="addPart5" />
+                        <span class="localtitle left">地址</span>
+                    </div>
+                    <div style="width: 100%;height:6vh;margin-top:1vh;text-align:center;">
+                        <img src="~/Contents/images/lingdong/s1.png" style="width:70%;" />
+                    </div>
+                    <div class="commonrow4">
+                        <button class="mainbtn v0_bt13">确认地址</button>
+                    </div>
+                </div>
+            </div>
+            <div id="div13" class="scroll-out scroll-bg">
+                <div class="scroll">
+                    <div class="weightsmall" style="width: 100%;height:24vh;padding:12vh 5vh 0 5vh;text-align:justify;">
+                        <span>您已完成邮寄地址填写，奖品派发将在获奖名单公布后7个工作日内进行邮寄，如遇节假日则顺延发出。</span>
+                    </div>
+                    <div class="weightsmall red" style="width: 100%;padding:0 14vh 0 14vh;height:16vh;text-align:center;">
+                        <span>快去参加推荐有礼活动得免费保养券！</span>
+                    </div>
+                    <div class="commonrow2">
+                        <button class="mainbtn v0_bt2">推荐有礼</button>
+                    </div>
+                    @*<div class="commonrow4">
+                        <button class="mainbtn v0_bt7">好友分享</button>
+                    </div>*@
+                </div>
+            </div>
+            <div id="div14" class="scroll-out scroll-bg">
+                <div class="scroll">
+                    <div style="width: 100%;height:20vh;padding-top:8vh;text-align:center;">
+                        <span class="formtitle">您已成功预约试驾</span>
+                    </div>
+                    <div style="width: 100%;height:5vh;text-align:center;">
+                        <span class="weightsmall">&ensp;很遗憾，您没有中奖！</span>
+                    </div>
+                    <div class="commonrow4">
+                        <span class="weightsmall red">&ensp;参加推荐有礼活动还有机会参与抽奖哦！</span>
+                    </div>
+                    <div class="commonrow2">
+                        <button class="mainbtn v0_bt2">推荐有礼</button>
+                    </div>
+                    @*<div class="commonrow4">
+                        <button class="mainbtn v0_bt7">好友分享</button>
+                    </div>*@
+                </div>
+            </div>
+
+            <div id="div21" class="scroll-out scroll-bg">
+                <div class="scroll">
+                    <div style="width: 100%;height:10vh;padding-top:4vh;text-align:center;">
+                        <span class="formtitle">车主信息认证</span>
+                    </div>
+                    <div id="error1" class="commonrow2">
+                        <span class="error" id="rzError1">对不起，验证车主身份失败</span>
+                        <br />
+                        <span class="error red" id="rzError2">请重新填写</span>
+                    </div>
+                    <div class="commonrow">
+                        <span class="commontitle">姓&emsp;&emsp;名</span>
+                        <input type="text" class="commoninput" maxlength="20" id="userName2" />
+                    </div>
+                    <div class="commonrow">
+                        <span class="commontitle">手机号码</span>
+                        <input type="text" class="phoneinput" maxlength="11" id="phone2" />
+                        <button class="phonebtn" id="validateCodeBtn2">发送验证码</button>
+                    </div>
+                    <div class="commonrow">
+                        <span class="commontitle">短信验证</span>
+                        <input type="text" class="commoninput" maxlength="6" id="validateCode2" />
+                    </div>
+                    <div class="commonrow">
+                        <span class="commontitle">身&ensp;份&ensp;证</span>
+                        <input type="text" class="commoninput" maxlength="20" id="idcard" />
+                    </div>
+                    <div class="commonrow">
+                        <span class="commontitle">车架号码</span> 
+                        <input type="text" class="commoninput" maxlength="20" id="vin" /> 
+                    </div>
+                    <div class="commonrow" style="height:32px">
+                    </div>
+                    <div class="commonrow4">
+                        <button class="mainbtn v0_bt22">认证</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="div22" class="scroll-out scroll-bg">
+                <div class="scroll">
+                    <div style="width: 100%;height:10vh;padding-top:4vh;text-align:center;">
+                        <span class="formtitle">推荐购车人</span>
+                    </div>
+                    <div>
+                        <div class="commonrow">
+                            <span class="commontitle">推荐人手机：</span>
+                            <input id="phone_me" type="text" class="commoninput" />
+                        </div>
+                    </div>
+                    <div id="error2" class="commonrow2">
+                        <span class="error" id="recomdErr1">填写手机号错误或已经购车</span>
+                        <br />
+                        <span class="error red hide" id="recomdErr2">请核对后重新填写</span>
+                    </div>
+                    <div id="new-rec-container">
+                        <div class="commonrow">
+                            <span class="commontitle">姓&emsp;&emsp;名：</span>
+                            <input id="rec-name-0" type="text" class="commoninput" />
+                        </div>
+                        <div class="commonrow">
+                            <span class="commontitle">手机号码：</span>
+                            <input id="rec-phone-0" type="text" class="commoninput" />
+                        </div>
+                        <br />
+                    </div>
+                    <div style="width: 100%;height:14vh;padding-top:3vh;text-align:center;">
+                        <img id="btn-rec-ad" src="~/Contents/images/lingdong/j10.png" style="width:10%;" />
+                    </div>
+                    <div class="commonrow" style="height:32px">
+                    </div>
+                    <div class="commonrow4">
+                        <button id="btn-rec-submit" class="mainbtn v0_bt23">提交</button>
+                    </div>
+                </div>
+            </div>
+            <div id="div23" class="scroll-out scroll-bg">
+                <div class="scroll">
+                    <div style="width: 100%;height:10vh;padding-top:6vh;text-align:center;">
+                        <span class="formtitle">您已成功推荐好友购车</span>
+                    </div>
+                    <div class="hide">
+                        <div style="width: 100%;height:8vh;padding-top:2vh;text-align:center;">
+                            <span class="weightsmall red">&ensp;恭喜您中奖啦！</span>
+                        </div>
+                        <div class="red" style="width: 100%;height:5vh;text-align:center;">
+                            <span>获得1L玻璃水</span>
+                        </div>
+                        <div style="width: 100%;height:18vh;padding:3vh 8vh 0 8vh;text-align:justify;">
+                            <span style="font-size: 0.8rem;">卡券存储在微信【优惠券】中，请于2016年7月31日前到特约店使用，过期作废。</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="width: 100%;height:8vh;padding-top:4vh;text-align:center;">
+                            <span class="weightsmall red" id="rcmdGetAwardStatus">很遗憾！您没中奖</span>
+                        </div>
+                        <div style="width: 100%;height:8vh;padding-top:4vh;text-align:center;">
+                            <span class="weightsmall red" id="rcmdGetAwardName"></span>
+                        </div>
+                        <div style="width: 100%;height:18vh;padding:3vh 8vh 0 8vh;text-align:justify;">
+                            <span style="font-size: 0.8rem;" id="rcmdGetAwardNameDes">参与试驾预约，抽取定制手环等精美礼品，更有机会得千元加油卡。</span>
+                        </div>
+                    </div>
+                    <div class="commonrow2">
+                        <button class="mainbtn v0_bt1">试驾有礼</button>
+                    </div>
+                    @*<div class="commonrow4">
+                        <button class="mainbtn v0_bt7">好友分享</button>
+                    </div>*@
+                </div>
+            </div>
+
+            <div class="main" id="div0">
+                <div style="height:3vh;">
+                </div>
+                <div style="height:8vh;">
+                    @*<button class="mainbtn v0_bt1 v0_bt101"> </button>*@
+                    <img class="v0_bt1" src="~/Contents/images/lingdong/button_sj.png" style="width:36%;" />
+                </div>
+                <div style="height:8vh;">
+                    <img class="v0_bt2" src="~/Contents/images/lingdong/button_tj.png" style="width:36%;" />
+                </div>
+                <div style="height:8vh;">
+                    <img id="goShowBtn" src="~/Contents/images/lingdong/button_lx.png" style="width:36%;" />
+                </div>
+                <div style="height:8vh;">
+                    <img class="v0_bt3" src="~/Contents/images/lingdong/button_hdjs.png" style="width:36%;" /><img class="v0_bt4" src="~/Contents/images/lingdong/button_cylc.png" style="width:36%;margin-left:6vw;" />
+                </div>
+                <div style="height:8vh;">
+                    <img class="v0_bt5" src="~/Contents/images/lingdong/button_jpsz.png" style="width:36%;" /><img class="v0_bt6" src="~/Contents/images/lingdong/button_zjmd.png" style="width:36%;margin-left:6vw;" />
+                </div>
+                <div style="height:3vh;">
+                </div>
+            </div>
+
+        </div>
+        <div id="div100" style="width: 100vw;height:2vh;display: none">
+        </div>
+        <div style="width: 100vw;height:34vh;">
+            @*<div style="width: 100vw;bottom:0; position: absolute;display: inline;left:0;">*@
+            <img src="~/Contents/images/lingdong/car-home2.png" style="width:76%" />
+            @*</div>*@
+        </div>
+    </div>
+    <input type="hidden" id="oid" value="@oid" />
+    <input type="hidden" id="isover" value="@isover" />
+    <input type="hidden" id="isBind" value="@isBind" />
+    <input type="hidden" id="isSubDrive" value="@isSubDrive" />
+    <input type="hidden" id="isRecommand" value="@isRecommand" />
+    <input type="hidden" id="isSubDriveAward" value="@isSubDriveAward" />
+    <input type="hidden" id="isRecommandAward" value="@isRecommandAward" />
+    <input type="hidden" id="awardTypeOfSubDriv" value="@awardTypeOfSubDriv" />
+    <input type="hidden" id="awardTypeOfRecommand" value="@awardTypeOfRecommand" />
+    <input type="hidden" id="awardNameOfSubDriv" value="@awardNameOfSubDriv" />
+    <input type="hidden" id="awardNameOfRecommand" value="@awardNameOfRecommand" />
+    <input type="hidden" id="sharePageContent" value="0" />
+    <script src="~/Contents/Scripts/jquery-1.11.2.min.js"></script>
+    <script src="~/Contents/Scripts/jquery-validation/jquery.validate.min.js"></script>
+    <script src="~/Contents/Scripts/jquery-validation/additional-methods.js"></script>
+    <script src="~/Contents/Scripts/jquery-validation/localization/messages_zh.min.js"></script>
+    <script src="~/Contents/Scripts/Me/common.method.js"></script>
+    <script src="~/Contents/Scripts/lingdong/lingdongLogic.js?@DateTime.Now.Ticks"></script>
+    <script src="~/Contents/Scripts/lingdong/lingdongLogicAddress.js?@DateTime.Now.Ticks"></script>
+    <script src="~/Contents/Scripts/lingdong/lingdongLogicBind.js?@DateTime.Now.Ticks"></script>
+    <script src="~/Contents/Scripts/lingdong/lingdongLogicDrive.js?@DateTime.Now.Ticks"></script>
+    <script src="~/Contents/Scripts/lingdong/lingdongLogicRcmd.js?@DateTime.Now.Ticks"></script>
+    <script src="~/Contents/Scripts/province.city.area.js"></script>
+    <script src="~/Contents/Scripts/lingdongExpired.js"></script>
+</body>
+</html>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+

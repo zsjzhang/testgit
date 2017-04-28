@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "活动介绍";
+    Layout = "~/Views/Shared/_LayoutYuena.cshtml";
+}
+
+
+<div class="nav">
+    <img src="~/Contents/yuena/images/nav2.png" usemap="#Map">
+</div>
+<div class="introduce">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="~/Contents/yuena/images/introduce1.png">
+                <span class="down"><img src="~/Contents/yuena/images/down.png"></span>
+            </div>
+            <div class="swiper-slide">
+                <img src="~/Contents/yuena/images/introduce2.png">
+                <span class="down"><img src="~/Contents/yuena/images/down.png"></span>
+            </div>
+            <div class="swiper-slide">
+                <img src="~/Contents/yuena/images/introduce3.png">
+                <span class="down"><img src="~/Contents/yuena/images/down.png"></span>
+            </div>
+            <div class="swiper-slide">
+                <img src="~/Contents/yuena/images/introduce4.png">
+            </div>
+        </div>
+    </div>
+</div>
+@*<div class="footer clearfix">
+    <p class="footer_left">Copyright © 2009-2016 BEIJING HYUNDAI MOTOR COMPANY Corporation All Rights Reserved</p>
+    <p class="footer_right">服务热线：400-800-1100</p>
+</div>*@
+<script type="text/javascript">
+    var mySwiper = new Swiper('.swiper-container', {
+        mode: 'vertical',
+        keyboardControl: true,
+        mousewheelControl: true
+    });
+</script>

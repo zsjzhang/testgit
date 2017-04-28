@@ -1,0 +1,363 @@
+﻿@model Vcyber.BLMS.Entity.News
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "bluemembers免责申明";
+}
+
+<style>
+    font-face {
+        font-family: "Times New Roman";
+    }
+
+    font-face {
+        font-family: "宋体";
+    }
+
+    font-face {
+        font-family: "Wingdings";
+    }
+
+    font-face {
+        font-family: "Calibri";
+    }
+
+    list l0:level1 {
+        mso-level-number-format: decimal;
+        mso-level-suffix: tab;
+        mso-level-text: "%1.";
+        mso-level-tab-stop: 39.0000pt;
+        mso-level-number-position: left;
+        margin-left: 39.0000pt;
+        text-indent: -18.0000pt;
+        margin-bottom: 0pt;
+        margin-top: 0pt;
+        font-family: 'Times New Roman';
+    }
+
+    list l1:level1 {
+        mso-level-number-format: bullet;
+        mso-level-suffix: tab;
+        mso-level-text: \F06C;
+        mso-level-tab-stop: 81.0000pt;
+        mso-level-number-position: left;
+        margin-left: 81.0000pt;
+        text-indent: -18.0000pt;
+        margin-bottom: 0pt;
+        margin-top: 0pt;
+        font-family: 'Wingdings';
+    }
+
+    list l2:level1 {
+        mso-level-number-format: decimal;
+        mso-level-suffix: tab;
+        mso-level-text: "%1.";
+        mso-level-tab-stop: 18.0000pt;
+        mso-level-number-position: left;
+        margin-left: 18.0000pt;
+        text-indent: -18.0000pt;
+        margin-bottom: 0pt;
+        margin-top: 0pt;
+        font-family: 'Times New Roman';
+    }
+
+    list l3:level1 {
+        mso-level-number-format: bullet;
+        mso-level-suffix: tab;
+        mso-level-text: \F06C;
+        mso-level-tab-stop: 18.0000pt;
+        mso-level-number-position: left;
+        margin-left: 18.0000pt;
+        text-indent: -18.0000pt;
+        margin-bottom: 0pt;
+        margin-top: 0pt;
+        font-family: 'Wingdings';
+    }
+
+    list l4:level1 {
+        mso-level-number-format: bullet;
+        mso-level-suffix: tab;
+        mso-level-text: \F06C;
+        mso-level-tab-stop: 60.0000pt;
+        mso-level-number-position: left;
+        margin-left: 60.0000pt;
+        text-indent: -18.0000pt;
+        margin-bottom: 0pt;
+        margin-top: 0pt;
+        font-family: 'Wingdings';
+    }
+
+    list l5:level1 {
+        mso-level-number-format: decimal;
+        mso-level-suffix: tab;
+        mso-level-text: "%1.";
+        mso-level-tab-stop: 60.0000pt;
+        mso-level-number-position: left;
+        margin-left: 60.0000pt;
+        text-indent: -18.0000pt;
+        margin-bottom: 0pt;
+        margin-top: 0pt;
+        font-family: 'Times New Roman';
+    }
+
+    list l6:level1 {
+        mso-level-number-format: bullet;
+        mso-level-suffix: tab;
+        mso-level-text: \F06C;
+        mso-level-tab-stop: 39.0000pt;
+        mso-level-number-position: left;
+        margin-left: 39.0000pt;
+        text-indent: -18.0000pt;
+        margin-bottom: 0pt;
+        margin-top: 0pt;
+        font-family: 'Wingdings';
+    }
+
+    list l7:level1 {
+        mso-level-number-format: bullet;
+        mso-level-suffix: tab;
+        mso-level-text: \F06C;
+        mso-level-tab-stop: 102.0000pt;
+        mso-level-number-position: left;
+        margin-left: 102.0000pt;
+        text-indent: -18.0000pt;
+        margin-bottom: 0pt;
+        margin-top: 0pt;
+        font-family: 'Wingdings';
+    }
+
+    list l8:level1 {
+        mso-level-number-format: decimal;
+        mso-level-suffix: tab;
+        mso-level-text: "%1.";
+        mso-level-tab-stop: 81.0000pt;
+        mso-level-number-position: left;
+        margin-left: 81.0000pt;
+        text-indent: -18.0000pt;
+        margin-bottom: 0pt;
+        margin-top: 0pt;
+        font-family: 'Times New Roman';
+    }
+
+    list l9:level1 {
+        mso-level-number-format: decimal;
+        mso-level-suffix: tab;
+        mso-level-text: "%1.";
+        mso-level-tab-stop: 102.0000pt;
+        mso-level-number-position: left;
+        margin-left: 102.0000pt;
+        text-indent: -18.0000pt;
+        margin-bottom: 0pt;
+        margin-top: 0pt;
+        font-family: 'Times New Roman';
+    }
+
+    p.p0 {
+        margin: 0pt;
+        margin-bottom: 0.0001pt;
+        margin-bottom: 0pt;
+        margin-top: 0pt;
+        text-align: justify;
+        line-height: 150%;
+        font-size: 10.5000pt;
+        font-family: 'Calibri';
+    }
+
+    span.10 {
+        font-family: 'Times New Roman';
+    }
+
+    span.15 {
+        font-size: 9.0000pt;
+        font-family: 'Times New Roman';
+    }
+
+    span.16 {
+        font-size: 9.0000pt;
+        font-family: 'Times New Roman';
+    }
+
+    p.p17 {
+        margin-bottom: 0pt;
+        margin-top: 0pt;
+        border-bottom: 0.7500pt solid rgb(0,0,0);
+        mso-border-bottom-alt: 0.7500pt solid rgb(0,0,0);
+        padding: 0pt 0pt 1pt 0pt;
+        text-align: center;
+        font-size: 9.0000pt;
+        font-family: 'Calibri';
+    }
+
+    p.p18 {
+        margin-bottom: 0pt;
+        margin-top: 0pt;
+        text-align: left;
+        font-size: 9.0000pt;
+        font-family: 'Calibri';
+    }
+
+    page {
+        mso-page-border-surround-header: no;
+        mso-page-border-surround-footer: no;
+    }
+
+        page Section0 {
+            margin-top: 72.0000pt;
+            margin-bottom: 72.0000pt;
+            margin-left: 90.0000pt;
+            margin-right: 90.0000pt;
+            size: 595.3000pt 841.9000pt;
+            layout-grid: 15.6000pt;
+        }
+
+    div.Section0 {
+        page: Section0;
+    }
+
+    
+                .Section0 h2 {
+                    font-size: 18px;
+                    font-weight: bold;
+                    text-align: center;
+                    line-height: 30px;
+                    margin-bottom: 10px;
+                }
+
+                .Section0 h3 {
+                    font-size: 16px;
+                    font-weight: bold;
+                    text-indent: 2em;
+                    line-height: 35px;
+                }
+
+                .Section0 h4 {
+                    font-size: 14px;
+                    text-indent: 2em;
+                    line-height: 25px;
+                }
+
+                .Section0 p {
+                    font-size: 14px;
+                    text-indent: 2em;
+                    line-height: 25px;
+                    margin-bottom: 15px;
+                }
+
+                    .Section0 p.noBott {
+                        margin-bottom: 0;
+                    }
+            </style>
+
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Home" })
+    </div>
+
+    <div class="n_all_cont">
+
+        <div class="n_left_cont">
+            <div class="center logon" style="width: 286px; height: auto; margin-top: 0;">
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+        </div>
+
+        <div class="n_right_cont">
+            <p class="select_menu">
+                <a href="/Home/Default">首页 ></a><a href="/Account/RegisterStatement">bluemembers免责申明</a>
+            </p>
+          
+            <div class="Section0">
+                <h2>bluemembers免责申明</h2>
+
+                <p>非常感谢您对我们的关注，在您注册成为会员之前，请仔细阅读本协定的所有条款。本协议与您的权益有或可能具有重大关系的条款，请您注意。在您注册成为bluemembers会员时，请您充分阅读、理解并接受本声明的全部内容，一旦您使用bluemembers网站服务（以下均简称为本服务），即表示您同意遵循本声明之所有约定。</p>
+
+                <p>北京现代公司有权随时对本声明内容进行单方面的变更，并在bluemembers网站以公告的方式予以公布，无需另行单独通知您；若您在本声明内容公告变更后继续使用本服务的，表示您已充分阅读、理解并接受修改后的声明内容，也将遵循修改后的协议内容使用本服务；若您不同意修改后的协议内容，您应停止使用本服务。</p>
+
+                <h4>第一条：注册及会员资料</h4>
+                <p>您保证，在您同意接受本声明并注册成为bluemembers会员时，您已符合bluemembers会员条件，若不具备前述条件，您应立即终止注册或停止使用本服务。申请使用本网站时，您应当填写正确而详实的个人资料。若有资料填写不实，本公司有权随时终止您所申请的服务。本网站的会员账号和密码由您自行设定。设定完毕后，您负有妥善保管和保密的义务。本公司将以您所设定的使用者账号和密码来认证您的身份，您必须为经由这个使用者账号和密码所进行的所有行为负责。允许第三方发送EDM给会员，为维护您的权益，请勿将账号提供予他人使用。</p>
+
+                <h4>第二条：网站使用</h4>
+                <p>在您填写完相关资料并经过审核注册成功后，bluemembers网站赋予您访问、使用和显示该网站和其上资料的非独有、不可转让的有限权利。您不得以任何方式中断或企图中断该网站的操作。只有在您保证在所有拷贝上保留所有原始文件中的版权和其它所有权信息，bluemembers网站授权您观看和下载本Web网站上的内容，但仅供您个人而非商业使用。您不得以任何方式修改、复制、公开展示、公布、分发或者以其它方式把它们用于任何公开或商业目的。北京现代禁止以任何目的把这些材料用于其它Web网站或联网计算机环境。本站上的内容受版权保护，任何未经授权的使用都可能构成侵犯版权、商标和违反其它法律。如果您违反任何条款，您使用本站的授权将自动终止，同时您必须立即销毁任何已下载或打印好的材料。</p>
+
+                <h3>隐私权保护声明</h3>
+                <h4>第三条：隐私权声明之认同 </h4>
+                <p>如您使用本网站，即表示您接受本隐私权声明。保护您的个人隐私是我们特别关注的一项重要工作。我们愿意使用您的数据向您提供有关我们产品和服务的信息，并在适当的时候征求您的意见。您参与与否完全出于您自愿。如果您不接受本隐私权声明，请勿在本网站上提供您的个人数据。请您了解，如果您选择不在本网站上提供个人基本数据，您将无法使用部分内容，例如进入本网站特定网页或区域、参加抽奖或其他活动或收到我们寄给您的电子邮件等。</p>
+
+                <h4>第四条：个人数据之搜集及处理</h4>
+                <p>当您浏览本网站时，网络服务器将自动记录您所透过网络服务提供者提供的个人数据，但您仍拥有限制本网站使用您个人数据的权利。您进入本网站网页亦可通过您收集第三者的数据（例如您将礼品邮寄给朋友，在此情况下我们需要收件者的姓名及邮寄地址），请了解我们仅在特定目的内使用前述数据（例如寄发您指定邮寄的礼品）。</p>
+
+                <h4>第五条：个人数据的使用、公开方式及特定使用目的</h4>
+                <p>对于您的个人数据将仅用于本网站之管理目的、顾客满意度管理、产品及市场调查等之特定目的上使用。我们采取标准预防措施以确保您个人数据的安全。所有个人身份数据都是限制存取的，以避免未经授权者存取、修改或滥用。北京现代汽车有限公司仅能依据法律规定而揭露您的资料给司法机构或其它有权机关基于法定程序而提出之要求。北京现代汽车有限公司的员工及经销商基于对北京现代汽车有限公司应遵行保密义务之要求，故亦将接受北京现代之相关管理规范，请您放心。尊敬的会员，为了更好地向您提供服务，北京现代将遵循合法、正当、必要的原则收集、使用您的个人信息，并保护您的个人信息安全。</p>
+
+                <h4>第六条：关于向本网站传送的资料及在本网站创作的内容的使用权</h4>
+                <p>北京现代并不想通过本站点接收您的保密信息或所有权信息。请注意，发送至本网站的所有内容信息或资料都将视为非保密的。将任何信息或资料发送至本网站，您即授予北京现代无限制的、不可撤销的许可，许可北京现代复印、复制、公布、上载、张贴、传送、分发、公开显示、执行、修改那些资料或信息、根据那些资料或信息创作演绎作品并以其他方式自由地使用那些资料或信息。您还同意，北京现代可以为任何目的免费使用您发送给我们的任何构想、概念、专有技术或技巧。但是，北京现代将不会公布您的姓名或以其他方式公布您向本网站提交资料或其他信息这一事实，除非：（a）您许可北京现代使用您的姓名；或者（b）北京现代事先通知您提交至此站点某特定部分的资料或其他信息将被发布，或通过其他方式使用您的姓名；或者（c）法律要求北京现代执行此行为。</p>
+
+                <h4>第七条：安全防护</h4>
+                <p>为了防范因故意或过失所造成个人数据之毁损、破坏或为拒绝接受未经授权者的操作，北京现代汽车有限公司采用科技化和组织性防卫措施来保护您的个人数据，我们的安全防卫措施将随着新科技的提升而持续加强。</p>
+
+                <h3>法律保护条款 </h3>
+                <h4>第八条：著作权 </h4>
+                <p>本网站所有内容，包括但不限于文字、肖像、图表、音乐、动画文件、录像及所有经北京现代汽车有限公司所策划、制作置于网站上之内容均受著作权及其它智慧财产权所保护，且均为北京现代汽车有限公司或其权利人所有，除事先经北京现代汽车有限公司或其权利人之合法授权外，未经北京现代汽车有限公司书面授权，您不得对本网站内容基于商业用途或发行之目的进行重制、散布，亦不得修改或转载至其它网站或以其它任何形式、基于任何目的加以使用，否则应自负所有法律之责任。</p>
+
+                <h4>第九条：价格 </h4>
+                <p>本网站上出现的所有关于北京现代商品价格均为建议售价，实际价格将依销售时之价格为准。</p>
+
+                <h4>第十条：商标权</h4>
+                <p>在本网站上所展示之包括但不限于车型名称、公司商标等权利均属北京现代汽车有限公司所有，未经北京现代汽车有限公司书面授权，均不得擅自使用。</p>
+
+                <h4>第十一条：免责事项</h4>
+                <p>本网站内容是由北京现代汽车有限公司所提供。经由本网站所链接的其它网站内容并非北京现代汽车有限公司可以控制，我们无法对于任何链接网站的内容负责。北京现代汽车有限公司提供这些链接只为了让您使用方便，北京现代汽车有限公司不担保其真实性、完整性、实时性或可信度，个人、公司或组织亦不因此与北京现代汽车有限公司有任何雇佣、委任、代理、合伙或其它类似的关系。</p>
+
+                <h4>第十二条：变更声明</h4>
+                <p>北京现代汽车有限公司保留径自变更或撤销本隐私权声明之权利，并建议您经常浏览本隐私权声明以掌握最新信息。 北京现代汽车有限公司承诺保护您于本网站之相关的隐私权，如果您对本隐私权声明有任何疑问或建议，欢迎随时告诉我们。</p>
+
+                <h3>支付条款</h3>
+                <h4>第十三条：支付声明</h4>
+                <p>您同意在bluemembers网站上发生的所有交易，不可撤销的授权由北京现代按照其制定的规则进行处理；您在bluemembers网站按照网站指令进行资金的支付、扣划完全来自于您的授权，北京现代对此给您造成的任何损失均不承担责任。但您确认，使用本服务时，仍应完全遵守本声明及bluemembers制定的各项规则及页面提示等。</p>
+
+                <h4>第十四条：注销须知</h4>
+                <p>在需要终止使用本服务时,您可以申请注销您的bluemembers账户,您同意:</p>
+                <p class="noBott">1、您所申请注销的bluemembers会员账户应当是您依照本协议的约定注册并由bluemembers提供给您本人的账户。您应当依照bluemembers规定的程序进行账户注销。</p>
+                <p class="noBott">2、bluemembers账户注销将导致本网站终止为您提供服务，同时还可能对于该账户产生如下结果：任何兑换代码（积分、卡券等）都将作废；如您不愿将该部分兑换代码消耗掉或将其作废，则您不能申请注销bluemembers账户。</p>
+                <p class="noBott">3、您可以通过人工的方式申请注销bluemembers账户。</p>
+                <p>4、如果您申请注销的bluemembers账户一旦注销成功，将不再予以恢复。</p>
+
+                <h4>第十五条：积分</h4>
+                <p class="noBott">1、就您使用本服务，bluemembers将通过多种方式向您授予积分。无论您通过何种方式获得积分，您都不得使用其换取任何现金或金钱。</p>
+                <p class="noBott">2、积分并非您拥有所有权的财产，bluemembers有权单方面调整积分数值或调整积分规则，而无须征得您的同意。</p>
+                <p class="noBott">3、您仅有权按bluemembers的积分规则，将所获积分兑换本公司提供的指定的服务或商品。</p>
+                <p class="noBott">4、 如本公司怀疑您的积分的获得及(或)使用存有欺诈、滥用或其它本公司认为不当的行为，本公司可随时取消、限制或终止您的积分或积分使用。</p>
+                <p>5、您认可bluemembers账户的使用记录、交易金额数据等均以bluemembers系统记录的数据为准。如您对该等数据存有异议，应自您账户数据发生变动之日起三日内向本公司提出异议，并提供相关证据供bluemembers核实，否则视为您认可该数据。</p>
+
+                <p>【法律适用】本协议之订立、生效、解释、修订、补充、终止、执行与争议解决均适用中华人民共和国大陆地区法律；如法律无相关规定的，参照商业惯例及/或行业惯例。</p>
+                <p>【管辖】您因使用bluemembers网站服务所产生及与bluemembers网站服务有关的争议，由bluemembers与您协商解决。协商不成时，任何一方均可向被告所在地人民法院提起诉讼。</p>
+                <p>本协议最终解释权归北京现代所有。</p>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

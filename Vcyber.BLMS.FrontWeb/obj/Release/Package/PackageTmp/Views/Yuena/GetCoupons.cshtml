@@ -1,0 +1,196 @@
+﻿@{
+    ViewBag.Title = "领取卡券";
+    Layout = "~/Views/Shared/_LayoutYuena.cshtml";
+}
+
+@*<h2>刮刮卡 获取卡券页面</h2>*@
+<div class="gua_container">
+    <div class="gua_wraper">
+        <img class="gua_title" src="~/Contents/yuena/images/gua_02.png">
+        <p class="gua_desc">刮卡涂层获得卡券，请登录【个人中心】-【我的卡券】查看卡券</p>
+        <div class="guaguaka">
+            <img class="prize" id="prize01" style="display:block" src="~/Contents/yuena/images/jiang_01.png">
+            <img class="prize" id="prize02" src="~/Contents/yuena/images/jiang_02.png">
+            <img class="prize" id="prize03" src="~/Contents/yuena/images/jiang_03.png">
+            <img class="gua_mask" src="~/Contents/yuena/images/gua_04.jpg">
+        </div>
+        <p class="gua_desc2">点击刮奖区</p>
+    </div>
+</div>
+<!--中奖弹窗开始-->
+<input id="activityId" type="hidden" />
+<input id="prizesId" type="hidden" />
+<input id="prizeLevel" type="hidden" />
+<div class="cover"></div>
+<div class="pop_prize" id="pop_prize">
+    <a class="close" href="javascript:;"></a>
+    <div class="pop_prize_con">
+        <h2 class="pop_prize_title1" style="display:none">恭喜您获得<br />悦纳送您的50元保养券 + 悦纳试驾礼品券</h2>
+        <h2 class="pop_prize_title2" style="display:none">恭喜您获得<br />悦纳送您的机油滤芯兑换券 + 悦纳试驾礼品券</h2>
+        <h2 class="pop_prize_title3" style="display:none">恭喜您获得<br />悦纳送您的两瓶玻璃水兑换券 + 悦纳试驾礼品券</h2>
+        <p>刮卡涂层获得卡券，请登录【个人中心】-【我的卡券】查看卡券</p>
+        <div class="ggk_result">
+            <img id="prize001" style="display:block" src="~/Contents/yuena/images/jiang_01_min.png">
+            <img id="prize002" src="~/Contents/yuena/images/jiang_02_min.png">
+            <img id="prize003" src="~/Contents/yuena/images/jiang_03_min.png">
+        </div>
+        <a class="use_ruler" href="/Yuena/CouponsUserMethod">卡券使用规则&gt;&gt;</a>
+        <h2 class="pop_prize_title2">已有<span>@ViewBag.Count</span>人推荐好友试驾悦纳<br />就差你啦</h2>
+        <a class="prize_ruler" href="/Yuena/RecommendRewards">奖励规则</a>
+        <div class="btn_group">
+            <a href="/Yuena/RecommendFriend"><img src="~/Contents/yuena/images/btn1.png"></a>
+            <a href="/Yuena/ReservationMaintenance"><img src="~/Contents/yuena/images/btn2.png"></a>
+        </div>
+    </div>
+</div>
+
+<div class="czrz_noprize3" style="display:none">
+    <a class="close" href="javascript:;"><img src="~/Contents/yuena/images/close.png"></a>
+    <div class="czrz_noprize_con">
+        <h2>您已领取过卡券</h2>
+        <p></p>
+        <a href="/Yuena/LoginAfter"><img src="~/Contents/yuena/images/btn_Super.png"></a>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        //
+        IsHaveCoupon();
+        //
+        GetTwoCoupon();
+    });
+    //检查是否刮过卡
+    function IsHaveCoupon() {
+        $.ajax({
+            url: "/Yuena/IsHaveCoupon",
+            type: "get",
+            success: function (result) {
+                if (result === null || result.Errors === null || result.Errors === "") {
+                    popWindownBlue("未知错误");
+                    return false;
+                }
+                //领取过卡券
+                if (result.Errors == "200") {
+                    if (result.Data.State == "1") {
+                        //已领取过卡券
+                        $("#activityId").val(result.Data.ActivityId);
+                        $("#prizesId").val(result.Data.Id);
+                        $(".czrz_noprize3").css("display", "block");
+                    }
+                    //if (result.Data.State == "0") {
+                    //    //已领取过卡券
+                    //    $("#activityId").val(result.Data.ActivityId);
+                    //    $("#prizesId").val(result.Data.Id);
+                    //    $(".czrz_noprize3").css("display", "block");
+                    //}
+                    if (result.Data.State == "0") {
+                        //发奖
+                        GetPrize();
+                    }
+                }
+                if (result.Errors == "400") {
+                    //发奖
+                    GetPrize();
+                }
+
+                
+
+            }, error: function () {
+
+            }
+        });
+    }
+
+
+
+    //进入页面验证是否刮过卡券
+    function GetPrize() {
+        $.ajax({
+            url: "/Yuena/GetCoupon",
+            type: "post",
+            success: function (result) {
+                if (result.Errors == "200") {
+
+                    $("#activityId").val(result.Data.ActivityId);
+                    $("#prizesId").val(result.Data.Id);
+                    $("#prizeLevel").val(result.Data.PrizeLevel);
+                    if (result.Data.PrizeLevel == 1) {
+                        $("#pop_prize").css("display", "none");
+                        $("#prize01").css({ "display": "block" });
+                        $("#prize001").css({ "display": "block" });
+                    }
+                    if (result.Data.PrizeLevel == 2) {
+                        $("#pop_prize").css("display", "none");
+                        $("#prize02").css({ "display": "block" });
+                        $("#prize002").css({ "display": "block" });
+                    }
+                    if (result.Data.PrizeLevel == 3) {
+                        $("#pop_prize").css("display", "none");
+                        $("#prize03").css({ "display": "block" });
+                        $("#prize003").css({ "display": "block" });
+                    }
+                }
+                //又中奖记录且已领取
+                if (result.Errors == "400")
+                {
+                    $("#pop_prize").css("display", "none");
+                    $("#czrz_noprize3").css("display", "block");
+                }
+            }
+        })
+    };
+    //点击刮刮卡领奖
+    function GetTwoCoupon() {
+        $('.gua_mask').click(function () {
+            $(this).attr('src', '/Contents/yuena/images/ggk.gif');
+            var activityId = $("#activityId").val();
+            var prizesId = $("#prizesId").val();
+            var prizeLevel = $("#prizeLevel").val();
+            $.ajax({
+                url: "/Yuena/GetTowConpon",
+                type: "post",
+                data: { activityId: activityId, prizesId: prizesId },
+                success: function (result) {
+                    if (result.Errors=="200") {
+                        if (prizeLevel == 1) {
+                            $(".pop_prize").css("display", "block");
+                            $(".pop_prize_title1").css("display", "block");
+                            $("#prize01").css("display", "block");
+                            $("#prize001").css("display", "block");
+                        }
+                        if (prizeLevel == 2) {
+                            $(".pop_prize").css("display", "block");
+                            $(".pop_prize_title2").css("display", "block");
+                            $("#prize02").css("display", "block");
+                            $("#prize002").css("display", "block");
+                        }
+                        if (prizeLevel == 3) {
+                            $(".pop_prize").css("display", "block");
+                            $(".pop_prize_title3").css("display", "block");
+                            $("#prize03").css("display", "block");
+                            $("#prize003").css("display", "block");
+                        }
+                    }
+                    if (result.Errors == "400") {
+                        $(".pop_prize").css("display", "none");
+                        $(".czrz_noprize3").css("display", "block");
+                    }
+
+                }
+            })
+        });
+    }
+
+</script>
+
+
+
+
+
+
+
+
+
+
+

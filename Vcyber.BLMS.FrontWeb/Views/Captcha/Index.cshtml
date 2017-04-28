@@ -1,0 +1,32 @@
+﻿@model Dictionary<int, string>
+@{
+    Layout = null;
+}
+
+<div>
+    <ul>
+
+
+        <li>
+            <span>
+                @ViewBag.title
+            </span>
+        </li>
+        <li>
+            <span>
+                @ViewData["content"]
+            </span>
+        </li>
+        <li>
+            @{
+                foreach (var item in Model)
+                {
+                    <span>
+                        @item.Value
+                </span>
+                }
+            }
+        </li>
+    </ul>
+
+</div>

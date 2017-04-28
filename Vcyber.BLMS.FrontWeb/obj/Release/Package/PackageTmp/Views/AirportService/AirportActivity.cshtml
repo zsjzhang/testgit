@@ -1,0 +1,282 @@
+﻿@{
+    Layout = null;
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="user-scalable=no, width=device-width,initial-scale=1.0, maximum-scale=1.0" />
+    <title>拼手气</title>
+    <link href="~/css/base/common.css" rel="stylesheet" />
+    <link href="~/css/AirportService/alert.css" rel="stylesheet" />
+    <link href="~/css/AirportService/index.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="~/Scripts/controller/AirportServiceController.js"></script>
+    <script>
+        $(document).ready(function () {
+            //检测是否首次参加抽奖
+            $.ajax({
+                url: "/AirportService/CheckJoinActivity",
+                data: { activityId: 5, oid: $("#from_oid").val(), source: $("#from_source").val() },
+                datatype: "json",
+                type: "post",
+                success: function (result) {
+                    if (result == null || result.code == null || result.code == 400) {
+                        //$("#divHasJoinInfo").fadeIn(500);
+                        AirportCtr.togglerShow("#divHasJoinInfo");
+                        return false;
+                    } else {
+                        if (window.DeviceMotionEvent) {
+                            window.addEventListener("devicemotion", deviceMotionHandler, false);
+                        } else {
+                            popWindownBlue( "本设备不支持devicemotion事件");
+                        }
+                        return false;
+                    }
+                    return false;
+                },
+                error: function () {
+                    //popWindownBlue( "活动界面用户验证异常！");
+                }
+            });
+
+            //抽奖方法
+            var shake = 4000,
+            last_update = 0,
+            count = 0,
+            x = y = z = last_x = last_y = last_z = 0;
+            function deviceMotionHandler(eventData) {
+                var acceleration = eventData.accelerationIncludingGravity,
+                    currTime = new Date().valueOf(),
+                    diffTime = currTime - last_update;
+
+                if (diffTime > 100) {
+                    last_update = currTime;
+                    x = acceleration.x;
+                    y = acceleration.y;
+                    z = acceleration.z;
+                    var speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000;
+                    if (speed > shake) {
+                        var _media = document.getElementById("playyaoyiyao");
+                        _media.load();
+                        _media.play();
+                        AirportCtr.showWinningInfo();
+                    }
+                    last_x = x;
+                    last_y = y;
+                    last_z = z;
+                }
+            }
+        });
+    </script>
+
+</head>
+<body>
+    <div class="wrapper1">
+        <input type="hidden" id="from_source" name="from_source" value="@ViewBag.source" />
+        <input type="hidden" id="from_oid" name="from_oid" value="@ViewBag.oid" />
+        <div class="zhuanpan" >
+            @*onclick="AirportCtr.showWinningInfo()"*@
+            <img src="/Img/AirportService/shake.png" class="shark"/>
+        </div>
+        <div class="content1">
+            <a href="javascript:AirportCtr.togglerShow('#divActivityInfo');" target="_blank">
+                <img src="/Img/AirportService/y_btn1.png" />
+            </a>
+            <a href="javascript:AirportCtr.togglerShow('#divActivityRule');" target="_blank">
+                <img src="/Img/AirportService/y_btn2.png" />
+            </a>
+            <a href="javascript:AirportCtr.togglerShow('#divNoticeInfo');" target="_blank">
+                <img src="/Img/AirportService/y_btn3.png" />
+            </a>
+            <a href="/AirportService/WinningInfo" target="_self">
+                <img src="/Img/AirportService/y_btn4.png" />
+            </a>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- 横屏出现提示 -->
+    <div class="turn"></div>
+    <div class="fxlayer"></div>
+
+
+    <!--  一种结果候机码    -->
+
+    <div class="alert_box houji" style="display: none;" id="divWinAirportCodeInfo">
+        <span>
+            <img src="/Img/AirportService/close.png" onclick="$('#divWinAirportCodeInfo').fadeOut(200);">
+        </span>
+        <p>手气好赞！恭喜您获得机场服务码一个！</p>
+        <a href="/AirportService/CompleteUserInfo?prizeId=29&prizeType=1&source=@ViewBag.source&oid=@ViewBag.oid">
+            <img src="/Img/AirportService/wsxx.png" />
+        </a>
+
+    </div>
+
+    <!--  一种中奖结果四件套    -->
+
+    <div class="alert_box houji" id="divWinTravelSetInfo">
+        <span><img src="/Img/AirportService/close.png" onclick="$('#divWinTravelSetInfo').fadeOut(200);"></span>
+        <p>手气好赞！恭喜您获得旅行四件套一份！</p>
+        <a href="/AirportService/CompleteUserInfo?prizeId=28&prizeType=2&source=@ViewBag.source&oid=@ViewBag.oid">
+            <img src="/Img/AirportService/wsxx.png" />
+        </a>
+
+    </div>
+
+    <!--  未中奖提示    -->
+
+    <div class="alert_box wzj" id="divNotWinningInfo">
+        <span><img src="/Img/AirportService/close.png" onclick="$('#divNotWinningInfo').fadeOut(200);"></span>
+        <p>亲，这次手气不佳哦！试驾也有好礼哦！</p>
+        <div class="a_bot">
+            <a href="/AirportService/TestDriveInfo?source=@ViewBag.source&oid=@ViewBag.oid"><img src="/Img/AirportService/shijia.png" /></a>
+            <a href="javascript:void(0);"><img src="/Img/AirportService/confirm.png" onclick="$('#divNotWinningInfo').fadeOut(200); " /></a>
+        </div>
+
+    </div>
+
+    <!--  两种中奖提示语      -->
+
+    <div class="alert_box wzj" id="divDoubleWinningInfo">
+        <span><img src="/Img/AirportService/close.png" onclick="$('#divDoubleWinningInfo').fadeOut(200);"></span>
+        <p>手气好赞！中奖咯！请选择您心仪的奖品</p>
+        <div class="a_bot">
+            <a href="/AirportService/CompleteUserInfo?prizeId=29&prizeType=1&source=@ViewBag.source&oid=@ViewBag.oid">
+                <img src="/Img/AirportService/jcfwm.png" />
+            </a>
+            <a href="/AirportService/CompleteUserInfo?prizeId=28&prizeType=2&source=@ViewBag.source&oid=@ViewBag.oid">
+                <img src="/Img/AirportService/lxzjt.png" />
+            </a>
+        </div>
+    </div>
+
+    <!--  已参与过抽奖再次参与抽奖提示语      -->
+
+    <div class="alert_box wzj cj" id="divHasJoinInfo">
+        <span>
+            <img src="/Img/AirportService/close.png" onclick="$('#divHasJoinInfo').fadeOut(200);">
+        </span>
+        <p>您好，每天只有一次抽奖机会哦，明天再来试试吧。</p>
+        <div class="a_bot">
+            <a href="/AirportService/TestDriveInfo?source=@ViewBag.source&oid=@ViewBag.oid"><img src="/Img/AirportService/shijia.png" /></a>
+            <a href="javascript:void(0);"><img src="/Img/AirportService/confirm.png" onclick="$('#divHasJoinInfo').fadeOut(200); " /></a>
+        </div>
+
+    </div>
+
+    <!--  活动规则      -->
+
+    <div class="alert_box play_rule" style="top: 15vh; height: 70vh; width: 90%;" id="divActivityRule">
+        <span style="height: 10%;"><img src="/Img/AirportService/close.png" onclick="$('#divActivityRule').fadeOut(200);"></span>
+        <div style="height:90%; ">
+            <h2 style="height:20%;"><img src="/Img/AirportService/paly_rule.png" /></h2>
+            <div class="rule_txt" style="height: 75%; margin-bottom:5%; overflow-y: scroll; color: #fff; margin-top: 0; display: block; ">
+                <p>
+                    <b>1)</b>
+                    <span>活动期间，每位用户每天均有一次参与机会。</span>
+                </p>
+                <div style="clear: both;"></div>
+                <p>
+                    <b>2)</b>
+                    <span>本活动奖品分为实物奖及服务奖两种。如同时抽中两种奖品，请按个人喜好选择其一。</span>
+                </p>
+                <p>
+                    <b>3)</b>
+                    <span>本活动奖品分为实物奖及服务奖两种；实物奖在活动结束后统一安排邮寄，虚拟奖在抽中后会以短信形式发送</span>
+                </p>
+                <p>
+                    <b>4)</b>
+                    <span>为便于发奖，抽中奖品的会员，请务必正确填写个人邮寄信息，并保持手机畅通。</span>
+                </p>
+                <p>
+                    <b>5)</b>
+                    <span>本活动最终解释权归北京现代汽车有限公司所有如有疑问请及时与bluemembers网站在线客服联系。</span>
+                </p>
+                <p>
+                    <b>6)</b>
+                    <span>活动中如有疑问请及时拨打北京现代24小时客服热线：400-800-1100（手机拨打）或咨询bluemembers在线客服。</span>
+                </p>
+                <p>
+                    <b>7)</b>
+                    <span>特别申明：您于本网站提供的个人信息只用于北京现代本次活动与您沟通联络时使用。</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <!--  活动简介      -->
+
+    <div class="alert_box play_rule" style="top:15vh; height:70vh; width:90%;" id="divActivityInfo">
+        <span style="height:10%;"><img src="/Img/AirportService/close.png" onclick="$('#divActivityInfo').fadeOut(200);"></span>
+        <div style="height:90%; ">
+            <h2 style="height:20%;"><img src="/Img/AirportService/paly_show.png" /></h2>
+            <div style="height: 75%; margin-bottom: 5%; overflow-y: scroll;">
+                <h3 style="margin-top:0;">暖心候机礼，服务再升级，惊喜摇不停！尊享候机服务码、定制旅行四件套等惊喜大奖等你来抢。活动期间到店试驾即获两次免费候机服务、购车更享超值礼包！</h3>
+                <h4>
+                    bluemembers蓝缤邀您共享候机服务。即日起尊享候机服务全面升级：
+                </h4>
+                <div class="rule_txt">
+                    <p>
+                        <b>1)</b>
+                        <span>候机服务码有效期由7天延长至3个月</span>
+                    </p>
+                    <div style="clear: both;"></div>
+                    <p>
+                        <b>2)</b>
+                        <span>候机服务码可转发给亲友使用</span>
+                    </p>
+                    <div style="clear: both;"></div>
+                    <p>
+                        <b>3)</b>
+                        <span>服务码无机场限制，持有效服务码可在全国50家机场指定休息室畅享候机服务。</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--  注意事项      -->
+
+    <div class="alert_box play_rule p_bot" id="divNoticeInfo" style="top:15vh; height:70vh; width:90%;">
+        <span style="height:10%;"><img src="/Img/AirportService/close.png" onclick="$('#divNoticeInfo').fadeOut(200);"></span>
+        <div style="height:90%; ">
+            <h2 style="height:20%;"><img src="/Img/AirportService/play_care.png" /></h2>
+            <div class="rule_txt" style="height: 75%; margin-bottom:5%; overflow-y: scroll; color: #fff; margin-top: 0; display: block; ">
+                <p>
+                    <b>1)</b>
+                    <span>活动期间，每位用户每天均有一次参与摇一摇赢大奖的机会。</span>
+                </p>
+                <div style="clear: both;"></div>
+                <p>
+                    <b>2)</b>
+                    <span>中奖并选择中意奖品后，填写准确个人信息以便我们为您寄送礼品或发送服务码。</span>
+                </p>
+                <div style="clear: both;"></div>
+                <p>
+                    <b>3)</b>
+                    <span>本活动奖品分为实物奖品和虚拟奖品；实物奖品在活动结束后统一安排物流，虚拟奖品在抽中后以短信形式进行发送候机服务码。</span>
+                </p>
+                <div style="clear: both;"></div>
+                <p>
+                    <b>4)</b>
+                    <span>您在本次活动中获取的候机服务码在2016年3月31日前有效，请及时使用。</span>
+                </p>
+                <h3>温馨提示：尊享候机码为9位数字服务码，如若抽中会以短信形式发送。乘机出行时到达指定机场休息室出示该服务码短信即可使用。</h3>
+            </div>
+        </div>
+    </div>
+    <audio style="display:none; width:1px; height:1px; " id="playyaoyiyao" preload="metadata" controls src="/Img/AirportService/yaoyao.mp3"></audio>
+</body>
+</html>

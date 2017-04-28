@@ -1,0 +1,108 @@
+﻿@model List<Vcyber.BLMS.Entity.Generated.CSCarDealerShip>
+@{
+    ViewBag.Title = "经销商管理";
+    ViewBag.TitleFocus = "2-2-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Vcyber.BLMS.ManageWeb.Helper
+<script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+<script src="~/Scripts/app/controller/DealerShip.js"></script>
+<style type="text/css">
+    /*.input_text2 {
+        width: 100px;
+    }
+
+    .input_text1 {
+        width: 100px;
+    }*/
+</style>
+<div class="panel panel-default">
+    <table class="table table-bordered table-responsive" style="margin-top:10px;">
+        <tr>
+            <td>
+                店代码：<input type="text" class="input_text1" id="dealerId" />
+                经销商名称：<input type="text" class="input_text1" id="dealerName" />
+                <label class="col-md-2 control-label">是否前台显示：</label>
+                <select class="col-md-2 form-control" id="IsDel" style=" width:100px">
+                    <option value="">请选择</option>
+                    <option value="0">是</option>
+                    <option value="1">否</option>
+                </select>
+                <input type="checkbox" value="Istestserver2" name="Istestserver2" id="Istestserver2" />试驾
+                <input type="checkbox" value="IsDingChe2" name="IsDingChe2" id="IsDingChe2" />订车
+                <input type="checkbox" value="IsWeibao2" name="IsWeibao2" id="IsWeibao2" />维保
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value="查询" onclick="searchDealerShip();" class="btn btn-primary" />
+                <input type="button" value="添加" onclick="showAddView();" class="btn btn-primary" />
+                <a class="btn btn-primary" href="/DealerShip/ExportDealerShip">导出</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/DealerShip/ImportDealerShip" method="post" enctype="multipart/form-data" target="_blank">
+                    <span style="float:left;width:150px;font-size:medium">批量导入经销商</span>
+                    <input style="float:left;width:180px" type="file" name="file" />
+                    <input type="submit" value="导入" style="width: 100px" />
+                    <a target="_blank" href="../UploadImg/经销商信息.xls" class="text-center">下载导入文件模板</a>
+                </form>
+            </td>
+        </tr>
+    </table>
+    @{Html.RenderPartial("ShowAddView");}
+</div>
+<div id="divPageList">
+    @{
+        Html.RenderAction("FindDealerShip");
+    }
+</div>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    function searchDealerShip() {
+        GetPageList(1);
+    }
+
+    //列表分页
+    function GetPageList(pageIndex) {
+        var data = {
+
+            //Istestserver: $("#Istestserver2").prop("checked") == true ? 1 :"" ,
+            //IsDingChe: $("#IsDingChe2").prop("checked") == true ? 1 :"",
+            //IsWeibao: $("#IsWeibao2").prop("checked") == true ? 1 :"",
+            //  Istestserver: $("#Istestserver2").prop("checked") == true ? 1 ,
+            //IsDingChe: $("#IsDingChe2").prop("checked") == true ? 1 :2,
+            //IsWeibao: $("#IsWeibao2").prop("checked") == true ? 1 :2,
+            IsDel: $("#IsDel option:selected").val(),
+            DealerName: $("#dealerName").val(),
+            DealerId: $("#dealerId").val(),
+            Index: pageIndex,
+            Size: 10
+        };
+        if ($("#Istestserver2").prop("checked")) {
+            data.Istestserver = 1;
+        }
+        if ($("#IsDingChe2").prop("checked")) {
+            data.IsDingChe2 = 1;
+        }
+        if ($("#IsWeibao2").prop("checked")) {
+            data.IsWeibao = 1;
+        } 
+        var url = "@Url.Action("FindDealerShip")";
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: data,
+            success: function (msg) {
+                $("#divPageList").html(msg);
+            }
+        });
+    }
+
+    function showAddView() {
+        $("#dealerView").show(500);
+    }
+
+
+</script>

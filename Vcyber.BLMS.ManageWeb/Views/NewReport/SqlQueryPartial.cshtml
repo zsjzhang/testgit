@@ -1,0 +1,46 @@
+﻿@model System.Data.DataTable
+@using System.Data;
+@{
+    Layout = null;
+}
+<div class="table-responsive">
+    @if (Model != null)
+    {
+        <p><span class="label label-info">总记录数：@Model.Rows.Count &nbsp;条&nbsp;&nbsp;总列数：@Model.Columns.Count &nbsp;列；</span></p>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    @for (int i = 0; i < Model.Columns.Count; i++)
+                    {
+                        <th>@Model.Columns[i].ColumnName</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Rows.Count > 0)
+                {
+                    foreach (DataRow row in Model.Rows)
+                    {
+                        <tr>
+                            @foreach (var item in row.ItemArray)
+                            {
+                                <td>@item</td>
+                            }
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="@Model.Columns.Count">本次查询结果为空！</td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    }
+    else
+    {
+        <p><span class="label label-info">总记录数：0 &nbsp;条&nbsp;&nbsp;总列数：0 &nbsp;列；</span></p>
+    }
+</div>

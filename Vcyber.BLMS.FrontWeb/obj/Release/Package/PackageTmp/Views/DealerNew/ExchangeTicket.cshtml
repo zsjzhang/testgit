@@ -1,0 +1,686 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "生活服务-景区门票兑换";
+
+
+}
+<link href="~/css/DealerNew/reset.css" rel="stylesheet" />
+<link href="~/css/DealerNew/brand.css" rel="stylesheet" />
+
+<style>
+    .gy_cont, .gy_list {
+        margin-top: 0;
+    }
+
+    .news .gy_nr2 dd h3, .gy_list_box dd h3 {
+        font-size: 16px;
+        font-weight: 600;
+        padding-top: 15px;
+    }
+
+    .gy_list_box dd p {
+        height: 63px;
+        overflow: hidden;
+        margin-top: 20px;
+    }
+
+    .gy_list_box {
+        padding: 0 20px;
+    }
+
+    .pContent {
+        font-size: 14px;
+        line-height: 26px;
+        text-indent: 2em;
+        font-family: '微软雅黑';
+    }
+
+        .pContent strong {
+            font-size: 16px;
+        }
+
+        .pContent strong, .pContTit {
+            color: #075090;
+            font-weight: bold;
+        }
+
+    .pContTit {
+        margin-bottom: 15px;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .pContentCent {
+        text-align: center;
+    }
+
+    .pContentLine {
+        border-bottom: 1px solid #eee;
+        width: 100%;
+        text-indent: 0;
+        margin: 15px 0;
+    }
+
+    .pBoxImg, .pBoxTab {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+        .pBoxImg img {
+            height: 280px;
+            width: 526px;
+        }
+
+        .pBoxTab img {
+            width: 100%;
+        }
+
+    .hrLine {
+        height: 1px;
+        border: none;
+        border-top: 1px solid #d7d7d7;
+    }
+
+
+    * {
+        font-family: '微软雅黑';
+    }
+				
+    .pBoxTab table {
+        width: 620px;
+    }
+
+    /*a.btnXbkBg {
+        display: block;
+        width: 142px;
+        font-size: 16px;
+        height: 33px;
+        margin: 40px auto;
+        background: url(/Img/VipImg/btnXbkBg.png) no-repeat;
+        line-height: 30px;
+        text-align: center;
+        color: #fff;
+    }*/
+    a.btnXbkBg{ display:block; width:142px; font-size:16px; height:33px; margin:40px auto; background:#004587; line-height:30px; text-align:center; color:#fff; }
+                a.btnXbkBg:hover{ background: #0b63b7; }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnGotoLogin").click(function () {
+            var returnUrl = encodeURIComponent("/DealerNew/ExchangeTicket");
+            location.href = "/Account/LogonPage?returnUrl=" + returnUrl;
+            return false;
+        });
+        $("#btnGotoRegister").click(function () {
+            var returnUrl = encodeURIComponent("/DealerNew/ExchangeTicket");
+            location.href = "/Account/AccountRegister?returnUrl=" + returnUrl;
+            return false;
+        });
+
+
+    });
+</script>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "BlueVIP" })
+    </div>
+    <div class="n_all_cont">
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+                @(this.User.Identity.IsAuthenticated ? this.Html.Action("HomeLogonSuccess", "Account") : this.Html.Action("HomeLogon", "Account"))
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+        </div>
+        <style>
+            .jqImgBox {
+                border: 1px solid #eee;
+                padding-top: 20px;
+                font-family: 微软雅黑;
+            }
+
+            .jqImgBox .pBox {
+                    text-align: center;
+                    margin: 15px 0;
+            }
+
+            .jqImgBox h3 {
+                    font-weight: 600;
+                    font-size: 18px;
+                    text-align: center;
+                    color: #065090;
+                    margin: 25px 0 0 0;
+            }
+
+            .jqImgBox .pContent {
+                    font-size: 14px;
+                    line-height: 30px;
+                    padding: 0 25px;
+                    text-indent: 2em;
+                    font-family: '微软雅黑';
+            }
+
+            table {
+                border-collapse: collapse;
+                border: 1px solid #000;
+                font-size: 14px;
+                color: #000;
+                text-align: center;
+                vertical-align: middle;
+                margin: 0 auto;
+                font-family: '微软雅黑';
+            }
+
+                table th, table td {
+                    border: 1px solid #000;
+                    padding: 10px 5px;
+            }
+
+                table th {
+                    font-weight: 800;
+            }
+        </style>
+        <div class="n_right_cont">
+            <p class="select_menu" style="font-family:'Microsoft YaHei'"><a href="/BlueVIP/Index">蓝缤权益</a> > <a href="/LifeService/Index">生活服务  </a>>景区门票兑换</p>
+            <div class="gy_cont">
+                <div class="gy_title">
+                    <div class="gy_zi" style="font-family:'微软雅黑';">
+                        <h1>
+                            景区门票兑换
+</h1>
+                        <span>Exchange the Ticket of Tourism Areas</span>
+                    </div>
+                </div>
+                <div class="gy_list_box">
+                    <p class="pContent" style=" margin-top:16px">
+                        爱车、爱旅行、爱生活。bluemembers现推出积分兑换景区门票服务，乐享专属门票免费权益。北京、广东、浙江、河南四省，每省每月提供一家自驾游景区，节假日正常使用，全年循环有效，景点月月换新。
+                    </p>
+                    <p class="pContent"><strong>【服务对象】</strong>bluemembers银卡会员、bluemembers金卡会员</p>
+                    <p class="pContent"><strong>【服务说明】</strong></p>
+                    <p class="pContent pContentCent">积分兑换门票默认为两人套票</p>
+                    <p class="pBox pContentCent"><img src='/Img/VipImg/jq0.png' width="280" /></p>
+                    <p class="pContent pContentCent">票折样张仅为示意，请以实物为准</p>
+                    <p class="pContent pContentLine"><strong>【景区列表】</strong></p>
+                    <h3 class="pContTit">浙江省景区</h3>
+                    <p class="pBoxImg"><img src='/Img/VipImg/jq1.jpg' /></p>
+                    <div class="pBoxTab">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th width="12.5%">游览日期</th>
+                                    <th width="35%">景区名称</th>
+                                    <th width="12.5%">门市票价</th>
+                                    <th width="20">景区级别</th>
+                                    <th width="20%">所在地区</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1月份</td>
+                                    <td>艾山九龙景区</td>
+                                    <td>50</td>
+                                    <td>AAAA</td>
+                                    <td>江苏·徐州</td>
+                                </tr>
+                                <tr>
+                                    <td>2月份</td>
+                                    <td>天台山石梁飞瀑</td>
+                                    <td>60</td>
+                                    <td>AAAAA</td>
+                                    <td>浙江·台州</td>
+                                </tr>
+                                <tr>
+                                    <td>3月份</td>
+                                    <td>遂昌千佛山</td>
+                                    <td>80</td>
+                                    <td>AAAA</td>
+                                    <td>浙江·丽水</td>
+                                </tr>
+                                <tr>
+                                    <td>4月份</td>
+                                    <td>中国渔村</td>
+                                    <td>60</td>
+                                    <td>AAAA</td>
+                                    <td>浙江·宁波</td>
+                                </tr>
+                                <tr>
+                                    <td>5月份</td>
+                                    <td>神秘部落</td>
+                                    <td>68</td>
+                                    <td>AAAA</td>
+                                    <td>浙江·湖州</td>
+                                </tr>
+                                <tr>
+                                    <td>6月份</td>
+                                    <td>临海江南长城</td>
+                                    <td>65</td>
+                                    <td>AAAA</td>
+                                    <td>浙江·台州</td>
+                                </tr>
+                                <tr>
+                                    <td>7月份</td>
+                                    <td>绍兴黄酒城</td>
+                                    <td>60</td>
+                                    <td>精品景区</td>
+                                    <td>浙江·绍兴</td>
+                                </tr>
+                                <tr>
+                                    <td>8月份</td>
+                                    <td>木渎古镇</td>
+                                    <td>78</td>
+                                    <td>AAAA</td>
+                                    <td>江苏·苏州</td>
+                                </tr>
+                                <tr>
+                                    <td>9月份</td>
+                                    <td>千鸟湖森林氧吧</td>
+                                    <td>60</td>
+                                    <td>省最佳生态景区</td>
+                                    <td>浙江·杭州</td>  
+                                </tr>
+                                <tr>
+                                    <td>10月份</td>
+                                    <td>无锡海底世界</td>
+                                    <td>80</td>
+                                    <td>AAAA</td>
+                                    <td>江苏·无锡</td>
+                                  
+                                </tr>
+                                <tr>
+                                    <td>11月份</td>
+                                    <td>瑞晶石花洞</td>
+                                    <td>68</td>
+                                    <td>AAAA</td>
+                                    <td>浙江·杭州</td>
+                                </tr>
+                                <tr>
+                                    <td>12月份</td>
+                                    <td>书圣故里</td>
+                                    <td>60</td>
+                                    <td>中国历史文化街区</td>
+                                    <td>浙江·绍兴</td>      
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr class="hrLine" />
+
+                    <h3 class="pContTit">广东省景区</h3>
+                    <p class="pBoxImg"><img src='/Img/VipImg/jq2.jpg' /></p>
+                    <div class="pBoxTab">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th width="12.5%">游览日期</th>
+                                    <th width="35%">景区名称</th>
+                                    <th width="12.5%">门市票价</th>
+                                    <th width="20">景区级别</th>
+                                    <th width="20%">所在地区</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1月份</td>
+                                    <td>马降龙碉楼</td>
+                                    <td>60</td>
+                                    <td>世界文化遗产</td>
+                                    <td>广东·江门</td>
+                                </tr>
+                                <tr>
+                                    <td>2月份</td>
+                                    <td>鹿峰山</td>
+                                    <td>75</td>
+                                    <td>AAAA</td>
+                                    <td>广西·玉林</td>
+                                </tr>
+                                <tr>
+                                    <td>3月份</td>
+                                    <td>中山詹园</td>
+                                    <td>60</td>
+                                    <td>AAAA</td>
+                                    <td>广东·中山</td>
+                                </tr>
+                                <tr>
+                                    <td>4月份</td>
+                                    <td>观音山国家森林公园</td>
+                                    <td>45</td>
+                                    <td>AAAA</td>
+                                    <td>广东·东莞</td>
+                                </tr>
+                                <tr>
+                                    <td>5月份</td>
+                                    <td>南溪山公园</td>
+                                    <td>65</td>
+                                    <td>AAAA</td>
+                                    <td>广西·桂林</td>
+                                </tr>
+                                <tr>
+                                    <td>6月份</td>
+                                    <td>罗浮山风景名胜区</td>
+                                    <td>60</td>
+                                    <td>AAAAA</td>
+                                    <td>广东·惠州</td>
+                                </tr>
+                                <tr>
+                                    <td>7月份</td>
+                                    <td>雁鸣湖</td>
+                                    <td>50</td>
+                                    <td>AAAA</td>
+                                    <td>广东·梅州</td>
+                                </tr>
+                                <tr>
+                                    <td>8月份</td>
+                                    <td>清远市牛鱼嘴生态旅游区</td>
+                                    <td>60</td>
+                                    <td>AAA</td>
+                                    <td>广东·清远</td>
+                                </tr>
+                                <tr>
+                                    <td>9月份</td>
+                                    <td>怀集世外桃源风景区</td>
+                                    <td>50</td>
+                                    <td>AAAA</td>
+                                    <td>广东·肇庆</td>  
+                                </tr>
+                                <tr>
+                                    <td>10月份</td>
+                                    <td>木龙湖</td>
+                                    <td>90</td>
+                                    <td>AAAA</td>
+                                    <td>广西·桂林</td>
+                                </tr>
+                                <tr>
+                                    <td>11月份</td>
+                                    <td>富都温泉</td>
+                                    <td>98</td>
+                                    <td>AAAA</td>
+                                    <td>广东·江门</td>
+                                </tr>
+                                <tr>
+                                    <td>12月份</td>
+                                    <td>岭南印象园</td>
+                                    <td>60</td>
+                                    <td>AAAA</td>
+                                    <td>广东·广州</td>      
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr class="hrLine" />
+
+                    <h3 class="pContTit">北京景区</h3>
+                    <p class="pBoxImg"><img src='/Img/VipImg/jq3.jpg' /></p>
+                    <div class="pBoxTab">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th width="12.5%">游览日期</th>
+                                    <th width="35%">景区名称</th>
+                                    <th width="12.5%">门市票价</th>
+                                    <th width="20">景区级别</th>
+                                    <th width="20%">所在地区</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1月份</td>
+                                    <td>后花园</td>
+                                    <td>60</td>
+                                    <td>AAAA</td>
+                                    <td>北京·昌平</td>
+                                </tr>
+                                <tr>
+                                    <td>2月份</td>
+                                    <td>松山国家森林公园</td>
+                                    <td>50</td>
+                                    <td>AAA</td>
+                                    <td>北京·延庆</td>
+                                </tr>
+                                <tr>
+                                    <td>3月份</td>
+                                    <td>张裕爱斐堡国际酒庄</td>
+                                    <td>80</td>
+                                    <td>AAAA</td>
+                                    <td>北京·密云</td>
+                                </tr>
+                                <tr>
+                                    <td>4月份</td>
+                                    <td>八达岭水关长城</td>
+                                    <td>40</td>
+                                    <td>AAAA</td>
+                                    <td>北京·延庆</td>
+                                </tr>
+                                <tr>
+                                    <td>5月份</td>
+                                    <td>丫鬟山</td>
+                                    <td>40</td>
+                                    <td>AAA</td>
+                                    <td>北京·平谷</td>
+                                </tr>
+                                <tr>
+                                    <td>6月份</td>
+                                    <td>留明营生态观光园</td>
+                                    <td>36</td>
+                                    <td>AAA</td>
+                                    <td>北京·大兴</td>
+                                </tr>
+                                <tr>
+                                    <td>7月份</td>
+                                    <td>圣莲山</td>
+                                    <td>60</td>
+                                    <td>AAAA</td>
+                                    <td>北京·房山</td>
+                                </tr>
+                                <tr>
+                                    <td>8月份</td>
+                                    <td>紫谷伊甸园</td>
+                                    <td>60</td>
+                                    <td>AAA</td>
+                                    <td>北京·丰台</td>
+                                </tr>
+                                <tr>
+                                    <td>9月份</td>
+                                    <td>孤山寨</td>
+                                    <td>75</td>
+                                    <td>AAAA</td>
+                                    <td>北京·房山</td>  
+                                </tr>
+                                <tr>
+                                    <td>10月份</td>
+                                    <td>响水湖长城</td>
+                                    <td>32</td>
+                                    <td>AAA</td>
+                                    <td>北京·怀柔</td>
+                                </tr>
+                                <tr>
+                                    <td>11月份</td>
+                                    <td>慕田峪长城</td>
+                                    <td>45</td>
+                                    <td>AAAAA</td>
+                                    <td>北京·怀柔</td>
+                                </tr>
+                                <tr>
+                                    <td>12月份</td>
+                                    <td>仙栖洞</td>
+                                    <td>60</td>
+                                    <td>AAAA</td>
+                                    <td>北京·房山</td>      
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr class="hrLine" />
+
+                    <h3 class="pContTit">河南省景区</h3>
+                    <p class="pBoxImg"><img src='/Img/VipImg/jq4.jpg' /></p>
+                    <div class="pBoxTab">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th width="12.5%">游览日期</th>
+                                    <th width="35%">景区名称</th>
+                                    <th width="12.5%">门市票价</th>
+                                    <th width="20">景区级别</th>
+                                    <th width="20%">所在地区</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1月份</td>
+                                    <td>商丘芒砀山文物旅游区</td>
+                                    <td>100</td>
+                                    <td>AAAA</td>
+                                    <td>河南·商丘</td>
+                                </tr>
+                                <tr>
+                                    <td>2月份</td>
+                                    <td>马氏庄园</td>
+                                    <td>60</td>
+                                    <td>AAAA</td>
+                                    <td>河南·安阳</td>
+                                </tr>
+                                <tr>
+                                    <td>3月份</td>
+                                    <td>巩义浮戏山雪花洞</td>
+                                    <td>55</td>
+                                    <td>AAA</td>
+                                    <td>河南·郑州</td>
+                                </tr>
+                                <tr>
+                                    <td>4月份</td>
+                                    <td>栾川蝴蝶谷</td>
+                                    <td>50</td>
+                                    <td>世界地质公园</td>
+                                    <td>河南·洛阳</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>5月份</td>
+                                    <td>三门峡仰韶大峡谷</td>
+                                    <td>68</td>
+                                    <td>AAA</td>
+                                    <td>河南·三门峡</td>
+                                </tr>
+                                <tr>
+                                    <td>6月份</td>
+                                    <td>新密神仙洞</td>
+                                    <td>40</td>
+                                    <td>AAA</td>
+                                    <td>河南·郑州</td>
+                                </tr>
+                                <tr>
+                                    <td>7月份</td>
+                                    <td>信阳灵山风景区</td>
+                                    <td>50</td>
+                                    <td>AAAA</td>
+                                    <td>河南·信阳</td>
+                                </tr>
+                                <tr>
+                                    <td>8月份</td>
+                                    <td>济源黄河三峡</td>
+                                    <td>60</td>
+                                    <td>AAAA</td>
+                                    <td>河南·济源</td>
+                                </tr>
+                                <tr>
+                                    <td>9月份</td>
+                                    <td>淮阳太昊林</td>
+                                    <td>60</td>
+                                    <td>AAAA</td>
+                                    <td>河南·周口</td>  
+                                </tr>
+                                <tr>
+                                    <td>10月份</td>
+                                    <td>洛阳神灵寨</td>
+                                    <td>50</td>
+                                    <td>AAAA</td>
+                                    <td>河南·洛阳</td>
+                                </tr>
+                                <tr>
+                                    <td>11月份</td>
+                                    <td>老君山</td>
+                                    <td>80</td>
+                                    <td>AAAAA</td>
+                                    <td>河南·洛阳</td>
+                                </tr>
+                                <tr>
+                                    <td>12月份</td>
+                                    <td>安阳羑里城</td>
+                                    <td>50</td>
+                                    <td>AAAA</td>
+                                    <td>河南·安阳</td>      
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <p class="pContent"><strong>【客户流程】</strong></p>
+                    <p class="pContent">登录BM—在线商城—积分兑换门票—填写邮寄地址—收到实体门票—注册及预约—使用门票</p>
+                    <p class="pContent"><strong>【相关说明】</strong></p>
+                    <p class="pContent"> 1、联票注册有效期自交货之日起两个月左右（票折使用细则中将对注册时间、有效期等予以明确标识），使用有效期自注册之日起12个月，本年已过去月份次年有效；</p>
+                    <p class="pContent">2、本系列票折仅供北京现代作为馈赠客户车主的赠品，单独销售无效、通过网站、旅行社等线上线下渠道转卖无效；</p>
+                    <p class="pContent">3、因批量无法满足邮资明信片起印要求，本系列票折为常规印刷品，不含邮资明信片相关元素；</p>
+
+                    <hr class="hrLine" />
+
+                    <p class="pContent"><strong>附：</strong></p>
+                    <p class="pContent"><strong>【景区联票使用细则】</strong></p>
+                    <p class="pContent">1、此景区联票为实名制，所含门票仅限注册者本人及指定随行人员使用，转借无效；使用前须进行个人身份注册，自注册之日起一年有效。</p>
+                    <p class="pContent">2、赴景区游览前务必提前一天16:00之前进行预约，凭预约成功的二维码在景区检票口验票，未预约直接到景区无效，检票时需配合本人身份证件；</p>
+                    <p class="pContent">3、支持三种注册及预约方式：①微信注册预约：关注“明川景区联票”，按照提示进行注册或预约；②网络注册预约：登陆www.imingchuan.com，按照提示进行注册或预约；③电话注册预约：拨打客服电话400-6699-818，进行人工注册或预约（客服受理时间为9:00-16:00）</p>
+                    <p class="pContent">4、若无法在约定时间去景区游览，请在出游前一天17:00前取消预订，否则该景区无法再次预约。</p>
+                    <p class="pContent"><strong>【温馨提示】</strong></p>
+                    <p class="pContent">1、若个别景点因特殊原因不能游览，发行方将提前一周通过网站www.imingchuan.com进行公布，并对景区进行调整；</p>
+                    <p class="pContent">2、在景区验票时遇到任何问题，请拨打服务监督热线010-56224591(正常注册预约仍请拨打400-6699-818)，我们将及时为您处理。</p>
+                    <p class="pContent">3、请您按照景区相关规定，确保自身及随行人员安全，如有需要可在景区内自行购买保险。</p>
+                    <p>&nbsp;</p>
+                    <p class="pContent">*以上内容最终解释权归北京现代汽车有限公司所有，如有疑问请及时与北京现代bluemembers网站在线客服联系或直接拨打北京现代客服热线400-800-1100进行咨询。</p>
+
+                    @*<p class="pBox" style="width:50%; margin:20px auto;"><img src='/Img/VipImg/jqqq.jpg' /></p>*@
+
+                    <a href="/Mall/Index?pageName='Mall'" class="btnXbkBg" style="font-family:'微软雅黑';">立即兑换</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>
+@*<div id="divDialogInfo" class="alertbox" style="width: 100%; height: 100%; top: 0; left:0; display: none;background-color:rgba(0,0,0,0.5);padding-top:10vh;">
+    @Html.Action("MembershipTerms", "DealerNew")
+</div>
+<div id="divSubmitSuccess" class="alertbox" style="width: 500px; height: 120px; margin-left: -250px; display: none">
+    <div class="alertclose" onclick="$('#divSubmitSuccess').hide();">
+        &times;
+    </div>
+    <p id="alertMessage" style="height:80px;line-height:80px;font-size:16px;text-align:center;">
+        您已成功领取礼悦会钻石级会员特权，即刻享受优质服务体验。
+    </p>
+    <div style="width:140px;margin:auto;float:none;">
+        <div class="btn" onclick="$('#divSubmitSuccess').hide();">确定</div>
+    </div>
+</div>
+<div id="divAlertLogin" class="alertbox" style="width: 500px; height: 120px; margin-left: -250px; display: none">
+    <div class="alertclose" onclick="$('#divAlertLogin').hide();">
+        &times;
+    </div>
+    <p style="height:80px;line-height:80px;font-size:16px;text-align:center;">
+        请登录/注册bluemembers车主会员账号，升级礼悦会钻石会员！
+    </p>
+    <div style="width:320px;margin:auto;float:none;">
+        <div class="btn" id="btnGotoLogin">立即登录</div>
+        <div class="btn" id="btnGotoRegister">注册</div>
+    </div>
+</div>*@

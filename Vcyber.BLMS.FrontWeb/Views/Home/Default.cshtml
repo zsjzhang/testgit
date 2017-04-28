@@ -1,0 +1,336 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "北京现代bluemembers";
+}
+<script src="~/Scripts/controller/ReDealerController.js"></script>
+@section AddToHeadCss{
+    <style>
+        .logon .center_r_1 {
+            margin-top: 20px;
+        }
+        .fwxq_box p{ font-size:12px;}
+        .center {
+            height: auto;
+            margin-top: 0;
+            float: left;
+            position: relative;
+            left: 50%;
+            margin-left: -500px;
+        }
+
+        .center_lb_title {
+            margin-top: 35px;
+        }
+
+        .gy_nr {
+            height: 276px;
+        }
+
+        .center_lb_title {
+            margin-top: 0px;
+        }
+
+        .center_lb {
+            height: auto;
+        }
+
+        .active {
+            border-left: 2px solid #075090;
+            border-right: 2px solid #075090;
+            border-top: 2px solid #075090;
+        }
+
+        .two_sel {
+            height: 85px;
+        }
+
+        .jyzl_cont ul li {
+            width: 128px;
+        }
+
+        footer.footer {
+            margin-top: 0;
+        }
+
+        .tab-title {
+            margin-top: 20px;
+        }
+         /*.tab-title-content {
+            width: 141px;
+            float: left;
+            background: #eee;
+            border-bottom: 2px solid #075090;
+        }
+
+        .tab-active {
+            border-left: 2px solid #075090;
+            border-right: 2px solid #075090;
+            border-top: 2px solid #075090;
+            border-bottom: none;
+        }*/
+        .tab-title-content {
+            width: 142px;
+            float: left;
+            background: #eee;
+            height:56px;
+        }
+        .tab-active {
+            border: 1px solid #eee;
+            border-bottom: none;
+			background:#fff;
+			height:55px;
+        }
+        .gy_title_tab {
+            width: 100%;
+            height: 44px;
+            margin-top: 12px;
+            float: left;
+            line-height: 32px;
+        }
+
+            .gy_title_tab h1 {
+                text-align: center;
+            }
+
+        .tab-hide {
+            display: none;
+        }
+
+        .winPopUpg {
+            background: none !important;
+            background-color: transparent !important;
+            box-shadow: none !important;
+            top: 50% !important;
+            margin-top: -230px !important;
+            left: 50% !important;
+            margin-left: -400px !important;
+        }
+
+            .winPopUpg .layui-layer-page .layui-layer-content {
+                overflow: hidden !important;
+            }
+
+            .winPopUpg .layui-layer-setwin {
+                right: 145px;
+            }
+
+            
+.zzDivBox{ position: fixed; width:100%; height:100%; left:0; top:0; z-index:1000;}
+.zzDivBg{ position:absolute; left:0; top:0; width:100%; height:100%; background:#000; opacity:.5;filter:alpha(opacity:50); }
+.zzConBox1{ position:absolute; left:50%; top:50%; margin-left:-345px; margin-top:-185px; width:690px; height:370px; background:#fff; border-radius:5px; padding:0 5px 5px 5px; color:#3d3f43}
+.closeIcon{ position:absolute; display:block; width:30px; height:31px; right:-14px; top:-12px; background:url(/img/VipImg/closeIcon.png) no-repeat center; cursor:pointer;}
+.closeIcon:hover{background: url(/img/VipImg/closeIcon_1.png) no-repeat center; }
+.zzMegTit1{ width:100%; height:24px; padding-top:10px; line-height:24px; text-align:center;}
+.zzErrMeg{ width:21px; height:16px; display:inline-block; background:url(/img/VipImg/zzErrMeg.png) no-repeat center; vertical-align:middle;}
+.zzPrompt{ width:20px; height:20px; display:inline-block; background:url(/img/VipImg/zzPrompt.png) no-repeat center; vertical-align:middle;}
+.zzProTxt{ display:inline-block; vertical-align:middle; margin-left:5px; font-size:16px;}
+.zzConTxtBox{ position:relative; width:100%; height:294px; padding:17px 0 15px; background:#edf7ff; margin-top:10px;}
+.blueBoy1{ position: absolute; margin-left:24px; display:inline-block; margin-right:15px; width:45px; height:61px; background:url(/img/VipImg/blueBoy.png) no-repeat center; }
+.zzMegCon{ position:relative; display:inline-block; height:61px; width:200px; text-align:center; font-size:14px; vertical-align:middle; display:table; }
+.zzConBtn1{ position: relative; left:50%; margin-left:-60px; margin-top:7px; background:#075090; color:#fff; font-size:14px; text-align:center; cursor:pointer; padding:7px 15px; width:160px;}
+.zzConBtn1:hover{ background:#0b63b7; color:#fff; border:1px solid #0b63b7;}
+.zzConTxtBox dl{ position:relative; height:61px; width:100%; overflow:hidden;}
+.zzConTxtBox dt,.zzConTxtBox dd{ float:left;}
+.zzMegCon b{display:table-cell; vertical-align:middle; line-height:20px;}
+.zzConTxtProm{ font-size:12px; color:#a0a0a0; padding: 0 20px 0 90px; line-height:20px;}
+.zzConTxtSelc{ position:relative; width:500px; margin:15px auto 0 auto; overflow:hidden;}
+.payBtnBox{ position:relative; width:100%; height:45px; overflow:hidden; margin-top:15px;}
+.payBtnBox a{ position:absolute; top:0; left:50%; display:block; float:left;}
+#btnApplyToDealer_AccountLoginVip{ margin-left:-230px;}
+#btnInputPayNumberToLoginVip{ margin-left:35px;}
+
+    a.gy_titleA{ display:block; width:141px; height:100%; border:1px solid #eee; float:left; color:#3D3F43; background:#eee; text-align:center;}
+a.onActive{ background:#fff;}
+
+    </style>
+}
+@section AddToFooterJs{
+    <script type="text/javascript">
+        $('#slider').slider({
+            nextBtn: ".next",
+            prevBtn: ".prev",
+            nums: true,
+            numsClass: '.add',
+            times: true,
+            timer: 5000
+        });
+
+        $(".center_lb_title>div").hover(function () {
+            $(this).siblings("div").removeClass("active");
+            var index = $(".center_lb_title>div").index(this);
+            $(this).addClass("active");
+            $(".cont-box>div").eq(index).show().siblings('div').hide();
+
+        }, function () {
+        });
+
+        $(".tab-title-content").hover(function () {
+            if (!$(this).hasClass("tab-active")) {
+                $(this).addClass("tab-active");
+                $(this).siblings().removeClass("tab-active");
+                var _t_i = $(".tab-title-content").index(this);
+                $(".tab-content>div").eq(_t_i).show().siblings().hide();
+            }
+        }, function () {
+        });
+
+        $(function () {
+            $(".closeIcon").on("click", function () {
+                $(".zzDivBox").css('display', 'none');
+                window.location = "/MyCenter/Index?pageName=MyCenter";
+            });
+            $(".zzConBtn").on("click", function () {
+                $(".zzDivBox").css('display', 'none');
+            });
+        });
+
+    </script>
+}
+<script>
+    _hmt.push(['_trackPageview', '/home/default?s=@ViewBag.Source']);
+</script>
+
+<script>
+   // var ss = sessionStorage;
+    var cookieHelper = new Cookie();
+    //var isFirst = ss.getItem("isFirst") == null ? 0 : ss.getItem("isFirst");
+
+    var isFirst = cookieHelper.getCookie("isFirst") == null ? 0 : cookieHelper.getCookie("isFirst");
+    $(function () {
+        if (isFirst == 0) {
+            layer.open({
+                type: 1,
+                title: false,
+                skin: 'winPopUpg', //样式类名
+                closeBtn: 1, //不显示关闭按钮
+                shift: 2,
+                shadeClose: true, //开启遮罩关闭
+                area: ['913px', '595px'],
+                content: '<a href="https://www.bluemembers.com.cn/Mavement/Detail/253"><img src="/Img/VipImg/shouyetanchuang.jpg" /></a>'
+            });
+            cookieHelper.setCookie("isFirst", 1, null);
+           // ss.setItem("isFirst", 1);
+        }
+    })
+</script>
+
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Home" })
+    </div>
+    <div class="banner">
+        @Html.Action("HomeBanner", "Banner")
+    </div>
+    <div class="center" style="height:auto; margin-top:0;">
+        <div class="center_l">
+            @Html.Action("HotNewsRegion", "Home") @*热门新闻*@
+            @Html.Action("DealerNew", "Home") @*蓝宾权益*@
+            @*@Html.Partial("SonataNice")*@
+            <div class="reserve">
+                @Html.Action("HomeCarService", "Car")  @*车辆服务：预约试驾 维保 订车 线上保养产品 纯正配件查询 *@
+            </div>
+        </div>
+        <div class="center_r">
+            <div style="width:100%; height:20px; clear:both;"></div>
+            @*登录*@
+            <div style="height:344px; background:#eeeeee;">
+                <div class="logon" style=" margin-top :0px">
+                    @{
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            @Html.Action("HomeLogonSuccesstwo", "Account")
+                        }
+                        else
+                        {
+                            @Html.Action("HomeLogon", "Account")
+                        }
+                    }
+                </div>
+            </div>
+            @*原创视频 生日特权*@
+            <div class="hotmagazine">
+                @Html.Action("HotMedia", "Media")
+            </div>
+        </div>
+    </div>
+    <div style="clear:both;"></div>
+    <div class="weird" style="height: auto; float: left;  position: relative; left: 50%; margin-left: -500px; margin-top:0; ">
+        @*在线商城*@
+        <div style="float:left; width:698px;">
+            @Html.Action("MallRecommend", "Product")
+        </div>
+        @*问卷调查 在线阅读*@
+        <div style="width:286px; float:right; margin-left:-286px;">
+            <ul class="tab-title">
+                <li class="tab-title-content tab-active">
+                    <div class="gy_title_tab">
+                        <a href="/Questionnaire/QuestionnaireHistory">
+                            <h1>问卷调查</h1>
+                        </a>
+                    </div>
+                </li>
+                <li class="tab-title-content">
+                    <div class="gy_title_tab">
+                        <a href="/News/MagazinePage?pageName=Home">
+                            <h1>在线阅读</h1>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div>@Html.Action("HotQuestionnaire", "Questionnaire")</div>
+                <div class="tab-hide">@Html.Action("HotMagazine", "News")</div>
+            </div>
+        </div>
+    </div>
+    <div class="footer" style="float:left;">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>
+
+<div class="zzDivBox" style="width: 100%; float: left;  display: none " id="account_AccountRegisterIsSonataUser">
+    <div class="zzDivBg"></div>
+    <div style=" display:block;" class="regCon zzConBox1">
+        <span class="closeIcon"></span>
+        <p class="zzMegTit1">
+            <span class="zzPrompt"></span><!--zzPrompt是"提示"的图标，zzErrMeg是“错误”的图标-->
+            <span class="zzProTxt">选择入会特约店缴费</span>
+        </p>
+        <div class="zzConTxtBox">
+            <div class="blueBoy1"></div>
+            <div class="zzConTxtProm">
+               
+               
+
+                <p> 尊敬的会员您好。您可以线上通过天猫缴费通道(立即支付)或线下到特约店完成缴费，即</p>
+                <p> 可获取价值400~700元奖励积分，积分可抵维保现金消费。详情请咨询400-800-1100，</p>
+                <p> 祝您生活愉快！</p>
+                <p><span id="reIntegralmsg"  style=" display :none" ></span></p>
+            </div>
+            <div class="zzConTxtSelc">
+
+                <div style="overflow:hidden; font-size:14px; margin-left:-125px;">
+                    @Html.Action("ReAccountPageProvince", "Car")
+                </div>
+                <div style="margin-top: 22px; height: 26px; line-height: 26px; overflow:hidden;">
+                    <input type="hidden" id="accountPayNumber">
+                    <input type="hidden" id="accountActivityType">
+                    <input type="hidden" id="userid">
+                    <input type="hidden" id="loginIdentityNo" />
+                    <span style="font-size: 12px;color: #a0a0a0; "><span style="color:#3D3F43; font-size:16px; padding-right:10px;">支付会费</span>如果您已经与申请的特约店沟通并向其支付了会费，也可以选择向特约店申请。</span>
+                </div>
+
+                <div class="payBtnBox">
+                    <a class="pay_active apply_member register_bot zzConBtn1" id="btnApplyToDealer_AccountLoginVip">向特约店申请</a>
+                    <a target="_blank" href="http://detail.tmall.com/item.htm?spm=0.0.0.0.YYWYh4&amp;id=44232536739" class="pay_active lijizhufu register_bot zzConBtn1" id="btnInputPayNumberToLoginVip">立即支付</a>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,137 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var oid = ViewBag.oid ?? "";
+    var code = ViewBag.code ?? "";
+    var content = ViewBag.content ?? "";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>纯正配件查询</title>
+    @*<link href="~/Content/service/main.css" rel="stylesheet" />*@
+    <style>
+       Style Attribute {
+            width: 100vw;
+            text-align: center;
+            /* font-size: 0.8rem; */
+            line-height: 24px;
+            border-top: 1px solid #cfd3db;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="index-main" style="overflow-y: auto;">
+        <div style="width:100vw;text-align:center;background-color:#f0f9fa;padding:3vw 0 3vw 0; border: 1px 0 1px 0 solid #cfd3db;font-size: 0px;">
+            @*<button type="button" disabled="disabled" class="searchleft search-background">&nbsp;</button>*@
+            <div class="accInpBox">
+                <input type="text" id="inputkey" autocomplete="off" placeholder="请输入配件13位防伪码" class="myinput">
+            </div>
+
+            <div class="accBtn" id="btn_commit" href="javascript:void(0);" onclick="FittingsantifakeCode()">
+                查&nbsp;询
+            </div>
+        </div>
+        @{
+            var islogin = ViewBag.IsLogin;
+            if (!islogin)
+            {
+                <div style="text-align:center;color:red;">
+                    请先登陆后验证配件
+                </div>
+            }
+        }
+        @if (!string.IsNullOrWhiteSpace(content))
+        {
+            <div style="width:100vw;text-align:center;padding:3vw;background-color:#e7ebf4;line-height:24px;">
+                <div style="width:90%;text-align:center;background-color:#fff;padding:3vh;border: 1px solid #cfd3db;">
+                    <div style="width:100%;text-align:left;"><span style="color:#6197c3">防伪码：@(code)</span></div>
+                    <div style="height:10px;"></div>
+                    <div style="width:100%;text-align:left;"><span>尊敬的客户：</span></div>
+                    <div style="height:10px;"></div>
+                    @if (content == "1")
+                    {
+                        <div style="width:100%;text-align:left;"><span>该产品为北京现代摩比斯汽车配件有限公司供应的北京现代纯正配件，请您放心使用。如有任何疑问，请联系当地北京现代特约店，或拨打北京现代客户服务热线：400-800-1100。</span></div>
+                    }
+                    @if (content == "2")
+                    {
+                        <div style="width:100%;text-align:left;"><span>该产品为非北京现代纯正配件，请谨防假冒！如有任何疑问，请联系当地北京现代特约店，或拨打北京现代客户服务热线：400-800-1100。</span></div>
+                    }
+                    @if (content == "3")
+                    {
+                        <div style="width:100%;text-align:left;"><span>该产品已多次扫码，建议您选择当地北京现代特约店购买配件或咨询配件问题。如有任何疑问，请联系当地北京现代特约店，或拨打北京现代客户服务热线：400-800-1100。</span></div>
+                    }
+                </div>
+            </div>
+        }
+        <div style="width:100vw;text-align:center;line-height:24px;border-top: 1px solid #cfd3db;">
+            <div style="width:90%;text-align:center;background-color:#f0f9fa;padding:3vh;">
+                <div style="width:100%;text-align:left;"><span>北京现代纯正配件：</span></div>
+                <div style="height:10px;"></div>
+                <div style="width:100%;text-align:left;"><span>&emsp;&emsp;是指由北京现代摩比斯汽车配件有限公司供应给北京现代4s店及特约服务站，与北京现代汽车有限公司整车配件质量相同的，供售后服务使用的配件。</span></div>
+                <div style="height:10px;"></div>
+                <div style="width:100%;text-align:left;"><span>&emsp;&emsp;纯正配件可以为您的车辆提供最佳性能，保障车辆的最佳安全性和可靠性。</span></div>
+                <div style="height:10px;"></div>
+                <div style="width:100%;text-align:right;"><span>北京现代客服中心</span></div>
+                <div style="width:100%;text-align:right;"><span style="color:#6197c3">400－800－1100</span></div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="oid" value="@(oid)" />
+    <script src="~/Scripts/Me/common.method.js"></script>
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">
+        //配件防伪码查询
+        function FittingsantifakeCode() {
+
+            var code = $("#inputkey").val();
+            if (code == null || code == "") {
+                //alert("请输入配件防伪码");
+                layer.open({
+                    type: 1,
+                    skin: 'bmPopErr',
+                    title: 0,
+                    shift: 2,
+                    closeBtn: 0,
+                    shadeClose: true,
+                    area: ['5.4rem', '3.23rem'],
+                    btn: ['确定'],
+                    content: '<img src="../img/boy_err.png" /><span>请输入配件防伪码。</span>'
+                });
+                return false;
+            }
+            var reg = new RegExp("^[0-9]{13}|[0-9a-zA-Z]{16}$");
+            if (!reg.test(code)) {
+                //alert("请您输入正确防伪码");
+                layer.open({
+                    type: 1,
+                    skin: 'bmPopErr',
+                    title: 0,
+                    shift: 2,
+                    closeBtn: 0,
+                    shadeClose: true,
+                    area: ['5.4rem', '3.23rem'],
+                    btn: ['确定'],
+                    content: '<img src="../img/boy_err.png" /><span>请您输入正确防伪码。</span>'
+                });
+                $("#inputkey").val("");
+                return false;
+            }
+            var curWwwPath = window.document.location.href;
+            var pathName = window.document.location.pathname;
+            var pos = curWwwPath.indexOf(pathName);
+            var localhostPath = curWwwPath.substring(0, pos);
+            window.location = localhostPath + "/Common/PartsResult?code=" + code;
+        }
+    </script>
+
+</body>
+</html>

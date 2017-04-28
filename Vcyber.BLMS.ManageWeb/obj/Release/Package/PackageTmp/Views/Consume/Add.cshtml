@@ -1,0 +1,672 @@
+﻿@using System.Web.Mvc.Html
+@model Vcyber.BLMS.Entity.CarService.ConsumeEntity
+<script type="text/javascript" src="@Url.Content("~/Scripts/Uploadify/jquery.uploadify.js")"></script>
+
+@*<script src="~/Scripts/jqueryui/jquery.js"></script>*@
+<link href="~/Scripts/jqueryui/jquery-ui.min.css" rel="stylesheet" />
+<script src="~/Scripts/jqueryui/jquery-ui.min.js"></script>
+
+<link href="@Url.Content("~/Scripts/uploadify/uploadify.css")" rel="stylesheet" type="text/css" />
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "新增消费记录";
+
+    string imgSrc = (Model == null) ? "" : Model.PaperOrder;
+}
+<input type="hidden" id="isperson"/>
+@using (Html.BeginForm("Add", "Consume", FormMethod.Post, new { @class = "form-horizontal", @id = "AddForm", @name="AddForm" }))
+{
+    <input type="hidden" id="discount" />
+    <div class="form-group col-md-6">
+        @Html.Label("手机号", new { @class = "control-label col-md-3" })
+        <div class="col-md-5">
+            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control text-left" } })
+            @Html.ValidationMessageFor(model => model.Phone)
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary form-control" id="query-user">查询</button>
+        </div>
+    </div>
+    <div class="form-group col-md-6">
+        @Html.Label("姓名", new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.TextBox("user-name", "", new { @class = "form-control", @placeholder = "用户姓名", @disabled = "" })
+            @Html.HiddenFor(model => model.UserName)
+            @Html.HiddenFor(model => model.UserId)
+            @*@Html.HiddenFor(model => model.MLevel)*@
+            @Html.Hidden("user-points")
+        </div>
+    </div>
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.VIN, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.DropDownListFor(model => model.VIN, new SelectListItem[] { }, new { @class = "col-md-3 form-control text-left" })
+        </div>
+    </div>
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.IdentityNumber, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextBox("identity-number", "", new { @class = "form-control text-left", @disabled = "" })
+            @Html.HiddenFor(model => model.IdentityNumber)
+        </div>
+        @Html.ValidationMessageFor(model => model.IdentityNumber, "", new { @class = "col-md-offset-3" })
+    </div>
+    <div class="form-group col-md-6">
+        @Html.Label("会员等级", new { @class = "col-md-3 control-label" })
+        <div class="text-right  col-md-9">
+            <select id="MLevel" class="form-control" name="mlevel" ng-model="selectItem.mlevel" ng-required="true" disabled>
+                <option value="1">注册用户</option>
+                <option value="10">普卡会员</option>
+                <option value="11">银卡会员</option>
+                <option value="12">金卡会员</option>
+            </select>
+        </div>
+    </div>
+    <hr style="border-color:#eee" class="col-md-11" />
+
+    <div class=" form-group col-md-6">
+        @Html.Label("省份", new { @class = "control-label  col-md-3 " })
+        <div class="text-right  col-md-4">
+            @Html.DropDownList("dealer-province", (IEnumerable<SelectListItem>)ViewBag.ProvinceList, new { @class = "form-control text-left", @id = "dealer-province",@onchange = "Dealer.city(this)" })
+        </div>
+        @Html.Label("市", new { @class = "control-label col-md-1" })
+        <div class="text-right  col-md-4">
+            @Html.DropDownList("dealer-city", (IEnumerable<SelectListItem>)ViewBag.CityList, new { @class = "form-control text-left", @id = "dealer-city", @onchange = "Dealer.list(this, document.getElementById('dealer-province'));" })
+        </div>
+    </div>
+    <div class="form-group col-md-6">
+        @Html.Label("经销商", new { @class = "col-md-3 control-label" })
+        <div class="text-right  col-md-9">
+            @Html.DropDownList("DealerId", (IEnumerable<SelectListItem>)ViewBag.DealerList, new { @class = "col-md-6 form-control text-left", @onchange = "Dealer.setName(this)" })
+            @Html.ValidationMessageFor(model => model.DealerName)
+            @Html.HiddenFor(model => model.DealerName, new { Value = @ViewBag.DealerName })
+        </div>
+    </div>
+
+
+    <hr style="border-color:#eee" class="col-md-11" />
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.ConsumeType, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.EnumDropDownListFor(model => model.EConsumeType, new { @class = "col-md-3 form-control text-left" })
+        </div>
+        @Html.ValidationMessageFor(model => model.EConsumeType,"请选择")
+    </div>
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.ConsumeDate, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.ConsumeDate, new { htmlAttributes = new { @class = "form-control text-left", @onfocus = "WdatePicker({minDate:'%y-%M-%d',maxDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',alwaysUseStartDate:true})" } })
+        </div>
+        @Html.ValidationMessageFor(model => model.ConsumeDate, "", new { @class = "col-md-offset-3" })
+    </div>
+
+
+
+    @*<div class="form-group col-md-6">
+            @Html.LabelFor(model => model.PartCost, new { @class = "col-md-3 control-label" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.PartCost, new { htmlAttributes = new { @class = "form-control text-left", @onblur = "Dealer.calcuCost()" } })
+            </div>
+            @Html.ValidationMessageFor(model => model.PartCost, "", new { @class = "col-md-offset-3" })
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.MaterialCost, new { @class = "col-md-3 control-label" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.MaterialCost, new { htmlAttributes = new { @class = "col-md-3 form-control text-left", @onblur = "Dealer.calcuCost()" } })
+            </div>
+            @Html.ValidationMessageFor(model => model.MaterialCost, "", new { @class = "col-md-offset-3" })
+        </div>
+
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.LaborCost, new { @class = "col-md-3 control-label" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.LaborCost, new { htmlAttributes = new { @class = "col-md-3 form-control text-left", @onblur = "Dealer.calcuCost()" } })
+            </div>
+            @Html.ValidationMessageFor(model => model.LaborCost, "", new { @class = "col-md-offset-3" })
+        </div>*@
+
+
+
+
+    <div class="form-group col-md-6">
+        @*@Html.LabelFor(model => model.PurchaseCost, new { @class = "col-md-3 control-label" })*@
+        @Html.Label("客户自付费用", new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.PurchaseCost, new { htmlAttributes = new { @class = "col-md-3 form-control text-left", @onblur = "Dealer.calcuCost()" } })
+        </div>
+        @Html.ValidationMessageFor(model => model.PurchaseCost, "", new { @class = "col-md-offset-3" })
+    </div>
+
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.ConsumePoints, new { @class = "col-md-3 control-label" })
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.ConsumePoints, new { htmlAttributes = new { @class = "col-md-3 form-control text-left" } })
+
+        </div>
+        <div class="col-md-5">
+            <span class="control-label">( 总积分：<i id="actual-point">0</i> )</span>
+        </div>
+        @Html.ValidationMessageFor(model => model.ConsumePoints, "", new { @class = "col-md-offset-3" })
+    </div>
+
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.PointCost, new { @class = "col-md-3 control-label", @style = "padding:0" })
+        <div class="col-md-9">
+            @Html.HiddenFor(model => model.PointCost)
+            <input type="text" id="PointCost-ui" class="col-md-3 form-control text-left" disabled="" />
+        </div>
+        @Html.ValidationMessageFor(model => model.PointCost, "", new { @class = "col-md-offset-3" })
+    </div>
+
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.TotalCost, new { @class = "col-md-3 control-label" })
+        <div class="col-md-3">
+            <input id="TotalCost-ui" class="col-md-3 form-control text-left" disabled="" />
+            @Html.HiddenFor(model => model.TotalCost)
+        </div>
+        <label class="col-md-3 control-label">获取积分</label>
+        <div class="col-md-3">
+            <input id="CreateIntegral" class="col-md-3 form-control text-left" disabled="" />
+        </div>
+        @Html.ValidationMessageFor(model => model.TotalCost, "", new { @class = "col-md-offset-3" })
+    </div>
+
+
+    <hr style="border-color:#eee" class="col-md-11" />
+    
+    <div class="form-group col-md-6">
+        @Html.Label("工单费用：", new { @class = "col-md-3 control-label" })
+        <div class=" col-md-4">
+            @Html.EditorFor(model => model.PaperOrderCost, new { htmlAttributes = new { @class = "col-md-3 form-control text-left" } })
+        </div>
+    </div>
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.Comment, new { @class = "col-md-3 control-label" })
+        <div class=" col-md-9">
+            @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { @class = "col-md-3 form-control text-left" } })
+        </div>
+    </div>
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.PaperOrder, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            <div class="form-group col-md-6">
+                <img id="img-thumbnail" src="@imgSrc" style="height: 100px;width: 100px;" />
+            </div>
+            <div class="imgDiv form-group col-md-3">
+                <input type="file" name="fileImage" id="fileImage" style="display: none;" />
+            </div>
+            @Html.HiddenFor(model => model.PaperOrder)
+        </div>
+    </div>
+
+    
+    
+    @Html.HiddenFor(model => model.VerifyCode);
+    <div class="form-group col-md-6">&nbsp;</div>
+
+    if (Model != null && !string.IsNullOrEmpty(Model.ErrorMsg))
+    {
+        <div class="btn-toolbar col-md-10">
+            <div class="col-md-5 col-md-offset-6 alert" style="color:darkred">
+                <label id="@Html.IdFor(model => model.ErrorMsg)"><i class="fa">@Model.ErrorMsg</i></label>
+            </div>
+        </div>
+    }
+    <div class="btn-toolbar col-md-10">
+        <div class="col-md-2 col-md-offset-6">
+            <button type="button" id="btn-submit-cs" class=" btn btn-primary form-control"><i class="fa"></i>提交</button>
+        </div>
+        <div class="col-md-2">
+            <input type="button" id="btnPrint" class=" btn btn-primary form-control" value="打印"><i class="fa"></i>
+        </div>
+    </div>
+
+    /*<div id="dialog-form" title="提交验证">
+        <div style="padding-top:34px;">
+            <div class="col-md-12">
+                @Html.Label("手机号", new { @class = "control-label col-md-3" })
+                <div class="col-md-5">
+                    <span id="phone-popup"></span>
+                </div><div class="col-md-3">
+                    <button type="button" class="btn btn-primary form-control" id="send-code">发送</button>
+                </div>
+            </div>
+            <div class="col-md-12">
+                @Html.Label("验证码", new { @class = "control-label col-md-3" })
+                <div class="col-md-5">
+                    <input type="text" id="VerifyCode-ui" class="form-control" />
+                </div>
+                <div class="btn-toolbar col-md-8 col-md-offset-3">
+                    <span id="send-message"></span>
+                </div>
+            </div>
+            <div class="btn-toolbar col-md-3 col-md-offset-4" style="padding-top:34px;">
+                <button id="submit-popup" type="submit" class=" btn btn-primary form-control"><i class="fa"></i>确认</button>
+            </div>
+        </div>
+    </div>*/
+}
+
+
+<script type="text/javascript">
+    $("#EConsumeType").val("-1");
+
+    $("#EConsumeType").change(function () {
+
+        if ($(this).val() == 1) {
+            $("#PurchaseCost").val(0);
+            $("#PurchaseCost").attr("disabled", "disabled");
+            $("#ConsumePoints").val(0);
+            $("#ConsumePoints").attr("disabled", "disabled");
+            //  $("#PointCost-ui").removeAttr("disabled");
+            $("#PointCost-ui").val(0);
+            $("#PointCost").val(0);
+            $("#PointCost-ui").attr("disabled", "disabled");
+            // $("#TotalCost-ui").removeAttr("disabled");
+            $("#TotalCost-ui").val(0);
+            $("#TotalCost").val(0);
+            $("#TotalCost-ui").attr("disabled", "disabled");
+            $("#CreateIntegral").val(0);
+            $("#CreateIntegral").attr("disabled", "disabled");
+            $("#TotalCost").val(0);
+        }
+        else {
+            $("#PurchaseCost").val(null);
+            $("#ConsumePoints").val(null);
+            $("#PurchaseCost").removeAttr("disabled");
+            $("#ConsumePoints").removeAttr("disabled");
+            $("#PointCost-ui").val(0);
+            $("#PointCost").val(0);
+            $("#PointCost-ui").attr("disabled", "disabled");
+            // $("#TotalCost-ui").removeAttr("disabled");
+            $("#TotalCost-ui").val(0);
+            $("#TotalCost").val(0);
+            $("#TotalCost-ui").attr("disabled", "disabled");
+           // $("#TotalCost").attr("disabled", "disabled");
+            $("#CreateIntegral").val(0);
+            $("#CreateIntegral").attr("disabled", "disabled");
+        }
+       // $(this).css("background-color", "#FFFFCC");
+    });
+    var Dealer = {
+
+    };
+    Dealer.city = function (province) {
+        //根据省份获取城市
+        $.ajax({
+            url: "/Consume/Citys",
+            type: "get",
+            data: { provinceValue: province.value },
+            dataType: "json",
+            success: function (result) {
+                $("#dealer-city").html("");
+                $("#dealer-id").html("<option value='-1'>请选择</option>");
+                var _html = "<option value='-1'>请选择</option>";
+                $(result).each(function (i, obj) {
+                    _html += "<option>" + obj + "</option>";
+                });
+                //将获取的城市列表填充
+                $("#dealer-city").append(_html);
+            },
+            error: function (err) {
+                alert("error...");
+            }
+        });
+    };
+
+    Dealer.list = function (city, province) {
+        //根据城市获取供应商列表
+        $.ajax({
+            url: "/Consume/Dealers",
+            type: "get",
+            data: { cityValue: city.value, provinceValue: province.value },
+            dataType: "json",
+            success: function (result) {
+                $("#DealerId").html("");
+                //将获取的供应商列表填充
+                var _html = "<option value='-1'>请选择</option>";
+                $(result).each(function (i, obj) {
+                    _html += "<option value='" + obj.DealerId + "'>" + obj.Name + "</option>";
+                });
+                //将获取的经销商列表填充
+                $("#DealerId").append(_html);
+            },
+            error: function (err) {
+                alert("error");
+            }
+        });
+    };
+
+    Dealer.calcuCost = function () {
+        var val = //($("#PartCost").val()) * 1
+            //+ ($("#MaterialCost").val()) * 1
+            //+ ($("#@Html.IdFor(model=>model.LaborCost)").val()) * 1
+            +($("#@Html.IdFor(model=>model.PurchaseCost)").val()) * 1
+            - ($("#PointCost").val()) * 1;
+        $("#TotalCost").val(val);
+        $("#TotalCost-ui").val(val);
+        //if ($("#MLevel").val = 10) {
+        //    $("#CreateIntegral").val(Math.round(val / 10));
+        //}
+        //if ($("#MLevel").val = 11) {
+        //    $("#CreateIntegral").val(Math.round(val / 15));
+        //}
+        //if ($("#MLevel").val = 12) {
+        //    $("#CreateIntegral").val(Math.round(val / 20));
+        //}
+        var discount = $("#discount").val() || 0.1;
+
+        if ($("#EConsumeType").val()=="2" || $("#isperson").val()!="1") {
+            $("#CreateIntegral").val(0);
+        }
+        else {
+            $("#CreateIntegral").val(Math.round(val * discount));
+        }
+    };
+
+    Dealer.setName = function (dealer) {
+        $("#DealerName").val($(dealer).find("option:selected").text());
+    };
+
+
+    $("#fileImage").uploadify({
+        'buttonImg': "/Content/Image/upload.png",
+        'buttonText': '上传',
+        'fileTypeDesc': 'Image Files',
+        'fileTypeExts': '*.jpg;*.jpge;*.gif;*.png;*.bmp',
+        'swf': '@Url.Content("~/Scripts/Uploadify/uploadify.swf")',
+        'uploader': "/ImageUpload/UploadPaperOrder",
+        'auto': true,
+        'multi': false,
+        'wmode': 'transparent',
+        'fileSizeLimit': '5242880',
+        //                'removeCompleted' : false,
+        // Your options here
+        //上传到服务器，服务器返回相应信息到data里
+        'onUploadSuccess': function (file, data, response) {
+            if (file.size < 5242880) {
+                //$("#Images_" + indexs + "__Image").val(data);
+                $("#img-thumbnail").attr("src", data);
+                $("#PaperOrder").val(data);
+            }
+            else {
+                alert("上传文件不能大于5M");
+            }
+        }
+    });
+
+    //get user name and points
+    $("#query-user").click(function () {
+        $.ajax({
+            url: "/Consume/GetUserInfo?phone=" + $("#Phone").val(),
+            type: "GET"
+        })
+            .done(function (data) {
+                if (data.IsSuccess) {
+                    $("#VIN").empty();
+                    $("#isperson").val(data.Data.isperson);
+                    $("#user-name").val(data.Data.userName);
+                    $("#UserName").val(data.Data.userName);
+                    $("#UserId").val(data.Data.userId);
+                    $("#MLevel").val(data.Data.mlevel);
+                    $("#user-points").val(data.Data.userPoints);
+                    $("#actual-point").text(data.Data.userPoints);
+                    $("#ConsumePoints").val(0)
+                        .attr("data-val-range-max", data.Data.userPoints)
+                        //todo:这儿需要修改提示字段
+                        .attr("data-val-range", "字段 消耗积分 必须在 0 和 " + data.Data.userPoints + " 之间。");
+                    $("#PointCost").val(0);
+                    $("#PointCost-ui").val(0);
+                    $("#TotalCost").val(0);
+                    $("#TotalCost-ui").val(0);
+                    $("#PurchaseCost").val(0);
+                    $("#CreateIntegral").val(0);
+                    $("#identity-number").val(data.Data.identityNo);
+                    $("#IdentityNumber").val(data.Data.identityNo);
+                    $("#phone-popup").html($("#Phone").val());
+                    $("#discount").val(data.Data.discount);
+                    for (i in data.Data.vins) {
+                        $("#VIN").append("<option value='" + data.Data.vins[i][0] + "'>" + data.Data.vins[i][1] + "</option>")
+                    }
+
+                    $("#@Html.IdFor(model=>model.PartCost)").val(0);
+                    $("#@Html.IdFor(model=>model.MaterialCost)").val(0);
+                    $("#btn-submit-cs").show();
+                } else {
+                    alert(data.Message);
+                    //$("#user-name").val("");
+                    //$("#UserName").val("");
+                    //$("#UserId").val("");
+                    //$("#identity-number").val("");
+                    //window.location.href = "/Consume/QueryOrders";
+                    //$("#discount").val(0);
+                }
+
+            })
+            .fail(function () { alert("查询失败！"); });
+    });
+
+    $("#ConsumePoints").blur(function () {
+        var Econsumetype = $("#EConsumeType").val();
+        if ($("#ConsumePoints").val() > $("#PurchaseCost").val()*10) {
+            alert("消耗积分不能大于总费用");
+            $("#ConsumePoints").val("0");
+            return;
+        }
+        if (Econsumetype != "2" && this.value * 1 > 2000) {
+            alert($("#EConsumeType").find("option:selected").text() + "最多只能用2000积分");
+            this.value = 2000;
+            $("#ConsumePoints").focus();
+            return;
+        }
+        if (this.value * 1 > $("#user-points").val() * 1) this.value = $("#user-points").val();
+
+        $("#PointCost").val(this.value / 10.0);
+        $("#PointCost-ui").val(this.value / 10.0);
+        //if ($("#MLevel").val() = 10) {
+        //    $("#PointCost").val(this.value / 10.0);
+        //    $("#PointCost-ui").val(this.value / 10.0);
+        //}
+        //if ($("#MLevel").val() = 11) {
+        //    $("#PointCost").val(this.value / 15.0);
+        //    $("#PointCost-ui").val(this.value / 15.0);
+        //}
+        //if ($("#MLevel").val() = 12) {
+        //    $("#PointCost").val(this.value / 20.0);
+        //    $("#PointCost-ui").val(this.value / 20.0);
+        //}
+
+        Dealer.calcuCost();
+    });
+
+    //提交弹窗
+    var dialog = $("#dialog-form").dialog({
+        autoOpen: false,
+        height: 300,
+        width: 400,
+        modal: true,
+        //buttons: {
+        //   // "Create an account": $("#AddForm").submit(),
+        //    Cancel: function () {
+        //        dialog.dialog("close");
+        //    }
+        //},
+        close: function () {
+            //form[0].reset();
+            //allFields.removeClass("ui-state-error");
+        }
+    });
+    //提交新增消费记录
+    $("#btn-submit-cs").click(function (event) {
+        //if ($("#TotalCost").val() * 1 < 1 ||
+        //    ($("#ConsumePoints").val() * 1 > 0 &&
+        //    $("#PointCost").val() * 1 < 1)) {
+        //    alert("请检查费用！");
+
+        //    return;
+        //}
+        if ($("#TotalCost-ui").val() < 0 || $("#CreateIntegral").val() < 0) {
+            alert("实际支付费用不能为负数");
+            return;
+        }
+        if ($("#PaperOrderCost").val() == null || $("#PaperOrderCost").val().trim() == "" || $("#PaperOrderCost").val() < 0) {
+            alert("请检查工单费用");
+            return;
+        }
+        if ($("#img-thumbnail").attr("src")== "")
+        {
+            alert("请上传工单！");
+            return;
+        }
+        if ($("#UserId").val() == null || $("#UserId").val() == "")
+        {
+            alert("请查询用户信息");
+            return;
+        }
+        
+        //if ($("#PointCost").val() == 0) {
+        //    $("#AddForm").submit();
+        //}
+        //else {
+        //    $("#dialog-form").dialog("open");
+        //    event.preventDefault();
+        //}
+
+        if ($("#ConsumeDate").val() == "") {
+            alert("请选择消费的时间！");
+            return;
+        }
+        var flag = true;
+        var str = ["车架号","会员等级", "省份", "城市", "经销商", "消费类型"]; $("select").each(function (i) {
+            if ($(this).val() == "-1") {
+                flag = false;
+                alert(str[i] + "必须选择");
+                return false;
+            }
+        })
+        if (!flag) {
+            return;
+        };
+
+        if (($("#PurchaseCost").val() == null || $("#PurchaseCost").val() == 0) && $("#EConsumeType").val()!=1) {
+            alert("自费费用不能为0");
+            return;
+        }
+
+        if ($("#VIN").val() == null || $("#VIN").val()=="") {
+            alert("车架号不能为空");
+            return;
+        }
+        if ($("#PurchaseCost").val() == null || $("#PurchaseCost").val().trim() == "") {
+            alert("客户自付费用不能为空");
+            return;
+        }
+
+      
+        $("#btn-submit-cs").hide();
+
+       
+
+        $("#AddForm").submit();
+    });
+    //发送验证码
+    $("#send-code").click(function () {
+        $.ajax({
+            url: "/Consume/SendVerifyCode?phone=" + $("#Phone").val() + "&points=" + $("#ConsumePoints").val(),
+            type: "GET"
+        })
+            .done(function (data) {
+                if (data)
+                    $("#send-message").text("发送成功");
+                else {
+                    $("#send-message").text("发送失败");
+                }
+            })
+            .fail(function (error) {
+                $("#send-message").text("发送失败");
+            });
+    });
+
+    //弹出提交
+    $("#submit-popup").click(function () {
+        $.ajax({
+            url: "/Consume/VerifyCode?phone=" + $("#Phone").val() + "&code=" + $("#VerifyCode-ui").val(),
+            type: "GET"
+        })
+            .done(function (data) {
+                if (data) {
+                    $("#@Html.IdFor(model=>model.VerifyCode)").val($("#VerifyCode-ui").val());
+                    $("#AddForm").submit();
+                } else {
+                    $("#send-message").html("验证码错误");
+                }
+            });
+    });
+
+    $("#btnPrint").click(function () {
+        var phone = $("#Phone").val();
+
+        var userName = $("#user-name").val();
+
+        var vin = $("#VIN").val();
+        var vinName = $("#VIN option:selected").text();
+
+        var identityNumber = $("#identity-number").val();
+
+        var dealerProvince = $("#dealer-province").val();//省份
+        var dealerProvinceName = $("#dealer-province option:selected").text();
+
+        var dealerCity = $("#dealer-city").val();//城市
+        var dealerCityName = $("#dealer-city option:selected").text();
+
+        var dealerId = $("#DealerId").val();
+        var dealerName = $("#DealerId option:selected").text();//经销商
+
+        var eConsumeType = $("#EConsumeType").val();//消费类型
+        var eConsumeTypeName = $("#EConsumeType option:selected").text();
+
+        var consumeDate= $("#ConsumeDate").val(); //消费时间
+        var purchaseCost= $("#PurchaseCost").val(); //总费用
+        var consumePoints= $("#ConsumePoints").val();//消耗积分
+        var pointCostUi= $("#PointCost-ui").val();//积分抵扣
+        var totalCostUi= $("#TotalCost-ui").val();  //实际支付费用
+        var createIntegral = $("#CreateIntegral").val(); //获取积分
+        var paperOrderCost = $("#PaperOrderCost").val();//工单费用
+        var imgThumbnail= $("#img-thumbnail").attr("src");   //图片按钮
+        var comment= $("#Comment").val(); //备注
+
+        //document.body.innerHTML = document.getElementById('AddForm').innerHTML;
+        document.body.innerHTML = $("#AddForm").html();
+        
+
+        $("#query-user").css("display", "none");
+        $("#btn-submit-cs").css("display", "none");
+        $("#btnPrint").css("display", "none");
+        $("body").css("width", "946", "height", "630", "margin", "0 auto");
+        
+
+        $("#Phone").val(phone);
+        $("#user-name").val(userName);
+        $("#VIN").val(vin);
+        $("#identity-number").val(identityNumber);
+        $("#dealer-province").val(dealerProvince);//省份
+        $("#dealer-city").val(dealerCity);//城市
+        $("#DealerId").val(dealerId);//经销商
+        $("#EConsumeType").val(eConsumeType);//消费类型
+        $("#ConsumeDate").val(consumeDate); //消费时间
+        $("#PurchaseCost").val(purchaseCost); //总费用
+        $("#ConsumePoints").val(consumePoints);//消耗积分
+        $("#PointCost-ui").val(pointCostUi);//积分抵扣
+        $("#TotalCost-ui").val(totalCostUi);  //实际支付费用
+        $("#CreateIntegral").val(createIntegral); //获取积分
+        $("#PaperOrderCost").val(paperOrderCost);//工单费用
+        $("#img-thumbnail").val(imgThumbnail);   //图片按钮
+        $("#Comment").val(comment); //备注
+      
+
+        //window.print();
+        window.open('/ValidateCode/PrintAddConsumeRecord?Phone=' + phone + '&UserName=' + userName + '&VIN=' + vinName + '&IdentityNumber=' + identityNumber + '&DealerProvince=' + dealerProvinceName + '&DealerCity=' + dealerCityName + '&DealerName=' + dealerName + '&EConsumeName=' + eConsumeTypeName + '&ConsumeDate=' + consumeDate + '&PurchaseCost=' + purchaseCost + '&ConsumePoints=' + consumePoints + '&PointCost=' + pointCostUi + '&TotalCost=' + totalCostUi + '&CreateIntegral=' + createIntegral +'&PaperOrderCost='+paperOrderCost+ '&PaperOrder=' + imgThumbnail + '&Comment=' + comment);
+    });
+
+</script>
+<script src="/Scripts/My97DatePicker/WdatePicker.js"></script>

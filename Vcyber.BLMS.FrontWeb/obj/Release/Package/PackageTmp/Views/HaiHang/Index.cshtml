@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<input type="button" onclick="Submit();" value="测试请求"/>
+
+<script>
+    function Submit() {
+        $.ajax({
+            url: "/HaiHang/Send",
+            data: {  },
+            type: "post",
+            datatype: "json",
+            success: function (result) {
+                popWindownBlue( result);
+            },
+            error: function () {
+                popWindownBlue( "系统异常");
+            }
+        });
+    }
+</script>

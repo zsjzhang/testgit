@@ -1,0 +1,129 @@
+﻿@{
+    ViewBag.Title = "已出库未入会列表";
+    Layout = null;
+}
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function() {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+</script>
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>用户管理 - 店内已出库未入会列表</strong></div>
+</div>
+<input type="hidden" value="@ViewBag.DealerId" id="ce" />
+<div class="container panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">手机号：</label>
+                        <input class="col-md-2 form-control" type="text" placeholder="手机号" ng-model="formData.PhoneNumber" />
+                        <label class="col-md-2 control-label">VIN：</label>
+                        <input class="col-md-2 form-control" type="text" placeholder="VIN" ng-model="formData.VIN" />
+                        @*<label class="col-md-2 control-label">证件号：</label>
+                            <input class="col-md-2 form-control" type="text" placeholder="身份证号" ng-model="formData.IdentityNumber" />*@
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">证件类型：</label>
+                        <select class="col-md-2 form-control" ng-model="PaperWork">
+                            <option value="" selected="selected">请选择</option>
+                            <option value="1">身份证</option>
+                            <option value="2">护照</option>
+                            <option value="3">军官证</option>
+                        </select>
+                        <label class="col-md-2 control-label">证件号：</label>
+                        <input class="col-md-2 form-control" type="text" placeholder="证件号" ng-model="formData.IdentityNumber" />
+                    @if (User.Identity.Name.ToLower().Equals("admin"))
+                    {
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">店代码：</label>
+                            <input class="col-md-2 form-control" type="text" placeholder="店代码" ng-model="formData.DealerID" />
+
+                        </div>
+                    }
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">购车时间：</label>
+
+                <input class="col-md-1 form-control datepicker" style="width:140px" placeholder="开始时间" ng-model="formData.StartTime" data-date-format="yyyy-mm-dd" />
+                <input class="col-md-1 form-control datepicker" style="width:140px" placeholder="结束时间" ng-model="formData.EndTime" data-date-format="yyyy-mm-dd" />
+
+                <label class="col-md-2 control-label">客户车型：</label>
+                <select class="form-control" ng-model="selectUserType">
+                    <option value="">请选择</option>
+                    @{
+                        IEnumerable<string> _cartype = ViewData["cartype"] as IEnumerable<string>;
+                        if (_cartype != null && _cartype.Any())
+                        {
+                            foreach (var item in _cartype)
+                            {
+                                <option>@item</option>
+                            }
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">入会状态：</label>
+                <select class="col-md-2 form-control" ng-model="select" ng-options="m.Id as m.Statu for m in status"></select>
+
+                <label class="col-md-2 control-label">是否同意入会：</label>
+                <select class="col-md-2 form-control" ng-model="selectCanJoin">
+                    <option value="">全部</option>
+                    <option value="0">未调查</option>
+                    <option value="1">调查中</option>
+                    <option value="2">同意入会</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">缴费状态：</label>
+
+                <select class="col-md-2 form-control" ng-model="IsPay">
+                    <option value="" selected="selected">请选择</option>
+                    <option value="0">未缴费</option>
+                    <option value="2">审核中</option>
+                    <option value="1">已缴费</option>
+                </select>
+
+                <label class="col-md-2 control-label" style="display:none">缴费金额：</label>
+
+                <select class="col-md-2 form-control" ng-model="Amount" style="display:none">
+                    <option value="" selected="selected">请选择</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+
+            </div>
+            <div class="form-group">
+                <input class="btn btn-primary col-md-offset-2" type="button" ng-click="search()" value="查询" />
+                <a class="btn btn-primary" href="/DealerMembership/ExportMemberListAll?status={{select}}&custName={{formData.CustName}}&phoneNumber={{formData.PhoneNumber}}&identityNumber={{formData.IdentityNumber}}&vin={{formData.VIN}}&startTime={{formData.StartTime}}&endTime={{formData.EndTime}}&dealerId={{formData.DealerID}}&selectCanJoin={{selectCanJoin}}&userType={{selectUserType}}&PaperWork={{PaperWork}}&IsPay={{IsPay}}&Amount={{Amount}}">导出(execl)</a>
+            </div>
+            </form>
+
+            <div>
+                @*<a class="btn btn-primary" href="/Card/Export?phoneNumber={{formData.PhoneNumber}}&state={{select}}">导出(execl)</a>*@
+                <hr />
+            </div>
+            <script type="text/javascript">
+                $('.datepicker').datepicker();
+            </script>
+            <div class="gridStyle" style="height: 410px; border: 1px solid rgb(212,212,212)" ng-grid="gridOptions"></div>
+        </div>
+    </div>
+</div>
+</div>

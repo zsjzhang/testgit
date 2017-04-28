@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+}
+
+@*<script>
+        $(function () {
+            $("#btnGrabTicket").click(function () {
+                $.ajax({
+                    url: "/GrabTicket/GetLogin",
+                    type: "get",
+                    success: function (result) {
+                        if (result.msg == "true") { //已登录
+                            var pagei = $.layer({
+                                type: 1,   //0-4的选择,
+                                title: false,
+                                border: [0],
+                                closeBtn: [0],
+                                shadeClose: false,
+                                area: ['500px', '400px'],
+                                page: {
+                                    dom: "#true"
+                                }
+                            });
+                        }
+                        else {  //未登录
+                            var pagei = $.layer({
+                                type: 1,   //0-4的选择,
+                                title: false,
+                                border: [0],
+                                closeBtn: [0],
+                                shadeClose: false,
+                                area: ['500px', '400px'],
+                                page: {
+                                    dom: "#false"
+                                }
+                            });
+                        }
+                    },
+                    error: function () {
+
+                    }
+
+                })
+            });
+            $("#register").click(function () {
+                var returnUrl = "/Account/AccountRegister?returnUrl=/Activity/Index";
+                location.href = "/Account/LogonPage?returnUrl=" + encodeURIComponent(returnUrl);
+            })
+            $("#login").click(function () {
+                var returnUrl = "/Account/LogonPage?returnUrl=/Activity/Index";
+                location.href = "/Account/LogonPage?returnUrl=" + encodeURIComponent(returnUrl);
+            })
+            $("#nextStep").click(function () {
+                var pagei = $.layer({
+                    type: 1,   //0-4的选择,
+                    title: false,
+                    border: [0],
+                    closeBtn: [0],
+                    shadeClose: false,
+                    area: ['500px', '400px'],
+                    page: {
+                        dom: "#selectMask"
+                    }
+                });
+            })
+            $("#selectMaskResult").click(function ()
+            {
+                var result = $('input:radio:checked').val();
+                if (result == 1)
+                {
+                    var pagei = $.layer({
+                        type: 1,   //0-4的选择,
+                        title: false,
+                        border: [0],
+                        closeBtn: [0],
+                        shadeClose: false,
+                        area: ['500px', '400px'],
+                        page: {
+                            html: "哇，原来你是《剧院魅影》中最大的女主角——克里斯汀，音乐天使，眼神纯净，笑容甜美，从迷茫中逐渐成长，变得勇敢，选择自己的爱情，选择自己的人生。"
+                        }
+                    });
+                }
+            })
+        })
+    </script>
+
+    <div>
+        <a href="javascript:void(0);" id="btnGrabTicket" class="yuyue befor_ac" style="margin-top:50px;">我要抢票</a>
+    </div>
+    <div >
+        <div id="false" style="display:none">
+            "尊敬的用户，只有bluemembers会员才可以享受此项福利，请您登录后进行操作"
+            <br />
+            <div style=" text-align: center; margin: 50px;">
+                <input type="button" id="login" value="登录" />
+                <input type="button" id="register" value="注册" />
+            </div>
+        </div>
+        <div id="true" style="display:none">
+            <h1>第一步 填写信息</h1>
+            <ul>
+                <li><input id="userName" name="userName" placeholder="输入姓名" /><input id="userMobile" name="userMobile" placeholder="输入手机号码" /></li>
+                <li><input id="userAddress" name="userAddress" placeholder="输入邮递地址" /></li>
+                <li><button id="nextStep">填好了，下一步</button></li>
+            </ul>
+        </div>
+        <div id="selectMask" style="display:none">
+            <h2>第二步 请根据个人喜好，选择1种面具</h2>
+            <ul>
+                <li><input type="radio" id="blue" value="1" name="mask" />蓝焰 <input type="radio" id="black" value="2" name="mask" />黑魅 <input type="radio" id="gold" value="3" name="mask" />金煌 <input type="radio" id="red" value="4" name="mask" />赤焰</li>
+                <li><button id="selectMaskResult">选好了，查看结果</button></li>
+            </ul>
+        </div>
+    </div>*@

@@ -1,0 +1,252 @@
+﻿@model  List<Vcyber.BLMS.Entity.WinningInfo>
+@{
+    ViewBag.Title = "中奖名单";
+    Layout = "~/Views/Shared/_LayoutYuena.cshtml";
+}
+
+<div class="main">
+    <div class="nav">
+        <img src="~/Contents/yuena/images/nav3.png" usemap="#Map">
+    </div>
+    <div class="winners">
+        <div class="winners_top clearfix">
+            <div class="winners_title"><a href="/Yuena/CarOwerAuthentication"><img src="~/Contents/yuena/images/winners_title.png"></a></div>
+            <div class="search_wrap">
+                <label>输入手机号查询</label>
+                <input id="phoneNum" type="text" value="">
+                <a id="searchWinnerInfos" class="btn-search" onclick="searchWinnerInfo()" href="javascript:;"><img src="~/Contents/yuena/images/btn_search.png"></a>
+            </div>
+        </div>
+        <div class="winners_con">
+            <table>
+                <tr>
+                    <th>手机号</th>
+                    <th>奖品</th>
+                    <th>手机号</th>
+                    <th>奖品</th>
+                </tr>
+            </table>
+            @*<div class="table_content">
+                <div class="str1" style="height:395px">
+                    <table>
+                        @{
+                            for (int i = 1; i <= ((Model.Count()) / 2) + 1; i++)
+                            {
+                                <tr>
+                                    @for (int j = 1; j <= 2; j++)
+                                    {
+
+                                        if (Model.Count <= ((i - 1) * 2 + j - 1))
+                                        {
+                                            <td></td>
+                                            <td></td>
+                                        }
+                                        else
+                                        {
+                                            var tel = "";
+                                            if (!string.IsNullOrEmpty(Model[(i - 1) * 2 + j - 1].PhoneNumber))
+                                            {
+                                                int entlen = Model[i * j - 1].PhoneNumber.Length - 4;
+                                                tel = string.Format("{0}****{1}", Model[(i - 1) * 2 + j - 1].PhoneNumber.Substring(0, 3), Model[(i - 1) * 2 + j - 1].PhoneNumber.Substring(entlen, 4));
+                                            }
+                                            <td>@tel</td>
+                                            <td>@Model[(i - 1) * 2 + j - 1].Title</td>
+                                        }
+                                    }
+                                </tr>
+                            }
+                        }
+                    </table>
+                </div>
+            </div>*@
+            <div class="table_content">
+                <div class="str1" style="height:395px">
+                    <table>
+                        <tr>
+                            <td>134****8769</td>
+                            <td>蓝牙自拍杆</td>
+                            <td>136****6977</td>
+                            <td>蓝牙自拍杆</td>
+                        </tr>
+                        <tr>
+                            <td>186****9460</td>
+                            <td>蓝牙自拍杆</td>
+                            <td>136****8336</td>
+                            <td>蓝牙自拍杆</td>
+                        </tr>
+                        <tr>
+                            <td>186****9696</td>
+                            <td>旅行四件套</td>
+                            <td>158****1646</td>
+                            <td>旅行四件套</td>
+                        </tr>
+                        <tr>
+                            <td>186****4611</td>
+                            <td>蓝牙自拍杆</td>
+                            <td>151****8566</td>
+                            <td>旅行四件套</td>
+                        </tr>
+                        <tr>
+                            <td>137****7508</td>
+                            <td>蓝牙自拍杆</td>
+                            <td>158****1291</td>
+                            <td>蓝牙自拍杆</td>
+                        </tr>
+                        <tr>
+                            <td>187****3726</td>
+                            <td>蓝牙自拍杆</td>
+                            <td>187****1824</td>
+                            <td>蓝牙自拍杆</td>
+                        </tr>
+                        <tr>
+                            <td>159****7042</td>
+                            <td>旅行四件套</td>
+                            <td>180****5188</td>
+                            <td>蓝牙自拍杆</td>
+                        </tr>
+                        <tr>
+                            <td>150****7266</td>
+                            <td>蓝牙自拍杆</td>
+                            <td>138****2164</td>
+                            <td>旅行四件套</td>
+                        </tr>
+                        <tr>
+                            <td>159****4211</td>
+                            <td>蓝牙自拍杆</td>
+                            <td>156****2324</td>
+                            <td>旅行四件套</td>
+                        </tr>
+                        <tr>
+                            <td>183****2863</td>
+                            <td>旅行四件套</td>
+                            <td>130****6276</td>
+                            <td>旅行四件套</td>
+                        </tr>
+                        <tr>
+                            <td>155****8864</td>
+                            <td>旅行四件套</td>
+                            <td>132****7106</td>
+                            <td>旅行四件套</td>
+                        </tr>
+                        <tr>
+                            <td>183****9039</td>
+                            <td>蓝牙自拍杆</td>
+                            <td>137****9866</td>
+                            <td>旅行四件套</td>
+                        </tr>
+                        <tr>
+                            <td>139****3095</td>
+                            <td>蓝牙自拍杆</td>
+                            <td>159****2107</td>
+                            <td>旅行四件套</td>
+                        </tr>
+                        <tr>
+                            <td>150****1085</td>
+                            <td>蓝牙自拍杆</td>
+                            <td>158****6304</td>
+                            <td>旅行四件套</td>
+                        </tr>
+
+
+
+
+
+
+
+
+
+                    </table>
+                </div>
+            </div>
+           
+            <p>*获得的服务卡券，请在bluemembers微信/APP/网站，个人中心—卡券中查找。</p>
+        </div>
+    </div>
+</div>
+
+<div class="cover"></div>
+<!--查询结果开始-->
+<div class="search—result">
+    <a class="close" href="javascript:;"><img src="~/Contents/yuena/images/close.png"></a>
+    <div class="search—result-con">
+        <h2>很遗憾<br />没有您的中奖信息</h2>
+    </div>
+</div>
+<div class="search—result0">
+    <a class="close" href="javascript:;"><img src="~/Contents/yuena/images/close.png"></a>
+    <div class="search—result-con">
+        <h2>恭喜您已获得</h2>
+        <p id="prizees"></p>
+        </br>
+        <p style="color:#fff;font-size:20px;">活动结束后5个工作日统一邮寄礼品</p>
+    </div>
+</div>
+<script src="~/Contents/yuena/js/jquery.liMarquee.js"></script>
+<script>
+    $(window).load(function () {
+        $('.str1').liMarquee({
+            direction: 'up'
+        });
+    });
+    $(function () {
+        //$("#content-dtk").mCustomScrollbar({ theme: "outside" });
+        //$(window).load(function () {
+
+        //});
+
+        //$("#searchWinnerInfo").click(function () {
+
+
+        //});
+        //中奖信息查询 根据手机号
+        //var $dowebok = $('.str1').liMarquee({ direction: 'up'});
+        //$dowebok.liMarquee('pause');
+        //setTimeout(function () {
+        //    $dowebok.liMarquee('play');
+        //}, 5000)
+        
+
+    })
+    function searchWinnerInfo() {
+        var phoneNum = $("#phoneNum").val();
+
+        if (phoneNum == "" || phoneNum == null) {
+            popWindownBlue("请输入手机号");
+            return false;
+        }
+        var reg_phone = /^[1][3587][0-9]{9}$/;
+        if (!reg_phone.test(phoneNum)) {
+            popWindownBlue("手机号格式不正确！");
+            return;
+        }
+
+        
+        var data = { phoneNumber: phoneNum };
+        $.post("/Yuena/WinnersInfo", data, function (result) {
+            if (result.Data.length != 0) {
+                if (result.Data.length == 1) {
+                    //$("#winningLists").empty();
+                    //$("#winningLists").append("<tr><td>" + result.Data[0].PhoneNumber + "</td><td>" + result.Data[0].Title + "</td></tr>");
+                    $('.cover').css('display', 'block');
+                    $("#prizees").html(result.Data[0].Title)
+                    $('.search—result0').css('display', 'block');
+                } else if (result.Data.length > 1) {
+                    $('.cover').css('display', 'block');
+                    $("#prizees").html(result.Data[0].Title)
+                    $('.search—result0').css('display', 'block');
+                    //$("#winningLists").empty();
+                    //$("#winningLists").append('<tr id="data0"><td>' + result.Data[0].PhoneNumber + "</td><td>" + result.Data[0].Title + "</td></tr>");
+                    //$("#data0").append("<td>" + result.Data[1].PhoneNumber + "</td><td>" + result.Data[1].Title + "</td>");
+                    //$("#winningLists").append("<tr><td>" + result.Data[2].PhoneNumber + "</td><td>" + result.Data[2].Title + "</td></tr>");
+                }
+            }
+            else {
+                $('.cover').css('display', 'block');
+                $('.search—result').css('display', 'block');
+            }
+        });
+    }
+
+
+
+</script>

@@ -1,0 +1,21 @@
+﻿@model String
+@using System.Data;
+@{
+    Layout = null;
+}
+<div class="data-container" style="padding-top:30px">
+    <table class="table table-bordered">
+       
+            <thead>
+                <tr>
+                    <td>活动名称</td>
+                    <td>卡券名称</td>
+                    <td>发送数量</td>
+                    <td>核销数量</td>
+                </tr>
+            </thead>
+            <tbody>
+              @Html.Raw(ViewBag.table)
+            </tbody>
+    </table>
+</div>

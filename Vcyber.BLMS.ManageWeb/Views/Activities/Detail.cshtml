@@ -1,0 +1,38 @@
+﻿@model Vcyber.BLMS.Entity.Activities
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>内容管理 - 活动预览</strong></div>
+</div>
+<div class="panel panel-default">
+    <div class="n_right_cont">
+        @{
+            if (Model != null && Model.Id > 0)
+            {
+                <div class="active_xq">
+                    <div class="news_title">
+                        <div class="news_t_l" style="width:600px;">
+                            <h3>@Model.Title</h3>
+                            <p><span class="clock" style="padding-left:0px">活动时间： @Model.BeginTime.ToString("yyyy-MM-dd") 至 @Model.EndTime.ToString("yyyy-MM-dd")</span></p>
+                            <div style="float:left;margin-top:-20px; margin-left:220px;">
+                                @*@Html.Action("ShareLayer", "Home")*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="acx_box">
+                        @*  <h2>活动时间：@Model.BeginTime.ToString("yyyy-MM-dd") 至 @(Model.EndTime.ToString("yyyy-MM-dd"))</h2>*@
+                        @* <img src="@Model.TrueMajorImageUrl" />*@
+                        <div>
+                            @Html.Raw(Model.TrueContent)
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+</div>
+
+

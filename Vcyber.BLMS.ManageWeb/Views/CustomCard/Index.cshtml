@@ -1,0 +1,183 @@
+﻿@{
+    ViewBag.Title = "自定义卡券列表";
+    ViewBag.TitleFocus = "2-2-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Vcyber.BLMS.ManageWeb.Helper
+@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<Vcyber.BLMS.Entity.CustomCardInfo>
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>自定义卡券 - 卡券列表</strong></div>
+</div>
+
+<div class="container panel panel-default" data-ng-init="load()">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">卡券来源：</label>
+                        <select class="col-md-2 form-control" id="selectcardsource">
+                            <option value="">请选择</option>
+                            <option value="1">北京现代</option>
+                            <option value="2">合作商户</option>
+                        </select>
+
+                        <label class="col-md-2 control-label">商户名称：</label>
+                        <input class="col-md-2 form-control" type="text" placeholder="商户名称" id="merchantname" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">活动类型：</label>
+                        <select class="col-md-2 form-control" id="selectcardtype">
+                            <option value="">请选择</option>
+                        </select>
+                        <label class="col-md-2 control-label">卡券金额：</label>
+                        <input class="col-md-2 form-control" type="number" placeholder="卡券金额" id="reducecost" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">卡券类型：</label>
+                        <select class="col-md-2 form-control" id="selectcardname">
+                            <option value="">请选择</option>
+                        </select>
+
+                        <label class="col-md-2 control-label">卡券状态：</label>
+                        <select class="col-md-2 form-control" id="selectstatus">
+                            <option value="">请选择</option>
+                            <option value="1">已领取</option>
+                            <option value="2">未领取</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-primary col-md-offset-2" type="button" id="btnSearch" value="查询" />
+                        @*<input class="btn btn-primary col-md-offset-1" type="button" id="btntoReportExcel" value="导出" />*@
+                        <input class="btn btn-primary col-md-offset-1" type="button" id="btnCreateCard" value="新建卡券" />
+                    </div>
+                </form>
+
+                <div id="divPageList">
+                    @{
+                        Html.RenderAction("PartialCustomCard");
+                    }
+                </div>
+                <script src="~/Scripts/jquery-1.10.2.js"></script>
+                <script type="text/javascript">
+                    function deleteCard(id) {
+                        var url = "/CustomCard/Delete";
+                        var isdel = confirm("你确认要删除该卡券？");
+                        if (isdel) {
+                            $.ajax({
+                                url: url + "?cardType=" + id,
+                                type: "POST",
+                                data: null,
+                                success: function (msg) {
+                                    if (!msg.IsSuccess) {
+                                        alert(msg.Message);
+                                    } else {
+                                        alert("删除成功");
+                                        searchCard();
+                                    }
+                                }
+                            });
+                        }
+                    }
+
+                    function searchCard() {
+                        GetPageList(1);
+                    }
+
+                    //列表分页
+                    function GetPageList(pageIndex) {
+                        var cardname = $("#selectcardname").val();
+                        var source = $("#selectcardsource").val();
+                        var merchantname = $("#merchantname").val();
+                        var cardtype = $("#selectcardtype").val();
+                        var status = $("#selectstatus").val();
+                        var reducecost = $("#reducecost").val();
+
+                        var url = "@Url.Action("PartialCustomCard")";
+                        $.ajax({
+                            url: url + "?merchant=" + merchantname + "&acttype=" + cardtype + "&cardName=" + cardname + "&status=" + status + "&reduceCost=" + reducecost + "&pageIndex=" + pageIndex + "&source=" + source,
+                            type: "POST",
+                            data: null,
+                            success: function (msg) {
+                                $("#divPageList").html(msg);
+                            }
+                        });
+                    }
+
+                    function toReportExcel() {
+                        var cardname = $("#selectcardname").val();
+                        var source = $("#selectcardsource").val();
+                        var merchantname = $("#merchantname").val();
+                        var cardtype = $("#selectcardtype").val();
+                        var status = $("#selectstatus").val();
+                        var reducecost = $("#reducecost").val();
+                        window.location.href = "/CustomCard/ExportCustomCard?merchant=" + merchantname + "&acttype=" + cardtype + "&cardName=" + cardname + "&status=" + status + "&reduceCost=" + reducecost + "&pageIndex=1&source=1";
+                        return false;
+                    }
+                </script>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(function () {
+        var selectcardtype = $("#selectcardtype");
+        var source = $("#selectcardsource").val();
+        if (source == "") {
+            source = 0;
+        }
+        var url = "/CustomCard/GetSCServiceCardTypeList";
+        $.ajax({
+            url: url,
+            type: 'Get',
+            data: { type: 1, source: 0, iswx: 0 },
+            success: function (data) {
+                if (data != null) {
+                    $.each(data, function (i, n) {
+                        var option = $("<option>").text(n).val(n);
+                        selectcardtype.append(option);
+                    });
+                }
+            }
+        });
+
+        selectcardtype.on("change", function (o) {
+            var cardname = $("#selectcardname");
+            var url = "/CustomCard/GetSCServiceCardNameList";
+            $.ajax({
+                url: url,
+                type: 'Get',
+                data: { name: $("#selectcardtype").val() },
+                success: function (data) {
+                    if (data != null) {
+                        cardname.empty();
+                        var option = $("<option>").text("请选择").val("");
+                        cardname.append(option);
+                        $.each(data, function (i, n) {
+                            var option = $("<option>").text(n.CardTypeName).val(n.CardType);
+                            cardname.append(option);
+                        });
+                    }
+                }
+            });
+
+        });
+
+
+        $("#btnSearch").on("click", function () {
+            searchCard();
+        });
+
+        $("#btnCreateCard").on("click", function () {
+            window.location.href = "/CustomCard/Add";
+        });
+        $("#btntoReportExcel").on("click", function () {
+            toReportExcel();
+        });
+    });
+
+</script>

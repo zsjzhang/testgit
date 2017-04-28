@@ -1,0 +1,63 @@
+﻿@model List<Vcyber.BLMS.Entity.Questionnaire>
+@using Vcyber.BLMS.Common;
+@using Vcyber.BLMS.ManageWeb.Helper;
+<div class="boxlist1">
+    <table class="table table-bordered">
+        <tr class="l1">
+            <td style="width:50px">问卷id</td>
+            <td style="width:80px">问卷标题</td>
+            <td style="width:50px">问卷创建时间</td>
+            <td style="width:50px">操作</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    @item.Theme
+                </td>
+                <td>
+                    @item.CreateTime
+                </td>
+                <td>
+                    <a href="/Questionnaire/Create/@item.Id">编辑问卷</a>
+                    <a href="/Questionnaire/AddQuestion/@item.Id">编辑问题</a>
+                    <a href="/Questionnaire/Delete/@item.Id">删除问卷</a>
+                    <a href="/Questionnaire/Over/@item.Id">结束问卷</a></td>
+            </tr>
+        }
+    </table>
+</div>
+<div class="box_a2">
+    <div class="pagbox">
+        <a href="javascript:void(0);" onclick="GetPageList(1)">首页</a>
+        <a href="javascript:void(0);" onclick="ShowPages('Pre')"><<</a>
+        <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.PrePage)">上一页</a>
+        @{
+            int PageIndex = (int)ViewBag.PageIndex;
+            int PageCurrentGroup = (int)(PageIndex / 10);
+        }
+        @for (int i = 1; i <= (int)ViewBag.EndPage; i++)
+        {
+            if ((i < PageCurrentGroup * 10) || (i >= (PageCurrentGroup + 1) * 10))
+            {
+                <a id="@i" href="javascript:void(0);" onclick="GetPageList(@i,10)" style="display:none">@i</a>
+            }
+            else
+            {
+                if (i == (int)ViewBag.PageIndex)
+                {<a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)" style="color: blue">@i</a> }
+                else
+                {<a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)">@i</a> }
+            }
+        }
+        <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.NextPage, 10)">下一页</a>
+        <a href="javascript:void(0);" onclick="ShowPages('Next')">>></a>
+        <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.EndPage, 10)">尾页</a>
+    </div>
+</div>
+<input type="hidden" id="hidCurrentPage" value="@ViewBag.PageIndex" />
+<input type="hidden" id="hidEndPage" value="@ViewBag.EndPage" />
+<input type="hidden" id="hidCurrentGroup" value="@PageCurrentGroup" />

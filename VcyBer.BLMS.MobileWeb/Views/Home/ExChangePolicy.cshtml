@@ -1,0 +1,244 @@
+﻿@using VcyBer.BLMS.MobileWeb.Models
+@model ExChangePolicy
+@{
+    ViewBag.Title = "置换政策";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/NewCss/reset.css" rel="stylesheet" />
+<link href="~/Content/css/replacemodle.css" rel="stylesheet" />
+
+<div class="wrapper">
+    <!--置换政策-->
+    <div class="replace_font">
+        <h5 class="replace_tit">&nbsp;置换政策</h5>
+        <p>置换是指客户在购买北京现代新车的同时，将原有车辆出售给北京现代授权经销商的销售模式。北京现代针对客户置换购车需求，根据客户新购车型，给予客户相应最高10,000元/台的置换补贴及0利率等多种丰富的金融分期方案。</p>
+        <p>&nbsp;</p>
+        <p>客户通过bluemembers置换专区（bluemembers网站/微信/APP），填写“预约置换”报名，bluemembers每月将从中抽取100名幸运客户赠送定制礼品一份。</p>
+    </div>
+    <!--预约置换-->
+    <form id="exChangeForm" class="replace_order">
+        <h5 class="replace_tit">&nbsp;预约置换</h5>
+        <div class="replace_info">
+            <h4>请留下您的基本信息，我们将与您联系，带“*”号的是必须填写项。</h4>
+            <input type="hidden" id="ActivityId" value="@(Model.Activity==null?0:1)" />
+            <p><font color="red">*</font>车型：</p>
+            <div class="clearfix">
+                <select class="sle_one" name="CarSeriers" id="CarSeriers" data-val="true" data-val-required="请选择车型">
+                    <option value="">选择车型</option>
+                    @foreach (var item in Model.CarTypeList)
+                    {
+                        <option value="@item.Id">@item.SeriesName</option>
+                    }
+                </select>
+            </div>
+            <p><font color="red">*</font>经销商：</p>
+            <div class="clearfix">
+                <select class="sle_two" id="ShopProvince" name="ShopProvince">
+                    <option value="">省</option>
+                    @foreach (var item in Model.ProvinceList)
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </select>
+                <select class="sle_three" data-val="true" data-val-required="请选择经销商所在省市" id="ShopCity" name="ShopCity">
+                    <option value="">市</option>
+                </select>
+            </div>
+            <div class="clearfix">
+                <select class="sle_one" data-val="true" data-val-required="请选择经销商" id="DealName" name="DealName" style="margin-top:0.26rem">
+                    <option value="">经销商</option>
+                </select>
+            </div>
+            <p><font color="red">*</font>您的姓名：</p>
+            <div class="clearfix">
+                <input data-val="true" data-val-length="姓名不能超过16个字符" data-val-length-max="16" data-val-required="姓名不能为空" id="Name" name="Name" type="text" value="">
+            </div>
+            <p><font color="red">*</font>您的手机：</p>
+            <div class="clearfix">
+                <input data-val="true" data-val-regex="联系方式不正确" data-val-regex-pattern="^1[0-9]{10}$" data-val-required="联系方式不能为空" id="Mobile" name="Mobile" type="text" value="">
+            </div>
+            <p><font color="red">*</font>您的邮寄地址：</p>
+            <div class="clearfix">
+                <select id="Province" name="SendProvince" class="sle_two"></select>
+                <select id="City" name="SendCity" class="sle_three"></select>
+            </div>
+            <div class="clearfix">
+                <select id="Area" name="SendDistrinct" class="sle_one" style="margin-top:0.26rem"></select>
+            </div>
+            <p><font color="red">*</font>详细街道（发放礼品使用）：</p>
+            <div class="clearfix">
+                <textarea cols="20" data-val="true" data-val-length="邮寄街道不能超过256个字符" data-val-length-max="256" data-val-required="邮寄街道不能为空" id="SendAddress" name="SendAddress" rows="2"></textarea>
+            </div>
+            <p>原品牌：</p>
+            <div class="clearfix">
+                <input data-val="true" data-val-length="原有车辆品牌不能超过32个字符" data-val-length-max="32" id="OldCarBrand" name="OldCarBrand" type="text" value="">
+            </div>
+            <p>原车型：</p>
+            <div class="clearfix">
+                <input data-val="true" data-val-length="原有车辆车型不能超过32个字符" data-val-length-max="32" id="OldCarSeriers" name="OldCarSeriers" type="text" value="">
+            </div>
+            <p>首上牌时间：</p>
+            <div class="clearfix">
+                <select class="sle_two" id="OldCarLicenseYear" name="OldCarLicenseYear">
+                    <option value="">年</option>
+                    @for (var i = 2001; i < DateTime.Now.Year; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+                <select class="sle_three" id="OldCarLicenseMonth" name="OldCarLicenseMonth">
+                    <option value="">月</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+            </div>
+            <p>行驶公里数（如12万）：</p>
+            <div class="clearfix">
+                <input id="OldCarDriver" name="OldCarDriver" type="text" value="">
+            </div>
+        </div>
+        <input type="button" value="提交" class="replace_orderNow" id="btnAddOrderChange">
+    </form>
+
+    <div class="pastwinners">
+        <h5 class="replace_tit2">&nbsp;往期中奖用户</h5>
+        <div class="listbox">
+            <div class="listbox_com clearfix">
+                <p class="listname">中奖用户</p>
+                <p class="listaward">奖品</p>
+            </div>
+            <div class="Listover">
+                <ul>
+                    <li><i>精美礼品</i><span>1586****399</span></li>
+                    <li><i>精美礼品</i><span>1390****095</span></li>
+                    <li><i>精美礼品</i><span>1583****508</span></li>
+                    <li><i>精美礼品</i><span>1839****000</span></li>
+                    <li><i>精美礼品</i><span>1372****955</span></li>
+                    <li><i>精美礼品</i><span>1555****859</span></li>
+                    <li><i>精美礼品</i><span>1390****385</span></li>
+                    <li><i>精美礼品</i><span>1812****033</span></li>
+                    <li><i>精美礼品</i><span>1889****558</span></li>
+                    <li><i>精美礼品</i><span>1876****926</span></li>
+                    <li><i>精美礼品</i><span>1518****135</span></li>
+                    <li><i>精美礼品</i><span>1831****883</span></li>
+                    <li><i>精美礼品</i><span>1346****577</span></li>
+                    <li><i>精美礼品</i><span>1525****693</span></li>
+                    <li><i>精美礼品</i><span>1529****597</span></li>
+                    <li><i>精美礼品</i><span>1301****963</span></li>
+                    <li><i>精美礼品</i><span>1520****399</span></li>
+                    <li><i>精美礼品</i><span>1361****007</span></li>
+                    <li><i>精美礼品</i><span>1381****781</span></li>
+                    <li><i>精美礼品</i><span>1829****215</span></li>
+                    <li><i>精美礼品</i><span>1378****626</span></li>
+                    <li><i>精美礼品</i><span>1836****071</span></li>
+                    <li><i>精美礼品</i><span>1539****909</span></li>
+                    <li><i>精美礼品</i><span>1394****984</span></li>
+                    <li><i>精美礼品</i><span>1598****930</span></li>
+                    <li><i>精美礼品</i><span>1589****319</span></li>
+                    <li><i>精美礼品</i><span>1590****336</span></li>
+                    <li><i>精美礼品</i><span>1335****267</span></li>
+                    <li><i>精美礼品</i><span>1534****099</span></li>
+                    <li><i>精美礼品</i><span>1398****006</span></li>
+                    <li><i>精美礼品</i><span>1365****864</span></li>
+                    <li><i>精美礼品</i><span>1386****090</span></li>
+                    <li><i>精美礼品</i><span>1553****876</span></li>
+                    <li><i>精美礼品</i><span>1805****619</span></li>
+                    <li><i>精美礼品</i><span>1358****912</span></li>
+                    <li><i>精美礼品</i><span>1872****363</span></li>
+                    <li><i>精美礼品</i><span>1880****000</span></li>
+                    <li><i>精美礼品</i><span>1512****601</span></li>
+                    <li><i>精美礼品</i><span>1379****582</span></li>
+                    <li><i>精美礼品</i><span>1853****044</span></li>
+                    <li><i>精美礼品</i><span>1530****565</span></li>
+                    <li><i>精美礼品</i><span>1521****218</span></li>
+                    <li><i>精美礼品</i><span>1887****546</span></li>
+                    <li><i>精美礼品</i><span>1356****760</span></li>
+                    <li><i>精美礼品</i><span>1523****063</span></li>
+                    <li><i>精美礼品</i><span>1396****639</span></li>
+                    <li><i>精美礼品</i><span>1360****908</span></li>
+                    <li><i>精美礼品</i><span>1891****700</span></li>
+                    <li><i>精美礼品</i><span>1527****171</span></li>
+                    <li><i>精美礼品</i><span>1560****266</span></li>
+                    <li><i>精美礼品</i><span>1390****688</span></li>
+                    <li><i>精美礼品</i><span>1806****324</span></li>
+                    <li><i>精美礼品</i><span>1314****333</span></li>
+                    <li><i>精美礼品</i><span>1838****989</span></li>
+                    <li><i>精美礼品</i><span>1809****455</span></li>
+                    <li><i>精美礼品</i><span>1380****823</span></li>
+                    <li><i>精美礼品</i><span>1384****287</span></li>
+                    <li><i>精美礼品</i><span>1386****051</span></li>
+                    <li><i>精美礼品</i><span>1360****909</span></li>
+                    <li><i>精美礼品</i><span>1386****156</span></li>
+                    <li><i>精美礼品</i><span>1560****783</span></li>
+                    <li><i>精美礼品</i><span>1379****477</span></li>
+                    <li><i>精美礼品</i><span>1329****897</span></li>
+                    <li><i>精美礼品</i><span>1896****564</span></li>
+                    <li><i>精美礼品</i><span>1345****866</span></li>
+                    <li><i>精美礼品</i><span>1399****102</span></li>
+                    <li><i>精美礼品</i><span>1361****124</span></li>
+                    <li><i>精美礼品</i><span>1883****111</span></li>
+                    <li><i>精美礼品</i><span>1538****689</span></li>
+                    <li><i>精美礼品</i><span>1522****933</span></li>
+                    <li><i>精美礼品</i><span>1347****585</span></li>
+                    <li><i>精美礼品</i><span>1868****489</span></li>
+                    <li><i>精美礼品</i><span>1506****757</span></li>
+                    <li><i>精美礼品</i><span>1865****526</span></li>
+                    <li><i>精美礼品</i><span>1896****297</span></li>
+                    <li><i>精美礼品</i><span>1383****966</span></li>
+                    <li><i>精美礼品</i><span>1591****627</span></li>
+                    <li><i>精美礼品</i><span>1515****271</span></li>
+                    <li><i>精美礼品</i><span>1822****230</span></li>
+                    <li><i>精美礼品</i><span>1565****353</span></li>
+                    <li><i>精美礼品</i><span>1590****375</span></li>
+                    <li><i>精美礼品</i><span>1877****000</span></li>
+                    <li><i>精美礼品</i><span>1586****815</span></li>
+                    <li><i>精美礼品</i><span>1858****866</span></li>
+                    <li><i>精美礼品</i><span>1811****932</span></li>
+                    <li><i>精美礼品</i><span>1596****256</span></li>
+                    <li><i>精美礼品</i><span>1805****886</span></li>
+                    <li><i>精美礼品</i><span>1860****664</span></li>
+                    <li><i>精美礼品</i><span>1516****513</span></li>
+                    <li><i>精美礼品</i><span>1383****056</span></li>
+                    <li><i>精美礼品</i><span>1897****806</span></li>
+                    <li><i>精美礼品</i><span>1339****020</span></li>
+                    <li><i>精美礼品</i><span>1507****765</span></li>
+                    <li><i>精美礼品</i><span>1525****589</span></li>
+                    <li><i>精美礼品</i><span>1599****380</span></li>
+                    <li><i>精美礼品</i><span>1571****037</span></li>
+                    <li><i>精美礼品</i><span>1598****941</span></li>
+                    <li><i>精美礼品</i><span>1330****128</span></li>
+                    <li><i>精美礼品</i><span>1391****851</span></li>
+                    <li><i>精美礼品</i><span>1393****585</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="replace_attention">
+            <h4>【注意事项】：</h4>
+            <div class="clearfix">
+                <i>1.&nbsp;</i>
+                <span>北京现代各车型置换补贴政策及贴息政策详情，请垂询当地经销商。</span>
+            </div>
+            <div class="clearfix">
+                <i>2.&nbsp;</i>
+                <span>每月10日，系统随机抽取100名预约用户，5个工作日内，工作人员邮寄定制礼品。若预约填写地址有误，3日内无法联系到您，视为主动放弃获奖资格，奖品不予保留。</span>
+            </div>
+            <div class="clearfix">
+                <i>3.&nbsp;</i>
+                <span>本活动最终解释权归北京现代汽车有限公司所有。活动中如有疑问请及时拨打北京现代24小时客服热线：400-800-1100（手机拨打）或咨询bluemembers在线客服。</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="~/Scripts/home/province.city.area.js"></script>
+<script src="~/Scripts/home/exChangePolicy.js"></script>

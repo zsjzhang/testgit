@@ -1,0 +1,519 @@
+﻿@using Vcyber.BLMS.FrontWeb.Models.BBS
+@model Vcyber.BLMS.FrontWeb.Models.BBS.BBSGuestBook
+
+
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+
+    ViewBag.Title = "车主论坛";
+}
+
+<div>
+    <input type="hidden" id="share_title" value="爱车爱生活，北京现代bluemembers蓝缤官方网站车主论坛，为您打造专属车主空间，一起分享用车心得，自驾美景，畅聊车主心得，寻觅知己好友。" />
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "BBSHome" })
+    </div>
+    <div class="n_all_cont">
+
+        <style>
+            .gy_nr span {
+                font-size: 14px;
+                color: #707070;
+                margin-left: 10px;
+                padding-bottom: 10px;
+                display: block;
+            }
+
+            .gynot {
+                width: 100%;
+                height: 36px;
+                margin-top: 20px;
+            }
+
+                .gynot li {
+                    width: 136px;
+                    height: 36px;
+                    line-height: 36px;
+                    text-align: center;
+                    float: left;
+                    background: #f49600;
+                    font-size: 14px;
+                    margin-right: 14px;
+                }
+
+                    .gynot li:last-child {
+                        margin-right: 0;
+                    }
+
+                    .gynot li .fbtz {
+                        color: #FFFFFF;
+                        background: url(../..//img/luntan_yiezi.png) no-repeat left center;
+                        padding-left: 18px;
+                    }
+
+                    .gynot li .fqhd {
+                        color: #FFFFFF;
+                        background: url(../../img/luntan_huod.png) no-repeat left center;
+                        padding-left: 28px;
+                    }
+
+            .gy_nr p {
+                font-size: 14px;
+                color: #767575;
+                line-height: 18px;
+                background: url(../../img/jilu_d.png) no-repeat left center;
+                padding-left: 16px;
+                margin-left: 16px;
+            }
+
+            .retie {
+                padding: 18px 0 10px 0;
+                display: table;
+                width: 99%;
+            }
+
+                .retie img {
+                    width: 100px;
+                    height: 100px;
+                    display: block;
+                    float: left;
+                    margin-left: 25px;
+                }
+
+            .lt_title {
+                width: 100%;
+                height: 28px;
+            }
+
+            .lt_luj {
+                width: 300px;
+                float: left;
+                font-size: 12px;
+                color: #888888;
+            }
+
+                .lt_luj a {
+                    color: #888888;
+                }
+
+            .ly_list {
+                width: 350px;
+                float: right;
+            }
+
+                .ly_list p {
+                    font-size: 12px;
+                    text-align: right;
+                }
+
+                    .ly_list p span {
+                        margin-right: 4px;
+                    }
+
+            .lt_table {
+                width: 100%;
+                border: 1px solid #eeeeee;
+                border-top: 2px solid #075090;
+                float: left;
+            }
+
+                .lt_table tr td {
+                    height: 79px;
+                    line-height: 79px;
+                    font-size: 12px;
+                    text-align: center;
+                    padding-left: 10px;
+                    color: #767675;
+                }
+
+            .ninety {
+            }
+
+            .nine_l {
+                text-align: left !important;
+            }
+
+                .nine_l img {
+                    float: left;
+                    margin-top: 30px;
+                    cursor: pointer;
+                    margin-right: 10px;
+                }
+
+            .nn_sl .nn_span {
+                line-height: 18px;
+                display: block;
+                margin-top: 23px;
+                margin-left: 10px;
+                font-size: 14px;
+                color: #3d3f43;
+                cursor: pointer;
+            }
+
+            .nn_sl span label {
+                font-size: 12px;
+                color: #767575;
+                cursor: pointer;
+            }
+
+            .nn_sl span {
+                line-height: 18px;
+                display: block;
+                margin-top: 23px;
+                margin-left: 10px;
+                font-size: 12px;
+                color: #767575;
+                cursor: pointer;
+            }
+
+            .nn_sl td {
+                color: #767575 !important;
+            }
+
+
+            .tz_cont {
+                width: 100%;
+                border: 1px solid #eeeeee;
+                border-top: 2px solid #075090;
+                float: left;
+                margin-top: 16px;
+            }
+
+            .tz_c_title {
+                width: 98%;
+                margin: 0 auto;
+                height: 80px;
+                border-bottom: 1px solid #eeeeee;
+            }
+
+            .tz_p1 {
+                font-size: 18px;
+                color: #3d3f43;
+                margin-top: 16px;
+            }
+
+                .tz_p1 span {
+                    float: right;
+                    color: #767575;
+                    font-size: 12px;
+                }
+
+            .tz_p2 {
+                margin-top: 30px;
+            }
+
+                .tz_p2 img {
+                    float: left;
+                    margin-right: 4px;
+                }
+
+                .tz_p2 span {
+                    float: left;
+                    font-size: 12px;
+                    color: #767575;
+                }
+
+                .tz_p2 label {
+                    float: left;
+                    font-size: 12px;
+                    color: #767575;
+                    margin-left: 270px;
+                    margin-top: 4px;
+                }
+
+            .indent_p {
+                width: 95%;
+                margin: 0 auto;
+                line-height: 24px;
+                font-size: 14px;
+                color: #3d3f43;
+                margin-top: 4px;
+            }
+
+            .tz_pl {
+                width: 100%;
+                border: 1px solid #eeeeee;
+                height: 260px;
+                float: left;
+                margin-top: 20px;
+            }
+
+                .tz_pl img {
+                    float: left;
+                    margin-top: 38px;
+                    margin-left: 74px;
+                }
+
+                .tz_pl textarea {
+                    width: 434px;
+                    min-height: 128px;
+                    border: 1px solid #c1c1c1;
+                    margin-top: 38px;
+                    margin-left: 32px;
+                }
+
+            .luntan_kuang {
+                width: 550px;
+                height: 298px;
+                background: url(../img/luntan_kuang.png) no-repeat;
+                position: absolute;
+                top: 200px;
+                left: 70px;
+            }
+
+            .ly_kuang_title {
+                width: 90%;
+                height: 58px;
+                line-height: 58px;
+                margin: 0 auto;
+            }
+
+                .ly_kuang_title span {
+                    color: #3d3f43;
+                    font-size: 16px;
+                }
+
+                .ly_kuang_title label {
+                    color: #949494;
+                    font-size: 14px;
+                    float: right;
+                }
+
+            .luntan_kuang textarea {
+                width: 483px;
+                min-height: 128px;
+                border: 1px solid #c1c1c1;
+                float: left;
+                margin-left: 30px;
+            }
+
+            .cc_btn {
+                width: 227px;
+                height: 31px;
+                display: block;
+                text-align: center;
+                line-height: 31px;
+                float: left;
+                font-size: 14px;
+                cursor: pointer;
+                margin-top: 30px;
+            }
+
+            .tz_pl {
+                margin-top: 0;
+            }
+
+            .curr {
+                background-color: #075090;
+                color: white;
+            }
+        </style>
+
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+            </div>
+
+            <ul class="gynot">
+                <li>
+                    @Html.ActionLink("发表帖子", "Create", "BBSHome", new { @class = "fbtz" })
+                </li>
+                <li>
+                    @Html.ActionLink("发起活动", "Create", "BBSHome", new { @class = "fqhd" })
+                </li>
+            </ul>
+
+            @*<div class="gy_cont">
+                    <div class="gy_title">
+                        <div class="gy_zi">
+                            <h1>热门活动</h1>
+                            <span>Popular  Activities</span>
+                            <img src="../../img/arrow.png" class="arrow_n" />
+                        </div>
+                    </div>
+                    <div class="gy_nr">
+                        <img src="../../img/luntan_left_pic1.png" class="erji_img" />
+                        <span>置换盛享月第2季活动盛大开启</span>
+                    </div>
+                </div>*@
+
+            @Html.Action("HotActivities", "BBSHome")
+
+            <div class="gy_cont">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>热帖排行</h1>
+                        <span>Hot Posts</span>
+                        <img src="../../img/arrow.png" class="arrow_n" />
+                    </div>
+                </div>
+                <div class="gy_nr retie">
+                    @Html.Action("hoTipcs")
+                </div>
+            </div>
+
+
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+
+
+            <div class="gy_cont">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>热力会员</h1>
+                        <span>Active Member</span>
+                        <img src="../../img/arrow.png" class="arrow_n" />
+                    </div>
+                </div>
+                <div class="gy_nr retie">
+                    @Html.Action("ImageList", "BBSMember")
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="n_right_cont">
+            <div class="lt_title">
+                <div class="lt_luj">
+                    <a href="@Url.Action("index","Home") ">首页</a>>
+                    <a href="@Url.Action("index","BBShome") ">车主论坛</a>>
+                    <a href="@Url.Action("show","BBShome",new{id=Model.Column_Id}) " style="color:#075090;">@ViewData["Column_Name"]</a>
+                </div>
+                <div class="tz_cont">
+                    <div class="tz_c_title">
+                        <p class="tz_p1">@Model.G_Title [帖子]<span>楼主 @Model.BBSMember.UserName</span></p>
+                        <p class="tz_p2 ">
+                            <img src="../../img/clock.png" />
+                            <span>@(((DateTime)Model.G_Time).ToString("yyyy-MM-dd HH:mm")) </span>
+                            <img src="../../img/note.png" style="margin-left:6px;" /><span>2015</span>
+                            <div style="float:left;margin-top:-8px;">
+                                @Html.Action("ShareLayer", "Home")
+                            </div>
+
+                        </p>
+                    </div>
+                    <p style="text-indent:2em;" class="indent_p"> @Model.G_Content</p>
+                </div>
+
+                <div class="tz_pl" style="height:auto;">
+
+                    <div id="comment_tz_pl">
+                        @{
+                            var i = (int)ViewData["floor"];
+                            var rList = (List<BBSComment>)ViewData["col"];
+                            if (rList != null && rList.Any())
+                            {
+
+                                foreach (var item in rList)
+                                {
+                                    var headSrc = string.Format("/Content/BBS/images/0{0}.gif", item.BBSMember.Head);
+                                    var d = item.BBSMember.BBSGuestBook.Count(e => e.G_Recycle == 1)
+                                            + item.BBSMember.BBSComment.Count(e => e.BBSGuestBook.G_Recycle == 1);
+
+                                    <div style="width: 100%; float: left; padding-bottom: 20px; padding-top: 5px; border-bottom: 1px solid #808080; height: 200px; font-size: 14px;">
+                                        <div style="width: 30%; float: left; background-color:#f0f0f0; border:1px solid #808080;">
+                                            <div style="width: 100%; float: left; border-bottom: 1px solid #c1c1c1; height: 150px; overflow: hidden;">
+                                                <span style="width: 100%; float: left; text-align: center; margin: 0 auto;">
+                                                    <img src="@headSrc" style=" margin-top: 10px; margin-left: 55px; width:100px; max-width: 100px;" />
+                                                </span>
+                                                <span style="width: 100%; float: left; text-align: center;">
+                                                    <label>
+                                                        @item.BBSMember.UserName
+                                                    </label>
+                                                </span>
+                                            </div>
+                                            <div style="width: 100%; float: left; height: 45px; overflow: hidden; text-align:center; margin-top:5px;">
+                                                <span style="float:left; width:100%;">
+                                                    <label>帖子:</label><label>@d</label>
+                                                </span>
+                                                <span style="float:left; width:100%; padding:5px 0;">
+                                                    <label>性别:</label> <label>@item.BBSMember.Sex</label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div style="width:65%; float:right;">
+                                            <div style="width: 100%; float: left; border-bottom: 1px solid #f3f3f3; height: 25px; line-height: 25px; font-size: 14px; ">
+                                                <span style="width: 90%; float: left; ">
+                                                    <label style="float:left;">发表于：</label>
+                                                    <label style="float:left;">@(((DateTime)item.C_Time).ToString("yyyy-MM-dd HH:mm"))</label>
+                                                </span>
+                                                <span style="width: 10%; float: right;">
+                                                    <label>@(i++) 楼</label>
+                                                </span>
+                                            </div>
+                                            <div style="width: 100%; float: left; padding-top: 10px; height: 140px;">
+                                                <span>
+                                                    @item.Comments
+                                                    @if (item.BBSMember.SetAtt != null)
+                                                    {
+                                                        @item.BBSMember.SetAtt
+                                                    }
+                                                </span>
+                                            </div>
+                                            <div style="width: 100%; float: left; /* text-align: right; */ /* padding-right: 10px; */ ">
+                                                <span style="width: 10%; float: left; /* text-align: right; */ padding-left: 90%;">
+                                                    <a href="#postcomment">回复</a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                        }
+                    </div>
+                    <div class="pagers" style="width:100%; float:left;">
+                        @Html.Action("BBSPager", "Pagers", new { dataViewPath = "/BBSHome/AjaxPagerComment", conatinerid = "comment_tz_pl", pageIndex = ViewBag.pageIndex, pageSize = ViewBag.pageSize, totalCount = ViewBag.ReCordCount })
+                    </div>
+                    @*  @Html.ShowFPage(Url.Action("Comment", new { page = "{0}" }), (int)ViewData["PageIndex"], (int)ViewData["PageSize"], (int)ViewData["ReCordCount"], FPage.FPageMode.GroupNumeric)*@
+                    @{Html.BeginForm();}
+                    <div style=" width: 100%; float: left; " id="postcomment">
+                        <span style="margin-left:32px; float:left;">
+                            <label>评论： </label>
+                        </span>
+                        <span style="width:100%; float:left;">
+                            <textarea id="Comments" name="Comments" placeholder="回复内容不得大于100字" style=" margin-top:18px;width:90%; height:150px; resize:none;"></textarea>
+                            @Html.ValidationMessage("Comment_Messages")
+                        </span>
+                    </div>
+                    <div style=" width: 100%; float: left; margin: 10px 0;">
+                        <span style="width: 60%; height: 25px; line-height: 25px; float: left; margin-left: 32px;">
+                            <label style="float:left;">验证码：</label>
+                            <input style="float: left; height: 25px; line-height: 25px;" type="text" id="YanZheng" name="YanZheng" class="TextBox" />
+                            <img alt="验证码" style="margin: 2px 3px; height: 25px; line-height: 25px;" id="validimg" src="@Url.Action("createimagecode","googlecaptcha")"
+                                 onclick="reloadcode()" width="50" height="20" />
+                        </span>
+                        <span style="width:20%; float:right;">
+                            <input style="height: 25px; width:100px;" type="submit" value="评论" />
+                        </span>
+                        <script type="text/javascript">
+                            function reloadcode() {
+                                var verify = document.getElementById('validimg');
+                                verify.setAttribute('src', '@Url.Content("~/GoogleCaptcha/CreateImageCode?")' + Math.random());
+                            }
+                        </script>
+                        @Html.ValidationMessage("YanZhengError")
+                    </div>
+                    @{Html.EndForm();}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

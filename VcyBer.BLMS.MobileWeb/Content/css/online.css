@@ -1,0 +1,189 @@
+﻿/*在线阅读*/
+.readBg{ background:#f5f5f5; padding-bottom:1.1rem;}
+.readList dl{ position:relative; background:#fff; width:100%; min-height:2.6rem; box-sizing:border-box; margin-bottom:.24rem; padding:.18rem; border-bottom:2px solid #e0e0e0; border-top:2px solid #e0e0e0;}
+.readList dl dt{ position:relative;float:left; margin-right:.18rem; width:1.5rem; height:2.15rem; overflow:hidden;}
+.readList dl dt div{ position: absolute; left:0; top:0; width:100%; height:100%; border:1px solid #d7d7d7; z-index:10; box-sizing:border-box;}
+.readList dl dt img{ position:relative; width:100%; height:100%; z-index:1;}
+.readList dl dd{ position:relative; float:left; width:4.28rem;}
+.magTitle{ position:relative; width:100%; height:.24rem; line-height:.24rem; margin-top:.1rem; color:#333; font-size:.24rem;}
+.magAfterTitle{ position:relative; width:.83rem; height:.28rem; line-height:.28rem; margin-top:.17rem; margin-bottom:.1rem; text-align:center; background:url(../../img/readtitle.jpg) no-repeat; background-size:100% 100%; color:#fff; font-size:.2rem; padding-left:.19rem; padding-right:.34rem; }
+.magIntro{position:relative; font-size:.2rem; color:#989898; line-height:.3rem; overflow:hidden;}
+.magIntStar{ position:relative;width:100%; height:.3rem; line-height:.3rem;font-size:.2rem; color:#989898; background:url(../../img/readstar.jpg) no-repeat; background-size:.18rem .18rem; background-position:0 .1rem; padding-left:.22rem; box-sizing:border-box; }
+.readbtnBox{ position:relative; float:right; height:.6rem; margin-top:.1rem;}
+a.readonlin, a.readdownload{ position:relative; float:left; margin-left:.2rem; width:1.3rem; height:.6rem; line-height:.6rem; background:#3487d7; color:#fff; font-size:.24rem; text-align:center;}
+.magListBox .readList{display:none;}
+/*静态页面的style*/
+ .readSwpBox {
+        position: relative;
+        width: 100%;
+        height: 1.68rem;
+        box-sizing: border-box;
+        padding-top: .26rem;
+    }
+
+    .readonlineSwp {
+        position: relative;
+        width: 70%;
+        height: .63rem;
+        padding: 0 0.54rem;
+        border: 1px solid #a6c9ec;
+        border-radius: 7px;
+        background: #fff;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .readonlineSwp .swiper-wrapper {
+        position: relative;
+        width: 100%;
+        height: .63rem;
+        text-align: center;
+        font-size: .24rem;
+        line-height: .63rem;
+        color: #3487d7;
+    }
+
+    .readonlineSwp .swiper-wrapper .on {
+        background: #e9edf0;
+        color: #494949;
+        border-bottom: 4px solid #3487d7;
+        box-sizing: border-box;
+    }
+
+    .swiper-container {
+        position: relative;
+        width: 100%;
+    }
+
+    .readonlineSwp .swiper-button-next, .readonlineSwp .swiper-button-prev {
+        height: .66rem;
+        background-color: #cedfef;
+        background-size: .16rem .28rem;
+        margin-top: -.33rem;
+    }
+
+    .swiper-button-next, .swiper-container-rtl .swiper-button-prev {
+        right: 0;
+    }
+
+    .swiper-button-prev, .swiper-container-rtl .swiper-button-next {
+        left: 0;
+    }
+
+    .swiper-pagination-bullet {
+        width: .2rem;
+        height: .2rem;
+        background: #afc3d6;
+        margin: .3rem 0.1rem;
+    }
+
+    .swiper-pagination-bullet-active {
+        background: #3487d7;
+    }
+
+    .swiper-pagination {
+        position: relative;
+        margin: 0 auto;
+    }
+
+    .swiper-slide {
+        position: relative;
+        width: 33.3%;
+    }
+
+
+/* 页脚 */
+footer{
+	width: 100%; 
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	font-size:0.16rem;
+	height:1.21rem;
+}
+.footNavTit{ 
+	position:relative;
+	width: 100%;
+	height:.18rem;
+	background: url(../../img/footer_line.png) no-repeat center top;
+	background-size: 100% auto;
+	z-index: 9;
+}
+.fontNavCon{ position:relative; width:100%; height:1.03rem; overflow:hidden; background:#fff;}
+
+.fontNavCon a{ display:block; width:1.14rem; height:100%; line-height:1.6rem; float:left;text-align: center; color: #878787;  }
+
+.nav-1{ 
+	background-image: url(../../img/nav_m1.png);
+	background-repeat:no-repeat;
+	background-position:center  20%;
+	background-size: 35% auto;
+}
+.nav-2{ 
+	background-image: url(../../img/NewImg/nav_m2.png);
+	background-repeat:no-repeat;
+	background-position:center 30%;
+	background-size: 50% auto;
+}
+.nav-3{ 
+	background-image: url(../../img/NewImg/nav_m3.png);
+	background-repeat:no-repeat;
+	background-position:center 30%;
+	background-size: 50% auto;
+
+}
+.nav-4{ 
+	background-image: url(../../img/NewImg/nav_m4.png) ;
+	background-repeat:no-repeat;
+	background-position:center 15%;
+	background-size: 50% auto;
+}
+.fontNavCon a.nav-5{
+	width:1.24rem;
+	margin:0 0.3rem;
+	background-image: url(../../img/NewImg/nav_m5.png);
+	background-repeat:no-repeat;
+	background-position:center bottom;
+	background-size:100% 100%;
+	color:#fff;
+}
+
+.fontNavCon a.nav-5a {
+	width:1.24rem;
+	margin:0 0.3rem;
+	background-image: url(../../img/NewImg/nav_m5_a.png);
+	background-repeat:no-repeat;
+	background-position:center bottom;
+	background-size:100% 100%;
+	color:#fff;
+}
+
+a.nav-1a{ 
+	background-image: url(../../img/NewImg/nav_m1_a.png);
+	background-repeat:no-repeat;
+	background-position:center  20%;
+	background-size: 35% auto;
+	color:#054487;
+}
+a.nav-2a{ 
+	background-image: url(../../img/NewImg/nav_m2_a.png);
+	background-repeat:no-repeat;
+	background-position:center 30%;
+	background-size: 50% auto;
+	color:#054487;
+}
+a.nav-3a{ 
+	background-image: url(../../img/NewImg/nav_m3_a.png);
+	background-repeat:no-repeat;
+	background-position:center 30%;
+	background-size: 50% auto;
+	color:#054487;
+
+}
+a.nav-4a{ 
+	background-image: url(../../img/NewImg/nav_m4_a.png) ;
+	background-repeat:no-repeat;
+	background-position:center 15%;
+	background-size: 50% auto;
+	color:#054487;
+}

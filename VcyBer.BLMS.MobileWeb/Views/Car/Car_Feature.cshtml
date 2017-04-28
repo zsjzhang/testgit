@@ -1,0 +1,87 @@
+﻿@using VcyBer.BLMS.MobileWeb.Models
+@model CarFeature
+@{
+    ViewBag.Title = Model.SeriesName + "-产品特性";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<style>
+    .testDriving-hd-bar a {
+        width: 24%;
+    }
+    #pagenavi a.active {border-bottom: 0em solid #ceeaff;}
+</style>
+<div class="wrapper" id="wrapper">
+    <div class="testDriving-hd">
+        <div class="testDriving-hd-bar">
+            <a href="@Url.Action("Car_Feature", "Car", new { carType = Model.CarType, seriesName=Model.SeriesName })" class="currAutoMobile">产品特性</a>
+            @if(ViewBag.HasVideo)
+            { 
+            <a href="@Url.Action("Car_Video", "Car", new { carType = Model.CarType, seriesName = Model.SeriesName })">精彩视频</a>
+            }
+            else
+            {
+                <a href="javascript:AlertFalse('敬请期待！')">精彩视频</a>
+            }
+            @*<a href="@Url.Action("Car_Feature", "Car", new { carType = Model.CarType })" style="border-left: none;">动态页面</a>*@
+            <a href="@Url.Action("Car_Item", "Car", new { carType = Model.CarType, seriesName = Model.SeriesName })" style="border-left: none;">车型报价</a>
+            <a href="@Url.Action("TestDrive", "Car", new { carType = Model.CarType, seriesName = Model.SeriesName })" id="btnTestDrive">预约试驾</a>
+        </div>
+    </div>
+    <div class="shopSlideWrap autoMobileSlide">
+        <div class="shopSlide" style="overflow: hidden; visibility: visible; list-style: none; position: relative;">
+            <!--Powered by TouchSlider v1.3.1,abc-->
+            <ul id="slider" style="position: relative; overflow: hidden; transition-duration: 0ms; width: 1280px; left: 0px;">
+                @foreach (var item in Model.ShopSlideUrlList)
+                {
+                    <li style="float: left; display: block; width:320px;"><img src=@item></li>
+                }
+            </ul>
+        </div>
+        <div id="pagenavi">
+            @for (int i = 0; i < Model.ShopSlideUrlList.Count; i++)
+            {
+                if (i == 0)
+                {
+                    <a href="javascript:void(0);" class="active">0</a>
+                }
+                else
+                {
+                    <a href="javascript:void(0);">@i</a>
+                }
+            }
+        </div>
+    </div>
+    <article class="article-product">
+        @foreach (var item in Model.ArticleProductList)
+        {
+            <header>@item.Title</header>
+            <section>
+                <img src="@item.ImgUrl">
+                <p>@item.Content</p>
+            </section>
+        }
+
+    </article>
+</div>
+<script src="~/Scripts/car/slide.js"></script>
+<script>
+        var active = 0,
+            as = document.getElementById('pagenavi').getElementsByTagName('a');
+        for (var i = 0; i < as.length; i++) {
+            (function () {
+                var j = i;
+                as[i].onclick = function () {
+                    t2.slide(j);
+                    return false;
+                }
+            })();
+        }
+        var t2 = new TouchSlider({
+            'auto': false, id: 'slider', speed: 600, timeout: 20000, before: function (index) {
+                as[active].className = '';
+                active = index;
+                as[active].className = 'active';
+            }
+        });
+</script>

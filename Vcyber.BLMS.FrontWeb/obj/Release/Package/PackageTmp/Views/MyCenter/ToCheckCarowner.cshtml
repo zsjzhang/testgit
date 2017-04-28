@@ -1,0 +1,264 @@
+﻿@{
+    Layout = null;
+}
+
+<!--160525新增修改弹出遮罩层-->
+<style>
+    .zzDivBox {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .zzDivBg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: .5;
+        filter: alpha(opacity:50);
+    }
+
+    .zzConBox {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -165px;
+        margin-top: -85px;
+        width: 330px;
+        background: #fff;
+        border-radius: 5px;
+        padding: 0 5px 5px 5px;
+        color: #3d3f43;
+    }
+
+    .closeIcon {
+        position: absolute;
+        display: block;
+        width: 30px;
+        height: 31px;
+        right: -14px;
+        top: -12px;
+        background: url(/Img/VipImg/closeIcon.png) no-repeat center;
+        cursor: pointer;
+    }
+
+        .closeIcon:hover {
+            background: url(/Img/VipImg/closeIcon_1.png) no-repeat center;
+        }
+
+    .zzMegTit {
+        width: 100%;
+        height: 24px;
+        padding-top: 10px;
+        line-height: 14px;
+        text-align: center;
+    }
+
+    .zzErrMeg {
+        width: 21px;
+        height: 16px;
+        display: inline-block;
+        background: url(/Img/VipImg/zzErrMeg.png) no-repeat center;
+        vertical-align: middle;
+    }
+    
+    .zzPrompt {
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        background: url(/Img/VipImg/zzPrompt.png) no-repeat center;
+        vertical-align: middle;
+    }
+
+    .zzProTxt {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 5px;
+        font-size: 16px;
+    }
+
+    .zzConTxtBox {
+        position: relative;
+        width: 100%;
+        padding: 17px 0 15px;
+        background: #edf7ff;
+    }
+
+    .blueBoy {
+        position: relative;
+        margin-left: 24px;
+        display: inline-block;
+        margin-right: 15px;
+        width: 45px;
+        height: 61px;
+        background: url(/Img/VipImg/blueBoy.png) no-repeat center;
+    }
+
+    .zzMegCon {
+        position: relative;
+        display: inline-block;
+        height: 61px;
+        width: 200px;
+        text-align: center;
+        font-size: 14px;
+        vertical-align: middle;
+        display: table;
+    }
+
+    .zzConBtn {
+        position: relative;
+        left: 50%;
+        margin-left: -60px;
+        margin-top: 7px;
+        width: 120px;
+        height: 30px;
+        background: #075090;
+        color: #fff;
+        line-height: 30px;
+        font-size: 14px;
+        text-align: center;
+        letter-spacing: 5px;
+        cursor: pointer;
+    }
+
+        .zzConBtn:hover {
+            background: #0b63b7;
+        }
+
+    .zzConTxtBox dl {
+        position: relative;
+        height: 120px;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .zzConTxtBox dt, .zzConTxtBox dd {
+        float: left;
+    }
+
+    .zzMegCon b {
+        display: table-cell;
+        vertical-align: middle;
+        line-height: 20px;
+    }
+
+    .zzConMain {
+        width: 450px;
+        font-size: 14px;
+    }
+
+        .zzConMain .zzMegCon {
+            width: 360px;
+        }
+
+            .zzConMain .zzMegCon p {
+                text-align: left;
+                line-height: 28px;
+                height:28px;
+                margin:10px;
+            }
+    .zzMegCon label {
+            width: 115px;
+            display: inline-block;
+    }
+    .zzMegCon p select{
+        width:175px;
+        height:28px;
+    }
+
+    .zzConBtnBox {
+        position: relative;
+        margin: 10px auto 0 auto;
+        width: 300px;
+        height: 33px;
+    }
+
+        .zzConBtnBox a {
+            display: block;
+            position: absolute;
+            top: 0;
+            width: 120px;
+            height: 30px;
+            background: #075090;
+            color: #fff;
+            line-height: 30px;
+            font-size: 14px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+            .zzConBtnBox a.zzBtn1 {
+                left: 0;
+            }
+
+            .zzConBtnBox a.zzBtn2 {
+                right: 0;
+            }
+
+    #mycenter_mycar_tocheckcarowner_layer_identitynumber {
+        padding: 3px;
+        width: 175px;
+        height:28px;
+    }
+
+    p.font12 {
+        font-size: 12px;
+        color: #767575;
+    }
+</style>
+<script>
+    $(function () {
+        $(".closeIcon").on("click", function () {
+            $(".zzDivBox").css('display', 'none');
+        });
+        $(".zzConBtn").on("click", function () {
+            $(".zzDivBox").css('display', 'none');
+        });
+        $(".zzBtn1").on("click", function () {
+            $(".zzDivBox").css('display', 'none');
+        });
+    });
+</script>
+<div class="zzDivBox" style="display:block;" id="zzDivBox">
+    <div class="zzDivBg"></div>
+    <div class="zzConBox zzConMain">
+        <span class="closeIcon"></span>
+        <p class="zzMegTit">
+            <span class="zzPrompt"></span><!--zzPrompt是"提示"的图标，zzErrMeg是“错误”的图标-->
+            <span class="zzProTxt">我要绑定车辆</span>
+        </p>
+        <div class="zzConTxtBox">
+            <dl>
+                <dt class="blueBoy"></dt>
+                <dd class="zzMegCon">
+                    <p>
+                        <label>请选择证件类型：</label>
+                        <select id="accountCarPaperWork" name="PaperWork" class="user_base_info_select">
+                            <option value="-1">请选择</option>
+                            <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerIdentificationType.IdentityCard)">身份证</option>
+                            <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerIdentificationType.Passport)">护照</option>
+                            <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerIdentificationType.Officer)">军官证</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="mycenter_mycar_tocheckcarowner_layer_identitynumber">请输入证件号:</label>
+                        <input type="text" placeholder="英文字母注意大写" id="mycenter_mycar_tocheckcarowner_layer_identitynumber">
+                    </p>
+                    <p class="font12">请填写车主证件号码，以便于匹配到您的车辆信息。</p>
+                </dd>
+            </dl>
+            <div class="zzConBtnBox">
+                <input type="hidden" id="mycenter_mycar_tocheckcarowner_layer_layerIndex" value="1">
+                <a class="zzBtn1" href="javascript:void(0);">取消</a>
+                <a class="zzBtn2" href="javascript:void(0);" onclick="MyCenter.myCarToCheckCarownerSave()">确认</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--弹出遮罩层end-->

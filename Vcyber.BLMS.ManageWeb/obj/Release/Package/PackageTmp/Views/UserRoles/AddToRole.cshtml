@@ -1,0 +1,90 @@
+﻿@model Vcyber.BLMS.ManageWeb.Models.UserRoleModel
+@{
+    ViewBag.Title = "用户--角色分配";
+}
+
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal" style="width: 1020px">
+        @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(model => model.UserId)
+        <div class="g_page_grid_form">
+            <table>
+              
+        <tr>
+            <td class="td_title" width="10%">用户</td>
+            <td width="30%">
+                @*@Html.LabelFor(model => model.UserName)*@
+                @Model.UserName
+            </td>
+        </tr>
+        <tr>
+            <td class="td_title" width="10%">角色类型</td>
+            <td width="30%"><div class="form-group">
+    @if (Model.Roles != null)
+            {
+                foreach (var item in Model.Roles)
+                {
+                    if (item.IsChecked)
+                    {<div class="col-md-10">
+                        <input type="checkbox" id="checkboxRole" name="checkboxRole" value="@item.Name" checked="true" /><span> @item.Name</span>
+                    </div>
+                    }
+                    else
+                    {<div class="col-md-10">
+                        <input type="checkbox" id="checkboxRole" name="checkboxRole" value="@item.Name" /><span> @item.Name</span>
+                    </div> }
+                }
+
+            }
+
+</div></td>
+        </tr>
+
+            </table>
+    </div>
+        <div class="g_page_content_title"></div>
+        <div class="webix_view webix_layout_line">
+            <div class="webix_view webix_control webix_el_button">
+                <div class="webix_el_box .webixtype_form" style="width: 150px; height: 38px; float: left;">
+                    <input type="submit" value="分配角色" class="webixtype_form" />
+                </div>
+            </div>
+            <div class="webix_view webix_control webix_el_button">
+                <div class="webix_el_box" style="width: 150px; height: 38px; float: left;">
+                    <input type="button" value="返回角色列表" class="webixtype_base" onclick="javascrtpt: window.location.href = '/Users/User';" />
+                </div>
+            </div>
+        </div>
+</div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+

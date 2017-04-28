@@ -1,0 +1,63 @@
+﻿@model System.Collections.Generic.List<Vcyber.BLMS.FrontWeb.Models.BBS.BBSColumns>
+@{
+
+    Layout = null;
+}
+
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+                top.location.hostname;
+                if (top.location.hostname != window.location.hostname) {
+                top.location.href =window.location.href;
+            }
+            }
+                catch(e){
+                top.location.href = window.location.href;
+            }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+<div class="gy_cont">
+    <div class="gy_title">
+        <div class="gy_zi">
+            <h1>热门活动</h1>
+            <span>Popular Activities</span>
+            <img src="../../img/arrow.png" class="arrow_n" />
+        </div>
+    </div>
+    <div class="gy_nr">
+        <a target="_blank" href="http://club.beijing-hyundai.com.cn/bluemembers-event/index.php?ly=bluemembers">
+            <img src="../../img/luntan_left_pic1.jpg" class="erji_img" />
+        </a>
+        @*@{
+                var ac = Model.SingleOrDefault(c => c.Column_Name == "论坛活动").BBSGuestBook.Where(gb => gb.G_Recycle == 1 && gb.G_approved).Take(1);
+                foreach (var bbsGuestBook in ac)
+                {
+                    <span>
+                    @Html.ActionLink(bbsGuestBook.G_Title, "Comment", "BBSHome", new { id = bbsGuestBook.Id }, new { })
+                </span>
+                }
+            }*@
+
+        <span>
+            <a target="_blank" href="http://club.beijing-hyundai.com.cn/bluemembers-event/index.php?ly=bluemembers">bluemembers蓝缤礼遇 非凡尊享</a>
+        </span>
+
+
+    </div>
+</div>

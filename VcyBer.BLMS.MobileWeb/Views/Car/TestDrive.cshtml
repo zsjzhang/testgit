@@ -1,0 +1,112 @@
+﻿@using VcyBer.BLMS.MobileWeb.Models
+@model CarTestDrive
+@{
+    ViewBag.Title = Model.SeriesName + "-预约试驾";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<div class="wrapper" id="wrapper">
+    <div class="form-other-wrap">
+        <form id="mainForm" method="post" novalidate="novalidate">
+            <input type="hidden" name="UserId" value="">
+            <div class="form-other-box">
+                <dl class="form-row">
+                    <dt><font color="red">*</font>车型：</dt>
+                    <dd>
+                        <select id="CarSeries" name="CarSeries" class="global-select global-select-other">
+                            <option>选择车型</option>
+                            @{
+                                bool flag = true;
+                                foreach (var item in Model.CarTypeList)
+                                {
+                                    if (item.SeriesName == Model.SeriesName && flag)
+                                    {
+                                        flag = false;
+                                        <option value="@item.SeriesName" selected="selected">@item.SeriesName</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.SeriesName">@item.SeriesName</option>
+                                    }
+                                }
+                            }
+                        </select>
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt><font color="red">*</font>经销商：</dt>
+                    <dd>
+                        <select id="DealerProvince" name="DealerProvince" class="global-select">
+                            <option value="0">省</option>
+                            @foreach (var item in Model.Provinces)
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        </select>
+                        <select id="DealerCity" name="DealerCity" class="global-select">
+                            <option value="">市</option>
+                        </select>
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt></dt>
+                    <dd>
+                        <input type="hidden" id="DealerName" name="DealerName">
+                        <select id="DealerId" name="DealerId" class="global-select global-select-other">
+                            <option value="">经销商</option>
+                        </select>
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt><font color="red">*</font>试驾时间：</dt>
+                    <dd>
+                        <input type="text" class="global-ipt" id="ScheduleDate" name="ScheduleDate" readonly="readonly" onfocus="WdatePicker({ minDate: '%y-%M-{%d+2}', maxDate: '%y-%M-{%d+60}' })" placeholder="请选择" />                        
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt>计划购车时间：</dt>
+                    <dd>
+                        <select name="PurchaseTimeFrame" id="PurchaseTimeFrame" class="global-select global-select-other">
+                            <option>一周以内</option>
+                            <option>7-30天</option>
+                            <option>1-3个月</option>
+                            <option>3个月以上</option>
+                        </select>
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt>性别：</dt>
+                    <dd>
+                        <select id="UserSex" name="UserSex" class="global-select global-select-other">
+                            <option value="">性别</option>
+                            <option value="1" selected="selected">男</option>
+                            <option value="0">女</option>
+                        </select>
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt><font color="red">*</font>姓名：</dt>
+                    <dd>
+                        <input id="UserName" name="UserName" type="text" value="" class="global-ipt">
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt><font color="red">*</font>联系方式：</dt>
+                    <dd>
+                        <input type="tel" id="Phone" name="Phone" value="" class="global-ipt">
+                    </dd>
+                </dl>
+                <div id="errorContainer" class="form-row form-reg-tips"></div>
+                <dl class="form-row">
+                    <dd>
+                        <input type="submit" value="提交" class="global-reg-btn">
+                    </dd>
+                </dl>
+            </div>
+            <input type="hidden" id="ForeignId" name="ForeignId" value="">
+        </form>
+    </div>
+</div>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Content/My97DatePicker/WdatePicker.js"></script>
+<script src="~/Scripts/car/testDrive.js"></script>

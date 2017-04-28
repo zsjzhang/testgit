@@ -1,0 +1,220 @@
+﻿@model Vcyber.BLMS.Entity.ShareResources
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "视频播放";
+}
+@section AddToHeadCss{
+    <style>
+        .MediaPlayerNav li {
+            float: left;
+            margin: 2px;
+            font-size: 14px;
+        }
+
+        .MediaPlayer {
+            float: left;
+            margin: 5px 0;
+            width: 640px;
+            overflow: hidden;
+            background: #000;
+        }
+    </style>
+    <style>
+        .RelatedList {
+            float: left;
+            width: 640px;
+        }
+
+        .RelatedListContent {
+            float: left;
+            border: 1px solid #eee;
+            width: 638px;
+        }
+
+        .RelatedListTitle {
+            height: 50px;
+            background: #ccc;
+            width: 640px;
+            position: relative;
+        }
+
+        .RelatedListTitleTag {
+            position: absolute;
+            height: 30px;
+            top: 10px;
+            background: #F49600;
+            width: 3px;
+            left: 30px;
+        }
+
+        .NavTitile {
+            margin-left: 50px;
+            line-height: 50px;
+            height: 50px;
+            font-size: 25px;
+            color: #333;
+        }
+
+        .MediaListLeft {
+            width: 280px;
+            float: left;
+            overflow: hidden;
+            margin: 18px;
+        }
+
+        .MediaListImg {
+            width: 150px;
+            height: 211px;
+            float: left;
+        }
+
+        .MediaListContent {
+            float: left;
+            width: 120px;
+            margin-left: 10px;
+        }
+
+        .medialistdefaultimg {
+            width: 147px;
+            height: 211px;
+        }
+
+        .MediaListContentTitle {
+            font-size: 20px;
+            width: 120px;
+            font-family: 微软雅黑;
+            margin-bottom: 10px;
+            line-height: 20px;
+            text-align: right;
+            margin-right: 8px;
+            height: 20px;
+            overflow: hidden;
+        }
+
+        .MediaListContentSubTitle {
+            font-size: 14px;
+            width: 120px;
+            font-family: 微软雅黑;
+            margin-bottom: 10px;
+            text-align: right;
+            overflow: hidden;
+            height: 15px;
+        }
+
+        .MediaListContentBrief {
+            margin: 10px 0;
+            font-size: 15px;
+            letter-spacing: 2px;
+            text-align: right;
+            font-family: 微软雅黑;
+            padding-right: 8px;
+        }
+
+        .MediaListContentIntroduction {
+            text-indent: 2em;
+            font-size: 12px;
+            padding-right: 8px;
+            height: 124px;
+            margin-bottom: 5px;
+            overflow: hidden;
+            line-height: 18px;
+            text-align: justify;
+            width: 120px;
+            color: #767575;
+            text-overflow: ellipsis;
+        }
+
+        .MediaListPlayButton {
+            width: 122px;
+            background: #075090;
+            display: block;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+        }
+    </style>
+}
+@section AddToPlayer{
+    <script src="https://api.html5media.info/1.1.5/html5media.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".MediaListContentTitle").each(function () {
+                var curElem = $(this);
+                var lenval = curElem.text().length;
+                var wdiv = curElem.width();
+                var fsval = curElem.css("font-size");
+                var fsize = parseInt(fsval.substr(0, fsval.indexOf("px") + 1));
+                var lspanc = (wdiv - (lenval * fsize)) / (lenval - 1);
+                curElem.width(wdiv + lspanc);
+                if (lspanc > 0) {
+                    curElem.css("letter-spacing", lspanc + "px");
+                }
+            });
+            return false;
+        });
+    </script>
+}
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "MediaCenter" })
+    </div>
+
+    <div class="n_all_cont">
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+        </div>
+        <div class="n_right_cont">
+            <div class="MediaPlayerNav">
+                <ul>
+                    <li><a href="/">首页</a>></li>
+                    <li><a href="/Media/List">原创视频</a>></li>
+                    <li><a href="javascript:void(0);">视频播放</a></li>
+                </ul>
+            </div>
+            <div class="MediaPlayer">
+                <div id="video">
+                    @{
+                        string _domain = System.Web.Configuration.WebConfigurationManager.AppSettings["ImgPath"];
+                        string _mediasrc = "https://media.html5media.info/video.mp4";
+                        if (Model != null && !string.IsNullOrEmpty(Model.LinkUrl))
+                        {
+                            _mediasrc = string.Format("{0}/{1}", _domain, Model.LinkUrl);
+                        }
+
+                    }
+                    <video class="video" poster="" width="640" height="347" controls preload autoplay>
+                        <source src="@_mediasrc" media="only screen and (min-device-width: 960px)" />
+                        <p>This is fallback content to display for user agents that do not support the video tag.</p>
+                    </video>
+                </div>
+            </div>
+            @Html.Action("RelatedList", "Media", new { category = Model.Category })
+        </div>
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

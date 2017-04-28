@@ -1,0 +1,111 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "预约置换抽奖";
+}
+<style type="text/css">
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+        text-align: center;
+        background-color: #1664ad;
+    }
+
+    .ly-plate {
+        position: relative;
+        width: 509px;
+        height: 509px;
+        margin: 50px auto;
+    }
+
+    .rotate-bg {
+        width: 509px;
+        height: 509px;
+        background: url(http://www.jq22.com/demo/choujiang/ly-plate.png);
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-top: 0%;
+    }
+
+    .ly-plate div.lottery-star {
+        width: 214px;
+        height: 214px;
+        position: absolute;
+        top: 150px;
+        left: 147px;
+        /*text-indent:-999em;
+
+    overflow:hidden;
+
+    background:url(rotate-static.png);
+
+    -webkit-transform:rotate(0deg);*/
+        outline: none;
+    }
+
+        .ly-plate div.lottery-star #lotteryBtn {
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            left: 0;
+            *left: -107px;
+        }
+</style>
+<script type="text/javascript" src="@Url.Content("~/Scripts/ExChangeLottery.js")"></script>
+<script src="~/Scripts/awardRotate.js"></script>
+<script src="/Content/laydate/laydate.js"></script>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "MediaCenter" })
+    </div>
+
+    <div class="n_all_cont">
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+        </div>
+        <div class="n_right_cont">
+            <div class="RelatedListTitle">
+                <span class="RelatedListTitleTag"></span>
+                <span class="NavTitile">预约置换抽奖</span>
+            </div>
+
+            <div class="ly-plate">
+
+                <div class="rotate-bg"></div>
+
+                <div class="lottery-star"><img src="http://www.jq22.com/demo/choujiang/rotate-static.png" id="lotteryBtn"></div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

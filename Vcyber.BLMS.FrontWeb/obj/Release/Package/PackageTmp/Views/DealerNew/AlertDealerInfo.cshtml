@@ -1,0 +1,69 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "注册bluemembers车主会员成功";
+}
+
+<link href="~/css/DealerNew/reset.css" rel="stylesheet" />
+<link href="~/css/DealerNew/brand.css" rel="stylesheet" />
+<div class="wrap" style="border:none;">
+    <div class="head_Bg"></div>
+    <div class="popup">
+        <h3>
+            尊敬的车主:<br />
+            您已成功注册bluemembers车主会员，您还可领取途牛五星会员权益、海航礼悦会钻石会员权益，立即升级，尊享生活。
+        </h3>
+        <div class="flow_chart">
+            <dl>
+                <dt><img src="/Img/DealerNew/tuniu.png" /></dt>
+                <dd>
+                    <img src="/Img/DealerNew/tuniu_po.png" />
+                    <a href="javascript:DealerNewCtr.GetRightCode();"><img src="/Img/DealerNew/jklq.png" /></a>
+                </dd>
+            </dl>
+            <dl style="border: none;">
+                <dt><img src="/Img/DealerNew/liyuehui.png" /></dt>
+                <dd>
+                    <img src="/Img/DealerNew/liyue.png" />
+                    <a href="javascript:DealerNewCtr.UpgradeDiamondMembership();">
+                        <img src="/Img/DealerNew/jklq.png" id="btnSubmit" />
+                    </a>
+                    <p class="agree">
+                        <input type="checkbox" name="checkbox" id="checkbox" onclick="if (this.checked) { $('#btnSubmit').show(); } else { $('#btnSubmit').hide(); }" checked />
+                        <span style="cursor:pointer;" onclick="$('#divDialogInfo').fadeIn(500)">
+                            愿意接受 礼悦会会员协议
+                        </span>
+                    </p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+
+
+<div id="divDialogInfo" class="alertbox" style="width: 100%; height: 100%; top: 0; left:0; display: none;background-color:rgba(0,0,0,0.5);padding-top:120px;">
+    @Html.Action("MembershipTerms", "DealerNew")
+</div>
+
+<div id="divSubmitSuccess" class="alertbox" style="width: 500px; height: 120px; margin-left: -250px; display: none">
+    <div class="alertclose" onclick="$('#divSubmitSuccess').hide();">
+        &times;
+    </div>
+    <p id="alertMessage" style="height:80px;line-height:80px;font-size:16px;text-align:center;">
+        您已成功领取礼悦会钻石级会员特权，即刻享受优质服务体验。
+    </p>
+    <div style="width:140px;margin:auto;float:none;">
+        <div class="btn" onclick="$('#divSubmitSuccess').hide();">确定</div>
+    </div>
+</div>
+
+<div id="divGetCodeSuccess" class="alertbox" style="width: 600px; height: 120px; margin-left: -300px; display: none">
+    <div class="alertclose" onclick="$('#divGetCodeSuccess').hide();">
+        &times;
+    </div>
+    <p id="alertMessage" style="height:80px;line-height:80px;font-size:16px;text-align:center;">
+        @*您已成功领取途牛五星会员权益码:152362，立即激活您的途牛会员权益吧！*@
+    </p>
+    <div style="width:140px;margin:auto;float:none;">
+        <div class="btn" id="btnToBeMember">成为途牛五星会员</div>
+    </div>
+</div>

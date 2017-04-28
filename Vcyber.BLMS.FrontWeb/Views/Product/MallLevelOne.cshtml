@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Category>
+@{
+    Layout = null;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<ul class="show_menu">
+    @{
+        if (Model != null && Model.Any())
+        {
+            int i = 1;
+            foreach (var item in Model)
+            {
+                string _className = "show_menu" + i;
+                <li><a href="" class="@_className">@item.Name</a></li>
+                i++;
+            }
+        }
+    }
+</ul>

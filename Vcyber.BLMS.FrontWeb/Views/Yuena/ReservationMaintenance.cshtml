@@ -1,0 +1,227 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Generated.CSBaseCar>
+@{
+    ViewBag.Title = "预约维保";
+    Layout = "~/Views/Shared/_LayoutYuena.cshtml";
+}
+@*<h2>ReservationMaintenance</h2>*@
+<script src="/Content/laydate/laydate.js"></script>
+<script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+<div class="main">
+
+    <div class="maintain">
+        <h2 class="common_title"><img src="~/Contents/yuena/images/maintain_title.png"></h2>
+        <div class="maintain_con">
+            <form>
+                <div class="maintain_form clearfix">
+                    <table>
+                        <tr>
+                            <td><label>预约车型 :</label></td>
+                            <td>
+                                <div class="sl4" name="carType" type="selectbox">
+                                    <div class="opts">
+                                        @{
+                                            if (Model != null && Model.Any())
+                                            {
+                                                foreach (var item in Model)
+                                                {
+                                            <a href="javascript:;" val="@item.SeriesName" class="selected">@item.SeriesName</a>
+                                                }
+                                            }
+                                            else
+                                            {
+                                            <a href="javascript:;" class="selected">请选择</a>
+                                            }
+                                        }
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        @*<tr>
+                                <td rowspan="2"><label>经销商 :</label></td>
+                                <td>
+                                    <div class="sl5" name="provice" type="selectbox">
+                                        <div class="opts">
+                                            <a href="javascript:;" val="省">省</a>
+                                            <a href="javascript:;" val="安徽省">安徽省</a>
+                                            <a href="javascript:;" val="北京市">北京市</a>
+                                            <a href="javascript:;" val="福建省">福建省</a>
+                                        </div>
+                                    </div>
+                                    <div class="sl5" name="city" type="selectbox">
+                                        <div class="opts">
+                                            <a href="javascript:;" val="市">市</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="sl4" name="dealer" type="selectbox">
+                                        <div class="opts">
+                                            <a href="javascript:;" val="经销商">经销商</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>*@
+                        @Html.Action("DealerProvince", "Yuena");
+                        <tr>
+                            <td><label>车牌号 :</label></td>
+                            <td><input id="carNumber" type="text"></td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td><label>预约时间 :</label></td>
+                            <td>
+                                <input id="ReservationdateTime" name="ReservationdateTime" type="text" placeholder="有效期60天内">
+                                <script>
+                                    $(function () {
+                                        laydate({
+                                            elem: '#ReservationdateTime',
+                                            min: laydate.now(+1),
+                                            max: laydate.now(+60),
+                                            istoday: false
+                                        });
+                                    });
+                                </script>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>姓  名 :</label></td>
+                            <td><input id="usersName" type="text"></td>
+                        </tr>
+                        <tr>
+                            <td><label>电  话 :</label></td>
+                            <td><input id="phoneNum" type="text"></td>
+                        </tr>
+                    </table>
+                </div>
+                <a class="btn_book" href="javascript:;"><img src="~/Contents/yuena/images/btn_book.png"></a>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="cover"></div>
+<!--预约维保成功弹窗开始-->
+<div class="book_suc">
+    <a class="close" style="cursor:default;" href="/Yuena/LoginAfter"><img src="~/Contents/yuena/images/close.png"></a>
+    <div class="book_suc_con">
+        <h2>恭喜您 预约成功</h2>
+        <p class="maintain">认证车主身份可抽取定制好礼，更可<br />享受bluemembers会员专属服务！</p>
+        <a href="/Yuena/LoginAfter"><img src="~/Contents/yuena/images/btn_super.png"></a>
+    </div>
+</div>
+<!--预约维保成功弹窗结束-->
+<div class="footer clearfix">
+    <p class="footer_left">Copyright © 2009-2016 BEIJING HYUNDAI MOTOR COMPANY Corporation All Rights Reserved</p>
+    <p class="footer_right">服务热线：400-800-1100</p>
+</div>
+<script>
+    $(function () {
+        $('div[name="provice"]').inputbox({
+            height: 53,
+            width: 138
+        });
+        $('div[name="city"]').inputbox({
+            height: 53,
+            width: 138
+        });
+        $('div[name="carType"]').inputbox({
+            height: 53,
+            width: 285
+        });
+        $('div[name="dealer"]').inputbox({
+            height: 53,
+            width: 285
+        });
+        $('div[name="time"]').inputbox({
+            height: 53,
+            width: 285
+        });
+    })
+
+    //保存预约保养
+    $(".btn_book").click(function () {
+        //alert($('input[name="provice"]').val() + "_" + $('input[name="city"]').val() + "_" + $('input[name="dealer"]').val());
+        var carType = $('input[name="carType"]').val();
+        var province = $('input[name="provice"]').val();
+        var city = $('input[name="city"]').val();
+        var dealerId = $('input[name="dealer"]').val();
+        var dealerName = $('div[name="dealer"] .selected').text();
+        var carNumber = $("#carNumber").val();
+        var endTime = $("#ReservationdateTime").val();
+        var userName = $("#usersName").val();
+        var mobile = $("#phoneNum").val();
+
+        if (dealerId === null || dealerId === "" || dealerId == "经销商" || dealerId == "请选择") {
+            popWindownBlue("请选择经销商");
+            return false;
+        }
+        if (dealerName == null || dealerName == "" || dealerName == "经销商" || dealerName == "请选择") {
+            popWindownBlue("请选择经销商");
+            return false;
+        }
+        if (carType === null || carType === "") {
+            popWindownBlue("请填写您的车型");
+            return false;
+        }
+
+        if (carNumber === null || carNumber === "") {
+            popWindownBlue("请填写您的车牌号");
+            return false;
+        }
+        if (carNumber.length > 10) {
+            popWindownBlue("车牌号不能超过10位");
+            return false;
+        }
+
+        if (endTime === null || endTime === "") {
+            popWindownBlue("请正确选择您的预计到店时间");
+            return false;
+        }
+        if (userName === null || userName === "") {
+            popWindownBlue("请填写您的姓名");
+            return false;
+        }
+        var phoneReg = new RegExp("^1[0-9]{10}$");
+        if (mobile === null || mobile === "" || !phoneReg.test(mobile)) {
+            popWindownBlue("请正确填写您的手机号码");
+            return false;
+        }
+        $.ajax({
+            url: "/Yuena/ToReservationMaintenance",
+            type: "post",
+            dataType: "json",
+            data: { CarSeries: carType, DealerProvince: province, DealerCity: city, DealerId: dealerId, DealerName: dealerName, LicensePlate: carNumber, ScheduleDate: endTime, UserName: userName, Phone: mobile },
+            success: function (result) {
+                if (result !== null && result.Errors == 200) {
+                    //layer.open({
+                    //    type: 1,
+                    //    skin: 'bluePopupCar', //样式类名
+                    //    closeBtn: 1, //不显示关闭按钮
+                    //    shift: 2,
+                    //    area: ['431px', '200px'],
+                    //    shadeClose: false, //开启遮罩关闭
+                    //    content: "恭喜您，您的预约申请已成功提交，北京现代特约店稍后将与您取得联系，请您保持手机畅通。",
+                    //    end: function () {
+                    //        //window.location = "/BlueVIP/Index"
+                    //    },
+                    //    btn: ['确定']
+                    //});
+                    $('.cover').css('display', 'block');
+                    $(".book_suc").css("display", "block");
+                    $("input").val("");
+                    //window.location.href = "/Yuena/LoginAfter";
+                    return false
+                } else {
+                    popWindownBlue("您已经预约过，请耐心等待，经销商会主动与您取得联系");
+                    return false;
+                }
+            },
+            error: function (err) {
+            }
+        });
+    });
+</script>

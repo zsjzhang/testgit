@@ -1,0 +1,55 @@
+﻿@using Vcyber.BLMS.Common;
+@model Vcyber.BLMS.FrontWeb.Models.ApplicationUser
+@{
+    Layout = null;
+}
+
+<div class="geren_box zh_xinxi">
+    <div class="gy_title">
+        <div class="gy_zi">
+            <h1>账户信息</h1>
+            <span>Account Information</span>
+        </div>
+    </div>
+    <ul style="padding-top:10px;">
+        <li>用户名：@Model.NickName</li>
+        <li>用户等级：
+        @{
+            string levelName = "注册用户";
+            switch (Model.MLevel)
+            {
+                case 1:
+                    levelName = "注册用户";
+                    break;
+                case 10:
+                    levelName = "普卡会员";
+                    break;
+                case 11:
+                    levelName = "银卡会员";
+                    break;
+                case 12:
+                    levelName = "金卡会员";
+                    break;
+            }
+            @(levelName)
+        }
+       </li>
+        <li>注册时间：@Model.CreateTime</li>
+    </ul>
+    <ul>
+        <li>手机号：@Model.PhoneNumber</li>
+        <li>邮箱：@Model.Email</li>
+        <li>生日：@Model.Birthday</li>
+    </ul>
+    <ul>
+      @{
+          int job = -1;
+          int.TryParse(Model.Industry, out job);
+          var JobName = Vcyber.BLMS.Common.EnumExtension.GetDiscribe((Vcyber.BLMS.Entity.Enum.ECustomerJob)(job));
+       }
+      
+        <li>职业：@JobName</li>
+        <li>住址：@Model.Address</li>
+        <li></li>
+    </ul>
+</div>

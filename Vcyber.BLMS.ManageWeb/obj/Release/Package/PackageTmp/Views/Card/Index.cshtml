@@ -1,0 +1,169 @@
+﻿@{
+    Layout = null;
+}
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function() {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+</script>
+    <div class="container panel panel-default">
+        <div class="panel-body"><strong>卡券管理 - 卡券列表</strong></div>
+    </div>
+
+    <div class="container panel panel-default" data-ng-init="load()">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">手机号：</label>
+                            <input class="col-md-2 form-control" type="text" placeholder="手机号" ng-model="formData.PhoneNumber" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">卡券状态：</label>
+                            <select class="col-md-2 form-control" ng-model="select" ng-options="m.Id as m.Statu for m in status">
+                                <option value="">全部</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">是否CallCenter代预约：</label>
+                            <select class="col-md-2 form-control" ng-model="selectCallCenter">
+                                <option value="">全部</option>
+                                <option value="Y">是</option>
+                                <option value="N">否</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">使用时间：</label>
+                            <input class="col-md-2 form-control datepicker" placeholder="开始时间" data-date-format="yyyy-mm-dd" ng-model="formData.Start" />
+                            <label class="col-md-1 control-label"> ~ </label>
+                            <input class="col-md-2 form-control datepicker" placeholder="结束时间" data-date-format="yyyy-mm-dd" ng-model="formData.End" />
+                        </div>
+
+                        <div class="form-group">
+                            <input class="btn btn-primary col-md-offset-2" type="button" ng-click="search()" value="查询" />
+                        </div>
+
+                        <script type="text/javascript">
+                            $('.datepicker').datepicker();
+</script>
+                </form>
+
+                <div>
+                    当前共有<label class="badge">{{Total}}</label>个卡券，未发放<label class="badge">{{NoSend}}</label>个。（根据当前查询条件显示统计数字）
+                </div>
+
+                <div>
+                    <input class="btn btn-primary col-md-offset-9" type="button" data-toggle="modal" data-target="#cardImportModal" ng-click="Import()" value="导入(txt)" />
+                    <a class="btn btn-primary" href="/Card/Export?phoneNumber={{formData.PhoneNumber}}&state={{select}}&isCallCenter={{selectCallCenter}}">导出(execl)</a>
+                    <hr />
+                </div>
+
+                <div class="gridStyle" style="height: 410px; border: 1px solid rgb(212,212,212)" ng-grid="gridOptions"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="cardSendModal" tabindex="-1" role="dialog" aria-labelledby="cardSendModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="cardSendModal1">发放卡券</h4>
+            </div>
+            <form class="form-horizontal" name="form" ng-submit="SendCard(form.$valid)" novalidate>
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="form-group">
+                            <label class="col-md-12 text-left red">* 1.用户手机号为必填项</label>
+                            <label class="col-md-12 text-left red">* 2.如果要将服务码发送到用户其他手机上，请填写接收服务码手机号</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">请选择机场:</label>
+                            <div class="col-md-9">
+                                <select class="form-control" ng-model="airport" ng-change="airportChange()" ng-options="m.AirportName as m.AirportName for m in airports">
+                                    <option value="">请选择机场</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">请选择机场候机室:</label>
+                            <div class="col-md-9">
+                                <select class="form-control" ng-model="airportRoom" ng-options="m.Id as m.AirportAllName for m in airportRooms">
+                                    <option value="">请选择机场候机室</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">*用户手机号:</label>
+                            <div class="col-md-9">
+                                <input class="form-control" name="phonenumber" ng-model="selectItem.PhoneNumber" ng-required="true" ng-maxlength="100" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">接收服务码手机号:</label>
+                            <div class="col-md-9">
+                                <input class="form-control" name="phonenumber2" ng-model="selectItem.TruePhoneNumber" ng-maxlength="100" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">确定</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="cardImportModal" tabindex="-1" role="dialog" aria-labelledby="cardImportModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="cardImportModal1">导入卡券</h4>
+            </div>
+            <form class="form-horizontal" name="form1" ng-submit="ImportCard()" novalidate>
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="form-group">
+                            <label class="col-md-3">选择卡券文件</label>
+                            <a target="_blank" href="/Card/Template" class="text-center">下载卡券模板</a>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="file" ng-file-select ng-file-change="upload($files)" multiple accept="text/plain">
+                                <div class="button" ng-file-select ng-file-change="upload($files)" data-multiple="true"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">确定</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

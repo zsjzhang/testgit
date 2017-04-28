@@ -1,0 +1,126 @@
+﻿@model Vcyber.BLMS.FrontWeb.Models.ApplicationUser
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "在线客服";
+}
+<link href="~/css/base/information.css" rel="stylesheet" />
+<style type="text/css">
+    .cs_bot {
+        margin-top: 80px;
+    }
+    .kk_left {
+        margin-left:5px;
+    }
+</style>
+<script type="text/javascript">
+    $(function ()
+    {
+        $(".clearfix li").bind("click", function ()
+        {
+            $(this).siblings("li").css({"border":"none"});
+            $(this).css({"border":"2px solid #c1c1c1"});
+        });
+       
+    })
+    
+
+</script>
+<div class="header">
+    @Html.Action("HomeHeader", "Header", new { pageName = "Mycenter" })
+</div>
+<div>
+    <div class="n_all_cont">
+        <div class="n_left_cont">
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+        </div>
+        <div class="n_right_cont">
+            <div class="gy_cont" style="height: 520px;">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>在线客服</h1>
+                        <span>Online Service</span>
+                    </div>
+
+                    <div style="border:1px solid #EEEEEE;">
+                        <div class="cs_box" style="width:100%;">
+                            <h3 style="text-align:center;">您好，请选择您要咨询的问题类型：</h3>
+                            <ul class="clearfix">
+                                @*<li style="margin-right:80px; margin-left:80px;">
+                                    <img src="/img/clfw.png">
+                                    <p>车辆服务</p>
+                                </li>
+                                <li class="cs_pic1" style="margin-right:80px;">
+                                    <img src="/img/shfw.png">
+                                    <p>生活服务</p>
+                                </li>
+                                <li class="cs_pic2" style="margin-right:80px;">
+                                    <img src="/img/zhwt.png">
+                                    <p>账号问题</p>
+                                </li>
+                                <li class="cs_pic3" style="margin-right: 0;">
+                                    <img src="/img/jccl.png">
+                                    <p>其他服务</p>
+                                </li>*@
+                                <li>
+                                    <img src="/img/clfw.png">
+                                    <p>车辆服务</p>
+                                </li>
+                                <li>
+                                    <img src="/img/shfw.png">
+                                    <p>生活服务</p>
+                                </li>
+                                <li>
+                                    <img src="/img/zhwt.png">
+                                    <p>账号问题</p>
+                                </li>
+                                <li>
+                                    <img src="/img/jccl.png">
+                                    <p>其他服务</p>
+                                </li>
+
+                            </ul>
+                            <div class="cs_input" style="border-bottom:0px;">
+                                <p style="margin-left:180px;">
+                                    <label>输 入 手 机 号：</label>
+                                    <input type="text">
+                                    <img src="/img/h_iphone.png" style="position: relative;left: -26px;top:4px">
+                                </p>
+                                <p style="margin-left:180px;">
+                                    <label>输<b style=" margin: 0 5px;">
+                                            </b>入<b style="margin: 0 4px;"></b>姓<b style="margin: 0 5px;"></b>名：</label>
+                                    <input type="text" >
+                                    <img src="/img/h_user.png" style="position: relative;left: -30px;top:3px">
+                                </p>
+                            </div>
+                            @{
+    if (System.DateTime.Now < DateTime.Parse("2015-5-8 17:00"))
+    {
+        <a href="http://ars.bhmc.com.cn:7003/" class="cs_bot pay_active" style="margin-bottom:40px; margin-top:100px;">联系客服</a>
+    }
+    else
+    {
+        <a href="http://ars.bhmc.com.cn:7003/" class="cs_bot pay_active" style="margin-bottom:40px; margin-top:100px;">联系客服</a>
+    }
+}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckQRForAPP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="way" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckQRForAPPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckQRForAPPResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckQRForWeb">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="way" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="address" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Longitude" type="s:float" />
+            <s:element minOccurs="1" maxOccurs="1" name="Latitude" type="s:float" />
+            <s:element minOccurs="1" maxOccurs="1" name="Altitude" type="s:float" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckQRForWebResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckQRForWebResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckQRForWebNew">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="address" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Longitude" type="s:float" />
+            <s:element minOccurs="1" maxOccurs="1" name="Latitude" type="s:float" />
+            <s:element minOccurs="1" maxOccurs="1" name="Altitude" type="s:float" />
+            <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ctype" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckQRForWebNewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckQRForWebNewResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSecurityList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StartTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ctype" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSecurityListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSecurityListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateQR">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ctype" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateQRResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateQRResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginCheck">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginCheckResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginCheckResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePWD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="oldpwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="newpwd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePWDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdatePWDResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckQRForAPPSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckQRForAPP" />
+  </wsdl:message>
+  <wsdl:message name="CheckQRForAPPSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckQRForAPPResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckQRForWebSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckQRForWeb" />
+  </wsdl:message>
+  <wsdl:message name="CheckQRForWebSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckQRForWebResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckQRForWebNewSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckQRForWebNew" />
+  </wsdl:message>
+  <wsdl:message name="CheckQRForWebNewSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckQRForWebNewResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSecurityListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSecurityList" />
+  </wsdl:message>
+  <wsdl:message name="GetSecurityListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSecurityListResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateQRSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateQR" />
+  </wsdl:message>
+  <wsdl:message name="UpdateQRSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateQRResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginCheckSoapIn">
+    <wsdl:part name="parameters" element="tns:LoginCheck" />
+  </wsdl:message>
+  <wsdl:message name="LoginCheckSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginCheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePWDSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdatePWD" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePWDSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdatePWDResponse" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldHttpGetIn" />
+  <wsdl:message name="HelloWorldHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckQRForAPPHttpGetIn">
+    <wsdl:part name="code" type="s:string" />
+    <wsdl:part name="way" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckQRForAPPHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckQRForWebHttpGetIn">
+    <wsdl:part name="code" type="s:string" />
+    <wsdl:part name="way" type="s:string" />
+    <wsdl:part name="address" type="s:string" />
+    <wsdl:part name="Longitude" type="s:string" />
+    <wsdl:part name="Latitude" type="s:string" />
+    <wsdl:part name="Altitude" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckQRForWebHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckQRForWebNewHttpGetIn">
+    <wsdl:part name="code" type="s:string" />
+    <wsdl:part name="address" type="s:string" />
+    <wsdl:part name="Longitude" type="s:string" />
+    <wsdl:part name="Latitude" type="s:string" />
+    <wsdl:part name="Altitude" type="s:string" />
+    <wsdl:part name="uid" type="s:string" />
+    <wsdl:part name="ctype" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckQRForWebNewHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSecurityListHttpGetIn">
+    <wsdl:part name="StartTime" type="s:string" />
+    <wsdl:part name="EndTime" type="s:string" />
+    <wsdl:part name="ctype" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSecurityListHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateQRHttpGetIn">
+    <wsdl:part name="code" type="s:string" />
+    <wsdl:part name="uid" type="s:string" />
+    <wsdl:part name="ctype" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateQRHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="LoginCheckHttpGetIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LoginCheckHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePWDHttpGetIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="oldpwd" type="s:string" />
+    <wsdl:part name="newpwd" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePWDHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldHttpPostIn" />
+  <wsdl:message name="HelloWorldHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckQRForAPPHttpPostIn">
+    <wsdl:part name="code" type="s:string" />
+    <wsdl:part name="way" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckQRForAPPHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckQRForWebHttpPostIn">
+    <wsdl:part name="code" type="s:string" />
+    <wsdl:part name="way" type="s:string" />
+    <wsdl:part name="address" type="s:string" />
+    <wsdl:part name="Longitude" type="s:string" />
+    <wsdl:part name="Latitude" type="s:string" />
+    <wsdl:part name="Altitude" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckQRForWebHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckQRForWebNewHttpPostIn">
+    <wsdl:part name="code" type="s:string" />
+    <wsdl:part name="address" type="s:string" />
+    <wsdl:part name="Longitude" type="s:string" />
+    <wsdl:part name="Latitude" type="s:string" />
+    <wsdl:part name="Altitude" type="s:string" />
+    <wsdl:part name="uid" type="s:string" />
+    <wsdl:part name="ctype" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckQRForWebNewHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSecurityListHttpPostIn">
+    <wsdl:part name="StartTime" type="s:string" />
+    <wsdl:part name="EndTime" type="s:string" />
+    <wsdl:part name="ctype" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSecurityListHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateQRHttpPostIn">
+    <wsdl:part name="code" type="s:string" />
+    <wsdl:part name="uid" type="s:string" />
+    <wsdl:part name="ctype" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateQRHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="LoginCheckHttpPostIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LoginCheckHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePWDHttpPostIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="oldpwd" type="s:string" />
+    <wsdl:part name="newpwd" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePWDHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="WebService1Soap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckQRForAPP">
+      <wsdl:input message="tns:CheckQRForAPPSoapIn" />
+      <wsdl:output message="tns:CheckQRForAPPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckQRForWeb">
+      <wsdl:input message="tns:CheckQRForWebSoapIn" />
+      <wsdl:output message="tns:CheckQRForWebSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckQRForWebNew">
+      <wsdl:input message="tns:CheckQRForWebNewSoapIn" />
+      <wsdl:output message="tns:CheckQRForWebNewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSecurityList">
+      <wsdl:input message="tns:GetSecurityListSoapIn" />
+      <wsdl:output message="tns:GetSecurityListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateQR">
+      <wsdl:input message="tns:UpdateQRSoapIn" />
+      <wsdl:output message="tns:UpdateQRSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginCheck">
+      <wsdl:input message="tns:LoginCheckSoapIn" />
+      <wsdl:output message="tns:LoginCheckSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePWD">
+      <wsdl:input message="tns:UpdatePWDSoapIn" />
+      <wsdl:output message="tns:UpdatePWDSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WebService1HttpGet">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldHttpGetIn" />
+      <wsdl:output message="tns:HelloWorldHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckQRForAPP">
+      <wsdl:input message="tns:CheckQRForAPPHttpGetIn" />
+      <wsdl:output message="tns:CheckQRForAPPHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckQRForWeb">
+      <wsdl:input message="tns:CheckQRForWebHttpGetIn" />
+      <wsdl:output message="tns:CheckQRForWebHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckQRForWebNew">
+      <wsdl:input message="tns:CheckQRForWebNewHttpGetIn" />
+      <wsdl:output message="tns:CheckQRForWebNewHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSecurityList">
+      <wsdl:input message="tns:GetSecurityListHttpGetIn" />
+      <wsdl:output message="tns:GetSecurityListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateQR">
+      <wsdl:input message="tns:UpdateQRHttpGetIn" />
+      <wsdl:output message="tns:UpdateQRHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginCheck">
+      <wsdl:input message="tns:LoginCheckHttpGetIn" />
+      <wsdl:output message="tns:LoginCheckHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePWD">
+      <wsdl:input message="tns:UpdatePWDHttpGetIn" />
+      <wsdl:output message="tns:UpdatePWDHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WebService1HttpPost">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldHttpPostIn" />
+      <wsdl:output message="tns:HelloWorldHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckQRForAPP">
+      <wsdl:input message="tns:CheckQRForAPPHttpPostIn" />
+      <wsdl:output message="tns:CheckQRForAPPHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckQRForWeb">
+      <wsdl:input message="tns:CheckQRForWebHttpPostIn" />
+      <wsdl:output message="tns:CheckQRForWebHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckQRForWebNew">
+      <wsdl:input message="tns:CheckQRForWebNewHttpPostIn" />
+      <wsdl:output message="tns:CheckQRForWebNewHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSecurityList">
+      <wsdl:input message="tns:GetSecurityListHttpPostIn" />
+      <wsdl:output message="tns:GetSecurityListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateQR">
+      <wsdl:input message="tns:UpdateQRHttpPostIn" />
+      <wsdl:output message="tns:UpdateQRHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginCheck">
+      <wsdl:input message="tns:LoginCheckHttpPostIn" />
+      <wsdl:output message="tns:LoginCheckHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePWD">
+      <wsdl:input message="tns:UpdatePWDHttpPostIn" />
+      <wsdl:output message="tns:UpdatePWDHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebService1Soap" type="tns:WebService1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckQRForAPP">
+      <soap:operation soapAction="http://tempuri.org/CheckQRForAPP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckQRForWeb">
+      <soap:operation soapAction="http://tempuri.org/CheckQRForWeb" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckQRForWebNew">
+      <soap:operation soapAction="http://tempuri.org/CheckQRForWebNew" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSecurityList">
+      <soap:operation soapAction="http://tempuri.org/GetSecurityList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateQR">
+      <soap:operation soapAction="http://tempuri.org/UpdateQR" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginCheck">
+      <soap:operation soapAction="http://tempuri.org/LoginCheck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePWD">
+      <soap:operation soapAction="http://tempuri.org/UpdatePWD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebService1Soap12" type="tns:WebService1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckQRForAPP">
+      <soap12:operation soapAction="http://tempuri.org/CheckQRForAPP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckQRForWeb">
+      <soap12:operation soapAction="http://tempuri.org/CheckQRForWeb" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckQRForWebNew">
+      <soap12:operation soapAction="http://tempuri.org/CheckQRForWebNew" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSecurityList">
+      <soap12:operation soapAction="http://tempuri.org/GetSecurityList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateQR">
+      <soap12:operation soapAction="http://tempuri.org/UpdateQR" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginCheck">
+      <soap12:operation soapAction="http://tempuri.org/LoginCheck" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePWD">
+      <soap12:operation soapAction="http://tempuri.org/UpdatePWD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebService1HttpGet" type="tns:WebService1HttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="HelloWorld">
+      <http:operation location="/HelloWorld" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckQRForAPP">
+      <http:operation location="/CheckQRForAPP" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckQRForWeb">
+      <http:operation location="/CheckQRForWeb" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckQRForWebNew">
+      <http:operation location="/CheckQRForWebNew" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSecurityList">
+      <http:operation location="/GetSecurityList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateQR">
+      <http:operation location="/UpdateQR" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginCheck">
+      <http:operation location="/LoginCheck" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePWD">
+      <http:operation location="/UpdatePWD" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebService1HttpPost" type="tns:WebService1HttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="HelloWorld">
+      <http:operation location="/HelloWorld" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckQRForAPP">
+      <http:operation location="/CheckQRForAPP" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckQRForWeb">
+      <http:operation location="/CheckQRForWeb" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckQRForWebNew">
+      <http:operation location="/CheckQRForWebNew" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSecurityList">
+      <http:operation location="/GetSecurityList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateQR">
+      <http:operation location="/UpdateQR" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginCheck">
+      <http:operation location="/LoginCheck" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePWD">
+      <http:operation location="/UpdatePWD" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebService1">
+    <wsdl:port name="WebService1Soap" binding="tns:WebService1Soap">
+      <soap:address location="http://101.200.221.152:8095/BMPWebService/CheckQR.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebService1Soap12" binding="tns:WebService1Soap12">
+      <soap12:address location="http://101.200.221.152:8095/BMPWebService/CheckQR.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebService1HttpGet" binding="tns:WebService1HttpGet">
+      <http:address location="http://101.200.221.152:8095/BMPWebService/CheckQR.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebService1HttpPost" binding="tns:WebService1HttpPost">
+      <http:address location="http://101.200.221.152:8095/BMPWebService/CheckQR.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

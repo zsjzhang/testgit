@@ -1,0 +1,998 @@
+﻿@{
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>剧院魅影</title>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+                top.location.hostname;
+                if (top.location.hostname != window.location.hostname) {
+                top.location.href =window.location.href;
+            }
+            }
+                catch(e){
+                top.location.href = window.location.href;
+            }
+    </script>
+
+    <style>
+        #overtips {
+            position: fixed;
+            width: 92%;
+            top: 100px;
+            display: none;
+            background: #fff;
+            border-radius: 5px;
+        }
+
+            #overtips p {
+                margin: 10px;
+                line-height: 30px;
+                font-size: 1.5em;
+            }
+
+            #overtips a {
+                padding: 10px;
+                float: left;
+                position: relative;
+                left: 50%;
+                margin-left: -45px;
+                background-color: #01b7f7;
+                color: #fff;
+                font-family: 微软雅黑;
+                margin-bottom: 10px;
+                border-radius: 3px;
+                font-size: 1.5em;
+            }
+
+        #ActivityWinnerInfo {
+            position: fixed;
+            width: 92%;
+            top: 100px;
+            bottom: 20px;
+            display: none;
+            background: #fff;
+            border-radius: 5px;
+        }
+
+            #ActivityWinnerInfo h2 {
+                font-size: 2em;
+                margin-top: 55px;
+            }
+
+        .searchsection {
+            background: #e5e5e5;
+            height: 40px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            padding: 15px 20px;
+        }
+
+        .searchsection-search {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            width: 100%;
+            border-radius: 15px;
+            float: left;
+            background-color: #fff;
+        }
+
+        .searchsection-btn {
+            background: url(/img/musical/iconfont-tubiao.png) center/100% no-repeat;
+            width: 20px;
+            height: 20px;
+            float: left;
+            position: absolute;
+            margin-left: 15px;
+        }
+
+        .searchsection-keyword {
+            margin-left: 50px;
+            border: none;
+            width: 65%;
+            font-size: 0.8rem;
+        }
+
+            .searchsection-keyword:focus {
+                outline: none;
+            }
+
+        .titlesection {
+            margin-top: 12px;
+            margin-bottom: 12px;
+            position: relative;
+            left: 50%;
+            margin-left: -89px;
+        }
+
+        .titlesection-icon {
+            background: url(/Img/Musical/activity-winner.png) center/100%;
+            float: left;
+            width: 28px;
+            height: 28px;
+        }
+
+        .titlesection-title {
+            color: #0fb7e4;
+            font-size: 26px;
+            font-family: 微软雅黑;
+            padding-left: 15px;
+        }
+
+        .contentsection {
+            font-size: 20px;
+            font-family: 微软雅黑;
+            text-align: center;
+            width: 90%;
+            margin: auto;
+        }
+
+            .contentsection ul {
+                list-style: none;
+            }
+
+            .contentsection li {
+                margin: 10px 5px;
+                border-bottom: 1px solid #d3d2d6;
+                padding-bottom: 4px;
+            }
+
+            .contentsection span {
+                padding: 0 10px;
+                font-size: 0.8rem;
+            }
+
+            .contentsection label {
+                color: #999;
+            }
+
+            .contentsection b {
+                color: #666;
+            }
+
+        .contentsection-content {
+            border: 1px solid #999;
+            padding: 10px 0;
+            margin-bottom: 10px;
+        }
+
+        #piaocontentparentcontainer {
+            height: 60px;
+            overflow: hidden;
+        }
+
+        #powercontentparentcontainer {
+            height: 60px;
+            overflow: hidden;
+        }
+    </style>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/gjmy-web.css" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Content/layer/layer.min.js"></script>
+    <script src="~/Scripts/controller/Main.js"></script>
+    <script src="~/Scripts/controller/UserController.js"></script>
+    <script>
+        $(function () {
+            var objlyear = null;
+            //判断是否登录
+            $("#btnGrabTicket").click(function () {
+                $.ajax({
+                    url: "/ActivityMobile/GetLogin",
+                    type: "get",
+                    success: function (result) {
+                        if (result.msg == "true") { //已登录
+                            objlyear = $.layer({
+                                type: 1,   //0-4的选择,
+                                title: false,
+                                border: [0],
+                                closeBtn: [0],
+                                shadeClose: false,
+                                area: ['92%', ''],
+                                page: {
+                                    dom: ".alert_one"
+                                }
+
+                            });
+                            $(".xubox_shade").click(function () {
+                                layer.close(objlyear);
+                            })
+                        }
+                        else {  //未登录
+                            objlyear = layer.open({
+                                type: 1,   //0-4的选择,
+                                title: false,
+                                border: [0],
+                                closeBtn: [0],
+                                shadeClose: false,
+                                area: ['92%', ''],
+                                content: $('.choose')
+                            });
+                        }
+                        $(".xubox_shade").click(function () {
+                            layer.close(objlyear);
+                        })
+                    },
+                    error: function () {
+
+                    }
+
+                })
+
+
+            });
+            //登录注册跳转
+            $("#register").click(function () {
+                layer.close(objlyear);
+                var returnUrl = "/ActivityMobile/Mobile?source=@ViewBag.source";
+                location.href = "/WapQuestionnaire/WapRegister?returnUrl=" + encodeURIComponent(returnUrl) + "&source=@ViewBag.source";
+            })
+            $("#login").click(function () {
+                layer.close(objlyear);
+                var returnUrl = "/ActivityMobile/Mobile?source=@ViewBag.source";
+                location.href = "/WapQuestionnaire/WapLogin?returnUrl=" + encodeURIComponent(returnUrl) + "&source=@ViewBag.source";
+            })
+            //直接抢票
+            $("#choose_GrabTicket").click(function () {
+                layer.close(objlyear);
+                objlyear = layer.open({
+                    type: 1,   //0-4的选择,
+                    title: false,
+                    border: [0],
+                    closeBtn: [0],
+                    shadeClose: false,
+                    area: ['92%', ''],
+                    content:$(".alert_one")
+                    
+                });
+
+                $(".xubox_shade").click(function () {
+                    layer.close(objlyear);
+                })
+
+            })
+            //保存填写信息
+            $("#nextStep").click(function () {
+                var name = $("#name").val();
+                var phone = $("#phone").val();
+                var address = $("#address").val();
+                var pro = $("#myOrderAddressProvince").find("option:selected").text();
+                var city = $("#myOrderAddressCity").find("option:selected").text();
+                var coun = $("#myOrderAddressCounty").find("option:selected").text();
+                var counvalue = $("#myOrderAddressCounty").val();
+                //var reg = /^[\u4E00-\u9FA5]{2,5}(?:·[\u4E00-\u9FA5]{2,5})*$/;
+                if (name == "") {
+                    popWindownBlue( "请输入正确的姓名");
+                    return;
+                }
+                else {
+                    var reg = /^1[3|4|5|8][0-9]\d{4,8}$/;
+                    if (phone == "" || phone.length != 11 || !reg.test(phone)) {
+                        popWindownBlue( "请输入正确的手机号")
+                        return false;
+                    }
+                    else {
+                        if (address == "" || counvalue == -1) {
+                            popWindownBlue( "地址不能为空");
+                            return false;
+                        }
+                        else {
+                            layer.close(objlyear);
+                            $.ajax({
+                                url: "/ActivityMobile/JoinActivity",
+                                dataType: "json",
+                                type: "post",
+                                data: { Name: name, Tel: phone, Address: address, Province: pro, City: city, Area: coun, Results3: $("input[name='Result3']").val() },
+                                success: function (result) {
+                                    $(".choose_mask").show();
+                                    if (result.msg == "true") {  //保存成功 选择面具
+                                        objlyear = layer.open({
+                                            type: 1,   //0-4的选择,
+                                            title: false,
+                                            border: [0],
+                                            closeBtn: [0],
+                                            shadeClose: false,
+                                            area: ['92%', ''],
+                                            content: $('.choose_mask')
+                                        });
+                                        $(".xubox_shade").click(function () {
+                                            layer.close(objlyear);
+                                        });
+                                        $("#mask_result").attr("data-result", result.id);
+                                    }
+                                    else {  //保存失败
+                                        popWindownBlue( "保存失败");
+                                        return;
+                                    }
+                                    $("#name").val("");
+                                    $("#phone").val("");
+                                    $("#address").val("");
+                                    $("#myOrderAddressProvince").val("-1");
+                                    $("#myOrderAddressCity").val("-1");
+                                    $("#myOrderAddressCounty").val("-1");
+                                }
+
+                            })
+                        }
+                    }
+                }
+
+
+            })
+            //选择面具
+            $("#mask_result").click(function () {
+                var result = $('input:radio:checked').val();
+                if (result == null) {
+                    popWindownBlue( "请选择1种面具");
+                    return false;
+                }
+                else {
+                    layer.close(objlyear);
+                    var name = $("#name").val();
+                    if (result == "1") {
+                        $(".bds_tsina").attr("href", "http://v.t.sina.com.cn/share/share.php?url=https%3a%2f%2fwww.bluemembers.com.cn%2fActivity%2fIndex&title=" + name + "是《剧院魅影》中的女主角——克里斯汀。快来测测你是谁，还有《剧院魅影》门票免费领。");
+                        $(".bds_renren").attr("href", "http://widget.renren.com/dialog/share?resourceUrl=https%3a%2f%2fwww.bluemembers.com.cn%2fActivity%2fIndex&text=" + name + "是《剧院魅影》中的女主角——克里斯汀。快来测测你是谁，还有《剧院魅影》门票免费领。");
+                        $(".bds_touban").attr("href", "http://www.douban.com/share/service?image=&href=https%3a%2f%2fwww.bluemembers.com.cn%2fActivity%2fIndex&text=" + name + "是《剧院魅影》中的女主角——克里斯汀。快来测测你是谁，还有《剧院魅影》门票免费领。")
+                        $(".dold").show();
+                        objlyear = layer.open({
+                            type: 1,   //0-4的选择,
+                            title: false,
+                            border: [0],
+                            closeBtn: [0],
+                            shadeClose: false,
+                            area: ['92%', ''],
+                            content:$('.blue')
+                        });
+                    }
+                    else if (result == "2") {
+                        layer.close(objlyear);
+                        $(".bds_tsina").attr("href", "http://v.t.sina.com.cn/share/share.php?url=https%3a%2f%2fwww.bluemembers.com.cn%2fActivity%2fIndex&title=" + name + "是《剧院魅影》中的魅影——埃里克。快来测测你是谁，还有《剧院魅影》门票免费领。");
+                        $(".bds_renren").attr("href", "http://widget.renren.com/dialog/share?resourceUrl=https%3a%2f%2fwww.bluemembers.com.cn%2fActivity%2fIndex&text=" + name + "是《剧院魅影》中的魅影——埃里克。快来测测你是谁，还有《剧院魅影》门票免费领。");
+                        $(".bds_touban").attr("href", "http://www.douban.com/share/service?image=&href=https%3a%2f%2fwww.bluemembers.com.cn%2fActivity%2fIndex&text=" + name + "是《剧院魅影》中的魅影——埃里克。快来测测你是谁，还有《剧院魅影》门票免费领。")
+                        $(".black").show();
+                        objlyear = layer.open({
+                            type: 1,   //0-4的选择,
+                            title: false,
+                            border: [0],
+                            closeBtn: [0],
+                            shadeClose: false,
+                            area: ['92%', ''],
+                             content: $('.black')
+                        });
+                    }
+                    else if (result == "3") {
+                        layer.close(objlyear);
+                        $(".bds_tsina").attr("href", "http://v.t.sina.com.cn/share/share.php?url=https%3a%2f%2fwww.bluemembers.com.cn%2fActivity%2fIndex&title=" + name + "是《歌剧魅影》中的子爵——拉乌尔。快来测测你是谁，还有《剧院魅影》门票免费领。");
+                        $(".bds_renren").attr("href", "http://widget.renren.com/dialog/share?resourceUrl=https%3a%2f%2fwww.bluemembers.com.cn%2fActivity%2fIndex&text=" + name + "是《歌剧魅影》中的子爵——拉乌尔。快来测测你是谁，还有《剧院魅影》门票免费领。");
+                        $(".bds_touban").attr("href", "http://www.douban.com/share/service?image=&href=https%3a%2f%2fwww.bluemembers.com.cn%2fActivity%2fIndex&text=" + name + "是《歌剧魅影》中的子爵——拉乌尔。快来测测你是谁，还有《剧院魅影》门票免费领。")
+                        $(".dold").show();
+                        objlyear = layer.open({
+                            type: 1,   //0-4的选择,
+                            title: false,
+                            border: [0],
+                            closeBtn: [0],
+                            shadeClose: false,
+                            area: ['92%', ''],
+                            content: $('.dold')
+                        });
+                    }
+                    else {
+                        layer.close(objlyear);
+                        $(".bds_tsina").attr("href", "http://v.t.sina.com.cn/share/share.php?url=https%3a%2f%2fwww.bluemembers.com.cn%2fActivity%2fIndex&title=" + name + "是《剧院魅影》中的音乐创作者——安德鲁·劳埃德·韦伯。快来测测你是谁，还有《剧院魅影》门票免费领。");
+                        $(".bds_renren").attr("href", "http://widget.renren.com/dialog/share?https%3a%2f%2fwww.bluemembers.com.cn%2fActivity%2fIndex&text=" + name + "是《剧院魅影》中的音乐创作者——安德鲁·劳埃德·韦伯。快来测测你是谁，还有《剧院魅影》门票免费领。");
+                        $(".bds_touban").attr("href", "http://www.douban.com/share/service?image=&href=https%3a%2f%2fwww.bluemembers.com.cn%2fActivity%2fIndex&text=" + name + "是《剧院魅影》中的音乐创作者——安德鲁·劳埃德·韦伯。快来测测你是谁，还有《剧院魅影》门票免费领。。")
+                        $(".red").show();
+                        objlyear = layer.open({
+                            type: 1,   //0-4的选择,
+                            title: false,
+                            border: [0],
+                            closeBtn: [0],
+                            shadeClose: false,
+                            area: ['92%', ''],
+                           content:$('.red')
+                        });
+                    }
+                }
+                $('input:radio').removeAttr("checked");
+                $(".choose_mask").hide();
+                $(".xubox_shade").click(function () {
+                    layer.close(objlyear);
+                });
+                $.ajax({
+                    url: "/ActivityMobile/AddMaskToActivity",
+                    type: "post",
+                    data: { id: $("#mask_result").attr("data-result"), maskName: result },
+                    dataType: "json",
+                    success: function (resultData) {
+                    }
+                });
+            })
+
+            $(".alert_share").click(function () {
+                layer.close(objlyear);
+                objlyear = layer.open({
+                    type: 1,   //0-4的选择,
+                    title: false,
+                    border: [0],
+                    closeBtn: [0],
+                    shadeClose: false,
+                    area: ['92%', ''],
+                   conten: $('.share_friend')
+                });
+                $(".share_mask").hide();
+                $(".xubox_shade").click(function () {
+                    layer.close(objlyear);
+                })
+            })
+
+            $(".tell").click(function () {
+                layer.close(objlyear);
+                $(".share_friend").show();
+                $(".bds_tsina").attr("href", "http://v.t.sina.com.cn/share/share.php?url=https%3a%2f%2fwww.bluemembers.com.cn%2fActivity%2fIndex&title=极致文化巅峰  bluemembers与您品鉴经典。即日起参与《剧院魅影》互动，价值1960元门票、卡片式移动电源等好礼免费送");
+                $(".bds_renren").attr("href", "http://widget.renren.com/dialog/share?resourceUrl=https%3a%2f%2fwww.bluemembers.com.cn%2fActivity%2fIndex&text=极致文化巅峰  bluemembers与您品鉴经典。即日起参与《剧院魅影》互动，价值1960元门票、卡片式移动电源等好礼免费送");
+                $(".bds_touban").attr("href", "http://www.douban.com/share/service?image=&href=https%3a%2f%2fwww.bluemembers.com.cn%2fActivity%2fIndex&text=极致文化巅峰  bluemembers与您品鉴经典。即日起参与《剧院魅影》互动，价值1960元门票、卡片式移动电源等好礼免费送")
+                objlyear = layer.open({
+                    type: 1,   //0-4的选择,
+                    title: false,
+                    border: [0],
+                    closeBtn: [0],
+                    shadeClose: false,
+                    area: ['92%', ''],
+                   content: $('.share_friend')
+                });
+                $(".xubox_shade").click(function () {
+                    layer.close(objlyear);
+                })
+
+            });
+            $("#share_close").click(function () {
+                layer.close(objlyear);
+            })
+
+            $("#mobilesearchsection").click(function () {
+                $.ajax({
+                    url: "/ActivityMobile/FindWinnerInfoByMobile",
+                    type: "get",
+                    dataType: "json",
+                    data: { mobile: $("#mobilesearchsectionkeyword").val() },
+                    success: function (resultData) {
+                        if (resultData.code == 200 && resultData.result) {
+                            if (resultData.result.PrizesId == "9") {
+                                $("#piaocontent").html("<li><span><label>姓名:</label><b>" + resultData.result.UserName + "</b></span><span><label>手机:</label><b>" + resultData.result.UserTel + "</b></span></li>");
+                                $("#piaocontenttmp").html("");
+                                $("#powercontent").html("");
+                                $("#powercontenttmp").html("");
+                            }
+                            else {
+                                $("#piaocontent").html("");
+                                $("#piaocontenttmp").html("");
+                                $("#powercontent").html("");
+                                $("#powercontenttmp").html("<li><span><label>姓名:</label><b>" + resultData.result.UserName + "</b></span><span><label>手机:</label><b>" + resultData.result.UserTel + "</b></span></li>");
+                            }
+                        } else {
+                            popWindownBlue( "您输入的手机号没有中奖哦");
+                            $("#piaocontent").html("");
+                            $("#piaocontenttmp").html("");
+                            $("#powercontent").html("");
+                            $("#powercontenttmp").html("");
+                        }
+                    }
+                });
+            });
+        });
+        function Sharestat(sharetype) {
+            $.ajax({
+                url: "/ActivityMobile/ShareStat",
+                type: "post",
+                data: { Source: $("input[name='Result3']").val(), ShareType: sharetype, ActivityId: 1 },
+                dataType: "json",
+                success: function () { }
+            });
+        };
+        function showWinnerInfo() {
+            layer.close(objlyear);
+            objlyear =layer.open({
+                type: 1,   //0-4的选择,
+                title: false,
+                border: [0],
+                closeBtn: [0],
+                shadeClose: false,
+                area: ['92%', ''],
+               content: $("#ActivityWinnerInfo")
+                
+            });
+
+            $(".xubox_shade").click(function () {
+                layer.close(objlyear);
+            })
+
+            var _piaoparent = document.getElementById("piaocontentparentcontainer");
+            var _piaocontent = document.getElementById("piaocontent");
+            var _piaocontenttmp = document.getElementById("piaocontenttmp");
+            var speed = 100;
+            var nnn = 150 / _piaocontent.offsetHeight;
+            for (var i = 0; i < nnn; i++) {
+                _piaocontent.innerHTML += _piaocontent.innerHTML;
+            }
+            _piaocontenttmp.innerHTML = _piaocontent.innerHTML;
+            function marquee() {
+                if (_piaocontenttmp.offsetTop - _piaoparent.scrollTop <= 0) {
+                    _piaoparent.scrollTop -= _piaocontent.offsetHeight;
+                } else {
+                    _piaoparent.scrollTop++;
+                }
+            }
+
+            var mymar = setInterval(marquee, speed);
+            _piaoparent.onmouseover = function () { clearInterval(mymar); }
+            _piaoparent.onmouseout = function () { mymar = setInterval(marquee, speed); }
+
+
+
+
+
+            var _powerparent = document.getElementById("powercontentparentcontainer");
+            var _powercontent = document.getElementById("powercontent");
+            var _powercontenttmp = document.getElementById("powercontenttmp");
+            var mypowermarspeed = 100;
+            var mypowermarnnn = 150 / _powercontent.offsetHeight;
+            for (var i = 0; i < mypowermarnnn; i++) {
+                _powercontent.innerHTML += _powercontent.innerHTML;
+            }
+            _powercontenttmp.innerHTML = _powercontent.innerHTML;
+            function powermarquee() {
+                if (_powercontenttmp.offsetTop - _powerparent.scrollTop <= 0) {
+                    _powerparent.scrollTop -= _powercontent.offsetHeight;
+                } else {
+                    _powerparent.scrollTop++;
+                }
+            }
+
+            var mypowermar = setInterval(powermarquee, mypowermarspeed);
+            _powerparent.onmouseover = function () { clearInterval(mypowermar); }
+            _powerparent.onmouseout = function () { mypowermar = setInterval(powermarquee, mypowermarspeed); }
+            return false;
+        }
+
+        
+        
+    </script>
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?0b4e366e453f3524b50e08dc17833d51";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+
+        _hmt.push(['_setCustomVar', 5, 'ques_visitor', 'wap', 3]);
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <input type="hidden" name="Result3" value="@ViewBag.source" />
+        <img src="/img/Musical/web-bg.png" class="web_bg" />
+        <header>
+            <a href=""><img src="/img/Musical/web-back.png" /></a>
+            <h1><img src="/img/Musical/web-title.png" /></h1>
+        </header>
+
+        <div class="web_logo">
+            <img src="/img/Musical/web-logo.png" style="width:46%;float:left;" />
+            <img src="/img/Musical/web-blue.png" style="width:36%;float:right;" />
+        </div>
+
+        <div class="web_title">
+            <img src="/img/Musical/web-text-beijing.png" alt="北京场" />
+            <h2>价值1960元《剧院魅影》门票来袭，还是免费的！</h2>
+            <p>
+                即日起参与互动，
+                <br />免费领取价值1960元门票、卡片式移动电源。
+                <br />这个季节最值得期待的剧目，等你来抢！
+            </p>
+        </div>
+
+        <div class="web_play">
+            <img src="/img/Musical/web-paly.png" class="web_txt" />
+            <img src="/img/Musical/web-car.png" class="web_car" />
+            @*<button id="btnGrabTicket">我要抢票</button>*@
+            @*<a href="javascript:void(0);" id="btnGrabTicket" class="GrabTicket_a">我要抢票</a>*@
+            @*<a href="javascript:void(0);" onclick="showWinnerInfo();" class="GrabTicket_a">我要抢票</a>*@
+            <a href="javascript:void(0);" onclick="showWinnerInfo();" class="GrabTicket_a">获奖名单</a>
+            <a href="#" class="tell"><img src="/img/Musical/web-zhuanfa.png" />告诉好友一起抢</a>
+        </div>
+
+        <img src="/img/Musical/web-line.png" class="web_line" />
+
+        <div class="play_rule">
+            <h2>活动简介</h2>
+            <p class="ttt">爱是永恒，音乐剧之父韦伯早已将爱赋予不朽的音乐之上……</p>
+            <h4>精彩的音乐、惊险的剧情、完美的布景，让它成为音乐剧中永恒的佳作</h4>
+            <h4>点击“<span>抢票</span>”参与互动即有机会获得价值1960元的《剧院魅影》门票或卡片式电源</h4>
+        </div>
+
+        <img src="/img/Musical/web-dotte.png" class="web_dotte" />
+
+        <div class="play_rule">
+            <h2>活动规则</h2>
+            <h4><span>活动时间：</span>即日起-2015.12.10（北京场）</h4>
+            @*<b>注：敬请期待2015年11月10日-2015年12月10日（北京场）活动</b>*@
+            <h3>参与方式：	</h3>
+            <h4><label>第一步：</label><p>通过网站/微信/APP进入活动页面，登录会员账号</p></h4>
+            <h4><label>第二步：</label><p>点击“抢票”，填写信息</p></h4>
+            <h4><label>第三步：</label><p>参与互动，选择您喜爱的面具，获取抽奖机会</p></h4>
+            <h4><label>第四步：</label><p>分享测试结果，邀请好友“免费抢票”</p></h4>
+            <div class="clearfix"></div>
+            <h3>奖品设置：	</h3>
+            <h4><label>特等奖：</label><p>价值1960元《剧院魅影》门票一套（每套两张） 共10人获奖</p></h4>
+            <div class="clearfix"></div>
+            <h4><label>关爱奖：</label><p>北京现代定制礼品——卡片式移动电源共100人获奖</p></h4>
+
+        </div>
+
+        <img src="/img/Musical/web-dotte.png" class="web_dotte" />
+
+        <div class="play_rule">
+            <h2>注意事项</h2>
+            <h5>
+                <b>1</b><p>
+                    参与活动的所有会员，如填写信息不完善，活动结束后抽奖资格将被取消，请如实填写个人信息，否则视为弃奖
+                </p>
+            </h5>
+            <h5>
+                <b>2</b><p>
+                    本活动所有用户均可参与，获奖者将从bluemembers会员中抽取，如您还未成为bluemembers会员，请注册后参与抢票获取抽奖资格
+                </p>
+            </h5>
+            <h5>
+                <b>3</b><p>
+                    每名会员仅有一次抢票和获奖资格，活动奖品不可重复获得
+                </p>
+            </h5>
+            <h5>
+                <b>4</b><p>
+                    活动结束后两个工作日内抽奖并安排礼品发送，请及时关注获奖名单
+                </p>
+            </h5>
+        </div>
+
+        <div class="jsq">
+            <p>
+                <b>*</b>详情请拨打北京现代24小时客服热线： <span>400-800-1100</span>（手机拨打）或咨询 bluemembers在线客服。
+            </p>
+            <p><b>*</b>您于本网站提供的个人信息只用于北京现代本次活动与您沟通联络时使用 </p>
+            <p>
+                <b>*</b>本活动最终解释权归北京现代汽车有限公司所有，如有疑问请及时与bluemembers 网站在线客服联系。
+            </p>
+        </div>
+
+    </div>
+
+
+
+    <!--  弹出层开始   -->
+    <!--  登录     -->
+    <div class="alert login" style="display:none;">
+
+        <p><label><img src="/img/Musical/web-user.png" /></label><input type="text" placeholder="手机/用户名/邮箱" /></p>
+        <p><label><img src="/img/Musical/web-mm.png" /></label><input type="text" placeholder="密码" /></p>
+        <p><label><img src="/img/Musical/web-yzm.png" /></label><input type="text" placeholder="验证码" style="width:54%;" /><span><img src="/img/Musical/web-num.png" /></span></p>
+        <div class="state">
+            <span>没有账号，现在<a href="">注册</a></span>
+            <a href="" class="login_but">登录</a>
+        </div>
+    </div>
+
+    <!--未登录选择-->
+    <div class="alert choose inpu_info" style="display:none">
+        <h2>
+            尊敬的用户，登陆bluemebers会员账号参与抢票，获奖机会更高哦~
+        </h2>
+        <span>
+            <a href="#" style=" margin-left: 3%; margin-right: 2%;" id="login">登录</a>
+            <a href="#" style=" margin-right: 2%; " id="register">注册</a>
+            <a href="#" id="choose_GrabTicket">直接抢票</a>
+        </span>
+    </div>
+
+    <!--    输入信息     -->
+    <div class="alert inpu_info alert_one" style="display:none;">
+        <h2>请填写您的真实信息，以便您能准确收到门票或礼品哦！</h2>
+        <p class="name_num">
+
+            <span><input type="text" id="name" placeholder="输入姓名" /></span>
+            <span style="float:right;width:48%"><input type="text" id="phone" placeholder="输入手机号" /></span>
+        </p>
+        <p>
+
+
+            <span style="width: 100%; margin-right: 0; display: block; margin-top: 20px;">
+                <span class="choose_A" style="margin-right:0;">
+                    <select id="myOrderAddressProvince" onchange="User.FindCityByProvince(this);">
+                        <option value="-1">省</option>
+                        @{
+                            List<Vcyber.BLMS.Common.City.Provinces> _provinceList = ViewData["provinceList"] as List<Vcyber.BLMS.Common.City.Provinces>;
+                            if (_provinceList != null && _provinceList.Any())
+                            {
+                                foreach (var province in _provinceList)
+                                {
+                                    <option value="@province.Code" title="@province.ID">@province.Name</option>
+                                }
+                            }
+                        }
+                    </select>
+                </span>
+
+                <span class="choose_A" id="myOrderAddressCitySpan" style="margin-right:0;">
+                    <select id="myOrderAddressCity" onchange="User.FindAreasByCity(this);">
+                        <option value="-1">市</option>
+                    </select>
+                </span>
+                <span class="choose_A" id="myOrderAddressAreaSpan" style="margin-right:0;">
+                    <select id="myOrderAddressCounty">
+                        <option value="-1">区</option>
+                    </select>
+                </span>
+            </span>
+            <span style="width:100%;margin-right:0;display:block;margin-top:16px;">
+                <input type="text" id="address" placeholder="输入详细地址" class="adres" style="width:100%" />
+            </span>
+        </p>
+
+
+        <a href="#" id="nextStep" style="width:63%;">提交，测测我的剧院人生</a>
+    </div>
+
+    <!--    选择面具     -->
+    <div class="alert choose_mask" style="display:none;">
+        <h2>选择您喜爱的面具，看看您的《剧院魅影》人生</h2>
+        <ul>
+            <li>
+                <img src="/img/Musical/blue.png" />
+                <p><input type="radio" name="name" id="blue" value="1" /><label for="blue">蓝焰</label></p>
+            </li>
+            <li>
+                <img src="/img/Musical/black.png" />
+                <p><input type="radio" name="name" id="black" value="2" /><label for="black">黑魅</label></p>
+            </li>
+            <li style="margin-top:2px;">
+                <img src="/img/Musical/dold.png" />
+                <p><input type="radio" name="name" id="dold" value="3" /><label for="dold">金煌</label></p>
+            </li>
+            <li>
+                <img src="/img/Musical/red.png" />
+                <p><input type="radio" name="name" id="red" value="4" /><label for="red">赤烈</label></p>
+            </li>
+        </ul>
+        <a href="#" id="mask_result" data-result="-1">选好了，查看结果</a>
+    </div>
+
+    <!--    分享面具     -->
+    <!--分享赤练-->
+    <div class="alert share_mask red" style="display:none;">
+        <dl class="share">
+            <dt><img src="/img/Musical/chilian.png" /></dt>
+            <dd>OMG，你才是《剧院魅影》当之无愧的音乐创作者——安德鲁•劳埃德•韦伯，天赋的艺术家，丰富的创造力和深厚的文学功底，才华横溢、思智过人，更是带着光环的人生赢家。</dd>
+        </dl>
+
+        <h3>恭喜您，我们已收到您的抢票信息。如抽取到您获得免费门票，我们会在开奖后第一时间通知您，请保持您的手机畅通！</h3>
+        <a href="#" class="alert_share">分享给小伙伴</a>
+    </div>
+
+    <!--分享金煌-->
+    <div class="alert share_mask dold" style="display:none ;">
+        <dl class="share">
+            <dt><img src="/img/Musical/jinhuang.png" /></dt>
+            <dd>啊哦，你是《剧院魅影》中的真爱获得者子爵——拉乌尔，潇洒的公子，骄傲与飞扬的个性，有着勇敢追求并为爱牺牲的精神，即有高贵的骄傲，也懂得爱的包容。</dd>
+        </dl>
+
+        <h3>恭喜您，我们已收到您的抢票信息。如抽取到您获得免费门票，我们会在开奖后第一时间通知您，请保持您的手机畅通！</h3>
+        <a href="#" class="alert_share">分享给小伙伴</a>
+    </div>
+
+    <!--分享黑魅-->
+    <div class="alert share_mask black" style="display: none;">
+        <dl class="share">
+            <dt><img src="/img/Musical/heimei.png" /></dt>
+            <dd>哇哦，你就是《剧院魅影》中的第一boss魅影——埃里克，疯狂、天才、极致已不足以形容你的跌宕人生，有着矛盾、繁复的心理，渴望爱情，拥有复杂和善良的真实人性。</dd>
+        </dl>
+
+        <h3>恭喜您，我们已收到您的抢票信息。如抽取到您获得免费门票，我们会在开奖后第一时间通知您，请保持您的手机畅通！</h3>
+        <a href="#" class="alert_share">分享给小伙伴</a>
+    </div>
+
+    <!--分享蓝焰-->
+    <div class="alert share_mask blue" style="display:none;">
+        <dl class="share">
+            <dt><img src="/img/Musical/lanyan.png" /></dt>
+            <dd>哇，原来你是《剧院魅影》中最大的女主角——克里斯汀，音乐天使，眼神纯净，笑容甜美，从迷茫中逐渐成长，变得勇敢，选择自己的爱情，选择自己的人生。</dd>
+        </dl>
+
+        <h3>恭喜您，我们已收到您的抢票信息。如抽取到您获得免费门票，我们会在开奖后第一时间通知您，请保持您的手机畅通！</h3>
+        <a href="#" class="alert_share">分享给小伙伴</a>
+    </div>
+    <!--  分享好友   -->
+    <div class="alert share_friend" style="display:none;">
+        <span><a href="#" id="share_close"><img src="/img/Musical/close.png" /></a></span>
+        <h2>分享给好友，一起来抢票！</h2>
+        <ul>
+            <li>
+                <a href="" onclick="Sharestat('tsina');" data-cmd="tsina" target="_blank" class="bds_tsina" title="分享到新浪微博">
+                    <img src="/img/Musical/web-wb.png" />
+                    <p>分享微博</p>
+                </a>
+            </li>
+            <li>
+                <a href="" onclick="Sharestat('renren');" data-cmd="renren" target="_blank" class="bds_renren" title="分享到人人网">
+                    <img src="/img/Musical/web-rrw.png" />
+                    <p>分享人人网</p>
+                </a>
+            </li>
+            <li>
+                <a href="" onclick="Sharestat('touban');" data-cmd="tsina" target="_blank" class="bds_touban" title="分享到豆瓣">
+                    <img src="/img/Musical/web-douban.png" />
+                    <p>分享豆瓣</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="ActivityWinnerInfo">
+        <div class="searchsection">
+            <div class="searchsection-search">
+                <a class="searchsection-btn" id="mobilesearchsection"></a>
+                <input type="text" name="name" id="mobilesearchsectionkeyword" placeholder="通过手机号查询" class="searchsection-keyword" />
+            </div>
+        </div>
+        <div class="titlesection">
+            <span class="titlesection-icon"></span>
+            <span class="titlesection-title">获奖名单</span>
+        </div>
+        <div class="contentsection">
+            <div class="contentsection-content" id="piaocontentparent">
+                <p>《剧院魅影》门票1套</p>
+                <div id="piaocontentparentcontainer">
+                    <ul id="piaocontent">
+                        @{
+                            var piaoWinerList = ViewData["piaoWinerList"] as List<Vcyber.BLMS.Entity.WinningInfo>;
+                            var powerWinnerList = ViewData["powerWinnerList"] as List<Vcyber.BLMS.Entity.WinningInfo>;
+                            if (piaoWinerList != null && piaoWinerList.Any())
+                            {
+                                foreach (var item in piaoWinerList)
+                                {
+
+                                    string _tel = string.Empty;
+                                    for (int i = 0; i < item.UserTel.Length; i++)
+                                    {
+                                        if (i >= 3 && i <= 6)
+                                        {
+                                            _tel += "*";
+                                        }
+                                        else
+                                        {
+                                            _tel += item.UserTel[i];
+                                        }
+
+                                    }
+                                    <li>
+                                        <span>
+                                            <label>姓名:</label>
+                                            <b>@item.UserName</b>
+                                        </span>
+                                        <span>
+                                            <label>手机:</label>
+                                            <b>@_tel</b>
+                                        </span>
+                                    </li>
+                                }
+                            }
+                        }
+                    </ul>
+                    <ul id="piaocontenttmp"></ul>
+                </div>
+            </div>
+            <div class="contentsection-content" id="powercontentparent">
+                <p>卡片式移动电源</p>
+                <div id="powercontentparentcontainer">
+                    <ul id="powercontent">
+                        @{
+                            if (powerWinnerList != null && piaoWinerList.Any())
+                            {
+                                foreach (var item in powerWinnerList)
+                                {
+                                    string _tel = string.Empty;
+                                    for (int i = 0; i < item.UserTel.Length; i++)
+                                    {
+                                        if (i >= 3 && i <= 6)
+                                        {
+                                            _tel += "*";
+                                        }
+                                        else
+                                        {
+                                            _tel += item.UserTel[i];
+                                        }
+
+                                    }
+
+                                    <li>
+                                        <span>
+                                            <label>姓名:</label>
+                                            <b>@item.UserName</b>
+                                        </span>
+                                        <span>
+                                            <label>手机:</label>
+                                            <b>@_tel</b>
+                                        </span>
+                                    </li>
+                                }
+                            }
+                        }
+                    </ul>
+                    <ul id="powercontenttmp"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="overtips">
+        <p style="font-family:微软雅黑;">亲爱的客户您好，极致文化巅峰bluemembers与您品鉴经典（北京场）活动已结束，您可以查看获奖名单，看看您是否获奖哦~</p>
+        @*<p style="color: #45caf9;">敬请期待11月10日北京场活动</p>*@
+        <div style="float: left; width: 100%;">
+            <a href="javascript:void(0);" onclick="showWinnerInfo();">获奖名单</a>
+        </div>
+    </div>
+    <!--  弹出层结束   -->
+
+    <!--获奖名单弹出层-->
+    <script type="text/javascript">
+        objlyear = layer.open({
+            type: 1,   //0-4的选择,
+            title: false,
+            border: [0],
+            closeBtn: [0],
+            shadeClose: false,
+            area: ['90%', ''],
+           content: $('#overtips')
+        });
+        $(".xubox_shade").click(function () {
+            layer.close(objlyear);
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            var shareHeight = parseInt($(".share").height() + 24);
+            var imgHeight = parseInt($(".share img").height());
+            var chaHeight = (shareHeight - imgHeight) / 2;
+            $(".share img").css("margin-top", chaHeight);
+            event.stopPropagation();
+        })
+    </script>
+</body>
+
+</html>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+

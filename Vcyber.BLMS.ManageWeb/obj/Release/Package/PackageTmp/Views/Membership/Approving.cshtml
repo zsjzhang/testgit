@@ -1,0 +1,116 @@
+﻿@{
+    ViewBag.Title = "缴费获取积分会员";
+    Layout = null;
+}
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>缴费获取积分会员</strong></div>
+</div>
+<div class="container panel panel-default">
+    <div class="panel-body">
+        <form name="form" class="form-horizontal" novalidate>
+            <div class="form-group">
+                <label class="col-md-2 control-label">手机号</label>
+                <div class="col-md-3 text-left">
+                    <input class="form-control" type="text" ng-model="phoneNumber" />
+                </div>
+                <label class="col-md-2 control-label">付款码</label>
+                <div class="col-md-3 text-left">
+                    <input class="form-control" type="text" ng-model="PayNumber" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">证件类型</label>
+                <div class="col-md-3 text-left">
+                    <select class="form-control" ng-model="PaperWork">
+                        <option value="" selected="selected">请选择</option>
+                        <option value="1">身份证</option>
+                        <option value="2">护照</option>
+                        <option value="3">军官证</option>
+                    </select>
+                </div>
+                <label class="col-md-2 control-label">证件号</label>
+                <div class="col-md-3 text-left">
+                    <input class="form-control" type="text" ng-model="IdentityNumber" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">缴费状态</label>
+                <div class="col-md-3 text-left">
+                    <select class="form-control" ng-model="IsPay" style=" width:200px">
+                        <option value="">请选择</option>
+                        @*<option value="0">未交费</option>*@
+                        <option value="2">审核中</option>
+                        <option value="1">已缴费</option>
+                    </select>
+                    @*<select class="form-control" ng-model="ApproveType.select">
+                            <option ng-repeat="it in ApproveType.data" value="{{it.id}}">{{it.value}}</option>
+                        </select>*@
+                </div>
+                <label class="col-md-2 control-label">应付金额</label>
+                <div class="col-md-3 text-left">
+                    <select class="form-control" ng-model="Amount">
+                        <option value="">请选择</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+
+                <label class="col-md-2 control-label">审批状态</label>
+                <div class="col-md-3 text-left">
+                    <select class="form-control" ng-model="ApproveType" style=" width:200px">
+                        <option value="">请选择</option>
+                        <option value="1">待审批</option>
+                        <option value="3">已通过</option>
+                        <option value="4">未通过</option>
+                    </select>
+                </div>
+                <label class="col-md-2 control-label">VIN</label>
+                <div class="col-md-3 text-left">
+                    <input class="form-control" type="text" ng-model="VINNumber" />
+                </div>
+            </div>
+            @if (string.IsNullOrEmpty(ViewBag.DealerId))
+            {
+                <label class="col-md-2 control-label">店代码</label>
+                <div class="col-md-3 text-left">
+                    <input class="form-control" type="text" ng-model="DealerId" />
+                </div>
+            }
+            <div class="col-md-2">
+                <button class="btn btn-primary" type="submit" ng-click="search()">查询</button>
+                <a class="btn btn-primary" href="/Membership/ExportApproving?phoneNumber={{phoneNumber}}&PayNumber={{PayNumber}}&IdentityNumber={{IdentityNumber}}&ApproveType={{ApproveType}}&IsPay={{IsPay}}&Amount={{Amount}}&Skip={{0}}&Count={{totalServerItems}}&DealerId={{DealerId}}&PaperWork={{PaperWork}}&VINNumber={{VINNumber}}">导出</a>
+                @*<a class="btn btn-primary" href="@Url.Action("ExportApproving", "Membership")">导出</a>*@
+            </div>
+
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="gridStyle" style="height: 410px; border: 1px solid rgb(212,212,212)" ng-grid="gridOptions">
+            </div>
+        </div>
+    </div>
+</div>
+
+

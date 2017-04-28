@@ -1,0 +1,159 @@
+﻿@{
+    Layout = null;
+}
+@*<script type="text/javascript">
+        function shareTo(site) {
+            var e = encodeURIComponent, s = screen, d = document, wd = 640, hg = 480, u = d.location;
+            var url = "http://api.bshare.cn/share/" + site + "?url=" + e(u) + "&title=" + e(d.title);
+            window.open(url, 'bshare', ['toolbar=0,status=0,resizable=1,width=' + wd + ',height=' + hg + ',left=' + (s.width - wd) / 2 + ',top=' + (s.height - hg) / 2]);
+
+        }
+    </script>
+    <p class="fenxiang">
+        <div style="float:left; padding-left:20px;">分享到：</div>
+        <a onclick="shareTo('weixin')" href="javascript:void(0);"><img src="/img/weixin_s.png"></a>
+        <a onclick="shareTo('sinaminiblog')" href="javascript:void(0);"><img src="/img/xinlangweibo.png"></a>
+        <a onclick ="shareTo('qqmb')" href="javascript:void(0);"><img src="/img/tengxunweibo.png"></a>
+        <a onclick="shareTo('qzone')" href="javascript:void(0);"><img src="/img/qqkongjian.png"></a>
+        <a onclick="shareTo('renren')" href="javascript:void(0);"><img src="/img/renrenwang.png"></a>
+        <a onclick="shareTo('douban')" href="javascript:void(0);"><img src="/img/doupan.png"></a>
+    </p>*@
+
+
+
+@*<script src="~/Scripts/share.js"></script>*@
+
+@*<div class="bdsharebuttonbox">
+    <a style="background:none;">分享到：</a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina"></a>
+    <a href="#" class="bds_tqq" data-cmd="tqq"></a>
+    <a href="#" class="bds_renren" data-cmd="renren"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin"></a>
+    </div>*@
+@*"image": { "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"], "viewText": "分享到：", "viewSize": "16" },*@
+@*<script type="text/javascript" >
+    window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {}, "selectShare": { "bdContainerClass": null, "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"] } };
+    </script>*@
+
+
+
+<!-- JiaThis Button BEGIN -->
+@*<div class="jiathis_style fenxiang" style="float:right">
+        <span style="float:left">分享到：</span>
+        <a class="jiathis_button_weixin"></a>
+        <a class="jiathis_button_tsina"></a>
+        <a class="jiathis_button_tqq"></a>
+        <a class="jiathis_button_qzone"></a>
+        <a class="jiathis_button_renren"></a>
+        <a class="jiathis_button_douban"></a>
+
+        <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    </div>*@
+
+@*<div class="bshare-custom fenxiang" style="float:right">
+        <span style="float:left">分享到：</span><a title="分享到微信" class="bshare-weixin"></a>
+        <a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+        <a title="分享到腾讯微博" class="bshare-qqmb"></a>
+        <a title="分享到QQ空间" class="bshare-qzone"></a>
+        <a title="分享到人人网" class="bshare-renren"></a>
+        <a title="分享到豆瓣" class="bshare-douban"></a>
+        <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+    </div>
+    <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/button.js#style=-1&amp;uuid=de9e3541-a376-41c8-9bc1-ccd07b7a627a&amp;pophcol=2&amp;lang=zh"></script>
+    <a class="bshareDiv" onclick="javascript:return false;"></a>
+    <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>*@
+
+@*<script src="~/Scripts/buttonLite.js"></script>
+    <script src="~/Scripts/share.js"></script>
+    <div class="bshare-custom"><div class="bsPromo bsPromo2"></div><a title="分享到QQ空间" class="bshare-qzone"></a><a title="分享到微信" class="bshare-weixin" href="javascript:void(0);"></a><a title="分享到新浪微博" class="bshare-sinaminiblog"></a><a title="分享到人人网" class="bshare-renren"></a><a title="分享到网易微博" class="bshare-neteasemb"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a><span class="BSHARE_COUNT bshare-share-count" style="float: none;">36.9K</span></div>*@
+
+
+@*<script type="text/javascript" charset="utf-8" src="~/Scripts/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script>
+    <script type="text/javascript" charset="utf-8" src="~/Scripts/share.js"></script>*@
+
+<style type="text/css">
+    .bdsharebuttonbox a, .bdsharebuttonbox .bds_more { float: left; font-size: 12px; padding-left: 17px; line-height: 16px; height: 16px; background-image: url(../../Img/icons_0_16.png?v=d754dcc0.png); background-repeat: no-repeat; cursor: pointer; margin: 6px 6px 6px 0; }
+    .bds_qzone { background-position: 0 -52px; }
+    .bds_tsina { background-position: 0 -104px; }
+    .bds_tqq { background-position: 0 -260px; }
+    .bds_renren { background-position: 0 -208px; }
+    .bds_weixin { background-position: 0 -1612px; }
+
+    /*微信*/
+    .qrcodeTable { position: absolute; left: 400px; top: 400px; padding: 10px; width: 200px; height: 250px; background: #fff; border: solid 1px #d8d8d8; z-index: 11001; font-size: 12px; display: none; }
+    .qrcodeTable .bd_weixin_popup_main { width: 100%; margin: 20px 0px 0px 30px; }
+    .qrcodeTable .bd_weixin_popup_head { font-size: 12px; font-weight: bold; text-align: left; line-height: 16px; height: 16px; position: relative; color: #000; }
+    .qrcodeTable .bd_weixin_popup_close { width: 16px; height: 16px; position: absolute; right: 0; top: 0; color: #999; text-decoration: none; font-size: 16px; }
+    .qrcodeTable .bd_weixin_popup_foot { font-size: 12px; text-align: left; line-height: 22px; color: #666; }
+</style>
+
+
+<script src="~/Scripts/jquery.qrcode.min.js"></script>
+
+
+<div class="bdsharebuttonbox" id="share_menu">
+    <a style="background:none;">分享到：</a>
+    <a href="#" data-cmd="qzone" target="_blank"></a>
+    <a href="#" data-cmd="tsina" target="_blank"></a>
+    <a href="#" data-cmd="tqq" target="_blank"></a>
+    <a href="#" data-cmd="renren" target="_blank"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin"></a>
+</div>
+
+<div id="qrcodeTable" class="qrcodeTable">
+    <div class="bd_weixin_popup_head"><span>分享到微信朋友圈</span><a href="#" class="bd_weixin_popup_close">×</a></div>
+    <div id="bd_weixin_popup_main" class="bd_weixin_popup_main"></div>
+    <div style="height:10px;">&nbsp;</div>
+    <div class="bd_weixin_popup_foot">打开微信，点击底部的“发现”，<br>使用“扫一扫”即可将网页分享至朋友圈。</div>
+</div>
+
+<script type="text/javascript">
+    var json_share = { "qzone": { "url": "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey", "class": "bds_qzone", "title": "分享到QQ空间" }, "tsina": { "url": "http://v.t.sina.com.cn/share/share.php", "class": "bds_tsina", "title": "分享到新浪微博" }, "tqq": { "url": "http://v.t.qq.com/share/share.php", "class": "bds_tqq", "title": "分享到腾讯微博" }, "renren": { "url": "http://widget.renren.com/dialog/share", "class": "bds_renren", "title": "分享到人人网" } };
+
+    var cururl = window.location.href;
+    var curtitle = $(document).attr("title");
+    if (typeof ($("#share_title").val()) != "undefined" && $("#share_title").val() !=null && $("#share_title").val() != "")
+    {
+        curtitle = $("#share_title").val();
+    }
+    $(function ()
+    {
+        jQuery('#bd_weixin_popup_main').qrcode({
+        render: "table",
+        text: cururl,
+        width: 130,
+        height: 120
+    });
+
+        $.each(json_share, function (index, d)
+    {
+            var hr = d.url + "?url=" + encodeURIComponent(cururl) + "&title=" + curtitle;
+            if (index == "renren")
+    {
+                hr = d.url + "?resourceUrl=" + encodeURIComponent(cururl) + "&title=" + curtitle;
+    }
+            $("#share_menu a[data-cmd='" + index + "']").attr("class", d.class);
+            $("#share_menu a[data-cmd='" + index + "']").attr("href", hr);
+            $("#share_menu a[data-cmd='" + index + "']").attr("title", d.title);
+    })
+
+        var obj = $("#share_menu a[data-cmd='weixin']");
+        var offset = obj.offset();
+        $("#qrcodeTable").css({ "top": offset.top + 20, "left": offset.left });
+
+
+        obj.click(function ()
+    {
+            $("#qrcodeTable").show();
+    })
+
+        $(".bd_weixin_popup_close").click(function ()
+    {
+            $("#qrcodeTable").hide();
+    });
+
+    })
+
+</script>

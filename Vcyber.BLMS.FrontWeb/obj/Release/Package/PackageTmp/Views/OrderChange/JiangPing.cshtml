@@ -1,0 +1,62 @@
+﻿@{
+    Layout = null;
+}
+
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/ExChangeStyle.css">
+    <link rel="stylesheet" type="text/css" href="/css/ExChangeAward.css">
+    <link rel="stylesheet" type="text/css" href="/layer/skin/layer.css">
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <!--转动插件rotate,js-->
+    <script type="text/javascript" src="~/Scripts/ExChangeAwardRotate.js"></script>
+    <!--抽奖-->
+    <script type="text/javascript" src="~/Scripts/ExChangeAward.js"></script>
+    <!--弹出层layer-->
+    <script type="text/javascript" src="/layer/layer.js"></script>
+
+    <title>置换月活动_奖品设置 </title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="mainBox jieshao">
+            <div class="header">
+                <dl>
+                    <dd><a href="/OrderChange/Index">首　页</a></dd>
+                    <dd><a href="/OrderChange/JieShao">活动介绍</a></dd>
+                    <dt><a href="/"></a></dt>
+                    <dd class="on"><a href="/OrderChange/JiangPing">奖品设置</a></dd>
+                    <dd><a href="/OrderChange/ZhongJiang">中奖名单</a></dd>
+                </dl>
+            </div>
+            <div class="jieshaoCon jiangping">
+                <div class="imgBox"><img src="/images/jiangPing.png" /></div>
+                <h4 class="firstBtn">奖品设置</h4>
+                <p class="pIndent1 pTop30"><strong>1、蓝缤定制礼（预约试驾、置换、推荐好友，抽奖获得）：</strong></p>
+                <p class="pIndent"><strong>幻响车充</strong>（共500个）</p>
+                <p class="pIndent"><strong>旅行四件套</strong>（共500个）</p>
+                <p class="pIndent1 pTop30"><strong> 2、2万元购车大礼包：</strong></p>
+                <p class="pIndent"><strong>置换补贴：4000元</strong>（仅限全新胜达）</p>
+                <p class="pIndent"><strong>分期贴息：2年分期贴息</strong>（详情垂询当地经销商）</p>
+                <p class="pIndent"><strong>购车、置换积分</strong>（根据车型赠送不同，详情垂询当地经销商）</p>
+                <p class="pIndent"><strong>购车礼</strong>（电影票*2+运动手环，购车后获得，共100个）</p>
+                <p class="pIndent"><strong>推荐礼</strong>（运动手环，好友购车后，推荐人获得，共100个）</p>
+            </div>
+            <div style="height:40px;"></div>
+        </div>
+    </div>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?0b4e366e453f3524b50e08dc17833d51";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        _hmt.push(['_trackPageview', "/OrderChange/JiangPing?Source=@ViewBag.Source"]);
+    </script>
+</body>
+</html>

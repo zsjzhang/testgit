@@ -1,0 +1,47 @@
+﻿@model System.Collections.Generic.List<Vcyber.BLMS.FrontWeb.Models.BBS.BBSGuestBook>
+
+@{
+    Layout = null;
+}
+ 
+<table cellpadding="0" cellspacing="0" class="fabu_tiez">
+    <thead>
+        <tr>
+            <td class="col_b" colspan="2">置顶</td>
+            <td></td>
+            <td>作者/发布时间</td>
+            <td>回复/查看</td>
+            <td colspan="2">最后发表</td>
+        </tr>
+    </thead>
+    <tbody>
+        
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td style="width: 12px;"></td>
+                <td class="col_b bor havel" width="5%"><img src="../../img/zhiding.png"></td>
+                <td class="bor">
+                    <p class="big_zi">@Html.ActionLink(item.G_Title, "Comment", "BBSHome", new { id = item.Id }, new { }) </p>
+                    @{
+                        var ctt = item.G_Content.Length > 20 ? item.G_Content.Substring(0, 20) + "..." : item.G_Content;
+                    }
+                    <p>@ctt</p>
+                </td>
+                <td class="bor cent">
+                    <p>@item.BBSMember.UserName </p>
+                    <p>@(((DateTime)item.G_Time).ToString("yyyy-MM-dd HH:mm"))</p>
+                </td>
+                <td class="bor havel cent">@item.G_ResponseCount / @item.G_ReadCount </td>
+                <td class="bor cent">
+                    <p>@item.LastUpdateMemberName</p>
+                    <p>@item.LastUpdateTime.ToString("yyyy-MM-dd HH:mm")</p>
+                </td>
+                <td style="width: 12px;"></td>
+            </tr>
+ 
+        }
+    </tbody>
+</table>
+

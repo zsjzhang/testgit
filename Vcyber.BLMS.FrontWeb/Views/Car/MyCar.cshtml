@@ -1,0 +1,43 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="individual_5">
+    <span>我的爱车</span>
+    <div class="bg"></div>
+</div>
+<ul class="individual_6">
+    @{
+        var myCars = ViewData["mycars"];
+        if (myCars != null)
+        {
+            @*foreach (var item in myCars)
+            {
+                <li>
+                    <a>
+                        <img src="img/pic.png">
+                        <span>
+                            @item.CarName
+                        </span>
+                        <span>
+                            @item.BuyDate
+                        </span>
+                    </a>
+                </li>
+            }*@
+        }
+
+    }
+    <li>
+        <a>
+            <img src="/img/pic_1.png">
+            <span>
+                第八代索纳塔2.0GLS AT
+            </span>
+            <span>
+                2014年3月28日购买
+            </span>
+        </a>
+
+    </li>
+</ul>

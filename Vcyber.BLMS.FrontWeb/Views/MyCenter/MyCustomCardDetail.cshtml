@@ -1,0 +1,204 @@
+﻿@model   Vcyber.BLMS.Entity.ReturnUserCustomCardInfo
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "卡券详情";
+}
+@using System.Configuration;
+<!--个人中心-->
+<link href="~/css/base/information.css" rel="stylesheet" />
+<link href="~/css/base/dd.css" rel="stylesheet" />
+<style>
+    .coupDetBox {
+        position: relative;
+        margin: 20px;
+        width: 653px;
+        min-height: 580px;
+    }
+
+    .coupBan {
+        height: 200px;
+		overflow: hidden;
+		margin: 0 auto;
+		text-align: center;
+    }
+
+	.coupBan img {
+		height: 100%;
+	}
+
+    .coupBtnSelBox {
+        position: relative;
+        margin-left: 16px;
+        width: 660px;
+        overflow: hidden;
+    }
+
+        .coupBtnSelBox a {
+            position: relative;
+            display: block;
+            float: left;
+            width: 100%;
+            height: 84px;
+            background: #eee;
+            margin-left: 4px;
+        }
+
+            .coupBtnSelBox a i {
+                display: block;
+                position: relative;
+                margin: 14px auto 0 auto;
+            }
+
+                .coupBtnSelBox a i.CoupRule {
+                    width: 25px;
+                    height: 35px;
+                    background: url(/img/coupRule.jpg) no-repeat;
+                }
+
+                .coupBtnSelBox a i.coupExchange {
+                    width: 33px;
+                    height: 33px;
+                    background: url(/img/coupExchange.jpg) no-repeat;
+                }
+
+            .coupBtnSelBox a span {
+                position: absolute;
+                top: 58px;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                font-size: 14px;
+                color: #767575;
+                display: block;
+            }
+
+    .coupDetBox h2 {
+        position: relative;
+        width: 100%;
+        margin-top: 32px;
+        height: 32px;
+        text-align: center;
+        color: #3d3f43;
+        font-size: 14px;
+    }
+
+    .coupDetBox h3 {
+        position: relative;
+        width: 175px;
+        height: 173px;
+        background: url(/img/bgCode.jpg) no-repeat;
+        margin: 0 auto;
+    }
+
+        .coupDetBox h3 span {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -69px;
+            margin-top: -71px;
+            display: block;
+            width: 121px;
+            height: 121px;
+            padding: 8px;
+            border: 2px solid #78b3d5;
+        }
+
+            .coupDetBox h3 span img {
+                width: 100%;
+                height: 100%;
+            }
+
+    .coupDetBox h4 {
+        position: relative;
+        width: 100%;
+        margin-top: 21px;
+        margin-bottom: 30px;
+        color: #075090;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .coupDetBox p {
+        color: #3d3f43;
+        font-size: 14px;
+        line-height: 28px;
+        overflow: hidden;
+    }
+
+        .coupDetBox p span {
+            display: inline-block;
+            width: 108px;
+            float: left;
+        }
+
+        .coupDetBox p em {
+            display: inline-block;
+            width: 530px;
+            float: left;
+        }
+</style>
+<div>
+    <div class="heaer">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Mycenter" })
+    </div>
+    <div class="content">
+        <div class="n_all_cont">
+            <div class="n_left_cont">
+                @Html.Partial("_PartialUserInfo", ViewData["curUserEntity"])
+                @Html.Partial("_PartialMyWallet", ViewData["curUserEntity"])
+            </div>
+            <div class="n_right_cont">
+                <div class="new_menu">
+                    <p class="select_menu"><a href="/Mycenter/MyCustomCardIndex">我的卡券&gt;</a>卡券详情</p>
+                </div>
+                <div class="geren_box couConBox">
+                    <div class="gy_title">
+                        <div class="gy_zi">
+                            <h1>卡券详情</h1>
+                            <span>Coupons Details</span>
+                        </div>
+                    </div>
+                    <!--卡券详情页-->
+                    @{
+                        var imgPath = ConfigurationManager.AppSettings["ImgPath"];
+                        var cardLogoUrl = imgPath + Model.CardLogoUrl;
+                    }
+                    <div class="coupDetBox">
+                        <div class="coupBan">
+                            <img src="@cardLogoUrl"/>
+                        </div>
+                        <h2>卡券二维码／兑换码</h2>
+                        <h3>
+                            <span><img src="/Mycenter/GetQCode?id=@Model.CardCode" /></span>
+                        </h3>
+                        <h4>@Model.CardCode</h4>
+                        <p>
+                            <span>有效期：</span>
+                            @{
+
+                                var cardDate = string.Format("{0} 至 {1}", Model.CardBeginDate.ToString("yyyy-MM-dd"), Model.CardEndDate.ToString("yyyy-MM-dd"));
+                            }
+                            <em>@cardDate</em>
+                        </p>
+                        <p>
+                            <span>使用方法简介：</span>
+                            <em>@Html.Raw(Model.Instructions)</em>
+                        </p>
+                    </div>
+
+                    <!--按钮-->
+                    <div class="coupBtnSelBox" style="display: none">
+                        <a href="/Mycenter/MyCustomCardInstructions">
+                            <i class="CoupRule"></i>
+                            <span>卡券使用规则</span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

@@ -1,0 +1,9 @@
+D:\project\Vcyber.BLMS\DiscuzToolkit\bin\Release\Discuz.Toolkit.dll
+D:\project\Vcyber.BLMS\DiscuzToolkit\bin\Release\Discuz.Toolkit.pdb
+D:\project\Vcyber.BLMS\DiscuzToolkit\bin\Release\log4net.dll
+D:\project\Vcyber.BLMS\DiscuzToolkit\bin\Release\Newtonsoft.Json.dll
+D:\project\Vcyber.BLMS\DiscuzToolkit\bin\Release\log4net.xml
+D:\project\Vcyber.BLMS\DiscuzToolkit\bin\Release\Newtonsoft.Json.xml
+D:\project\Vcyber.BLMS\DiscuzToolkit\obj\Release\DiscuzToolkit.csprojResolveAssemblyReference.cache
+D:\project\Vcyber.BLMS\DiscuzToolkit\obj\Release\Discuz.Toolkit.dll
+D:\project\Vcyber.BLMS\DiscuzToolkit\obj\Release\Discuz.Toolkit.pdb

@@ -1,0 +1,188 @@
+﻿@{
+    ViewBag.Title = "焕颜迎新";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<style type="text/css">
+    #bp {
+        overflow: hidden;
+        height: 80px;
+    }
+
+    #foot {
+        width: 100%;
+        position: fixed;
+        bottom: 0px;
+        z-index: 100;
+        background: #32ADFF;
+    }
+
+        #foot a {
+            display: block;
+            text-align: center;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+    #banner img {
+        width: 100%;
+        display: block;
+    }
+
+    #popwinhead img {
+        width: 100%;
+        display: block;
+        -moz-border-radius: 10px 10px 0px 0px;
+        -webkit-border-radius: 10px 10px 0px 0px;
+        -o-border-radius: 10px 10px 0px 0px;
+        border-radius: 10px 10px 0px 0px;
+    }
+
+    #login {
+        display: none;
+    }
+
+    .input_box {
+        padding: 10px 15px 0px 15px;
+    }
+
+    #page {
+        padding: 15px;
+        line-height: 1.5;
+        font-size: 16px;
+        color: #333;
+    }
+
+    #jiayouka {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+
+        #jiayouka img {
+            width: 160px;
+        }
+
+    .quan {
+        text-align: center;
+        padding-top: 10px;
+    }
+
+        .quan span {
+            padding: 4px;
+        }
+
+        .quan img {
+            width: 45%;
+        }
+
+    .title {
+        font-weight: bold;
+        font-size: 18px;
+        color: #000;
+    }
+
+    .title2 {
+        font-weight: bold;
+        color: #000;
+    }
+
+    .spacer10 {
+        overflow: hidden;
+        height: 10px;
+    }
+
+    .spacer20 {
+        overflow: hidden;
+        height: 20px;
+    }
+
+    .red {
+        color: #E24E4E;
+    }
+
+    .icon-chevron-up:before {
+        content: "\f077";
+        font-family: FontAwesome;
+    }
+
+    .icon-chevron-down:before {
+        content: "\f078";
+        font-family: FontAwesome;
+    }
+</style>
+<div id="banner">
+    <img src="~/img/home/banner.jpg">
+</div>
+<div id="page">
+    <div class="title">喜迎新春，人要精神抖擞，爱车也不可马虎。</div>
+    <div>
+        蓝缤爱车焕新卡券疯狂送，助您为爱车保养、美容、钣喷、添置精品，一扫倦容与旧貌，喜迎新年新气象。<br>
+        蓝缤更豪掷30份1000元油卡，幸运得主没准就是你！
+    </div>
+    <div class="spacer20"></div>
+    <div class="title">活动时间</div>
+    <div>即日起至2017年1月17日(卡券核销截至2017年2月28日）</div>
+    <div class="spacer20"></div>
+    <div class="title">活动礼品</div>
+    <div>
+        一、汽车保养、美容、钣喷、精品等优惠卡券任领<span class="red">1</span>张！
+    </div>
+    <div class="quan">
+        <img src="~/img/home/byq.png"><span>&nbsp;</span><img src="~/img/home/mrq.png">
+    </div>
+    <div class="quan">
+        <img src="~/img/home/jpq.png"><span>&nbsp;</span><img src="~/img/home/bpq.png">
+    </div>
+    <div class="spacer10"></div>
+    <div>二、 面额1000元油卡30份，进店消费有机会获得！</div>
+    <div id="jiayouka">
+        <img src="~/img/home/jiayouka.png">
+    </div>
+    <div class="red">凡参与活动的车主，在卡券有效期内返厂消费（卡券相关服务）总额满1000元，即可参与30份1000元油卡抽奖，有机会获得1000元油卡幸运大礼！</div>
+    <div class="spacer20"></div>
+    <div class="title">活动流程</div>
+    <div class="title2">一、线上参与流程：</div>
+    <div>
+        第一步：进入活动页面，点击“我要预约”；<br> 第二步：填写手机号、验证码登录预约维保；<br>
+        第三步：填写并提交预约维保申请，点击“立即领取卡券”；<br>
+        第四步：任选一张卡券，登录北京现代bluemembers官方APP、微信或网站，在“个人中心”-“我的卡券”中查看礼券详情。
+    </div>
+    <div class="title2">二、卡券使用流程：</div>
+    <div>
+        第一步：车主在卡券有效期内进店，接受服务消费前登录“个人中心”-“我的卡券”；<br>
+        第二步：点击卡券“详情”，出示卡券码，核销并享受服务。
+    </div>
+    <div class="spacer20"></div>
+    <div id="title" class="title">
+        活动规则 <i id="titlei" class="icon-chevron-down"></i>
+    </div>
+    <div id="content" style="display:none;">
+        1、每名车主活动期间限领1张卡券，卡券领取采用先到先得原则；<br>
+        2、车主须在卡券有效期内进店使用卡券，并按照卡券详情核销卡券金额；<br>
+        3、系统将于卡券有效期后10日内（即2017年3月10日23：59：59前），公布1000元油卡抽奖结果，获奖名单将公布在北京现代bluemembers官方APP；<br>
+        4、1000元油卡获奖名单公布后3个工作日内，获奖车主将收到获奖短信通知，并有客服人员电话联系获奖车主确认所需充值的油卡号，须为个人记名油卡。如获奖车主电话持续无法接通，视为自动弃奖；如获奖车主提供的油卡号不正确或不支持充值，视为自动弃奖；<br>
+        5、本活动最终解释权归北京现代汽车有限公司所有，活动中如有疑问请及时拨打北京现代24小时客服热线：400-800-1100
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#title").click(function () {
+            var show = document.getElementById("content");
+            if (show.style.display == '') {
+                $("#titlei").removeClass("icon-chevron-up");
+                $("#titlei").addClass("icon-chevron-down");
+
+                show.style.display = 'none';
+            } else {
+                show.style.display = '';
+                $("#titlei").addClass("icon-chevron-up");
+                $("#titlei").removeClass("icon-chevron-down");
+            }
+        });
+    });
+</script>

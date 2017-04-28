@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>向天猫店支付</title>
+    <link rel="stylesheet" type="text/css" href="../Content/NewCss/resetzsy.css">
+    <link rel="stylesheet" type="text/css" href="../Scripts/NewJs/layer/need/layer.css">
+    <script type="text/javascript" src="../Scripts/NewJs/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="../Scripts/NewJs/fontSize.js"></script>
+    <script type="text/javascript" src="../Scripts/NewJs/layer/layer.js"></script>
+    <script>
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+        $(function () {
+            if (GetQueryString("id") == 1) {
+                $("#url1").text("http://tb.am/9m1v4");
+               // $("#url1").text("https://detail.tmall.com/item.htm?spm=a1z10.4-b.w5003-12994442256.3.cmKogk&id=44232536739&rn=f01d8240d8d928afde8c46ce6322d111&abbucket=8&skuId=3184713456111&scene=taobao_shop");
+            } else {
+                $("#url1").text("http://tb.am/jcg32");
+                //$("#url1").text("https://detail.tmall.com/item.htm?spm=a1z10.4-b.w5003-12994442256.2.cmKogk&id=533870432232&rn=eff56e7365ac38eb25caa9cacf22327b&abbucket=5&skuId=3184550976675&scene=taobao_shop");
+            }
+        });
+    </script>
+</head>
+
+<body>
+	<div class="wrapper" style="height:100%">
+
+		<section class="tmailSection">
+            <img src="NewImg/lanxiaoshaui.png" class="xs_logo" />
+            <p>请复制并用浏览器打开以下链接</p>
+            <p id="url1"></p>
+            <img src="newimg/tmailBto.png" class="tmailBto" />
+		</section>
+        
+<!--页脚footer-->
+		<!--<footer>
+        	<div class="footNavTit"></div>
+			<div class="fontNavCon">
+                <a href="/dealer/make" class="nav-1">预约服务</a>
+                <a href="/VipPlan/index" class="nav-2">会员计划</a>
+                <a href="/UserCenter/index" class="nav-5a ">个人中心</a>
+                <a href="/Sonata/index" class="nav-3">蓝缤权益</a>
+                <a href="/Shopping/index" class="nav-4">在线商城</a>
+		      
+		    </div>
+		</footer>-->	
+<!--弹出层示例（以下方面脚导航的'.nav-1'，'.nav-2'做为示例）-->
+
+	</div>
+    
+</body>
+</html>

@@ -1,0 +1,148 @@
+.plan_box{
+	width: 100%;
+	border: 1px solid #EEEEEE;
+	margin: 0 auto;
+}
+
+.plan{
+	width: 100%;
+	margin: 0 auto;
+	height: auto;
+	overflow: hidden;
+}
+.plan ol{
+	width: 100%;
+}
+.plan ol li{
+	background: #eeeeee;
+	text-align: center;
+	line-height: 48px;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	color: #3d3f43;
+	cursor:pointer;
+	float: left;
+	width: 228px;
+	margin-right: 4px;
+}
+
+.plan ol li:last-child{
+	margin-right: 0;
+}
+
+.plan ol li.on{
+	background: #FFFFFF;
+}
+
+.plan ul li{
+	float: left;
+	display:none;
+	padding:20px 16px 80px 16px;
+}
+.plan ul li.curTags{ display:block;}
+.plan ul li p{
+    /*font-family: "宋体";*/
+	font-size: 14px;
+	text-indent:2em;
+	line-height: 32px;
+	
+}
+
+.g_y{
+	padding: 0 1px 0 2px;
+}
+
+
+
+/*  在线订车   */
+
+
+.online_dc{
+	width: 100%;
+	border: 1px solid #EEEEEE;
+	padding-bottom: 177px;
+}
+
+.one_lx{
+	color: #a1a1a1;
+	font-size: 14px;
+	margin: 20px 18px;
+	line-height: 24px;
+}
+
+.yd_box{
+	margin: 0 18px;
+	border-top: 1px solid #EEEEEE;
+}
+
+.yd_box p{
+	height: 30px;
+	line-height: 30px;
+	margin-top: 18px;
+}
+
+.yd_box p b{
+	color: #FF0000;
+	margin-right: 6px;
+}
+
+.yd_box p label{
+	font-size: 14px;
+	width: 96px;
+}
+
+.yd_box .car_x{
+	width: 230px;
+	height: 30px;
+	line-height: 30px;
+	text-indent: 12px;
+	margin-left: 16px;
+}
+
+.yd_box p input[type="text"]{
+	width: 226px;
+	height: 24px;
+	line-height: 24px;
+	text-indent: 12px;margin-left: 16px;
+}
+
+.yd_box p span{
+	margin-left: 16px;
+	margin-right: 16px;
+}
+
+.yd_box p input[type="radio"]{
+	width: 14px;
+	height: 14px;
+	position: relative;
+	top:2px
+}
+
+.yd_box .car_s{
+	width: 132px;
+	height: 30px;
+	line-break: 30px;
+	text-indent: 12px;
+	margin-left: 16px;
+}
+
+.online_tijiao{
+	width: 230px;
+	height: 32px;
+	line-height: 32px;
+	background: #075090;
+	text-align: center;
+	color: #FFFFFF;
+	font-size: 14px;
+	display: block;
+	margin: 0 auto;
+	border: 1px solid #075090;
+	margin-top: 500px;
+}
+
+.online_tijiao:hover{
+			background: #EEEEEE;
+		border: 1px solid #BEBEBE;
+		color: #909090;
+}
+

@@ -1,0 +1,171 @@
+﻿@model Vcyber.BLMS.Entity.Activities
+
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = Model.Title;
+}
+<script src="~/Scripts/controller/PraiseController.js"></script>
+
+@*处理活动特殊监测*@
+<script>
+    function GetRequest() {
+        var url = location.search; //获取url中"?"符后的字串
+        var theRequest = new Object();
+
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+
+    var Request = new Object();
+    Request = GetRequest();
+    var activityId,sourceId;
+    activityId = Request['id'];
+    sourceId = Request['source'];
+
+    if (activityId == '167') {
+
+        if (sourceId == 'blms_web')
+            _hmt.push(['_setCustomVar', 1, 'ques_visitor', 'APP', 3]);
+        else if (sourceId == 'blms')
+            _hmt.push(['_setCustomVar', 1, 'ques_visitor', '网站', 3]);
+        else if (sourceId == 'blms_wechat')
+            _hmt.push(['_setCustomVar', 1, 'ques_visitor', '微信', 3]);
+        else if (sourceId == 'blms_sms')
+            _hmt.push(['_setCustomVar', 1, 'ques_visitor', '短信', 3]);
+        else if (sourceId == 'blms_weibo')
+            _hmt.push(['_setCustomVar', 1, 'ques_visitor', '微博', 3]);
+        else if (sourceId == 'blms_edm')
+            _hmt.push(['_setCustomVar', 1, 'ques_visitor', 'EDM', 3]);
+        else
+            _hmt.push(['_setCustomVar', 1, 'ques_visitor', '未定义', 3]);
+    }
+
+</script>
+
+
+
+
+<div>
+    <input type="hidden" id="share_title" value="北京现代会员服务品牌-bluemembers蓝缤官方网站，精彩会员活动，贴心会员服务，惊喜活动礼品，最新车型动态就在北京现代bluemembers官方网站。" />
+    <div>
+        @Html.Action("HomeHeader", "Header")
+    </div>
+    <div class="n_all_cont">
+        <input type="hidden" id="movementdetailuserid" value="@ViewBag.userId" />
+        <input type="hidden" id="movementdetailmovementId" value="@ViewBag.movementId" />
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+        </div>
+        <div class="n_right_cont">
+            @{
+                if (Model != null && Model.Id > 0)
+                {
+                    <p class="select_menu"><a href="/Mavement/Index?pageName=Mavement">活动中心></a><a href="">@Model.Title </a></p>
+                    <div class="active_xq">
+                        <div class="news_title">
+                            <div class="news_t_l" style="width:600px;">
+                                <h3>@Model.Title</h3>
+                                <p><span class="clock" style="/* padding-left:0px; */">活动时间： @Model.BeginTime.ToString("yyyy-MM-dd") 至 @Model.EndTime.ToString("yyyy-MM-dd")</span></p>
+                                <div style="float:left;margin-top:-20px; margin-left:220px;">
+                                    @Html.Action("ShareLayer", "Home")
+                                </div>
+                            </div>
+                            <div id="donghua-dianzan-position-auto" style="margin: 0; margin-top:5px; width: 31px; height: 36px; line-height: 36px; color: #fff; border-radius: 18px; background: #f46428 url(/img/praise.png) no-repeat 8px 8px; float: left; position: relative; text-align: right; padding-right: 5px; "></div>
+                        </div>
+                        <div class="acx_box">
+                            @*  <h2>活动时间：@Model.BeginTime.ToString("yyyy-MM-dd") 至 @(Model.EndTime.ToString("yyyy-MM-dd"))</h2>*@
+                            @* <img src="@Model.TrueMajorImageUrl" />*@
+                            <div>
+                                @Html.Raw(Model.TrueContent)
+                            </div>
+
+
+                            @{
+                    if (0 == ViewBag.movementStatus)
+                    {
+                        <div class="minute_2">
+                            @{
+                                if (Model.Id == 247)
+                                {
+                                    <img style="align-self:center;" height="110px" src="/Img/VipImg/20161111.png" />
+                                }
+                                else
+                                {
+                                    if (Model.SignUp == 1)
+                                    {
+                                        <a id="btnMovementDetailSave">我要参加</a>
+                                    }
+                                    else if (Model.IsUrl == 1)
+                                    {
+                                        <a target="_blank" href="@Model.Url">我要参加</a>
+                                    }
+                                }
+                            }
+
+                        </div>
+                    }
+                    else if (1 == ViewBag.movementStatus)
+                    {
+                        <div class="minute_2 m"><a>已经报名</a></div>
+                    }
+                    else if (2 == ViewBag.movementStatus)
+                    {
+                        <div class="minute_2 m"><a>已结束</a></div>
+                    }
+                            }
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+    <div>
+        @Html.Action("Index", "Footer")
+    </div>
+</div>
+<script>
+    $(function () {
+        var praiseObj = new praise(1, '@ViewBag.movementId');
+        $("#donghua-dianzan-position-auto").click(function () {
+            praiseObj.do();
+        });
+
+        $("#donghua-dianzan-position-auto").hover(
+        function () {
+            praiseObj.mouseoverAnimate();
+        },
+        function () {
+            praiseObj.mouseoutAnimate();
+        });
+    });
+</script>

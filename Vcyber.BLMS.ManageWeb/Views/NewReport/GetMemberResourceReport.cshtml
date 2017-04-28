@@ -1,0 +1,97 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render("~/bundles/jquery")
+
+<link href="/Scripts/bootstrap-datepicker/datepicker.css" rel="stylesheet" />
+<script src="/Scripts/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+<script src="/Scripts/bootstrap-datepicker/bootstrap-datepicker.zh-CN.js"></script>
+
+<script>
+
+    $(function () {
+        $('.datepicker').datepicker();
+    });
+
+    function check() {
+        debugger;
+        var start = new Date($("#begintime").val());
+        var end = new Date($("#endtime").val());
+        if ($("#begintime").val() == "" || $("#endtime").val() == "") {
+            alert("时间必填");
+            return false;
+        }
+        if (Date.parse(start) > Date.parse(end)) {
+            alert("开始时间不能大于结束时间");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+<style type="text/css">
+    table td {
+        text-align: center;
+    }
+
+    .table .nowrap > td {
+        white-space: nowrap;
+    }
+</style>
+<div class="container panel panel-default">
+    <div class="panel-body">
+        <strong>报表管理 -周报统计</strong>
+    </div>
+</div>
+<form method="post" action="/NewReport/GetMemberResourceReport">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">统计时间：</label>
+                    <div class="col-md-2 text-left">
+                        <input id="begintime" class="form-control datepicker" name="start" data-date-format="yyyy-mm-dd" value="@ViewBag.start">
+                    </div>
+                    <div class="col-md-2 text-left">
+                        <input id="endtime" class="form-control datepicker" name="end" data-date-format="yyyy-mm-dd" value="@ViewBag.end">
+                    </div>
+
+                    <button class="btn btn-primary" type="submit" onclick="return check()">查询</button>
+                </div>
+            </div>
+            @* @fwx ,@fapp ,@fweb ,@dealer ,@chezhuwx ,@chezhuapp ,@chezhuweb*@
+            <div id="divPageList">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr class="l1 nowrap" style="background-color: #eaeaea;">
+                            <td>非车主微信</td>
+                            <td>非车主app</td>
+                            <td>非车主网站</td>
+                            <td>经销商</td>
+                            <td>车主微信</td>
+                            <td>车主app</td>
+                            <td>车主网站</td>
+                            @*<td>金卡会员</td>*@
+                        </tr>
+                        <tr>
+                            <td>
+                                @ViewBag.Fwx
+                            </td>
+                            <td>
+                                @ViewBag.Fapp
+                            </td>
+                            <td>@ViewBag.Fweb </td>
+                            <td>@ViewBag.LikeD </td>
+                            <td>@ViewBag.chezhuwx </td>
+                            <td>@ViewBag.chezhuapp </td>
+                            <td>@ViewBag.chezhuweb </td>
+                            @*<td no="5">@ViewBag.jk</td>*@
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            @*结束*@
+        </div>
+
+    </div>
+</form>

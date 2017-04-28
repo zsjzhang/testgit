@@ -1,0 +1,311 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "重置密码";
+}
+<head>
+    <title>重置密码</title>
+</head>
+<div class="wrapper" id="wrapper">
+    <div class="logo">
+        <img src="~/img/NewImg/lanbing_logo.png" />
+    </div>
+    <div class="form-box">
+        <form id="mainForm" method="post">
+            <div class="form-row">
+                <input type="tel" id="PhoneNumber" name="PhoneNumber" autocomplete="off" placeholder="手机号" class="global-ipt" />
+            </div>
+            <div class="form-row">
+                <input type="text" name="VerifyCode" id="VerifyCode" autocomplete="off" placeholder="图形验证码" class="global-ipt code-ipt" />
+                <span class="code-num">
+                    <img id="getcode" class="code-num" src="@Url.Content("~/VerifyCodeHandler.ashx")" alt="图形验证码"
+                         onclick="document.getElementById('getcode').src='@Url.Content("~/VerifyCodeHandler.ashx")?temp='+ (new Date().getTime().toString(36)); return false" />
+                </span>
+            </div>
+            <div class="form-row">
+                <input type="text" id="VerCode" name="VerCode" autocomplete="off" placeholder="验证码" class="global-ipt code-ipt" />
+                <span class="code-num">
+                    <input type="button" id="btnSendVerCode" autocomplete="off" value="发送验证码" />
+                    <em class="lanbing_telbtn" id="sysj" style="display:none"></em>
+                </span>
+            </div>
+            <div class="form-row">
+                <input type="password" autocomplete="off" id="NewPassword" name="NewPassword" placeholder="新密码" class="global-ipt" />
+                <span style="font-size: 0.8em">密码需包含大小写字母、数字，且长度在8-12位</span>
+            </div>
+            <div class="form-row">
+                <input type="password" autocomplete="off" id="ConfirmPassword" name="ConfirmPassword" placeholder="重复新密码" class="global-ipt" />
+            </div>
+
+            <div id="errorContainer" class="form-row form-reg-tips"></div>
+            <div class="form-row">
+                <div id="RetPassWord" class="global-reg-btn">确认</div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    //发送手机验证码
+    $("#btnSendVerCode").click(function () {               
+        var mobile = $("#PhoneNumber").val();
+        var code = $("#VerifyCode").val();
+        if (!mobile) {
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>手机号码不能为空</span>'
+            });
+            return false;
+        }
+        var reg = /^[1][3587][0-9]{9}$/;
+        if (!reg.test(mobile)) {
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>手机格式不正确</span>'
+            });
+            return false;
+        }
+        if ($(this).attr("disabled")) {
+            return false;
+        }
+        $(this).attr("disabled", "");
+
+        //发送前就显示倒计时
+        $("#btnSendVerCode").css('display', 'none');
+        //倒计时60s
+        $("#sysj").css('display', 'block');
+        var t = 60;
+        if (t > 0)
+            var timer = setInterval(function () {
+                if (t > 0) {
+                    t--;
+                    $("#sysj").html(t + "秒");
+                }
+                else {
+                    clearInterval(timer);
+                    $("#sysj").hide();
+                    $("#btnSendVerCode").show();
+
+                }
+            }, 1000);
+
+        //发送验证码
+        $.ajax({
+            url: "/Account/SendCaptchaAndCheckImageCode",
+            dataType: "json",
+            type: "post",
+            data: { mobile: mobile, imageCode: code },
+            success: function (result) {
+                if (!result || result.code == "400") {
+                    layer.open({
+                        type: 1,
+                        skin: 'bmPopErr',
+                        title: 0,
+                        shift: 2,
+                        closeBtn: 0,
+                        shadeClose: true,
+                        area: ['5.4rem', '3.23rem'],
+                        btn: ['确定'],
+                        content: '<img src="../img/boy_err.png" /><span>' + result.msg + '</span>'
+                    });
+                    return false;
+                }
+                else if (!result || result.code == "401") {
+                    layer.open({
+                        type: 1,
+                        skin: 'bmPopErr',
+                        title: 0,
+                        shift: 2,
+                        closeBtn: 0,
+                        shadeClose: true,
+                        area: ['5.4rem', '3.23rem'],
+                        btn: ['确定'],
+                        content: '<img src="../img/boy_err.png" /><span>图形验证码输入错误</span>'
+                    });
+                    return false;
+                }
+                else if (result.code == "200") {
+                    //更新剩余时长
+                    //countDown(this, 60);
+                    layer.open({
+                        type: 1,
+                        skin: 'bmPopErr',
+                        title: 0,
+                        shift: 2,
+                        closeBtn: 0,
+                        shadeClose: true,
+                        area: ['5.4rem', '3.23rem'],
+                        btn: ['确定'],
+                        content: '<img src="../img/boy_err.png" /><span>短信验证码已发送</span>'
+                    });                                     
+                }                
+            },
+            error: function (err) {
+                layer.open({
+                    type: 1,
+                    skin: 'bmPopErr',
+                    title: 0,
+                    shift: 2,
+                    closeBtn: 0,
+                    shadeClose: true,
+                    area: ['5.4rem', '3.23rem'],
+                    btn: ['确定'],
+                    content: '<img src="../img/boy_err.png" /><span>err</span>'
+                });
+            }
+        });
+        $(this).removeAttr("disabled");
+        //}
+    });
+
+    //找回密码
+    $("#RetPassWord").click(function () {        
+        var mobile = $("#PhoneNumber").val();//手机号
+        var captcha = $("#VerCode").val();//手机验证码
+        var Imgcaptcha = $("#VerifyCode").val();//图形验证码
+        var passwd = $("#NewPassword").val();//新密码
+        var repasswd = $("#ConfirmPassword").val();//确认密码
+
+
+        if (mobile == null || mobile == "") {
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>手机号码输入有误</span>'
+            });
+            return false;
+        }
+        if (captcha == null || captcha == "") {
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>请输入手机验证码</span>'
+            });
+            return false;
+        }
+        if (Imgcaptcha == null || Imgcaptcha == "") {
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>请输入图形验证码</span>'
+            });
+            return false;
+        }
+        var passReg = /^(?=.*[0-9].*)(?=.*[A-Z].*)(?=.*[a-z].*).{8,100}$/;
+        if (passwd.length < 8 || !passReg.test(passwd)) {
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>密码必须8位以上数字和大小写字母组合</span>'
+            });
+            return false;
+        }
+        if (passwd != "" && passwd.length < 8) {
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>请输入8位以上密码</span>'
+            });
+            return false;
+        }
+        if (passwd == "" || repasswd == "" || passwd != repasswd) {
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>两次密码输入不一致，请重新输入</span>'
+            });
+            return false;
+        }
+
+        //执行
+        $.ajax({
+            url: "/Account/DoResetPasswd",
+            type: "post",
+            data: { userAccount: mobile, passwd: passwd, newpasswd: repasswd, captcha: captcha, Imgcaptcha: Imgcaptcha },
+            dataType: "json",
+            success: function (result) {
+                if (result === null || result.code === "" || result.code == "400") {
+                    //popWindownBlue(result.msg);
+                    layer.open({
+                        type: 1,
+                        skin: 'bmPopErr',
+                        title: 0,
+                        shift: 2,
+                        closeBtn: 0,
+                        shadeClose: true,
+                        area: ['5.4rem', '3.23rem'],
+                        btn: ['确定'],
+                        content: '<img src="../img/boy_err.png" /><span>' + result.msg + '</span>'
+                    });
+                    return false;
+                } else if (result.code == "200") {
+                    layer.open({
+                        type: 1,
+                        skin: 'bmPopErr',
+                        title: 0,
+                        shift: 2,
+                        closeBtn: 0,
+                        shadeClose: true,
+                        area: ['5.4rem', '3.23rem'],
+                        btn: ['确定'],
+                        content: '<img src="../img/boy_err.png" /><span>重置成功</span>'
+                    });
+                    window.location = "/Home/Index";
+                    return false;
+                }
+            },
+            error: function (err) {
+
+            }
+        });
+    });
+</script>

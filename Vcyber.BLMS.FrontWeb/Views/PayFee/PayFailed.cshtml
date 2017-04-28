@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = null;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<div>
+    <div>
+        <span>
+            支付失败，我们没有收到您的支付信息。
+        </span>
+    </div>
+    <div>
+        <span>
+            @Html.ActionLink("重新支付", "PayWay", "PayFee", new { }, new { })
+        </span>
+    </div>
+</div>

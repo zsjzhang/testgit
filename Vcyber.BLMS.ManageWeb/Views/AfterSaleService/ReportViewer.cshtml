@@ -1,0 +1,45 @@
+﻿@{
+    Layout = null;
+}
+
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+</head>
+<script src="/Scripts/jquery-1.10.2.js"></script>
+<script>
+
+    $(function() {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+   
+</script>
+
+<html>
+<head>
+    <script language="javascript">
+        function printme() {
+            document.body.innerHTML = document.getElementById('div2').innerHTML;
+            window.print();
+        }
+    </script>
+</head>
+<body>
+    <div style="width:250px;height:100px;margin-left:100px;">
+        <!--<button onclick="printme();" style="width:150px;height:50px;margin-left:100px;">打印</button>-->
+        <a href="#" onclick="printme();"><img src="~/Content/Image/Print.jpg" /></a>
+    </div>
+
+    <div style="width:800px;height:800px;" id="div2">
+        <img src="@Url.Action("GenerateAndDisplayReport", "AfterSaleService", ViewBag.Data)" />
+    </div>
+</body>
+</html>

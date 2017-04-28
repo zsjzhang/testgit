@@ -1,0 +1,104 @@
+﻿@model List<Vcyber.BLMS.Entity.IntegralReportInfo>
+@using Vcyber.BLMS.Entity.Enum;
+@using Vcyber.BLMS.Common;
+@using Vcyber.BLMS.ManageWeb.Helper;
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+<div class="data-container" style="padding-top:30px">
+    <table class="table table-bordered">
+        <thead>
+            <tr class="l1">
+                <th>序号</th>
+                <th>区域</th>
+                <th>店代码</th>
+                <th>会员卡号</th>
+                <th>会员名称</th>
+                <th>手机号</th>
+                <th>首次购车获取</th>
+                <th>曾换购获取</th>
+                <th>维保获取</th>
+                <th>积分获取合计</th>
+                <th>维保兑换</th>
+                <th>机场服务兑换</th>
+                <th>礼品兑换</th>
+                <th>积分兑换合计</th>
+                <th>累计已失效积分</th>
+            </tr>
+        <thead>
+            @{int count = 0;}
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@{int value = ++count;}@value</td>
+                    <th>@item.Area</th>
+                    <td>@item.DealerId</td>
+                    <td>@item.No</td>
+                    <td>@item.RealName</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>@item.HGCTotal</td>
+                    <td>@item.HZHTotal</td>
+                    <td>@item.HWBTotal</td>
+                    <td>@{int hTotal = item.HGCTotal + item.HZHTotal + item.HWBTotal;}@hTotal</td>
+                    <td>@{int wbTotal = item.XBYTotal + item.XWXTotal;}@wbTotal</td>
+                    <td>@item.XJCTotal</td>
+                    <td>@item.XLPTotal</td>
+                    <td>@{int xTotal = item.XBYTotal + item.XWXTotal + item.XJCTotal + item.XLPTotal;}@xTotal</td>
+                    <td>@item.SXTotal</td>
+                </tr>
+            }
+        <tbody>
+    </table>
+</div>
+<div class="box_a2">
+    <div class="pagbox">
+     <span>共@{@ViewBag.Total}条</span>
+        <a href="javascript:void(0);" onclick="GetPageList(1)">首页</a>
+        <a href="javascript:void(0);" onclick="ShowPages('Pre')"><<</a>
+        <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.PrePage)">上一页</a>
+        @{
+            int PageIndex = (int)ViewBag.PageIndex;
+            int PageCurrentGroup = (int)(PageIndex / 10);
+        }
+
+        @*@for (int i = 1; i <= (int)ViewBag.EndPage; i++)
+            {
+                if ((i < PageCurrentGroup * 10) || (i >= (PageCurrentGroup + 1) * 10))
+                {
+                    <a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)" style="display:none;">@i</a>
+                }
+                else
+                {
+                    if (i == (int)ViewBag.PageIndex)
+                    {<a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)" style="color: blue">@i</a> }
+                    else
+                    {<a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)">@i</a> }
+                }
+            }*@
+        <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.NextPage, 10)">下一页</a>
+        <a href="javascript:void(0);" onclick="ShowPages('Next')">>></a>
+        <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.EndPage, 10)">尾页</a>
+    </div>
+</div>
+<input type="hidden" id="hidCurrentPage" value="@ViewBag.PageIndex" />
+<input type="hidden" id="hidEndPage" value="@ViewBag.EndPage" />
+<input type="hidden" id="hidCurrentGroup" value="@PageCurrentGroup" />
+
+

@@ -1,0 +1,138 @@
+﻿@model System.Data.DataTable
+@using System.Data;
+@{ViewBag.Title = "报表管理--根据活动查询奖品分类的发放总量";
+Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/bootstrap")
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+<script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+
+
+
+<div class="panel-default">
+    @if (User.Identity.Name.ToLower().Equals("admin"))
+    {
+        <div class="panel-body">
+
+
+            <div class="form-group" style=" clear: both">
+
+
+                <label class="col-md-2 control-label">中奖时间：</label>
+                <input type="text" autocomplete="off" ng-model="formData.CreateTimeStart" id="CreateTimeStart" name="CreateTimeStart" onfocus="WdatePicker({ startDate: '%y-%M-%d 00:00:00', skin: 'whyGreen', dateFmt: 'yyyy-MM-dd HH:mm:ss', onpicked: function () { $(this).trigger('change') }, maxDate: '#F{$dp.$D(\'CreateTimeEnd\')}' }); " class="Wdate col-md-2 form-control datepicker" />
+                <span style="float:left; line-height:initial">--</span>
+                <input type="text" autocomplete="off" ng-model="formData.CreateTimeEnd" id="CreateTimeEnd" name="CreateTimeEnd" onfocus="WdatePicker({ startDate: '%y-%M-{%d+1} 00:00:00', skin: 'whyGreen', dateFmt: 'yyyy-MM-dd HH:mm:ss', onpicked: function () { $(this).trigger('change') }, minDate: '#F{$dp.$D(\'CreateTimeStart\')}' }); " class="Wdate col-md-2 form-control " />
+            </div>
+            <div class="form-group" style=" clear: both">
+                <label class="col-md-2 control-label">活动：</label>
+                <select class=" col-md-2  form-control" id="ActivityId">
+                    
+                </select>
+
+                <label class="col-md-2 control-label"></label>
+                <label class=" col-md-2  "></label>
+            </div>
+
+            <div class="form-group" style=" clear: both">
+                <label class="col-md-2 control-label">统计维度：</label>
+                <select class=" col-md-2  form-control" id="TimeType">
+                    <option value="m">月</option>
+                    <option value="y">年</option>
+                    <option value="d">日</option>
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label style="color:red">注：所有的时间段都是大于等于第一个时间，小于等于第二个时间 </label>
+
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn btn-primary" type="submit" onclick="search()" style="margin-top:10px">查询</button>
+                    <button class="btn btn-primary" type="submit" onclick="toReportExcel()" style="margin-top:10px">导出</button>
+                </div>
+
+            </div>
+            <div id="divPageList">
+
+                @*@{
+                        Html.RenderAction("CommonPartialPage", new { index = 1, size = 10 });
+                    }*@
+            </div>
+
+
+
+
+        </div>
+    }
+
+</div>
+
+
+
+
+<script>
+    $(function () {
+        search();
+
+        var url = "@Url.Action("GetActivityInfoList")";
+        $.ajax({
+            type: "post",
+            //async: false,  //同步
+            url: url,
+            success: function (result)
+            {
+
+                var obj = JSON.parse(result);
+                var htmlstr = " <option value=''>请选择</option>";
+                if (obj.length > 0)
+                {
+                    for (var i = 0; i < obj.length; i++)
+                        {
+                        htmlstr += "<option value='" + obj[i].optionvalue + "'>" + obj[i].name + "</option>";
+                    }
+                }
+                $("#ActivityId").html(htmlstr);
+            }
+        });
+
+    });
+    function search() {
+        var data = {
+            CreateTimeStart: $("#CreateTimeStart").val(),
+            CreateTimeEnd: $("#CreateTimeEnd").val(),
+            TimeType: $("#TimeType").val(),
+            ActivityId: $("#ActivityId").val(),
+            pageIndex: 1,
+            pageSize: 10
+        };
+        var url = "@Url.Action("GetWinningInfoTypeCountByTimeActivityPage")";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function (msg) {
+                //alert("123ok");
+                $('#divPageList').html(msg);
+            }
+        });
+    }
+
+    function toReportExcel() {
+        var
+         CreateTimeStart = $("#CreateTimeStart").val(),
+         CreateTimeEnd = $("#CreateTimeEnd").val(),
+         TimeType= $("#TimeType").val(),
+         ActivityId = $("#ActivityId").val();
+        window.location = '/Report/GetWinningInfoTypeCountByTimeActivityExport?CreateTimeStart=' + CreateTimeStart + "&CreateTimeEnd=" + CreateTimeEnd + "&TimeType=" + TimeType + "&ActivityId=" + ActivityId;
+        return false;
+    }
+
+</script>

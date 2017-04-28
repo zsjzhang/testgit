@@ -1,0 +1,50 @@
+﻿@using Vcyber.BLMS.Entity.Enum;
+@{
+    ViewBag.Title = "会员基本信息";
+}
+@{
+    string disabled = ((ELoginMode)ViewBag.LoginMode) == ELoginMode.CYT ? "" : "disabled";
+}
+<script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/UserRegister/UserBaseInfo.js"></script>
+<script type="text/javascript">
+    $(function () {
+        user.getInfo();
+    });
+</script>
+<div>
+    <div>
+        <table>
+            <tr>
+                <td>真实姓名：</td>
+                <td><label id="realName"></label></td>
+            </tr>
+            <tr>
+                <td>性别：</td>
+                <td><input type="radio" value="1" name="sex" /><label for="man">男</label><input type="radio" name="sex" value="2" /><label for="man">女</label><input type="radio" name="sex" value="3" /><label for="man">保密</label></td>
+            </tr>
+            <tr>
+                <td>生日：</td>
+                <td><input type="text" id="birthTime" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowWeek:true,isShowClear:true,readOnly:true})" /></td>
+            </tr>
+            <tr>
+                <td>爱好：</td>
+                <td>
+                    <input type="checkbox" name="hobby" value="01" /><label>运动</label>
+                    <input type="checkbox" name="hobby" value="02" /><label>社交</label>
+                    <input type="checkbox" name="hobby" value="03" /><label>旅游</label>
+                    <input type="checkbox" name="hobby" value="04" /><label>美食</label><br />
+                    <input type="checkbox" name="hobby" value="05" /><label>电影</label>
+                    <input type="checkbox" name="hobby" value="06" /><label>娱乐</label>
+                    <input type="checkbox" name="hobby" value="07" /><label>游戏</label>
+                    <input type="checkbox" name="hobby" value="08" /><label>财经</label>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <input type="button" value="保存" id="save" @disabled onclick="user.saveInfo();" />
+    </div>
+</div>
+

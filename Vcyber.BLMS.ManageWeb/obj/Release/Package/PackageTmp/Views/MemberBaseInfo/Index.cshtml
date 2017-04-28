@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "账户管理 - 会员账户信息";
+    Layout = null;
+}
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>账户管理 - 会员账户信息</strong></div>
+</div>
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>当前共有<span style="color:blue;" ng-bind="userTotalCount"></span>个会员账户</strong></div>
+</div>
+<div class="container panel panel-default">
+    <div class="panel-body">
+        <form name="form" class="form-horizontal" novalidate>
+            <div class="form-group">
+                <label class="col-md-2 control-label">会员名称</label>
+                <div class="col-md-3 text-left">
+                    <input class="form-control" type="text" ng-model="userName" />
+                </div>
+                <label class="col-md-2 control-label">商城平台</label>
+                <div class="col-md-3 text-left">
+                    <select class="form-control" ng-model="destinationDw.select">
+                        <option ng-repeat="it in destinationDw.data" value="{{it.id}}">{{it.value}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn btn-primary" type="submit" ng-click="search()">查询</button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="gridStyle" style="min-height: 410px; border: 1px solid rgb(212,212,212)" ng-grid="gridOptions">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

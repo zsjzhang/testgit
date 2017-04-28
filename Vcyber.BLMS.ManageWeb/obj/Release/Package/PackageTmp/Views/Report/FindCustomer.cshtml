@@ -1,0 +1,126 @@
+﻿@model List<Vcyber.BLMS.Entity.Generated.IFCustomer>
+@using Vcyber.BLMS.Entity.Enum;
+@using Vcyber.BLMS.Common;
+@using Vcyber.BLMS.ManageWeb.Helper;
+
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+<div class="data-container" style="padding-top:30px">
+    <table class="table table-bordered">
+        <thead>
+            <tr class="l1">
+                <th>客户编号</th>
+                <th>客户姓名</th>
+                <th>客户手机号</th>
+                <th>客户证据号</th>
+                <th>客户性别</th>
+                <th>客户邮箱</th>
+                <th>客户地址</th>
+                <th>所属市区</th>
+            </tr>
+        <thead>
+            @{int count = 0;}
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CustId</td>
+                    <td>@item.CustName</td>
+                    <td>@item.CustMobile</td>
+                    <td>@item.IdentityNumber</td>
+                    <td>@item.Gender</td>
+                    <td>@item.Email</td>
+                    <td>@item.Address</td>
+                    <td>@item.City</td>
+                </tr>
+            }
+        <tbody>
+    </table>
+</div>
+<div class="data-container" style="padding-top:30px">
+    <table class="table table-bordered">
+        <thead>
+            <tr class="l1">
+                <th>车种</th>
+                <th>车型</th>
+                <th>经销商ID</th>
+                <th>经销商名称</th>
+                <th>车牌号</th>
+                <th>VIN码</th>
+                <th>行驶里程</th>
+                <th>所属客户</th>
+                <th>购车日期</th>
+            </tr>
+        <thead>
+            @{int count2 = 0; var carDatas = ViewBag.CarData as List<Vcyber.BLMS.Entity.Car>;}
+        <tbody>
+            @foreach (var item in carDatas)
+            {
+                <tr>
+                    <td>@item.CarCategory</td>
+                    <td>@item.CarType</td>
+                    <td>@item.DealerId</td>
+                    <td>@item.DealerName</td>
+                    <td>@item.LicencePlate</td>
+                    <td>@item.VIN</td>
+                    <td>@item.Mileage</td>
+                    <td>@item.CustId</td>
+                    <td>@item.BuyTimeYear</td>
+                </tr>
+            }
+        <tbody>
+    </table>
+</div>
+<div class="box_a2">
+    @*<div class="pagbox">
+        <span>共@{@ViewBag.Total}条<</span>
+        <a href="javascript:void(0);" onclick="GetPageList(1)">首页</a>
+        <a href="javascript:void(0);" onclick="ShowPages('Pre')"><<</a>
+        <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.PrePage)">上一页</a>
+        @{
+            int PageIndex = (int)ViewBag.PageIndex;
+            int PageCurrentGroup = (int)(PageIndex / 10);
+        }
+        @for (int i = 1; i <= (int)ViewBag.EndPage; i++)
+        {
+            if ((i < PageCurrentGroup * 10) || (i >= (PageCurrentGroup + 1) * 10))
+            {
+                <a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)" style="display:none;">@i</a>
+            }
+            else
+            {
+                if (i == (int)ViewBag.PageIndex)
+                {<a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)" style="color: blue">@i</a> }
+                else
+                {<a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)">@i</a> }
+            }
+        }
+        <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.NextPage, 10)">下一页</a>
+        <a href="javascript:void(0);" onclick="ShowPages('Next')">>></a>
+        <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.EndPage, 10)">尾页</a>
+    </div>*@
+</div>
+@*<input type="hidden" id="hidCurrentPage" value="@ViewBag.PageIndex" />
+<input type="hidden" id="hidEndPage" value="@ViewBag.EndPage" />
+<input type="hidden" id="hidCurrentGroup" value="@PageCurrentGroup" />*@
+
+
+
+

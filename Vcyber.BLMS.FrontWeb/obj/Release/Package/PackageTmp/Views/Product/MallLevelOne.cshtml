@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Category>
+@{
+    Layout = null;
+}
+
+<ul class="show_menu">
+    @{
+        if (Model != null && Model.Any())
+        {
+            int i = 1;
+            foreach (var item in Model)
+            {
+                string _className = "show_menu" + i;
+                <li><a href="" class="@_className">@item.Name</a></li>
+                i++;
+            }
+        }
+    }
+</ul>

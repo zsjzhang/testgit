@@ -1,0 +1,1065 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{44D4FC94-AFBA-4B3F-A0D0-9F8D443E165F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VcyBer.BLMS.MobileWeb</RootNamespace>
+    <AssemblyName>VcyBer.BLMS.MobileWeb</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <UseGlobalApplicationHostFile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Gma.QrCodeNet.Encoding, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bm_code\Vcyber.BLMS\lib\Gma.QrCodeNet.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.1.0.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.1.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.2.0.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.2.0.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CarController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CarServiceController.cs" />
+    <Compile Include="Controllers\CommonController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LifeServiceController.cs" />
+    <Compile Include="Controllers\MsgController.cs" />
+    <Compile Include="Controllers\OnlineReadController.cs" />
+    <Compile Include="Controllers\MoreServiceController.cs" />
+    <Compile Include="Controllers\MyCenterController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\VipPlanController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Home\ExChangePolicy.cs" />
+    <Compile Include="Models\Identity\AccountViewModels.cs" />
+    <Compile Include="Models\Identity\IdentityModels.cs" />
+    <Compile Include="Models\Identity\ManageViewModels.cs" />
+    <Compile Include="Models\Car\CarFeature.cs" />
+    <Compile Include="Models\Car\CarItem.cs" />
+    <Compile Include="Models\Car\CarVideo.cs" />
+    <Compile Include="Models\Car\CarTestDrive.cs" />
+    <Compile Include="Models\MyCenter\MyCard.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QrCodeHandler.ashx.cs">
+      <DependentUpon>QrCodeHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\LiyueServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
+    <Compile Include="VerifyCodeHandler.ashx.cs">
+      <DependentUpon>VerifyCodeHandler.ashx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\memberSystemUpGrade.css" />
+    <Content Include="Content\css\myCenter\common_wx.css" />
+    <Content Include="Content\css\replacemodle.css" />
+    <Content Include="Content\css\alert.css" />
+    <Content Include="Content\error.htm" />
+    <Content Include="Content\font-awesome-4.7.0\css\font-awesome.css" />
+    <Content Include="Content\font-awesome-4.7.0\css\font-awesome.min.css" />
+    <Content Include="Content\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="Content\tmail.html" />
+    <Content Include="img\air.png" />
+    <Content Include="img\BgPopWin.png" />
+    <Content Include="img\buzhou.png" />
+    <Content Include="img\car\Celesta\1.jpg" />
+    <Content Include="img\car\Celesta\2.png" />
+    <Content Include="img\car\Celesta\3.png" />
+    <Content Include="img\car\Celesta\4.png" />
+    <Content Include="img\car\Celesta\5.png" />
+    <Content Include="img\car\Celesta\6.png" />
+    <Content Include="img\car\Celesta\7.png" />
+    <Content Include="img\car\Celesta\8.png" />
+    <Content Include="img\car\Elantrayuedong\1.jpg" />
+    <Content Include="img\car\Elantrayuedong\2.jpg" />
+    <Content Include="img\car\Elantrayuedong\Elantrayuedong_c_01.jpg" />
+    <Content Include="img\car\Elantrayuedong\Elantrayuedong_c_02.jpg" />
+    <Content Include="img\car\Elantrayuedong\Elantrayuedong_c_03.jpg" />
+    <Content Include="img\car\img\1.png" />
+    <Content Include="img\car\img\2.png" />
+    <Content Include="img\car\img\3.png" />
+    <Content Include="img\car\img\4.png" />
+    <Content Include="img\car\img\5.jpg" />
+    <Content Include="img\car\img\6.jpg" />
+    <Content Include="img\car\img\7.png" />
+    <Content Include="img\car\img\8.jpg" />
+    <Content Include="img\car\img\ico_about_1.png" />
+    <Content Include="img\car\img\ico_about_2.png" />
+    <Content Include="img\car\img\ico_about_4.png" />
+    <Content Include="img\car\img\ico_about_6.png" />
+    <Content Include="img\car\img\ico_about_arrow.png" />
+    <Content Include="img\car\img\l_1%281%29.png" />
+    <Content Include="img\car\img\l_1.png" />
+    <Content Include="img\car\img\test_img_04.jpg" />
+    <Content Include="img\car\img\test_img_05.jpg" />
+    <Content Include="img\car\img\test_img_06.jpg" />
+    <Content Include="img\car\img\test_img_07.jpg" />
+    <Content Include="img\car\img\test_img_08.jpg" />
+    <Content Include="img\car\img\test_img_09.jpg" />
+    <Content Include="img\car\img\test_img_about01new.jpg" />
+    <Content Include="img\car\img\test_img_about02new.jpg" />
+    <Content Include="img\car\img\test_img_langdong.jpg" />
+    <Content Include="img\car\img\test_img_lingdong.jpg" />
+    <Content Include="img\car\img\test_img_suo8.jpg" />
+    <Content Include="img\car\img\test_img_tusheng.jpg" />
+    <Content Include="img\car\img\test_img_yuedong.jpg" />
+    <Content Include="img\car\IX25\001.jpg" />
+    <Content Include="img\car\IX25\002.jpg" />
+    <Content Include="img\car\IX25\003.jpg" />
+    <Content Include="img\car\IX25\004.jpg" />
+    <Content Include="img\car\IX25\1.jpg" />
+    <Content Include="img\car\IX25\2.jpg" />
+    <Content Include="img\car\IX25\3.jpg" />
+    <Content Include="img\car\IX25\4.jpg" />
+    <Content Include="img\car\IX25\5.jpg" />
+    <Content Include="img\car\IX25\ix25_c_02.jpg" />
+    <Content Include="img\car\IX25\ix25_c_03.jpg" />
+    <Content Include="img\car\IX25\ix25_c_04.jpg" />
+    <Content Include="img\car\IX25\sonota9_0011.jpg" />
+    <Content Include="img\car\IX25\sonota9_0012.jpg" />
+    <Content Include="img\car\ix35\1.jpg" />
+    <Content Include="img\car\ix35\2.jpg" />
+    <Content Include="img\car\ix35\ix35_c_01.jpg" />
+    <Content Include="img\car\ix35\ix35_c_02.jpg" />
+    <Content Include="img\car\ix35\ix35_c_03.jpg" />
+    <Content Include="img\car\Langdong\1.jpg" />
+    <Content Include="img\car\Langdong\2.jpg" />
+    <Content Include="img\car\Langdong\Langdong_c_01.jpg" />
+    <Content Include="img\car\Langdong\Langdong_c_02.jpg" />
+    <Content Include="img\car\Langdong\Langdong_c_03.jpg" />
+    <Content Include="img\car\Langdong\Langdong_c_04.jpg" />
+    <Content Include="img\car\Langdong\Langdong_c_05.jpg" />
+    <Content Include="img\car\Lingdong\1.jpg" />
+    <Content Include="img\car\Lingdong\1.png" />
+    <Content Include="img\car\Lingdong\2.png" />
+    <Content Include="img\car\Lingdong\3.jpg" />
+    <Content Include="img\car\Lingdong\3.png" />
+    <Content Include="img\car\Lingdong\4.jpg" />
+    <Content Include="img\car\Lingdong\2.jpg" />
+    <Content Include="img\car\Lingdong\s1.jpg" />
+    <Content Include="img\car\Lingdong\s2.jpg" />
+    <Content Include="img\car\Lingdong\s3.jpg" />
+    <Content Include="img\car\Mistra\1.jpg" />
+    <Content Include="img\car\Mistra\2.jpg" />
+    <Content Include="img\car\Mistra\Mistra_c_02.jpg" />
+    <Content Include="img\car\Mistra\Mistra_c_03.jpg" />
+    <Content Include="img\car\Mistra\Mistra_c_04.jpg" />
+    <Content Include="img\car\Mistra\p_1.jpg" />
+    <Content Include="img\car\Mistra\p_2.png" />
+    <Content Include="img\car\Mistra\p_3.jpg" />
+    <Content Include="img\car\Mistra\p_4.jpg" />
+    <Content Include="img\car\Mistra\s_1.jpg" />
+    <Content Include="img\car\Mistra\s_2.jpg" />
+    <Content Include="img\car\Mistra\s_3.jpg" />
+    <Content Include="img\car\NewElantra\l_1.png" />
+    <Content Include="img\car\NewElantra\p_1.jpg" />
+    <Content Include="img\car\NewElantra\p_2.jpg" />
+    <Content Include="img\car\NewElantra\p_3.jpg" />
+    <Content Include="img\car\NewElantra\p_4.jpg" />
+    <Content Include="img\car\NewElantra\p_5.jpg" />
+    <Content Include="img\car\NewElantra\p_6.jpg" />
+    <Content Include="img\car\NewElantra\s_1.jpg" />
+    <Content Include="img\car\NewElantra\s_2.jpg" />
+    <Content Include="img\car\NewElantra\s_3.jpg" />
+    <Content Include="img\car\New_Tucson\1.jpg" />
+    <Content Include="img\car\New_Tucson\1.mp4" />
+    <Content Include="img\car\New_Tucson\2.jpg" />
+    <Content Include="img\car\New_Tucson\2.mp4" />
+    <Content Include="img\car\New_Tucson\3.jpg" />
+    <Content Include="img\car\New_Tucson\4.jpg" />
+    <Content Include="img\car\New_Tucson\c_1.jpg" />
+    <Content Include="img\car\New_Tucson\c_2.jpg" />
+    <Content Include="img\car\New_Tucson\c_3.jpg" />
+    <Content Include="img\car\New_Tucson\c_4.jpg" />
+    <Content Include="img\car\Santafe\1.jpg" />
+    <Content Include="img\car\Santafe\2.jpg" />
+    <Content Include="img\car\Santafe\Santafe_c_01.jpg" />
+    <Content Include="img\car\Santafe\Santafe_c_02.jpg" />
+    <Content Include="img\car\Santafe\Santafe_c_03.jpg" />
+    <Content Include="img\car\Santafe\Santafe_c_04.jpg" />
+    <Content Include="img\car\Santafe\Santafe_c_05.jpg" />
+    <Content Include="img\car\Santafe\Santafe_c_06.jpg" />
+    <Content Include="img\car\Sonata8\1.jpg" />
+    <Content Include="img\car\Sonata8\2.jpg" />
+    <Content Include="img\car\Sonata8\Sonata8_01.jpg" />
+    <Content Include="img\car\Sonata8\Sonata8_02.jpg" />
+    <Content Include="img\car\Sonata8\Sonata8_03.jpg" />
+    <Content Include="img\car\Sonata8\Sonata8_04.jpg" />
+    <Content Include="img\car\Sonata9\1.jpg" />
+    <Content Include="img\car\Sonata9\2.jpg" />
+    <Content Include="img\car\Sonata9\Sonata9_c_01.jpg" />
+    <Content Include="img\car\Sonata9\Sonata9_c_02.jpg" />
+    <Content Include="img\car\Sonata9\Sonata9_c_03.jpg" />
+    <Content Include="img\car\Sonata9\Sonata9_c_04.jpg" />
+    <Content Include="img\car\Sonata9\Sonata9_c_05.jpg" />
+    <Content Include="img\car\SonataNinePHEV\l_1.png" />
+    <Content Include="img\car\SonataNinePHEV\p_1.jpg" />
+    <Content Include="img\car\SonataNinePHEV\p_2.jpg" />
+    <Content Include="img\car\SonataNinePHEV\p_3.jpg" />
+    <Content Include="img\car\SonataNinePHEV\p_4.jpg" />
+    <Content Include="img\car\SonataNinePHEV\p_5.jpg" />
+    <Content Include="img\car\SonataNinePHEV\s_1.jpg" />
+    <Content Include="img\car\SonataNinePHEV\s_2.jpg" />
+    <Content Include="img\car\SonataNinePHEV\s_3.jpg" />
+    <Content Include="img\car\Tucson\1.jpg" />
+    <Content Include="img\car\Tucson\2.jpg" />
+    <Content Include="img\car\Tucson\Tucson_c_01.jpg" />
+    <Content Include="img\car\Tucson\Tucson_c_02.jpg" />
+    <Content Include="img\car\Tucson\Tucson_c_03.jpg" />
+    <Content Include="img\car\Tucson\Tucson_c_04.jpg" />
+    <Content Include="img\car\Verna\1.jpg" />
+    <Content Include="img\car\Verna\2.jpg" />
+    <Content Include="img\car\Verna\Verna_c_01.jpg" />
+    <Content Include="img\car\Verna\Verna_c_02.jpg" />
+    <Content Include="img\car\Verna\Verna_c_03.jpg" />
+    <Content Include="img\car\Yuena\1-1.png" />
+    <Content Include="img\car\Yuena\1.png" />
+    <Content Include="img\car\Yuena\2-1.png" />
+    <Content Include="img\car\Yuena\2.png" />
+    <Content Include="img\car\Yuena\3.png" />
+    <Content Include="img\car\Yuena\4-1.jpg" />
+    <Content Include="img\car\Yuena\4.png" />
+    <Content Include="img\car\Yuena\5-1.jpg" />
+    <Content Include="img\car\Yuena\5.jpg" />
+    <Content Include="img\car\Yuena\6-1.jpg" />
+    <Content Include="img\car\Yuena\6.jpg" />
+    <Content Include="img\car\Yuena\7-1.jpg" />
+    <Content Include="img\car\Yuena\7.png" />
+    <Content Include="img\car\Yuena\8-1.jpg" />
+    <Content Include="img\car\Yuena\8.jpg" />
+    <Content Include="img\car\Yuena\v1_verna.mp4" />
+    <Content Include="Content\css\car_Offer.css" />
+    <Content Include="Content\css\common.css" />
+    <Content Include="Content\css\datepicker.css" />
+    <Content Include="Content\css\demo.css" />
+    <Content Include="Content\css\iconfont.css" />
+    <Content Include="Content\css\iconfont.svg" />
+    <Content Include="Content\css\online.css" />
+    <Content Include="Content\css\resetzsy.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\swiper.min.css" />
+    <Content Include="img\close_img.png" />
+    <Content Include="img\coverpic.jpg" />
+    <Content Include="img\flow_chart0.png" />
+    <Content Include="img\flow_chart1.png" />
+    <Content Include="img\footer_line.png" />
+    <Content Include="img\haihang_bag.png" />
+    <Content Include="img\haihang_btn.png" />
+    <Content Include="img\haihang_jifen.png" />
+    <Content Include="img\haihang_liucheng.png" />
+    <Content Include="img\haihang_logo.png" />
+    <Content Include="img\haihang_vip.png" />
+    <Content Include="img\home\banner.jpg" />
+    <Content Include="img\home\bpq.png" />
+    <Content Include="img\home\byq.png" />
+    <Content Include="img\home\ExChangePolicy.jpg" />
+    <Content Include="img\home\ExChangePolicy170117.jpg" />
+    <Content Include="img\home\jiayouka.png" />
+    <Content Include="img\home\jpq.png" />
+    <Content Include="img\home\MemberActivity.jpg" />
+    <Content Include="img\home\MemberSystemUpGrade.jpg" />
+    <Content Include="img\home\mrq.png" />
+    <Content Include="img\home\replace_list.png" />
+    <Content Include="img\home\replace_tit.png" />
+    <Content Include="img\home\replace_tit2.png" />
+    <Content Include="img\home\HappyNewYear.jpg" />
+    <Content Include="img\huodong.png" />
+    <Content Include="img\ico_add_1.png" />
+    <Content Include="img\ico_add_2.png" />
+    <Content Include="img\ico_s_1.png" />
+    <Content Include="img\ico_s_2.png" />
+    <Content Include="img\ico_s_3.png" />
+    <Content Include="img\ico_s_4.png" />
+    <Content Include="img\jqqd.png" />
+    <Content Include="img\lanbing_code.png" />
+    <Content Include="img\life_pic1.png" />
+    <Content Include="img\life_pic2.png" />
+    <Content Include="img\life_pic3.png" />
+    <Content Include="img\liping.png" />
+    <Content Include="img\menpiao.png" />
+    <Content Include="img\MyCard\coupon_line.png" />
+    <Content Include="img\MyCard\coupon_line_1.png" />
+    <Content Include="img\MyCard\ico_use_no.png" />
+    <Content Include="img\MyCard\ico_use_ok.png" />
+    <Content Include="img\MyCard\ico_use_yes.png" />
+    <Content Include="img\NewImg\bgCardVou.png" />
+    <Content Include="img\NewImg\BgPopWin.jpg" />
+    <Content Include="img\NewImg\BgPopWin.png" />
+    <Content Include="img\NewImg\bgProgOn.png" />
+    <Content Include="img\NewImg\bgShopDl.jpg" />
+    <Content Include="img\NewImg\bgVouDet.png" />
+    <Content Include="img\NewImg\btnWPWBg1.png" />
+    <Content Include="img\NewImg\btnWPWBg2.png" />
+    <Content Include="img\NewImg\btnXbkBg.png" />
+    <Content Include="img\NewImg\CarCodeFlow－1.png" />
+    <Content Include="img\NewImg\cardVouC.png" />
+    <Content Include="img\NewImg\cardVouL.png" />
+    <Content Include="img\NewImg\cardVouR.png" />
+    <Content Include="img\NewImg\cl.png" />
+    <Content Include="img\NewImg\coupDot.jpg" />
+    <Content Include="img\NewImg\CouUsed.png" />
+    <Content Include="img\NewImg\cvIcon_tuniu.png" />
+    <Content Include="img\NewImg\cvIcon_xbk.png" />
+    <Content Include="img\NewImg\cxqd.png" />
+    <Content Include="img\NewImg\detVouLog.png" />
+    <Content Include="img\NewImg\erCode.png" />
+    <Content Include="img\NewImg\errBg.png" />
+    <Content Include="img\NewImg\errDown.png" />
+    <Content Include="img\NewImg\errUp.png" />
+    <Content Include="img\NewImg\FlowChart_WPW.png" />
+    <Content Include="img\NewImg\footer_line.png" />
+    <Content Include="img\NewImg\foot_line.png" />
+    <Content Include="img\NewImg\guide_ser_icon1.png" />
+    <Content Include="img\NewImg\guide_ser_icon2.png" />
+    <Content Include="img\NewImg\guide_ser_icon3.png" />
+    <Content Include="img\NewImg\guide_ser_icon4.png" />
+    <Content Include="img\NewImg\guide_ser_icon5.png" />
+    <Content Include="img\NewImg\icon_1.png" />
+    <Content Include="img\NewImg\icon_2.png" />
+    <Content Include="img\NewImg\icon_3.png" />
+    <Content Include="img\NewImg\icon_4.png" />
+    <Content Include="img\NewImg\ico_arrow_s1.png" />
+    <Content Include="img\NewImg\ico_arrow_s1.png.png" />
+    <Content Include="img\NewImg\ico_arrow_s1new.png" />
+    <Content Include="img\NewImg\ico_my.png" />
+    <Content Include="img\NewImg\ico_shop.png" />
+    <Content Include="img\NewImg\lanbing_code.png" />
+    <Content Include="img\NewImg\lanbing_codepic.png" />
+    <Content Include="img\NewImg\lanbing_logo.png" />
+    <Content Include="img\NewImg\lanbing_name.png" />
+    <Content Include="img\NewImg\lanbing_namepic.png" />
+    <Content Include="img\NewImg\lanbing_pw.png" />
+    <Content Include="img\NewImg\lanbing_pwblue.png" />
+    <Content Include="img\NewImg\lanbing_pwgray.png" />
+    <Content Include="img\NewImg\lanbing_tel.png" />
+    <Content Include="img\NewImg\lanxiaoshaui.png" />
+    <Content Include="img\NewImg\life_pic1.png" />
+    <Content Include="img\NewImg\life_pic2.png" />
+    <Content Include="img\NewImg\life_pic3.png" />
+    <Content Include="img\NewImg\memberCenter_bell.png" />
+    <Content Include="img\NewImg\memberCenter_bg.png" />
+    <Content Include="img\NewImg\memberCenter_cool.jpg" />
+    <Content Include="img\NewImg\memberCenter_footercool.png" />
+    <Content Include="img\NewImg\memberCenter_msgnumL.png" />
+    <Content Include="img\NewImg\memberCenter_msgnumM.png" />
+    <Content Include="img\NewImg\memberCenter_msgnumR.png" />
+    <Content Include="img\NewImg\memberCenter_right.png" />
+    <Content Include="img\NewImg\memberCenter_vipgold.png" />
+    <Content Include="img\NewImg\memberCenter_vipsilver.png" />
+    <Content Include="img\NewImg\messCenter_icon1.png" />
+    <Content Include="img\NewImg\messCenter_icon2.png" />
+    <Content Include="img\NewImg\messCenter_icon3.png" />
+    <Content Include="img\NewImg\messCenter_icon4.png" />
+    <Content Include="img\NewImg\mp_bluemembers2.jpg" />
+    <Content Include="img\NewImg\nav_m0.png" />
+    <Content Include="img\NewImg\nav_m1.png" />
+    <Content Include="img\NewImg\nav_m1_a.png" />
+    <Content Include="img\NewImg\nav_m2.png" />
+    <Content Include="img\NewImg\nav_m2_a.png" />
+    <Content Include="img\NewImg\nav_m3.png" />
+    <Content Include="img\NewImg\nav_m3_a.png" />
+    <Content Include="img\NewImg\nav_m4.png" />
+    <Content Include="img\NewImg\nav_m4_a.png" />
+    <Content Include="img\NewImg\nav_m5.png" />
+    <Content Include="img\NewImg\nav_m5_a.png" />
+    <Content Include="img\NewImg\picWPW.png" />
+    <Content Include="img\NewImg\pk.png" />
+    <Content Include="img\NewImg\sec_pay1.png" />
+    <Content Include="img\NewImg\sec_pay2.png" />
+    <Content Include="img\NewImg\shopImg1.png" />
+    <Content Include="img\NewImg\test_img_04.jpg" />
+    <Content Include="img\NewImg\test_img_about01new.jpg" />
+    <Content Include="img\NewImg\test_img_about02new.jpg" />
+    <Content Include="img\NewImg\test_img_lingdong.jpg" />
+    <Content Include="img\NewImg\tit_logoMov.png" />
+    <Content Include="img\NewImg\tit_logoMovWeb.png" />
+    <Content Include="img\NewImg\tmailBoy.png" />
+    <Content Include="img\NewImg\tmailBto.png" />
+    <Content Include="img\niudaojia.png" />
+    <Content Include="img\poptel.jpg" />
+    <Content Include="img\qiandao.png" />
+    <Content Include="img\quanyi_btn.png" />
+    <Content Include="img\readericon.png" />
+    <Content Include="img\readstar.jpg" />
+    <Content Include="img\readtitle.jpg" />
+    <Content Include="img\readtitle.png" />
+    <Content Include="img\service\birthdaypri\birth_ico.png" />
+    <Content Include="img\service\birthdaypri\bri_banner.jpg" />
+    <Content Include="img\service\birthdaypri\bri_icon.png" />
+    <Content Include="img\service\chq.jpg" />
+    <Content Include="img\service\close_img.png" />
+    <Content Include="img\service\cxqd.png" />
+    <Content Include="img\service\freecar.png" />
+    <Content Include="img\service\logo.png" />
+    <Content Include="img\service\nav_m1.png" />
+    <Content Include="img\service\nav_m1_a.png" />
+    <Content Include="img\service\nav_m2.png" />
+    <Content Include="img\service\nav_m2_a.png" />
+    <Content Include="img\service\nav_m3.png" />
+    <Content Include="img\service\nav_m3_a.png" />
+    <Content Include="img\service\nav_m4.png" />
+    <Content Include="img\service\nav_m4_a.png" />
+    <Content Include="img\service\nav_m5.png" />
+    <Content Include="img\service\nav_m5_a.png" />
+    <Content Include="img\service\service_ico_1.png" />
+    <Content Include="img\service\service_ico_6.png" />
+    <Content Include="img\service\yanghufuwu.jpg" />
+    <Content Include="img\shengri.png" />
+    <Content Include="img\tequan.png" />
+    <Content Include="img\test_img_16.jpg" />
+    <Content Include="img\tujia_enterlogo.png" />
+    <Content Include="img\tujia_logo.jpg" />
+    <Content Include="img\tujia_tit0.png" />
+    <Content Include="img\tujia_tit1.png" />
+    <Content Include="img\tujia_tit_icon0.png" />
+    <Content Include="img\tujia_tit_icon1.png" />
+    <Content Include="img\tujia_tit_icon2.png" />
+    <Content Include="img\tujia_tit_icon3.png" />
+    <Content Include="img\tuniu_bag.png" />
+    <Content Include="img\tuniu_logo.png" />
+    <Content Include="img\vip.png" />
+    <Content Include="img\wifi.png" />
+    <Content Include="img\wuxing_btn.png" />
+    <Content Include="img\xbk.png" />
+    <Content Include="img\zhuanshu.png" />
+    <Content Include="Content\My97DatePicker\calendar.js" />
+    <Content Include="Content\My97DatePicker\lang\en.js" />
+    <Content Include="Content\My97DatePicker\lang\zh-cn.js" />
+    <Content Include="Content\My97DatePicker\lang\zh-tw.js" />
+    <Content Include="Content\My97DatePicker\skin\datePicker.gif" />
+    <Content Include="Content\My97DatePicker\skin\default\datepicker.css" />
+    <Content Include="Content\My97DatePicker\skin\default\img.gif" />
+    <Content Include="Content\My97DatePicker\skin\WdatePicker.css" />
+    <Content Include="Content\My97DatePicker\skin\whyGreen\bg.jpg" />
+    <Content Include="Content\My97DatePicker\skin\whyGreen\datepicker.css" />
+    <Content Include="Content\My97DatePicker\skin\whyGreen\img.gif" />
+    <Content Include="Content\My97DatePicker\WdatePicker.js" />
+    <Content Include="Content\My97DatePicker\开发包\lang\en.js" />
+    <Content Include="Content\My97DatePicker\开发包\lang\zh-cn.js" />
+    <Content Include="Content\My97DatePicker\开发包\lang\zh-tw.js" />
+    <Content Include="Content\My97DatePicker\开发包\readme.txt" />
+    <Content Include="Content\My97DatePicker\开发包\skin\datePicker.gif" />
+    <Content Include="Content\My97DatePicker\开发包\skin\default\datepicker.css" />
+    <Content Include="Content\My97DatePicker\开发包\skin\default\img.gif" />
+    <Content Include="Content\My97DatePicker\开发包\skin\WdatePicker.css" />
+    <Content Include="Content\My97DatePicker\开发包\skin\whyGreen\bg.jpg" />
+    <Content Include="Content\My97DatePicker\开发包\skin\whyGreen\datepicker.css" />
+    <Content Include="Content\My97DatePicker\开发包\skin\whyGreen\img.gif" />
+    <Content Include="Content\laydate\laydate.js" />
+    <Content Include="Content\laydate\need\laydate.css" />
+    <Content Include="Content\laydate\skins\dahong\icon.png" />
+    <Content Include="Content\laydate\skins\dahong\laydate.css" />
+    <Content Include="Content\laydate\skins\default\icon.png" />
+    <Content Include="Content\laydate\skins\default\laydate.css" />
+    <Content Include="Content\laydate\skins\molv\icon.png" />
+    <Content Include="Content\laydate\skins\molv\laydate.css" />
+    <Content Include="Content\layer\layer.js" />
+    <Content Include="Content\layer\need\layer.css" />
+    <Content Include="Content\layer\skin\default\blueBoyS.png" />
+    <Content Include="Content\layer\skin\default\icon-ext.png" />
+    <Content Include="Content\layer\skin\default\icon.png" />
+    <Content Include="Content\layer\skin\default\loading-0.gif" />
+    <Content Include="Content\layer\skin\default\loading-1.gif" />
+    <Content Include="Content\layer\skin\default\loading-2.gif" />
+    <Content Include="Content\layer\skin\layer.css" />
+    <Content Include="Content\NewCss\award.css" />
+    <Content Include="Content\NewCss\car_Offer.css" />
+    <Content Include="Content\NewCss\datepicker.css" />
+    <Content Include="Content\NewCss\guide_Ser.css" />
+    <Content Include="Content\NewCss\life_service_dyp.css" />
+    <Content Include="Content\NewCss\life_service_jq.css" />
+    <Content Include="Content\NewCss\memberCenter.css" />
+    <Content Include="Content\NewCss\message_Center.css" />
+    <Content Include="Content\NewCss\reset.css" />
+    <Content Include="Content\NewCss\resetzsy.css" />
+    <Content Include="Content\NewCss\style.css" />
+    <Content Include="Content\NewCss\WdatePicker.css" />
+    <Content Include="img\service\24hour.png" />
+    <Content Include="img\service\main.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\layer\extend\layer.ext.js" />
+    <Content Include="Content\layer\layer.min.js" />
+    <Content Include="Content\layer\skin\default\icon-ext.png" />
+    <Content Include="Content\layer\skin\default\icon.png" />
+    <Content Include="Content\layer\skin\default\icon_ext.png" />
+    <Content Include="Content\layer\skin\default\loading-0.gif" />
+    <Content Include="Content\layer\skin\default\loading-1.gif" />
+    <Content Include="Content\layer\skin\default\loading-2.gif" />
+    <Content Include="Content\layer\skin\default\textbg.png" />
+    <Content Include="Content\layer\skin\default\xubox_ico0.png" />
+    <Content Include="Content\layer\skin\default\xubox_loading0.gif" />
+    <Content Include="Content\layer\skin\default\xubox_loading1.gif" />
+    <Content Include="Content\layer\skin\default\xubox_loading2.gif" />
+    <Content Include="Content\layer\skin\default\xubox_loading3.gif" />
+    <Content Include="Content\layer\skin\default\xubox_title0.png" />
+    <Content Include="Content\layer\skin\layer.ext.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="img\bm_wap_banner1.jpg" />
+    <Content Include="img\boy1.png" />
+    <Content Include="img\boy_err.png" />
+    <Content Include="img\ercode.jpg" />
+    <Content Include="img\ico_mp.png" />
+    <Content Include="img\ico_tel.png" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\messCenter_icon1.png" />
+    <Content Include="img\messCenter_icon2.png" />
+    <Content Include="img\messCenter_icon3.png" />
+    <Content Include="img\messCenter_icon4.png" />
+    <Content Include="img\peijianchaxun_btn.jpg" />
+    <Content Include="img\peijianchaxun_M1.jpg" />
+    <Content Include="img\peijianchaxun_M1.png" />
+    <Content Include="img\peijianchaxun_M2.jpg" />
+    <Content Include="img\pm_wap_header1.png" />
+    <Content Include="img\pm_wap_header2.png" />
+    <Content Include="img\pm_wap_header3.png" />
+    <Content Include="img\pm_wap_header4.png" />
+    <Content Include="img\pm_wap_header5.png" />
+    <Content Include="img\pm_wap_main1.png" />
+    <Content Include="img\pm_wap_main1_old.png" />
+    <Content Include="img\pm_wap_main2.png" />
+    <Content Include="img\pm_wap_main2old.png" />
+    <Content Include="img\pm_wap_main3.png" />
+    <Content Include="img\pm_wap_main3old.png" />
+    <Content Include="img\pm_wap_main4.png" />
+    <Content Include="img\pm_wap_main4old.png" />
+    <Content Include="img\pm_wap_menu1.png" />
+    <Content Include="img\pm_wap_menu2.png" />
+    <Content Include="Scripts\CarService\freeCar.js" />
+    <Content Include="Scripts\CarService\roadRescue.js" />
+    <Content Include="Scripts\CarService\addFreeCar.js" />
+    <Content Include="Scripts\car\html5media.min.js" />
+    <Content Include="Scripts\car\slide.js" />
+    <Content Include="Scripts\car\testDrive.js" />
+    <Content Include="Scripts\common.method.js" />
+    <Content Include="Scripts\Controller\DealerController.js" />
+    <Content Include="Scripts\home\exChangePolicy.js" />
+    <Content Include="Scripts\home\province.city.area.js" />
+    <Content Include="Scripts\jquery-validation\additional-methods.js" />
+    <Content Include="Scripts\jquery-validation\additional-methods.min.js" />
+    <Content Include="Scripts\jquery-validation\jquery.validate.js" />
+    <Content Include="Scripts\jquery-validation\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery-validation\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery-validation\localization\messages_zh.js" />
+    <Content Include="Scripts\jquery-validation\localization\messages_zh.min.js" />
+    <Content Include="Scripts\js\jquery-migrate-1.2.1.js" />
+    <Content Include="Scripts\LifeService\airport.js" />
+    <Content Include="Scripts\Dealer\dealer.near.js" />
+    <Content Include="Scripts\Dealer\dealer.search.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jqueryui\images\ui-icons_444444_256x240.png" />
+    <Content Include="Scripts\jqueryui\images\ui-icons_555555_256x240.png" />
+    <Content Include="Scripts\jqueryui\images\ui-icons_777620_256x240.png" />
+    <Content Include="Scripts\jqueryui\images\ui-icons_777777_256x240.png" />
+    <Content Include="Scripts\jqueryui\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Scripts\jqueryui\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\jqueryui\jquery-ui.css" />
+    <Content Include="Scripts\jqueryui\jquery-ui.js" />
+    <Content Include="Scripts\jqueryui\jquery-ui.min.css" />
+    <Content Include="Scripts\jqueryui\jquery-ui.min.js" />
+    <Content Include="Scripts\jqueryui\jquery-ui.structure.css" />
+    <Content Include="Scripts\jqueryui\jquery-ui.structure.min.css" />
+    <Content Include="Scripts\jqueryui\jquery-ui.theme.css" />
+    <Content Include="Scripts\jqueryui\jquery-ui.theme.min.css" />
+    <Content Include="Scripts\jqueryui\jquery.js" />
+    <Content Include="Scripts\js\common.js" />
+    <Content Include="Scripts\js\fontSize.js" />
+    <Content Include="Scripts\js\jquery-1.11.2.min.js" />
+    <Content Include="Scripts\js\jquery.validate.min.js" />
+    <Content Include="Scripts\js\swiper.min.js" />
+    <Content Include="Scripts\LifeService\airportindex.js" />
+    <Content Include="Scripts\LifeService\liyue.js" />
+    <Content Include="Scripts\LifeService\tujia.js" />
+    <Content Include="Scripts\LifeService\tuniu.js" />
+    <Content Include="Scripts\Me\common.dev.js" />
+    <Content Include="Scripts\Me\common.method.js" />
+    <Content Include="Scripts\Me\province.city.area.js" />
+    <Content Include="Scripts\Me\WeChat.js" />
+    <Content Include="Scripts\MoreService\service.more.js" />
+    <Content Include="Scripts\NewJs\additional-methods.js" />
+    <Content Include="Scripts\NewJs\award.js" />
+    <Content Include="Scripts\NewJs\awardRotate.js" />
+    <Content Include="Scripts\NewJs\common.dev.js" />
+    <Content Include="Scripts\NewJs\common.js" />
+    <Content Include="Scripts\NewJs\common.method.js" />
+    <Content Include="Scripts\NewJs\fontSize.js" />
+    <Content Include="Scripts\NewJs\hm.js" />
+    <Content Include="Scripts\NewJs\jquery-1.11.2.min.js" />
+    <Content Include="Scripts\NewJs\jquery-1.8.3.min.js" />
+    <Content Include="Scripts\NewJs\jquery-migrate-1.2.1.js" />
+    <Content Include="Scripts\NewJs\jquery.min.js" />
+    <Content Include="Scripts\NewJs\jquery.query.js" />
+    <Content Include="Scripts\NewJs\jquery.validate.min.js" />
+    <Content Include="Scripts\NewJs\jweixin-1.0.0.js" />
+    <Content Include="Scripts\NewJs\layer\layer.js" />
+    <Content Include="Scripts\NewJs\layer\need\layer.css" />
+    <Content Include="Scripts\NewJs\layer\skin\default\blueBoyS.png" />
+    <Content Include="Scripts\NewJs\layer\skin\default\icon-ext.png" />
+    <Content Include="Scripts\NewJs\layer\skin\default\icon.png" />
+    <Content Include="Scripts\NewJs\layer\skin\default\loading-0.gif" />
+    <Content Include="Scripts\NewJs\layer\skin\default\loading-1.gif" />
+    <Content Include="Scripts\NewJs\layer\skin\default\loading-2.gif" />
+    <Content Include="Scripts\NewJs\layer\skin\layer.css" />
+    <Content Include="Scripts\NewJs\member_Center.js" />
+    <Content Include="Scripts\NewJs\messages_zh.min.js" />
+    <Content Include="Scripts\NewJs\shopping.index.js" />
+    <Content Include="Scripts\NewJs\WdatePicker.js" />
+    <Content Include="Scripts\NewJs\WeChat.js" />
+    <Content Include="Scripts\page\airportservice.makeanappointment.js" />
+    <Content Include="Scripts\page\car.maintenance.js" />
+    <Content Include="Scripts\page\car.maintenance2.js" />
+    <Content Include="Scripts\page\car.onlineproduct.js" />
+    <Content Include="Scripts\page\car.testDrive.js" />
+    <Content Include="Scripts\page\dealer.near.js" />
+    <Content Include="Scripts\page\dealer.search.js" />
+    <Content Include="Scripts\page\magazine.subscription.js" />
+    <Content Include="Scripts\page\member.birthdaygift.js" />
+    <Content Include="Scripts\page\orderchange.activity.js" />
+    <Content Include="Scripts\page\orderchange.bindcar.js" />
+    <Content Include="Scripts\page\orderchange.exchange.js" />
+    <Content Include="Scripts\page\orderchange.index.js" />
+    <Content Include="Scripts\page\orderchange.inviter.js" />
+    <Content Include="Scripts\page\orderchange.share.js" />
+    <Content Include="Scripts\page\questions.index.js" />
+    <Content Include="Scripts\page\service.freeTesting.js" />
+    <Content Include="Scripts\page\service.more.js" />
+    <Content Include="Scripts\page\service.TravelService.js" />
+    <Content Include="Scripts\page\shopping.addDeliveryAddress.js" />
+    <Content Include="Scripts\page\shopping.index.js" />
+    <Content Include="Scripts\page\shopping.meGift.js" />
+    <Content Include="Scripts\page\sonata.addDeliveryVehicles.js" />
+    <Content Include="Scripts\page\sonata.addHomeCare.js" />
+    <Content Include="Scripts\page\sonata.addOneOnOne.js" />
+    <Content Include="Scripts\page\user.doregister.js" />
+    <Content Include="Scripts\page\user.doregisterassites.js" />
+    <Content Include="Scripts\page\user.editUserInfo.js" />
+    <Content Include="Scripts\page\user.firstpw.js" />
+    <Content Include="Scripts\page\user.forgetPwd.js" />
+    <Content Include="Scripts\page\user.index.js" />
+    <Content Include="Scripts\page\user.login.js" />
+    <Content Include="Scripts\page\user.register.js" />
+    <Content Include="Scripts\page\usercenter.activationsonatasetp1.js" />
+    <Content Include="Scripts\page\userCenter.serviceSchedule.js" />
+    <Content Include="Scripts\page\userCenter.serviceScheduleCare.js" />
+    <Content Include="Scripts\page\userCenter.serviceScheduleCommonMaintain.js" />
+    <Content Include="Scripts\page\userCenter.serviceScheduleFreeCheck.js" />
+    <Content Include="Scripts\page\userCenter.serviceScheduleHome2Home.js" />
+    <Content Include="Scripts\page\userCenter.serviceScheduleSpecialMaintain.js" />
+    <Content Include="Scripts\user.doregister.js" />
+    <Content Include="Scripts\user.login.js" />
+    <Content Include="img\car\Yuena\ganenji.zip" />
+    <Content Include="Content\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\font-awesome-4.7.0\fonts\FontAwesome.otf" />
+    <Content Include="Content\font-awesome-4.7.0\less\animated.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\bordered-pulled.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\core.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\fixed-width.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\font-awesome.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\icons.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\larger.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\list.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\mixins.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\path.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\rotated-flipped.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\screen-reader.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\stacked.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\variables.less" />
+    <Content Include="Content\font-awesome-4.7.0\scss\font-awesome.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_animated.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_bordered-pulled.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_core.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_fixed-width.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_icons.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_larger.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_list.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_mixins.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_path.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_rotated-flipped.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_screen-reader.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_stacked.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_variables.scss" />
+    <None Include="Properties\PublishProfiles\MobileWeb.pubxml" />
+    <None Include="Service References\LiyueServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\LiyueServiceReference\configuration.svcinfo" />
+    <None Include="Service References\LiyueServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Scripts\VipPlan\VipPlan.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Service References\LiyueServiceReference\VcyBer.BLMS.MobileWeb.LiyueServiceReference.BindingQueryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LiyueServiceReference\VcyBer.BLMS.MobileWeb.LiyueServiceReference.bindingQueryResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LiyueServiceReference\VcyBer.BLMS.MobileWeb.LiyueServiceReference.BindMemberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LiyueServiceReference\VcyBer.BLMS.MobileWeb.LiyueServiceReference.bindMemberResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LiyueServiceReference\VcyBer.BLMS.MobileWeb.LiyueServiceReference.ChangePasswordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LiyueServiceReference\VcyBer.BLMS.MobileWeb.LiyueServiceReference.changePasswordResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LiyueServiceReference\VcyBer.BLMS.MobileWeb.LiyueServiceReference.getDeLicenceNoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LiyueServiceReference\VcyBer.BLMS.MobileWeb.LiyueServiceReference.LicenceNoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LiyueServiceReference\VcyBer.BLMS.MobileWeb.LiyueServiceReference.LoginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LiyueServiceReference\VcyBer.BLMS.MobileWeb.LiyueServiceReference.loginResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LiyueServiceReference\VcyBer.BLMS.MobileWeb.LiyueServiceReference.ModifyMemberProfileResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LiyueServiceReference\VcyBer.BLMS.MobileWeb.LiyueServiceReference.modifyMemberProfileResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LiyueServiceReference\VcyBer.BLMS.MobileWeb.LiyueServiceReference.PermanentResidentsSaveResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LiyueServiceReference\VcyBer.BLMS.MobileWeb.LiyueServiceReference.permanentResidentsSaveResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LiyueServiceReference\VcyBer.BLMS.MobileWeb.LiyueServiceReference.QueryIndvCustmFInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LiyueServiceReference\VcyBer.BLMS.MobileWeb.LiyueServiceReference.queryIndvCustmFInfoResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LiyueServiceReference\VcyBer.BLMS.MobileWeb.LiyueServiceReference.RecruitmentMemberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LiyueServiceReference\VcyBer.BLMS.MobileWeb.LiyueServiceReference.ResetPasswordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LiyueServiceReference\VcyBer.BLMS.MobileWeb.LiyueServiceReference.resetPasswordResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LiyueServiceReference\VcyBer.BLMS.MobileWeb.LiyueServiceReference.submitRecruitmentMemberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Views\OnlineRead\Index.cshtml" />
+    <Content Include="Views\MoreService\Index.cshtml" />
+    <Content Include="Views\LifeService\Index.cshtml" />
+    <Content Include="Views\VipPlan\Index.cshtml" />
+    <Content Include="Views\VipPlan\CommonProblems.cshtml" />
+    <Content Include="Views\VipPlan\IntegralRule.cshtml" />
+    <Content Include="Views\VipPlan\MemCaption.cshtml" />
+    <Content Include="Views\VipPlan\MemRight.cshtml" />
+    <Content Include="Views\MoreService\GasStationCarPark.cshtml" />
+    <Content Include="Views\User\EditUserInfo.cshtml" />
+    <Content Include="Views\MyCenter\ExclusiveService.cshtml" />
+    <Content Include="Views\MyCenter\MyCard.cshtml" />
+    <Content Include="Views\MyCenter\MyCardDetail.cshtml" />
+    <Content Include="Views\MyCenter\MyCardFightAwaitDetail.cshtml" />
+    <Content Include="Views\Home\MemberActivity.cshtml" />
+    <Content Include="Views\Home\MemberSystemUpGrade.cshtml" />
+    <Content Include="Views\Home\ExChangePolicy.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include="Content\css\iconfont.eot" />
+    <Content Include="Content\css\iconfont.ttf" />
+    <Content Include="Content\css\iconfont.woff" />
+    <None Include="Project_Readme.html" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Common\TestDrive.cshtml" />
+    <Content Include="Views\Common\ReservationService.cshtml" />
+    <Content Include="Views\Common\PartsQuery.cshtml" />
+    <Content Include="Views\Common\DealerQuiry.cshtml" />
+    <Content Include="Views\Common\DealerNear.cshtml" />
+    <Content Include="Views\Common\MessageCenter.cshtml" />
+    <Content Include="Views\LifeService\AirportIndex.cshtml" />
+    <Content Include="Views\LifeService\AirportReserve.cshtml" />
+    <Content Include="Views\LifeService\ReserveSuccess.cshtml" />
+    <Content Include="Views\LifeService\TuniuIndex.cshtml" />
+    <Content Include="Views\LifeService\LiyueIndex.cshtml" />
+    <Content Include="Views\LifeService\TujiaIndex.cshtml" />
+    <Content Include="Views\Car\Index.cshtml" />
+    <Content Include="Views\Car\Car_Feature.cshtml" />
+    <Content Include="Views\Car\Car_Video.cshtml" />
+    <Content Include="Views\Car\TestDrive.cshtml" />
+    <Content Include="Views\Car\Car_Item.cshtml" />
+    <Content Include="Views\Common\PartsResult.cshtml" />
+    <Content Include="Views\Msg\MsgList.cshtml" />
+    <Content Include="QrCodeHandler.ashx" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="VerifyCodeHandler.ashx" />
+    <Content Include="Views\CarService\RoadRescue.cshtml" />
+    <None Include="Service References\LiyueServiceReference\MemberService.wsdl" />
+    <Content Include="Views\CarService\FreeCar.cshtml" />
+    <Content Include="Views\CarService\CardSaleAfter.cshtml" />
+    <Content Include="Views\CarService\Index.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ForgetPwd.cshtml" />
+    <Content Include="Views\MyCenter\Index.cshtml" />
+    <Content Include="Views\CarService\AddFreeCar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AspNet.Identity.SQL\AspNet.Identity.SQL.csproj">
+      <Project>{26f6ecf9-4369-417b-8cf2-54fa92df3660}</Project>
+      <Name>AspNet.Identity.SQL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcyber.BLMS.Application\Vcyber.BLMS.Application.csproj">
+      <Project>{8f42cb56-8f0b-4daa-9705-3ac51946fe7e}</Project>
+      <Name>Vcyber.BLMS.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcyber.BLMS.Common\Vcyber.BLMS.Common.csproj">
+      <Project>{47cfcbbd-d6cc-48c6-83ad-962350d42ac8}</Project>
+      <Name>Vcyber.BLMS.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcyber.BLMS.Domain\Vcyber.BLMS.Domain.csproj">
+      <Project>{65ffe727-9ae8-49c7-8416-6b707897f105}</Project>
+      <Name>Vcyber.BLMS.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcyber.BLMS.Entity\Vcyber.BLMS.Entity.csproj">
+      <Project>{197fd01d-355d-485d-b6e0-7b4a2940d2aa}</Project>
+      <Name>Vcyber.BLMS.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcyber.BLMS.IRepository\Vcyber.BLMS.IRepository.csproj">
+      <Project>{350c18d4-dfd8-45d9-9ef3-a949eb2bf56b}</Project>
+      <Name>Vcyber.BLMS.IRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcyber.BLMS.Repository\Vcyber.BLMS.Repository.csproj">
+      <Project>{dfa29324-6656-41cc-ab32-e804d532766c}</Project>
+      <Name>Vcyber.BLMS.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\LiyueServiceReference\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>9997</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:9997/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

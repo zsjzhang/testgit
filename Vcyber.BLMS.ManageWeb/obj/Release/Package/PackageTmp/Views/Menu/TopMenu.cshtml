@@ -1,0 +1,56 @@
+﻿@model Vcyber.BLMS.ManageWeb.Models.MenuViewModel
+@{
+    Layout = null;
+}<ul class="nav navbar-nav">
+    @if (Model.Menus != null)
+    {
+        foreach (var menuItem in Model.Menus)
+        {
+            if (menuItem.isDefault)
+            {
+                  <li>
+                      <a class="top-menu-btn menu-selected" id="@menuItem.id" href="@menuItem.href" >@menuItem.value</a>
+                        </li>
+             
+            }
+            else
+            { <li>
+                  <a class="top-menu-btn" id="@menuItem.id" href="@menuItem.href">@menuItem.value</a>
+                        </li>
+            }
+        }
+
+
+    }</ul>
+<script type="text/javascript">
+   
+    $(function () {
+        var menuId = $("#topmenu .menu-selected").attr("id");
+        $("#leftmenu").empty();
+        $.get("/Menu/LeftMenu", { parentId: menuId }, function (data) {
+            var menus = data.Menus;
+            if (menus != null) {
+                for (var menuItem in menus) {
+                    $("#leftmenu").append('<a class="list-group-item"  href="' + menus[menuItem].href + '">' + menus[menuItem].value + '</a>');
+                }
+            }
+
+        });
+        $(".top-menu-btn").click(function () {
+            var menuId = $(this).attr("id");
+            $("#leftmenu").empty();
+            //}); 
+            $.get("/Menu/LeftMenu", { parentId: menuId }, function (data) {
+                var menus = data.Menus;
+                if (menus != null) {
+                    for (var menuItem in menus) {
+                        $("#leftmenu").append('<a class="list-group-item"  href="' + menus[menuItem].href + '">' + menus[menuItem].value + '</a>');
+                    }
+                }
+
+            });
+
+        });
+    });
+
+</script>

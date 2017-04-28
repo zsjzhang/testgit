@@ -1,0 +1,83 @@
+﻿@model List<Vcyber.BLMS.Entity.Report.DealerStoryDto>
+@{
+    Layout = null;
+}
+<div class="table-responsive">
+    <table class="table table-hover">
+        @if (Model != null)
+        {
+            <thead>
+                <tr>
+                    @*@for (int i = 0; i < Model.Columns.Count; i++)
+                        {
+                            <th>@Model.Columns[i].ColumnName</th>
+                        }*@
+                    <th><input type="checkbox" name="chk_all" id="chk_all" />全选</th>
+                    <th>手机号</th>
+                    <th>标题</th>
+                    <th>内容</th>
+                    <th>图片查看</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            @*@foreach (var item in row.ItemArray)
+                                {
+                                    <td>@item</td>
+                                }*@
+                            <td><input type="checkbox" name="chk_list" value="@item.Id" /></td>
+                            <td>@item.PhoneNumber</td>
+                            <td>@item.Title</td>
+                            <td>@item.Contents</td>
+                            <td>
+                                @if (item.ImgeUrls.Count > 0)
+                                {
+                                    <a href="javascript:;" title="" onclick="picSee(this)" class="preview-a fancybox">预览图片</a>
+                                    <div class="hide">
+                                        <div class="img-wrapper">
+                                            @foreach (var url in item.ImgeUrls)
+                                            {<a rel="group" class="fancybox" title="@item.Title" href="@url">
+                                                <img src="@url" />
+                                            </a>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <label>无预览</label>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4">本次查询结果为空！</td>
+                    </tr>
+                }
+            </tbody>
+        }
+    </table>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#chk_all").click(function () {
+         if ($(this)[0].checked) {
+             $("[name = chk_list]:checkbox").each(function () {
+                 $(this)[0].checked = true;
+             });
+         }
+         else {
+             $("[name = chk_list]:checkbox").each(function () {
+                 $(this)[0].checked = false;
+             });
+         }
+        });
+    })
+</script>

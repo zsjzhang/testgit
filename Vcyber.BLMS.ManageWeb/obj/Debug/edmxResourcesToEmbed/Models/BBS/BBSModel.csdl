@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BBSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BBSColumns">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Column_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Info" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ImageSrc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BBSGuestBook" Relationship="Self.FK_BBSGuestBook_Columns" FromRole="BBSColumns" ToRole="BBSGuestBook" />
+  </EntityType>
+  <EntityType Name="BBSComment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GuestBookId" Type="Int32" />
+    <Property Name="MemberId" Type="String" MaxLength="36" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Comments" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="C_Time" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="BBSGuestBook" Relationship="Self.FK_BBSComment_GuestBook" FromRole="BBSComment" ToRole="BBSGuestBook" />
+    <NavigationProperty Name="BBSMember" Relationship="Self.FK_BBSComment_Member" FromRole="BBSComment" ToRole="BBSMember" />
+  </EntityType>
+  <EntityType Name="BBSGuestBook">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberId" Type="String" MaxLength="36" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="MemberName" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="G_Content" Type="String" MaxLength="750" FixedLength="false" Unicode="true" />
+    <Property Name="G_Time" Type="DateTime" Precision="3" />
+    <Property Name="G_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="G_HF_Content" Type="String" MaxLength="750" FixedLength="false" Unicode="true" />
+    <Property Name="G_Recycle" Type="Int32" />
+    <Property Name="G_ReadCount" Type="Int32" Nullable="false" />
+    <Property Name="G_ResponseCount" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdateMemberName" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="LastUpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Column_Id" Type="Int32" Nullable="false" />
+    <Property Name="G_approved" Type="Boolean" Nullable="false" />
+    <Property Name="G_isTop" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="BBSColumns" Relationship="Self.FK_BBSGuestBook_Columns" FromRole="BBSGuestBook" ToRole="BBSColumns" />
+    <NavigationProperty Name="BBSComment" Relationship="Self.FK_BBSComment_GuestBook" FromRole="BBSGuestBook" ToRole="BBSComment" />
+    <NavigationProperty Name="BBSMember" Relationship="Self.FK_BBSGuestBook_Member" FromRole="BBSGuestBook" ToRole="BBSMember" />
+    <Property Name="G_isHot" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="BBSMember">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="36" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Power" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Sex" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Head" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="SetAtt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BBSComment" Relationship="Self.FK_BBSComment_Member" FromRole="BBSMember" ToRole="BBSComment" />
+    <NavigationProperty Name="BBSGuestBook" Relationship="Self.FK_BBSGuestBook_Member" FromRole="BBSMember" ToRole="BBSGuestBook" />
+  </EntityType>
+  <Association Name="FK_BBSGuestBook_Columns">
+    <End Role="BBSColumns" Type="Self.BBSColumns" Multiplicity="1" />
+    <End Role="BBSGuestBook" Type="Self.BBSGuestBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BBSColumns">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BBSGuestBook">
+        <PropertyRef Name="Column_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BBSComment_GuestBook">
+    <End Role="BBSGuestBook" Type="Self.BBSGuestBook" Multiplicity="0..1" />
+    <End Role="BBSComment" Type="Self.BBSComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BBSGuestBook">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BBSComment">
+        <PropertyRef Name="GuestBookId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BBSComment_Member">
+    <End Role="BBSMember" Type="Self.BBSMember" Multiplicity="1" />
+    <End Role="BBSComment" Type="Self.BBSComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BBSMember">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BBSComment">
+        <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BBSGuestBook_Member">
+    <End Role="BBSMember" Type="Self.BBSMember" Multiplicity="1" />
+    <End Role="BBSGuestBook" Type="Self.BBSGuestBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BBSMember">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BBSGuestBook">
+        <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BBSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BBSColumns" EntityType="Self.BBSColumns" />
+    <EntitySet Name="BBSComment" EntityType="Self.BBSComment" />
+    <EntitySet Name="BBSGuestBook" EntityType="Self.BBSGuestBook" />
+    <EntitySet Name="BBSMember" EntityType="Self.BBSMember" />
+    <AssociationSet Name="FK_BBSGuestBook_Columns" Association="Self.FK_BBSGuestBook_Columns">
+      <End Role="BBSColumns" EntitySet="BBSColumns" />
+      <End Role="BBSGuestBook" EntitySet="BBSGuestBook" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BBSComment_GuestBook" Association="Self.FK_BBSComment_GuestBook">
+      <End Role="BBSGuestBook" EntitySet="BBSGuestBook" />
+      <End Role="BBSComment" EntitySet="BBSComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BBSComment_Member" Association="Self.FK_BBSComment_Member">
+      <End Role="BBSMember" EntitySet="BBSMember" />
+      <End Role="BBSComment" EntitySet="BBSComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BBSGuestBook_Member" Association="Self.FK_BBSGuestBook_Member">
+      <End Role="BBSMember" EntitySet="BBSMember" />
+      <End Role="BBSGuestBook" EntitySet="BBSGuestBook" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

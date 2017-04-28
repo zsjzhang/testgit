@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "服务卡管理";
+    ViewBag.TitleFocus = "2-2-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Vcyber.BLMS.ManageWeb.Helper
+<script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+<style type="text/css">
+    /*.input_text2 {
+        width: 100px;
+    }
+
+    .input_text1 {
+        width: 100px;
+    }*/
+</style>
+<div class="path">
+
+</div>
+
+    <table class="table table-bordered table-responsive" style="padding-bottom:25px;margin-bottom:10px;">
+        <tr>
+            <td>
+                批次号：<input type="text" class="input_text1" id="batchNo" />
+                开始时间：<input type="text" class="input_text1" id="startTime" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowWeek:true,isShowClear:true,readOnly:true})" />
+                结束时间：<input type="text" class="input_text1" id="endTime" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowWeek:true,isShowClear:true,readOnly:true})" />
+                <input type="button" value="查询" onclick="searchBatch();" class="btn btn-primary" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="button" value="添加卡卷" onclick="addBatch();" class="btn btn-primary" />
+            </td>
+        </tr>
+    </table>
+@{Html.RenderPartial("AddBatch");}
+<div id="divPageList">
+    @{
+        Html.RenderAction("FindBatch");
+    }
+</div>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+
+    function addBatch() {
+        $("#customerDiv").show(500);
+    }
+
+    function searchBatch() {
+        GetPageList(1);
+    }
+
+    //列表分页
+    function GetPageList(pageIndex) {
+        var data = {
+            BatchNo: $("#batchNo").val(),
+            StartTime: $("#startTime").val(),
+            EndTime: $("#endTime").val(),
+            Index: pageIndex,
+            Size: 10
+        };
+        var url = "@Url.Action("FindBatch")";
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: data,
+            success: function (msg) {
+                $("#divPageList").html(msg);
+            }
+        });
+    }
+
+</script>

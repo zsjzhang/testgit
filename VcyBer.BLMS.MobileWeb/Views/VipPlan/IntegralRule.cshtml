@@ -1,0 +1,222 @@
+﻿
+@{
+    ViewBag.Title = "会员积分规则_会员计划";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/NewCss/resetzsy.css" rel="stylesheet" />
+<div class="wrapper">
+    <section class="mpBox">
+        <div class="mpBanner">
+            <img src="@Url.Content("~/img/Newimg/mp_bluemembers2.jpg")" />
+        </div>
+
+        <h2 class="mpBoxh2">
+            <b class="faqB">1</b>
+            <strong>积分规则</strong>
+            <i class="rot90"></i>
+        </h2>
+
+        <div class="h2Pcont" style="display:block;">
+            <p style="text-indent:0;">
+                <strong>（1）积分价值：</strong>
+                <em style="text-indent:2em; display:block;">会员积分抵现比例：10积分=1RMB</em>
+            </p>
+            <p style="text-indent:0;">
+                <strong>（2）积分对象：</strong>
+                <em style="text-indent:2em; display:block;">2016年4月1日(含4月1日)后购车，且3个月内成功入会会员</em>
+            </p>
+            <p style="text-indent:0;">
+                <strong>（3）积分获取：</strong>
+            </p>
+            <table class="get-integral">
+                <thead>
+                    <tr>
+                        <th width="70%" colspan="2">积分来源</th>
+                        <th width="30%">获取积分</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td width="20%" rowspan="2" style="vertical-align: middle;">首次购车</td>
+                        <td style="border-bottom: 0;">
+                            全新途胜、第九代索纳塔、全新胜达、ix25、ix35、名图、名驭
+                        </td>
+                        <td style="vertical-align: middle;">4000</td>
+                    </tr>
+
+                    <tr>
+                        <td>领动、朗动、悦动、瑞纳、瑞奕</td>
+                        <td>2000</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" style="vertical-align: middle;">增购换购</td>
+                        <td>全新途胜、第九代索纳塔、全新胜达、ix25、ix35、名图、名驭</td>
+                        <td style="vertical-align: middle;">7000</td>
+                    </tr>
+                    <tr>
+                        <td>领动、朗动、悦动、瑞纳、瑞奕</td>
+                        <td>4000</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3" style="vertical-align: middle;">维修保养</td>
+                        <td>普卡</td>
+                        <td>自费金额*10%</td>
+                    </tr>
+                    <tr>
+
+                        <td>银卡</td>
+                        <td>自费金额*15%</td>
+                    </tr>
+                    <tr>
+
+                        <td>金卡</td>
+                        <td>
+                            <p class="tdP">自费金额*20%</p>
+                            <p class="tdP">生日月自费金额*50%</p>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <p style="margin-left:0;margin-top:10px;">
+                <span style="line-height:150%;font-family:Wingdings;margin-right:4px;"></span><strong>首次购车：</strong>4,000积分/2,000积分（根据购买车型获得相应积分）
+            </p>
+            <p style="margin-left:0">
+                <span style="line-height:150%;font-family:Wingdings;margin-right:4px;"></span><strong>增购换购：</strong>7,000积分/4,000积分（增购/换购车主，通过身份证验证审核是否二次购车； 2016年4月1日前所购车不获赠积分；例：2016年4月1日前购买名图，2016年4月1日后购买全新途胜，会员可获得7000积分（增购/换购全新途胜））
+            </p>
+            <p style="margin-left:0">
+                <span style="line-height:150%;font-family:Wingdings;margin-right:4px;"></span><strong>维修/保养：</strong>店内消费总额10%为积分奖励（即：消费100元可获取10积分）
+            </p>
+            <p style="text-indent:0;">
+                <strong>（4）积分兑换规则：</strong>
+            </p>
+            <p>
+                积分可用于<strong>
+                    购车、维修/保养、在线商城、机场候机等服务中；具体兑换规则见下表：
+                </strong>
+            </p>
+            <table cellspacing="0" cellpadding="0" id="memberindex_scoreechange">
+                <thead>
+                    <tr class="firstRow">
+                        <td width="50%">
+                            积分兑换
+                        </td>
+                        <td width="50%">
+                            说明
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="firstRow">
+                        <td width="50%">
+                            再购/在线礼品
+                        </td>
+                        <td width="50%">
+                            单次积分兑换不设上限
+                        </td>
+                    </tr>
+                    <tr class="firstRow">
+                        <td width="50%">
+                            <p>机场服务</p>
+                            <p>
+                                （银卡会员2次免费服务、金卡会员3次免费服务）
+                            </p>
+                        </td>
+                        <td width="50%">
+                            <p style="position: relative;">1800积分</p>
+                        </td>
+                    </tr>
+                    <tr class="firstRow">
+                        <td width="50%">
+                            维修保养
+                        </td>
+                        <td width="50%">
+                            <p>单次最多使用1000</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="text-indent:0;">
+                <strong>（5）积分相关其他规则：</strong>
+            </p>
+            <p style="margin-left:0">
+                <span style="line-height:150%;font-family:Wingdings;margin-right:4px;"></span>积分有效期限：2年（按照月度统计失效，积分扣除按照先进先出原则）
+            </p>
+            <p style="margin-left:0">
+                <span style="line-height:150%;font-family:Wingdings;margin-right:4px;"></span>积分转让：不可转让
+            </p>
+            <p style="margin-left:0">
+                <span style="line-height:150%;font-family:Wingdings;margin-right:4px;"></span>会员完成缴费即可获得积分
+            </p>
+            <p style="margin-left:0">
+                <span style="line-height:150%;font-family:Wingdings;margin-right:4px;"></span>在积分兑换的同时，会员还可以享受积分获取。例：普卡会员现有积分4000，维修保养（不含首保）需300元，会员使用1000积分（抵100元），现金缴纳200元，会员现金缴纳部分可获取相应积分（消费金额的10%，获取20积分），会员剩余积分计算：4000-1000+20=3020
+            </p>
+            <p style="margin-left:0">
+                <span style="line-height:150%;font-family:Wingdings;margin-right:4px;"></span>维保积分获取只赠送实际消费金额中会员自付费部分。
+            </p>
+            <p style="margin-left:0; color: #FF7F28">
+                *特别提醒： 严禁会员通过不正当的作弊方式获取积分，一旦发现，将扣除该会员所有积分，并依据情节轻重给予处罚！
+            </p>
+            <p style="text-indent:0;">
+                <strong>（6）在线商城积分兑换规则：</strong>
+            </p>
+            <p>
+                兑换时间：2016年6月1日到2016年的12月31日
+            </p>
+            <p>
+                兑换方式：
+            </p>
+            <p class="textInd2">
+                1.&nbsp;bluemembers所有礼品需要使用积分兑换。
+            </p>
+            <p class="textInd2">
+                2.&nbsp;礼品兑换只接受网上申请，不接受电话或上门等其他方式。
+            </p>
+            <p>
+                礼品邮寄：
+            </p>
+            <p class="textInd2">
+                1.&nbsp;礼品兑换订单提交成功后，10个工作日内工作人员将为您邮寄礼品请耐心等待。
+            </p>
+            <p class="textInd2">
+                2.&nbsp;礼品邮寄仅限于中国大陆地区。
+            </p>
+            <p class="textInd2">
+                3.&nbsp;礼品以快递或普通包裹形式邮寄。
+            </p>
+            <p>
+                注意事项：
+            </p>
+            <p class="textInd2">
+                1.&nbsp;"收货人信息"中需用中文完整填写真实有效的收货人姓名、联系手机、电子邮箱、邮寄地址、邮政编码信息； 如为外籍人士请填写有效证件上的完整信息；如因收货人信息不全，将自动取消您的礼品兑换申请； 您于本网站提供的个人信息只用于北京现代客户服务、产品调查和推广中使用。
+            </p>
+            <p class="textInd2">
+                2.&nbsp;如因会员填写的地址不详或者邮寄信息错误等原因导致礼品无法送达，责任由会员自行承担，礼品兑换所需积分不予退还。
+            </p>
+            <p class="textInd2">
+                3.&nbsp;礼品图片仅供参考，具体礼品以最终收到的实物为准，礼品颜色随机发放不可指定。
+            </p>
+            <p class="textInd2">
+                4.&nbsp;如您在兑换礼品接收过程中遇到任何问题，请您登陆bluemembers网站咨询在线客服，或拨打客服热线400-800-1100进行咨询。
+            </p>
+            <p class="textInd2">
+                5.&nbsp;收到礼品后，请当场拆封。如收到礼品与实际兑换礼品不一致或者有损坏，请会员在礼品收到后的3个工作日内与我们联系， 如因会员个人原因造成相关事宜无法处理，后果自负。
+            </p>
+            <p class="textInd2">
+                6.&nbsp;收到的礼品如无质量问题，将不予退换。
+            </p>
+            <p>
+                <span style="line-height:150%;">&nbsp;</span>
+            </p>
+            <p style="color: #FF7F28;">
+                <strong>*以上最终解释权归北京现代汽车有限公司所有。</strong>
+            </p>
+            <p>
+                <br>
+            </p>
+        </div>
+
+    </section>
+
+</div>

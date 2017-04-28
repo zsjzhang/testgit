@@ -1,0 +1,31 @@
+﻿@model IList<Vcyber.BLMS.Entity.News>
+@{
+    Layout = null;
+}
+
+<div class="center_lt">
+    <div class="weird_1">
+        <span>热门新闻</span>
+        <div class="bg"></div>
+        @Html.ActionLink("查看更多>>", "NewsPages", "News", new { }, new { })
+    </div>
+
+    @{
+        if (Model != null && Model.Any())
+        {
+            <div class="s_img">
+                <img src="@Model.First().TureMajorImageUrl" class="s_car" />
+                <div class="s_word">
+                    <p></p>
+                    <span>@Model.First().Title</span>
+                </div>
+            </div>
+            <ul class="ul_list">
+                @foreach (var itemNews in Model)
+                {
+                    <li><b>【新闻】</b>@Html.ActionLink(itemNews.Title, "NewsDetail", "News", new { id = itemNews.Id }, new { })</li>
+                }
+            </ul>
+        }
+    }
+</div>

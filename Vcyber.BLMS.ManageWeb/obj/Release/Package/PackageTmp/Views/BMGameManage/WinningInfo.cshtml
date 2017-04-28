@@ -1,0 +1,110 @@
+﻿@{
+    Layout = null;
+}
+
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>活动管理 - 获奖名单</strong></div>
+</div>
+
+<div class="container panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-horizontal">
+                    <div class="form-group form-inline">
+                        <label class="control-label col-md-2" style="text-align:left">活动编号：</label>
+                        <input class="form-control col-md-2" type="text" placeholder="活动编号" ng-model="formData.ActivityId" />
+
+                        <button data-toggle="modal" class="btn btn-primary col-sm-offset-1" ng-click="search()">
+                            查询
+                        </button>
+                        <button data-toggle="modal" data-target="#winningInfoImportModal" class="btn btn-primary  col-md-offset-2">
+                            导入
+                        </button>
+                        <a class="btn btn-primary  col-md-offset-0" href="/BMGameManage/WinningInfoExport?activityId={{formData.ActivityId}}">导出(Excel)</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="gridStyle" style="height: 410px; border: 1px solid rgb(212,212,212)" ng-grid="gridOptions"></div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="winningInfoImportModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <label class="control-label">奖品详情</label>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            @*<form class="form-horizontal" name="form1" ng-submit="ImportWinningInfo()" novalidate> action="/BMGameManage/ImportWinningInfo"*@
+            <form method="post" id="formToUpdate" action="/BMGameManage/ImportWinningInfo" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div>
+                        <a target="_blank" href="../UploadImg/ActivityWinningInfo.xlsx" class="col-md-2">下载模板</a>
+                        <label class="control-label col-md-3">选择文件:</label>
+                        <input class="control-label col-md-4" type="file" name="file" id="importFile" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">确定</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="showPrizeInfoModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="width:500px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <label class="control-label">奖品详情</label>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">奖品名称:</label>
+                            <div class="col-md-4 control-label" style="color:darkred;font-weight:bold">{{prizesInfo.Title}}</div>
+                        </div>
+                        <div class="form-group ">
+                            <label class="col-md-4 control-label">奖品价值:</label>
+                            <div class="col-md-4 control-label" style="color:darkgreen;font-weight:bold">￥:{{prizesInfo.Price}}</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">奖品等级:</label>
+                            <div class="col-md-4 control-label" style="font-weight:bold">
+                                {{prizesInfo.PrizeLevel}}等奖
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+

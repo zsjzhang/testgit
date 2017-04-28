@@ -1,0 +1,73 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "预约试驾";
+}
+<script src="~/Content/laydate/laydate.js"></script>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Home" })
+    </div>
+    <div>
+        <div class="all_cont">
+            <div class="sjyy_title">
+                <p>预约试驾</p>
+            </div>
+
+            <div class="yysj_cont">
+                <p class="p1">为了确保我们能够在第一时间内与您取得联系，提供更快捷、更周到的服务，请您正确填写以下资料信息，带"*"号的是必须填写项，感谢您的支持！</p>
+                <p class="num_p">
+                    01. 选择预约车型与经销商
+                </p>
+                <div class="p_input">
+                    <span>*</span><label>试驾车型：</label>
+                    @Html.Action("CarTypeView", "Car", new { })
+                </div>
+                <div class="p_input">
+                    <span></span><label>选择经销商：</label>
+                    @Html.Action("ProvinceCity", "Car", new { })
+                </div>
+                <p class="num_p">
+                    02. 填写个人信息
+                </p>
+                <div class="p_input">
+                    <span></span><label>试驾时间：</label>
+                    <input type="text" id="homeReserveDriveDriveTime" name="homeReserveDriveDriveTime" placeholder="请输入试驾日期" class="laydate-icon" onclick="laydate()" />
+                </div>
+                <div class="p_input">
+                    <span></span><label>计划购车时间：</label>
+                    <select id="homeReserveDriveBuyTime" name="homeReserveDriveBuyTime">
+                        <option>一周以内</option>
+                        <option>7-30天</option>
+                        <option>1-3个月</option>
+                        <option>3月以上</option>
+                    </select>
+                </div>
+                <div class="p_input">
+                    <span>*</span><label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
+                    <input type="text" id="homeReserveDriveUserName" name="homeReserveDriveUserName" />
+                </div>
+                <div class="p_input">
+                    <span>*</span><label>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：</label>
+                    <input type="text" id="homeReserveDriveEmail" name="homeReserveDriveEmail" />
+                </div>
+                <div class="p_input">
+                    <span>*</span><label>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</label>
+                    <input type="radio" name="homeReserveDriveGender" value="true" id="genderMan" checked="checked" class="radio_btn_cc" style=" border: none;" /><b>男</b>
+                    <input type="radio" name="homeReserveDriveGender" value="false" id="genderWoman" class="radio_btn_cc" style="margin-left:38px;border: none;" /><b>女</b>
+                    <ol></ol>
+                </div>
+                <div class="p_input">
+                    <span>*</span><label>手&nbsp;&nbsp;&nbsp;机&nbsp;&nbsp;&nbsp;号：</label>
+                    <input type="text" id="homeReserveDriveUserMobile" name="homeReserveDriveUserMobile" />
+                </div>
+
+                <div class="cc_submit_btn">
+                    <a href="javascript:void(0);" id="btnHomeReserveDrive" style="color: white; text-decoration: none;">提交</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

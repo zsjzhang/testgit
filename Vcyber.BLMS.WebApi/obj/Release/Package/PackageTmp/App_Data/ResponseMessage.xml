@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Messages>
+  <!--public message-->
+  <message code="200">操作成功</message>
+  <message code="201">操作失败</message>
+  <message code="404">请求内容为空</message>
+  <message code="400">错误请求</message>
+  <message code="401">验证失败</message>
+  <message code="412">参数错误</message>
+  <message code="500">服务器错误</message>
+
+  <!--商品-->
+  <message code="91">地址重复</message>
+  <message code="03">商品不存在</message>
+  <message code="04">商品已经下架</message>
+  <message code="07">库存不足</message>
+  <message code="06">超出兑换次数</message>
+  <message code="00">交易失败</message>
+  <message code="08">您的积分不足</message>
+
+  <!--user-->
+  <message code="user-200">注册成功</message>
+  <message code="user-201">输入的验证码不正确</message>
+  <message code="user-202">输入参数不正确</message>
+  <message code="user-203">用户名已存在</message>
+  <message code="user-204">旧密码错误</message>
+  <message code="user-205">用户名或密码错误</message>
+  <message code="user-206">当前手机号已注册，请直接登录</message>
+  <message code="user-207">验证码已过期</message>
+  <message code="user-208">当前密码错误</message>
+  <message code="user-505">注册失败</message>
+  <message code="user-506">登录失败</message>
+  <message code="user-507">修改绑定手机失败</message>
+  <message code="user-508">操作失败</message>
+  <message code="user-509">不存在此用户</message>
+  <message code="user-510">请输入手机号</message>
+  <message code="user-511">当天获取短信验证码次数超出</message>
+  <message code="user-512">请输入手机号和短信验证码</message>
+  <message code="user-513">用户没有享用该服务的资格</message>
+  <message code="user-514">证件号不能为空</message>
+  <message code="user-515">填写的验证码不正确，请重新填写.</message>
+  <message code="user-516">系统中已存在此身份证号</message>
+  <message code="user-517">系统中已存在用户名</message>
+
+
+  <!--image-->
+  <message code="img-501">输入参数错误</message>
+  <message code="img-502">输入参数错误</message>
+  <message code="img-503">输入参数错误</message>
+  <message code="img-504">上传图片异常</message>
+
+  <!--news-->
+  <message code="news-401">参数必须大于0</message>
+  <message code="news-402">参数必须大于等于0</message>
+  <message code="news-403">请求内容为空</message>
+
+  <!--activity-->
+  <message code="activity-400">输入参数不正确</message>
+  <message code="activity-401">用户名为空</message>
+  <message code="activity-402">活动人数已满</message>
+  <message code="activity-404">获取数据为空</message>
+  <message code="activity-300">同一手机号仅限报名此活动一次</message>
+
+  <!--car-->
+  <message code="car-501">获取信息错误</message>
+  <message code="car-502">车辆添加失败</message>
+  <message code="car-503">修改车辆信息失败</message>
+  <message code="car-504">删除车辆失败</message>
+  <message code="car-505">设置失败</message>
+  <message code="car-506">此车牌号已存在，请设置正确的车牌号</message>
+
+  <!--notice-->
+  <message code="notice-201">操作失败</message>
+  <message code="notice-202">参数错误</message>
+
+  <!--testdrive-->
+  <message code="testdrive-201">意向车型为空</message>
+  <message code="testdrive-202">电话号码为空</message>
+  <message code="testdrive-203">预约时间为空</message>
+  <message code="testdrive-204">预约已经成功，不能取消</message>
+
+  <message code="sonata-600">您不是索九车主</message>
+  <message code="sonata-601">您的服务已用完或者已过期</message>
+
+
+</Messages>

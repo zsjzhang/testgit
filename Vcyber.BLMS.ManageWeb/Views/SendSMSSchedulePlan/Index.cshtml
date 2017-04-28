@@ -1,0 +1,208 @@
+﻿@{
+    Layout = null;
+}
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>发送短信任务管理</strong></div>
+</div>
+
+<!--主页面-->
+<div class="container panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-horizontal">
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">任务名称：</label>
+                        <input class="col-md-2 form-control" type="text" placeholder="任务名称" ng-model="formData.ServiceTitle" />
+
+                        <label class="col-md-2 control-label">是否执行：</label>
+                        <select class="col-md-2 form-control" ng-model="selectIsOpen">
+                            <option value="">全部</option>
+                            <option value="Y">是</option>
+                            <option value="N">否</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">定时类型：</label>
+                        <select class="col-md-2 form-control" ng-model="selectTimeType">
+                            <option value="">全部</option>
+                            <option value="1">距购车之日时限</option>
+                            <option value="2">特定日期</option>
+                            <option value="3">即时执行</option>
+                        </select>
+
+                        <label class="col-md-2 control-label">适用车型：</label>
+                        <select class="col-md-2 form-control" ng-model="selectCarType">
+                            <option value="">全部</option>
+                            <option value="索纳塔9">第九代索纳塔</option>
+                            <option value="全新途胜">全新途胜</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">短信任务开始时间：</label>
+                        <input class="col-md-2 form-control datepicker" placeholder="短信任务开始时间" data-date-format="yyyy-mm-dd" ng-model="formData.Start" />
+                        <label class="col-md-2 control-label">短信任务结束时间：</label>
+                        <input class="col-md-2 form-control datepicker" placeholder="短信任务结束时间" data-date-format="yyyy-mm-dd" ng-model="formData.End" />
+                    </div>
+
+                    <div class="form-group">
+                        <input class="btn btn-primary col-md-offset-2" type="button" ng-click="search()" value="查询" />
+                    </div>
+
+                    <script type="text/javascript">
+                        $('.datepicker').datepicker();
+                    </script>
+                </form>
+
+                <div>
+                    <input class="btn btn-primary col-md-offset-10" type="button" data-toggle="modal" data-target="#addPlanModal" ng-click="AddPlan()" value="添加发送任务" />
+                    <hr />
+                </div>
+
+                <div class="gridStyle" style="height: 410px; border: 1px solid rgb(212,212,212)" ng-grid="gridOptions"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--添加任务页面-->
+<div class="modal fade" id="addPlanModal" tabindex="-1" role="dialog" aria-labelledby="addPlanModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">添加发送任务</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="form-group">
+                        <label class="col-md-4">任务名称:</label>
+                        <input class="col-md-8 form-control" type="text" placeholder="任务名称" ng-model="addPlanData.ServiceTitle" />
+                    </div>
+
+                    <div class="form-group" style="margin-top:45px">
+                        <label class="col-md-4">定时类型:</label>
+                        <select class="col-md-8 form-control" ng-model="addPlanData.SelectTimeType" ng-change="timeTypeChange()">
+                            <option value="">请选择</option>
+                            <option value="1">距购车之日时限</option>
+                            <option value="2">特定日期</option>
+                            <option value="3">即时执行</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="margin-top:90px">
+                        <label class="col-md-4 control-label">计划执行日期：</label>
+                        <input class="col-md-8 form-control datepicker" ng-disabled="addPlanData.IsScheduleDate" data-date-format="yyyy-mm-dd" ng-model="addPlanData.ScheduleTime" />
+                    </div>
+
+                    <div class="form-group" style="margin-top:135px">
+                        <label class="col-md-4">距购车之日时限:</label>
+                        <input class="col-md-8 form-control" type="text" ng-disabled="addPlanData.IsValueDate" placeholder="距购车之日时限" ng-model="addPlanData.ValueTime" />
+                    </div>
+
+                    <div class="form-group" style="margin-top:180px">
+                        <label class="col-md-4 control-label">适用车型：</label>
+                        <select class="col-md-8 form-control" ng-model="addPlanData.SelectCarType">
+                            <option value="">请选择</option>
+                            <option value="索纳塔9">第九代索纳塔</option>
+                            <option value="全新途胜">全新途胜</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="margin-top:230px">
+                        <label class="col-md-4">短信内容:</label>
+                        <textarea class="col-md-8 form-control" ng-model="addPlanData.SMSContent" rows="5"></textarea>
+                    </div>
+
+                    <div class="form-group" style="margin-top:300px">
+                        <input class="btn btn-primary col-md-offset-6" type="button" ng-click="addPlanSave()" value="保存" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--编辑任务页面-->
+<div class="modal fade" id="editPlanModal" tabindex="-1" role="dialog" aria-labelledby="editPlanModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">编辑发送任务</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="form-group">
+                        <label class="col-md-4">任务名称:</label>
+                        <input class="col-md-8 form-control" type="text" placeholder="任务名称" ng-model="editPlanData.ServiceTitle" />
+                    </div>
+
+                    <div class="form-group" style="margin-top:45px">
+                        <label class="col-md-4">定时类型:</label>
+                        <select class="col-md-8 form-control" ng-model="editPlanData.SelectTimeType" ng-change="timeTypeChange_edit()">
+                            <option value="">请选择</option>
+                            <option value="1">距购车之日时限</option>
+                            <option value="2">特定日期</option>
+                            <option value="3">即时执行</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="margin-top:90px">
+                        <label class="col-md-4 control-label">计划执行日期：</label>
+                        <input class="col-md-8 form-control datepicker" ng-disabled="editPlanData.IsScheduleDate" data-date-format="yyyy-mm-dd" ng-model="editPlanData.ScheduleTime" />
+                    </div>
+
+                    <div class="form-group" style="margin-top:135px">
+                        <label class="col-md-4">距购车之日时限:</label>
+                        <input class="col-md-8 form-control" type="text" ng-disabled="editPlanData.IsValueDate" ng-model="editPlanData.ValueTime" />
+                    </div>
+
+                    <div class="form-group" style="margin-top:180px">
+                        <label class="col-md-4 control-label">适用车型：</label>
+                        <select class="col-md-8 form-control" ng-model="editPlanData.SelectCarType">
+                            <option value="">请选择</option>
+                            <option value="索纳塔9">第九代索纳塔</option>
+                            <option value="全新途胜">全新途胜</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="margin-top:180px">
+                        <label class="col-md-4">短信内容:</label>
+                        <textarea class="col-md-8 form-control" ng-model="editPlanData.SMSContent" rows="5"></textarea>
+                    </div>
+
+                    <div class="form-group" style="margin-top:300px">
+                        <input class="btn btn-primary col-md-offset-6" type="button" ng-click="editPlanSave()" value="保存" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

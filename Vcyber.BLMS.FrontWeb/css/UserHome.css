@@ -1,0 +1,51 @@
+﻿ #OneDiv div {
+        float: left;
+        width: 250px;
+        padding: 0;
+        margin: 0;
+        border-right: 2px solid DimGray;
+        text-align: center;
+    }
+
+    #OneDiv {
+        width: 100%;
+        float: left;
+        margin: 5px;
+    }
+
+    #TableDiv {
+        border-top: 2px solid DimGray;
+        border-left: 2px solid DimGray;
+        width: 1395px;
+        height: 74px;
+        text-align:center;
+    }
+
+    #HeaderDiv {
+        float: left;
+    }
+
+
+        #HeaderDiv div {
+            border-bottom: 2px solid DimGray;
+            border-right: 2px solid DimGray;
+            width: 230px;
+            height: 35px;
+            background-color: Gainsboro;
+            float: left;
+        }
+
+
+    .RowDiv {
+        width: 1395px;
+        float: left;
+    }
+
+        .RowDiv div {
+            border-bottom: 2px solid DimGray;
+            border-right: 2px solid DimGray;
+            width: 230px;
+            height: 35px;
+            background-color: HoneyDew;
+            float: left;
+        }

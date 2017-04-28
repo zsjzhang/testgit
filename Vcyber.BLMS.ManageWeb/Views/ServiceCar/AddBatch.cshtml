@@ -1,0 +1,151 @@
+﻿@model List<Vcyber.BLMS.Entity.ServiceCardBatch>
+@using Vcyber.BLMS.ManageWeb.Helper;
+@using Vcyber.BLMS.Entity.Enum;
+@using Vcyber.BLMS.Entity;
+@using Vcyber.BLMS.Common;
+<style type="text/css">
+    .container panel panel-default {
+        background: rgba(255, 255, 255, 0.8) none repeat scroll 0 0 !important;
+        filter: Alpha(opacity=80);
+        background: #fff;
+    }
+
+    .panel-body form-horizontal {
+        background: rgba(255, 255, 255, 0.8) none repeat scroll 0 0 !important;
+        filter: Alpha(opacity=80);
+        background: #fff;
+    }
+
+    .form-group {
+        background: rgba(255, 255, 255, 0.8) none repeat scroll 0 0 !important;
+        filter: Alpha(opacity=80);
+        background: #fff;
+    }
+
+    #customerDiv {
+        width: 945px;
+        height: 200px;
+        background-color: red;
+        z-index: 21;
+        top: 55px;
+        left: 15px;
+        position: absolute;
+        background: rgba(255, 255, 255, 0.8) none repeat scroll 0 0 !important;
+        filter: Alpha(opacity=80);
+        background: #fff;
+        display: none;
+    }
+</style>
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+<div id="customerDiv">
+    <div class="container panel panel-default">
+        <div class="panel-body form-horizontal">
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red">*</b>卡卷名称：</label>
+                <div class="col-md-4 text-left">
+                    <input type="text" id="batchName" class="input_text2 form-control" style="width:300px;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red">*</b>卡卷类型：</label>
+                <div class="col-md-4 text-left">
+                  @Html.DropDownList("cardType", StoreHelpr.CardTypeAll(), new { Class = "input_text2 form-control", id = "cardType" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red">*</b>批次总金额：</label>
+                <div class="col-md-4 text-left">
+                    <input type="text" id="totalMoney" class="input_text2 form-control" style="width:300px;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red">*</b>批次数量：</label>
+                <div class="col-md-4 text-left">
+                    <input type="text" id="batchQty" class="input_text2 form-control" style="width:300px;" />最大数量5000
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red">*</b>过期时间：</label>
+                <div class="col-md-4 text-left">
+                    <input type="text" id="validateTime" class="input_text2 form-control" style="width:300px;" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowWeek:true,isShowClear:true,readOnly:true})" />
+                </div>
+            </div>
+
+            <div class="col-md-12" style="padding-left:200px;">
+                <a href="#" class="btn-lg btn-primary " onclick="submitForm(this); " disabled="true" id="submitId">提交</a>&nbsp;&nbsp;&nbsp;
+                <a href="#" class="btn-lg btn-primary " onclick="cancel(); ">取消</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function cancel() {
+
+        $(":text").each(function (index, element) {
+            $(this).val("");
+        });
+
+        $("#submitId").attr("disabled", "true");
+        $("#customerDiv").hide(500);
+
+    }
+
+    function submitForm(instance) {
+
+        var value = $(instance).attr("disabled");
+
+        if (value == "false") {
+            alert("正在创建卡卷.....");
+            return;
+        }
+
+        $(instance).attr("disabled","false");
+
+        var name = $("#batchName").val().trim();
+        var cardType = $("#cardType").val().trim();
+        var totalMoney = $("#totalMoney").val().trim();
+        var batchQty = $("#batchQty").val().trim();
+        var validateTime = $("#validateTime").val().trim();
+
+        $.post("/ServiceCar/AddBatch", {
+            BatchName: name,
+            TypeCode: cardType,
+            BatchTotalMoney: totalMoney,
+            BatchQty: batchQty,
+            ValidateTime: validateTime
+        }, function (dataResult) {
+            if (dataResult.Status == 200) {
+
+                $(":text").each(function (index, element) {
+                    $(this).val("");
+                });
+
+                alert("添加成功。");
+            } else {
+                alert(dataResult.Message);
+            }
+
+            $(instance).attr("disabled", "true");
+        })
+    }
+</script>

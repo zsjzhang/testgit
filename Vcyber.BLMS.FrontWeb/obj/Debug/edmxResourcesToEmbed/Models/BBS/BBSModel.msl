@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BBSModelStoreContainer" CdmEntityContainer="BBSEntities">
+    <EntitySetMapping Name="BBSColumns">
+      <EntityTypeMapping TypeName="BBSModel.BBSColumns">
+        <MappingFragment StoreEntitySet="BBSColumns">
+          <ScalarProperty Name="ImageSrc" ColumnName="ImageSrc" />
+          <ScalarProperty Name="Info" ColumnName="Info" />
+          <ScalarProperty Name="Column_Name" ColumnName="Column_Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BBSComment">
+      <EntityTypeMapping TypeName="BBSModel.BBSComment">
+        <MappingFragment StoreEntitySet="BBSComment">
+          <ScalarProperty Name="C_Time" ColumnName="C_Time" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="GuestBookId" ColumnName="GuestBookId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BBSGuestBook">
+      <EntityTypeMapping TypeName="BBSModel.BBSGuestBook">
+        <MappingFragment StoreEntitySet="BBSGuestBook">
+          <ScalarProperty Name="G_isTop" ColumnName="G_isTop" />
+          <ScalarProperty Name="G_approved" ColumnName="G_approved" />
+          <ScalarProperty Name="Column_Id" ColumnName="Column_Id" />
+          <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+          <ScalarProperty Name="LastUpdateMemberName" ColumnName="LastUpdateMemberName" />
+          <ScalarProperty Name="G_ResponseCount" ColumnName="G_ResponseCount" />
+          <ScalarProperty Name="G_ReadCount" ColumnName="G_ReadCount" />
+          <ScalarProperty Name="G_Recycle" ColumnName="G_Recycle" />
+          <ScalarProperty Name="G_HF_Content" ColumnName="G_HF_Content" />
+          <ScalarProperty Name="G_Title" ColumnName="G_Title" />
+          <ScalarProperty Name="G_Time" ColumnName="G_Time" />
+          <ScalarProperty Name="G_Content" ColumnName="G_Content" />
+          <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BBSMember">
+      <EntityTypeMapping TypeName="BBSModel.BBSMember">
+        <MappingFragment StoreEntitySet="BBSMember">
+          <ScalarProperty Name="SetAtt" ColumnName="SetAtt" />
+          <ScalarProperty Name="Head" ColumnName="Head" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="Power" ColumnName="Power" />
+          <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,162 @@
+﻿@model List<Vcyber.BLMS.Entity.Product>
+
+@using Vcyber.BLMS.Entity.Enum;
+@using Vcyber.BLMS.Common;
+    @using Vcyber.BLMS.ManageWeb.Helper;
+
+    <div class="boxlist1">
+        <table class="table table-bordered">
+            <tr class="l1">
+                <td style="width: 50px">商品ID</td>
+                <td style="width: 60px">商品名称</td>
+                <td style="width: 50px">类型</td>
+                <td style="width: 80px">普卡</td>
+                <td style="width: 80px">银卡</td>
+                <td style="width: 80px">金卡</td>
+                <td style="width: 50px">库存</td>
+                <td style="width: 50px">销量</td>
+                <td style="width: 50px">库存预警</td>
+                <td style="width: 50px">排序权重</td>
+                <td style="width: 50px">上架状态</td>
+                <td style="width: 50px">颜色</td>
+                <td style="width: 50px">类型</td>
+                <td style="width: 50px">推荐</td>
+                <td style="width: 80px">创建时间</td>
+                <td style="width: 80px">操作</td>
+                
+            </tr>
+            @foreach (var item in Model)
+        {
+                <tr>
+                    <td>
+                        @item.ID
+                    </td>
+                    @*<td>
+                            <img src="@item.Image" alt="" width="60" height="60" />
+                        </td>*@
+                    <td>
+                        <a href="~/Product/Edit?id=@item.ID">@item.Name</a>
+                    </td>
+                    <td>
+                        @{var categoryName = item.Category == null ? "" : item.Category.CategoryName;}@categoryName
+                    </td>
+                    <td>
+                        @item.Integral
+                    </td>
+                    <td>
+                        @item.SilverMemberIntegral
+                    </td>
+                    <td>
+                        @item.GoldMemberIntegral
+                    </td>
+                    <td>
+                        @item.Qty
+                    </td>
+                    <td>
+                        @item.Sales
+                    </td>
+                    <td>
+                       
+                        @if (item.Yjx<30)
+                        {
+                         <strong style="color:red" >@item.Yjx</strong>
+                        }
+                        else
+                        {
+                            <span>@item.Yjx</span>
+                        }
+                    </td>
+                    <td>@item.Weight</td>
+                    <td id="state-@item.ID">
+                        @if (item.State == EProductState.SoldOut.ToInt32())
+                    {
+                            <text>下架</text>
+                    }
+                    else
+                    {
+                            <font color="red">上架</font>
+                    }
+                    </td>
+                    <td>
+                        @{ var strcolor = string.Empty; }
+                        @foreach (Vcyber.BLMS.Entity.ProductColor pc in item.ProductColorList)
+                        {
+                            strcolor += pc.Text + "|";
+                        }
+                        @if (strcolor.EndsWith("|"))
+                        {
+                            strcolor = strcolor.TrimEnd('|');
+                           
+                        }
+                        <span>@strcolor</span>
+                    </td>
+                    <td>
+                        @{ var strtype = string.Empty; }
+                        @foreach (Vcyber.BLMS.Entity.ProductType pt in item.ProductTypeList)
+                        {
+                            strtype += pt.Text + "|";
+                        }
+                        @if (strtype.EndsWith("|"))
+                        {
+                            strtype = strtype.TrimEnd('|');
+                        
+                        }
+                        <span>@strtype</span>
+                    </td>
+                    <td>@{EProductRecommend rec = (EProductRecommend)item.IsRecommend;}@rec.GetDiscribe()</td>
+                    <td>@item.Createtime</td>
+                    <td>
+                        @if (item.State == EProductState.SoldOut.ToInt32())
+                        {
+                            <a href="javascript:void(0)" onclick="puton(@item.ID)" productid="@item.ID">上架</a>
+    <a href="javascript:void(0)" onclick="putoff(@item.ID)" style="display:none" productid="@item.ID">下架</a>
+                        }
+                        else
+                        {
+                            <a href="javascript:void(0)" onclick="puton(@item.ID)" productId="@item.ID" style="display:none">上架</a>
+    <a href="javascript:void(0)" onclick="putoff(@item.ID)" productid="@item.ID">下架</a>
+                        }
+
+                       
+
+
+                        <a href="@Url.Action("Delete", new { id = item.ID })" onclick="return Delete();">删除</a>
+                        <a href="~/Product/Edit?id=@item.ID">编辑</a>
+                    </td>
+
+                   
+                </tr>
+        }
+        </table>
+    </div>
+    <div class="box_a2">
+        <div class="pagbox">
+            <a href="javascript:void(0);" onclick="GetPageList(1)">首页</a>
+            <a href="javascript:void(0);" onclick="ShowPages('Pre')"><<</a>
+            <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.PrePage)">上一页</a>
+            @{
+            int PageIndex = (int)ViewBag.PageIndex;
+            int PageCurrentGroup = (int)(PageIndex / 10);
+            }
+            @for (int i = 1; i <= (int)ViewBag.EndPage; i++)
+        {
+            if ((i < PageCurrentGroup * 10) || (i >= (PageCurrentGroup + 1) * 10))
+            {
+                <a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)" style="display:none;">@i</a>
+            }
+            else
+            {
+                if (i == (int)ViewBag.PageIndex)
+                {<a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)" style="color: blue">@i</a> }
+                else
+                {<a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)">@i</a> }
+            }
+        }
+            <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.NextPage, 10)">下一页</a>
+            <a href="javascript:void(0);" onclick="ShowPages('Next')">>></a>
+            <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.EndPage, 10)">尾页</a>
+        </div>
+    </div>
+    <input type="hidden" id="hidCurrentPage" value="@ViewBag.PageIndex" />
+    <input type="hidden" id="hidEndPage" value="@ViewBag.EndPage" />
+    <input type="hidden" id="hidCurrentGroup" value="@PageCurrentGroup" />

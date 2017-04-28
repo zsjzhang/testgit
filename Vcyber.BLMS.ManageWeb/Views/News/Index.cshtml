@@ -1,0 +1,141 @@
+﻿@{
+    Layout = null;
+}
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>内容管理 - 新闻</strong></div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+
+        <div class="row">
+            <span class="col-md-6">新闻管理</span>
+            <div class="col-md-6 text-right">
+                <button type="button" class="btn btn-primary" ng-click="create()">添加</button>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <form name="form" class="form-horizontal" novalidate>
+
+            <div class="form-group" ng-show="dealerDWShow">
+                <label class="col-md-2 control-label">发布时间：</label>
+                        <div class="col-md-2 text-left" style="padding-left:15;">
+                            <input id="gstart" class="form-control datepicker" placeholder="开始时间" ng-model="formData.StartTime" data-date-format="yyyy-mm-dd" />
+                        </div>
+                        <div class="col-md-2 text-left" style="padding-left:0;">
+                            <input id="gend" class="form-control datepicker" placeholder="结束时间" ng-model="formData.EndTime" data-date-format="yyyy-mm-dd" />
+                        </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">文章标题：</label>
+                <div class="col-md-8 text-left">
+                    <input class="form-control" style="max-width: 800px"  type="text" ng-model="title" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn btn-primary" type="submit" ng-click="search()">查询</button>
+                </div>
+            </div>
+        </form>
+        <div class="gridStyle" style="min-height: 410px; border: 1px solid rgb(212, 212, 212)" ng-grid="gridOptions">
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="priorityModal" tabindex="-1" role="dialog" aria-labelledby="priorityModalModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="priorityModalModal">编辑显示</h4>
+            </div>
+            <form class="form-horizontal" name="form" ng-submit="UpdatePriority(form.$valid)" novalidate>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">显示:</label>
+                            <div class="col-md-8">
+                                <label class="radio-inline">
+                                    <input type="radio" name="displayRadios" value="1" ng-model="selectItem.IsDisplay">
+                                    是
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="displayRadios" value="0" ng-model="selectItem.IsDisplay">
+                                    否
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="dealerDWShow">
+                            <label class="col-md-2 control-label">热点:</label>
+                            <div class="col-md-8">
+                                <label class="radio-inline">
+                                    <input type="radio" name="hotRadios" value="1" ng-model="selectItem.IsHot">
+                                    是
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="hotRadios" value="0" ng-model="selectItem.IsHot">
+                                    否
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="dealerDWShow">
+                            <label class="col-md-2 control-label">权重:</label>
+                            <div class="col-md-10">
+                                <input type="number" class="form-control" name="priority" ng-model="selectItem.Priority" ng-required="true" pattern="" />
+                                <span ng-show="form.priority.$invalid">数字</span>
+                                <p class="label-warning">新闻排序根据权值从大到小</p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="newsApproveListModal" tabindex="-1" role="dialog" aria-labelledby="newsApproveListModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="newsApproveListModal">查看审批记录</h4>
+            </div>
+            <div class="modal-body">
+                <div class="g_page_grid" style="height: 350px; border: 1px solid rgb(212,212,212)" ng-grid="approveGridOptions">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+                    $('.datepicker').datepicker();
+</script>
+
+

@@ -1,0 +1,44 @@
+﻿@using Vcyber.BLMS.Entity
+@model SNCard
+@{
+    ViewBag.Title = "候机卡券详情";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<div class="wrapper" id="wrapper">
+    <div class="top-hd-bar">
+        <h1>尊享候机服务</h1>
+    </div>
+    <div class="coupon-content">
+        <div class="coupon-ct-hd">
+            <span class="data">@Convert.ToDateTime(Model.SendTime)预约</span>
+            <span class="ico-use">
+                @if (Model.Status == 1)
+                {
+                    <img src="~/img/MyCard/ico_use_ok.png" />
+                }
+                else if (Model.Status == 2)
+                {
+                    <img src="~/img/MyCard/ico_use_no.png" />
+                }
+                else if (Model.Status == 3)
+                {
+                    <img src="~/img/MyCard/ico_use_yes.png" />
+                }
+            </span>
+        </div>
+        <div class="coupon-box">
+            <strong>候机服务券</strong>
+            <img src="@Url.Content("~/myCenter/GetQCode?id=" + Server.UrlEncode(Model.SNCode))" />
+            ><span>空港易行候机服务码：@Model.SNCode</span>
+            <span>免费一次</span>
+            @if (Model.Status == 3)
+            {
+                <p>@Convert.ToDateTime(Model.UseTime)服务</p>
+            }
+
+        </div>
+    </div>
+</div>
+

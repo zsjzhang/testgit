@@ -1,0 +1,83 @@
+﻿@model List<Vcyber.BLMS.Entity.ServiceModel>
+@using Vcyber.BLMS.Entity.Enum;
+@using Vcyber.BLMS.Common;
+@using Vcyber.BLMS.ManageWeb.Helper;
+
+
+
+<div class="data-container" style="overflow: auto;">
+    <table class="table table-bordered" style="width:100%;">
+        <thead>
+            <tr class="l1" style="background-color: #eaeaea;">
+                <th>序号</th>
+                <th>预约时间</th>
+                <th>使用人姓名</th>
+                <th>手机号</th>
+                <th>身份证号</th>
+                <th>车架号</th>
+                <th> &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;预约项目&nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;</th>
+                <th>渠道</th>
+                <th>串码</th>
+                <th>是否免费</th>
+                <th>是否使用</th>
+                <th>使用时间</th>
+                <th>预约机场</th>
+                <th>实际使用机场</th>
+                <th>店代码</th>
+                <th> &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; 店简称 &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; </th>
+                <th> &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; 办事处 &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; </th>
+                <th> &nbsp; 区域 &nbsp; </th>
+                <th>服务使用状态</th>
+            </tr>
+        <thead>
+            @{int count = 0;}
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @*<td>@{int value = ++count;}@value</td>*@
+                    <td>@item.rowid</td>
+                    <td>@item.CreateTime</td>
+                    <td>@item.RealName</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>@item.IdentityNumber</td>
+                    <td>@item.VIN</td>
+                    <td>@item.OrderType</td>
+                    <td>@item.DataSource</td>
+                    <td>@item.SNCode</td>
+                    <td>@item.SendType</td>
+                    <td>@item.IsUse</td>
+                    <td>@item.UseTime</td>
+                    <td>@item.AirportName</td>
+                    <td>@item.UseAdd</td>
+                    <td>@item.DealerId</td>
+                    <td>@item.Name</td>
+                    <td>@item.Region</td>
+                    <td>@item.Area</td>
+                    <td>@item.Status</td>
+                </tr>
+            }
+        <tbody>
+    </table>
+</div>
+<div class="box_a2">
+    <div class="pagbox">
+        <a href="javascript:void(0);">共 @ViewBag.Total 条 &nbsp; &nbsp;</a>
+        <a href="javascript:void(0);" onclick="GetPageList(1)">首页</a>
+        <a href="javascript:void(0);" onclick="ShowPages('Pre')"><<</a>
+        <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.PrePage)">上一页</a>
+        @{
+            int PageIndex = (int)ViewBag.PageIndex;
+            int PageCurrentGroup = (int)(PageIndex / 10);
+        }
+
+        <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.NextPage, 10)">下一页</a>
+        <a href="javascript:void(0);" onclick="ShowPages('Next')">>></a>
+        <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.EndPage, 10)">尾页</a>
+    </div>
+</div>
+<input type="hidden" id="hidCurrentPage" value="@ViewBag.PageIndex" />
+<input type="hidden" id="hidEndPage" value="@ViewBag.EndPage" />
+<input type="hidden" id="hidCurrentGroup" value="@PageCurrentGroup" />
+
+

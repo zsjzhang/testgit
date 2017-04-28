@@ -1,0 +1,49 @@
+﻿@model Vcyber.BLMS.FrontWeb.Models.UserCarDetailModel
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "车辆信息";
+}
+<style type="text/css">
+</style>
+<div class="header">
+    @Html.Action("HomeHeader", "Header", new { pageName = "Mycenter" })
+    <!--个人中心-->
+    <link href="~/css/base/information.css" rel="stylesheet" />
+    <link href="~/css/base/dd.css" rel="stylesheet" />
+</div>
+<div>
+    <div class="n_all_cont">
+        <div class="n_left_cont">
+            @Html.Partial("_PartialUserInfo", this.Model.CurrentUser)
+            @Html.Partial("_PartialMyWallet", this.Model.CurrentUser)
+
+            @Html.Action("MySoonService", "Car")
+
+        </div>
+        <div class="n_right_cont">
+            <p class="select_menu"><a href="/Mycenter/Index">个人中心 ></a><a href="">车辆信息</a></p>
+            <div class="gy_cont">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>车辆信息</h1>
+                        <span>Vehicle Information</span>
+                    </div>
+                </div>
+                <div class="clxx_box">
+                    <img src="@Model.CarInfo.PictureUrl2" />
+                    <div class="clxx_line">
+                        <p><span style="margin-left:0; display:inline-block; width:130px;">车型</span><span style="margin-left:0;text-align:left">@Model.CarInfo.CarCategory</span></p>
+                        <p><span style="margin-left:0; display:inline-block; width:130px;">经销商</span><span style="margin-left:0;text-align:left">@Model.CarInfo.DealerName</span></p>
+                        <p><span style="margin-left:0; display:inline-block; width:130px;">车牌</span><span style="margin-left:0;text-align:left">@Model.CarInfo.LicencePlate</span></p>
+                        <p><span style="margin-left:0; display:inline-block; width:130px;">VIN</span><span style="margin-left:0;text-align:left">@Model.CarInfo.VIN</span></p>
+                        <p><span style="margin-left:0; display:inline-block; width:130px;">行驶里程</span> <span style="margin-left:0;text-align:left">@Model.CarInfo.Mileage 公里</span></p>
+                        <p><span style="margin-left:0; display:inline-block; width:130px;">购车年份</span> <span style="margin-left:0;text-align:left">@Model.CarInfo.BuyTimeYear </span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

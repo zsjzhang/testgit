@@ -1,0 +1,46 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "预约失败";
+}
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header")
+    </div>
+    <div class="n_all_cont">
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+                @(this.User.Identity.IsAuthenticated ? this.Html.Action("HomeLogonSuccess", "Account") : this.Html.Action("HomeLogon", "Account"))
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+        </div>
+
+        <div class="n_right_cont">
+            <div class="fail_box">
+                <dl>
+                    <dt><img src="/img/zhifushibai.png"></dt>
+                    <dd>
+                        <h2>很抱歉，您的预约没有成功。</h2>
+                    </dd>
+                    <dd>
+                        <h2 style="font-size: 12px; padding-left: 60px;">5秒后返回到服务首页</h2>
+                    </dd>
+                </dl>
+            </div>
+            @*<div><a href="/Live/Index" class="yuyue befor_ac" style="margin-top:50px;">返<b style="margin: 0 6px;"></b>回</a></div>*@
+        </div>
+    </div>
+
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+    <script type="text/javascript">
+        setTimeout(function () {
+            window.location = "/Live/Index";
+        }, 5000);
+    </script>
+</div>

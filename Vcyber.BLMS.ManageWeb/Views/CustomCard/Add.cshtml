@@ -1,0 +1,298 @@
+﻿@using Vcyber.BLMS.Entity;
+@using Vcyber.BLMS.ManageWeb.Helper;
+@model  Vcyber.BLMS.Entity.Questionnaire
+@{
+    ViewBag.Title = "新建卡券";
+    ViewBag.TitleFocus = "2-2-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript" src="@Url.Content("~/Scripts/Uploadify/jquery.uploadify.js")"></script>
+<link href="@Url.Content("~/Scripts/uploadify/uploadify.css")" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/Uploadify/jquery.uploadify.min.js"></script>
+<script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+
+<link rel="stylesheet" type="text/css" href="@Url.Content("~/Scripts/ueditor/themes/default/css/ueditor.css")" />
+<script type="text/javascript" src="@Url.Content("~/Scripts/ueditor/ueditor.config.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/ueditor/ueditor.all.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/ueditor/lang/zh-cn/zh-cn.js")"></script>
+@*<style type="text/css">
+        li span {
+            margin-left: 10px;
+        }
+
+        .span {
+            width: 70px;
+            background-color: #00ADFF;
+            height: 30px;
+            border: 0;
+            padding: 0;
+            margin-top: 0;
+            text-align: center;
+        }
+    </style>*@
+
+<div class="container panel panel-default" data-ng-init="load()">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-horizontal" name="form1">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">卡券来源：</label>
+                        <select id="selcardType" class="col-md-2 form-control">
+                            <option value="1" selected>北京现代自有卡券</option>
+                            <option value="2">合作商户</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">卡券Logo：</label>
+                        <div class="col-md-10 text-center" style="height: 150px;">
+                            <div style="float: left; width: 110px; height: 110px; margin-right: 40px;">
+                                <div>
+                                    <img id="imgSl" src="@Model.Image" style="height: 100px; width: 100px;" />
+                                </div>
+                                <div class="imgDiv">
+                                    <input type="file" id="fileImage" name="fileImage" style="display: none;" />
+                                </div>
+                                @Html.HiddenFor(m => m.Image)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">卡券颜色：</label>
+                        <select id="selcardcolor" class="col-md-2 form-control">
+                            <option value="#63b359" selected>若绿色</option>
+                            <option value="#2c9f67">青绿色</option>
+                            <option value="#509fc9">湖蓝色 </option>
+                            <option value="#5885cf">绀青色</option>
+                            <option value="#9062c0">青紫色</option>
+                            <option value="#d09a45">黄金色 </option>
+                            <option value="#e4b138">土黄色</option>
+                            <option value="#ee903c">郁金色</option>
+                            <option value="#dd6549">赤丹色</option>
+                            <option value="#cc463d">赤铜色</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">卡券名称：</label>
+                        <input autocomplete="off" class="col-md-2 form-control" type="text" placeholder="卡券名称" id="cardname" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">卡券活动：</label>
+                        <input autocomplete="off" class="col-md-2 form-control" type="text" placeholder="卡券活动" id="activityname" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">商户名称：</label>
+                        <input autocomplete="off" class="col-md-2 form-control" type="text" placeholder="卡券名称" id="merchantname" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">商户Logo：</label>
+                        <div class="col-md-10 text-center" style="height: 150px;">
+                            <div style="float: left; width: 110px; height: 110px; margin-right: 40px;">
+                                <div>
+                                    <img id="imgSlMerchant" src="@Model.SyImage" style="height: 100px; width: 100px;" />
+                                </div>
+                                <div class="imgDivMerchant">
+                                    <input type="file" id="fileMerchantImage" name="fileMerchantImage" style="display: none;" />
+                                </div>
+                                @Html.HiddenFor(m => m.SyImage)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">开始时间：</label>
+                        <input type="date" class="form-control datepicker" id="begindate" data-date-format="yyyy-mm-dd">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">结束时间：</label>
+                        <input type="date" class="form-control datepicker" id="enddate" data-date-format="yyyy-mm-dd">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">卡券有效期：</label>
+                        <select id="selcaliditytype" class="col-md-2 form-control">
+                            <option value="1" selected>固定时间</option>
+                            <option value="2">领取后生效</option>
+                        </select>
+                        &nbsp;&nbsp;
+                        <input autocomplete="off"  class="col-md-2 form-control" type="text" style="width:100px;display:none" placeholder="有效期天" id="cardvalidity" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">库存数量：</label>
+                        <input autocomplete="off" class="col-md-2 form-control" type="number" placeholder="库存数量" id="quantity" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">卡券金额：</label>
+                        <input autocomplete="off" class="col-md-2 form-control" type="number" placeholder="卡券金额" id="reducecost" required />
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">卡券优惠说明：</label>
+                        <textarea class="col-md-4 form-control" id="cardremark" style="margin: 0px; width: 507px; height: 103px;" placeholder="卡券优惠说明"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">卡券使用须知：</label>
+                        <textarea class="col-md-2 form-control" placeholder="卡券使用须知" id="instructions" style="margin: 0px; width: 507px; height: 103px;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">卡券短信：</label>
+                        <textarea class="col-md-2 form-control" placeholder="卡券短信" id="smscontent" style="margin: 0px; width: 507px; height: 103px;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-primary col-md-offset-3" id="btn-submit" type="button" ng-click="submit()" value="确认生成" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $("#selcaliditytype").on("change", function () {
+        var type = $("#selcaliditytype").val();
+        if (type == 2) {
+            $("#cardvalidity").css("display", "block");
+        } else {
+            $("#cardvalidity").css("display", "none");
+        }
+    });
+    $("#fileImage").uploadify({
+        'buttonImg': "@Model.Image",
+        'buttonText': '添加图片',
+        'fileTypeDesc': 'Image Files',
+        'fileTypeExts': '*.jpg;*.jpge;*.gif;*.png;*.bmp',
+        'swf': '@Url.Content("~/Scripts/Uploadify/uploadify.swf")',
+        'uploader': "/CustomCard/UploadImage",
+        'auto': true,
+        'multi': false,
+        'wmode': 'transparent',
+        'fileSizeLimit': '10485760kb',
+        'onUploadSuccess': function (file, data, response) {
+            if (file.size < 10485760) {
+                $("#imgSl").attr("src", data);
+                $("#Image").val(data);
+            }
+            else {
+                alert("上传文件不能大于10485760KB");
+            }
+        }
+    });
+
+    $("#fileMerchantImage").uploadify({
+        'buttonImg': "@Model.SyImage",
+        'buttonText': '添加图片',
+        'fileTypeDesc': 'Image Files',
+        'fileTypeExts': '*.jpg;*.jpge;*.gif;*.png;*.bmp',
+        'swf': '@Url.Content("~/Scripts/Uploadify/uploadify.swf")',
+        'uploader': "/CustomCard/UploadImage",
+        'auto': true,
+        'multi': false,
+        'wmode': 'transparent',
+        'fileSizeLimit': '10485760kb',
+        'onUploadSuccess': function (file, data, response) {
+            if (file.size < 10485760) {
+                $("#imgSlMerchant").attr("src", data);
+                $("#Image").val(data);
+            }
+            else {
+                alert("上传文件不能大于10485760KB");
+            }
+        }
+    });
+
+
+
+    function toDou(iNum) {
+        return iNum < 10 ? '0' + iNum : '' + iNum;
+    }
+
+    function tick() {
+        var oDate = new Date();
+        return toDou(oDate.getFullYear()) + "-" + toDou(oDate.getMonth() + 1) + "-" + toDou(oDate.getDate());;
+    }
+
+
+
+    $("#btn-submit").on("click", function () {
+        var isvalidate = true;
+        var cardType = $("#selcardType").val();
+        var cardlogo = $("#imgSl").attr("src");
+        var merchantlogo = $("#imgSlMerchant").attr("src");
+        var merchantname = $("#merchantname").val();
+        var cardname = $("#cardname").val();
+        var activityname = $("#activityname").val();
+        var begindate = $("#begindate").val();
+        var enddate = $("#enddate").val();
+        var quantity = $("#quantity").val();
+        var reducecost = $("#reducecost").val();
+        var cardcolor = $("#selcardcolor").val();
+        var cardremark = $("#cardremark").val();
+        var instructions = $("#instructions").val();
+        var caliditytype = $("#selcaliditytype").val();
+        var cardvalidity = $("#cardvalidity").val();
+        var sms = $("#smscontent").val();
+        var today = tick();
+        var startNum = parseInt(begindate.replace(/-/g, ''), 10);
+        var endNum = parseInt(enddate.replace(/-/g, ''), 10);
+        var todayNum = parseInt(today.replace(/-/g, ''), 10);
+        if (cardlogo == "" || cardlogo == undefined) {
+            isvalidate = false;
+            alert("请上传卡券Logo！");
+        }
+        if (cardname == "") {
+            isvalidate = false;
+            alert("请输入卡券名称！");
+        }
+        else if (activityname == "") {
+            isvalidate = false;
+            alert("请输入卡券活动！");
+        }
+        else if (begindate == "") {
+            isvalidate = false;
+            alert("请输入卡券开始有效期！");
+        }
+        else if (enddate == "") {
+            isvalidate = false;
+            alert("请输入卡券结束有效期！");
+        }
+        else if (startNum < todayNum) {
+            isvalidate = false;
+            alert("卡券开始时间输入不正确");
+        }
+        else if (startNum > endNum) {
+            isvalidate = false;
+            alert("卡券结束时间不能在开始时间之前！");
+        }
+        else if (caliditytype == 2 && cardvalidity == "") {
+            isvalidate = false;
+            alert("请输入有效期天！");
+        }
+        else if (quantity == "") {
+            isvalidate = false;
+            alert("请输入库存数量！");
+        }
+        else if (reducecost == "") {
+            isvalidate = false;
+            alert("请输入卡券金额！");
+        }
+        if (isvalidate) {
+            var url = "/CustomCard/SaveCustomCard";
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: { CardLogoUrl: cardlogo, CardSource: cardType, CardColor: cardcolor, CardName: cardname, ActivityType: activityname, MerchantLogoUrl: merchantlogo, MerchantName: merchantname, CardBeginDate: begindate, CardEndDate: enddate + " 23:59:59", Quantity: quantity, ReduceCost: reducecost, CardRemark: cardremark, Instructions: instructions, CardValidityType: caliditytype, CardValidity: cardvalidity, SmsContent: sms },
+                success: function (data) {
+                    if (data.IsSuccess) {
+                        alert("添加卡券成功！");
+                        window.location.href = "/CustomCard/Index";
+                    } else {
+                        alert(data.Message);
+                    }
+                }
+            });
+        }
+    });
+</script>

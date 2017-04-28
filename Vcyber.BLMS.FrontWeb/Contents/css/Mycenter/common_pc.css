@@ -1,0 +1,87 @@
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td,figure {
+	margin: 0;
+	padding: 0;
+}
+html {
+	font-size: 100px;
+	width: 100%;
+	height: 100%;
+	-webkit-text-size-adjust: 100%;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+body {
+	font-family: "Microsoft YaHei", SimHei, helvetica, arial, verdana, tahoma, sans-serif;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	font-size: .26rem;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-size: 100%;
+	font-weight: normal;
+}
+ul, ol {
+	list-style: none;
+}
+img {
+	border: 0;
+}
+em, i, b, strong {
+	font-style: normal;
+	font-weight: normal;
+}
+a {
+	text-decoration: none;
+}
+.clearfix:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.clearfix {
+	zoom: 1;
+}
+/*a, button, input, select, textarea, form {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-tap-highlight-color: transparent; 
+}*/
+
+/***********reset end********************/
+/**{
+	-webkit-touch-callout:none;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+}*/
+body {
+	border-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+/*弹窗pc版本样式*/
+.tan1{ position: absolute; z-index: 1000; top: 50%; left: 50%; margin: -90px 0 0 -165px; width: 330px; height: 180px; background-color: #fff;display:none}
+.tan_top1{ position: relative; width: 100%; height: 42px; border-bottom: 1px solid #eee; background-color: #f8f8f8;}
+.tan_top1 span{ position: absolute; top: 16px; left: 20px; font-size: 12px; color: #000;}
+.tan_top1 img{ position: absolute; top: 16px; right: 20px; width: 12px; height: 12px;}
+.tan_main1{ position: relative; width: 100%; height: 138px;}
+.tan_main1 p{ position: absolute; top: 10px; left: 100px; font-size: 12px; color: #000;}
+.tan_main1 img{ position: absolute; top: 15px; left: 25px; width: 50px; height: 70px;}
+.tan_main1 input{ position: absolute; top: 35px; left: 100px; text-indent: .5em; width: 180px; height: 25px; font-size: 16px; border: 1px solid #EEE;}
+.tan_main1 h2{ position: absolute; top: 70px; left: 100px; font-size: 12px; color: red;}
+.tan_main1 h2 em{ display: inline-block; margin-left: 5px;}
+.tan_main1 span{ position: absolute; bottom: 12px; left: 50%; margin-left: -65px; display: block; width: 130px; height: 28px; font-size: 12px; color: #fff; line-height: 30px; text-align: center; background-color: #075090; letter-spacing: 2px; border: 1px solid #4898d5;}
+.hidden1{ position: absolute; z-index: 1; top: 0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%;display:none;background-color: rgba(0,0,0,.3);}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,242 @@
+﻿@using Webdiyer.WebControls.Mvc;
+@model Vcyber.BLMS.FrontWeb.Controllers.CompositeOrderList
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "订单列表";
+}
+<style>
+    .order_list td {
+        vertical-align: middle;
+    }
+
+    .order_list .table_title1 {
+        line-height: 20px;
+    }
+
+    .order_list .table_ul {
+        width: 100%;
+    }
+
+        .order_list .table_ul li {
+            text-align: center;
+        }
+
+    .order_list .table_title2 {
+        border-bottom: 1px dotted #c0c0c0;
+    }
+
+    .table_ul a {
+        width: 69px;
+        height: 20px;
+        line-height: 20px;
+        border-radius: 2px;
+        float: left;
+        text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+        border: 1px solid #c0c0c0;
+    }
+    .bluePopup{ height:200px;}
+    .bluePopup .layui-layer-content {
+        height:90px;
+    }
+</style>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "MyCenter" })
+    </div>
+    <div class="new_menu">
+        <p class="select_menu"><a href="/MyCenter/Index?pageName='Mycenter'">个人中心 &gt;</a><a href="/order/myorders">兑换的礼品</a></p>
+    </div>
+    <div>
+   
+        <div class="all_cont">
+            <div class="my_order">
+
+                <div class="gy_title" id="last_page">
+                    <div class="gy_zi">
+                        <h1>兑换的礼品</h1>
+                        <span>Account Information</span>
+                    </div>
+
+                </div>
+                <div class="order_news">
+                    <a href="/Order/MyOrders?pageOrderType=3">   <span class="all">全部</span></a>
+                    <a href="/Order/MyOrders?pageOrderType=2">   <span class="waitpayFee">待付款</span></a> @*( <label id="waitPayFee"></label> )*@
+                    <a href="/Order/MyOrders?pageOrderType=1"> <span class="waitreceive">待收货</span></a>@*( <label id="waitReceiveGoods"></label> )*@
+                </div>
+            </div>
+            <div class="order_list">
+                <table class="all" style="width:100%;">
+                    <thead>
+                        <tr class="table_title">
+                            <td width="384">商品名称</td>
+                            <td width="60"> 颜色</td>
+                            <td width="60"> 类型</td>
+                            <td width="96">积分</td>
+                           
+                            <td width="102">数量</td>
+                            <td width="130">应付总金额</td>
+                            <td width="86" style="text-align:center;">状态</td>
+                            
+                            <td width="86" style="text-align:center;">物流名称</td>
+                            <td width="100">物流单号</td>
+                            <td width="100">订单操作</td>
+                        </tr>
+                        <tr style="height: 5px;width: 100%;background: #fff;">
+                            <td width="384"></td>
+                            <td> </td>
+                            <td> </td>
+                            <td width="96"></td>
+                            <td width="102"></td>
+                            <td width="130"></td>
+                            <td width="86" style="text-align:center;"></td>
+                            <td width="100"></td>
+                            <td width="86" style="text-align:center;"></td>
+                            <td width="100"></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            if (Model.AllList != null && Model.AllList.Any())
+                            {
+                                foreach (var item in Model.AllList)
+                                {
+                                    System.Text.StringBuilder _orderOperateHtml = new System.Text.StringBuilder();
+                                    string _orderStatus = string.Empty;
+                                    if (item.PayState == (int)Vcyber.BLMS.Entity.Enum.EPayState.ZFZ && item.TradeState != (int)Vcyber.BLMS.Entity.Enum.ETradeState.JYQX)
+                                    {
+                                        //仅且此状态可以进行订单取消，取消完成交易关闭
+                                        _orderStatus = "待付款";
+                                        _orderOperateHtml.Append("<li><a onclick='Order.PayOrder(\"" + item.OrderId + "\");'  style='display:inline-block;width:69px;height:20px;line-height:20px;text-align:center;background:#075090;color:#fff;cursor:pointer'>去付款</a></li>");
+                                        _orderOperateHtml.Append("<li><a href='javascript:void(0);' onclick='Order.CancelOrder(\"" + item.OrderId + "\");'>取消订单</a></li>");
+                                        _orderOperateHtml.Append("<li><a href='/Order/OrderDetail?orderId=" + item.OrderId + "'>订单详情</a></li>");
+                                    }
+                                    else if (item.PayState == (int)Vcyber.BLMS.Entity.Enum.EPayState.ZFWC && item.TradeState == (int)Vcyber.BLMS.Entity.Enum.ETradeState.DFH)
+                                    {
+                                        _orderStatus = "待发货";
+                                        _orderOperateHtml.Append("<li><a href='/Order/OrderDetail?orderId=" + item.OrderId + "'>订单详情</a></li>");
+                                    }
+                                    else if (item.PayState == (int)Vcyber.BLMS.Entity.Enum.EPayState.ZFWC && item.TradeState == (int)Vcyber.BLMS.Entity.Enum.ETradeState.YFH)
+                                    {
+                                        _orderStatus = "待收货";
+                                        _orderOperateHtml.Append("<li><a onclick='Order.ConfirmOrder(\"" + item.OrderId + "\");'  style='display:inline-block;width:69px;height:20px;line-height:20px;text-align:center;background:#075090;color:#fff;cursor:pointer'>确认收货</a></li>");
+                                        _orderOperateHtml.Append("<li><a href='/Order/OrderDetail?orderId=" + item.OrderId + "'>订单详情</a></li>");
+                                    }
+                                    else if (item.PayState == (int)Vcyber.BLMS.Entity.Enum.EPayState.ZFWC && item.TradeState == (int)Vcyber.BLMS.Entity.Enum.ETradeState.JYWC)
+                                    {
+                                        _orderStatus = "交易完成";
+                                        _orderOperateHtml.Append("<li><a href='/Order/OrderDetail?orderId=" + item.OrderId + "'>订单详情</a></li>");
+                                    }
+                                    else if (item.TradeState == (int)Vcyber.BLMS.Entity.Enum.ETradeState.JYQX)
+                                    {
+                                        _orderStatus = "交易关闭";
+                                        _orderOperateHtml.Append("<li><a href='/Order/OrderDetail?orderId=" + item.OrderId + "'>订单详情</a></li>");
+                                    }
+                                    IEnumerable<Vcyber.BLMS.Entity.OrderProduct> _productList = Vcyber.BLMS.Application._AppContext.OrderApp.GetOrderProduct(item.OrderId);
+
+                                    <tr class="table_title1">
+                                        <td width="384">
+                                            <span>
+                                                <label style="width:150px; float:left; padding-left:5px; ">
+                                                    订单编号：@item.OrderId
+                                                </label>
+                                                <label>下单时间：@item.Createtime.ToString("yyyy-MM-dd HH:mm:ss")</label>
+                                            </span>
+                                        </td>
+                                        <td width="60"> </td>
+                                        <td width="60" > </td>
+                                        <td width="96"></td>
+                                        <td width="102"></td>
+                                        <td width="130"></td>
+                                        <td width="86" style="text-align:center;">@_orderStatus</td>
+                                     @if (item.Shipping!=null)
+                                     {
+                                        <td width="86" style="text-align:center;">@item.Shipping.Name </td>
+                                     }
+                                     else
+                                     {
+                                        <td width="86" style="text-align:center;"></td>
+                                     }
+                                    @if (item.Shipping != null)
+                                    {
+                                        <td width="100" style="text-align:center;">@item.Shipping.Number</td>
+                                    }
+                                    else
+                                    {
+                                        <td width="100" style="text-align:center;"></td>
+                                    }
+                                        <td width="100" style="text-align:center;">
+                                            <ul class="table_ul">
+                                                @Html.Raw(_orderOperateHtml.ToString())
+                                            </ul>
+                                        </td>
+                                    </tr>
+
+                                    if (_productList != null && _productList.Any())
+                                    {
+                                        foreach (var productItem in _productList)
+                                        {
+                                            int _price = productItem.Integral;
+                                            string _priceUnit = "积分";
+                                            if (productItem.BlueBean > 0)
+                                            {
+                                                _price = productItem.BlueBean;
+                                                _priceUnit = "蓝豆";
+                                            }
+                                            <tr class="table_title2">
+                                                <td width="384" style="text-align:left;height: 110px;float: left;">
+                                                    <img src="@productItem.Img" style="max-height:66px; max-width:66px;" />
+                                                    <span style="margin-top:38px;margin-left:26px;float:left;font-size:12px;color:#3d3f43;line-height:16px;width:260px;display:block;">@productItem.Name<br /></span>
+                                                </td>
+                                                <td width="60" >@productItem.ProductColor  </td>
+                                                @if (string.IsNullOrEmpty(productItem.ProductType))
+                                                {
+                                                    <td width="60">通用</td>
+                                                }
+                                                else
+                                                {
+                                                    <td width="60">@productItem.ProductType</td>
+                                                }
+                                                
+                                                <td width="96"><span>@(_price + _priceUnit)</span></td>
+                                                <td width="102">@productItem.Qty</td>
+                                                <td width="130">@((productItem.Qty * _price) + _priceUnit)</td>
+                                                <td width="86" style="text-align:center;"></td>
+                                                <td width="100" valign="middle" style="height:100%;"></td>
+                                                <td width="86" style="text-align: center;"></td>
+
+                                                @{
+                                                string cardCode = "";
+                                                if (!string.IsNullOrEmpty(productItem.CardCode))
+                                                {
+                                                    cardCode = string.Format("兑换码<br/>{0}", productItem.CardCode);
+                                                }
+                                                }
+                                                <td width="100" valign="middle" style="height:100%;">@Html.Raw(cardCode)</td>
+                                            </tr>
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+
+                    </tbody>
+                </table>
+              
+                @Html.Pager(Model.AllList , new PagerOptions { PageIndexParameterName = "pageindex", CurrentPagerItemTemplate = "<span class=\"current\">{0}</span>", DisabledPagerItemTemplate = "<span class=\"disabled\">{0}</span>", Id = "badoopager" })
+           
+             </div>
+        </div>
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>
+@*<script>
+    $(function () {
+        $(".order_news span").on("click", function () {
+            var index = $(".order_news span").index(this);
+            $(".order_list table").eq(index).show().siblings("table").hide();
+        });
+    });
+</script>*@

@@ -1,0 +1,253 @@
+﻿@{
+    ViewBag.Title = "游戏规则";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>蓝缤车主汇-游戏</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link href="~/css/MoreMemberMobile.css" rel="stylesheet" />
+    <style type="text/css">
+        .choose_btn {
+            width: 70%;
+            background: url('/Img/MoreMember/green.png') repeat-x;
+            color: #ffffff;
+            border: 0px;
+            height: 30px;
+        }
+
+        .choose {
+            position: fixed;
+            top: 40%;
+            text-align: center;
+            width: 300px;
+            height: 220px;
+            background: url('/Img/MoreMember/alertbg.png') no-repeat;
+        }
+    </style>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Content/layer/layer.min.js"></script>
+    <script>
+        $(function () {
+            var objlyear = null;
+            //判断是否登录
+            $("#startGame").click(function () {
+                $.ajax({
+                    url: "/MoreMemberMobile/GetLogin",
+                    type: "get",
+                    success: function (result) {
+                        if (result.msg == "true") { //已登录
+                            location.href = "/MoreMemberMobile/Game";
+                        }
+                        else {  //未登录
+                            objlyear = $.layer({
+                                type: 1,   //0-4的选择,
+                                title: false,
+                                border: [0],
+                                closeBtn: [0],
+                                shadeClose: false,
+                                area: ['92%', ''],
+                                page: { dom: '.choose' }
+                            });
+                        }
+                        $(".xubox_shade").click(function () {
+                            layer.close(objlyear);
+                        })
+                    },
+                    error: function () {
+
+                    }
+
+                })
+
+
+            });
+            $(".wati").click(function () {
+                layer.close(objlyear);
+            })
+            //登录注册跳转
+            $("#register").click(function () {
+                layer.close(objlyear);
+                var returnUrl = "/MoreMemberMobile/Game";
+                location.href = "/WapQuestionnaire/WapRegister?returnUrl=" + encodeURIComponent(returnUrl);
+            })
+            $("#login").click(function () {
+                layer.close(objlyear);
+                var returnUrl = "/MoreMemberMobile/Game";
+                location.href = "/WapQuestionnaire/WapLogin?returnUrl=" + encodeURIComponent(returnUrl);
+            })
+        })
+    </script>
+
+</head>
+<body style="height:1800px;" class="introductionBody">
+    <div class="wrap">
+        <div id="introductionTitle">
+            <img src="/Img/MoreMember/introductionTitleBg.png" />
+            <p>北京现代诚邀新老车主加入蓝缤会员服务网站，尊享会员服务。
+                 即日起注册成为蓝缤会员即可参与中秋特色博饼游戏，
+                 攒好运，赢大奖。三星gear 2 neo智能手表 、
+                 卓棒jawbone up24智能手环等惊喜大奖等你来领。
+                 百分百中奖率，惊喜礼品疯狂送不停。</p>
+        </div>
+        <!--活动简介-->
+        <div id="ruleTit" class="ruleTit" style="margin-top: 80%; background-image: none;">
+            <span style=" display: none;">活动简介</span>
+        </div>
+        <div id="introductionContent" class="introductionContent" style=" display:none;">
+            <p>北京现代诚邀新老车主加入蓝缤会员服务网站，尊享会员服务。即日起注册成为蓝缤会员即可参与趣味摇骰子游戏，攒好运，赢大奖。三星Gear 2 Neo智能手表 、卓棒Jawbone UP24智能手环等惊喜大奖等你来领。百分百中奖率，惊喜礼品疯狂送不停。</p>
+        </div>
+        <!--参与方式-->
+        <div id="type"  class="ruleTit">
+            <span>参与方式</span>
+        </div>
+        <div id="typeContent" class="introductionContent">
+            <dl>
+                <dt>第一步</dt>
+                <dd>通过网站/微信/APP进入活动页面</dd>
+            </dl>
+            <dl>
+                <dt>第二步</dt>
+                <dd>点击注册按钮，注册成为蓝缤会员（经销商协助入
+             会的会员/已注册的会员，直接登录）</dd>
+            </dl>
+            <dl>
+                <dt>第三步</dt>
+                <dd>
+                    回到活动页面，点击骰子参与游戏
+                </dd>
+            </dl>
+            <dl>
+                <dt>第四步</dt>
+                <dd>
+                    根据摇中的点数，车辆行驶到相应的位置，获取精
+                    美礼品（虚拟礼品即时到账，实物礼品分批统一发
+                    送）
+                </dd>
+            </dl>
+            <dl>
+                <dt>第五步</dt>
+                <dd>
+                    摇中实物礼品的用户填写邮寄地址
+                </dd>
+            </dl>
+        </div>
+        <!--活动规则-->
+        <div id="activityRule" class="ruleTit">
+            <span>活动规则</span>
+        </div>
+        <div id="ruleContent" class="introductionContent">
+            <p>1)	凡本品牌车主，通过活动页面注册成为bluemembers蓝缤会员，均可获得一次抽奖机会，抽取精美礼品。</p>
+            <p>2)	活动期间，经销商协助入会的会员登录活动页面可直接参与游戏进行抽奖</p>
+            <p>3)	活动期间，蓝缤网站老车主会员登录活动页面可直接参与游戏进行抽奖</p>
+            <p>4)	此次活动每位车主会员均有一次参与游戏抽奖机会</p>
+            <p>5)	本活动中奖率100%，奖品分为实物奖品和虚拟奖品；虚拟奖品在抽中时直接发放至个人中心钱包里，实物奖品按参与先后顺序批次进行发放。</p>
+            <p>6)	参与抽奖的会员，务必正确填写个人邮寄地址，以便我们更快将礼品邮寄给您</p>
+        </div>
+        <!--奖品展示-->
+        <div id="prizeShowTit" class="ruleTit">
+            <span>奖品展示</span>
+        </div>
+        <div id="prizeShowContent">
+            <ul>
+                <li>
+                    <span><img src="/Img/MoreMember/watch.png" /></span>
+                    <p class="longP">三星Gear 2 Neo智能手表</p>
+                </li>
+                <li>
+                    <span><img src="/Img/MoreMember/electricity.png" /></span>
+                    <p>卡片式移动电源</p>
+                </li>
+                <li>
+                    <span><img src="/Img/MoreMember/kitchen.png" /></span>
+                    <p>厨具套装</p>
+                </li>
+                <li>
+                    <span class="littleImg"><img src="/Img/MoreMember/50beans.png" /></span>
+                    <p>BM网站 100蓝豆</p>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <span class="middleImg"><img src="/Img/MoreMember/wrist.png" /></span>
+                    <p class="longP">卓棒JawboneUP24智能手环</p>
+                </li>
+                <li>
+                    <span><img src="/Img/MoreMember/usbElectricity.png" /></span>
+                    <p>车载usb充电器</p>
+                </li>
+                <li>
+                    <span class="littleImg"><img src="/Img/MoreMember/100beans.png" /></span>
+                    <p>BM网站 50蓝豆</p>
+                </li>
+                <li>
+                    <span class="littleImg"><img src="/Img/MoreMember/10beans.png" /></span>
+                    <p>BM网站 10蓝豆</p>
+                </li>
+            </ul>
+        </div>
+        <!--注意事项-->
+        <div id="prizeShowTit" class="ruleTit">
+            <span>注意事项</span>
+        </div>
+        <div class="introductionContent">
+            <p>1)	参与活动的所有会员，请如实填写个人信息，若填写信息不完善或与注册信息不一致，将导致无法领取奖品。</p>
+            <p>2)	本活动仅限于车主会员参与。</p>
+            <p>3)	本活动，每位车主会员均有一次参与游戏抽奖机会。</p>
+            <p>4)	活动中，虚拟奖品中奖时即时发放，实物奖品会按周统计分批发送。</p>
+            <p>5)	中奖后请保持手机畅通，活动期间若联系无效者，将视为自动放弃领奖机会；</p>
+        </div>
+        <div id="footer">
+            <a href="/MoreMemberMobile/rule" id="introduction">
+                游戏规则
+            </a>
+            <a href="javascript:void(0);" id="startGame">开始游戏</a>
+        </div>
+        <div class="choose" style="display:none">
+            <span>
+                <a href="#" id="login"><input type="button" style="  margin-top: 80px;" class="choose_btn" value="登录" /></a>
+                <a href="#" id="register"><input type="button" style="margin-top:15px;" class="choose_btn" value="注册" /></a>
+
+            </span>
+            <div style="margin-top:20px;">
+                <a href="" class="wati">稍后再说</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+

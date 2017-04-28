@@ -1,0 +1,111 @@
+﻿@model Vcyber.BLMS.Entity.CarService.MaintEntity
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+
+@using (Html.BeginForm())
+{
+    @*@Html.HiddenFor(model => model.UserId)*@
+    @Html.Hidden("UserId", "010")
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CarSeries)
+        @Html.EditorFor(model => model.CarSeries)
+        @Html.ValidationMessageFor(model => model.CarSeries)
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DealerProvince)
+        @Html.EditorFor(model => model.DealerProvince)
+        @Html.ValidationMessageFor(model => model.DealerProvince)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DealerCity)
+        @Html.EditorFor(model => model.DealerCity)
+        @Html.ValidationMessageFor(model => model.DealerCity)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DealerId)
+        @Html.EditorFor(model => model.DealerId)
+        @Html.ValidationMessageFor(model => model.DealerId)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DealerName)
+        @Html.EditorFor(model => model.DealerName)
+        @Html.ValidationMessageFor(model => model.DealerName)
+    </div>
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.LicensePlate)
+        @Html.EditorFor(model => model.LicensePlate)
+        @Html.ValidationMessageFor(model => model.LicensePlate)
+
+    </div>
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.VIN)
+        @Html.EditorFor(model => model.VIN)
+        @Html.ValidationMessageFor(model => model.VIN)
+
+    </div>
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.MileAge)
+        @Html.EditorFor(model => model.MileAge)
+        @Html.ValidationMessageFor(model => model.MileAge)
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.PurchaseYear)
+        @Html.EditorFor(model => model.PurchaseYear)
+        @Html.ValidationMessageFor(model => model.PurchaseYear)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ServiceType)
+        @Html.EditorFor(model => model.ServiceType)
+        @Html.ValidationMessageFor(model => model.ServiceType)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ScheduleDate)
+        @Html.TextBoxFor(model => model.ScheduleDate, "{0:d}", new { @class = "as_datepicker form-control", @Value = "2015-02-22", @readonly = "" })
+        @Html.ValidationMessageFor(model => model.ScheduleDate)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.UserName)
+        @Html.EditorFor(model => model.UserName)
+        @Html.ValidationMessageFor(model => model.UserName)
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.UserSex)
+        @Html.EditorFor(model => model.UserSex)
+        @Html.ValidationMessageFor(model => model.UserSex)
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Phone)
+        @Html.EditorFor(model => model.Phone)
+        @Html.ValidationMessageFor(model => model.Phone)
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email)
+        @Html.EditorFor(model => model.Email)
+        @Html.ValidationMessageFor(model => model.Email)
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Comment)
+        @Html.EditorFor(model => model.Comment)
+        @Html.ValidationMessageFor(model => model.Comment)
+
+    </div>
+
+    <div class="btn-toolbar">
+        <button type="submit" class="btn btn-primary"><i class="fa"></i>提交</button>
+    </div>
+}
+

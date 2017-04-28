@@ -1,0 +1,132 @@
+﻿@{
+    Layout = null;
+}
+
+
+<div class="sonta_nine">
+    <div class="gy_cont">
+        <div class="gy_title">
+            <div class="gy_zi">
+                <a href="/BlueVIP/Index">
+                    <h1>蓝缤权益</h1>
+                </a>
+                <a href="/BlueVIP/Index">
+                    <span>Bluemembers Interests</span>
+                </a>
+                <a href="/BlueVIP/Index"><img src="/img/arrow.png" class="arrow_n" /></a>
+            </div>
+        </div>
+
+        <div class="gy_nr" style="position:relative;">
+            <span id="sonataslider_left" style="position: absolute; left: 5px; top: 50px; width: 30px; height: 30px; display:none;"><img src="/img/arrow_prev.png" class="arrow_n"></span>
+            <span id="sonataslider_right" style="position: absolute; left: 340px; top: 50px; width: 30px; height: 30px; display: none;"><img src="/img/arrow.png" class="arrow_n"></span>
+            <ul style="overflow:hidden; height:144px;" id="sonataslider">
+                <li style="background-image:none; margin-left:0; float:left; width:100%; height:auto;" class="curTags">
+                    <a href="/BlueVIP/Index" target="_blank">
+                        <img src="/img/DealerNew/home_haihang.jpg" style="width:368px; height:124px;" />
+                    </a>
+                </li>
+                <li style="background-image: none; margin-left: 0; float: left; width: 100%; height: auto; display: none; ">
+                    <a href="/BlueVIP/Index" target="_blank">
+                        <img src="/img/DealerNew/home_tuniu.jpg" style="width:368px; height:124px;" />
+                    </a>
+                </li>
+            </ul>
+            <ul style="overflow:hidden;height:90px;text-overflow:clip;" id="sonataslider_content">                
+                <li style="background-image: none; margin-left: 0; float: left; width: 100%; height: auto;">
+                    <a href="/BlueVIP/Index" target="_blank">
+                        <h1 class="gr_h1">礼悦会钻石会员权益</h1>
+                        <p style="line-height: 20px;margin-left: 10px; font-size:12px;">bluemembers联合海航酒店集团忠诚计划——礼悦会为北京现代车主会员提供超值钻石级会员特权通道，享受高端完美酒店服务。</p>
+                    </a>
+                </li>
+                <li style="background-image: none; margin-left: 0; float: left; width: 100%; height: auto; display: none; ">
+                    <a href="/BlueVIP/Index" target="_blank">
+                        <h1 class="gr_h1">途牛五星会员权益</h1>
+                        <p style="line-height: 20px;margin-left: 10px; font-size:12px;">bluemembers联合途牛旅游网为北京现代车主会员提供超值五星会员特权通道，享受全方位旅游服务贵宾权益。</p>
+                    </a>
+                </li>
+            </ul>
+            <script>
+                var nextSonatasilderHandler = function () {
+                    var arr = $("#sonataslider").find("li");
+                    _len = $(arr).toArray().length;
+                    _index = arr.index($(".curTags"));
+                    if (_index >= _len - 1) {
+                        _curIndex = 0;
+                    } else {
+                        _curIndex = _index + 1;
+                    }
+                    arr.eq(_curIndex).addClass("curTags").animate({ width: 'toggle' }, { duration: 1000 }, "slow");
+                    arr.eq(_curIndex).siblings("li").removeClass("curTags").hide();
+                    $("#sonataslider_content").find("li").eq(_curIndex).show().siblings().hide();
+                }
+                var prevSonatasilderHandler = function () {
+                    var arr = $("#sonataslider").find("li");
+                    _len = $(arr).toArray().length;
+                    _index = arr.index($(".curTags"));
+                    if (_index <= 0) {
+                        _curIndex = _len - 1;
+                    } else {
+                        _curIndex = _index - 1;
+                    }
+                    arr.eq(_curIndex).addClass("curTags").animate({ width: 'toggle' }, { duration: 1000 }, "slow");
+                    arr.eq(_curIndex).siblings("li").removeClass("curTags").hide();
+                    $("#sonataslider_content").find("li").eq(_curIndex).show().siblings().hide();
+                }
+                $(function () {
+                    var _curIndex = 0;
+                    var _index = 0;
+                    var _len = 0;
+                    var sonataTimer = setInterval(nextSonatasilderHandler, 5000);
+
+                    $("#sonataslider li").hover(
+                        function () {
+                            $("#sonataslider_left").show();
+                            $("#sonataslider_right").show();
+                            clearInterval(sonataTimer);
+                            return false;
+                        },
+                        function () {
+                            $("#sonataslider_left").hide();
+                            $("#sonataslider_right").hide();
+                            sonataTimer = setInterval(nextSonatasilderHandler, 5000);
+                            return false;
+                        });
+                    $("#sonataslider_left").hover(
+                        function () {
+                            $("#sonataslider_left").show();
+                            $("#sonataslider_right").show();
+                            clearInterval(sonataTimer);
+                            return false;
+                        },
+                        function () {
+                            $("#sonataslider_left").hide();
+                            $("#sonataslider_right").hide();
+                            sonataTimer = setInterval(nextSonatasilderHandler, 5000);
+                            return false;
+                        });
+                    $("#sonataslider_right").hover(
+                        function () {
+                            $("#sonataslider_left").show();
+                            $("#sonataslider_right").show();
+                            clearInterval(sonataTimer);
+                            return false;
+                        },
+                        function () {
+                            $("#sonataslider_left").hide();
+                            $("#sonataslider_right").hide();
+                            sonataTimer = setInterval(nextSonatasilderHandler, 5000);
+                            return false;
+                        });
+                    $("#sonataslider_left").click(function () {
+                        prevSonatasilderHandler();
+                    });
+                    $("#sonataslider_right").click(function () {
+                        nextSonatasilderHandler();
+                    });
+                });
+            </script>
+        </div>
+
+    </div>
+</div>

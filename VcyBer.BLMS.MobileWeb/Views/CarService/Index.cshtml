@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "车辆服务";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<style>
+    .sonata-service-row .planico {
+        background: url("/Contents/Newimg/life_pic1.png") #fff no-repeat center 15%;
+        background-size: 31% auto;
+    }
+
+    .sonata-service-row .tuniuico {
+        background: url("/Contents/Newimg/life_pic2.png") #fff no-repeat center 15%;
+        background-size: 31% auto;
+    }
+
+    .sonata-service-row .yueico {
+        background: url("/Contents/Newimg/life_pic3.png") #fff no-repeat center 15%;
+        background-size: 31% auto;
+    }
+</style>
+<div class="wrapper" id="wrapper">
+    <div class="sonata-hd-bar">
+        <h2>车辆服务</h2>
+    </div>
+    <div class="sonata-service-row">
+        <ul class="sonata-service-list">
+
+            <li class="ico-s1"><a href="/CarService/RoadRescue">24小时免费道路救援服务&nbsp;</a></li>
+            <li class="ico-s6"><a href="/CarService/FreeCar">免费取送车服务&nbsp;</a></li>
+            <li class="ico-yanghufuwu"><a href="#">车辆养护产品&nbsp;</a></li>
+            <li class="ico-chq"><a href="/CarService/CardSaleAfter">春/夏/冬季售后卡券&nbsp;</a></li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(".sonata-service-row li a[href='#']").click(function () {
+            AlertFalse("功能未上线，敬请期待！");
+        })
+    })
+</script>
+

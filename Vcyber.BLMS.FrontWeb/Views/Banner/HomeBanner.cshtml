@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.ImageCarousel>
+@{
+    Layout = null;
+}
+<head>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+            }
+            }
+                catch(e){
+                top.location.href = window.location.href;
+            }
+    </script>
+</head>
+<div class="tab_silder">
+    <div id="slider">
+
+        <ul>
+            @{
+                if (Model != null && Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <li><a href="@item.LinkUrl" target="_blank"><img src="@item.TrueImageUrl" onerror="this.src = '/img/default_banner.png'"></a></li>
+                    }
+                }
+            }
+        </ul>
+    </div>
+</div>

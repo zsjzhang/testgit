@@ -1,0 +1,39 @@
+﻿
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+<input type="hidden" id="hidurl" value="@ViewBag.url">
+<script type="text/javascript">
+    $(function ()
+    {
+
+        //$(".navbar-nav a[href='/#/AppManage/Index']").click(function ()
+        //{
+           
+        //    if ($("#hidurl").val() != "")
+        //    {
+        //        //window.open($("#hidurl").val());
+        //    }
+              
+        //});
+
+        if ($("#hidurl").val() != "")
+        {
+            window.open($("#hidurl").val());
+        }
+    })
+</script>

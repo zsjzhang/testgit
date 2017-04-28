@@ -1,0 +1,32 @@
+﻿@*<h2>ProvinceCity_ReserveMaintenance</h2>*@
+@*为-首页预约维保-*@
+@model IEnumerable<string>
+@{
+    Layout = null;
+}
+
+
+
+<select id="sltProvince_home_ordercar" onchange="Dealer.cityForReserve(this, 'sltCity_home_ordercar', 'sltDealer_home_ordercar');">
+    <option value="-1">请选择</option>
+    @{
+        if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <option>@item</option>
+            }
+        }
+    }
+</select>
+
+<select id="sltCity_home_ordercar" onchange="Dealer.listForReserve(this, document.getElementById('sltProvince_home_ordercar'), 'sltDealer_home_ordercar');">
+    <option value="-1">请选择</option>
+</select>
+
+<select id="sltDealer_home_ordercar">
+    <option value="-1">请选择</option>
+</select>
+
+
+

@@ -1,0 +1,145 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "特约商户-礼悦会钻石会员权益";
+}
+<link href="~/css/DealerNew/reset.css" rel="stylesheet" />
+<link href="~/css/DealerNew/brand.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnGotoLogin").click(function () {
+            var returnUrl = encodeURIComponent("/DealerNew/LiyueIndex");
+            location.href = "/Account/LogonPage?returnUrl=" + returnUrl;
+            return false;
+        });
+        $("#btnGotoRegister").click(function () {
+            var returnUrl = encodeURIComponent("/DealerNew/LiyueIndex");
+            location.href = "/Account/AccountRegister?returnUrl=" + returnUrl;
+            return false;
+        });
+
+        
+    });
+</script>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "BlueVIP" })
+    </div>
+    <div class="n_all_cont">
+
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+
+                @(this.User.Identity.IsAuthenticated ? this.Html.Action("HomeLogonSuccess", "Account") : this.Html.Action("HomeLogon", "Account"))
+
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+        </div>
+        <div class="n_right_cont">
+            <p class="select_menu" style="font-family:'Microsoft YaHei'"><a href="/BlueVIP/Index">蓝缤权益</a> > <a href="/LifeService/Index">生活服务  </a>>礼悦会钻石会员权益</p>
+            <div class="gy_cont">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>礼悦会钻石会员权益</h1>
+                        <span>Diamond Membership</span>
+                    </div>
+                </div>
+                <div class="wrap">
+                    @*<div class="head_Bg"></div>*@
+                    <div class="copywrite">
+                        <h2><a href=""><img src="/Img/DealerNew/liyuehui.png" alt=""></a>礼悦会钻石会员权益</h2>
+                        <p class="show_text">
+                            美好生活，bluemembers为您打造！bluemembers联合海航酒店集团忠诚计划——礼悦会为北京现代车主会员提供超值钻石级会员特权通道，享受高端完美酒店服务。申请礼悦会钻石会员权益，享受积分奖励特权、专享服务通道，提前8点入住、延迟24点退房，让您的旅行生活更加优质快捷；免费欢迎水果、免费本地和漫游通话，为您缔造完美商务旅行与度假休闲体验。
+                        </p>
+
+                        <div class="activity">
+                            <h2>礼悦会钻石会员权益</h2>
+                            <dl>
+                                <dt><img src="/Img/DealerNew/tq.png" alt=""></dt>
+                                <dd>
+                                    <h3>积分奖励特权</h3>
+                                    <p>双倍个人消费积分奖励，兑换海航酒店客房、餐饮券、航空里程或精美礼品；</p>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><img src="/Img/DealerNew/vip.png" alt=""></dt>
+                                <dd id="vip">
+                                    <h3>会员贵宾礼遇</h3>
+                                    <p class="clearfix" style="margin-left:0px;"><b>1.预定保证：</b><span>客房预订保证 – 抵达前72小时担保预订；</span></p>
+                                    <p class="clearfix" style="margin-left:0px;">
+                                        <b>2.专项服务：</b><span>
+                                            前台会员专享服务通道办理入住和退房手续，享受快捷、优质的服务；快
+                                            速入住与退房；客房免费宽带上网；免费本地通话；免费全国长途；入住期
+                                            间享受每天熨烫衣物两件；住宿率允许的前提下，会员入住可延迟退房至晚
+                                            上24点；住宿率允许的前提下，上午8点提前登记入住；住宿率允许的前提
+                                            下，钻石卡会员直接升级为套房；住店期间，免费享饮Mini Bar软饮
+                                        </span>
+                                    </p>
+                                    <p class="clearfix" style="margin-left:0px;"><b>3.迎宾项目：</b><span>入住首日享受免费水果</span></p>
+                                    <p class="clearfix" style="margin-left:0px;"><b>4.特别权益：</b><span>会员入住，生日当天赠免费蛋糕和鲜花</span></p>
+                                </dd>
+                            </dl>
+                            <h4>
+                                * 详细礼悦会钻石会员权益使用请以礼悦会官方网站为准<br />
+                                车主会员成为礼悦会钻石会员后，礼悦会会员账号级别、权益均以礼悦会网站管理为准，bluemembers会员权益不受影响；
+                            </h4>
+                            <img src="/Img/DealerNew/liuc.png" alt="" class="flow" />
+                            <a href="javascript:DealerNewCtr.UpgradeDiamondMembership();" id="btnSubmit">
+                                <img src="/Img/DealerNew/upgrade.png" style=" margin-left: 219px;" />
+                            </a>
+                            <p class="agree">
+                                <input type="checkbox" id="cboxChecked" onclick="if (this.checked) { $('#btnSubmit').show(); } else { $('#btnSubmit').hide(); }" checked>
+                                <span style="cursor:pointer;" onclick="$('#divDialogInfo').fadeIn(500)">
+                                    愿意接受 礼悦会会员协议
+                                </span>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>
+
+<div id="divDialogInfo" class="alertbox" style="width: 100%; height: 100%; top: 0; left:0; display: none;background-color:rgba(0,0,0,0.5);padding-top:10vh;">
+    @Html.Action("MembershipTerms", "DealerNew")
+</div>
+
+<div id="divSubmitSuccess" class="alertbox" style="width: 500px; height: 120px; margin-left: -250px; display: none">
+    <div class="alertclose" onclick="$('#divSubmitSuccess').hide();">
+        &times;
+    </div>
+    <p id="alertMessage" style="height:80px;line-height:80px;font-size:16px;text-align:center;">
+        您已成功领取礼悦会钻石级会员特权，即刻享受优质服务体验。
+    </p>
+    <div style="width:140px;margin:auto;float:none;">
+        <div class="btn" onclick="$('#divSubmitSuccess').hide();">确定</div>
+    </div>
+</div>
+
+<div id="divAlertLogin" class="alertbox" style="width: 500px; height: 120px; margin-left: -250px; display: none">
+    <div class="alertclose" onclick="$('#divAlertLogin').hide();">
+        &times;
+    </div>
+    <p style="height:80px;line-height:80px;font-size:16px;text-align:center;">
+        请登录/注册bluemembers车主会员账号，升级礼悦会钻石会员！
+    </p>
+    <div style="width:320px;margin:auto;float:none;">
+        <div class="btn" id="btnGotoLogin">立即登录</div>
+        <div class="btn" id="btnGotoRegister">注册</div>
+    </div>
+</div>

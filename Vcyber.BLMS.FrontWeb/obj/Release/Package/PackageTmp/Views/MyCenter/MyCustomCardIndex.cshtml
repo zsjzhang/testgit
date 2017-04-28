@@ -1,0 +1,685 @@
+﻿@model   List<Vcyber.BLMS.Entity.UserCustomCardModel>
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "我的卡券";
+}
+@using System.Configuration;
+<!--个人中心-->
+<link href="~/css/base/information.css" rel="stylesheet" />
+<link href="~/css/base/dd.css" rel="stylesheet" />
+<style>
+    .couConBox div.CouBox {
+        position: relative;
+        margin: 20px 10px;
+        width: 673px;
+    }
+
+        .couConBox div.CouBox .tabTilBox {
+            width: 100%;
+            height: 50px;
+            overflow: hidden;
+        }
+
+            .couConBox div.CouBox .tabTilBox li {
+                float: left;
+                width: 134px;
+                height: 36px;
+                line-height: 36px;
+                font-size: 16px;
+                border: 2px solid #eee;
+                background: #eee;
+                color: #3d3f43;
+                cursor: pointer;
+                text-align: center;
+                margin-top: 0;
+            }
+
+                .couConBox div.CouBox .tabTilBox li.on {
+                    background: #fff;
+                }
+
+    .tabConBox {
+        display: none;
+    }
+
+        .tabConBox dl {
+            width: 100%;
+            min-height: 580px;
+        }
+
+        .tabConBox dt {
+            position: relative;
+            width: 100%;
+            height: 22px;
+            border-bottom: 1px solid #eee;
+            overflow: hidden;
+        }
+
+            .tabConBox dt span {
+                float: left;
+                display: inline-block;
+                width: 84px;
+                height: 20px;
+                line-height: 20px;
+                font-size: 12px;
+                text-align: center;
+                color: #3d3f43;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+                .tabConBox dt span.on {
+                    border-bottom: 2px solid #f49600;
+                }
+
+        .tabConBox dd {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            margin-top: 20px;
+            display: none;
+        }
+
+            .tabConBox dd.couponsBox {
+                width: 105%;
+            }
+
+                .tabConBox dd.couponsBox div.couOnlyBox {
+                    position: relative;
+                    float: left;
+                    width: 330px;
+                    height: 126px;
+                    margin-right: 17px;
+                    margin-bottom: 15px;
+                }
+
+    .couOnlyBox:hover {
+        background: url(/img/bgCouShadow3.png) no-repeat;
+    }
+
+        .couOnlyBox:hover .couConTop span {
+            background: url(/img/bgConTopShadow.png) no-repeat;
+        }
+
+    .tabConBox dd.couponsBox a.couContentBox {
+        position: absolute;
+        overflow: hidden;
+        left: 1px;
+        top: 0;
+        width: 325px;
+        height: 122px;
+        background: #4ca5fb;
+        overflow: hidden;
+    }
+
+    .couContentBox .couConTop {
+        position: relative;
+        float: left;
+        margin: 0;
+        width: 265px;
+        height: 100%;
+        color: #fff;
+        text-align: center;
+    }
+
+        .couContentBox .couConTop span {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            margin-top: -15px;
+            display: block;
+            width: 11px;
+            height: 31px;
+            background: url(/img/bgConTop.png) no-repeat;
+        }
+
+        .couContentBox .couConTop h2 {
+            position: relative;
+            width: 100%;
+            height: 24px;
+            overflow: hidden;
+            margin: 9px auto 8px auto;
+            font-size: 12px;
+            overflow: hidden;
+        }
+
+            .couContentBox .couConTop h2 img {
+                width: 24px;
+                height: 24px;
+                vertical-align: middle;
+            }
+
+            .couContentBox .couConTop h2 em {
+                vertical-align: middle;
+            }
+
+        .couContentBox .couConTop h3 {
+            position: relative;
+            width: 166px;
+            padding: 0 14px 0 55px;
+            height: 70px;
+            margin: 7px auto 8px auto;
+            font-size: 16px;
+            line-height: 20px;
+            text-align: center;
+            overflow: hidden;
+            border-bottom: 1px dashed #fff;
+            background: url(/img/bgCouTitBoy.png) no-repeat;
+            font-weight: bold;
+        }
+
+            .couContentBox .couConTop h3 i {
+                display: inline-block;
+                width: 1px;
+                height: 100%;
+                vertical-align: middle;
+            }
+
+            .couContentBox .couConTop h3 em {
+                display: inline-block;
+                width: 165px;
+                vertical-align: middle;
+            }
+
+    .merchants .couConTop h3 {
+        background: none;
+        width: 235px;
+        height: 34px;
+        padding: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .merchants .couConTop h2 {
+        height: 33px;
+    }
+
+        .merchants .couConTop h2 img {
+            width: 33px;
+            height: 33px;
+            vertical-align: middle;
+        }
+
+    .merchants .couConTop b {
+        margin-top: 12px;
+    }
+
+    .couContentBox .couConTop h4 {
+        width: 100%;
+        font-size: 16px;
+        font-weight: bold;
+        overflow: hidden;
+    }
+
+    .couContentBox p {
+        position: relative;
+        float: right;
+        margin: 0;
+        width: 58px;
+        height: 122px;
+        text-align: center;
+        font-size: 12px;
+        color: #777;
+        background: #eee;
+    }
+
+    .couContentBox b {
+        position: relative;
+        display: block;
+        text-align: center;
+        height: 18px;
+        overflow: hidden;
+        font-size: 12px;
+        width: 235px;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+
+    .couContentBox p span {
+        position: relative;
+        display: block;
+        top: 50%;
+        margin: -25px auto 0 auto;
+        text-align: center;
+        width: 20px;
+        line-height: 22px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #4ca5fb;
+    }
+
+        .couContentBox p span:hover {
+            color: #0081fe;
+        }
+
+    .couContentBox p em {
+        position: absolute;
+        left: -1px;
+        top: 0;
+        width: 4px;
+        height: 100%;
+        background: url(/img/bgCouConRightLine.png) repeat-y;
+    }
+
+    .couContentBox i.couUsed {
+        position: absolute;
+        display: block;
+        width: 83px;
+        height: 75px;
+        left: 205px;
+        top: 23px;
+        background: url(/img/CouUsed.png) no-repeat;
+        z-index: 10;
+    }
+
+    .couContentBox i.couOverdue {
+        position: absolute;
+        display: block;
+        width: 58px;
+        height: 60px;
+        top: 0;
+        left: 209px;
+        z-index: 10px;
+        background: url(/img/couOverdue2.png) no-repeat;
+    }
+
+    .tabConBox dd.couponsBox a.bgOverdue b, .tabConBox dd.couponsBox a.bgOverdue h2, .tabConBox dd.couponsBox a.bgOverdue h3 {
+        color: #777;
+    }
+
+    .tabConBox dd.couponsBox a.bgOverdue h3 {
+        border-bottom: 1px dashed #777;
+    }
+
+    .tabConBox dd.couponsBox a.bgOverdue {
+        background: #eee;
+    }
+
+        .tabConBox dd.couponsBox a.bgOverdue h2 img {
+            -webkit-filter: grayscale(100%);
+            -moz-filter: grayscale(100%);
+            -ms-filter: grayscale(100%);
+            -o-filter: grayscale(100%);
+            filter: grayscale(100%);
+            filter: gray;
+        }
+
+    .tabConBox dd.couponsBox a.xbk {
+        background: #00684d;
+    }
+
+    .tabConBox dd.couponsBox a.tuniu {
+        background: #da7400;
+    }
+
+    .coupBtnSelBox {
+        position: relative;
+        margin-left: 16px;
+        width: 660px;
+        overflow: hidden;
+    }
+
+        .coupBtnSelBox a {
+            position: relative;
+            display: block;
+            float: left;
+            width: 100%;
+            height: 84px;
+            background: #eee;
+            margin-left: 4px;
+        }
+
+            .coupBtnSelBox a i {
+                display: block;
+                position: relative;
+                margin: 14px auto 0 auto;
+            }
+
+                .coupBtnSelBox a i.CoupRule {
+                    width: 25px;
+                    height: 35px;
+                    background: url(/img/coupRule.jpg) no-repeat;
+                }
+
+                .coupBtnSelBox a i.coupExchange {
+                    width: 33px;
+                    height: 33px;
+                    background: url(/img/coupExchange.jpg) no-repeat;
+                }
+
+            .coupBtnSelBox a span {
+                position: absolute;
+                top: 58px;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                font-size: 14px;
+                color: #767575;
+                display: block;
+            }
+
+    a.couHouji {
+        position: absolute;
+        display: block;
+        left: 276px;
+        width: 134px;
+        height: 36px;
+        line-height: 36px;
+        font-size: 16px;
+        border: 2px solid #eee;
+        background: #eee;
+        color: #3d3f43;
+        cursor: pointer;
+        text-align: center;
+        margin-top: 0;
+    }
+
+    .new_menu {
+        margin-top: 0;
+    }
+</style>
+<div>
+    <div class="heaer">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Mycenter" })
+    </div>
+    <div class="content">
+        <div class="n_all_cont">
+            <div class="n_left_cont">
+                @Html.Partial("_PartialUserInfo", ViewData["curUserEntity"])
+                @Html.Partial("_PartialMyWallet", ViewData["curUserEntity"])
+            </div>
+
+            <div class="n_right_cont">
+                <div class="new_menu">
+                    <p class="select_menu"><a href="/Mycenter/Index">个人中心&gt;</a>我的卡券</p>
+                </div>
+                <div class="geren_box couConBox">
+                    <div class="gy_title">
+                        <div class="gy_zi">
+                            <h1>我的卡券</h1>
+                            <span>My Coupons</span>
+                        </div>
+                    </div>
+                    <script>
+                        $(function () {
+
+                            tabCoup('.CouBox .tabTilBox li', '.tabConBox', '.CouBox')
+                            tabCoup('.tabConBox:eq(0) dt span', '.couponsBox', '.tabConBox:eq(0)')
+                            tabCoup('.tabConBox:eq(1) dt span', '.couponsBox', '.tabConBox:eq(1)')
+
+                            function tabCoup(btn, con, par) { //btn:按钮; con:内容层; par:父级
+                                $(btn).on('click', function () {
+                                    $(btn).removeClass('on');
+                                    $(this).addClass('on');
+                                    $(con).closest(par).find(con).hide();
+                                    $(con).closest(par).find(con).eq($(this).index()).show();
+                                });
+                            }
+                        });
+                    </script>
+                    <div class="CouBox">
+                        <a href="/Mycenter/MyCardRecord" class="couHouji">候机服务券</a>
+                        <ul class="tabTilBox">
+                            <li class="on">北京现代</li>
+                            <li>合作商户</li>
+                        </ul>
+                        <div class="tabConBox" style="display: block;">
+                            <dl>
+                                <dt>
+                                    @{
+                                        var bjxdList = Model[0];
+                                        var imgPath = ConfigurationManager.AppSettings["ImgPath"];
+                                        var received = 0;
+                                        var used = 0;
+                                        var expired = 0;
+                                        if (bjxdList.ReceivedCustomCardList != null)
+                                        {
+                                            received = bjxdList.ReceivedCustomCardList.Count;
+                                        }
+                                        if (bjxdList.UsedCustomCardList != null)
+                                        {
+                                            used = bjxdList.UsedCustomCardList.Count;
+                                        }
+                                        if (bjxdList.ExpiredCustomCardList != null)
+                                        {
+                                            expired = bjxdList.ExpiredCustomCardList.Count;
+                                        }
+                                    }
+                                    <span class="on">未使用(@received)</span>
+                                    <span>已使用(@used)</span>
+                                    <span>已过期(@expired)</span>
+                                </dt>
+                                <!--未使用-->
+                                <dd class="couponsBox" style="display: block;">
+                                    @{
+                                        foreach (var m in bjxdList.ReceivedCustomCardList)
+                                        {
+                                            var cardDate = string.Format("{0}至{1}", m.CardBeginDate.ToString("yyyy-MM-dd"), m.CardEndDate.ToString("yyyy-MM-dd"));
+                                            <div class="couOnlyBox">
+                                                <a href="/MyCenter/MyCustomCardDetail?id=@m.Id" class="couContentBox" style="background: @m.CardColor">
+                                                    <i></i><!--没有class不显示，有couUsed时是已使用状态，有couOverdue是已过期状态-->
+                                                    <div class="couConTop">
+                                                        <span></span>
+                                                        <h3>
+                                                            <i></i><em>@m.CardName</em>
+                                                        </h3>
+
+                                                        <b>适用活动：@m.ActivityName</b>
+                                                        <b>有效期：@cardDate</b>
+
+                                                    </div>
+                                                    <p>
+                                                        <em></em>
+                                                        <span>详情</span>
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        }
+                                    }
+                                </dd>
+                                <!--已使用-->
+                                <dd class="couponsBox">
+                                    @{
+                                        foreach (var m in bjxdList.UsedCustomCardList)
+                                        {
+                                            var cardDate = string.Format("{0}至{1}", m.CardBeginDate.ToString("yyyy-MM-dd"), m.CardEndDate.ToString("yyyy-MM-dd"));
+                                            <div class="couOnlyBox">
+                                                <a href="/MyCenter/MyCustomCardDetail?id=@m.Id" class="couContentBox" style="background: @m.CardColor">
+                                                    <i class="couUsed"></i><!--没有class不显示，有couUsed时是已使用状态，有couOverdue是已过期状态-->
+                                                    <div class="couConTop">
+                                                        <span></span>
+                                                        <h3>
+                                                            <i></i><em>@m.CardName</em>
+                                                        </h3>
+
+                                                        <b>适用活动：@m.ActivityName</b>
+                                                        <b>有效期：@cardDate</b>
+
+                                                    </div>
+                                                    <p>
+                                                        <em></em>
+                                                        <span>详情</span>
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        }
+                                    }
+
+                                </dd>
+                                <!--已过期-->
+                                <dd class="couponsBox">
+                                    @{
+                                        foreach (var m in bjxdList.ExpiredCustomCardList)
+                                        {
+                                            var cardDate = string.Format("{0}至{1}", m.CardBeginDate.ToString("yyyy-MM-dd"), m.CardEndDate.ToString("yyyy-MM-dd"));
+                                            <div class="couOnlyBox">
+                                                <a href="/MyCenter/MyCustomCardDetail?id=@m.Id" class="couContentBox bgOverdue" >
+                                                    <i class="couOverdue"></i><!--没有class不显示，有couUsed时是已使用状态，有couOverdue是已过期状态-->
+                                                    <div class="couConTop">
+                                                        <span></span>
+                                                        <h3>
+                                                            <i></i><em>@m.CardName</em>
+                                                        </h3>
+
+                                                        <b>适用活动：@m.ActivityName</b>
+                                                        <b>有效期：@cardDate</b>
+
+                                                    </div>
+                                                    <p>
+                                                        <em></em>
+                                                        <span>详情</span>
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        }
+                                    }
+                                </dd>
+
+                            </dl>
+
+                        </div>
+
+                        @{
+                            var partnerList = Model[1];
+                            var partnerReceived = 0;
+                            var partnerUsed = 0;
+                            var partnerExpired = 0;
+                            if (partnerList.ReceivedCustomCardList != null)
+                            {
+                                partnerReceived = partnerList.ReceivedCustomCardList.Count;
+                            }
+                            if (partnerList.UsedCustomCardList != null)
+                            {
+                                partnerUsed = partnerList.UsedCustomCardList.Count;
+                            }
+                            if (partnerList.ExpiredCustomCardList != null)
+                            {
+                                partnerExpired = partnerList.ExpiredCustomCardList.Count;
+                            }
+                        }
+                        <div class="tabConBox">
+                            <dl>
+                                <dt>
+                                    <span class="on">未使用(@partnerReceived)</span>
+                                    <span>已使用(@partnerUsed)</span>
+                                    <span>已过期(@partnerExpired)</span>
+                                </dt>
+                                <!--未使用-->
+                                <dd class="couponsBox" style="display: block;">
+
+                                    @{
+                                        foreach (var n in partnerList.ReceivedCustomCardList)
+                                        {
+                                            var cardDate = string.Format("{0}至{1}", n.CardBeginDate.ToString("yyyy-MM-dd"), n.CardEndDate.ToString("yyyy-MM-dd"));
+                                            var merchantLogoUrl = imgPath + n.MerchantLogoUrl;
+                                            <div class="couOnlyBox">
+                                                <a href="/MyCenter/MyCustomCardDetail?id=@n.Id" class="couContentBox merchants xbk" style="background: @n.CardColor">
+                                                    <i></i><!--没有class不显示，有couUsed时是已使用状态，有couOverdue是已过期状态-->
+                                                    <div class="couConTop">
+                                                        <span></span>
+                                                        <h2>
+                                                            <img src="@merchantLogoUrl" />
+                                                            <em>@n.MerchantName</em>
+                                                        </h2>
+                                                        <h3>@n.CardName</h3>
+
+                                                        <b>有效期：@cardDate</b>
+
+                                                    </div>
+                                                    <p>
+                                                        <em></em>
+                                                        <span>详情</span>
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        }
+                                    }
+                                </dd>
+                                <!--已使用-->
+                                <dd class="couponsBox">
+                                    @{
+                                        foreach (var n in partnerList.UsedCustomCardList)
+                                        {
+                                            var cardDate = string.Format("{0}至{1}", n.CardBeginDate.ToString("yyyy-MM-dd"), n.CardEndDate.ToString("yyyy-MM-dd"));
+                                            var merchantLogoUrl = imgPath + n.MerchantLogoUrl;
+
+                                            <div class="couOnlyBox">
+                                                <a href="/MyCenter/MyCustomCardDetail?id=@n.Id" class="couContentBox merchants xbk" style="background: @n.CardColor">
+                                                    <i class="couUsed"></i><!--没有class不显示，有couUsed时是已使用状态，有couOverdue是已过期状态-->
+                                                    <div class="couConTop">
+                                                        <span></span>
+                                                        <h2>
+                                                            <img src="@merchantLogoUrl" />
+                                                            <em>@n.MerchantName</em>
+                                                        </h2>
+                                                        <h3>@n.CardName</h3>
+                                                        <b>有效期：@cardDate</b>
+
+                                                    </div>
+                                                    <p>
+                                                        <em></em>
+                                                        <span>详情</span>
+                                                    </p>
+                                                </a>
+                                            </div>
+
+                                        }
+                                    }
+
+
+
+                                </dd>
+                                <!--已过期-->
+                                <dd class="couponsBox">
+                                    @{
+                                        foreach (var n in partnerList.ExpiredCustomCardList)
+                                        {
+                                            var cardDate = string.Format("{0}至{1}", n.CardBeginDate.ToString("yyyy-MM-dd"), n.CardEndDate.ToString("yyyy-MM-dd"));
+                                            var merchantLogoUrl = imgPath + n.MerchantLogoUrl;
+
+                                            <div class="couOnlyBox">
+                                                <a href="/MyCenter/MyCustomCardDetail?id=@n.Id" class="couContentBox merchants bgOverdue" >
+                                                    <i class="couOverdue"></i><!--没有class不显示，有couUsed时是已使用状态，有couOverdue是已过期状态-->
+                                                    <div class="couConTop">
+                                                        <span></span>
+                                                        <h2>
+                                                            <img src="@merchantLogoUrl" />
+                                                            <em>@n.MerchantName</em>
+                                                        </h2>
+                                                        <h3>@n.CardName</h3>
+                                                        <b>有效期：@cardDate</b>
+
+                                                    </div>
+                                                    <p>
+                                                        <em></em>
+                                                        <span>详情</span>
+                                                    </p>
+                                                </a>
+                                            </div>
+
+                                        }
+                                    }
+                                </dd>
+
+                            </dl>
+
+                        </div>
+                    </div>
+
+
+                    <div class="coupBtnSelBox" style="display: none">
+                        <a href="/MyCenter/MyCustomCardInstructions">
+                            <i class="CoupRule"></i>
+                            <span>卡券使用规则</span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            @Html.Action("Index", "Footer")
+        </div>
+    </div>
+</div>

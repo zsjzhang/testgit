@@ -1,0 +1,68 @@
+﻿@using Vcyber.BLMS.FrontWeb.Models.BBS
+@{
+    Layout = null;
+}
+
+@{
+    var i = (int)ViewData["floor"];
+    var rList = (List<BBSComment>)ViewData["col"];
+    if (rList != null && rList.Any())
+    {
+
+        foreach (var item in rList)
+        {
+            var headSrc = string.Format("/Content/BBS/images/0{0}.gif", item.BBSMember.Head);
+            var d = item.BBSMember.BBSGuestBook.Count(e => e.G_Recycle == 1)
+                    + item.BBSMember.BBSComment.Count(e => e.BBSGuestBook.G_Recycle == 1);
+
+            <div style="width: 100%; float: left; padding-bottom: 20px; padding-top: 5px; border-bottom: 1px solid #808080; height: 200px; font-size: 14px;">
+                <div style="width: 30%; float: left; background-color:#f0f0f0; border:1px solid #808080;">
+                    <div style="width: 100%; float: left; border-bottom: 1px solid #c1c1c1; height: 150px; overflow: hidden;">
+                        <span style="width: 100%; float: left; text-align: center; margin: 0 auto;">
+                            <img src="@headSrc" style=" margin-top: 10px; margin-left: 50px; max-width: 100px;" />
+                        </span>
+                        <span style="width: 100%; float: left; text-align: center;">
+                            <label>
+                                @item.BBSMember.UserName
+                            </label>
+                        </span>
+                    </div>
+                    <div style="width: 100%; float: left; height: 45px; overflow: hidden; text-align:center; margin-top:5px;">
+                        <span style="float:left; width:100%;">
+                            <label>帖子:</label><label>@d</label>
+                        </span>
+                        <span style="float:left; width:100%; padding:5px 0;">
+                            <label>性别:</label> <label>@item.BBSMember.Sex</label>
+                        </span>
+                    </div>
+                </div>
+                <div style="width:65%; float:right;">
+                    <div style="width: 100%; float: left; border-bottom: 1px solid #f3f3f3; height: 25px; line-height: 25px; font-size: 14px; ">
+                        <span style="width: 90%; float: left; ">
+                            <label style="float:left;">发表于：</label>
+                            <label style="float:left;">@(((DateTime)item.C_Time).ToString("yyyy-MM-dd HH:mm"))</label>
+                        </span>
+                        <span style="width: 10%; float: right;">
+                            <label>@(i++) 楼</label>
+                        </span>
+                    </div>
+                    <div style="width: 100%; float: left; padding-top: 10px; height: 140px;">
+                        <span>
+                            @item.Comments
+                            @if (item.BBSMember.SetAtt != null)
+                            {
+                                @item.BBSMember.SetAtt
+                            }
+                        </span>
+                    </div>
+                    <div style="width: 100%; float: left; /* text-align: right; */ /* padding-right: 10px; */ ">
+                        <span style="width: 10%; float: left; /* text-align: right; */ padding-left: 90%;">
+                            <a href="#postcomment">回复</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+}

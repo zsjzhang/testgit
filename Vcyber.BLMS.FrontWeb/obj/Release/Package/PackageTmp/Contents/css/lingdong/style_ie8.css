@@ -1,0 +1,201 @@
+﻿@charset "utf-8";
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin: 0; padding: 0; }
+html{ font-size:16px;}
+em,i,b,strong{ font-style:normal; font-weight:normal;}
+body {font-family:"Microsoft YaHei","SimSun"; font-size:14px;position: relative;background:#4b6c97; height:100%}
+h1, h2, h3, h4, h5, h6 { font-size: 100%; }
+ul, ol { list-style:none; }
+img { border:none; }
+a { text-decoration:none; }
+html{height:100%;width:100%;}
+.clearfix:after{display:block; content:''; clear:both;} 
+.clearfix{zoom:1;}
+/*--------------reset end-----------------*/
+
+
+.backIe8{ position: absolute; z-index:-1; top:0; left:0; width:100%; height:100%; min-height:700px;}
+.backIe8 img{ position:absolute; z-index:0; width:100%; height:100%;}
+
+.bk_65{ width:100%; height:65px;}
+.home{ position:absolute;top:0; left:0; width:100%; height:700px; z-index:1000; /*background:url(/Contents/images/lingdong-pc/bg_home.jpg) no-repeat; background-size:100% 100%;*/}
+
+.logo{ position: absolute; left:22px; top:-40px; background:url(/Contents/images/lingdong-pc/logo.png) no-repeat; width:139px; height:32px; background-size:cover;}
+.wrapper{ position:absolute; left:50%; top:55px; width:1200px; height:700px; margin-left:-600px; }
+.cont_bg{height:600px;}
+.nav{ position:relative; top:75px; width:834px; height:56px; background:url(/Contents/images/lingdong-pc/bg_navNew.png) no-repeat; background-size:cover; margin:0 auto; padding-left:20px;z-index:10000;}
+.nav a{ position:relative; float:left; top:16px; display: inline-block; height:21px; overflow:hidden; text-indent:-99em; margin:0 41px}
+.nav span{ position:relative; float:left; display:inline-block; width:185px; height:20px;}
+
+.opt1{ width:75px; background:url(/Contents/images/lingdong-pc/opt1.png) no-repeat center; background-size:cover;}
+.opt1on{ width:75px; background:url(/Contents/images/lingdong-pc/opt1_1.png) no-repeat center; background-size:cover;}
+.opt2{ width:75px; width:75px; background:url(/Contents/images/lingdong-pc/opt2.png) no-repeat center; background-size:cover;}
+.opt2on{ width:75px; background:url(/Contents/images/lingdong-pc/opt2_1.png) no-repeat center; background-size:cover;}
+.opt3{ width:75px; background:url(/Contents/images/lingdong-pc/opt3.png) no-repeat center; background-size:cover;}
+.opt3on{ width:75px; background:url(/Contents/images/lingdong-pc/opt3_1.png) no-repeat center; background-size:cover;}
+.opt4{ width:75px; background:url(/Contents/images/lingdong-pc/opt4.png) no-repeat center; background-size:cover;}
+.opt4on{ width:75px; background:url(/Contents/images/lingdong-pc/opt4_1.png) no-repeat center; background-size:cover;}
+
+.opt1:hover{ background:url(/Contents/images/lingdong-pc/opt1_1.png) no-repeat center;background-size:cover;}
+.opt2:hover{ background:url(/Contents/images/lingdong-pc/opt2_1.png) no-repeat center;background-size:cover;}
+.opt3:hover{ background:url(/Contents/images/lingdong-pc/opt3_1.png) no-repeat center;background-size:cover;}
+.opt4:hover{ background:url(/Contents/images/lingdong-pc/opt4_1.png) no-repeat center;background-size:cover;}
+
+
+.con_box{ position:relative; margin:57px auto 0 auto; width:629px; height:385px; background:url(/Contents/images/lingdong-pc/bg_cont_box.png) no-repeat; background-size:100% 100%; margin-bottom:100px;}
+.logo_bottom{ position:absolute; display:block; width:138px; height:19px; background:url(/Contents/images/lingdong-pc/logo_bottom.png) no-repeat;left:30px; bottom:40px; background-size:cover; background-size:100% 100%;}
+
+.hdjs{ position:relative; width:560px; height:100%; color:#0a1c38; padding:0 40px}
+.h5B{color:#882025; margin-bottom:10px; text-align:center;}
+.hdjs b{ position:relative; display:block; top:22px; margin:0 auto;text-align:center; overflow:hidden; margin-bottom:44px; }
+.hdjs h6{ position:relative; display:block; top:22px; margin:0 auto;text-align:center; overflow:hidden; margin-bottom:30px; }
+.hdjs h2{ position:relative; margin:32px 0 0 0; font-size:16px; font-weight:bold; }
+.hdjs p{ font-size:12px; line-height:18px;}
+.step{margin-top:20px;}
+.step strong{ font-weight:700; font-size:13px;}
+.cylc h3{ font-size:13px; margin-left:-5px; font-weight:bold; margin-top:10px; margin-bottom:5px;}
+.zysx{ font-size:11px;}
+
+
+.yuyue{ position:relative; width:260px; margin:0 auto; text-align:left;}
+.yuyue h3{ font-size:18px; padding-top:20px; text-align:center; font-weight:bold; margin-bottom:20px;}
+.yuyue li{ height:25px; margin-bottom:7px;}
+.yuyue input{ height:21px;width:180px; line-height:21px;}
+.yuyue select{ height:21px; margin-left:-3px; margin-right:5px;}
+.yuyue label{display:inline-block; width:63px; text-align: justify; vertical-align:middle; }
+.yuyue span{ display:inline-block; width:63px;}
+.btnLi{text-align:center; cursor:pointer; height:4px;margin-top:20px; }
+.tianxie{ width:380px;}
+.tianxie .radioW{width:15px; height:15px; margin-right:2px; vertical-align:middle;}
+.tianxie label{ width:80px;}
+.tianxie .tanxieSpan{display:inline-block; width:75px; height:22px; background:#95a1b2; line-height:21px; color:#fff; text-align:center; border:1px solid #7785a5;}
+.sjSuccNo h3{ padding-top:30px; padding-bottom:30px;}
+.sjSuccNo h4,.sjSuccNo h5{ font-size:13px; text-align: center; margin-bottom:10px;}
+.sjSuccNo h5{ color:#882025;}
+.sjSuccNo ul{ margin-top:100px;}
+
+
+.sjSucc h4,.sjSucc h5{ margin:0 auto; font-size:13px;margin-bottom:30px;}
+.sjSucc h4{ width:270px; margin-top:50px;text-align: left; }
+.sjSucc h5{ color:#882025; width:135px; text-align:center;}
+.sjSucc ul{ margin-top:100px;}
+
+.sjzj h3{ text-align:center; margin-bottom:8px; padding-top:8px;}
+.sjzj em{ position:absolute;left:40px;top: 101px;}
+.sjzj h4{text-align:center; margin-bottom:4px;}
+.sjzj h4 span{ display:inline-block; height:21px; width:133px; text-align:center; border-bottom:2px solid #13233f; line-height:27px; vertical-align:text-bottom; color:#882025;}
+.sjzj ul{ width:150px;margin-left:90px;margin-top: 15px;}
+.sjzj ul input{ width:112px; margin-right:2px;}
+.sjzj ul label{ width:30px;}
+.btnCenter{ text-align:center; margin-top:2px;}
+
+
+/* 推荐内容*/
+
+.renzhen span{ display:block; width:100%; text-align:center; font-size:13px; height:25px;}
+.renzhen em{ display:block; font-size:13px; color:#882025; text-align:center; width:100%; height:25px; margin-bottom:10px;}
+.renzhen label{ position:relative;text-align:justify;text-justify:distribute-all-lines;}
+
+/*奖品设置*/
+.jpsz h3{ margin-top:20px; font-size:14px; margin-bottom:8px; }
+.jpsz .dlBox{ width:560px; height:60px; color:#091b37;}
+.jpsz .dlBox dl{ width:140px; height:50px; float:left; margin-right:0;}
+.jpsz .dlBox dt{ width:73px; height:49px; margin-right:5px; float:left;}
+.jpsz .dlBox dt img{ width:100%; height:100%;}
+.jpsz .dlBox dd{ width:60px; height:36px; float:left;margin-top:10px; font-size:12px;line-height:29px;}
+.jpsz p.sj{ font-size:12px; color:#21497d;}
+.jpsz p.sj1{ display:inline-block; float:left;}
+.jpsz p.sj2{ margin-left:140px;}
+.jpsz p.yk{ font-size:12px; color:#0a1c38;}
+.ykBox{ position:absolute; left:250px; top:170px; width:58px; height:37px;}
+
+/*中奖名单*/
+.zjmd .ul1,.zjmd .ul2{ position: absolute; width:150px; height:70px; background:rgba(255,255,255,.5);filter:alpha(opacity:50);background:#fff; overflow:hidden; line-height:18px; border:10px solid rgba(255,255,255,0); padding:5px 0 5px 10px;}
+.zjmd li{ line-height:18px; height:18px; font-size:12px;}
+.zjmd .ul1{ left:400px; top:118px;}
+.zjmd .ul2{left:400px; top:247px;}
+.ul1 a,.ul2 a{ color:#0a1c38;}
+.ul1 a:hover,.ul2 a:hover{ color:#F60;}
+.inputBox{ position:relative; width:100%; height:25px; text-align:center; margin-top:20px;}
+.inputBox input{ width:170px; line-height:22px; height:22px; margin-right:22px; border-top:1px solid #a4a9b2; border-left:1px solid #a4a9b2; border-right:1px solid #cad3de; border-bottom:1px solid #cad3de; background:#e0e5eb; padding:0 10px; color:#8ca2b7; }
+.inputBox span{ display:inline-block; width:68px; height:22px; line-height:22px; vertical-align:middle; margin-top:5px;border-top:1px solid #3b5780; border-left:1px solid #3b5780; border-right:1px solid #9eafc2; border-bottom:1px solid #9eafc2; background:#456faa; color:#fff; }
+.zjmd h3{ margin-top:20px; color:#091b37; font-size:14px; margin-bottom:12px;}
+.dlBox{ position:relative; width:320px; height:75px; }
+.dlBox dl{ width:62px; height:60px; float:left; margin-right:16px; font-size:12px;}
+
+
+/*轮播图*/
+.swiBox{position: relative; display:none;left:2px;top:6px; width:615px; height:381px; color:#13233f;}
+.ptab_box{ position:relative; width:615px; height:381px; overflow:hidden; z-index:1;}
+.ptab_box ul{position: absolute; left:0; top:0; height:381px; width:3960px;}
+.ptab_box ul li{ position:relative; float:left; overflow:hidden; width:615px; height:381px; background-size: cover; background-position:center; background-repeat:no-repeat;}
+.ptab_box ul li img{ width:100%; height:100%;}
+.ptab_box ul li a{ display:block; width:100%; height:100%; position:relative; left:0; top:0;}
+.ptab_box ol{position: absolute;top: 340px;width: 130px;left: 50%;margin-left: -65px;height:20px;text-align: center; z-index:100000}
+.ptab_box ol li{overflow: hidden; float:left; width:10px; height:10px; border-radius:50%; background:#ccc; background:rgba(204,204,204,.4);filter:alpha(opacity:40); margin:0 5px; cursor:pointer; z-index:100001;}
+.ptab_box ol li.active{ background:#e74c3c; opacity:1; filter:alpha(opacity:100);}
+.pprev,.pnext{ position:relative; display:block;top:50%; margin-top:-15px; z-index:100;  width:20px; height:30px; line-height:30px; color:#fff; background:rgba(0,0,0,.4);filter:alpha(opacity:40); transition:0.3s all ease; text-align:center; font-size:20px; font-family: "Courier New", Courier, monospace}
+.pprev:hover,.pnext:hover{ opacity:.5; background:rgba(231,76,60,.4);filter:alpha(opacity:50) ;color:#2f343a; font-weight:bold; background-color:#e74c3c;}
+.pprev{ float:left; background-color:#000; filter:alpha(opacity:40);}
+.pnext{ float:right; background-color:#000; filter:alpha(opacity:40);}
+.ptab_box img{ width:100%; height:100%;}
+
+.ptab_box ul li .redDot1,.ptab_box ul li .redDot2,.ptab_box ul li .redDot3,.ptab_box ul li .redDot4{ position: absolute; display:block;  background:url(/Contents/images/lingdong-pc/redDot.png) no-repeat center center; background-size:100% 100%; width:42px; height:42px; border-radius:50%; overflow:hidden; -webkit-animation:rDot 1.5s infinite ease-in;  -ms-animation:rDot 1.5s infinite ease-in; animation:rDot 1.5s infinite ease-in; -moz-animation:rDot 1.5s infinite ease-in; opacity:1;filter:alpha(opacity:100); cursor: pointer;  }
+.redDot1{left:300px; top:50px;}
+.redDot2{left:343px; top:165px;}
+.redDot3{left:300px; top:98px;}
+.redDot4{left:270px; top:183px;}
+
+	@-webkit-keyframes rDot{
+		0%{
+			width:42px; height:42px;
+			opacity:.5; 
+			filter:alpha(opacity:50);
+		}
+		50%{
+			transform:scale(.5,.5);
+			opacity:1;
+			filter:alpha(opacity:100);
+			
+		}
+		100%{
+			width:42px; height:42px;
+			opacity:.5; 
+			filter:alpha(opacity:50);
+		}
+	}
+.ptab_box b{ position: absolute; left:0; top:0; display:block; height:100%; width:100%;z-index:10;}
+.ptab_box b.pop1{ background:url(/Contents/images/lingdong-pc/cy1_Pop.png) no-repeat center center; background-size:100% 100%; overflow:hidden;}
+.ptab_box b.pop2{ background:url(/Contents/images/lingdong-pc/cy2_Pop.png) no-repeat center center; background-size:100% 100%; overflow:hidden;}
+.ptab_box b.pop3{ background:url(/Contents/images/lingdong-pc/cy3_Pop.png) no-repeat center center; background-size:100% 100%; overflow:hidden;}
+.ptab_box b.pop4{ background:url(/Contents/images/lingdong-pc/cy4_Pop.png) no-repeat center center; background-size:100% 100%; overflow:hidden;}
+.btnABox{ padding-top:110px; width:100%;}
+.btnABox a.btnA{ width:146px; height:46px; display:block; text-align:center; margin:0 auto; }
+.btnABox a.btnA img{ position:relative; width:100%; height:100%; z-index:10;}
+.swiper-slide{ z-index:1000}
+
+
+	
+span.renSpan{display:inline-block; width:75px; height:22px; background:#95a1b2; line-height:21px; color:#fff; text-align:center; border:1px solid #7785a5;}
+
+
+b.btn_cy{ display:inline-block; left:50%; margin-left:-94.5px; text-align: center; width:181px; height:46px; background:url(../img/bg_btn.png) no-repeat; cursor:pointer; }
+.btnCyHomg{ position:absolute;left:50%; top:440px; margin-left:300px; text-align:center; width:181px; height:46px; background:url(../img/bg_btn.png) no-repeat; background-size:100% 100%; cursor:pointer;}
+.btnCyHomg img,b.btn_cy img{ width:100%; height:100%}
+#jieshao b.no1B{ top:0;}
+
+/*滚轮*/
+#main{ position:relative; overflow:hidden;top:30px;margin:0 auto; overflow:hidden; width:560px; height:340px;}
+#context{ position:absolute; left:0; top:0; float:left; width:540px; height:100%;  }
+#txt{position:absolute; width:95%; height:600px;}
+#r_scr{position:relative; float:right;width:18px;height:100%;background: url(/Contents/images/lingdong-pc/scrBg.png) no-repeat; background-size:100% 100%;}
+#scr{position:relative;width:18px; height:303px; z-index:1;}
+#up{position: relative; display:block; left:0; top:0; width:19px; height:19px; background: url(/Contents/images/lingdong-pc/scrTop.png) no-repeat;background-size:100% 100%;  z-index:10; cursor:pointer; text-align:center; ;}
+#down{position:relative; display:block; left:0; bottom:0;width:19px; height:19px; background:url(/Contents/images/lingdong-pc/scrBtm.png) no-repeat;background-size:100% 100%;  z-index:10; cursor:pointer; text-align:center;}
+#main #span{position:relative; display:block; left:1px; width:18px; height:168px !important; cursor:pointer; background:url(/Contents/images/lingdong-pc/scrBar.png) no-repeat; background-size:100% 100%;}
+
+
+/*轮播图定位*/
+.tabPos{ z-index:10000; position:absolute; left:50%; margin-left:-313px; top:178px;}
+
+/*隐藏DIV*/
+.layerD{ position:absolute; left:0; top:0; z-index:-1; width:615px; height:380px;}

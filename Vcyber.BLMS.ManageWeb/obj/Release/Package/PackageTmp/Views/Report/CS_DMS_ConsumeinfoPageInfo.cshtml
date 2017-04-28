@@ -1,0 +1,107 @@
+﻿@model Vcyber.BLMS.Entity.DealerPointConfirmationOutPut
+
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+
+@*DMS列表信息展示*@
+    <div class="data-container" style="padding-top:30px">
+        <table class="table table-bordered">
+            <p style="color:crimson;">DMS信息</p>
+            <thead>
+                <tr class="l1">
+                    <th>序号</th>
+                    <th>结算开始时间</th>
+                    <th>结算截止时间</th>
+                    <th>经销商ID</th>
+                    @*<th>用户ID</th>*@
+                    <th>用户联系方式</th>
+                    <th>消费时间</th>
+                    <th>消费类型</th>
+                    <th>积分抵扣</th>
+                    <th>总费用</th>
+                    <th>消耗积分</th>
+                    <th>产生积分</th>
+                </tr>
+            </thead>
+            @{int num = 0;}
+            <tbody>
+                @if (Model.CS_DMS_ConsumeinfoList.Count() > 0)
+            {
+                foreach (var item in Model.CS_DMS_ConsumeinfoList)
+                {
+                        <tr>
+                            <td>@{int value = ++num;}@value</td>
+                            <td>@item.FromTime.ToString("yyyy-MM-dd")</td>
+                            <td>@item.EndTime.ToString("yyyy-MM-dd")</td>
+                            <td>@item.DealerId</td>
+                            @*<td>@item.UserId</td>*@
+                            <td>@item.Phone</td>
+                            <td>@item.ConsumeDate</td>
+                            <td>@(item.ConsumeType == 3 ? "定期保养" : item.ConsumeType == 0 ? "事故车维修（普通）" : item.ConsumeType == 8 ? "钣喷" : item.ConsumeType == 1 ? "首次保养" : item.ConsumeType == 2 ? "购车" : "无" )</td>
+                            <td>@item.PointCost</td>
+                            <td>@item.TotalCost</td>
+                            <td>@item.ConsumePoints</td>
+                            <td>@item.RewardPoints</td>
+                        </tr>
+                                    }
+                                }
+            </tbody>
+        </table>
+    </div>
+
+
+    @*DMS列表分页*@
+
+    <div class="box_a2">
+        <div class="pagbox">
+            <span>共@{@ViewBag.Totaldms}条<<</span>
+            <a href="javascript:void(0);" onclick="GetPageListdms(1)">首页</a>
+            <a href="javascript:void(0);" onclick="ShowPages('Pre')"><<</a>
+            <a href="javascript:void(0);" onclick="GetPageListdms(@ViewBag.PrePagedms)">上一页</a>
+            @{
+                int PageIndexdms = (int)ViewBag.PageIndexdms;
+                int PageCurrentGroupdms = (int)(PageIndexdms / 10);
+            }
+            @for (int i = 1; i <= (int)ViewBag.EndPagedms; i++)
+            {
+                if ((i < PageCurrentGroupdms * 10) || (i >= (PageCurrentGroupdms + 1) * 10))
+                {
+                    <a id="@i" href="javascript:void(0);" onclick="GetPageListdms(@i, 10)" style="display:none;">@i</a>
+                }
+                else
+                {
+                    if (i == (int)ViewBag.PageIndexdms)
+                    {<a id="@i" href="javascript:void(0);" onclick="GetPageListdms(@i, 10)" style="color: blue">@i</a> }
+                    else
+                    {<a id="@i" href="javascript:void(0);" onclick="GetPageListdms(@i, 10)">@i</a> }
+                }
+            }
+            <a href="javascript:void(0);" onclick="GetPageListdms(@ViewBag.NextPagedms, 10)">下一页</a>
+            <a href="javascript:void(0);" onclick="ShowPages('Next')">>></a>
+            <a href="javascript:void(0);" onclick="GetPageListdms(@ViewBag.EndPagedms, 10)">尾页</a>
+        </div>
+    </div>
+
+<input type="hidden" id="hidCurrentPage1" value="@ViewBag.PageIndexdms" />
+<input type="hidden" id="hidEndPage1" value="@ViewBag.EndPagedms" />
+<input type="hidden" id="hidCurrentGroup1" value="@(PageCurrentGroupdms)" />
+
+
+

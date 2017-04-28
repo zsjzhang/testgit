@@ -1,0 +1,211 @@
+
+.chaxun {
+	border-top: 2px solid #f49600;
+	margin-top: 20px;
+}
+
+.gy_zi h2{
+	font-size: 24px;
+	color: #3d3f43;
+	float: left;
+	line-height: 30px;
+	margin-left: 6px;
+}
+
+
+.download{
+	width: 1000px;
+	margin: 0 auto;
+	overflow-y:hidden;
+
+}
+
+.download_2{
+	padding-left: 22px;
+	border: 1px solid #EEEEEE;
+	width:671px;
+	display: table;
+	padding-top: 20px;
+	margin-bottom: 20px;
+}
+.download_2 dl{
+	float: left;
+	height:187px;
+	margin-bottom: 30px;
+	width: 310px;
+}
+
+.have_b_r{
+	border-right: 1px solid #EEEEEE;
+	margin-right: 40px;
+}
+
+.no_bor_r{
+	width: 260px;
+}
+
+
+.download_2 dl dt{
+	float: left;
+	width:145px;
+	height:187px;
+	overflow: hidden;
+	margin-right: 10px;
+}
+.download_2 dl dt img{
+	width: 145px;
+	height: 187px;
+	display: block;
+}
+.download_2 dl dt span{
+	text-align: center;
+	line-height: 50px;
+	font-family: "宋体";
+	font-size: 14px;
+	font-weight: bold;
+	display: block;
+	color: #3D3F43;
+}
+.download_2 dl dd{
+	float: left;
+}
+.download_2 dl dd .dd_1{
+	margin-bottom: 8px;
+	font-family: "宋体";
+	font-size: 14px;
+	color: #474747;
+}
+
+.download_2 dl dd p{
+	overflow: hidden;
+	font-family: "宋体";
+	font-size: 12px;
+	color: #a4a4a4;
+	margin-bottom: 10px;
+}
+.download_2 .xiazai{
+	display: block;
+	background: #075090;
+	width:110px;
+	height: 30px;
+	line-height: 30px;
+	cursor: pointer;
+	margin-top:10px;
+	text-align: center;
+}
+
+.xiazai span b{
+	margin: 0 6px;
+}
+.download_2 dl dd a span{
+	line-height: 30px;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	color: #fff;
+}
+
+
+#dahao{
+	font-size: 20px;
+	color: #474747;
+}
+
+.subst a{
+	width: 64px;
+	height: 18px;
+	line-height: 18px;
+	text-align: center;
+	display: block;
+	font-size: 12px;
+	color: #FFFFFF;
+	background: #cbcbcb;
+	margin-top: 8px;
+	margin-bottom: 20px;
+}
+
+
+.download_3{
+	padding-left: 22px;
+	border: 1px solid #EEEEEE;
+	width:671px;
+	display: table;
+	padding-top: 20px;
+	margin-bottom: 20px;
+}
+.download_3 dl{
+	float: left;
+	height:187px;
+	margin-bottom: 30px;
+	width: 310px;
+}
+.download_3 dl dt{
+	float: left;
+	width:145px;
+	height:187px;
+	overflow: hidden;
+	margin-right: 10px;
+}
+.download_3 dl dt img{
+	display: block;
+}
+.download_3 dl dt span{
+	text-align: center;
+	line-height: 50px;
+	font-family: "宋体";
+	font-size: 14px;
+	font-weight: bold;
+	display: block;
+	color: #3D3F43;
+}
+.download_3 dl dd{
+	float: left;
+}
+.download_3 dl dd .dd_1{
+	margin-bottom: 8px;
+	font-family: "宋体";
+	font-size: 14px;
+	color: #474747;
+}
+
+.download_3 dl dd p{
+	overflow: hidden;
+	font-family: "宋体";
+	font-size: 12px;
+	color: #a4a4a4;
+	margin-bottom: 10px;
+}
+.download_3 .xiazai{
+	display: block;
+	background: #075090;
+	width:110px;
+	height: 30px;
+	line-height: 30px;
+	cursor: pointer;
+	margin-top:10px;
+	text-align: center;
+}
+
+.download_3 dl dd a span{
+	line-height: 30px;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

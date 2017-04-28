@@ -1,0 +1,523 @@
+﻿
+
+/* this rule styles <h2> tags that are the 
+first child of the left and right table columns */
+.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2
+{
+    margin-top: 0;
+}
+
+/* PRIMARY LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+/* you can specify a greater or lesser percentage for the 
+page width. Or, you can specify an exact pixel width. */
+.page
+{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#header
+{
+    background:url("../../Content/bbs/images/headbg.gif");
+    height:140px;
+    width:100%;
+    color: #000;
+}
+#headerA
+{width:80%;
+     margin:auto;
+    }
+#header h1
+{
+    font-weight: bold;
+    padding: 5px 0;
+    margin: 0;
+    color: #fff;
+    border: none;
+    line-height: 2em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 32px !important;
+}
+
+#main
+{
+    width:80%;
+    margin:auto;
+    margin-top:10px;
+    background-color: #fff;
+    border-bottom:solid 1px #C8DCFF;
+    border-left:solid 1px #C8DCFF;
+    border-right:solid 1px #C8DCFF;
+    margin-bottom: 30px;
+    _height: 1px; /* only IE6 applies CSS properties starting with an underscore */
+}
+
+#footer
+{
+    color: #999;
+    padding: 10px 0;
+    text-align: center;
+    line-height: normal;
+    margin: 0;
+    font-size: .9em;
+}
+
+/* TAB MENU   
+----------------------------------------------------------*/
+ul#menu
+{
+    padding: 0 0 2px;
+    position: relative;
+    margin: 0;
+    text-align: right;
+}
+
+ul#menu li
+{
+    display: inline;
+    list-style: none;
+}
+
+ul#menu li#greeting
+{
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    color: #fff;
+}
+
+ul#menu li a
+{
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    background-color: #83CB61;
+    
+    color: #fff;
+}
+
+ul#menu li a:hover
+{
+    background-color: #83CB61;
+    text-decoration: none;
+}
+
+ul#menu li a:active
+{
+    background-color: #a6e2a6;
+    text-decoration: none;
+}
+
+ul#menu li.selected a
+{
+    background-color: #fff;
+    color: #000;
+}
+
+/* FORM LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+fieldset 
+{
+    margin: 1em 0;
+    padding: 1em;
+    border: 1px solid #CCC;
+}
+
+fieldset p 
+{
+    margin: 2px 12px 10px 10px;
+}
+
+legend 
+{
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 2px 4px 8px 4px;
+}
+input[type="text"].TextBox
+{
+    width:60px;
+    }
+input[type="text"].KeyWord
+ {
+    border-bottom:#dddddd 1px solid;
+    border-left:#999999 1px solid;
+    border-right:#dddddd 1px solid;
+    border-top:#999999 1px solid;
+    height:18px;
+    width:120px;
+ }
+input[type="text"] 
+{
+    width: 200px;
+    border: 1px solid #CCC;
+}
+
+input[type="password"] 
+{
+    width: 200px;
+    border: 1px solid #CCC;
+}
+
+/* TABLE
+----------------------------------------------------------*/
+.index_tb
+{
+    width:100%;    
+}
+  .index_tb a:link
+{
+    color: #339900;
+    text-decoration: none;
+}
+  .index_tb a:hover
+{
+    color: #339900;
+    text-decoration: none;
+}
+  .index_tb a:visited
+{
+    color: #339900;
+    text-decoration: none;
+}
+.HuiFu
+{
+    width:100%;    
+}
+.index_content
+{
+    height:150px;
+    word-break:break-all;
+    width:90%;
+    }
+.HuiFu_Content
+{
+    word-break:break-all;
+    width:95%;
+    }
+.index_content_table
+{width:100%; }
+.index_tb .index_content_table td
+{
+    border: solid 0px #e8eef4;
+
+    padding-bottom:0px;
+ }
+.index_tb td
+{
+    border: solid 1px #e8eef4;
+ }
+table 
+{
+  border: solid 0px #e8eef4;
+  border-collapse: collapse;
+}
+
+table td 
+{
+  padding: 5px;   
+  border: solid 0px #e8eef4;
+}
+
+table th
+{
+  padding: 6px 5px;
+  text-align: left;
+  background-color: #e8eef4; 
+  border: solid 1px #e8eef4;   
+}
+
+/* MISC  
+----------------------------------------------------------*/
+.clear
+{
+    clear: both;
+}
+
+.error
+{
+    color:Red;
+}
+
+#menucontainer
+{
+    margin-top:78px;
+}
+
+div#title
+{
+    display:block;
+    float:left;
+    text-align:left;
+}
+
+#logindisplay
+{
+    padding-top:10px;
+    font-size:1.1em;
+    display:block;
+    text-align:right;
+    color:White;
+}
+
+#logindisplay a:link
+{
+    color: white;
+    text-decoration: underline;
+}
+
+#logindisplay a:visited
+{
+    color: white;
+    text-decoration: underline;
+}
+
+#logindisplay a:hover
+{
+    color: white;
+    text-decoration: none;
+}
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    color: #ff0000;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+/* Styles for editor and display helpers
+----------------------------------------------------------*/
+.display-label,
+.editor-label,
+.display-field,
+.editor-field
+{
+    margin: 0.5em 0;
+}
+
+.text-box
+{
+    width: 30em;
+}
+
+.text-box.multi-line
+{
+    height: 6.5em;
+}
+
+.tri-state
+{
+    width: 6em;
+}
+
+/*Error*/
+.ErrorMessage
+{
+    width:350px;
+    height:150px;
+    margin:auto;
+    border: 1px solid #D1DBB9;
+    text-align:center;
+    color:#000;
+}
+.ErrorMessage_Title
+{
+    font-weight:bold;
+    height:30px;
+    line-height:30px;
+    background:#EFF6E6;
+}
+.ErrorMessage_Content
+{
+     padding-top:20px;
+    }
+    
+.Recycle_Tb
+{
+    width:100%;    
+}
+.Recycle_Tb th
+{ text-align:center;}
+.Recycle_Tb td
+{border: solid 1px #e8eef4;}
+.Columns
+{
+    border: solid 1px #e8eef4;
+    width:100%;  
+    margin:auto;
+}
+.Columns td
+{border: solid 1px #e8eef4;}
+.Columns th,.Columns td
+{
+    text-align:center;
+}
+.td1
+{width:10%;text-align:center;}
+.td2
+{text-align:center;}
+.td3
+{width:15%;text-align:center;}
+.td4
+{
+    background-color:#EFFAFF;
+    color:#339900;
+    border-top:solid 1px #C8DCFF;
+}
+.td4 span
+{ 
+    font-weight:bold;
+    color:#666;
+  }
+/*Index*/
+.Mvc_Table
+{
+    width:100%;
+}
+.Mvc_Table td
+{
+    height:60px;
+    border-top:solid 1px #EBEBEB;
+ }
+ .Mvc_Table th
+ {
+    font-weight:100;
+    height:25px;
+    background-color:#F5FAFD;
+    border-top:solid 1px #C8DCFF;
+ }
+  .Mvc_Table a:link
+{
+    color: #339900;
+    text-decoration: none;
+}
+  .Mvc_Table a:hover
+{
+    color: #339900;
+    text-decoration: none;
+}
+  .Mvc_Table a:visited
+{
+    color: #339900;
+    text-decoration: none;
+}
+.Column_Name
+{
+    font-size:14px;
+    color:#339900;
+    font-weight:bold;
+    padding-bottom:7px;
+ }
+ .G_Title
+ {  
+    padding-bottom:7px;
+ }
+ .User_Login
+ {
+     width:100%;
+     border-top:solid 1px #C8DCFF;
+}
+ .User_Login b
+ {
+     font-size:14px;
+}
+ .User_Login .User_Login_table1
+ {
+     margin:20px 0 0 20px;
+ }
+ .User_Login .User_Login_table
+ { 
+     width:405px;
+ }
+ .User_Login_bg
+ {
+     padding-top:0px;
+     padding-bottom:0px;
+     height:44px;
+     background:url("../../Content/images/login_bg.jpg");
+ }
+ .User_Login_bg1
+ {
+     float:left;
+     color:#fff;
+     font-size:14px;
+     font-weight:bold;
+     padding-bottom:10px;   
+     padding-left:45px;
+  }
+  .User_Login_bg2
+ {
+     color:#fff;
+     font-size:14px;
+     font-weight:bold;
+     padding-bottom:10px;   
+     padding-left:230px;
+  }
+  .User_Login_bg2 a
+  {
+      color:#fff;
+  } 
+ .input_ok
+ {
+    border:0px;
+    font-size:14px;
+    font-weight:bold;
+    background:url(../../Content/images/OK.jpg);
+    width:115px;
+    height:36px;
+    color:#fff;    
+ }
+ .Search
+ {
+     background:url(../../Content/images/button_search.gif);
+     width:60px;
+     height:22px;
+     border:0px;
+     }
+ .bordertop
+ {     width:100%;
+     border-top:solid 1px #C8DCFF;}
+ .Register_tb
+ {
+    margin:20px 0 0 20px;
+ }
+ .floor
+ { 
+     float:right;
+     color:#339900;}
+
+.index_tb .tableborder td
+ {
+    border-bottom:0px;
+    border-left:0px ;
+    border-right:0px;
+    border-top:0px;
+     }

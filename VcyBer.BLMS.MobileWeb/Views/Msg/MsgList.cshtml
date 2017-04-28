@@ -1,0 +1,50 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Vcyber.BLMS.Entity;
+
+@model List<Vcyber.BLMS.Entity.UserMessageRecord>
+
+<html>
+<head>
+    @*<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">*@
+    <title>消息列表</title>
+    @*<link href="@Url.Content("~/Contents/NewCss/reset.css")" rel="stylesheet" />
+    <link rel="stylesheet" href="@Url.Content("~/Contents/NewCss/message_Center.css")">*@
+    @*<link rel="stylesheet" type="text/css" href="@Url.Content("~/Contents/Scripts/NewJs/layer/need/layer.css")">
+    <script type="text/javascript" src="@Url.Content("~/Contents/Scripts/NewJs/jquery-1.11.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Contents/Scripts/NewJs/fontSize.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Contents/Scripts/NewJs/layer/layer.js")"></script>*@
+    <link rel="stylesheet" type="text/css" href="~/Content/NewCss/message_Center.css" />
+</head>
+
+<body>
+    <div class="wrapper">
+        @if (Model != null && Model.Count() > 0)
+        {
+            <div class="message_detailsmess">
+                @foreach (var item in Model)
+                {
+                    <div class="mess_detailbox">
+                        <p>@item.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")</p>
+                        <p>@Html.Raw(item.MsgContent)</p>
+
+                    </div>
+                }
+                <p class="mess_over">已经没有更多的消息啦！</p>
+            </div>
+        }
+        else
+        {
+             <!--无消息状态开始-->
+            <div class="message_none">
+                暂无消息
+            </div>
+        <!--无消息状态结束-->
+        }
+    </div>
+</body>
+</html>

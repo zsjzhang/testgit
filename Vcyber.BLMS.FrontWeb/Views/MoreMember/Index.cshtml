@@ -1,0 +1,507 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = null; //"~/Views/Shared/_LayoutPageHome.cshtml";
+    
+    string source = ViewBag.source;
+}
+
+@using Microsoft.AspNet.Identity
+@using Vcyber.BLMS.Entity
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    @*<meta name="viewport" content="width=device-width; initial-scale=1.0">
+        <meta name="viewport" content="height=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">*@
+    <title>BM会员发展计划-车主入会激励</title>
+    <!--jquery-->
+    <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="/Scripts/html5.js"></script>
+    <script src="/Scripts/excanvas.js"></script>
+    <script src="/Scripts/excanvas.compiled.js"></script>
+    <![endif]-->
+    <!--bootstrap-->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/buttons.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.bootcss.com/html5shiv/3.7.1/html5shiv.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!--layer-->
+    <script src="~/Content/layer/layer.min.js"></script>
+    <!--自定义样式-->
+    <link href="~/css/MoreMember.css" rel="stylesheet" />
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?0b4e366e453f3524b50e08dc17833d51";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+
+        _hmt.push(['_setCustomVar', 3, 'ques_visitor', 'PC', 3]);
+    </script>
+</head>
+<body>
+    <img src="~/Img/MoreMember/logo.png" class="bg-header" />
+    <img src="/Img/MoreMember/bgImg.jpg" class="bg-body" />
+    <header>
+        <div class="container">
+            <div class="row header">
+                <div class="col-md-12 col-sm-12">
+                    @*<p>
+                            bluemembers蓝缤车主汇 入会就有礼。北京现代诚邀新老车主加入蓝缤会员服务网站，尊享会员服务。<br />
+                            即日起注册成为蓝缤会员即可参与中秋特色博饼游戏，攒好运，赢大奖。三星Gear 2 Neo智能手表 、卓棒<br />
+                            Jawbone UP24智能手环等惊喜大奖等你来领。百分百中奖率，惊喜礼品疯狂送不停。
+                        </p>*@
+                    <p id="pShare" style="padding-left: 380px;">
+                        分享到：
+                        <a target="_blank" href="http://v.t.sina.com.cn/share/share.php?url=https%3a%2f%2fwww.bluemembers.com.cn%2fMoreMember%2fIndex?source=member_web_weibo&title='北京现代蓝缤车主汇，入会就有礼。即日起加入北京现代会员服务网站（www.bluemembers.com.cn）即可参与趣味摇骰子游戏攒好运赢大奖。百分百中奖率，让您入会更精彩！注册蓝缤会员，领取精美礼品，请猛戳链接(https%3a%2f%2fwww.bluemembers.com.cn%2fMoreMember%2fIndex)'"> <img src="/Img/MoreMember/weipo.png" /></a>
+                        <a href="javascript:void(0)" onclick="showQRCode()"><img src="/Img/MoreMember/weixin.png" /></a>
+                        <a target="_blank" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3a%2f%2fwww.bluemembers.com.cn%2fMoreMember%2fIndex?source=member_web_bmwebsite&title='北京现代蓝缤车主汇，入会就有礼。即日起加入北京现代会员服务网站（www.bluemembers.com.cn）即可参与趣味摇骰子游戏攒好运赢大奖。百分百中奖率，让您入会更精彩！注册蓝缤会员，领取精美礼品，请猛戳链接(https%3a%2f%2fwww.bluemembers.com.cn%2fMoreMember%2fIndex)'"><img src="/Img/MoreMember/kj.png" /></a>
+                        <a target="_blank" href="http://www.douban.com/share/service?image=&href=https%3a%2f%2fwww.bluemembers.com.cn%2fMoreMember%2fIndex?source=member_web_bmwebsite&text='北京现代蓝缤车主汇，入会就有礼。即日起加入北京现代会员服务网站（www.bluemembers.com.cn）即可参与趣味摇骰子游戏攒好运赢大奖。百分百中奖率，让您入会更精彩！注册蓝缤会员，领取精美礼品，请猛戳链接(https%3a%2f%2fwww.bluemembers.com.cn%2fMoreMember%2fIndex)'"><img src="/Img/MoreMember/dou.png" /></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <p class="lead">活动简介</p>
+                <p style="text-indent:2em;">
+                    北京现代诚邀新老车主加入蓝缤会员服务网站，尊享会员服务。即日起注册成为蓝缤会员即可参与趣味摇骰子游戏，攒好运，赢大奖。三星Gear 2 Neo智能手表 、卓棒Jawbone UP24智能手环等惊喜大奖等你来领。百分百中奖率，惊喜礼品疯狂送不停。
+                </p>
+            </div>
+        </div>
+        <div class="row top30 text-center">
+            <div class="col-md-12 col-sm-12">
+                <div id="divCanvas">
+
+                </div>
+                @*<canvas id="gameCanvas" width="680" height="420">
+                        你的游览器不支持html5的画布元素，请升级到IE9+或使用firefox、chrome这类高级的智能游览器！
+                    </canvas>*@
+                <img id="imgGamebg" width="680" height="420" src="~/Img/MoreMember/gamebg1.png" />
+                <img id="imgCar" src="~/Img/MoreMember/car.png" style="display:none;" />
+                <img id="imgGame" src="~/Img/MoreMember/gamebg.png" style="display:none;" />
+            </div>
+        </div>
+        <div class="row top30 text-center">
+            <div class="col-md-12 col-sm-12">
+                <div class="point">
+                    <span>
+                        <img id="imgPointA" src="/Img/MoreMember/point4.png" />
+                    </span>
+                    <span>
+                        <img id="imgPointB" src="/Img/MoreMember/point1.png" />
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row top30 text-center">
+            <div class="col-md-12 col-sm-12 ">
+                <button id="btnStart" class="button button-action button-rounded" onclick="start()">开始游戏</button>
+@*<a href="javascript:void(0)" class="button button-action button-rounded" onclick="showGoods()">实物</a>*@
+                @*<a href="javascript:void(0)" class="button button-action button-rounded" onclick="startCar(1)">跑到1</a>
+                    <a href="javascript:void(0)" class="button button-action button-rounded" onclick="startCar(4)">2</a>
+                    <a href="javascript:void(0)" class="button button-action button-rounded" onclick="startCar(5)">3</a>
+                    <a href="javascript:void(0)" class="button button-action button-rounded" onclick="startCar(6)">4</a>
+                    <a href="javascript:void(0)" class="button button-action button-rounded" onclick="startCar(7)">5</a>
+                    <a href="javascript:void(0)" class="button button-action button-rounded" onclick="startCar(8)">6</a>*@
+                @*<a href="javascript:void(0)" class="button button-action button-rounded" onclick="showJoin()">登录注册</a>*@
+                @*<a href="javascript:void(0)" class="button button-action button-rounded" onclick="showLogin()">登录注册</a>
+                    <a href="javascript:void(0)" class="button button-action button-rounded" onclick="showGoods()">实物</a>
+                    <a href="javascript:void(0)" class="button button-action button-rounded" onclick="showBeans()">虚拟蓝豆</a>
+                    <a href="javascript:void(0)" class="button button-action button-rounded" onclick="showAgain()">重复</a>
+                    <a href="javascript:void(0)" class="button button-action button-rounded" onclick="showIknow()">知道</a>*@
+            </div>
+        </div>
+        <div class="row top30 text-center">
+            <div class="col-md-12 col-sm-12 ">
+
+            </div>
+        </div>
+        <div class="row top30">
+            <div class="col-md-6 col-sm-6 col-xs-6" style="padding-right:61px;">
+                <p class="lead">活动规则</p>
+                <p>
+                    1) 凡本品牌车主，通过活动页面注册成为bluemembers蓝缤会员，均可获得一次抽奖机会，抽取精美礼品。
+                </p>
+                <p>
+                    2) 活动期间，经销商协助入会的会员登录活动页面可直接参与游戏进行抽奖。
+                </p>
+                <p>
+                    3) 活动期间，蓝缤网站老车主会员登录活动页面可直接参与游戏进行抽奖。
+                </p>
+                <p>
+                    4) 此次活动每位车主会员均有一次参与游戏抽奖机会。
+                </p>
+                <p>
+                    5) 本活动中奖率100%，奖品分为实物奖品和虚拟奖品；虚拟奖品在抽中时直接发放至个人中心钱包里，实物奖品按参与先后顺序批次进行发放。
+
+                </p>
+                <p>
+                    6) 参与抽奖的会员，务必正确填写个人邮寄地址，以便我们更快将礼品邮寄给您。
+                </p>
+
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6" style="padding-left:61px;">
+                <p class="lead">游戏规则</p>
+                <p>
+                    在闽南地区4是福气如意的意思，所以以骰子4点为标准评判获奖等级。具体规则如下
+                </p>
+                <p>
+                    1、两枚骰子点数相同且均为4点为状元，对应礼品为三星Gear 2 Neo智能手表
+                </p>
+                <p>
+                    2、两枚骰子点数相同但不是4点为榜眼，对应礼品为卓棒Jawbone UP24智能手环
+                </p>
+                <p>
+                    3、两枚骰子中有一枚为4点另一枚点数大于4为探花，对应礼品为旅行收纳四件套
+                </p>
+                <p>
+                    4、两枚骰子中有一枚为4点另一枚点数小于4为进士，对应礼品为卡片式移动电源
+                </p>
+                <p>
+                    5、两枚骰子点数均大于4点为举人，对应礼品为车载usb充电器
+                </p>
+                <p>
+                    6、两枚筛子点数均小于4点为秀才，对应礼品为bluemembers网站蓝豆
+                </p>
+            </div>
+        </div>
+        <div class="row top30">
+
+        </div>
+        <div class="row top30">
+            <div class="col-md-12 col-sm-12">
+                <p class="lead">参与方式</p>
+                <p>
+                    第一步  通过网站/微信/APP进入活动页面
+                </p>
+                <p>
+                    第二步  点击注册按钮，注册成为蓝缤会员（经销商协助入会的会员/已注册的会员，直接登录）
+                </p>
+                <p>
+                    第三步  回到活动页面，点击骰子参与游戏
+                </p>
+                <p>
+                    第四步  根据摇中的点数，车辆行驶到相应的位置，获取精美礼品虚拟礼品即时到账，实物礼品分批统一发送）
+                </p>
+                <p>
+                    第五步  摇中实物礼品的用户填写邮寄地址
+                </p>
+            </div>
+        </div>
+        <div class="row top30">
+            <div class="col-md-12 col-sm-12">
+                <p class="lead">奖品展示</p>
+                <div class="row text-center">
+                    <div class="col-md-3 col-sm-4 col-xs-3">
+                        <p>
+                            <img width="132" alt="三星Gear 2 Neo智能手表"
+                                 src="~/Img/MoreMember/prize1.png">
+                        </p>
+                        <p>三星Gear 2 Neo智能手表</p>
+                    </div>
+                    <div class="col-md-3 col-sm-4 col-xs-3">
+                        <p>
+                            <img width="132" alt="卓棒Jawbone UP24智能手环"
+                                 src="~/Img/MoreMember/prize2.png">
+                        </p>
+                        <p>卓棒Jawbone UP24智能手环</p>
+                    </div>
+                    <div class="col-md-3 col-sm-4 col-xs-3">
+                        <p>
+                            <img width="132" alt="卡片式移动电源"
+                                 src="~/Img/MoreMember/prize3.png">
+                        </p>
+                        <p>卡片式移动电源</p>
+                    </div>
+                    <div class="col-md-3 col-sm-4 col-xs-3">
+                        <p>
+                            <img width="132" alt="车载usb充电器"
+                                 src="~/Img/MoreMember/prize4.png">
+                        </p>
+                        <p>车载usb充电器</p>
+                    </div>
+                    <div class="col-md-3 col-sm-4 col-xs-3">
+                        <p>
+                            <img width="132" alt="厨具四件套"
+                                 src="~/Img/MoreMember/prize5.png">
+                        </p>
+                        <p>厨具四件套</p>
+                    </div>
+                    <div class="col-md-3 col-sm-4 col-xs-3">
+                        <p>
+                            <img width="132" alt="BM网站 100蓝豆"
+                                 src="~/Img/MoreMember/prize6.png">
+                        </p>
+                        <p>BM网站 100蓝豆</p>
+                    </div>
+                    <div class="col-md-3 col-sm-4 col-xs-3">
+                        <p>
+                            <img width="132" alt="BM网站 50蓝豆"
+                                 src="~/Img/MoreMember/prize7.png">
+                        </p>
+                        <p>BM网站 50蓝豆</p>
+                    </div>
+                    <div class="col-md-3 col-sm-4 col-xs-3">
+                        <p>
+                            <img width="132" alt="BM网站 10蓝豆"
+                                 src="~/Img/MoreMember/prize8.png">
+                        </p>
+                        <p>BM网站 10蓝豆</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row top30">
+            <div class="col-md-12 col-sm-12">
+                <p class="lead">获奖名单</p>
+                <div class="table-win">
+                    <table class="table table-cus">
+                        <thead>
+                            <tr>
+                                <th>获奖车主信息</th>
+                                <th>获奖车主电话</th>
+                                <th>获奖情况</th>
+                            </tr>
+                        </thead>
+                        <tbody id="trScroll">
+                            @{
+                                List<WinningModel> wmList = ViewBag.wmList as List<WinningModel>;
+                            }
+                            @foreach (WinningModel item in wmList)
+                            {
+                                <tr>
+                                    <td>@item.UserName</td>
+                                    <td>@item.UserPhone</td>
+                                    <td>@item.PrizeTitle</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row top30">
+            <div class="col-md-12 col-sm-12">
+                <p class="lead">注意事项</p>
+                <p>
+                    1) 参与活动的所有会员，请如实填写个人信息，若填写信息不完善或与注册信息不一致，将导致无法领取奖品。
+                </p>
+                <p>
+                    2) 本活动仅限于车主会员参与。
+                </p>
+                <p>
+                    3) 本活动，每位车主会员均有一次参与游戏抽奖机会。
+
+                </p>
+                <p>
+                    4) 活动中，虚拟奖品中奖时即时发放，实物奖品会按周统计分批发送。
+                </p>
+                <p>
+                    5) 中奖后请保持手机畅通，活动期间若联系无效者，将视为自动放弃领奖机会；
+                </p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>
+                        *本活动做种解释权归北京现代汽车有限公司所有，如有疑问请及时与bluemembers网站在线客服联系。<br />
+                        *详情请拨打北京现代24小时客服热线：400-800-1100（手机拨打）或咨询bluemembers在线客服。<br />
+                        *您于本网站提供的个人信息只用于北京现代本次活动与您沟通联络是使用
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--非车主会员-->
+    <div id="divJoin" class="lydiv lyjoin">
+        <div class="content">
+            <h3>非常抱歉，非车主会员不能参加！</h3>
+            <div class="op">
+                <a href="javascript:void(0)" onclick="hideLayer()"
+                   class="lybtn lybtn-position lybtn-ok"></a>
+            </div>
+        </div>
+    </div>
+    <div id="divQRCode" style="display:none;">
+        <img width="280" src="~/Img/MoreMember/qrcode.png" />
+    </div>
+    <!--已参加过-->
+    <div id="divAgain" class="lydiv lyagain">
+        <div class="content">
+            <div class="op">
+                <a href="javascript:void(0)" onclick="hideLayer()"
+                   class="lybtn lybtn-position lybtn-ok"></a>
+            </div>
+        </div>
+    </div>
+    <div id="divQRCode" style="display:none;">
+        <img width="280" src="~/Img/MoreMember/qrcode.png" />
+    </div>
+    <!--注册登录层-->
+    <div id="divLogin" class="lydiv lylogin">
+        <div class="content">
+            @*<h3>蓝缤车主汇 入会就有礼</h3>*@
+            <div class="op">
+                <a href="@Url.Action("AccountRegister", "Account", new { returnUrl = "/MoreMember/Index?source=" + ViewBag.source,source=ViewBag.source })"
+                   class="lybtn lybtn-reg"></a>
+            </div>
+            <div class="op">
+                <a href="@Url.Action("LogonPage", "Account", new { returnUrl = "/MoreMember/Index?source=" + ViewBag.source, source = ViewBag.source })"
+                   class="lybtn lybtn-log"></a>
+            </div>
+            <div class="op">
+                <a href="javascript:void(0)" onclick="hideLayer()">稍后再说</a>
+            </div>
+        </div>
+    </div>
+    <!--实体奖品登录层-->
+    <div id="divGoods" class="lydiv lygoods">
+        <div class="content">
+            <h3 id="hGoods"></h3>
+            <p id="pGoods"></p>
+            <div class="op">
+                <a href="javascript:void(0)" onclick="showInfos()"
+                   class="lybtn lybtn-get"></a>
+            </div>
+            <div class="op">
+                <a href="javascript:void(0)" onclick="hideLayer()">算了，不要了</a>
+            </div>
+        </div>
+    </div>
+    <!--填写信息层-->
+    <div id="divInfos" class="lydiv lyinfos">
+        <div class="content">
+            <h3 id="hLevel">恭喜您，抽中车载usb充电器奖品!</h3>
+            <p>为了能及时将礼品邮寄给您，请您准确填写邮寄信息</p>
+            <div class="row">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="firstname" class="col-sm-2 control-label">姓名</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="iput" id="userName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname" class="col-sm-2 control-label">手机号</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="iput" id="userPhone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">邮寄地址</label>
+                        <div class="col-sm-8">
+                            <select id="Province" onchange="FindCityByProvince(this);">
+                                <option value="-1">省</option>
+                                @{
+                                    List<Vcyber.BLMS.Common.City.Provinces> _provinceList = ViewData["provinceList"] as List<Vcyber.BLMS.Common.City.Provinces>;
+                                    if (_provinceList != null && _provinceList.Any())
+                                    {
+                                        foreach (var province in _provinceList)
+                                        {
+                                            <option value="@province.Code" title="@province.ID">@province.Name</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                            <select id="City" onchange="FindAreasByCity(this);">
+                                <option value="-1">市</option>
+                            </select>
+                            <select id="Area">
+                                <option value="-1">区</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname" class="col-sm-2 control-label"></label>
+                        <div class="col-sm-8">
+                            <input type="text" class="iput" id="userAddress" placeholder="详细地址">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            @*<form style="padding-top:50px;">
+                    <div class="form-group">
+                        <input id="userName" type="text" class="form-control" placeholder="大人怎么称呼？">
+                    </div>
+                    <div class="form-group">
+                        <input id="userAddress" type="text" class="form-control" placeholder="大人现居何处？我们要给您邮奖品啦！">
+                    </div>
+                </form>*@
+            <div class="op">
+                <a href="javascript:void(0)" onclick="editInfos()"
+                   class="lybtn lybtn-position lybtn-info"></a>
+            </div>
+        </div>
+    </div>
+    <!--信息完善提示层-->
+    <div id="divIknow" class="lydiv lykonws">
+        <div class="content">
+            <div class="op">
+                <a href="javascript:void(0)" onclick="hideLayer()"
+                   class="lybtn lybtn-position lybtn-know"></a>
+            </div>
+        </div>
+    </div>
+    <!--虚拟蓝豆层-->
+    <div id="divBeans" class="lydiv lybeans">
+        <div class="content">
+            <div class="op">
+                <a href="javascript:void(0)" onclick="hideLayer()"
+                   class="lybtn lybtn-position lybtn-know"></a>
+            </div>
+        </div>
+    </div>
+    @Html.Hidden("winningId")
+    @Html.Hidden("source", source)
+    <!--自定义js-->
+    <script src="~/Scripts/MoreMember.js"></script>
+    <script src="~/Scripts/MoreMember.pc.js"></script>
+</body>
+</html>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+

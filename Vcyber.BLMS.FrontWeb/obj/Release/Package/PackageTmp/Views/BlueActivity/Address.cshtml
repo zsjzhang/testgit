@@ -1,0 +1,262 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "BlueMembers蓝豆清零抽奖活动";
+}
+@model Vcyber.BLMS.Entity.BluebeanWinRecord
+<script type="text/javascript" src="~/Scripts/layer.js"></script>
+<script type="text/javascript" src="~/Scripts/scroll.js"></script>
+<!--转动插件rotate,js-->
+<script type="text/javascript" src="~/Scripts/awardRotate.js"></script>
+<!--抽奖-->
+<script type="text/javascript" src="~/Scripts/award.js"></script>
+<!--倒计时-->
+<script type="text/javascript" src="~/Scripts/Countdown.js"></script>
+<!--160526新增1---共新增3处-->
+<link href="~/css/award.css" rel="stylesheet" />
+<script type="text/javascript">
+
+    //通过类名winPower/winUSB切换显示的奖品
+    $(document)
+        .ready(function() {
+            $('.winPower').find('span').text('卡片移动电源');
+            $('.winUSB').find('span').text('USB充电器');
+        });
+</script>
+<style>
+    /*新增*/
+    .addIntWit {
+        width: 228px;
+        height: 28px;
+        border: 1px solid #bdc7d8;
+    }
+
+    .winAddress {
+        height: 550px;
+    }
+
+    .winAddress-form {
+        height: 490px;
+    }
+
+    .width100Up {
+        height: 780px;
+        background-color: #3998e0;
+    }
+</style>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Home", showMenu = false })
+    </div>
+    <div class="drawMain">
+        <div class="width100Up">
+            <div class="drawMainCon1">
+                <!--中奖手机号搜索-->
+                <div class="winPrize">
+                    @if (ViewBag.IsShowUsb)
+                    {
+                        <div class="winUSB">
+                            <span>USB充电器</span>
+                            <i></i>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="winPower">
+                            <span>卡片移动电源</span>
+                            <i></i>
+                        </div>
+                    }
+                </div>
+                <!--中奖名单-->
+                <div class="winAddress">
+                    <div class="winAddress-form">
+                        <h2>填写邮寄地址</h2>
+                        <div class="Address-list">
+                            <p>
+                                <span class="Address-list-span">请选择省</span>
+
+                                <select id="myOrderAddressProvince" class="select-city" onchange="User.FindCityByProvince(this);">
+                                    <option value="-1">请选择</option>
+                                    @{
+                                        List<Vcyber.BLMS.Common.City.Provinces> _provinceList = ViewData["provinceList"] as List<Vcyber.BLMS.Common.City.Provinces>;
+                                        if (_provinceList != null && _provinceList.Any())
+                                        {
+                                            foreach (var province in _provinceList)
+                                            {
+                                                <option value="@province.Code" title="@province.ID">@province.Name</option>
+                                            }
+                                        }
+                                    }
+                                </select>
+                                @*<select name="" class="select-city">
+                                        <option value=""></option>
+                                    </select>*@
+                            </p>
+                            <p>
+                                <span class="Address-list-span">请选择市</span>
+                                <span id="myOrderAddressCitySpan" style="display: inline">
+                                    <select id="myOrderAddressCity" class="select-city" onchange="User.FindAreasByCity(this);">
+                                        <option value="-1">请选择</option>
+                                    </select>
+                                </span>
+                            </p>
+                            <p>
+                                <span class="Address-list-span">请选择区</span>
+                                <span id="myOrderAddressAreaSpan" style="display: inline">
+                                    <select id="myOrderAddressCounty" class="select-city">
+                                        <option value="-1">请选择</option>
+                                    </select>
+                                </span>
+
+                            </p>
+                            <p>
+                                <span>姓　　名</span>
+                                <input type="text" id="name" class="addIntWit" />
+                            </p>
+                            <p>
+                                <span>手机号码</span>
+                                <input type="text" id="phone" class="addIntWit" />
+                            </p>
+                            <p class="Address-detailed">
+                                <span class="Address-list-span">请填写详细地址</span>
+                                <textarea id="address" name=""></textarea>
+                            </p>
+                            <input type="button" name="" id="submitAddress" value="确认提交">
+                        </div>
+                    </div>
+                </div>
+                <!--中奖信息-->
+                <div class="winInfor">
+
+                    <h2>活动时间：2016年6月2日-2016年6月8日</h2>
+                    <dl>
+                        <dt></dt>
+                        <dd>
+                            <div class="ddBg"></div>
+                            <div class="winInforCont">
+                                <p class="numb">当前蓝豆：<i id="blue">@ViewBag.TotalBlueBean</i>颗</p>
+                                <p class="winDrawName">
+                                    <a href="/BlueActivity/index">我要抽奖</a>
+                                </p>
+                            </div>
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="width100Down">
+            <div class="drawMainCon2">
+                <!--抽奖规则-->
+                <div class="ruleTxtBox">
+                    <h6></h6>
+                    <h2>亲爱的bluemembers 蓝缤会员</h2>
+
+                    <p>北京现代bluemembers网站即将全面升级，网站所有蓝豆将于<strong style="color:red;">2016年6月8日晚24：00时</strong>进行清零，尽快开始您的蓝豆兑换节奏吧！为回馈广大会员长久以来的关注支持，您不仅可以在在线商城进行礼品兑换，还可以使用蓝豆参与抽奖活动，奖品丰厚哦。</p>
+                    <h3>活动规则：</h3>
+                    <p>1.  活动期间，bluemembers蓝缤会员均可以使用蓝豆参与活动。</p>
+                    <p>2.  每次抽奖机会消耗100蓝豆，每位用户的抽奖次数不限。</p>
+
+                    <h3>活动对象：</h3>
+                    <p>北京现代bluemembers 蓝缤所有会员。</p>
+
+                    <h3>活动流程：</h3>
+                    <p>兑换：会员登录--在线商城--蓝豆兑换--礼品邮寄</p>
+                    <p>抽奖：会员登录--抽奖--完善信息--奖品邮寄</p>
+
+                    <h3>注意事项：</h3>
+                    <p>本活动仅限北京现代bluemembers会员参与；</p>
+                    <p>本次活动中奖礼品将会在活动结束后5个工作日进行邮寄，如遇节假日则顺延发出；</p>
+                    <p>抽中奖品的会员，请务必正确填写个人邮寄信息，中奖后保持手机畅通，活动期间若联系无效者，将视为自动放弃领奖机会；</p>
+                    <p>您于本网站提供的个人信息只用于北京现代本次活动与您沟通联络时使用。活动中如有疑问请及时拨打北京现代24小时客服热线：400-800-1100（手机拨打）或咨询bluemembers在线客服。</p>
+                    <p><strong>*本活动最终解释权归北京现代汽车有限公司所有。</strong></p>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--160526新增2end-->
+</div>
+<script type="text/javascript">
+    $(document)
+        .ready(function() {
+            $("#submitAddress")
+                .click(function() {
+                    var p = $("#phone").val().trim();
+                    if (!p) {
+                        layer.open({
+                            type: 1,
+                            skin: 'bluePopup', //样式类名
+                            closeBtn: 1, //不显示关闭按钮
+                            shift: 2,
+                            shadeClose: true, //开启遮罩关闭
+                            content: '请输入您的手机号',
+                            btn: ['确定']
+                        });
+                        return;
+                    }
+                    var a = $("#address").val().trim();
+                    if (!a) {
+                        layer.open({
+                            type: 1,
+                            skin: 'bluePopup', //样式类名
+                            closeBtn: 1, //不显示关闭按钮
+                            shift: 2,
+                            shadeClose: true, //开启遮罩关闭
+                            content: '请填写详细地址',
+                            btn: ['确定']
+                        });
+                        return;
+                    }
+                    var obj = {};
+                    obj.Id=@Model.Id;
+                    obj.City = $("#myOrderAddressCity").find("option:selected").text();
+                    obj.Province= $("#myOrderAddressProvince").find("option:selected").text();
+                    obj.Area= $("#myOrderAddressCounty").find("option:selected").text();
+                    obj.Phone = p;
+                    obj.Address =a;
+                    obj.Contacts = $("#name").val().trim();
+                    $.ajax({
+                        type: 'POST',
+                        url: "/BlueActivity/Address",
+                        data: obj,
+                        success: function (data) {
+                            if (data.Success) {
+                                layer.open({
+                                    type: 1,
+                                    skin: 'bluePopup', //样式类名
+                                    closeBtn: 1, //不显示关闭按钮
+                                    shift: 2,
+                                    area: ['360px', '200px'],
+                                    end:function() {
+                                        window.location.href = "/BlueActivity/index";
+                                    },
+                                    shadeClose: true, //开启遮罩关闭
+                                    content: '恭喜，您的信息已提交成功，奖品稍后（活动结束后5个工作日内）会统一安排邮寄，请保持手机畅通！',
+                                    btn: ['确定']
+                                });
+                                //setTimeout(function() {
+                                //    window.location.href = "/BlueActivity/index";
+                                //}, 2000);
+
+                            } else {
+                                layer.open({
+                                    type: 1,
+                                    skin: 'bluePopup', //样式类名
+                                    closeBtn: 1, //不显示关闭按钮
+                                    shift: 2,
+                                    shadeClose: true, //开启遮罩关闭
+                                    content: '提交失败，请重试',
+                                    btn: ['确定']
+                                });
+                            }
+                        },
+                        dataType: "json"
+                    });
+                });
+        });
+</script>

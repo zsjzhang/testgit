@@ -1,0 +1,177 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>紧急救援</title>
+    <link rel="stylesheet" href="/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="/Content/freeRoadRescue.css" />
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.3&key=434378a9ebc771afdb9ecf0f7060dba9"></script>
+</head>
+<body>
+    <div id="header" class="header">
+        <ul id="header-ul" class="container">
+            <li id="showLayerInfo_tab" class="col-md-6 col-sm-6 col-xs-6 tab-left">
+                <a id="showLayerInfo_tab_resuce" href="javascript:void(0);" class="btn  btn-primary form-control boldFont">道路救援</a>
+            </li>
+            <li id="rescueline_tab" class="col-md-6 col-sm-6 col-xs-6  tab-right">
+                <a id="rescueline_tab_resuce" href="javascript:void(0);" class="btn form-control boldFont">索九专线</a>
+            </li>
+        </ul>
+    </div>
+    <div id="mapContainer"></div>
+    <div id="showLayerInfo">
+        <span class="closeLayerInfo" onclick="closeInfo();"></span>
+        <ul>
+            <!--<li class="form-group">
+                <label>*</label>
+                <label>您位置：</label>
+                <label id="showcurposition" class="form-label">北京市东单三条</label>
+            </li>-->
+            <li class="form-group positiontitle">
+                <label style="color:red;">*</label>
+                <label class="form-label">手机号:</label>
+            </li>
+            <li class="form-group  has-success has-feedback">
+                <div class="input-group">
+                    <span class="input-group-addon"></span>
+                    <input type="text" id="userMobile" name="userMobile" class="form-control" palceholder="输入手机号" />
+                    <!--<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                    <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>-->
+                </div>
+            </li>
+            <li class="form-group">
+                <hr class="dottedline" />
+            </li>
+            <li class="form-group">
+                <a href="javascript:void(0);" class="form-control btn btn-location boldFont" onclick="document.getElementById('showLayerInfo').style.display='none'; ">
+                    <span class="relocation-img"></span>
+                    <span class="relocation">重新定位</span>
+                </a>
+            </li>
+            <li class="form-group">
+                <a href="javascript:void(0);" class="form-control  btn btn-primary boldFont" onclick="sendMyPosition();">发送紧急救援请求</a>
+            </li>
+        </ul>
+        <div id="showResult" class='btn btn-warning' onclick='cleanLocationSuccess();'>定位成功</div>
+    </div>
+    <div id="rescueline">
+        <div class="container" style="height:100%;">
+            <div class="row" style="height:10%;">
+                <span id="rescue-logo" class="col-md-5 col-sm-5 col-xs-5 ">
+                    <img src="/img/logo.png">
+                </span>
+            </div>
+            <div class="row" style="text-align:center; height:40%;">
+                <span id="rescue-yuan" class="col-md-12 col-sm-12 col-xs-12">
+                    <img src="/img/yuan.png" style="height: 100%; max-height: 305px; width:auto;">
+                </span>
+            </div>
+            <div class="row" style="height:12%;">
+                <div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 rescue-title">
+                        <div class="rescue-title-logo">
+                            <img src="/img/block.png" />
+                        </div>
+                        <div class="rescue-title-content">
+                            <strong>北京现代第九代索纳塔24小时道路救援热线</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row center-block" style="height:2%;">
+                <hr class="dottedline" />
+            </div>
+            <div class="row" style="height:26%;">
+                <div style="  padding-top: 3px;">
+                    <div class="col-md-12 col-sm-12 col-xs-12 rescue-title">
+                        <div class="rescue-title-logo">
+                            <img src="/img/word.png" />
+                        </div>
+                        <div class="rescue-title-content">
+                            如果您的索九爱车发生故障，您可以直接拨打北京现代第九代索纳塔24小时道路救援热线：<tel>400-0365-906</tel>，我们会在第一时间为您提供帮助。
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="height:10%;">
+                <div style="padding-top:1%;">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <a class="btn btn-primary callphone boldFont col-md-12 col-sm-12 col-xs-12 " href="tel:400-0365-906">
+                            <span style="position: absolute; width: 20px; height: 20px; margin-top: 3px; background: url('/img/phone.png'); background-size: contain;"></span>
+                            <span style="margin-left:30px;">立即拨打</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/Scripts/jquery-1.10.2.min.js"></script>
+<script src="/Scripts/base/WGSConverToGCJ.js"></script>
+<script src="/Scripts/base/gdPosition.js"></script>
+<script>  
+    window.onload = gotoposition;
+
+    function closeInfo() {
+        $("#showLayerInfo").hide();
+        return false;
+    }
+
+    function cleanLocationSuccess() {
+        $("#showResult").hide();
+        return false;
+    }
+
+    function markerButtonSpanTouch() {
+        $("#showLayerInfo").show();
+        return false;
+    }
+</script>
+<script>
+    //第一步：加载地图
+    (function (exports) {
+        var map = new AMap.Map('mapContainer', {
+            //resizeEnable: true,
+            //rotateEnable: true,
+            //dragEnable: true,
+            //zoomEnable: true,
+            //设置可缩放的级别
+            //zooms: [3,18],
+            //传入2D视图，设置中心点和缩放级别
+            view: new AMap.View2D({
+                center: new AMap.LngLat(116.416218, 39.91036),
+                zoom: 15
+            })
+        });
+    })(window);
+</script>
+<script>
+    //lab标签切换
+    $(function () {
+        $("#showLayerInfo_tab_resuce").click(function () {
+            $("#rescueline").hide();
+            $("#showLayerInfo").show();
+            if (!$(this).hasClass("btn-primary")) {
+                $(this).addClass("btn-primary");
+            }
+            $("#rescueline_tab_resuce").removeClass("btn-primary");
+        });
+        $("#rescueline_tab_resuce").click(function () {
+            $("#showLayerInfo").hide();
+            $("#rescueline").show();
+            if (!$(this).hasClass("btn-primary")) {
+                $(this).addClass("btn-primary");
+            }
+            $("#showLayerInfo_tab_resuce").removeClass("btn-primary");
+        });
+    });
+</script>
+</html>

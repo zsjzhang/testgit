@@ -1,0 +1,57 @@
+﻿@using System.Web.Configuration
+@using System.Web.UI.WebControls
+@using PetaPoco
+@using Vcyber.BLMS.Common
+@using Vcyber.BLMS.Entity.CarService
+@using Vcyber.BLMS.Entity.Enum
+@using Vcyber.BLMS.Entity.Generated
+@using System.Web.Mvc.Html
+@using Vcyber.BLMS.ManageWeb.Helper.YourNamespace
+@using WebGrease.Css.Extensions
+@using YAF.Types.Extensions
+@model IEnumerable<CSBaseCar>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("List", "CarType", FormMethod.Get))
+{
+    @*@Html.DropDownListFor(model=>model.CarType,Model.CarType.ToSelectList("a"))*@
+
+    @*@Html.EnumDropDownListFor(model=>model.CarType)*@
+    @Html.RadioButton("预约试驾", ECarSeriesType.TestDrive, new {@group="querygroup"})
+    @Html.RadioButton("线上订车", ECarSeriesType.OrderCar, new { @group = "querygroup",@text="线上订车" })
+}
+
+@{
+    IEnumerable<CSBaseCar> list = (IEnumerable<CSBaseCar>)ViewData["data"];
+}
+<table class="table">
+    <thead>
+        <tr>
+
+                <th>
+                   Id
+                </th>
+
+                <th>
+                    名称
+                </th>
+      
+            </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.Hidden("Id", item.Id)
+                    @item.SeriesId
+                </td>
+
+                <td>
+                    @item.SeriesName
+                </td>
+            </tr>
+        }
+</table>

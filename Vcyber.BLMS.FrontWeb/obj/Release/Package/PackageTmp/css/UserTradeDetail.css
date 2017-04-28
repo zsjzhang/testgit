@@ -1,0 +1,39 @@
+﻿ .oneDiv {
+        border: 1px solid LightGrey;
+        width: 1300px;
+        height: 80px;
+    }
+
+        .oneDiv div {
+            width: 250px;
+            float: left;
+            margin-top: 20px;
+            margin-left: 120px;
+        }
+
+    .twoDiv {
+        border: 1px solid LightGrey;
+        width: 1300px;
+        height: 480px;
+        margin-top:5px;
+    }
+
+        .twoDiv div div{
+            width: 280px;
+            float: left;
+            margin-top: 20px;
+            margin-left: 120px;
+        }
+
+        .twoDiv table{
+            width:1000px;
+            margin-left: 90px;
+        }
+        .twoDiv table th{
+            background-color:Gainsboro;
+                 border:1px solid DarkGray;
+        }
+         .twoDiv table td{  
+             width:100px;
+              border:1px solid DarkGray;
+         }

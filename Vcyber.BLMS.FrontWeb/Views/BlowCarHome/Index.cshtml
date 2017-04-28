@@ -1,0 +1,80 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+                top.location.hostname;
+                if (top.location.hostname != window.location.hostname) {
+                top.location.href =window.location.href;
+            }
+            }
+                catch(e){
+                top.location.href = window.location.href;
+            }
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>调用微信接口启动录音</title>
+    <script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <!-- 微信头设置 START -->
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+
+        $.ajax({
+            url: "/IdentityAuth/Auth",
+            data: { url: window.location.href.split('#')[0] },
+            type: "get",
+            dataType: "json",
+            success: function (resultData) {
+
+                console.info(JSON.stringify(resultData));
+
+                wx.config({
+                    debug: true,
+                    appId: resultData.appId, // 必填，公众号的唯一标识
+                    timestamp: resultData.timestamp, // 必填，生成签名的时间戳
+                    nonceStr: resultData.nonceStr, // 必填，生成签名的随机串
+                    signature: resultData.signature,// 必填，签名，见附录1
+                    jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'startRecord', 'stopRecord', 'onVoiceRecordEnd', 'playVoice', 'pauseVoice', 'stopVoice', 'onVoicePlayEnd', 'uploadVoice', 'downloadVoice', 'chooseImage', 'previewImage', 'uploadImage', 'downloadImage', 'translateVoice'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                });
+                wx.ready(function (argument) {
+                    popWindownBlue( 1);
+                    wx.startRecord();
+                    popWindownBlue( 2);
+                });
+                wx.error(function (res) {
+
+
+                });
+            }
+
+        });
+    </script>
+</head>
+<body style="padding:0;margin:0;background:#000;">
+    <audio id="music" autoplay="autoplay" loop="loop">
+        <source src="http://myteamproject.oss-cn-beijing.aliyuncs.com/hxjj/7-11/hxjj_music.mp3" type="audio/mpeg" />
+        您的浏览器不支持 audio 元素。
+    </audio>
+</body>
+</html>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>

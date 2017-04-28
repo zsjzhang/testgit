@@ -1,0 +1,58 @@
+﻿@model IEnumerable<string>
+@{
+    Layout = null;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+    <label id="ProvinceAndCityProvinceLabel" style="width:30px">省：</label>
+    <select id="sltProvince2" onchange="Dealer2.city(this);" style="width:100px">
+    <option value="-1">请选择</option>
+    @{
+        if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <option>@item</option>
+            }
+        }
+    }
+</select>
+
+
+    
+    <label id="ProvinceAndCityCityLabel" style="width: 30px; padding-left:5px">市：</label>
+    <select id="sltCity2" style="width:100px" onchange="Dealer2.list(this, document.getElementById('sltProvince2'));">
+    <option value="-1">请选择</option>
+</select>
+<select id="sltDealer2" style="display:none" hidden="true">
+    <option value="-1">请选择</option>
+</select>
+
+
+

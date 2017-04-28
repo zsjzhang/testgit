@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.ShareResources>
+@{
+    Layout = null;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+@if (Model != null && Model.Any())
+{
+    string _domain = System.Web.Configuration.WebConfigurationManager.AppSettings["ImgPath"];
+    int index = 0;
+    foreach (var mediaIem in Model)
+    {
+        if (index % 2 == 0)
+        {
+            <li class="MediaListLeft">
+                <div class="MediaListImg">
+                    <a href="/media/Player?id=@mediaIem.Id">
+                        <img src="@(string.Format("{0}/{1}", _domain, mediaIem.ListImageUrl))" class="medialistdefaultimg" />
+                    </a>
+                </div>
+                <div class="MediaListContent">
+                    <div class="MediaListContentTitle">@mediaIem.Title</div>
+                    <div class="MediaListContentIntroduction">
+                        @mediaIem.Summary
+                    </div>
+                    <span>
+                        @Html.ActionLink("播放", "Player", new { id = mediaIem.Id }, new { @class = "MediaListPlayButton" })
+                    </span>
+                </div>
+            </li>
+        }
+        else
+        {
+            <li class="MediaListLeft">
+                <div class="MediaListImg">
+                    <a href="/media/Player?id=@mediaIem.Id">
+                        <img src="@(string.Format("{0}/{1}", _domain, mediaIem.ListImageUrl))" class="medialistdefaultimg" />
+                    </a>
+                </div>
+                <div class="MediaListContent">
+                    <div class="MediaListContentTitle">@mediaIem.Title</div>
+                    <div class="MediaListContentIntroduction">
+                        @mediaIem.Summary
+                    </div>
+                    <span>
+                        @Html.ActionLink("播放", "Player", new { id = mediaIem.Id }, new { @class = "MediaListPlayButton" })
+                    </span>
+                </div>
+            </li>
+        }
+        index++;
+    }
+}

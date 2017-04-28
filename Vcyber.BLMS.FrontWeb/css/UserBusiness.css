@@ -1,0 +1,53 @@
+﻿ .oneDiv div {
+        float: left;
+        width: 300px;
+    }
+
+    .oneDiv input {
+        width: 100px;
+    }
+
+    .oneDiv select {
+        width: 100px;
+    }
+
+    .twoDiv{
+        margin-top:50px;
+    }
+
+    #TableDiv {
+        border-top: 2px solid DimGray;
+        border-left: 2px solid DimGray;
+        width: 1165px;
+        height: 74px;
+        text-align: center;
+    }
+
+    #HeaderDiv {
+        float: left;
+    }
+
+
+        #HeaderDiv div {
+            border-bottom: 2px solid DimGray;
+            border-right: 2px solid DimGray;
+            width: 230px;
+            height: 35px;
+            background-color: Gainsboro;
+            float: left;
+        }
+
+
+    .RowDiv {
+        width: 1165px;
+        float: left;
+    }
+
+        .RowDiv div {
+            border-bottom: 2px solid DimGray;
+            border-right: 2px solid DimGray;
+            width: 230px;
+            height: 35px;
+            background-color: HoneyDew;
+            float: left;
+        }

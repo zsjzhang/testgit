@@ -1,0 +1,328 @@
+﻿@model Vcyber.BLMS.Entity.AirportService.AireportInputEntity
+
+@{
+    ViewBag.Title = "新增机场候机服务";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    
+}
+
+@using (Html.BeginForm("Add", "AirportService", FormMethod.Post, new { @class = "form-horizontal", @id = "AddForm" }))
+{
+    <div class="form-group col-md-12">
+        @Html.Label("手机号", new { @class = "control-label col-md-3" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control text-left" } })
+            @Html.ValidationMessageFor(model => model.Phone)
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-primary form-control" id="query-user">查询</button>
+        </div>
+    </div>
+
+    <div class="form-group col-md-12">
+        @Html.Label("姓名", new { @class = "control-label col-md-3" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @disabled = "" } })
+            @Html.HiddenFor(model => model.UserId)
+            @*@Html.HiddenFor(model=>model.FreeCount)*@
+        </div>
+    </div>
+
+    <div class="form-group col-md-12">
+        @Html.Label("预约次数", new { @class = "control-label col-md-3" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.ScheduleCount, new { htmlAttributes = new { @class = "form-control"} })
+        </div>
+        <div class="col-md-6">
+            <span>可约次数</span>@*@if (Model == null)
+    { <span id="@Html.IdFor(model=>model.FreeCount)">0</span>}
+                     else
+                     {<span id="@Html.IdFor(model=>model.FreeCount)">@Model.FreeCount</span>}*@
+
+            <span id="FreeCount">0</span>
+        </div>
+    </div>
+
+    <div class="form-group col-md-12">
+        @Html.Label("会员等级", new
+{
+    @class = "control-label col-md-3"
+}) 
+<div class="col-md-3">
+        @Html.EditorFor(model => model.Gender, new
+       {
+           htmlAttributes = new
+           {
+               @class = "form-control",
+               @disabled = ""
+           }
+       })
+        </div>
+    </div>
+
+        <div class="form-group col-md-12">
+            @Html.Label(" 选择机场", new { @class = "control-label col-md-3" })
+            <div class="col-md-3">
+                <select id="SonataLiveReserveProvince" onchange="Live.ProvinceChange(this)" class="form-control">
+                    <option value="-1">请选择省份</option>
+                    @{
+                    IEnumerable<string> _provinces = ViewData["provinces"] as IEnumerable<string>;
+                    if (_provinces != null && _provinces.Any())
+                    {
+                        foreach (var item in _provinces)
+                        {
+                            <option>@item</option>
+                        }
+                    }
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            <div class="col-md-3 col-md-offset-3">
+                <select id="AirportName" class="form-control" onchange="Live.AirportChange(this)">
+                    <option value="-1">请选择机场</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            <div class="col-md-3 col-md-offset-3">
+                <select id="@Html.IdFor(model=>model.AirportId)" class="form-control">
+                    <option value="-1">请选择航站楼</option>
+                </select>
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.Airport)
+
+        <div class="form-group col-md-12">
+            @Html.Label("验证码", new { @class = "control-label col-md-3" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.VerifyCode, new { htmlAttributes = new { @class = "form-control text-left" } })
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary form-control" id="send-code">发送</button>
+            </div>
+        </div>
+
+        <div class="form-group col-md-10">
+            <div class="col-md-4 col-md-offset-5">
+                <span id="message"></span>
+            </div>
+        </div>
+        <div class="btn-toolbar col-md-10">
+            <div class="col-md-2 col-md-offset-5">
+                <button type="button" id="btn-submit" class=" btn btn-primary form-control"><i class="fa"></i>提交</button>
+            </div>
+        </div>
+        }
+
+
+        <div style="clear:both; margin-top:15px;">&nbsp;</div>
+
+
+<div class="data-container" style="overflow: auto;">
+    <table class="table table-bordered" style="width:100%;">
+        <thead>
+            <tr class="l1" style="background-color: #eaeaea;">
+                <th>已发串码</th>
+                <th>获取时间</th>
+                <th>串码状态</th>
+                <th>下发方式</th>
+                <th>使用时间</th>
+                <th>使用地点</th>
+               
+            </tr>
+        <thead>
+        <tbody id="hj_list">
+                @*<tr>
+                    <td>item.rowid</td>
+                    <td>item.CreateTime</td>
+                    <td>item.RealName</td>
+                    <td>item.PhoneNumber</td>
+                </tr>*@
+        <tbody>
+    </table>
+</div>
+
+
+
+        @{
+    if (ViewBag.IsSuccess != null)
+    {
+        if (ViewBag.IsSuccess)
+        {
+            Response.Write("<script>alert('预约成功！');</script>");
+        }
+        else
+        {
+            Response.Write("<script>alert('预约失败！" + ViewBag.Message + "');</script>");
+        }
+    }
+        }
+        <script type="text/javascript">
+            //get user name and points
+            $("#query-user").click(function ()
+            {
+                $("#hj_list").html("");
+
+                var phone = $("#@Html.IdFor(model => model.Phone)").val();
+                if (phone == null || phone.length < 11)
+                {
+                    alert("请填入正确的电话号码");
+                    return;
+                }
+                $.ajax({
+                    url: "/AirportService/GetFreeCount?phone=" + $("#@Html.IdFor(model=>model.Phone)").val(),
+                    type: "GET"
+                })
+                    .done(function (data)
+                    {
+                        $("#@Html.IdFor(model=>model.Name)").val(data.Name);
+                        $("#@Html.IdFor(model=>model.UserId)").val(data.UserId);
+                        $("#@Html.IdFor(model=>model.FreeCount)").text(data.Count);
+                        $("#@Html.IdFor(model => model.Gender)").val(data.Gender);
+
+                        var hjlist = "";
+                        if (data.Data != null && data.Data != "")
+                        {
+                            $.each(data.Data, function (i, item)
+                            {
+                                hjlist += "<tr>";
+                                hjlist += "<td>" + $.trim(item.SNCode) + "</td>"
+                                hjlist += "<td>" + $.trim(item.SendTime_Str) + "</td>"
+                                hjlist += "<td>" + $.trim(item.StatusName) + "</td>"
+                                hjlist += "<td>" + $.trim(item.SendTypeName) + "</td>"
+                                hjlist += "<td>" + $.trim(item.UseTime_Str) + "</td>"
+                                hjlist += "<td>" + $.trim(item.AirportName)+"</td>"
+                                hjlist += "</tr>";
+                            })
+                            $("#hj_list").html(hjlist);
+                        }
+                       
+
+                    })
+                    .fail(function () { alert("查询失败！"); });
+            });
+
+            //发送验证码
+            $("#send-code").click(function ()
+            {
+                var phone = $("#@Html.IdFor(model => model.Phone)").val();
+                if (phone == null || phone.length < 11)
+                {
+                    alert("请填入正确的电话号码");
+                    return;
+                }
+                $.ajax({
+                    url: "/AirportService/SendVerifyCode?phone=" + phone,
+                    type: "GET"
+                })
+                    .done(function (data)
+                    {
+                        if (data)
+                            $("#message").text("发送成功");
+                        else
+                        {
+                            $("#message").text("发送失败");
+                        }
+                    })
+                    .fail(function (error)
+                    {
+                        $("#send-message").text("发送失败");
+                    });
+            });
+
+
+            //机场选择
+            var Live = {};
+            Live.ProvinceChange = function (obj)
+            {
+                $.ajax({
+                    url: "/AirportService/GetAirportsByProvince",
+                    type: "get",
+                    data: { province: $(obj).val(), t: (new Date()).getTime() },
+                    success: function (result)
+                    {
+                        $("#AirportName option[value != '-1']").remove();
+                        $("#AirportName").append(result);
+                    },
+                    error: function (err)
+                    {
+                        alert(err);
+                    }
+                });
+            };
+
+            Live.AirportChange = function (obj)
+            {
+                $.ajax({
+                    url: "/Card/AirportRoomList",
+                    type: "post",
+                    data: { airportName: $("#AirportName").find("option:selected").text(), t: (new Date()).getTime() },
+                    success: function (result)
+                    {
+                        $("#AirportId option[value != '-1']").remove();
+                        for (var i = 0; i < result.Data.length; i++)
+                        {
+                            $("#AirportId").append("<option value='" + result.Data[i].Id + "'>" + result.Data[i].AirportAllName + "</option>");
+                        }
+                    },
+                    error: function (err)
+                    {
+                        alert(err);
+                    }
+                });
+            };
+
+            //提交
+            $("#btn-submit").click(function ()
+            {
+                var phone = $("#@Html.IdFor(model => model.Phone)").val();
+                var code = $("#@Html.IdFor(model => model.VerifyCode)").val();
+                var scheduleCount = $("#@Html.IdFor(model => model.ScheduleCount)").val();
+                var airportId = $("#@Html.IdFor(model => model.AirportId)").val();
+                var freeCount = $("#@Html.IdFor(model => model.FreeCount)").text();
+                //validation
+                if (freeCount < 1)
+                {
+                    $("#message").text("很抱歉，该用户免费服务次数为0，无法预约");
+                    return false;
+                }
+                if (airportId < 0)
+                {
+                    $("#message").text("请选择机场");
+                    return false;
+                }
+                if (scheduleCount > freeCount)
+                {
+                    $("#message").text("该用户最多只能预约 " + freeCount + "次服务");
+                    return false;
+                }
+                $.ajax({
+                    url: "/AirportService/VerifyCode?phone=" + phone + "&code=" + code,
+                    type: "GET"
+                }).done(function (data)
+                {
+                    if (data)
+                    {
+                        $("#Airport").val(airportId);
+                        $("#AddForm").submit();
+                    }
+                    else
+                    {
+                        $("#message").text("验证码错误");
+                    }
+                })
+                    .fail(function (error)
+                    {
+                        $("#message").text("提交失败");
+                    });
+            });
+
+
+
+        </script>

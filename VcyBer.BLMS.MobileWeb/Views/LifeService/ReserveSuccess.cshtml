@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "机场预约服务成功";
+}
+
+<link href="/Content/css/style.css?date=@DateTime.Now.Ticks" rel="stylesheet" />
+<script src="/Scripts/js/jquery-1.11.2.min.js"></script>
+<div class="wrapper" id="wrapper">
+    <article class="reservationEnd">
+        <h1>恭喜您</h1>
+        @{
+            int _cardCount = 0;
+            List<Vcyber.BLMS.Entity.SNCard> _cardList = ViewBag.SNCodes;
+
+            if (_cardList != null && _cardList.Any())
+            {
+                _cardCount = _cardList.Count();
+                <p>
+                    您已成功申请到 <em>@_cardCount 张</em> 候机服务券。<br />
+                    请到机场出示以下的二维码或串码凭证后享受候机服务。
+                </p>
+                <ul class="reservationEnd-code">
+                    @foreach (var item in _cardList)
+                    {
+                        <li style="text-align:center;width:100%">
+                            <img src='/QrCodeHandler.ashx?e=m&q=Two&s=12&t=@item.SNCode' style="width:90%;" /><br />
+                            <span>空港易行候机服务码 :@item.SNCode</span>
+                        </li>
+                    }
+                </ul>
+            }
+        }
+    </article>
+</div>
+

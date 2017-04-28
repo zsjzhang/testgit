@@ -1,0 +1,147 @@
+﻿@model List<Vcyber.BLMS.Entity.Product>
+@{
+    ViewBag.Title = "已上架商品列表";
+    ViewBag.TitleFocus = "2-2-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Vcyber.BLMS.ManageWeb.Helper;
+@Html.AntiForgeryToken()
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<style type="text/css">
+    li span {
+        margin-left: 10px;
+    }
+</style>
+<script>
+    try {
+        top.location.hostname;
+        if (top.location.hostname != window.location.hostname) {
+            top.location.href = window.location.href;
+        }
+    }
+    catch (e) {
+        top.location.href = window.location.href;
+    }
+</script>
+<div class="path">
+    <a href="#">商品管理</a>><a href="/Product/Index">商品列表</a>
+</div>
+<div style="height:20px;"></div>
+<div class="box_m1" style="border: 1px solid #dddddd; margin-bottom: 10px; padding-top: 10px">
+    <ul style="list-style:none;">
+        <li>
+            <span>商品名称：</span>
+            <input type="text" class="input_text1" id="txtname" />
+            <span>分类： </span>
+            @Html.DropDownList("category", StoreHelpr.GetProductCategory(), new { @class = "input_text2" })
+            <span>推荐： </span>
+            @Html.DropDownList("recommend", StoreHelpr.GetRecommend(), new { @class = "input_text2" })
+            <span>商品状态： </span>
+            @Html.DropDownList("selstate", StoreHelpr.GetProductState(), new { @class = "input_text2" })
+            <span>是否达到库存预警：</span>
+            <select class="input_text2" id="yjx" name="category">
+                <option selected="selected" value="0">全部</option>
+                <option value="1">是</option>
+                <option value="2">否</option>
+            </select>
+            <div style="height:10px;">&nbsp;</div>
+            <input type="button" value="查询" onclick="search();" class="btn btn-default" />&nbsp;&nbsp;
+
+            <a class="btn btn-default" role="button" href="~/Product/Edit?id=-1">添加商品</a>
+        </li>
+    </ul>
+</div>
+<div id="divPageList">
+    @*@{
+        Html.RenderAction("PartialPage", new { index = 1, size = 10, });
+    }*@
+</div>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    //列表分页
+    function GetPageList(pageIndex) {
+        var data = {
+            categoryId: $('#category').val(),
+            name: $('#txtname').val(),
+            state: $('#selstate').val(),
+            recommend: $('#recommend').val(),
+            yjx: $('#yjx').val(),
+            index: pageIndex,
+            size: 10,
+            "__RequestVerificationToken": document.getElementsByName('__RequestVerificationToken')[0].value
+        };
+        var url = "@Url.Action("PartialPage")";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function (msg) {
+                $('#divPageList').html(msg);
+            }
+        });
+    }
+
+    //保存查询条件
+    function search() {
+        GetPageList(1);
+    }
+
+    $(function() {
+        GetPageList(1);
+    });
+
+    function putoff(id) {
+        $.post('/Product/PutOff', { id: id, "__RequestVerificationToken": document.getElementsByName('__RequestVerificationToken')[0].value }, function (data) {
+            if (data == 'ok') {
+                $('#state-' + id).text('下架');
+
+                $("[productid='" + id + "']").filter("a").each(function () {
+                    if ($(this).is(":hidden")) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            } else {
+                alert('操作失败');
+            }
+        });
+    }
+    function puton(id) {
+        $.post('/Product/PutOn', { id: id,"__RequestVerificationToken": document.getElementsByName('__RequestVerificationToken')[0].value }, function (data) {
+            if (data == 'ok') {
+                $('#state-' + id).html('<font color="red">上架</font>');
+
+                $("[productid='" + id + "']").filter("a").each(function () {
+                    if ($(this).is(":hidden")) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            } else {
+                alert('操作失败');
+            }
+        });
+    }
+
+    function Delete() {
+        var result = confirm("确定要删除此商品吗？");
+        return result;
+    }
+</script>

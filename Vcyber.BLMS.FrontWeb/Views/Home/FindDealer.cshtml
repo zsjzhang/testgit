@@ -1,0 +1,58 @@
+﻿@{
+    Layout = null;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<div class="yyrk_cont" style="height: 53px;border-top: 2px solid #f49600;">
+    <a href="/Member/Index">
+        <div class="yyrk">
+            <span>会员计划</span>
+
+            <label>Members Plan</label>
+        </div>
+    </a>
+</div>
+
+<div class="yyrk_cont" style="height: 53px;border-top: 2px solid #f49600;">
+    <a href="/Dealer/Index">
+        <div class="yyrk">
+            <span>查询经销商</span>
+
+            <label>Dealer Search</label>
+        </div>
+    </a>
+</div>
+
+<div class="yyrk_cont" style="height: 53px;border-top: 2px solid #f49600;">
+    <a href="/Questionnaire/Index">
+        <div class="yyrk">
+            <span>问卷调查</span>
+            <label>Questionnaire Survey</label>
+        </div>
+    </a>
+</div>

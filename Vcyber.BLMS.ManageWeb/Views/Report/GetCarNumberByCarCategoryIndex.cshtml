@@ -1,0 +1,145 @@
+﻿@model System.Data.DataTable
+@using System.Data;
+@{ViewBag.Title = "报表管理--按车型统计出库数量";
+Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/bootstrap")
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+<script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+
+
+
+<div class="panel-default">
+    @if (User.Identity.Name.ToLower().Equals("admin"))
+    {
+        <div class="panel-body">
+
+
+            <div class="form-group" style=" clear: both">
+                <label class="col-md-2 control-label">购车时间：</label>
+                <input type="text" autocomplete="off" ng-model="formData.BuyTimeStart" id="BuyTimeStart" name="BuyTimeStart" onfocus="WdatePicker({ skin: 'whyGreen', dateFmt: 'yyyy-MM-dd', onpicked: function () { $(this).trigger('change') }, maxDate: '#F{$dp.$D(\'BuyTimeEnd\')}' }); alwaysUseStartDate: true" class="Wdate col-md-2 form-control datepicker" />
+                @*<label class="col-md-2 control-label">购车时间：</label>*@
+                <span style="float:left">--</span>
+                @*<input class="Wdate col-md-2 form-control datepicker" id="BuyTimeEnd" placeholder="结束时间" data-date-format="yyyy-mm-dd" ng-model="formData.EndCreateTime" />*@
+                <input type="text" autocomplete="off" ng-model="formData.BuyTimeEnd" id="BuyTimeEnd" name="BuyTimeEnd" onfocus="WdatePicker({ startDate: '%y-%M-{%d+1} 00:00:00', skin: 'whyGreen', dateFmt: 'yyyy-MM-dd', onpicked: function () { $(this).trigger('change') }, minDate: '#F{$dp.$D(\'BuyTimeStart\')}' }); " class="Wdate col-md-2 form-control " />
+            </div>
+            <div class="form-group" style=" clear: both">
+                <label class="col-md-2 control-label">车型：</label>
+                @*<div class=" col-md-2  form-control">*@
+                @*col-md-3 text-left*@
+                <select class=" col-md-2  form-control" id="CarCategory">
+                    @*<option value="">请选择</option>*@
+                    @*<option value="悦纳">悦纳</option>*@
+
+                </select>
+                @*</div>*@
+
+                <label class="col-md-2 control-label"></label>
+                <label class=" col-md-2  "></label>
+            </div>
+
+            <div class="form-group">
+                <label style="color:red">注：所有的时间段都是大于等于第一个时间，小于等于第二个时间 </label>
+
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn btn-primary" type="submit" onclick="search()" style="margin-top:10px">查询</button>
+                    <button class="btn btn-primary" type="submit" onclick="toReportExcel()" style="margin-top:10px">导出</button>
+                </div>
+
+            </div>
+            <div id="divPageList">
+
+                @*@{
+                        Html.RenderAction("CommonPartialPage", new { index = 1, size = 10 });
+                    }*@
+            </div>
+
+            <div id="Pagination" class="right flickr">
+            </div>
+
+
+        </div>
+    }
+
+</div>
+
+
+
+
+<script>
+    $(function () {
+        search();
+
+        var url = "@Url.Action("GetCarCategoryList")";
+        $.ajax({
+            type: "post",
+            //async: false,  //同步
+            url: url,
+            success: function (result)
+            {
+
+                //var obj = eval("(" + result + ")");
+                //var josn = eval(result);
+                var obj = JSON.parse(result);
+
+                var htmlstr = " <option value=''>请选择</option>";
+                if (obj.length > 0)
+                {
+
+                    for (var i = 0; i < obj.length; i++)
+                        {
+                        htmlstr += "<option value='" + obj[i].optionvalue + "'>" + obj[i].name + "</option>";
+                    }
+                }
+                $("#CarCategory").html(htmlstr);
+            }
+        });
+
+    });
+    function search() {
+        var data = {
+            //CreateTimeStart: $("#CreateTimeStart").val(),
+            //CreateTimeEnd: $("#CreateTimeEnd").val(),
+            //AuthenticationTimeStart: $("#AuthenticationTimeStart").val(),
+            //AuthenticationTimeEnd: $("#AuthenticationTimeEnd").val(),
+            BuyTimeStart: $("#BuyTimeStart").val(),
+            BuyTimeEnd: $("#BuyTimeEnd").val(),
+            CarCategory: $("#CarCategory").val(),
+            pageIndex: 1,
+            pageSize: 10
+        };
+        var url = "@Url.Action("GetCarNumberByCarCategoryPage")";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function (msg) {
+                //alert("123ok");
+                $('#divPageList').html(msg);
+            }
+        });
+    }
+
+    function toReportExcel() {
+
+        var
+         //CreateTimeStart = $("#CreateTimeStart").val(),
+         //CreateTimeEnd = $("#CreateTimeEnd").val(),
+         //AuthenticationTimeStart = $("#AuthenticationTimeStart").val(),
+         //AuthenticationTimeEnd = $("#AuthenticationTimeEnd").val(),
+         BuyTimeStart = $("#BuyTimeStart").val(),
+         BuyTimeEnd = $("#BuyTimeEnd").val(),
+         CarCategory = $("#CarCategory").val();
+        window.location = '/Report/GetCarNumberByCarCategoryIndexExport?BuyTimeStart=' + BuyTimeStart + "&BuyTimeEnd=" + BuyTimeEnd + "&CarCategory=" + CarCategory;
+        return false;
+    }
+
+</script>

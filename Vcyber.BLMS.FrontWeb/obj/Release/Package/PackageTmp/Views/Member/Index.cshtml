@@ -1,0 +1,1004 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "会员计划";
+
+}
+<link href="~/css/base/plan.css" rel="stylesheet" />
+<style>
+    .levelTwoNN {
+        background: #075090 !important;
+    }
+
+    .plan ul li p {
+        text-indent: 0;
+    }
+
+    .table2 tr td {
+        border-right: 1px solid #999;
+        border-bottom: 1px solid #999;
+        padding: 8px 7px;
+    }
+
+    .table2 {
+        border: 1px solid #ppp;
+        margin-top: 10px;
+    }
+
+        .table2 tr td:first-child p {
+            padding: 0 7px;
+        }
+
+        .table2 tr td:last-child p {
+            padding: 0 7px;
+        }
+
+        .table2 tr td p {
+            font-size: 12px;
+        }
+
+    .plan ul li p {
+        font-size: 13px;
+        line-height: 22px;
+    }
+
+        .plan ul li p.hy_title {
+            font-size: 16px;
+            line-height: 40px;
+            color: #000;
+        }
+
+    .cjwt p {
+        color: #999;
+    }
+
+    /*2015.4.3*/
+    .vipjs {
+        border: 1px solid #999;
+    }
+
+        .vipjs td {
+            border: 1px solid #999;
+            vertical-align: middle;
+            height: 25px;
+            line-height: 25px;
+            font-family: 微软雅黑;
+            font-size: 14px;
+        }
+
+            .vipjs td strong {
+                font-weight: bold;
+                font-family: 微软雅黑;
+                font-size: 14px;
+            }
+
+    table {
+        border: 1px solid #999;
+    }
+
+    #memberindex_scoresource thead td:nth-child(n) {
+        background-color: #ed6d1e;
+        color: #fff;
+    }
+
+    #memberindex_scoresource thead td:nth-child(1) {
+        border-right: 1px solid #ccc;
+    }
+
+    #memberindex_scoresource tbody td:nth-child(n) {
+        background-color: #fef4d6;
+    }
+
+    #memberindex_scoresource tbody tr:last-child {
+        border-bottom: 1px solid #999;
+    }
+
+    #memberindex_scoreechange thead td:nth-child(n) {
+        background-color: #0c5194;
+        color: #fff;
+    }
+
+    #memberindex_scoreechange thead td:nth-child(1) {
+        border-right: 1px solid #ccc;
+    }
+
+    #memberindex_scoreechange tbody td {
+        background-color: #eaf6fd;
+    }
+
+    #memberindex_scoreechange tbody tr:last-child {
+        border-bottom: 1px solid #999;
+    }
+
+    #memberindex_bluerule thead tr td {
+        background-color: #ed6d1e;
+        color: #fff;
+    }
+
+    #memberindex_bluerule tbody tr td {
+        background-color: #fef4d6;
+    }
+
+    #memberindex_jingyan thead tr td {
+        background-color: #0c5194;
+        color: #fff;
+    }
+
+    #memberindex_jingyan tbody tr td {
+        background-color: #eaf6fd;
+    }
+</style>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "BlueVIP" })
+    </div>
+    <div class="n_all_cont" style="height:1200px;">
+        <div class="n_left_cont">
+            <div class="center logon" style="width: 286px; height: auto; margin-top:0;">
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+            </div>
+            <div class="homereserve">
+                @Html.Action("FindDealer", "Home")
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+        </div>
+        <div class="n_right_cont" style="margin-top:-20px;">
+            <div class="new_menu">
+                <p class="select_menu"><a href="/BlueVIP/Index">蓝缤权益&gt;</a>会员计划</p>
+            </div>
+            <style>
+                .plan ol {
+                    width: 101%;
+                }
+
+                    .plan ol li {
+                        width: 170px;
+                    }
+
+                .get-integral {
+                    border-collapse: collapse;
+                    border: none;
+                    font-size: 14px;
+                    text-align: center;
+                    margin-top: 10px;
+                    width: 663px;
+                }
+
+                    .get-integral th {
+                        border: 1px solid #ccc;
+                        height: 40px;
+                        line-height: 40px;
+                        background-color: #ed6d1e;
+                        color: #fff;
+                    }
+
+                    .get-integral td {
+                        border: 1px solid #ccc;
+                        padding: 15px 0;
+                        background-color: #fef4d6;
+                        font-size:13px;
+                    }
+
+                    .get-integral .integral_color {
+                        background-color: #ed6d1e;
+                    }
+
+                strong {
+                    font-weight: 600;
+                }
+
+                .plan ul li p {
+                    line-height: 26px;
+                }
+                <!-- 新增160523-- > .get-integral em.tdP {
+                    height: 20px;
+                    display: block;
+                    line-height: 0;
+                }
+
+                .plan ul li p.parMemb {
+                    text-indent: 2em;
+                }
+
+                .get-integral td.tdParMemb {
+                    border-bottom: 0;
+                    line-height: 20px;
+                    padding: 15px 15px;
+                    text-align: left;
+                }
+
+                .plan ul li p.memParSerCon {
+                    text-indent: 2em;
+                    padding-left: 10px;
+                    background: url(img/coupDot.jpg) no-repeat 2em 12px;
+                }
+
+                .plan ul li p.textInd {
+                    padding-left: 3em;
+                }
+
+                .plan ul li p.textInd2 {
+                    padding-left: 2em;
+                }
+
+                .plan ul li p.orgProm {
+                    color: #FF7F28;
+                }
+
+                .interests_table table {
+                    border-collapse: collapse;
+                    border: none;
+                    font-size: 14px;
+                    text-align: center;
+                    margin-top: 10px;
+                }
+
+                    .interests_table table th {
+                        border: 1px solid #ccc;
+                        height: 40px;
+                        line-height: 40px;
+                        background-color: #0c5194;
+                        color: #fff;
+                    }
+
+                    .interests_table table td {
+                        border: 1px solid #ccc;
+                        height: 40px;
+                        line-height: 40px;
+                        background-color: #eaf6fd;
+                    }
+
+                .interests_table .last-table {
+                    line-height: 24px;
+                    text-align: left;
+                    padding-left: 38px;
+                    padding-top: 8px;
+                    padding-bottom: 8px;
+                }
+
+                b.faqB {
+                    margin-top: 3px;
+                    margin-right: 10px;
+                    border-radius: 14px;
+                    height: 20px;
+                    width: 20px;
+                    float: left;
+                    color: #fff;
+                    text-align: center;
+                    line-height: 20px;
+                    background: #f49600;
+                    font-size: 12px;
+                }
+
+                .plan ul li p.faqParTitle1 {
+                    font-size: 18px;
+                    color: #000;
+                    font-weight: 600;
+                }
+
+                .plan ul li p.faqParTitle2 {
+                    font-size: 16px;
+                    color: #000;
+                    font-weight: 600;
+                    margin-top: 10px;
+                }
+
+                .plan ul li p.parTit3 {
+                    font-size: 14px;
+                    font-weight: bold;
+                    padding-left: 1em;
+                }
+
+                .plan ul li h2 {
+                    margin-top: 10px;
+                    margin-bottom: 5px;
+                    font-size: 14px;
+                }
+
+                    .plan ul li h2 strong {
+                        line-height: 180%;
+                    }
+
+                .plan ul li h3 {
+                    font-size: 14px;
+                    font-weight: bold;
+                    margin: 10px 0;
+                }
+
+                .plan ul li p.faqPar {
+                    padding-left: 30px;
+                }
+
+                .plan ul li td {
+                    vertical-align: middle;
+                }
+
+                    .plan ul li td p {
+                        height: 20px;
+                        line-height: 20px;
+                    }
+            </style>
+            <div class="plan_box">
+                <div class="plan">
+                    <ol>
+                        <li class="on">会员积分规则</li>
+                        <li class="g_y">会员手册</li>
+                        <li class="">会员权益</li>
+                        <li class="">常见问题</li>
+                    </ol>
+                    <!--新增修改1end-->
+                    <ul>
+                        <li class="curTags">
+                            <h2>
+                                <b class="faqB">1</b>
+                                <strong>积分规则</strong>
+                            </h2>
+                            <p>
+                                <strong>（1）积分价值：</strong>会员积分抵现比例：10积分=1RMB
+                            </p>
+                            <p>
+                                <strong>（2）积分对象：</strong>2016年4月1日(含4月1日)后购车，且3个月内成功入会会员
+                            </p>
+                            <p>
+                                <strong>（3）积分获取规则：</strong>
+                            </p>
+                            <table class="get-integral">
+                                <thead>
+                                    <tr>
+                                        <th width="75%" colspan="2">积分来源</th>
+                                        <th width="25%">获取积分</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td width="35%" rowspan="2" style="vertical-align: middle;">首次购车</td>
+                                        <td style="border-bottom: 0;">
+                                            <p>全新途胜、第九代索纳塔、全新胜达、</p>
+                                            <p>ix25、ix35、名图、名驭</p>
+                                        </td>
+                                        <td style="vertical-align: middle;">4000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>领动、朗动、悦动、瑞纳、瑞奕</td>
+                                        <td>2000</td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="3" style="vertical-align: middle;">增购换购</td>
+                                        <td style="border-bottom: 0;">全新途胜、第九代索纳塔、全新胜达、</td>
+                                        <td rowspan="2" style="vertical-align: middle;">7000</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: 0;">ix25、ix35、名图、名驭</td>
+                                    </tr>
+                                    <tr>
+                                        <td>领动、朗动、悦动、瑞纳、瑞奕</td>
+                                        <td>4000</td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="3" style="vertical-align: middle;">维修保养</td>
+                                        <td>普卡</td>
+                                        <td>自费金额*10%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>银卡</td>
+                                        <td>自费金额*15%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>金卡</td>
+                                        <td>
+                                            <p class="tdP">自费金额*20%</p>
+                                            <p class="tdP">生日月自费金额*50%</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="margin-left:28px;margin-top:10px;">
+                                <span style="line-height:150%;font-family:Wingdings;margin-right:4px;">Ø</span><strong>首次购车：</strong>4,000积分/2,000积分（车型对应积分见上表）
+                            </p>
+                            <p style="margin-left:28px">
+                                <span style="line-height:150%;font-family:Wingdings;margin-right:4px;">Ø</span><strong>增购换购：</strong>7,000积分/4,000积分（车型对应积分见上表,增/换购车主，通过身份证验证审核是否二次购车； 2016年4月1日前所购车不获赠积分；例：2016年4月1日前购买名图，2016年4月1日后购买全新途胜，会员可获得7000积分（增购/换购全新途胜））
+                            </p>
+                            <p style="margin-left:28px">
+                                <span style="line-height:150%;font-family:Wingdings;margin-right:4px;">Ø</span><strong>维修/保养：</strong>店内消费自费部分10%为积分奖励（即：自费消费100元可获取10积分）
+                            </p>
+                            <p>
+                                <strong>（4）积分兑换规则：</strong>
+                            </p>
+                            <p>
+                                积分可用于<strong>
+                                    购车、维修/保养、在线商城、机场候机等服务中；具体兑换规则见下表：
+                                </strong>
+                            </p>
+                            <table cellspacing="0" cellpadding="0" style="width: 100%;margin-top: 10px;" id="memberindex_scoreechange">
+                                <thead>
+                                    <tr class="firstRow" style="background:#ccc;height:30px;line-height:30px;">
+                                        <td width="50%" style="text-align:center;font-size:13px;">
+                                            积分兑换
+                                        </td>
+                                        <td width="50%" style="text-align:center;font-size:13px;">
+                                            说明
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="firstRow" style="height:30px;line-height:30px;border-bottom:1px solid #ccc;">
+                                        <td width="50%" style="text-align:center;font-size:13px;border-right:1px solid #ccc;">
+                                            再购/在线礼品
+                                        </td>
+                                        <td width="50%" style="text-align:center;font-size:13px;">
+                                            单次积分兑换不设上限
+                                        </td>
+                                    </tr>
+                                    <tr class="firstRow" style="height:30px;line-height:30px;border-bottom:1px solid #ccc;">
+                                        <td width="50%" style="text-align:center;font-size:13px;border-right:1px solid #ccc;">
+                                            <p>机场服务</p>
+                                            <p>
+                                                （银卡会员2次免费服务、金卡会员3次免费服务）
+                                            </p>
+                                        </td>
+                                        <td width="50%" style="text-align:center;font-size:13px;">
+                                            <p style="position: relative;">1800积分/次</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="firstRow" style="height:30px;line-height:30px;">
+                                        <td width="50%" style="text-align:center;font-size:13px;border-right:1px solid #ccc;">
+                                            维修保养
+                                        </td>
+                                        <td width="50%" style="text-align:center;font-size:13px;">
+                                            <p>单次最多使用1000积分</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>
+                                <strong>（5）积分相关其他规则：</strong>
+                            </p>
+                            <p style="margin-left:28px">
+                                <span style="line-height:150%;font-family:Wingdings;margin-right:4px;">Ø</span>积分有效期限：2年（按照月度统计失效，积分扣除按照先进先出原则）
+                            </p>
+                            <p style="margin-left:28px">
+                                <span style="line-height:150%;font-family:Wingdings;margin-right:4px;">Ø</span>积分转让：不可转让
+                            </p>
+                            <p style="margin-left:28px">
+                                <span style="line-height:150%;font-family:Wingdings;margin-right:4px;">Ø</span>会员完成缴费即可获得积分
+                            </p>
+                            <p style="margin-left:28px">
+                                <span style="line-height:150%;font-family:Wingdings;margin-right:4px;">Ø</span>在积分兑换的同时，会员还可以享受积分获取。例：普卡会员现有积分4000分，维修保养花费300元，会员使用1000积分（抵100元），现金缴纳200元，会员现金缴纳部分可获取相应积分（消费金额的10%，获取20积分），会员剩余积分计算：4000-1000+20=3020
+                            </p>
+                            <p style="margin-left:28px">
+                                <span style="line-height:150%;font-family:Wingdings;margin-right:4px;">Ø</span>维保积分获取只赠送实际消费金额中会员自付费部分。
+                            </p>
+                            <p style="margin-left: 28px; color: #FF7F28">
+                                *特别提醒： 严禁会员通过不正当的作弊方式获取积分，一旦发现，将扣除该会员非法所得积分，并依据情节轻重给与处罚！
+                            </p>
+                            <p>
+                                <strong>（6）在线商城积分兑换规则：</strong>
+                            </p>
+                            <p>
+                                兑换时间：2016年6月1日到2016年的12月31日
+                            </p>
+                            <p>
+                                兑换方式：
+                            </p>
+                            <p class="textInd2">
+                                1.&nbsp;bluemembers所有礼品需要使用积分兑换。
+                            </p>
+                            <p class="textInd2">
+                                2.&nbsp;礼品兑换只接受网上申请，不接受电话或上门等其他方式。
+                            </p>
+                            <p>
+                                礼品邮寄：
+                            </p>
+                            <p class="textInd2">
+                                1.&nbsp;礼品兑换订单提交成功后，5个工作日内工作人员将为您邮寄礼品请耐心等待。
+                            </p>
+                            <p class="textInd2">
+                                2.&nbsp;礼品邮寄仅限于中国大陆地区。
+                            </p>
+                            <p class="textInd2">
+                                3.&nbsp;礼品以快递或普通包裹形式邮寄。
+                            </p>
+                            <p>
+                                注意事项：
+                            </p>
+                            <p class="textInd2">
+                                1.&nbsp;"收货人信息"中需用中文完整填写真实有效的收货人姓名、联系手机、电子邮箱、邮寄地址、邮政编码信息； 如为外籍人士请填写有效证件上的完整信息；如因收货人信息不全影响会员正常收取兑换礼品时，bluemembers不承担相关责任； 您在本网站提供的个人信息仅用于北京现代客户服务、产品调查和推广等非盈利目的使用。
+                            </p>
+                            <p class="textInd2">
+                                2.&nbsp;如因会员填写的地址不详或者邮寄信息错误等原因导致礼品无法送达，责任由会员自行承担，礼品兑换所需积分不予退还。
+                            </p>
+                            <p class="textInd2">
+                                3.&nbsp;礼品图片仅供参考，具体礼品以最终收到的实物为准，礼品颜色随机发放不可指定。
+                            </p>
+                            <p class="textInd2">
+                                4.&nbsp;如您在兑换礼品接收过程中遇到任何问题，请您登陆bluemembers网站咨询在线客服，或拨打客服热线400-800-1100进行咨询。
+                            </p>
+                            <p class="textInd2">
+                                5.&nbsp;收到礼品后，请当场拆封。如收到礼品与实际兑换礼品不一致或者有损坏，请会员在礼品收到后的24小时内与我们联系，如因会员个人原因造成相关事宜无法处理，后果自负。
+                            </p>
+                            <p class="textInd2">
+                                6.&nbsp;收到的礼品如无质量问题，将不予退换。
+                            </p>
+                            <p>
+                                <span style="line-height:150%;font-family:&#39;微软雅黑&#39;,sans-serif">&nbsp;</span>
+                            </p>
+                            <p style="color: #FF7F28;">
+                                <strong>*以上最终解释权归北京现代汽车有限公司所有。</strong>
+                            </p>
+                            <p>
+                                <br>
+                            </p>
+                        </li>
+                        <li>
+                            <h2>
+                                <b class="faqB">1</b>
+                                <strong>总则</strong>
+                            </h2>
+                            <p class="parMemb">
+                                bluemembers（蓝缤）是北京现代秉承“从现代 到未来”战略，以打造卓越品牌力为驱动，在客户服务领域为车主倾心打造的创新服务品牌。
+                            </p>
+                            <p class="parMemb">
+                                bluemembers（蓝缤）以会员制为核心，深度洞察会员需求，不断创新服务，致力于为全系车主会员提供全方位、高品质、专业化的优质服务。
+                            </p>
+                            <p class="parMemb">
+                                成为bluemembers会员，获得丰厚积分奖励，享受优质车辆服务及生活服务，开启尊享之旅。
+                            </p>
+                            <h2>
+                                <b class="faqB">2</b>
+                                <strong>入会</strong>
+                            </h2>
+                            <h3>
+                                2.1&nbsp;入会条件
+                            </h3>
+                            <p>
+                                <span style="line-height:150%;font-family:微软雅黑">（1）会员类别：</span>
+                            </p>
+                            <p class="memParSerCon">
+                                bluemembers注册用户：通过bluemembers网站、App、微信完成注册流程的自然人
+                            </p>
+                            <p class="memParSerCon">
+                                bluemembers普卡会员：符合bluemembers会员条件并完成入会流程的北京现代个人车主
+                            </p>
+                            <p class="memParSerCon">
+                                bluemembers银卡会员：达到bluemembers银卡会员标准的个人车主
+                            </p>
+                            <p class="memParSerCon">
+                                bluemembers金卡会员：达到bluemembers金卡会员标准的个人车主
+                            </p>
+                            <p>
+                                <span style="line-height:150%;font-family:微软雅黑">（2）缴费标准：</span>
+                            </p>
+                            <p class="memParSerCon">
+                                <span style="line-height:150%;font-family:Wingdings;margin-right:4px;">Ø</span>注册用户：免费
+                            </p>
+                            <p class="memParSerCon">
+                                <span style="line-height:150%;font-family:Wingdings;margin-right:4px;">Ø</span>蓝缤会员：100元（第九代索纳塔、全新途胜、全新胜达、ix25、ix35、名图、名驭）50元（朗动、悦动、瑞纳、领动、瑞奕）
+                            </p>
+                            <p style="margin-left:28px">
+                                注：2016年4月1日后购买北京现代车辆的用户入会时一次性缴纳，即可拥有终身会员资格，退会时已缴费不予退还。
+                            </p>
+                            <p>
+                                <span style="line-height:150%;font-family:微软雅黑">（3）会员卡形式：bluemembers会员卡均为电子会员卡</span>
+                            </p>
+                            <h3>
+                                2.2&nbsp;入会方式
+                            </h3>
+                            <p class="parTit3">
+                                线上会员申请：
+                            </p>
+                            <p class="memParSerCon">
+                                <strong>bluemembers注册用户：</strong>
+                            </p>
+                            <p class="textInd">
+                                入会流程：访问bluemembers门户网站、App或微信→填写个人资料信息→注册成功→登陆
+                            </p>
+                            <p class="memParSerCon">
+                                <strong>bluemembers会员申请：</strong>
+                            </p>
+                            <p class="textInd">
+                                北京现代车主在特约店完成购车后，可以通过bluemembers网站、App、微信自行注册成为bluemembers会员。
+                            </p>
+                            <p class="textInd">
+                                入会流程：购车完成→在线注册bluemembers会员→在线选择缴费方式完成缴费（通过并缴纳会费）→收到入会通知（短信）并获得积分→登陆
+                            </p>
+                            <p class="parTit3">
+                                线下会员申请：
+                            </p>
+                            <p class="textInd">
+                                北京现代车主在特约店完成购车后，可以在店内填写入会申请表，由特约店协助完成入会。
+                            </p>
+                            <p class="textInd">
+                                入会流程：购车完成→北京现代特约店→（索取）《北京现代bluemembers会员申请表》→填写个人资料→收到入会通知（短信）并获取积分
+                            </p>
+                            <p class="orgProm">
+                                <strong><span style="line-height:150%;font-family:微软雅黑">温馨提示：</span></strong>
+                            </p>
+                            <p class="textInd2 orgProm">
+                                <span style="line-height:150%;font-family:微软雅黑">1.<span style="font-stretch: normal;font-size: 9px;line-height: normal;font-family: &#39;Times New Roman&#39;">&nbsp; </span></span><span style="line-height:150%;font-family:微软雅黑">请如实填写个人信息，由于信息有误导致入会问题，请咨询当地经销商或bluemembers网站在线咨询</span>
+                            </p>
+                            <p class="textInd2 orgProm">
+                                <span style="line-height:150%;font-family:微软雅黑">2.<span style="font-stretch: normal;font-size: 9px;line-height: normal;font-family: &#39;Times New Roman&#39;">&nbsp; </span></span>不同车型的车主缴纳入会费的金额不同，获取积分也不同</span>
+                            </p>
+                            <p class="textInd2 orgProm">
+                                <span style="line-height:150%;font-family:微软雅黑">3. </span><span style="line-height:150%;font-family:微软雅黑">入会费缴纳可以选择在线支付或特约店支付</span>
+                            </p>
+                            <p class="textInd2 orgProm">
+                                <span style="line-height:150%;font-family:微软雅黑">4. </span><span style="line-height:150%;font-family:微软雅黑">北京现代审核需5个工作日，请您耐心等待。</span>
+                            </p>
+                            <h2>
+                                <b class="faqB">3</b>
+                                <strong>会员等级与管理</strong>
+                            </h2>
+                            <h3>
+                                3.1&nbsp;会员等级标准
+                            </h3>
+                            <table class="get-integral">
+                                <tbody>
+                                    <tr>
+                                        <td width="10%" rowspan="3" style="vertical-align:middle;" class="integral_color">晋级<br>条件</th>
+                                        <td width="15%" style="vertical-align:middle;">金卡</td>
+                                        <td width="75%" style="border-bottom:0;" class="tdParMemb">
+                                            会员入会当天开始计算，1年内累计，增换购2次以上（含2次）即可晋级为金卡会员；除首保外，返厂消费4次或消费金额达到3000元以上即可晋级金卡会员
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align:middle;">银卡</td>
+                                        <td style="border-bottom:0;" class="tdParMemb">会员入会当天开始计算，1年内累计，增换购1次即可晋级为银卡会员；除首保外，返厂消费2次或消费金额达到1500元以上即可晋级银卡会员</td>
+                                    </tr>
+                                    <tr>
+                                        <td>普卡</td>
+                                        <td>车主成功入会即为普卡会员</td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="3" style="vertical-align:middle;" class="integral_color">保级<br>条件</td>
+                                        <td style="vertical-align:middle;">金卡</td>
+                                        <td class="tdParMemb" style="border-bottom:0;">会员升级当天计算，1年内累计，返厂消费3次或消费金额2250元，即可保级；如未达到则降级</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align:middle;">银卡</td>
+                                        <td class="tdParMemb" style="border-bottom:0;">会员升级当天计算，1年内累计，返厂消费1次或消费金额达到750元，即可保级；如未达到则降级</td>
+                                    </tr>
+                                    <tr>
+                                        <td>普卡</td>
+                                        <td>——</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h3>
+                                3.2会员等级有效期
+                            </h3>
+                            <p style="margin-left:28px">
+                                <span style="line-height:150%;font-family:微软雅黑">普卡会员：拥有北京现代车辆期间</span>
+                            </p>
+                            <p style="margin-left:28px">
+                                <span style="line-height:150%;font-family:微软雅黑">银卡会员：1年</span>
+                            </p>
+                            <p style="margin-left:28px">
+                                <span style="line-height:150%;font-family:微软雅黑">金卡会员：1年</span>
+                            </p>
+                            <h2>
+                                <b class="faqB">4</b>
+                                <strong>会员义务</strong>
+                            </h2>
+                            <p style="margin-left:28px">
+                                <span style="line-height:150%;font-family:Wingdings;margin-right:4px;">Ø</span>车主只能提交一次入会申请，不得重复申请。
+                            </p>
+                            <p style="margin-left:28px">
+                                <span style="line-height:150%;font-family:Wingdings;margin-right:4px;">Ø</span>需保证所提供信息的准确性和完整性，以确保每位会员在第一时间享受到北京现代提供的超值服务。
+                            </p>
+                            <p style="margin-left:28px">
+                                <span style="line-height:150%;font-family:Wingdings;margin-right:4px;">Ø</span>保管好个人的帐户与密码信息，如因会员个人原因造成帐户密码丢失，导致积分被盗用等后果，北京现代将不负任何责任。
+                            </p>
+                            <p style="margin-left:28px">
+                                <span style="line-height:150%;font-family:Wingdings;margin-right:4px;">Ø</span>若手机号码、通讯地址等信息变更时，请您及时登录bluemembers网站/微信/App进行变更；因地址错误导致邮件遗失或延误，北京现代概不负责。
+                            </p>
+
+                            <h2>
+                                <b class="faqB">5</b>
+                                <strong>服务内容</strong>
+                            </h2>
+                            <p class="memParSerCon"><strong>贴身服务：</strong>贴身服务：30分钟快速保养，免费取送车等服务，贴身关爱您的爱车。</p>
+                            <p class="memParSerCon"><strong>超值福利：</strong>保养兑换券，机场候机，五星酒店等您来享。</p>
+                            <p class="memParSerCon"><strong>乐享积分：</strong>累积积分抵扣现金消费，精美礼品实时兑换。</p>
+                            <p class="memParSerCon"><strong>便捷预约：</strong>车辆、生活服务提前预约，试驾/订车、维保省时省心更快捷。</p>
+                            <p class="memParSerCon"><strong>缤纷活动：</strong>量身定制特色活动，抢红包、赢豪礼，月月有惊喜。</p>
+                        </li>
+                        <!--新增2-->
+                        <li class="interests_table">
+                            <h2>
+                                <b class="faqB">1</b>
+                                <strong>会员权益</strong>
+                            </h2>
+                            <p>
+                                bluemembers（蓝缤）为车主提供超值的车辆、生活及尊享服务；
+                            </p>
+                            <table width="663">
+                                <tr>
+                                    <th width="40%" style="vertical-align: middle;" rowspan="2">会员权益</th>
+                                    <th width="60% " colspan="3">会员类别</th>
+                                </tr>
+                                <tr>
+                                    <th width="20% ">普卡</th>
+                                    <th width="20% ">银卡</th>
+                                    <th width="20% ">金卡</th>
+                                </tr>
+                                <tr>
+                                    <td>会员商城折扣优惠</td>
+                                    <td>√</td>
+                                    <td>9折</td>
+                                    <td>8折</td>
+                                </tr>
+                                <tr>
+                                    <td>生日特别心意礼品</td>
+                                    <td>——</td>
+                                    <td>——</td>
+                                    <td>√</td>
+                                </tr>
+                                <tr>
+                                    <td>维修保养消费返积分</td>
+                                    <td>自费金额*10%</td>
+                                    <td>自费金额*15%</td>
+                                    <td>
+                                        <p>自费金额*20%</p>
+                                        <p>生日月自费金额*50%</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>春/夏/秋季售后卡券</td>
+                                    <td>√</td>
+                                    <td>√</td>
+                                    <td>√</td>
+                                </tr>
+                                <tr>
+                                    <td> <p>车辆养护产品</p> <p>（5种产品任选1种）</p></td>
+                                    <td>——</td>
+                                    <td>1次/年</td>
+                                    <td>2次/年</td>
+                                </tr>
+                                <tr>
+                                    <td>免费取送车服务</td>
+                                    <td>——</td>
+                                    <td>——</td>
+                                    <td>√</td>
+                                </tr>
+                                <tr>
+                                    <td>24小时道路救援</td>
+                                    <td colspan="3">2015年/2016年购买第九代索纳塔和全新途胜用户</td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align: middle;">机场尊享服务</td>
+                                    <td style="vertical-align: middle;">积分兑换</td>
+                                    <td style="border-bottom:0;">
+                                        <p>2次免费后</p>
+                                        <p>积分兑换</p>
+                                    </td>
+                                    <td style="border-bottom:0;">
+                                        <p>3次免费后</p>
+                                        <p>积分兑换</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>星巴克卡券</td>
+                                    <td>320积分兑换</td>
+                                    <td>270积分兑换</td>
+                                    <td>220积分兑换</td>
+                                </tr>
+                                <tr>
+                                    <td>景点门票</td>
+                                    <td>——</td>
+                                    <td>1000积分兑换</td>
+                                    <td>880积分兑换</td>
+                                </tr>
+                                <tr>
+                                    <td>途牛五星会员权益</td>
+                                    <td>√</td>
+                                    <td>√</td>
+                                    <td>√</td>
+                                </tr>
+                                <tr>
+                                    <td>海航礼悦会钻石权益</td>
+                                    <td>√</td>
+                                    <td>√</td>
+                                    <td>√</td>
+                                </tr>
+
+                                <tr>
+                                    <td>专属活动</td>
+                                    <td>——</td>
+                                    <td>——</td>
+                                    <td>√</td>
+                                </tr>
+
+                                <tr>
+                                    <td>预约试驾</td>
+                                    <td>√</td>
+                                    <td>√</td>
+                                    <td>√</td>
+                                </tr>
+
+
+
+                                <tr>
+                                    <td>在线订车</td>
+                                    <td>√</td>
+                                    <td>√</td>
+                                    <td>√</td>
+                                </tr>
+                                <tr>
+                                    <td>预约维保</td>
+                                    <td>√</td>
+                                    <td>√</td>
+                                    <td>√</td>
+                                </tr>
+                                <tr>
+                                    <td>线上保养产品</td>
+                                    <td>√</td>
+                                    <td>√</td>
+                                    <td>√</td>
+                                </tr>
+                                <tr>
+                                    <td>经销商查询</td>
+                                    <td>√</td>
+                                    <td>√</td>
+                                    <td>√</td>
+                                </tr>
+                                <tr>
+                                    <td>问卷调查</td>
+                                    <td>√</td>
+                                    <td>√</td>
+                                    <td>√</td>
+                                </tr>
+                                <tr>
+                                    <td>纯正配件查询</td>
+                                    <td>√</td>
+                                    <td>√</td>
+                                    <td>√</td>
+                                </tr>
+
+
+                                <tr>
+                                    <td colspan="4" class="last-table">
+                                        ——&nbsp;代表不享有该权益<br />
+                                        &nbsp;&nbsp;√&nbsp;&nbsp;&nbsp;&nbsp;代表享有该权益
+                                    </td>
+                                </tr>
+                            </table>
+                        </li>
+                        <!--新增2END-->
+                        <li class="cjwt">
+                            <p class="faqParTitle1">常见问题</p>
+                            <p class="faqParTitle2">会员规则</p>
+                            <h2>
+                                <b class="faqB">1</b>
+                                <strong>bluemembers是什么？</strong>
+                            </h2>
+                            <p class="faqPar">A：您好，bluemembers（蓝缤）是北京现代秉承“从现代 到未来”战略，以打造卓越品牌力为驱动，在客户服务领域为车主倾心打造的创新服务品牌。bluemembers（蓝缤）以会员制为核心，深度洞察会员需求，不断创新服务，致力于为全系车主会员提供全方位、高品质、专业化的优质服务。成为bluemembers会员，获得丰厚积分奖励，享受优质车辆服务及生活服务，开启尊享之旅。</p>
+                            <h2>
+                                <b class="faqB">2</b>
+                                <strong>如何加入bluemembers会员？</strong>
+                            </h2>
+                            <p class="faqPar">A：您好，目前bluemembers会员入会申请有2种方式：
+                            <p class="faqPar">1）线下申请：北京现代特约店→（索取）《北京现代bluemembers会员申请表》→填写个人资料并缴纳会费→短信收取会员认证通知（会员卡号、初始密码）。</p>
+                            <p class="faqPar">
+                                2）线上申请：登陆bluemembers门户网站、App或微信→填写个人资料→认证通过并缴纳会费→通过手机号+密码登录系统→查看会员卡号。
+                            </p>
+                            <h2>
+                                <b class="faqB">3</b>
+                                <strong>bluemembers普卡/银卡/金卡会员的有效期是多久？</strong>
+                            </h2>
+                            <p class="faqPar">A：您好，bluemembers银卡/金卡的有效期为1年，bluemembers普卡会员终身有效。</p>
+                            <h2>
+                                <b class="faqB">4</b>
+                                <strong>bluemembers会员需要交费吗？</strong>
+                            </h2>
+                            <p class="faqPar">A：您好，2016年4月1日后购车的用户需要缴纳会费，第九代索纳塔、全新途胜、全新胜达、ix25、ix35、名图、名驭的车主，一次性缴纳100元会费即可获得价值400元积分奖励；朗动、悦动、瑞纳、领动、瑞奕车主，一次性缴纳50元会费即可获得价值200元积分奖励。会员身份终身有效，申请退会，入会费不予返还。</p>
+                            <h2>
+                                <b class="faqB">5</b>
+                                <strong>普卡会员如何升级为银卡/金卡会员？</strong>
+                            </h2>
+                            <p class="faqPar">A：您好，系统每天根据会员购车/消费/返厂频次自动判定，满足条件即可晋级。普卡会员入会当天开始计算，1年内累计，增换购1次即可晋级为银卡会员；除首保外，返厂消费2次或消费金额达到1500元以上即可晋级银卡会员；银卡会员自升级当天开始计算，1年内累计，增换购2次以上（含2次）即可晋级为金卡会员；除首保外，返厂消费4次或消费金额达到3000元以上即可晋级金卡会员。</p>
+                            <h2>
+                                <b class="faqB">6</b>
+                                <strong>银卡/金卡会员是否会降级，如何降级的呢？</strong>
+                            </h2>
+                            <p class="faqPar">A：您好，系统每天根据会员购车/消费/返厂频次自动判定保降级。银卡会员自会员升级当天计算，1年内累计，返厂消费1次或消费金额达到750元，即可保级；如未达到则进行普卡。金卡会员自会员升级当天计算，1年内累计，返厂消费3次或消费金额达到2250元，即可保级，如未达到则降级。</p>
+                            <p class="faqParTitle2">积分规则</p>
+                            <h2>
+                                <b class="faqB">7</b>
+                                <strong>如何获取积分？积分有效期是多久？</strong>
+                            </h2>
+                            <p class="faqPar">A：您好，首次购车、增换购、维保消费均可获取积分，您也可以关注并参与bluemembers相关活动获取积分。积分有效期为2年，按照月度统计失效，积分扣除按照先进先出原则。</p>
+
+                            <h2>
+                                <b class="faqB">8</b>
+                                <strong>增换购车辆，可以获得多少积分呢?</strong>
+                            </h2>
+                            <p class="faqPar">
+                                A：您好，如您2016年4月1日后有增购/换购车辆，车辆为第九代索纳塔、全新途胜、全新胜达、ix25、ix35、名图、名驭，可以获取7000积分。如果是朗动、悦动、瑞纳、领动、瑞奕，可以获取4000积分。
+                            </p>
+                            <h2>
+                                <b class="faqB">9</b>
+                                <strong>普卡会员可以获得积分吗？</strong>
+                            </h2>
+                            <p class="faqPar">
+                                A：您好，2016年4月1日后购车车主，3个月内入会，完成缴费即可获取积分。如您为2016年4月1日以前购车主并入会为普卡会员，可通过维修保养消费获取积分，也可参与bluemembers相关活动获取积分。
+                            </p>
+                            <p class="faqParTitle2">会员缴费</p>
+                            <h2>
+                                <b class="faqB">10</b>
+                                <strong>缴费方式有哪些？</strong>
+                            </h2>
+                            <p class="faqPar">
+                                A：您好，缴费方式分2种：线上缴费或店内缴费。线上缴费至bluemembers网站/微信/App进行操作，店内缴费至经销商店内直接缴费。
+                            </p>
+                            <h2>
+                                <b class="faqB">11</b>
+                                <strong>线上缴费如何操作？</strong>
+                            </h2>
+                            <p class="faqPar">
+                                A：您好，用户在bluemembers网站/微信/App进行操作。完成注册后即可进行缴费操作，也可登陆个人中心进行缴费操作。<br>
+                                缴费可选择线下缴费/在线支付，相关操作如下：<br>
+                                经销商缴费：选择缴费的经销商→点击“向经销商申请”→提交<br>
+                                在线支付：选择缴费的经销商→点击“在线支付”→新开网页购买天猫入会产品→返回bluemembers缴费页面，填写核销码→提交
+
+                            </p>
+                            <p class="faqParTitle2">老会员相关</p>
+                            <h2>
+                                <b class="faqB">12</b>
+                                <strong>原来是银卡会员，体系升级后是什么级别？</strong>
+                            </h2>
+                            <p class="faqPar">
+                                A：您好，原有银卡会员级别不变，有效期为1年。
+                            </p>
+                            <h2>
+                                <b class="faqB">13</b>
+                                <strong>原来是银卡会员，体系升级后积分有变化吗？</strong>
+                            </h2>
+                            <p class="faqPar">
+                                A：您好，原来银卡会员的积分数保持不变。
+                            </p>
+                            <h2>
+                                <b class="faqB">14</b>
+                                <strong>原来是普卡会员，体系升级后有什么影响？ </strong>
+                            </h2>
+                            <p class="faqPar">
+                                A：您好，2016年4月1日（含4月1日）前购车的车主没有首次购车/增换购积分，您可以通过维修保养消费获取积分，享受普卡会员权益。如您2016年4月1日后购车，完成缴费即可获取相应的积分。
+                            </p>
+                            <h2>
+                                <b class="faqB">15</b>
+                                <strong>2016年4月1日之后购车，体系升级前已入会为普卡会员，如何获取积分？</strong>
+                            </h2>
+                            <p class="faqPar">
+                                A：您好，您可以至个人中心选择线上缴费或直接到经销商店内缴费，完成缴费即可获取相应的积分。
+                            </p>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

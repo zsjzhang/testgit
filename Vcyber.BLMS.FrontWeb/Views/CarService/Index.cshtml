@@ -1,0 +1,159 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "车辆服务";
+}
+<style>
+    .gy_list_box dd h3 {
+    font-size: 16px;
+    font-weight: 600;
+    padding-top: 15px;
+}
+    .gy_list_box dd p {
+    margin-top: 20px;
+    height: 63px;
+    overflow: hidden;
+    color: #767575;
+    font-size: 12px;
+    line-height: 21px;
+}
+    .gy_list_box{display:block;}
+   
+</style>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "BlueVIP" })
+    </div>
+    <div class="n_all_cont">
+
+        <div class="n_left_cont">
+            <div class="center logon" style="width: 286px; height: auto; margin-top: 0;">
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+        </div>
+        <div class="n_right_cont">
+            <p class="select_menu"><a href="/BlueVIP/Index">蓝缤权益</a> >车辆服务</p>
+            <div class="gy_list">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>车辆服务</h1>
+                        <span>Auto Service</span>
+                        @*<img src="/img/arrow.png" class="arrow_n" />*@
+                    </div>
+                </div>
+                <div class="gy_list_box">
+                    @*<dl>
+                        <dt style="width:300px;">
+                            <a href="/Sonata/FiveY10KM"><img src="/img/s91.png"></a>
+                        </dt>
+                        <dd style="height:120px;">
+                            <a href="/Sonata/FiveY10KM">
+                                <h3>5年10万公里整车包修期</h3>
+                            </a>
+                            <p>自购车发票开具之日起北京现代为第九代索纳塔和全新途胜（非营运类车辆）提供5年或10万公里整车包修期，以先到者为准。</p>
+                        </dd>
+                    </dl>*@
+                    @*<dl>
+                        <dt style="width:300px;">
+                            <a href="/Sonata/OTwoOIndex"><img src="/img/s92.jpg"></a>
+                        </dt>
+                        <dd style="height:120px;">
+                            <a href="/Sonata/OTwoOIndex">
+                                <h3>一对一专属服务</h3>
+                            </a>
+                            <p>专属服务顾问一对一为您提供专业、快捷、超值的售后服务。</p>
+                        </dd>
+                    </dl>*@
+                    @*<dl>
+                        <dt style="width:300px;">
+                            <a href="/Sonata/GoHomeIndex"><img src="/img/s93.png"></a>
+                        </dt>
+                        <dd style="height:120px;">
+                            <a href="/Sonata/GoHomeIndex">
+                                <h3>上门关怀服务</h3>
+                            </a>
+                            <p>贴心的上门关怀服务，解决您在用车方面的疑问和顾虑并对您的爱车进行专业检查。（服务半径为20km）&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        </dd>
+                    </dl>*@
+                    <dl>
+                        <dt style="width:300px;">
+                            <a href="/Sonata/ServiceToHome"><img src="/img/s95.jpg"></a>
+                        </dt>
+                        <dd style="height:120px;">
+                            <a href="/Sonata/ServiceToHome">
+                                <h3>免费取送车服务</h3>
+                            </a>
+                            <p>专业人员为您免费提供车辆维修保养的取送车服务。（服务半径为20km）</p>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt style="width:300px;">
+                            <a href="/Sonata/FreeRoadRescue"><img src="/img/s96.png"></a>
+                        </dt>
+                        <dd style="height:120px;">
+                            <a href="/Sonata/FreeRoadRescue">
+                                <h3>24小时免费道路救援服务</h3>
+                            </a>
+                            <p>
+                                提供全天24小时，全年365天的免费道路救援服务。
+                                24小时救援服务热线：400-0365-906
+                            </p>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt style="width:300px;">
+                            <a href="/Sonata/FiveCarService"><img src="/Img/VipImg/FiveCarSerive.jpg"></a>
+                        </dt>
+                        <dd style="height:120px;">
+                            <a href="/Sonata/FiveCarService">
+                                <h3>5种车辆养护产品</h3>
+                            </a>
+                            <p> 北京现代为银卡和金卡会员，提供在各车年龄段可使用的车辆养护产品，为您的爱车保驾护航。</p>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt style="width:300px;">
+                            <a href="/Sonata/CodeService"><img src="/Img/VipImg/carcodeservice.jpg"></a>
+                        </dt>
+                        <dd style="height:120px;">
+                            <a href="/Sonata/CodeService">
+                                <h3>春/夏/冬季售后卡券</h3>
+                            </a>
+                            <p>
+                                北京现代bluemembers为广大车主会员提供春/夏/冬季季节车辆免检服务，注册成为bluemembers会员即可参与领取春/夏/冬季售后卡券。
+                            </p>
+                        </dd>
+                    </dl>
+                </div>
+
+            </div>
+
+            @*@Html.Action("HotProductsRegion", "Home")*@
+        </div>
+
+
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

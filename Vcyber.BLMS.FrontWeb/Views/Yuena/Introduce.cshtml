@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "活动介绍";
+    Layout = "~/Views/Shared/_LayoutYuena.cshtml";
+}
+
+
+<div class="nav">
+    <img src="~/Contents/yuena/images/nav2.png" usemap="#Map">
+</div>
+<div class="introduce">
+    <div class="swiper-container">
+        <div id="swiper-wrapperdiv" class="swiper-wrapper">
+            <div id="swiper-slide1" class="swiper-slide">
+                <img src="~/Contents/yuena/images/introduce1.png">
+                <a><span id="down1" class="down swiper-button-prev"><img src="~/Contents/yuena/images/down.png">点击翻页</span></a>
+            </div>
+            <div id="swiper-slide2" class="swiper-slide">
+                <img src="~/Contents/yuena/images/introduce2.png">
+                <a><span id="down2" class="down swiper-button-prev"><img src="~/Contents/yuena/images/down.png">点击翻页</span></a>
+            </div>
+            <div id="swiper-slide3" class="swiper-slide">
+                <img src="~/Contents/yuena/images/introduce3.png">
+                <a><span id="down3" class="down swiper-button-prev"><img src="~/Contents/yuena/images/down.png">点击翻页</span></a>
+            </div>
+            <div id="swiper-slide4" class="swiper-slide">
+                <img src="~/Contents/yuena/images/introduce4.png">
+            </div>
+        </div>
+    </div>
+</div>
+@*<div class="footer clearfix">
+    <p class="footer_left">Copyright © 2009-2016 BEIJING HYUNDAI MOTOR COMPANY Corporation All Rights Reserved</p>
+    <p class="footer_right">服务热线：400-800-1100</p>
+</div>*@
+<script type="text/javascript">
+    
+    $(function () {
+        var mySwiper = new Swiper('.swiper-container', {
+            mode: 'vertical',
+            keyboardControl: true,
+            mousewheelControl: true
+        });
+        var screenheight = $(window).height();
+       
+        $("#down1").click(function () {
+            $("#swiper-slide2").removeAttr('class').attr({ "class": "swiper-slide swiper-slide-visible swiper-slide-active" });
+            $("#swiper-wrapperdiv").removeAttr('style').attr({ "style": "width: 1920px; height: 2452px; transform: translate3d(0px, -" + screenheight + "px, 0px); transition-duration: 0.3s;" });
+        });
+        $("#down2").click(function () {
+            $("#swiper-slide3").removeAttr('class').attr({ "class": "swiper-slide swiper-slide-visible swiper-slide-active" });
+            $("#swiper-wrapperdiv").removeAttr('style').attr({ "style": "width: 1920px; height: 2452px; transform: translate3d(0px, -" + screenheight*2  + "px, 0px); transition-duration: 0.3s;" });
+        });
+        $("#down3").click(function () {
+            $("#swiper-slide4").removeAttr('class').attr({ "class": "swiper-slide swiper-slide-visible swiper-slide-active" });
+            $("#swiper-wrapperdiv").removeAttr('style').attr({ "style": "width: 1920px; height: 2452px; transform: translate3d(0px, -" + screenheight*3 + "px, 0px); transition-duration: 0.3s;" });
+        });
+        //$("#down1").removeAttr('style').attr({ "style": "bottom:44px;"  });
+        //$("#down2").css({ "bottom": "" + (screenheight - 44) + "px;" });
+        //$("#down3").css({ "bottom": "" + (screenheight - 44) + "px;" });
+        //$(".down").removeAttr('style').attr({ "style": "width: 1920px; height: " + (screenheight - 44) + "px;" });
+        //.removeAttr('style').attr({ "style": "width: 1920px; height: " + (screenheight - 44 * 2) + "px;" })
+        //.removeAttr('style').attr({ "style": "width: 1920px; height: " + (screenheight - 44 * 3) + "px;" })
+        //.removeAttr('style').attr({ "style": "width: 1920px; height: " + (screenheight - 44 * 4) + "px;" })
+        //$("#swiper-slide1").mousemove(function () {
+        //    $("#swiper-slide2").removeAttr('style').attr({ "style": "width: 1920px; height: " + (screenheight - 44*2) + "px;" });
+        //});
+        //$("#swiper-slide2").mousemove(function () {
+        //    $("#swiper-slide3").removeAttr('style').attr({ "style": "width: 1920px; height: " + (screenheight - 44*3) + "px;" });
+        //});
+        //$("#swiper-slide3").mousemove(function () {
+        //    $("#swiper-slide4").removeAttr('style').attr({ "style": "width: 1920px; height: " + (screenheight - 44*4) + "px;" });
+        //});
+
+    });
+</script>

@@ -1,0 +1,95 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render("~/bundles/jquery")
+
+<link href="/Scripts/bootstrap-datepicker/datepicker.css" rel="stylesheet" />
+<script src="/Scripts/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+<script src="/Scripts/bootstrap-datepicker/bootstrap-datepicker.zh-CN.js"></script>
+
+<script>
+
+    $(function() {
+        $('.datepicker').datepicker();
+       
+    });
+
+    function check() {
+      
+        var start = new Date($("#begintime").val());
+        var end = new Date($("#endtime").val());
+        if ($("#begintime").val() == "" || $("#endtime").val() == "") {
+            alert("时间必填");
+            return false;
+        }
+        if (Date.parse(start) > Date.parse(end)) {
+            alert("开始时间不能大于结束时间");
+            return false;
+        }
+        return true;
+    }
+       
+</script>
+<style type="text/css">
+    table td {
+        text-align: center;
+    }
+
+    .table .nowrap > td {
+        white-space: nowrap;
+    }
+</style>
+<div class="container panel panel-default">
+    <div class="panel-body">
+        <strong>报表管理 -积分下发</strong>
+    </div>
+</div>
+<form method="post" action="/NewReport/GetUserintegralReport">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">下发时间：</label>
+                    <div class="col-md-2 text-left">
+                        <input id="begintime" class="form-control datepicker" name="start" data-date-format="yyyy-mm-dd" ng-model="formData.Start" value="@ViewBag.start">
+                    </div>
+                    <div class="col-md-2 text-left">
+                        <input id="endtime" class="form-control datepicker" name="end" data-date-format="yyyy-mm-dd" ng-model="formData.endart" value="@ViewBag.end">
+                    </div>
+
+                    <button class="btn btn-primary" type="submit" onclick="return check()">查询</button>
+                </div>
+            </div>
+            @*开始*@
+            @*（0:100日上门关怀，1:3年9次免检，2：home to home，3：一对一专属，4：维保,5:机场服务)*@
+            <div id="divPageList">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr class="l1 nowrap" style="background-color: #eaeaea;">
+                            <td>新购</td>
+                            <td>增购</td>
+                            <td>维保</td>
+                            <td>认证车主</td>
+                            <td>管理员</td>
+                            <td>悦纳推荐奖励</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @ViewBag.NewBuy
+                            </td>
+                            <td>
+                                @ViewBag.AddBuy
+                            </td>
+                            <td>@ViewBag.weibao </td>
+                            <td no="5">@ViewBag.renzheng</td>
+                            <td no="5">@ViewBag.amdin</td>
+                            <td no="5">@ViewBag.yuena</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            @*结束*@
+        </div>
+
+    </div>
+</form>

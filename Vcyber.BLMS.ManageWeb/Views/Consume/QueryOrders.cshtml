@@ -1,0 +1,495 @@
+﻿@using PetaPoco
+@using Vcyber.BLMS.Common
+@using Vcyber.BLMS.Entity.Enum
+@using Vcyber.BLMS.Entity.Generated
+@using System.Web.Mvc.Html
+@model Vcyber.BLMS.Entity.CarService.ConsumeQueryParamEntity
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "消费管理";
+}
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/Uploadify/jquery.uploadify.js")"></script>
+
+<link href="@Url.Content("~/Scripts/uploadify/uploadify.css")" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    .selected-row {
+        background-color: #f5f5f5;
+    }
+</style>
+
+<link href="/Scripts/bootstrap-datepicker/datepicker.css" rel="stylesheet" />
+<script src="/Scripts/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+<script src="/Scripts/bootstrap-datepicker/bootstrap-datepicker.zh-CN.js"></script>
+<script>
+    //$(function(){
+    //   // debugger;
+    //    var str=[2,3,4];
+    //    $.each(str,function(index,item){
+    //        $("#EConsumeType").find("option[value='"+item+"']").remove();
+    //    })
+    //});
+
+    function exportList() {
+        $("#QueryOrderForm").attr("action", "/Consume/Export");
+        return true;
+    }
+    function queryOrderList() {
+        $("#page").val("1");
+        if ($("#MinTotalCost").val() == "") { $("#MinTotalCost").val(0) };
+        if ($("#MaxTotalCost").val() == "") { $("#MaxTotalCost").val(0) };
+        if (parseInt($("#Minpoints").val()) < 1 && $("#Minpoints").val() != "") {
+            alert("消耗积分不能为0");
+            return false;
+        }
+        if (parseInt($("#Maxpoints").val()) < parseInt($("#Minpoints").val())) {
+            alert("消耗积分结束必须大于开始值");
+            return false;
+        }
+        $("#QueryOrderForm").attr("action", "/Consume/QueryOrders");
+        return true;
+    }
+
+</script>
+@{
+    Page<CSConsume> list = (Page<CSConsume>)ViewData["data"];
+}
+@using (Html.BeginForm("QueryOrders", "Consume", FormMethod.Get, new { @class = "form-horizontal", @id = "QueryOrderForm" }))
+{
+
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.Phone, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">@Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "col-md-3 form-control text-left" } })</div>
+
+    </div>
+
+
+
+    <div class="form-group col-md-6">
+        <label class="col-md-3 control-label" for="VIN">车架号</label>
+        <div class="col-md-9">@Html.EditorFor(model => model.VIN, new { htmlAttributes = new { @class = "col-md-3 form-control text-left" } })</div>
+
+    </div>
+
+
+    <div class="form-group form-group col-md-6">
+        @Html.LabelFor(model => model.PointApproveStatus, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.EnumDropDownListFor(model => model.PointApproveStatus, new { @class = "form-control text-left" })
+            @Html.ValidationMessageFor(model => model.PointApproveStatus)
+        </div>
+
+    </div>
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.MinTotalCost, new { @class = "col-md-3 control-label" })
+        <div class="col-md-3">@Html.EditorFor(model => model.MinTotalCost, new { htmlAttributes = new { @class = "form-control text-left" } }) </div>
+        <div class="col-md-1"><span class="text-left">-</span></div>
+        <div class="col-md-3">@Html.EditorFor(model => model.MaxTotalCost, new { htmlAttributes = new { @class = "form-control text-left" } })</div>
+    </div>
+    <!--积分消耗查询-->
+    <div class="form-group col-md-6">
+        <label for="EConsumeType" class="col-md-3 control-label">消耗积分</label>
+        <div class="col-md-2 text-left" style="padding-left:15;width:150px">
+            @Html.EditorFor(model => model.Minpoints, new { htmlAttributes = new { @class = "form-control text-left" } })
+        </div>
+        <div class="col-md-2 text-left" style="padding-left: 0; width: 150px">
+            @Html.EditorFor(model => model.Maxpoints, new { htmlAttributes = new { @class = "form-control text-left" } })
+        </div>
+    </div>
+
+    <div class="form-group form-group col-md-6">
+        @Html.LabelFor(model => model.PointStatus, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.EnumDropDownListFor(model => model.PointStatus, new { @class = "form-control text-left" })
+            @Html.ValidationMessageFor(model => model.PointStatus)
+        </div>
+        @*@Html.DropDownListFor(model => model.EConsumeType, Model.EConsumeType.ToSelectList("0"), new { htmlAttributes = new { @class = "form-control text-left" } })*@
+    </div>
+
+
+
+    <div class="form-group form-group col-md-6">
+        @Html.LabelFor(model => model.EConsumeType, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.EnumDropDownListFor(model => model.EConsumeType, new { @class = "form-control text-left" })
+            @Html.ValidationMessageFor(model => model.EConsumeType)
+        </div>
+
+    </div>
+
+
+    if (string.IsNullOrEmpty(ViewBag.DealerId))
+    {
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.DealerId, new { @class = "col-md-3 control-label" })
+            <div class="col-md-9">@Html.EditorFor(model => model.DealerId, new { htmlAttributes = new { @class = "col-md-3 form-control text-left" } })</div>
+
+        </div>
+    }
+
+
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.HasAttachment, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">@Html.EnumDropDownListFor(model => model.HasAttachment, new { @class = "form-control text-left" })</div>
+
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="EConsumeType" class="col-md-3 control-label">时间段</label>
+        @*<label class="col-md-2 control-label">入会时间：</label>*@
+        <div class="col-md-2 text-left" style="padding-left:15;width:150px">
+            <input id="gstart" name="gstart" class="form-control datepicker" placeholder="开始时间" value="@ViewBag.gstart" ng-model="formData.StartTime" data-date-format="yyyy-mm-dd" />
+        </div>
+        <div class="col-md-2 text-left" style="padding-left:0;width:150px">
+            <input id="gend" name="gend" class="form-control datepicker" placeholder="结束时间" value="@ViewBag.gend" ng-model="formData.EndTime" data-date-format="yyyy-mm-dd" />
+        </div>
+        @*<div class="col-md-2 text-left">
+                <input class="form-control datepicker" ng-model="repairStartTime" data-date-format="yyyy-mm-dd">
+            </div>
+            <div class="col-md-2 text-left">
+                <input class="form-control datepicker" ng-model="repairEndTime" data-date-format="yyyy-mm-dd">
+            </div>*@
+
+    </div>
+    <div class="form-group form-group col-md-6">
+        @Html.LabelFor(model => model.MLevel, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.EnumDropDownListFor(model => model.MLevel, new { @class = "form-control text-left" })
+            @Html.ValidationMessageFor(model => model.MLevel)
+        </div>
+        @*@Html.DropDownListFor(model => model.EConsumeType, Model.EConsumeType.ToSelectList("0"), new { htmlAttributes = new { @class = "form-control text-left" } })*@
+    </div>
+
+
+
+    @*if (string.IsNullOrEmpty(ViewBag.DealerId))
+        {
+             <div class="form-group col-md-6" id="approve-area">
+                 <label class="col-md-3 control-label">审核</label>
+                 <div class="col-md-9">
+                     <input type="button" class="btn btn-success" onclick="batchUpdate('@((int)EPointApproveStatus.Approved)') " value="通过" />
+                     <input type="button" class="btn btn-danger col-md-offset-1" onclick="batchUpdate('@((int)EPointApproveStatus.NotApproved)') " value="未通过" />
+                 </div>
+             </div>
+        }*@
+
+    /*以下这段html是为了样式占位所用，没有数据交互的作用*/
+    <div class="form-group col-md-6">
+        <label for="EConsumeType" class="col-md-3 control-label"></label>
+        <div class="col-md-2 text-left" style="padding-left:15;width:150px">
+        </div>
+        <div class="col-md-2 text-left" style="padding-left:0;width:150px">
+        </div>
+
+    </div>
+    <div class="form-group col-md-6">
+        <div class="btn-toolbar col-md-2 col-md-offset-3">
+            <input type="hidden" id="page" name="page" value="@list.CurrentPage" />
+            <button style="padding-left:-15px;" onclick="return queryOrderList()" type="submit" id="btn-submit-cs" class=" btn btn-primary"><i class="fa"></i>查询</button>
+        </div>
+        <div class="btn-toolbar col-md-2 col-md-offset-1">
+            @Html.ActionLink("新增", "Add", "Consume", new { }, new { style = "padding-left:-15px;", @class = " btn btn-primary" })
+        </div>
+        <div class="btn-toolbar col-md-2 col-md-offset-1">
+            <button style="padding-left:-15px;" onclick="return exportList()" type="submit" id="btn-submit-cs" class=" btn btn-primary"><i class="fa"></i>导出</button>
+            @*@Html.ActionLink("导出", "Export", "Consume", new { }, new { style = "padding-left:-15px;", @class = " btn btn-primary" })*@
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    function add() {
+        location.href = "@Url.Action("Add","Consume")";
+    }
+
+</script>
+<div class="data-container">
+    <table class="table">
+        <thead>
+            <tr>
+                @*<th>
+                        <div style="width:50px;">
+                            <a href="javascript:toggleAll()">全选</a><input type="hidden" id="check-status" value="false" />
+                        </div>
+                    </th>*@
+                <th>序号</th>
+                <th>经销商</th>
+                <th>消费时间</th>
+                @*<th>预约编号</th>*@
+                <th>电话</th>
+                <th>证件号</th>
+                <th>车架号</th>
+                <th>消费类型</th>
+                <!--<th>配件费</th>
+                <th>材料费</th>
+                <th>工时费</th>
+                <th>购车费</th>-->
+                <th>客户自付费用</th>
+                <th>积分抵扣</th>
+                <th>支付费用</th>
+                <th>消耗积分</th>
+                <th>产生积分</th>
+                <th>工单/发票</th>
+                @*<th>审查状态</th>*@
+                <th>积分发放状态</th>
+                <th>备注</th>
+                <th><div style="width:100px;">创建时间</div></th>
+                <th>创建人</th>
+                <th>会员等级</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0, j = 0; i < list.Items.Count; i++)
+            {
+                var entity = list.Items[i];
+                <tr id="tr-@entity.Id">
+                    @*<td>
+                            @if (((EPointApproveStatus)entity.ApproveStatus) != EPointApproveStatus.Approved)
+                            {
+                                <input type="checkbox" id="check-@entity.Id" data="@entity.Id" name="check-@entity.Id" class="form-control" onclick="checkChange('@entity.Id')" />
+                            }
+                        </td>*@
+                    <td>@(i + 1)</td>
+                    <td><div style="width:150px;">@entity.DealerName</div></td>
+                    <td>@(entity.ConsumeDate == null ? "" : ((DateTime)entity.ConsumeDate).ToString("yyyy/MM/dd"))</td>
+                    <td>@entity.Phone</td>
+                    <td>@entity.IdentityNumber</td>
+                    <td>@entity.VIN</td>
+                    <td>@(((EConsumeType)entity.ConsumeType).DisplayName())</td>
+                    <!--<td>@entity.PartCost</td>
+                    <td>@entity.MaterialCost</td>
+                    <td>@entity.LaborCost</td>-->
+                    <td>@((entity.PartCost == null ? 0 : entity.PartCost) + (entity.MaterialCost == null ? 0 : entity.MaterialCost) + (entity.LaborCost == null ? 0 : entity.LaborCost) + (entity.PurchaseCost == null ? 0 : entity.PurchaseCost))</td>
+                    <td>@entity.PointCost</td>
+                    <td>@entity.TotalCost</td>
+                    <td>@entity.ConsumePoints</td>
+                    <td>@entity.RewardPoints</td>
+                    <td>
+                        @if (string.IsNullOrEmpty(entity.PaperOrder))
+                        {
+                            <div class="imgDiv form-group col-md-3" imgindex="@i">
+                                <input type="file" name="fileImage_@i" id="fileImage_@i" style="display: none;" item-id="@entity.Id" />
+                            </div>
+                        }
+                        else
+                        {
+                            <a href="@entity.PaperOrder" target="_blank" id="link-@i">
+                                查看
+                            </a>
+                            <input type="file" style="display:none" />
+                        }
+
+                    </td>
+
+                    @*<td id="td-@entity.Id">
+                        @if (((EPointApproveStatus)entity.ApproveStatus) == EPointApproveStatus.NoBegin)
+                        {
+                            <span class="text-info">@(((EPointApproveStatus)entity.ApproveStatus).DisplayName())</span>
+                        }
+                        else if (((EPointApproveStatus)entity.ApproveStatus) == EPointApproveStatus.Approved)
+                        {
+                            <span class="text-success">@(((EPointApproveStatus)entity.ApproveStatus).DisplayName())</span>
+                        }
+
+                        else if (((EPointApproveStatus)entity.ApproveStatus) == EPointApproveStatus.NotApproved)
+                        {
+                            <span class="text-danger">@(((EPointApproveStatus)entity.ApproveStatus).DisplayName())</span>
+                        }
+                    </td>*@
+
+                    <td id="td-point-@entity.Id">@(((EPointStatus)entity.PointStatus).DisplayName())</td>
+                    <td>@entity.Comment</td>
+                    <td><div style="width:130px;">@entity.CreateTime.ToString("yyyy-MM-dd HH:mm")</div></td>
+                    <td>@entity.CreateName</td>
+                    <td>@(entity.MLevel == 10 ? "普卡" : entity.MLevel == 11 ? "银卡" : entity.MLevel == 12 ? "金卡" : "注册用户")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <div style="float:left">总共:@list.TotalItems</div>
+    <div style="float: right; margin-right: 10px; margin-top: 5px; line-height: 25px;" class="ngPagerControl">
+        <button type="button" onclick=" pageToFirst() " class="ngPagerButton" title="First Page">
+            <div class="ngPagerFirstTriangle">
+                <div class="ngPagerFirstBar"></div>
+            </div>
+        </button>
+        <button type="button" onclick=" pageBackward() " class="ngPagerButton" title="Previous Page">
+            <div class="ngPagerFirstTriangle ngPagerPrevTriangle"></div>
+        </button>
+        <input id="incurrpage" type="number" style="width: 50px; height: 24px; margin-top: 1px; padding: 0 4px;" value="@list.CurrentPage" onchange=" inputCurrentPage() ">
+        <span class="ngGridMaxPagesNumber">/@list.TotalPages</span>
+        <button type="button" onclick=" pageForward() " class="ngPagerButton" title="Next Page">
+            <div class="ngPagerLastTriangle ngPagerNextTriangle"></div>
+        </button>
+        <button type="button" onclick=" pageToLast() " class="ngPagerButton" title="Last Page">
+            <div class="ngPagerLastTriangle">
+                <div class="ngPagerLastBar"></div>
+            </div>
+        </button>
+    </div>
+</div>
+<script type="text/javascript">
+    function pageToFirst() {
+        $("#page").val("1");
+        $("#QueryOrderForm").submit();
+    }
+
+    function pageBackward() {
+        @{
+            long pageIndexBackward = list.CurrentPage - 1;
+            if (pageIndexBackward < 1) { pageIndexBackward = 1; }
+         }
+        $("#page").val("@pageIndexBackward");
+        $("#QueryOrderForm").submit();
+    }
+
+    function pageForward() {
+        @{
+            long pageIndexForward = list.CurrentPage + 1;
+            if (pageIndexForward > list.TotalPages) { pageIndexForward = list.TotalPages; }
+         }
+        $("#page").val("@pageIndexForward");
+        $("#QueryOrderForm").submit();
+    }
+
+    function pageToLast() {
+        $("#page").val("@list.TotalPages");
+        $("#QueryOrderForm").submit();
+    }
+
+    function inputCurrentPage() {
+
+        var pageIndex = $("#incurrpage").val() <= 0 ? 1 : $("#incurrpage").val();
+        $("#page").val(pageIndex);
+        $("#QueryOrderForm").submit();
+    }
+
+    $(
+            $(":file").each(function (index, element) {
+                $("#fileImage_" + index).uploadify({
+                    'buttonImg': "/Content/Image/upload.png",
+                    'buttonText': '上传',
+                    'fileTypeDesc': 'Image Files',
+                    'fileTypeExts': '*.jpg;*.jpge;*.gif;*.png;*.bmp',
+                    'swf': '@Url.Content("~/Scripts/Uploadify/uploadify.swf")',
+                    'uploader': "/ImageUpload/UploadPaperOrder/?id=" + $("#fileImage_" + index).attr("item-id"),
+                    'auto': true,
+                    'multi': false,
+                    'wmode': 'transparent',
+                    'fileSizeLimit': '5242880',
+                    //                'removeCompleted' : false,
+                    // Your options here
+                    //上传到服务器，服务器返回相应信息到data里
+                    'onUploadSuccess': function (file, data, response) {
+                        if (file.size < 5242880) {
+                            //$("#Images_" + indexs + "__Image").val(data);
+                            //$("#img-thumbnail_" + index).attr("src", data);
+                            $("#link-" + index).attr("href", data);
+                        } else {
+                            alert("上传文件不能大于5M");
+                        }
+                    }
+                });
+            }))
+    ;
+
+    //update approve status
+    function updateApproveStatus(id, status) {
+        $.ajax({
+            type: "POST",
+            url: "/Consume/UpdateApproveStatus",
+            data: { id: id, status: status }
+        }).done(function (msg) {
+            if (msg.code == 200) {
+                $("#td-" + id).html(msg.status);
+            }
+            else { alert(msg.status); }
+        }).fail(function (msg) { alert(msg); });
+    }
+
+    //审核通过
+    function releasePoints(id) {
+        $.ajax({
+            type: "POST",
+            url: "/Consume/ReleasePoints",
+            data: { id: id }
+        }).done(function () {
+            $("#td-point-" + id).html("@EPointStatus.Done.DisplayName()");
+            $("#td-action-" + id).html("&nbsp");
+        }).fail(function (msg) { alert(msg); });
+    }
+
+    //高亮选中行
+    function checkChange(index) {
+        if ($("#check-" + index).is(":checked")) {
+            $("#tr-" + index).addClass("selected-row");
+        } else {
+            {
+                $("#tr-" + index).removeClass("selected-row");
+            }
+        }
+    }
+
+    //select all
+
+    function toggleAll() {
+        if ($("#check-status").val() == "false") {
+            $("input:checkbox").prop("checked", true);
+            $("#check-status").val("true");
+            $('table.table > tbody > tr').addClass('selected-row');
+        } else {
+            $("input:checkbox").prop("checked", false);
+            $("#check-status").val("false");
+            $('table.table > tbody > tr').removeClass('selected-row');
+        }
+    }
+
+    function createcodes() {
+        var toDoIds = "";
+        //run through each row
+        $('table.table > tbody > tr').each(function (i, row) {
+
+            // reference all the stuff you need first
+            var $row = $(row),
+                $checkedBoxes = $row.find('input:checked');
+
+            $checkedBoxes.each(function (j, checkbox) {
+                // assuming you layout the elements this way,
+                // we'll take advantage of .next()
+                toDoIds += $(checkbox).attr("data") + ",";
+            }
+                );
+
+        });
+        return toDoIds;
+    }
+
+    //batch update status
+    function batchUpdate(status) {
+        var toDoIds = createcodes();
+        if (!toDoIds) {
+            alert("请选择要审核的记录!");
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "/Consume/BatchUpdateApproveStats",
+            data: { ids: toDoIds, status: status }
+        }).done(function (data) {
+            if (data > 0) {
+                alert("审核成功");
+                $("#QueryOrderForm").submit();
+            }
+            else alert("审核失败");
+        }).fail(function (error) { alert(error); });
+    }
+    $(function () {
+        $('.datepicker').datepicker();
+    });
+
+
+</script>

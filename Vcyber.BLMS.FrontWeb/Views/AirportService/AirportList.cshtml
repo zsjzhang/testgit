@@ -1,0 +1,178 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Airport>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+                top.location.hostname;
+                if (top.location.hostname != window.location.hostname) {
+                top.location.href =window.location.href;
+            }
+            }
+                catch(e){
+                top.location.href = window.location.href;
+            }
+    </script>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="user-scalable=no, width=device-width,initial-scale=1.0, maximum-scale=1.0" />
+    <title>机场服务</title>
+    @*<link href="~/css/base/common.css" rel="stylesheet" />
+        <link href="~/css/base/airportservice.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+    <link href="~/css/AirportService/index.css" rel="stylesheet" />
+    <link href="~/css/AirportService/alert.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/controller/Main.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="~/Scripts/controller/AirportServiceController.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="wrapper2">
+        <div id="airport_list" class="list">
+            @if (Model != null && Model.Any())
+            {
+                var index = 1;
+                foreach (var item in Model)
+                {
+                    <p>
+                        <label for="">@index</label>
+                        <span data-province="@item.Province" data-city="@item.City" onclick="AirportCtr.airportroominfo(this);">@item.AirportName</span>
+                    </p>
+                    index++;
+                }
+            }
+        </div>
+
+        <div class="content4">
+            <a href="/AirportService/AirportActivity?source=@ViewBag.source&oid=@ViewBag.oid" id="airport_hdjs_udpate" style="margin-left: 5%;"><img src="/img/airportservice/yaoyiyao.png" /></a>
+            <a href="/AirportService/TestDriveInfo?source=@ViewBag.source&oid=@ViewBag.oid" id="airport_hdgz_udpate" style="margin-right: 5%;float: right;"><img src="/img/airportservice/ddsj.png" style="float: right;" /></a>
+        </div>
+    </div>
+
+
+
+    <!-- 横屏出现提示 -->
+    <div class="turn"></div>
+    <div class="fxlayer"></div>
+
+    <!--  机场弹出框     -->    
+    <div id="divRirportRoomInfo" class="modal fade alert_box houji"  role="dialog" tabindex="-1" aria-hidden="true"
+         data-backdrop="false" style="top:15vh; height:70vh;">
+        <span style="height: 10%; padding: 0; margin: 0; overflow: hidden; width: 100%;"><img src="/Img/AirportService/close.png" class="btn-close"></span>
+        <div class="airport-dialog" style="height: 90%; overflow-y: scroll;">
+            <p id="divDialogTitle" class="airport-dialog-title" style="margin-top:20px;">标题文字</p>
+            <div id="divAirportRoomInfoConent" class="airport-dialog-scroll-content">
+                休息室信息不存在
+            </div>
+        </div>
+    </div>
+    <!--  活动介绍      -->    
+    <div class="alert_box play_rule" id="airport_introduct">
+        <span><img src="/Img/AirportService/close.png" class="btn-close"></span>
+        <h2><img src="/Img/AirportService/paly_show.png" /></h2>
+
+        <h3>即日起，在线预约并到店试驾，发送“试驾图片”及”您的有效手机号码“到北京现代bluemembers微信即可获得2次免费候机服务。<br />另外，活动期间成功购买第九代索纳塔或全新胜途的车主，激活bluemembers银卡会员即可获得4次免费候机服务及400元等值积分。</h3>
+    </div>
+    <!--  活动规则1      -->    
+    <div id="airport_rule" class="alert_box play_rule p_bot" style="display:none; ">
+        <span><img src="/Img/AirportService/close.png" class="btn-close"></span>
+        <h2><img src="/Img/AirportService/paly_rule.png" /></h2>
+        <div class="rule_txt">
+            <p>
+                <b>1)</b>
+                <span>活动期间，每位用户每天均有一次参与摇一摇赢大奖的机会。</span>
+            </p>
+            <div style="clear: both;"></div>
+            <p>
+                <b>2)</b>
+                <span>中奖并选择中意奖品后，填写准确个人信息以便我们为您寄送礼品或发送服务码。</span>
+            </p>
+            <div style="clear: both;"></div>
+            <p>
+                <b>3)</b>
+                <span>本活动奖品分为实物奖品和虚拟奖品；实物奖品在活动结束后统一安排物流，虚拟奖品在抽中后以短信形式进行发送候机服务码。</span>
+            </p>
+            <div style="clear: both;"></div>
+            <p>
+                <b>4)</b>
+                <span>您在本次活动中获取的候机服务码在2016年3月31日前有效，请及时使用。</span>
+            </p>
+        </div>
+        <h3>温馨提示：尊享候机码为9位数字服务码，如若抽中会以短信形式发送。乘机出行时到达指定机场休息室出示该服务码短信即可使用。</h3>
+
+
+
+    </div>
+    <script>
+
+
+        (function (global) {
+            var root = this;
+            root.addEventBind = function (eventType, eventDelegate, el) {
+                if (window.addEventListener) {
+                    el.addEventListener(eventType, eventDelegate, false);
+                } else if (window.detachEvent) {
+                    el.attachEvent("on" + eventType, eventDelegate);
+                }
+                return this;
+            }
+            root.delEventBind = function (eventType, eventDelegate, el) {
+                if (window.addEventListener) {
+                    el.removeEventListener(eventType, eventDelegate);
+                } else if (window.attachEvent) {
+                    el.detachEvent(eventType, eventDelegate);
+                }
+                return this;
+            }
+            global.root = root;
+        })(typeof window == "undefined" ? this : window);
+
+
+
+        function hdjsClick(e) {
+            AirportCtr.togglerShow("#airport_introduct");
+            //$("#airport_rule").hide();
+            //$("#airport_introduct").show();
+        }
+        function hdgzClick() {
+            AirportCtr.togglerShow("#airport_rule");
+            //$("#airport_introduct").hide();
+            //$("#airport_rule").show();
+        }
+
+        var hdjs = document.getElementById("airport_hdjs");
+        var hdgz = document.getElementById("airport_hdgz");
+        //root.addEventBind("click", hdjsClick, hdjs).addEventBind("click", hdgzClick, hdgz);
+
+        $(".btn-close").click(function () {
+            $(this).parent().parent().hide();
+        });
+    </script>
+</body>
+</html>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+
+

@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "会员安全信息";
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<h2>会员安全信息</h2>
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-9">
+
+        <!--安全等级-->
+        <section id="f1">
+            <h4 class="lead">会员信息</h4>
+            <hr />
+
+            <label class="col-md-12 control-label">目前您的账户安全等级:</label>
+        </section>
+
+        <!--保护方式-->
+        <section id="f2">
+
+            <hr />
+
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <p class="col-md-2 text-success">保护中</p>
+                    <p class="col-md-2 text-info">绑定手机</p>
+                    <p class="col-md-6">您绑定的手机：{{userInfo.PhoneNumber}}</p>
+                    <a class="col-md-2">修改</a>
+                </div>
+
+                <hr />
+
+                <div class="form-group">
+                    <p class="col-md-2 text-success">保护中</p>
+                    <p class="col-md-2 text-info">登录密码</p>
+                    <div class="col-md-6">
+                        <p>请定期更换登录密码</p>
+                        <p>上次登录时间：{{userInfo.PasswordChangeLastTime}}</p>
+                    </div>
+                    <a class="col-md-2">修改</a>
+                </div>
+
+                <hr />
+
+                <div class="form-group">
+                    <p class="col-md-2 text-success">保护中</p>
+                    <p class="col-md-2 text-info">支付密码</p>
+                    <p class="col-md-6">付款或账户余额提现时输入，以保护账户资金安全</p>
+                    <a class="col-md-2">修改|找回支付密码</a>
+                </div>
+
+                <hr />
+
+                <div class="form-group">
+                    <p class="col-md-2 text-success">保护中</p>
+                    <p class="col-md-2 text-info">实名认证</p>
+                    <p class="col-md-6">您已通过实名认证</p>
+                    <a class="col-md-2">认证</a>
+                </div>
+
+                <hr />
+
+                <div class="form-group">
+                    <p class="col-md-2 text-success">保护中</p>
+                    <p class="col-md-2 text-info">绑定邮箱</p>
+                    <p class="col-md-6">绑定邮箱随时关注账户资金</p>
+                    <a class="col-md-2">绑定</a>
+                </div>
+
+                <hr />
+
+                <div class="form-group">
+                    <p class="col-md-2 text-success">保护中</p>
+                    <p class="col-md-2 text-info">密保问题</p>
+                    <p class="col-md-6">创建密码保护问题，方便您找回密码。</p>
+                    <a class="col-md-2">创建</a>
+                </div>
+            </form>
+
+        </section>
+    </div>
+</div>

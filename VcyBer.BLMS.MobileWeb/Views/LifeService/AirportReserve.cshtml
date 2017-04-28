@@ -1,0 +1,120 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "机场服务预约";
+}
+@Html.AntiForgeryToken()
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+
+    <script>
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    </script>
+</head>
+<link rel="stylesheet" href="~/Content/css/style.css?date=@DateTime.Now.Ticks" />
+<link href="~/Content/css/alert.css" rel="stylesheet" />
+<script src="~/Scripts/LifeService/airport.js"></script>
+<div class="wrapper" id="wrapper" style="background-color: #ffffff">
+    <form id="mainForm" method="post">
+        <input type="hidden" id="SonataLiveReserveUserId" value="@ViewBag.userId" />
+        <div class="logo airportService-logo" style="margin-bottom:30px;">
+            <img src="~/img/logo.png" />
+        </div>
+        <div class="airportService-row">
+            <div class="cell-row">
+                <strong><input type="checkbox" id="airAgree" name="airAgree" />本次服务需在预约后3个月内使用，逾期作废。</strong>
+            </div>
+            <div class="cell-row">
+                <strong>使用免费次数预约</strong>
+                <span class="serviceNum-add" id="addFreeNum"></span>
+                <input type="text" readonly="readonly" value="0" class="serviceNum-ipt" id="iptFreeNum" />
+                <span class="serviceNum-Reduction" id="lessFreeNum"></span>
+            </div>
+            <div class="cell-row">
+                <input type="hidden" id="hidFreeNum" value="@ViewBag.MakeNum" />
+                <strong>您可用免费次数为<em> @ViewBag.MakeNum </em>次。</strong>
+            </div>
+        </div>
+        <div class="airportService-row">
+            <div class="cell-row">
+                <strong>使用积分兑换预约</strong>
+                <span class="serviceNum-add" id="addIntegralNum"></span>
+                <input type="text" readonly="readonly" value="0" class="serviceNum-ipt" id="iptIntegralNum" />
+                <span class="serviceNum-Reduction" id="lessIntegralNum"></span>
+            </div>
+            <div class="cell-row">
+                <input type="hidden" id="hidIntegral" value="@ViewBag.IntegralNum" />
+                <strong>您有<span> @ViewBag.AccountInfo </span>积分，最多可以预约<em> @ViewBag.IntegralNum </em>次。</strong>
+            </div>
+        </div>
+        <div class="airportService-row">
+            <div class="cell-row">
+                <strong>消耗免费次数：<em id="useFreeNum">0</em>次</strong><br />
+                <strong>消耗积分：<span id="useIntegra">0</span></strong><br />
+                <strong>共预约候机服务<em id="useAirNum">0</em>次</strong>
+                <input type="hidden" id="hiduseAirNum" name="hiduseAirNum" />
+            </div>
+        </div>
+        <div class="airportService-row">
+            <dl class="form-row">
+                <dt>选择机场：</dt>
+                <dd>
+                    <select id="AirProvince" name="AirProvince" class="global-select">
+                        <option value="0">省</option>
+                        @foreach (var item in ViewBag.listProvince)
+                            {
+                                if (!string.IsNullOrWhiteSpace(item))
+                                {
+                            <option value="@item">@item</option>
+                                }
+                            }
+                    </select>
+                    <select id="AirPort" name="AirPort" class="global-select">
+                        <option value="">机场</option>
+                    </select>
+                </dd>
+            </dl>
+            <dl class="form-row">
+                <dd>
+                    <input type="hidden" id="TerminalName" name="TerminalName" />
+                    <select id="Terminal" name="Terminal" class="global-select global-select-other">
+                        <option value="">航站楼</option>
+                    </select>
+                </dd>
+            </dl>
+            <dl class="form-row">
+                <dt>手机：</dt>
+                <dd>
+                    <input type="text" class="global-ipt" id="phoneNumber" name="phoneNumber" />
+                </dd>
+            </dl>
+            <div id="errorContainer" class="form-row form-reg-tips"></div>
+            <div class="form-row">
+                <input type="hidden" id="freeNum" name="freeNum" value="@ViewBag.makeNum" />
+                <input type="button" value="预约服务" id="airSubmit" class="global-login-btn global-login-btn-bcolor" onclick="submitForm();" />
+            </div>
+        </div>
+
+    </form>
+</div>
+<div id="overlay" class="overlay">
+    <!--POP Info-->
+    <section class="modal" id="info">
+        <div class="container">
+            <div class="content">
+                <span class="modal-close close"></span>
+                <div class="modal-bd">
+                    <strong class="tit" id="ajaxmsg"></strong>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "服务详情";
+}
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Sonata" })
+    </div>
+    <div>
+        <div>
+            3年9次免费年检服务预约
+        </div>
+        <div>
+            为了确保我们能够在第一时间内与您取得联系，提供更快捷、更周到的服务，请您正确填写以下资料信息，带"*"号的是必须填写项，感谢您的支持！
+        </div>
+        <div>
+            <span>
+                <label>车型</label>
+                <select>
+                    <option>第九代索纳塔</option>
+                </select>
+            </span>
+            <span>
+                <label>车牌号码</label>
+                <input type="text" id="freeMotCarNumber" />
+            </span>
+        </div>
+        <div>
+            <button id="freeMotFormSave">确认提交</button>
+        </div>
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

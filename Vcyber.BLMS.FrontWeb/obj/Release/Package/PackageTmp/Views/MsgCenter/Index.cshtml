@@ -1,0 +1,475 @@
+﻿@using Vcyber.BLMS.Entity
+@using Webdiyer.WebControls.Mvc
+@model Vcyber.BLMS.FrontWeb.MsgCenterViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "消息中心";
+}
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "MyCenter" })
+    </div>
+    <style type="text/css">
+        .n_top_cont_new {
+            width: 100%;
+            height: 56px;
+            margin-bottom: 20px;
+        }
+
+        .n_bottom_cont_new {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .n_bottom_cont_left, .n_bottom_cont_right {
+            min-height: 720px;
+            height: auto !important;
+        }
+
+        .n_bottom_cont_left {
+            width: 288px;
+            float: left;
+            background-color: #eeeeee;
+            margin-bottom: -2000px;
+            padding-bottom: 2000px;
+        }
+
+        .messages_column {
+            width: 288px;
+            height: 64px;
+            border-bottom: 4px solid #ffffff;
+            background-color: #eeeeee;
+            cursor: pointer;
+        }
+
+        .messages_column_last {
+            border-bottom: none;
+        }
+
+        .messages_active i {
+            display: block;
+            position: absolute;
+            width: 4px;
+            height: 64px;
+            background-color: #f49600;
+        }
+
+        .messages_active {
+            background-color: #d7d7d7;
+        }
+
+        .mc_zi {
+            width: 100%;
+            height: 36px;
+            margin-left: 58px;
+            padding-top: 8px;
+            font-size: 16px;
+        }
+
+        .mc_radius {
+            width: 44px;
+            height: 44px;
+            float: left;
+            position: relative;
+            left: 0;
+            top: 0;
+            background: url(/img/bgMesBtn.png) no-repeat center center;
+        }
+
+        .mc_tit {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .mc_tit_0 {
+            background: url(/img/messages_0.png) no-repeat center center;
+        }
+
+        .mc_tit_1 {
+            background: url(/img/messages_1.png) no-repeat center center;
+        }
+
+        .mc_tit_2 {
+            background: url(/img/messages_2.png) no-repeat center center;
+        }
+
+        .mc_tit_3 {
+            background: url(/img/messages_3.png) no-repeat center center;
+        }
+
+        .mc_tit_4 {
+            background: url(/img/messages_4.png) no-repeat center center;
+        }
+
+        .mc_tit_5 {
+            background: url(/img/messages_5.png) no-repeat center center;
+        }
+
+        .mc_cont {
+            width: 200px;
+            margin-left: 22px;
+            margin-top: 6px;
+            float: left;
+            position: relative;
+        }
+
+            .mc_cont h2 {
+                _width: 64px;
+                font-size: 16px;
+                color:#3d3f43;
+                padding-bottom: 2px;
+                position: absolute;
+            }
+
+                .mc_cont h2:hover {
+                    border-bottom: 2px solid #9e9fa1;
+                }
+
+            .mc_cont p {
+                font-size: 14px;
+                padding-top: 24px;
+                color: #989898;
+            }
+            .mc_cont p a{
+                color: #989898;
+            }
+
+        .n_bottom_cont_right {
+            width: 698px;
+            float: left;
+            margin-left: 14px;
+            margin-bottom: -2000px;
+            padding-bottom: 2000px;
+        }
+
+        .cont_right_text {
+            height: 42px;
+        }
+
+        .messages_select {
+            width: 218px;
+            height: 28px;
+            line-height: 26px;
+            margin-right: 22px;
+        }
+
+        .messages_time {
+            width: 214px;
+            height: 22px;
+            line-height: 26px;
+        }
+
+        .messages_search {
+            width: 212px;
+            height: 22px;
+            line-height: 26px;
+        }
+
+        .messages_text {
+            position: relative;
+        }
+
+        .messages_text_1 {
+            margin-right: 20px;
+        }
+
+        .messages_text img {
+            position: absolute;
+            top: 4px;
+            right: 6px;
+        }
+
+        .cont_right_system {
+            width: 100%;
+        }
+
+        .gy_title_new {
+            height: 38px;
+            line-height: 38px;
+            margin-bottom: 14px;
+        }
+
+        .gy_zi_new {
+            height: 16px;
+            margin-left: 8px;
+        }
+
+            .gy_zi_new h1 {
+                line-height: 16px;
+                font-size: 16px;
+            }
+
+        .system_messages {
+            font-size: 14px;
+            width: 100%;
+            background-color: #eeeeee;
+            padding-bottom: 14px;
+            margin-bottom: 14px;
+        }
+
+            .system_messages div {
+                width: 640px;
+                margin-left: 30px;
+                padding-top: 18px;
+                padding-bottom: 12px;
+            }
+
+                .system_messages div span {
+                    float: right;
+                }
+
+                    .system_messages div span a {
+                        color: #26669e;
+                    }
+
+                        .system_messages div span a:hover {
+                            text-decoration: underline;
+                        }
+
+        .system_messages_time {
+            padding-bottom: 12px;
+            border-bottom: 1px solid #d7d7d7;
+            color:#565656;
+        }
+
+        .system_messages_context {
+            padding-top: 12px;
+            padding-bottom: 6px;
+            line-height: 22px;
+            color:#565656;
+        }
+
+        .system_page_num {
+            width: 418px;
+            height: 26px;
+            margin: 10px auto;
+        }
+
+            .system_page_num li {
+                width: 24px;
+                height: 24px;
+                border: 1px solid #c9c9c9;
+                border-radius: 2px;
+                float: left;
+                text-align: center;
+                line-height: 24px;
+                font-size: 12px;
+                margin-right: 4px;
+                cursor: pointer;
+            }
+
+                .system_page_num li:hover {
+                    background-color: #e3ebf7;
+                }
+
+            .system_page_num .page_none {
+                width: 24px;
+                height: 24px;
+                line-height: 24px;
+                border: none;
+                padding: 0px;
+                font-weight: 400;
+                font-size: 16px;
+            }
+
+            .system_page_num .page_first, .system_page_num .page_last {
+                width: 38px;
+            }
+
+            .system_page_num .system_page_active {
+                background-color: #075192;
+                border-color: #075192;
+                color: #ffffff;
+            }
+
+        .cont_right_integral {
+            width: 100%;
+        }
+
+            .cont_right_integral table {
+                border-collapse: collapse;
+                border: none;
+                font-size: 14px;
+                width: 697px;
+            }
+
+                .cont_right_integral table th {
+                    border: 1px solid #bdc7d8;
+                    line-height: 42px;
+                    height: 42px;
+                    font-weight: 600;
+                    text-align: left;
+                    padding-left: 18px;
+                }
+
+                .cont_right_integral table td {
+                    border: 1px solid #bdc7d8;
+                    line-height: 24px;
+                    padding: 8px 18px;
+                    color: #666666;
+                    vertical-align: middle;
+                }
+
+        .clearfix_bottom_cont {
+            clear: "both";
+            content: "";
+            display: block;
+        }
+
+        .fl {
+            float: left;
+        }
+
+
+        .noMesg {
+            width: 696px;
+            height: 228px;
+            border: 1px solid #bdc7d8;
+            margin-top: -14px;
+            text-align: center;
+            line-height: 228px;
+            color: #494949;
+            font-size: 14px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(function () {
+            $('.messages_column').click(function () {
+
+                window.location.href = "/MsgCenter/Index?msgType=" + ($(this).index() + 1);
+
+            })
+        });
+
+    </script>
+    <div class="n_all_cont" style="height:1200px;">
+
+        <div class="n_top_cont_new">
+            <div class="gy_cont" style="margin:0 0;">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>我的消息</h1>
+                        <span>Messages</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="n_bottom_cont_new clearfix_bottom_cont">
+            <div class="n_bottom_cont_left">
+                <ul>
+                    <li class="messages_column @Model.GetMsgTypeCss(MessageType.System)">
+
+                        <i></i>
+                        <div class="mc_zi clearfix_bottom_cont">
+                            <div class="mc_radius">
+                                <div class="mc_tit_0 mc_tit">
+
+                                </div>
+                            </div>
+                            <div class="mc_cont">
+                                <h2><a href="/MsgCenter/Index?msgType=1">系统消息</a></h2>
+                                <p><a href="javascript:;">@Model.GetMsgTypeTip(MessageType.System)未读消息</a></p>
+                            </div>
+                        </div>
+
+                    </li>
+                    <li class="messages_column @Model.GetMsgTypeCss(MessageType.Maintain)">
+
+                        <i></i>
+                        <div class="mc_zi clearfix_bottom_cont">
+                            <div class="mc_radius">
+                                <div class="mc_tit_1 mc_tit">
+                                </div>
+                            </div>
+                            <div class="mc_cont">
+                                <h2><a href="/MsgCenter/Index?msgType=2">保养提醒</a></h2>
+                                <p><a href="javascript:;">@Model.GetMsgTypeTip(MessageType.Maintain)未读消息</a></p>
+                            </div>
+                        </div>
+
+                    </li>
+                    <li class="messages_column @Model.GetMsgTypeCss(MessageType.IntegralConsum)">
+                        <i></i>
+                        <div class="mc_zi clearfix_bottom_cont">
+                            <div class="mc_radius">
+                                <div class="mc_tit_2 mc_tit">
+
+                                </div>
+                            </div>
+                            <div class="mc_cont">
+                                <h2><a href="/MsgCenter/Index?msgType=3">积分变动提醒</a></h2>
+                                <p><a href="javascript:;">@Model.GetMsgTypeTip(MessageType.IntegralConsum)未读消息</a></p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="messages_column @Model.GetMsgTypeCss(MessageType.CardMessage)">
+                        <i></i>
+                        <div class="mc_zi clearfix_bottom_cont">
+                            <div class="mc_radius">
+                                <div class="mc_tit_3 mc_tit">
+
+                                </div>
+                            </div>
+                            <div class="mc_cont">
+                                <h2><a href="/MsgCenter/Index?msgType=4">卡券消息</a></h2>
+                                <p><a href="javascript:;">@Model.GetMsgTypeTip(MessageType.CardMessage)未读消息</a></p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="messages_column messages_column_last @Model.GetMsgTypeCss(MessageType.ServiceAcitive)">
+                        <i></i>
+                        <div class="mc_zi clearfix_bottom_cont">
+                            <div class="mc_radius">
+                                <div class="mc_tit_4 mc_tit">
+
+                                </div>
+                            </div>
+                            <div class="mc_cont">
+                                <h2><a href="/MsgCenter/Index?msgType=5">服务和活动</a></h2>
+                                <p><a href="javascript:;">@Model.GetMsgTypeTip(MessageType.ServiceAcitive)未读消息</a></p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="n_bottom_cont_right ">
+                <div class="cont_right_system cont_right_integral">
+                    <div class="gy_cont" style="margin:0 0;">
+                        <div class="gy_title gy_title_new">
+                            <div class="gy_zi gy_zi_new">
+                                <h1>@Model.MsgTitle</h1>
+                            </div>
+                        </div>
+                        @foreach (var item in Model.PageList)
+                        {
+                            <div class="system_messages">
+                                <div>
+                                    <p class="system_messages_time">@item.CreateTime</p>
+                                    <p class="system_messages_context">@item.MsgContent</p>
+                                    @if(item.MsgContent.Contains("修改密码"))
+                                    {
+                                    <span><a href="/Account/ResetPasswd">链接&gt;</a></span>
+                                    }
+                                </div>
+                            </div>
+                        }
+                        @if (Model.PageList == null || Model.PageList.Count == 0)
+                        {
+                            <p class="noMesg">暂无消息</p>
+                        }
+                        <div class="system_page_num">
+                            @Html.Pager(Model.PageList, new PagerOptions { PageIndexParameterName = "pageindex", CurrentPagerItemTemplate = "<span class=\"current\">{0}</span>", DisabledPagerItemTemplate = "<span class=\"disabled\">{0}</span>", Id = "badoopager" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer" style="float:left;">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

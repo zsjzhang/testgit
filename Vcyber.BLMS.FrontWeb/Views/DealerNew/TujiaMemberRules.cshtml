@@ -1,0 +1,391 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "特约商户-途家会员权益";
+}
+<style>
+    .tjTitH2 {
+        overflow: hidden;
+        margin-bottom: 24px;
+    }
+
+        .tjTitH2 img {
+            float: left;
+            margin-top: 0;
+        }
+
+        .tjTitH2 span {
+            float: left;
+            margin-top: 5px;
+        }
+
+    .tjTitle {
+        color: #e85603;
+        font-size: 14px;
+        font-weight: bold;
+        display: block;
+        height: 14px;
+        line-height: 14px;
+        margin-left: 14px;
+        padding-left: 14px;
+        border-left: 1px solid #a0a0a0;
+    }
+
+    p.tjP {
+        text-indent: 0;
+        margin-bottom: 16px;
+        margin-top: 16px;
+    }
+
+    .tjQyBox p.tjP1 {
+        padding-left: 30px;
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    .tjP b {
+        font-size: 16px;
+        color: #e85603;
+        font-weight: bold;
+    }
+
+    .tjP span {
+        font-size: 14px;
+        color: #333;
+    }
+
+    .tjP i {
+        font-size: 14px;
+        color: #e85603;
+        font-weight: bold;
+        text-indent: 0;
+        float: left;
+        line-height: 26px;
+        font-style: normal;
+    }
+
+    .tjP em {
+        font-size: 14px;
+        color: #333;
+        text-indent: 0;
+        float: left;
+        width: 520px;
+        margin-left: 5px;
+        line-height: 24px;
+        font-style: normal;
+    }
+
+    div.tjP img {
+        margin-bottom: 50px;
+        margin-top: 15px;
+    }
+
+    .tjP ul {
+        width: 100%;
+        line-height: 20px;
+        overflow: hidden;
+        margin-top: 20px;
+    }
+
+        .tjP ul li {
+            font-size: 14px;
+            color: #666;
+            float: left;
+            width: 101px;
+            text-align: center;
+        }
+
+    .tjQyBox {
+        width: 611px;
+        padding: 34px 14px 34px 14px;
+        background: #f4f4f4;
+    }
+
+        .tjQyBox h2 {
+            margin-bottom: 34px;
+            color: #e85603;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .tjQyBox p {
+            padding-left: 75px;
+            overflow: hidden;
+            line-height: 22px;
+            margin-bottom: 20px;
+        }
+
+            .tjQyBox p b, .tjQyBox p span {
+                display: block;
+            }
+
+            .tjQyBox p b {
+                font-size: 16px;
+                color: #e85603;
+                font-weight: bold;
+                text-indent: 0;
+            }
+
+            .tjQyBox p span {
+                font-size: 14px;
+                color: #333;
+                text-indent: 0;
+            }
+
+    .tjQyP1 {
+        background: url(/Img/DealerNew/tjQyP1.png) no-repeat;
+    }
+
+    .tjQyP2 {
+        background: url(/Img/DealerNew/tjQyP2.png) no-repeat;
+    }
+
+    .tjQyP3 {
+        background: url(/Img/DealerNew/tjQyP3.png) no-repeat;
+    }
+
+    .tjQyP4 {
+        background: url(/Img/DealerNew/tjQyP4.png) no-repeat;
+    }
+
+    .tjBk10 {
+        width: 540px;
+        margin: 0 auto;
+        height: 2px;
+        border-bottom: 1px dashed #b9b9b9;
+        margin-bottom: 20px;
+    }
+
+    a.btnTuJia {
+        display: block;
+        color: #fff;
+        width: 200px;
+        height: 36px;
+        line-height: 36px;
+        margin: 30px auto 0 auto;
+        background: #075090;
+        text-align: center;
+    }
+
+        a.btnTuJia:hover {
+            background: #0b63b7;
+        }
+</style>
+
+<link href="~/css/DealerNew/reset.css" rel="stylesheet" />
+<link href="~/css/DealerNew/brand.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnGotoLogin").click(function () {
+            var returnUrl = encodeURIComponent("/DealerNew/TujiaMemberRules");
+            location.href = "/Account/LogonPage?returnUrl=" + returnUrl;
+            return false;
+        });
+        $("#btnGotoRegister").click(function () {
+            var returnUrl = encodeURIComponent("/DealerNew/TujiaMemberRules");
+            location.href = "/Account/AccountRegister?returnUrl=" + returnUrl;
+            return false;
+        });
+
+
+    });
+</script>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "BlueVIP" })
+    </div>
+    <div class="n_all_cont">
+        @*左侧部分内容*@
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+
+                @(this.User.Identity.IsAuthenticated ? this.Html.Action("HomeLogonSuccess", "Account") : this.Html.Action("HomeLogon", "Account"))
+
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+        </div>
+        @*右侧部分内容*@
+        <!--160817修改-->
+       
+        <div class="n_right_cont">
+            <p class="select_menu"><a href="https://www.bluemembers.com.cn/BlueVIP/Index">蓝缤权益</a> &gt; <a href="https://www.bluemembers.com.cn/LifeService/Index">生活服务  </a> &gt;途家会员权益</p>
+            <div class="gy_cont">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>途家会员权益</h1>
+                        <span>TuJia Member Rights</span>
+                    </div>
+                </div>
+
+                <div class="fwxq_box" style="padding:28px;">
+                    <h2 class="tjTitH2">
+                        <img src="/Img/DealerNew/logoTujia.jpg" />
+                        <span class="tjTitle">途家会员权益</span>
+                    </h2>
+
+                    <p>美好旅途，蓝缤缔造。bluemembers联合途家网为北京现代车主打造会员专享权益。家庭出游、朋友聚会、商务差旅全方位满足您的出行住宿需求。申请途家权益，享北京现代车主会员专属身份、注册好礼、订房8折优惠、积分多重翻倍等权益，让您旅途生活精彩便捷。</p>
+                    <p class="tjP">
+                        <b>【服务对象】</b>
+                        <span>bluemembers车主会员</span>
+                    </p>
+                    <div class="tjQyBox">
+
+                        <h2>途家会员专属权益</h2>
+
+                        <p class="tjQyP1">
+                            <b>注册好礼</b>
+                            <span>首次注册途家会员即送礼品卡，通过途家网页版注册成为会员，即送100元礼品卡；礼品卡订房时可直接抵减房费。</span>
+                        </p>
+
+                        <p class="tjQyP2">
+                            <b>专属身份</b>
+                            <span>北京现代车主会员专属昵称，彰显尊贵身份。钻石卡用户，还享折上折优惠。房费8折基础上再享9折，最低享房费7.2折。</span>
+                        </p>
+
+                        <p class="tjQyP3">
+                            <b>订房优惠</b>
+                            <span>bluemembers车主会员享受途家自营房8折优惠，全国17000+套自营房和500+套商户房型可享受优惠，后期增加的自营房也可享受优惠权益。</span>
+                        </p>
+
+                        <p class="tjQyP4">
+                            <b>积分翻倍</b>
+                            <span>bluemembers车主会员如果同时也是钻石卡会员，通过途家APP预约下单后，最高可返4.5倍积分，积分可抵现，100积分=1元，离店后发点评也会赢取积分。</span>
+                        </p>
+
+                        <div class="tjBk10"></div>
+
+                        <h2>注册绑定流程</h2>
+
+                        <div class="tjP">
+                            <b>【途家官网注册绑定】</b>
+                            <ul>
+                                <li>登录<br>bluemembers<br>网站</li>
+                                <li><br>点击领取<br>途家权益</li>
+                                <li><br>输入手机号<br>注册途家会员</li>
+                                <li><br>短信接收<br>账户密码</li>
+                                <li><br>登录途家网站<br>途家APP</li>
+                                <li><br>获取礼品卡</li>
+                            </ul>
+                            <img src="/Img/DealerNew/tjLiuChen.png" />
+                        </div>
+
+                        <div class="tjP">
+                            <b>【途家手机App注册绑定】</b>
+                            <ul>
+                                <li>打开途家<br>App</li>
+                                <li>注册/登录<br>途家账号</li>
+                                <li>进入<br>“我的途家”</li>
+                                <li>选择成为<br>大客户</li>
+                                <li>输入企业<br>ID112068</li>
+                                <li>完成<br>注册绑定</li>
+                            </ul>
+                            <img src="/Img/DealerNew/tjLiuChen.png" />
+                        </div>
+
+                        <p class="tjP tjP1">
+                            <i>*</i>
+                            <em>详细途家会员权益使用请以途家官方网站为准； </em>
+                        </p>
+
+                        <p class="tjP tjP1">
+                            <i>*</i>
+                            <em>车主会员注册成为途家会员后，途家会员账号级别、权益均以途家网站管理为准，bluemembers会员权益不受影响； </em>
+                        </p>
+
+                        <p class="tjP tjP1">
+                            <i>*</i>
+                            <em>若bluemembers会员为途家老会员，请致电400-800-1100（手机拨打）或咨询bluemembers在线客服，提供途家会员账号（手机号），人工处理完成权益领取；</em>
+                        </p>
+
+                        <p class="tjP tjP1">
+                            <i>*</i>
+                            <em>最终解释权归北京现代汽车有限公司所有，如有疑问请及时与bluemembers网站在线客服联系。</em>
+                        </p>
+
+
+                        <a href="javascript:;" id="btnGetTujiaSubmit" class="btnTuJia">领取途家会员权益</a>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--160817修改end-->  
+
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>
+<div id="divSubmitSuccess" class="alertbox" style="width: 500px; height: 120px; margin-left: -250px; display: none">
+    <div class="alertclose" onclick="$('#divSubmitSuccess').hide();">
+        &times;
+    </div>
+    <p id="alertMessage" style="height:80px;line-height:80px;font-size:16px;text-align:center;">
+        您已成功领取途家会员权益，即刻享受优质服务体验。
+    </p>
+    <div style="width:140px;margin:auto;float:none;">
+        <div class="btn" onclick="$('#divSubmitSuccess').hide();">确定</div>
+    </div>
+</div>
+
+<div id="divAlertLogin" class="alertbox" style="width: 500px; height: 120px; margin-left: -250px; display: none">
+    <div class="alertclose" onclick="$('#divAlertLogin').hide();">
+        &times;
+    </div>
+    <p style="height:80px;line-height:80px;font-size:16px;text-align:center;">
+        请登录/注册bluemembers车主会员账号，领取途家会员权益！
+    </p>
+    <div style="width:320px;margin:auto;float:none;">
+        <div class="btn" id="btnGotoLogin">立即登录</div>
+        <div class="btn" id="btnGotoRegister">注册</div>
+    </div>
+</div>
+
+<script>
+    $(function(){
+        getTujiaMemberRules();
+    });
+
+    function getTujiaMemberRules() {
+        $("#btnGetTujiaSubmit").click(function () {
+            $.ajax({
+                url: "/DealerNew/GetTujiaMemberRule",
+                data: {},
+                datatype: "json",
+                type: "post",
+                success: function (result) {
+                    //未登录
+                    if (result == null || result.Data == null || result.Data == 404) {
+                        $("#divAlertLogin").show("slow");
+                        return false;
+                    }
+                        //信息错误
+                    else if (!result.IsSuccess) {
+                        popWindownBlue(result.Message);
+                        return false;
+                    }
+                        //成功领取
+                    else {
+                        //$("#divSubmitSuccess").show("slow");
+                        window.location.href = "https://passport.tujia.com/PortalSite/Register?eid=112068";
+                        return false;
+                    }
+                },
+                error: function () { }
+            });
+        });
+    };
+</script>

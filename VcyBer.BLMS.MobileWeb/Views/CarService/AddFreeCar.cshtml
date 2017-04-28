@@ -1,0 +1,224 @@
+﻿@{
+    ViewBag.Title = "免费取送车服务";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<div class="wrapper" id="wrapper">
+    <div class="form-other-wrap">
+        <form id="mainForm" method="post">
+            <div class="form-other-box">
+                <div class="logo">
+                    <img src="~/img/service/logo.png" />
+                </div>
+                <dl class="form-row">
+                    <dt><font color="red">*</font>取车地点：</dt>
+                    <dd>
+                        <!--杰哥，把经纬度放到这里-->
+                        <!--取车地址经度-->
+                        <input type="hidden" name="TakeLong" id="TakeLong" />
+                        <!--取车地址纬度-->
+                        <input type="hidden" name="TakeLat" id="TakeLat" />
+                        <input type="text" name="TakeAddress" readonly="readonly" id="TakeAddress" placeholder="取车地点" class="global-ipt" />
+                        <input type="button" id="TakeSelect" value="选择地图" class="agency-mp-btn agencyMapBtn selectMap-other" />
+
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt><font color="red">*</font>送车地点：</dt>
+                    <dd>
+                        <!--杰哥，把经纬度放到这里-->
+                        <!--送车地址经度-->
+                        <input type="hidden" name="ReturnLong" id="ReturnLong" />
+                        <!--送车地址纬度-->
+                        <input type="hidden" name="ReturnLat" id="ReturnLat" />
+                        <input type="text" name="ReturnAddress" id="ReturnAddress" readonly="readonly" placeholder="送车地点" class="global-ipt" />
+                        <input type="button" id="ReturnSelect" value="选择地图" class="agency-mp-btn agencyMapBtn selectMap-other" />
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt><font color="red">*</font>经销商：</dt>
+                    <dd>
+                        <!--不可手动输入，杰哥，此处调用地图选择经销商后把经销商ID和经销商名称放到以下控件-->
+                        <input type="hidden" id="DealerProvince" name="DealerProvince" />
+                        <input type="hidden" id="DealerCity" name="DealerCity" />
+                        <input type="hidden" name="DealerName" id="DealerName" />
+                        <select name="DealerId" id="DealerId" class="global-select global-select-other">
+                            <option value="">附近经销商</option>
+                        </select>
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt><font color="red">*</font>车辆型号：</dt>
+                    <dd>
+                        <select name="CarSeries" class="global-select global-select-other">
+                            <option value="">选择车型</option>
+                            <option value="悦纳">悦纳</option>
+                            <option value="领动">领动</option>
+                            <option value="全新途胜">全新途胜</option>
+                            <option value="第九代索纳塔">第九代索纳塔</option>
+                            <option value="ix25">ix25</option>
+                            <option value="全新胜达">全新胜达</option>
+                            <option value="朗动">朗动</option>
+                            <option value="名图">名图</option>
+                            <option value="瑞纳">瑞纳</option>
+                            <option value="ix35">ix35</option>
+                            <option value="途胜">途胜</option>
+                            <option value="悦动">悦动</option>
+                            <option value="第八代索纳塔">第八代索纳塔</option>
+                            <option value="伊兰特">伊兰特</option>
+                            <option value="名驭">名驭</option>
+                            <option value="瑞奕">瑞奕</option>
+                        </select>
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt><font color="red">*</font>车牌号码：</dt>
+                    <dd>
+                        <input type="text" name="LicensePlate" placeholder="列如：京A888888" class="global-ipt" />
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt>车架号：</dt>
+                    <dd>
+
+                        <input type="text" id="VIN" name="VIN" value="" class="global-ipt" />
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt><font color="red">*</font>取车时间：</dt>
+                    <dd>
+                        <!--据说使用服务时间-->
+                        @*<input type="text" name="ScheduleDate" value="" class="global-ipt" onfocus="WdatePicker({ minDate: '%y-%M-{%d+1}', maxDate: '%y-%M-{%d+7}' })" />*@
+                        <input type="text" name="ScheduleDate" id="ScheduleDate" value="" class="global-ipt laydate-icon global-ipt-one" />
+                        <select id="ScheduleTime" name="ScheduleTime" class="global-select global-ipt-two">
+                            <option value="8" selected="selected">8:00</option>
+                            <option value="8.5">8:30</option>
+                            <option value="9">9:00</option>
+                            <option value="9.5">9:30</option>
+                            <option value="10">10:00</option>
+                            <option value="10.5">10:30</option>
+                            <option value="11">11:00</option>
+                            <option value="11.5">11:30</option>
+                            <option value="12">12:00</option>
+                            <option value="12.5">12:30</option>
+                            <option value="13">13:00</option>
+                            <option value="13.5">13:30</option>
+                            <option value="14">14:00</option>
+                            <option value="14.5">14:30</option>
+                            <option value="15">15:00</option>
+                            <option value="15.5">15:30</option>
+                            <option value="16">16:00</option>
+                            <option value="16.5">16:30</option>
+                            <option value="17">17:00</option>
+                        </select>
+                        <span style="font-size: 0.8em">如果取送车时间小于48小时请拨打400-800-1100电话进行预约</span>
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt><font color="red">*</font>送车时间：</dt>
+                    <dd>
+                        <input type="text" name="ReturnDate" id="ReturnDate" value="" class="global-ipt laydate-icon global-ipt-one" />
+                        <select id="ReturnTime" name="ReturnTime" class="global-select global-ipt-two">
+                            <option value="8" selected="selected">8:00</option>
+                            <option value="8.5">8:30</option>
+                            <option value="9">9:00</option>
+                            <option value="9.5">9:30</option>
+                            <option value="10">10:00</option>
+                            <option value="10.5">10:30</option>
+                            <option value="11">11:00</option>
+                            <option value="11.5">11:30</option>
+                            <option value="12">12:00</option>
+                            <option value="12.5">12:30</option>
+                            <option value="13">13:00</option>
+                            <option value="13.5">13:30</option>
+                            <option value="14">14:00</option>
+                            <option value="14.5">14:30</option>
+                            <option value="15">15:00</option>
+                            <option value="15.5">15:30</option>
+                            <option value="16">16:00</option>
+                            <option value="16.5">16:30</option>
+                            <option value="17">17:00</option>
+                        </select>
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt><font color="red">*</font>客户姓名：</dt>
+                    <dd>
+                        <input type="text" name="UserName" class="global-ipt" />
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt>性别：</dt>
+                    <dd>
+                        <select id="UserSex" name="UserSex" class="global-select global-select-other">
+                            <option value="">性别</option>
+                            <option value="1" selected="selected">男</option>
+                            <option value="0">女</option>
+                        </select>
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt><font color="red">*</font>手机号：</dt>
+                    <dd>
+                        <input type="tel" name="Phone" class="global-ipt" />
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt>服务需求：</dt>
+                    <dd>
+                        <textarea class="global-textarea" name="Comment" cols="9" rows="15"></textarea>
+                    </dd>
+                </dl>
+                <div id="errorContainer" class="form-row form-reg-tips"></div>
+                <div class="form-row">
+                    <input type="submit" value="预约" class="global-reg-btn">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="map-wrap" id="MapWrap">
+    </div>
+</div>
+<style>
+    .map-wrap {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background-color: none;
+        left: 0;
+        top: 0;
+        display: display;
+    }
+</style>
+
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.3&key=87418772c207aae3709a3a4028248cfc"></script>
+<script src="~/Scripts/CarService/addFreeCar.js"></script>
+<link href="~/Content/laydate/need/laydate.css" rel="stylesheet" />
+<link href="~/Content/laydate/skins/default/laydate.css" rel="stylesheet" />
+<script src="~/Content/laydate/laydate.js"></script>
+<script>
+    $(function () {
+        var start = {
+            elem: '#ScheduleDate',
+            min: laydate.now(+2), //-1代表昨天，-2代表前天，以此类推
+            max: laydate.now(+7), //+1代表明天，+2代表后天，以此类推
+            choose: function (datas) {
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+                end.start = datas; //将结束日的初始值设定为开始日
+            }
+        };
+        var end = {
+            elem: '#ReturnDate',
+            min: laydate.now(+2), //-1代表昨天，-2代表前天，以此类推
+            max: laydate.now(+7) //+1代表明天，+2代表后天，以此类推
+        };
+        laydate(start);
+        laydate(end);
+
+    });
+</script>
+
+
+
+
+

@@ -1,0 +1,202 @@
+﻿<script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+<style type="text/css">
+    .container panel panel-default {
+        background: rgba(255, 255, 255, 0.8) none repeat scroll 0 0 !important;
+        filter: Alpha(opacity=80);
+        background: #fff;
+    }
+
+    .panel-body form-horizontal {
+        background: rgba(255, 255, 255, 0.8) none repeat scroll 0 0 !important;
+        filter: Alpha(opacity=80);
+        background: #fff;
+    }
+
+    .form-group {
+        background: rgba(255, 255, 255, 0.8) none repeat scroll 0 0 !important;
+        filter: Alpha(opacity=80);
+        background: #fff;
+    }
+
+    #customerDiv {
+        width: 945px;
+        height: 200px;
+        background-color: red;
+        z-index: 21;
+        top: 55px;
+        left: 15px;
+        position: absolute;
+        background: rgba(255, 255, 255, 0.8) none repeat scroll 0 0 !important;
+        filter: Alpha(opacity=80);
+        background: #fff;
+        display:none;
+    }
+</style>
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+<div id="customerDiv">
+    <div class="container panel panel-default">
+        <div class="panel-body form-horizontal">
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red">*</b>VIN：</label>
+                <div class="col-md-4 text-left">
+                    <input type="text" id="VIN" class="input_text2 form-control" style="width:300px;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red">*</b>姓名：</label>
+                <div class="col-md-4 text-left">
+                    <input type="text" id="CustName" class="input_text2 form-control" style="width:300px;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red">*</b>手机号：</label>
+                <div class="col-md-4 text-left">
+                    <input type="text" id="CustMobile" class="input_text2 form-control" style="width:300px;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red">*</b>证件号：</label>
+                <div class="col-md-4 text-left">
+                    <input type="text" id="IdentityNumber" class="input_text2 form-control" style="width:300px;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color: red">*</b>性别：</label>
+                <div class="col-md-4 text-left">
+                    <input type="radio" name="Gender" value="男" checked="checked"/>男&nbsp;&nbsp;<input type="radio" name="Gender" value="女"/>女
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color: red">*</b>是否特殊出库车辆：</label>
+                <div class="col-md-4 text-left">
+                    <input type="radio" name="ts" value="false" checked="checked"/>否&nbsp;&nbsp;<input type="radio" name="ts" value="true"/>是
+                </div>
+            </div>
+            <div class="form-group a" style="display:none">
+                <label class="col-md-2 control-label"><b style="color: red">*</b>购车时间：</label>
+                <div class="col-md-4 text-left">
+                    <input class="input_text1" id="Buytime" name="Buytime" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',isShowWeek:true,isShowClear:true,readOnly:true})" type="text" value="" readonly="">
+                </div>
+            </div>
+            <div class="form-group a" style="display:none">
+                <label class="col-md-2 control-label"><b style="color:red">*</b>车型：</label>
+                <div class="col-md-4 text-left">
+                    <input type="text" id="CarCategory" name="CarCategory" class="input_text2 form-control" style="width: 300px;"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red">*</b>所属城市：</label>
+                <div class="col-md-4 text-left">
+                    <input type="text" id="City" class="input_text2 form-control" style="width:300px;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><b style="color:red">*</b>地址：</label>
+                <div class="col-md-4 text-left">
+                    <input type="text" id="Address" class="input_text2 form-control" style="width:300px;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">邮箱：</label>
+                <div class="col-md-4 text-left">
+                    <input type="text" id="Email" class="input_text2 form-control" style="width:300px;" />
+                </div>
+            </div>
+
+            <div class="col-md-12" style="padding-left:200px;">
+                <a href="#" class="btn-lg btn-primary " onclick="submitForm(); ">提交</a>&nbsp;&nbsp;&nbsp;
+                <a href="#" class="btn-lg btn-primary " onclick="cancel(); ">取消</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(function() {
+        $('input:radio[name="ts"]').click(function() {
+            $(".a").hide();
+            if ($(this).val() == "true") {
+                $(".a").show();
+            } 
+        });
+
+    });
+
+    function cancel() {
+
+        $(":text").each(function (index, element) {
+            $(this).val("");
+        });
+
+        $("#customerDiv").hide(500);
+    }
+
+    function submitForm() {
+
+        var name = $("#CustName").val().trim();
+        var phone = $("#CustMobile").val().trim();
+        var number = $("#IdentityNumber").val().trim();
+        var email = $("#Email").val().trim();
+        var address = $("#Address").val().trim();
+        var city = $("#City").val().trim();
+        var vin = $("#VIN").val().trim();
+        var CarCategory = $("#CarCategory").val().trim();
+        var Buytime = $("#Buytime").val().trim();
+        var TS = $("input[name=ts]:checked").val();
+        var gender = $("input[name=Gender]:checked").val();
+        if (TS=="true") {
+            if ($("#Buytime").val() == "" || $("#CarCategory").val()=="") {
+                alert("购车时间或者车型不能为空");
+                return;
+            }
+        }
+        var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+        if (reg.test(number) === false) {
+            alert("身份证输入不合法");
+            return false;
+        }
+        $.post("/Report/AddCustomer", {
+            CustName: name,
+            CustMobile: phone,
+            IdentityNumber: number,
+            Email: email,
+            Address: address,
+            City: city,
+            VIN: vin,
+            Gender: gender,
+            CarCategory: CarCategory,
+            Buytime: Buytime,
+            TS: TS
+        }, function (dataResult) {
+            if (dataResult.Status == 200) {
+
+                $(":text").each(function (index, element) {
+                    $(this).val("");
+                });
+
+                alert("添加成功。");
+            } else {
+                alert(dataResult.Message);
+            }
+        })
+    }
+</script>

@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "悦己纳新";
+    Layout = "~/Views/Shared/_LayoutYuena.cshtml";
+}
+<style>
+    .prize_wrapper {
+        position: absolute;
+        left: 358px;
+        top: 370px;
+        width: 207px;
+        height: 100px;
+    }
+
+        .prize_wrapper img {
+            width: 207px;
+            height: 100px;
+        }
+
+    .index2.small .prize_wrapper {
+        position: absolute;
+        left: 280px;
+        top: 290px;
+        width: 156px;
+        height: 76px;
+    }
+
+     .index2.small .prize_wrapper img {
+        width: 156px;
+        height: 76px;
+    }
+</style>
+<div class="index2">
+    <a class="btn_tj" href="/Yuena/RecommendFriend">推荐悦纳</a>
+    <a class="btn_ck" href="/Yuena/LookForCoupon">如何查看优惠券</a>
+    <a class="btn_wb" href="/Yuena/ReservationMaintenance">预约维保</a>
+    <a class="btn_rz" href="/Yuena/CarOwerAuthentication">认证车主</a>
+    
+        @{
+            if (ViewBag.PrizeLevel == 1)
+            {
+                <div class="prize_wrapper">
+                    <img src="~/Contents/yuena/images/jiang2.png">
+                </div>
+            }
+            else if (ViewBag.PrizeLevel == 2)
+            {
+                <div class="prize_wrapper">
+                    <img src="~/Contents/yuena/images/jiang1.png">
+                </div>
+            }
+            else if (ViewBag.PrizeLevel == 3)
+            {
+                <div class="prize_wrapper">
+                    <img src="~/Contents/yuena/images/jiang3.png">
+                </div>
+            }
+            else
+            {
+
+            }
+
+}
+</div>

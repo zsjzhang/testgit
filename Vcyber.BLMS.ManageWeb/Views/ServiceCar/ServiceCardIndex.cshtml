@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "服务卡查询";
+    ViewBag.TitleFocus = "2-2-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Vcyber.BLMS.ManageWeb.Helper
+<script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+<style type="text/css">
+    /*.input_text2 {
+        width: 100px;
+    }
+
+    .input_text1 {
+        width: 100px;
+    }*/
+</style>
+<div class="path">
+
+</div>
+
+<table class="table table-bordered table-responsive" style="padding-bottom:25px;margin-bottom:10px;">
+    <tr>
+        <td>
+            经销商名称：<input type="text" class="input_text1" id="dealerName" />
+            状态：@Html.DropDownList("status", StoreHelpr.GetServiceCardStatus(), new { id = "status" })
+            开始时间：<input type="text" class="input_text1" id="startTime" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowWeek:true,isShowClear:true,readOnly:true})" />
+            结束时间：<input type="text" class="input_text1" id="endTime" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowWeek:true,isShowClear:true,readOnly:true})" />
+            <input type="button" value="查询" onclick="searchCard();" class="btn btn-primary" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input class="btn btn-primary" type="submit" onclick="toReportExcel()" value="导出" />
+        </td>
+    </tr>
+</table>
+
+<div id="divPageList">
+    @{
+        Html.RenderAction("FindServiceCard");
+    }
+</div>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+
+
+    function searchCard() {
+        GetPageList(1);
+    }
+
+    //列表分页
+    function GetPageList(pageIndex) {
+        var data = {
+            DealerName: $("#dealerName").val(),
+            UStartTime: $("#startTime").val(),
+            UEndTime: $("#endTime").val(),
+            Status: $("#status").val(),
+            Index: pageIndex,
+            Size: 10
+        };
+        var url = "@Url.Action("FindServiceCard")";
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: data,
+            success: function (msg) {
+                $("#divPageList").html(msg);
+            }
+        });
+    }
+
+
+    function toReportExcel() {
+       var DealerName=$("#dealerName").val();
+       var UStartTime = $("#startTime").val();
+       var UEndTime = $("#endTime").val();
+       var Status = $("#status").val();
+
+       window.location = '/ServiceCar/ExportServiceCard?' +
+            "&DealerName=" + DealerName + "&UStartTime=" + UStartTime + "&UEndTime=" + UEndTime + "&Status=" + Status;
+        return false;
+    }
+</script>

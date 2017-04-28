@@ -1,0 +1,112 @@
+﻿@{
+    Layout = null;
+}
+
+@model List<Vcyber.BLMS.Entity.CustomCardInfo>
+@using Vcyber.BLMS.ManageWeb.Helper;
+@using Vcyber.BLMS.Entity.Enum;
+@using Vcyber.BLMS.Entity;
+@using Vcyber.BLMS.Common;
+
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<style type="text/css">
+    tr {
+    }
+
+    td {
+        width: 100px;
+    }
+</style>
+
+<div class="boxlist1">
+    <table class="table table-bordered">
+        <tr style="background-color: #D6E9F3; ">
+            <td>
+                卡券来源
+            </td>
+            <td>活动名称</td>
+            <td>卡券名称</td>
+            <td>卡券开始有效期</td>
+            <td>卡券结束有效期</td>
+            <td>卡券状态</td>
+            <td>库存</td>
+            <td>已用库存</td>
+            <td>卡券金额</td>
+            <td>操作</td>
+            <td>商户名称</td>
+        </tr>
+        @{
+            if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    var cardSource = item.CardSource == 1 ? "北京现代" : "合作商户";
+                    var status = item.status == 0 ? "未领取" : "已领取";
+                    <tr>
+                        <td>@cardSource</td>
+                        <td>@item.ActivityType</td>
+                        <td>@item.CardName</td>
+                        <td>@Convert.ToDateTime(item.CardBeginDate).ToString("yyyy-M-d")</td>
+                        <td>@Convert.ToDateTime(item.CardEndDate).ToString("yyyy-M-d")</td>
+                        <td>@status</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Used</td>
+                        <td>@item.ReduceCost</td>
+                        <td><a href="#"onclick="deleteCard('@item.CardType')">删除</a>
+                            <a href="/CustomCard/Edit?cardType=@item.CardType">修改</a></td>
+                        <td>@item.MerchantName</td>
+                    </tr>
+
+                }
+            }
+        }
+    </table>
+</div>
+<div class="box_a2">
+    <div class="pagbox">
+
+        <a href="javascript:void(0);">共 @ViewBag.Total 条&nbsp;&nbsp;</a>
+        <a href="javascript:void(0);" onclick="GetPageList(1)">首页</a>
+        <a href="javascript:void(0);" onclick="GetPageList(1)"><<</a>
+        <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.PrePage)">上一页</a>
+        @{
+            int PageIndex = (int)ViewBag.PageIndex;
+            int PageCurrentGroup = (int)(PageIndex / 10);
+        }
+        @for (int i = 1; i <= (int)ViewBag.EndPage; i++)
+        {
+            if ((i < PageCurrentGroup * 10) || (i >= (PageCurrentGroup + 1) * 10))
+            {
+                <a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)" style="display:none;">@i</a>
+            }
+            else
+            {
+                if (i == (int)ViewBag.PageIndex)
+                {<a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)" style="color: blue">@i</a> }
+                else
+                {<a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)">@i</a> }
+            }
+        }
+        <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.NextPage, 10)">下一页</a>
+        <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.EndPage, 10)">>></a>
+        <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.EndPage, 10)">尾页</a>
+    </div>
+</div>
+<input type="hidden" id="hidCurrentPage" value="@ViewBag.PageIndex" />
+<input type="hidden" id="hidEndPage" value="@ViewBag.EndPage" />
+<input type="hidden" id="hidCurrentGroup" value="@PageCurrentGroup" />

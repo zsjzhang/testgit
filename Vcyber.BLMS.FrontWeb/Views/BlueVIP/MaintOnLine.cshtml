@@ -1,0 +1,146 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "蓝缤服务-线上保养产品";
+}
+<script src="~/Scripts/controller/MaintOnLine.js"></script>
+
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "BlueVIP" })
+    </div>
+    <div class="n_all_cont">
+        <div class="n_left_cont">
+            <div class="center logon" style="width: 286px; height: auto; margin-top:0;">
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+            </div>
+            <div class="homereserve">
+                @Html.Action("FindDealer", "Home")
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            @*<div class="homeproduct">
+                    @Html.Action("HotExchangeProductList", "Product")
+                </div>
+                <div class="homehotnews">
+                    @Html.Action("HotNewsRegion", "home")
+                </div>*@
+        </div>
+
+
+        <div class="n_right_cont" style="position:relative;">
+
+
+            <p class="select_menu"><a href="/BlueVIP/Index">蓝缤服务</a> >线上保养产品</p>
+            <div class="gy_cont">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>线上保养产品</h1>
+                        <span>Online Maintenance Product</span>
+                    </div>
+                </div>
+
+                <div class="fwxq_box" style="float:left;">
+                    <div class="two_sel">
+                        <p>
+                            <span>选择车型</span>
+                            <select id="selCarType">
+                                <option>i30</option>
+                                <option>ix25</option>
+                                <option>ix35</option>
+                                <option>第八代索纳塔</option>
+                                <option selected>第九代索纳塔</option>
+                                <option>朗动</option>
+                                <option>领翔</option>
+                                <option>御翔</option>
+                                <option>名图</option>
+                                <option>全新胜达</option>
+                                <option>瑞纳</option>
+                                <option>瑞奕</option>
+                                <option>索纳塔</option>
+                                <option>途胜</option>
+                                <option>雅绅特</option>
+                                <option>伊兰特</option>
+                                <option>悦动</option>
+                                <option>名驭</option>
+                            </select>
+                        </p>
+                        <p>
+                            <span>行驶里程</span>
+                            <select id="selKM">
+                                <option value="10000" selected>10000</option>
+                                <option value="15000">15000</option>
+                                <option value="20000">20000</option>
+                                <option value="25000">25000</option>
+                                <option value="30000">30000</option>
+                                <option value="35000">35000</option>
+                                <option value="40000">40000</option>
+                                <option value="45000">45000</option>
+                                <option value="50000">50000</option>
+                                <option value="55000">55000</option>
+                                <option value="60000">60000</option>
+                                <option value="65000">65000</option>
+                            </select>
+                            <b>公里</b>
+                        </p>
+                        <p>
+                            <a id="OrderService" class="thre_cc" style="border: 1px solid #075090; background: #075090; color: #fff; margin-left: 250px; width: 140px; text-indent:0;" href="javascript:void(0);" onclick="action.SearchList()">查询</a>
+                        </p>
+                    </div>
+
+                    <div id="divContent">
+                        <div class="jyzl_cont">
+                            <p>机油种类</p>
+                            @{
+                                IEnumerable<Vcyber.BLMS.Entity.MaintCarOil> Oils = ViewBag.Oils;
+                                if (Oils != null)
+                                {
+                                    foreach (var item in Oils)
+                                    {
+                                        <ul style="margin-left:0;">
+                                            <li class="grey_jy">@item.OilType</li>
+                                            <li>@item.OilName</li>
+                                        </ul>
+                                    }
+                                }
+                            }
+                        </div>
+                        <div class="jyzl_cont">
+                        </div>
+                        <div class="jyzl_cont">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+    <script type="text/javascript">
+
+        $('.fix_ul li').mouseover(function () {
+            var index = $(".fix_ul>li").index(this);
+            $(".hide_ul>li").eq(index).show().siblings('li').hide();
+        })
+        $('.fix_ul li').mouseout(function () {
+            $('.hide_ul>li').hide();
+        })
+    </script>
+</div>

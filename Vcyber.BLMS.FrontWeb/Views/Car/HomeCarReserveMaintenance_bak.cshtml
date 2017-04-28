@@ -1,0 +1,85 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "预约维保";
+}
+<script src="~/Content/laydate/laydate.js"></script>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Home" })
+    </div>
+    <div>
+        <div class="all_cont">
+            <div class="sjyy_title">
+                <p>预约维保</p>
+            </div>
+
+            <div class="yysj_cont">
+                <p class="p1">为了确保我们能够在第一时间内与您取得联系，提供更快捷、更周到的服务，请您正确填写以下资料信息，带"*"号的是必须填写项，感谢您的支持！</p>
+                <div class="p_input" style="margin-top:40px;">
+                    <span></span><label>车&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：</label>
+                    @Html.Action("CarTypeView", "Car", new { })
+                </div>
+                <div class="p_input">
+                    <span></span><label>选择经销商：</label>
+                    @Html.Action("ProvinceCity", "Car", new { })
+                </div>
+                <div class="p_input">
+                    <span></span><label>车牌号码：</label>
+                    <input type="text" id="carReserveMaintenanceCarNumber" name="carReserveMaintenanceCarNumber" placeholder="请输入车牌号" />
+                    <b>例如：京A8888</b>
+                </div>
+                <div class="p_input">
+                    <span></span><label>车&nbsp;架&nbsp;号：</label>
+                    <input type="text" id="carReserveMaintenanceCarFrameNumber" name="carReserveMaintenanceCarFrameNumber" placeholder="请输入车架号" />
+                </div>
+                <div class="p_input">
+                    <span></span><label>行驶里程：</label>
+                    <input type="text" id="carReserveMaintenanceRidesNumber" name="carReserveMaintenanceRidesNumber" placeholder="请输入行驶里程" />
+                    <b>公里</b>
+                </div>
+                <div class="p_input">
+                    <span></span><label>购车年份：</label>
+                    <select id="carReserveMaintenanceBuyYears" name="carReserveMaintenanceBuyYears">
+                        @{
+                            for (var _years = 2015; _years > 2000; _years--)
+                            {
+                                <option>@_years</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="p_input">
+                    <span></span><label>服务项目：</label>
+                    <input type="checkbox" id="chkMaintenance" name="carReserveMaintenanceMaintenance" value="0" checked="checked" class="radio_btn_cc" style=" border: none;" /><b>维修</b>
+                    <input type="checkbox" id="chkRepair" name="carReserveMaintenanceMaintenance" value="1" class="radio_btn_cc" style="margin-left:38px; border: none;" /><b>保养</b>
+
+                </div>
+                <div class="p_input" style="height:90px;">
+                    <span></span><label>预计到店日期：</label>
+                    <input type="text" id="carReserveMaintenanceEndTime" name="carReserveMaintenanceEndTime" placeholder="请输入预计到店日期" class="laydate-icon" onclick="laydate()" />
+                    <p style="width:100%;float:left;margin-left:140px;font-size:16px;color:#929396;font-family:'微软雅黑';">尊敬的车主您好，预约维保到店日期有效期为次日至60日内。感谢您的理解与支持，祝您用车愉快！</p>
+                </div>
+                <div class="p_input">
+                    <span></span><label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
+                    <input type="text" id="carReserveMaintenanceUserName" name="carReserveMaintenanceUserName" />
+                </div>
+                <div class="p_input">
+                    <span></span><label>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</label>
+                    <input type="radio" name="carReserveMaintenanceGender" value="1" id="genderMan" checked="checked" class="radio_btn_cc" style=" border: none;" /><b>男</b>
+                    <input type="radio" name="carReserveMaintenanceGender" value="0" id="genderWoman" class="radio_btn_cc" style="margin-left:38px; border: none;" /><b>女</b>
+                </div>
+                <div class="p_input">
+                    <span></span><label>手&nbsp;&nbsp;&nbsp;机&nbsp;&nbsp;&nbsp;号：</label>
+                    <input type="text" id="carReserveMaintenanceUserMobile" name="carReserveMaintenanceUserMobile" />
+                </div>
+
+                <div class="cc_submit_btn">
+                    <a href="javascript:void(0);" id="btnReserveMaintenance" style="color: white; text-decoration: none;">提&nbsp;&nbsp;交</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

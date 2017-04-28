@@ -1,0 +1,352 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <title>预约试驾</title>
+</head>
+<body>
+    <div class="form-other-wrap">
+        <form id="mainForm" method="post" novalidate>
+            <div class="form-other-box">
+                <dl class="form-row">
+                    <dt><font color="red">*</font>车型：</dt>
+                    <dd>
+                        <select id="CarSeries" name="CarSeries" class="global-select global-select-other">
+                            @{
+                                var list = (List<Vcyber.BLMS.Entity.Generated.CSBaseCar>)ViewBag.CarTypeList;
+                                if (list.Count() > 0)
+                                {
+                                    foreach (var item in list)
+                                    {
+                                        <option value="@item.Id">@item.SeriesName</option>
+                                    }
+                                }
+                                else
+                                {
+                                    <option value="请选择">请选择</option>
+                                }
+                            }
+                        </select>
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt><font color="red">*</font>经销商：</dt>
+                    <dd>
+                        <select id="sltProvince" name="DealerProvince" class="global-select" onchange="Dealer.city(this);">
+                            <option value="省">省</option>
+                            @{
+                                var provice = (IEnumerable<string>)ViewBag.Provinces;
+                                if (provice != null && provice.Any())
+                                {
+                                    foreach (var item in provice)
+                                    {
+                                        <option value="@item">@item</option>
+                                    }
+                                }
+                            }
+                        </select>
+                        <select id="sltCity" name="DealerCity" class="global-select" onchange="Dealer.list(this, document.getElementById('sltProvince'));">
+                            <option value="市">市</option>
+                        </select>
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt></dt>
+                    <dd>
+                        <input type="hidden" id="DealerName" name="DealerName">
+                        <select id="sltDealer" name="DealerId" class="global-select global-select-other">
+                            <option value="经销商">经销商</option>
+                        </select>
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt><font color="red">*</font>试驾时间：</dt>
+                    <dd>
+                        @*<input type="text" class="global-ipt" id="ScheduleDate" name="ScheduleDate" onfocus="WdatePicker({ minDate: '%y-%M-{%d+2}', maxDate: '%y-%M-{%d+60}' })">*@
+                        <input type="text" class="global-ipt" id="ScheduleDate" name="ScheduleDate" readonly="readonly" onfocus="WdatePicker({ minDate: '%y-%M-{%d+2}', maxDate: '%y-%M-{%d+60}' })" placeholder="请选择" />
+                        <script>
+                                $(function () {
+                                    laydate({
+                                        elem: '#ScheduleDate',
+                                        //min: laydate.now(+2), //-1代表昨天，-2代表前天，以此类推
+                                        min: laydate.now(+1), //wrl修改
+                                        max: laydate.now(+60),
+                                        istoday: false
+                                    });
+                                });
+                        </script>
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt>计划购车时间：</dt>
+                    <dd>
+                        <select name="PurchaseTimeFrame" id="PurchaseTimeFrame" class="global-select global-select-other">
+                            <option value="一周以内">一周以内</option>
+                            <option value="7-30天">7-30天</option>
+                            <option value="1-3个月">1-3个月</option>
+                            <option value="3个月以上">3个月以上</option>
+                        </select>
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt>性别：</dt>
+                    <dd>
+                        <select id="UserSex" name="UserSex" class="global-select global-select-other">
+                            @*<option value="">性别</option>*@
+                            <option value="1" selected="selected">男</option>
+                            <option value="0">女</option>
+                        </select>
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt><font color="red">*</font>姓名：</dt>
+                    <dd>
+                        <input id="UserName" name="UserName" autocomplete="off" type="text" value="" class="global-ipt" placeholder="请输入姓名">
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt><font color="red">*</font>联系方式：</dt>
+                    <dd>
+                        <input type="tel" id="Phone" autocomplete="off" name="Phone" value="" class="global-ipt" placeholder="请输入11位手机号码">
+                    </dd>
+                </dl>
+                <div id="errorContainer" class="form-row form-reg-tips"></div>
+                <dl class="form-row">
+                    <dd>
+                        <input id="onlineclick" type="button" value="提交" class="global-reg-btn">
+                    </dd>
+                </dl>
+            </div>
+            @*<input type="hidden" id="ForeignId" name="ForeignId" value="omXbSjqc9-ItKcmVAoq4LLk801LE">*@
+        </form>
+    </div>        
+</body>
+
+
+<script type="text/javascript">
+
+    //预约试驾
+    $("#onlineclick").click(function () {
+        var carSeries = $("#CarSeries").val();
+        var sltProvince = $("#sltProvince").val();
+        var sltCity = $("#sltCity").val();
+        var sltDealer = $("#sltDealer").val();
+        var dealerName = $("#sltDealer").find("option:selected").text();
+        var testDriverDate = $("#ScheduleDate").val();
+        var PurchaseTimeFrame = $("#PurchaseTimeFrame").val();
+        var sex = $("#UserSex").val();
+        var mobile = $("#Phone").val();
+        var name = $("#UserName").val();
+
+        //车型不能为空
+        if (carSeries == null || carSeries == "" || carSeries == "请选择") {
+            //alert("请选择车型");
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>请选择车型。</span>'
+            });
+            return false;
+        }
+
+        //省不能为空
+        if (sltProvince == null || sltProvince == "" || sltProvince == "省" || sltProvince == "请选择") {
+            //alert("请选择省份");
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>请选择省份。</span>'
+            });
+            return false;
+        }
+
+        //市不能为空
+        if (sltCity == null || sltCity == "" || sltCity == "市" || sltCity == "请选择") {
+            //alert("请选择城市");
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>请选择城市。</span>'
+            });
+            return false;
+        }
+
+        //经销商不能为空
+        if (sltDealer == null || sltDealer == "" || sltDealer == "经销商" || sltDealer == "请选择") {
+            //alert("请选择经销商");
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>请选择经销商。</span>'
+            });
+            return false;
+        }
+
+        //试驾时间不能为空
+        if (testDriverDate == null || testDriverDate == "") {
+            //alert("请选择试驾时间");
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>请选择试驾时间。</span>'
+            });
+            return false;
+        }
+
+        //姓名不能为空
+        if (name == null || name == "") {
+            //alert("请输入姓名");
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>请输入姓名。</span>'
+            });
+            return false;
+        }
+
+        //手机号不能为空
+        if (mobile == null || mobile == "") {
+            //alert("请输入11位手机号码");
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>请输入手机号码。</span>'
+            });
+            return false;
+        }
+
+        if (mobile.length != 11) {
+            //alert("请输入11位手机号码");
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>请输入11位手机号码。</span>'
+            });
+            return false;
+        }
+
+        var reg = /^1[3|4|5|8|7|][0-9]\d{4,8}$/;
+        var userName = $("#Phone").val();
+        if (!reg.test(userName)) {
+            //alert("请输入正确的手机号");
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>请输入正确的手机号。</span>'
+            });
+            //$(this).focus();
+            return false;
+        }
+
+        //ajax执行
+        $.ajax({
+            url: "/Common/DoReserveDrive",
+            type: "post",
+            dataType: "json",
+            data: { CarSeries: carSeries, DealerProvince: sltProvince, DealerCity: sltCity, DealerId: sltDealer, DealerName: dealerName, ScheduleDate: testDriverDate, UserName: name, UserSex: sex, Phone: mobile, PurchaseTimeFrame: PurchaseTimeFrame },
+            success: function (result) {
+                if (result !== null && result.code == 200) {
+                    //alert("预约成功！");
+                    layer.open({
+                        type: 1,
+                        skin: 'bmPop',
+                        title: 0,
+                        shift: 2,
+                        closeBtn: 0,
+                        shadeClose: true,
+                        area: ['5.4rem', '3.23rem'],
+                        btn: ['确定'],
+                        content: '<img src="../img/boy1.png" /><span>预约成功。</span>'
+                    });
+                    $("input").val("");
+                    $("#onlineclick").val("提交");
+                    return true;
+                } else {
+                    //alert(result.msg);
+                    layer.open({
+                        type: 1,
+                        skin: 'bmPopErr',
+                        title: 0,
+                        shift: 2,
+                        closeBtn: 0,
+                        shadeClose: true,
+                        area: ['5.4rem', '3.23rem'],
+                        btn: ['确定'],
+                        content: '<img src="../img/boy_err.png" /><span>' + result.msg + '</span>'
+                    });
+                    return false;
+                }
+            },
+            error: function (err) {
+                layer.open({
+                    type: 1,
+                    skin: 'bmPopErr',
+                    title: 0,
+                    shift: 2,
+                    closeBtn: 0,
+                    shadeClose: true,
+                    area: ['5.4rem', '3.23rem'],
+                    btn: ['确定'],
+                    content: '<img src="../img/boy_err.png" /><span>预约失败。</span>'
+                });
+
+                return false;
+            }
+        });
+    });    
+</script>

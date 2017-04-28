@@ -1,0 +1,117 @@
+﻿
+@{
+    ViewBag.Title = "置换活动管理";
+    Layout = null;
+}
+
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>内容管理 - 置换活动</strong></div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+
+        <div class="row">
+            <span class="col-md-6">置换活动管理</span>
+            <div class="col-md-6 text-right">
+                <button type="button" class="btn btn-primary" ng-click="createPermute()">添加</button>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <form name="form" class="form-horizontal" novalidate>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">活动状态：</label>
+                <div class="col-md-8 text-left">
+                    <select style="max-width: 800px" ng-model="selected" class="form-control" ng-options="m.id as m.Name for m in statuslist">
+                        <option value="">-- 请选择 --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn btn-primary" type="submit" ng-click="search()">查询</button>
+                </div>
+            </div>
+
+        </form>
+        @*数据列表*@
+        <div class="gridStyle" style="min-height: 410px; border: 1px solid rgb(212, 212, 212)" ng-grid="gridOptions">
+        </div>
+    </div>
+</div>
+
+@*编辑是否显示*@
+<div class="modal fade" id="isValModal" tabindex="-1" role="dialog" aria-labelledby="isValModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="priorityModalModal">编辑显示</h4>
+            </div>
+            <form class="form-horizontal" name="form" ng-submit="UpdatePriority(form.$valid)" novalidate>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">显示:</label>
+                            <div class="col-md-8">
+                                <label class="radio-inline">
+                                    <input type="radio" name="displayRadios" value="1" ng-model="selectItem.IsDisplay">
+                                    是
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="displayRadios" value="0" ng-model="selectItem.IsDisplay">
+                                    否
+                                </label>
+                            </div>
+                        </div>
+                        @*<div class="form-group" ng-show="dealerDWShow">
+                            <label class="col-md-2 control-label">热点:</label>
+                            <div class="col-md-8">
+                                <label class="radio-inline">
+                                    <input type="radio" name="hotRadios" value="1" ng-model="selectItem.IsHot">
+                                    是
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="hotRadios" value="0" ng-model="selectItem.IsHot">
+                                    否
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="dealerDWShow">
+                            <label class="col-md-2 control-label">权重:</label>
+                            <div class="col-md-10">
+                                <input type="number" class="form-control" name="priority" ng-model="selectItem.Priority" ng-required="true" />
+                                <span ng-show="form.priority.$invalid">数字</span>
+                                <p class="label-warning">活动排序根据权值从大到小</p>
+
+                            </div>
+                        </div>*@
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

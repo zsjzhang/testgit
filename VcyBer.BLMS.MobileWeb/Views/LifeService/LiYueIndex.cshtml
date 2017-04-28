@@ -1,0 +1,76 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "礼悦会钻石会员权益";
+}
+
+<link href="/Content/css/resetzsy.css" rel="stylesheet" />
+<link href="~/Content/css/alert.css" rel="stylesheet" />
+<script src="/Scripts/js/fontSize.js"></script>
+<script src="~/Scripts/LifeService/liyue.js"></script>
+<body class="lyhBody">
+    <input type="hidden" value="1" id="islogin">
+    <header class="headerLyh">
+        <div class="logolyh">
+            <img src="~/img/haihang_logo.png" alt="" style="width:65px;"><img src="~/img/haihang_bag.png" alt="" style="margin-left:8px; width:176px; margin-bottom:12px;">
+        </div>
+        <div class="title">
+            美好生活，bluemembers为您打造！bluemembers联合海航酒店集团忠诚计划——礼悦会为北京现代车主会员提供超值钻石级会员特权通道，享受高端完美酒店服务。申请礼悦会钻石会员权益，享受积分奖励特权、专享服务通道，提前8点入住、延迟24点退房，让您的旅行生活更加优质快捷；免费欢迎水果、免费本地和漫游通话，为您缔造完美商务旅行与度假休闲体验。
+        </div>
+    </header>
+    <section class="sectionLyh">
+        <div class="desc">
+            <h4>礼悦会钻石会员权益</h4>
+            <dl>
+                <dt><img src="~/img/haihang_vip.png" alt=""></dt>
+                <dd id="vip">
+                    <h5>会员贵宾礼遇</h5>
+                    <p>
+                        <b>1.预定保证：</b><span>客房预订保证 – 抵达前72小时担保预订；</span>
+                    </p>
+                    <p>
+                        <b>2.专项服务：</b><span>前台会员专享服务通道办理入住和退房手续，享受快捷、优质的服务；快 速入住与退房；客房免费宽带上网；免费本地通话；免费全国长途；入住期 间享受每天熨烫衣物两件；住宿率允许的前提下，会员入住可延迟退房至晚 上24点；住宿率允许的前提下，上午8点提前登记入住；住宿率允许的前提 下，钻石卡会员直接升级为套房；住店期间，免费享饮Mini Bar软饮</span>
+                    </p>
+                    <p>
+                        <b>3.迎宾项目：</b><span>入住首日享受免费水果</span>
+                    </p>
+                    <p>
+                        <b>4.特别权益：</b><span>会员入住，生日当天赠免费蛋糕和鲜花</span>
+                    </p>
+                </dd>
+            </dl>
+            <dl>
+                <dt><img src="~/img/haihang_jifen.png" alt=""></dt>
+                <dd>
+                    <h5>积分奖励特权</h5>
+                    <p>
+                        双倍个人消费积分奖励，兑换海航酒店客房、餐饮券、航空里程或精美礼品；
+                    </p>
+                </dd>
+            </dl>
+            <h6>
+                * 详细礼悦会钻石会员权益使用请以礼悦会官方网站为准<br>
+                &nbsp;&nbsp;车主会员成为礼悦会钻石会员后，礼悦会会员账号级别、权益均以礼悦会网站管理为准，bluemembers会员权益不受影响；
+            </h6>
+            <img src="~/img/haihang_liucheng.png" alt="" class="flow">
+            <a href="javascript:void(0);" id="btnSubmit">
+                <img src="~/img/haihang_btn.png" alt="" style="width:50%;" id="btn_img">
+            </a>
+            <p class="agree">
+                <input type="checkbox" id="cboxChecked" checked="checked" onclick="if (this.checked) { $('#btnSubmit').show(); } else { $('#btnSubmit').hide(); }"><span>愿意接受 礼悦会会员协议</span>
+            </p>
+        </div>
+    </section>
+
+    <div class="div_pop" id="div_pop" style="display:none;">
+        <div class="div_content">
+            <div style="height:25px;">
+                <img src="/Content/image/close_img.png" id="close_btn" style="width:20px;" alt="">
+            </div>
+            <p>
+                您已成功领取礼悦会钻石级会员特权，即刻享受优质服务体验。
+            </p>
+        </div>
+    </div>
+    <div></div>
+</body>
+

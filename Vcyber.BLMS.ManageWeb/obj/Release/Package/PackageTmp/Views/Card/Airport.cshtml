@@ -1,0 +1,171 @@
+﻿@{
+    Layout = null;
+}
+
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>机场管理 - 机场候机室列表</strong></div>
+</div>
+
+<div class="container panel panel-default" data-ng-init="load()">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">省份：</label>
+                        <select class="col-md-4 form-control" ng-model="formData.Province" ng-change="provinceChange()" ng-options="m for m in provinces">
+                            <option value="">请选择省份</option>
+                        </select>
+
+                        <label class="col-md-2 control-label">城市：</label>
+                        <select class="col-md-4 form-control" ng-model="formData.City" ng-change="cityChange()" ng-options="m for m in citys">
+                            <option value="">请选择城市</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">机场名称：</label>
+                        <select class="col-md-4 form-control" ng-model="formData.Airport" ng-options="m.AirportName as m.AirportName for m in airports">
+                            <option value="">请选择机场</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="btn btn-primary col-md-offset-2" type="button" ng-click="search()" value="查询" />
+                    </div>
+
+                    <script type="text/javascript">
+                        $('.datepicker').datepicker();
+                    </script>
+                </form>
+
+                <div>
+                    <input class="btn btn-primary col-md-offset-10" type="button" data-toggle="modal" data-target="#addPlanModal" ng-click="AddPlan()" value="添加机场候机室" />
+                    <hr />
+                </div>
+
+                <div class="gridStyle" style="height: 410px; border: 1px solid rgb(212,212,212)" ng-grid="gridOptions"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--添加机场页面-->
+<div class="modal fade" id="addPlanModal" tabindex="-1" role="dialog" aria-labelledby="addPlanModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">添加机场候机室</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="form-group">
+                        <label class="col-md-3">省份:</label>
+                        <input class="col-md-9 form-control" type="text" placeholder="省份" ng-model="addPlanData.Province" />
+                    </div>
+
+                    <div class="form-group" style="margin-top:45px">
+                        <label class="col-md-3">城市:</label>
+                        <input class="col-md-9 form-control" type="text" placeholder="城市" ng-model="addPlanData.City" />
+                    </div>
+
+                    <div class="form-group" style="margin-top:90px">
+                        <label class="col-md-3 control-label">机场名称：</label>
+                        <input class="col-md-9 form-control" type="text" placeholder="机场名称" ng-model="addPlanData.AirportName" />
+                    </div>
+
+                    <div class="form-group" style="margin-top:135px">
+                        <label class="col-md-3">候机室类型:</label>
+                        <input class="col-md-9 form-control" type="text" placeholder="候机室类型" ng-model="addPlanData.AirportRoomType" />
+                    </div>
+
+                    <div class="form-group" style="margin-top:180px">
+                        <label class="col-md-3">候机室名称:</label>
+                        <input class="col-md-9 form-control" placeholder="候机室名称" ng-model="addPlanData.AirportRoomName" />
+                    </div>
+
+                    <div class="form-group" style="margin-top:225px">
+                        <label class="col-md-3">候机室地址:</label>
+                        <textarea class="col-md-9 form-control" placeholder="候机室地址" ng-model="addPlanData.AirportAddress" rows="5"/>
+                    </div>
+
+                    <div class="form-group" style="margin-top:350px">
+                        <input class="btn btn-primary col-md-offset-6" type="button" ng-click="addPlanSave()" value="保存" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--编辑机场页面-->
+<div class="modal fade" id="editPlanModal" tabindex="-1" role="dialog" aria-labelledby="editPlanModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">编辑机场候机室</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="form-group">
+                        <label class="col-md-3">省份:</label>
+                        <input class="col-md-9 form-control" type="text" placeholder="省份" ng-model="editPlanData.Province" />
+                    </div>
+
+                    <div class="form-group" style="margin-top:45px">
+                        <label class="col-md-3">城市:</label>
+                        <input class="col-md-9 form-control" type="text" placeholder="城市" ng-model="editPlanData.City" />
+                    </div>
+
+                    <div class="form-group" style="margin-top:90px">
+                        <label class="col-md-3 control-label">机场名称：</label>
+                        <input class="col-md-9 form-control" type="text" placeholder="机场名称" ng-model="editPlanData.AirportName" />
+                    </div>
+
+                    <div class="form-group" style="margin-top:135px">
+                        <label class="col-md-3">候机室类型:</label>
+                        <input class="col-md-9 form-control" type="text" placeholder="候机室类型" ng-model="editPlanData.AirportRoomType" />
+                    </div>
+
+                    <div class="form-group" style="margin-top:180px">
+                        <label class="col-md-3">候机室名称:</label>
+                        <input class="col-md-9 form-control" placeholder="候机室名称" ng-model="editPlanData.AirportRoomName" />
+                    </div>
+
+                    <div class="form-group" style="margin-top:225px">
+                        <label class="col-md-3">候机室地址:</label>
+                        <textarea class="col-md-9 form-control" placeholder="候机室地址" ng-model="editPlanData.AirportAddress" rows="5" />
+                    </div>
+
+                    <div class="form-group" style="margin-top:350px">
+                        <input class="btn btn-primary col-md-offset-6" type="button" ng-click="editPlanSave()" value="保存" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,132 @@
+﻿@model List<Vcyber.BLMS.Entity.Order>
+@{
+    ViewBag.Title = "订单列表";
+    ViewBag.TitleFocus = "4-1-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Vcyber.BLMS.ManageWeb.Helper;
+
+<script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+<script>
+    function CancelOrder(orderId, userId, integral) {
+        $.ajax({
+            type: "post",
+            url: "/Order/CancelShipping",
+            data: { orderId: orderId, userId: userId, integral: integral},
+            datatype: "json",
+            success: function (result) {
+                if (result) {
+                    alert("订单取消成功!");
+                } else {
+                    alert("订单取消失败!");
+                }
+                location.href = "/Order/Index";
+                return false;
+            },
+            error: function (e) { }
+        });
+    }
+</script>
+<div class="path">
+    <a href="#">订单管理</a>><a href="/Order/Index">订单列表</a>
+</div>
+<div class="box_m1" style="border: 1px solid #dddddd;margin-top:10px; margin-bottom: 10px; padding-top: 10px">
+    <span>下单时间： </span>
+    @(Html.TextBox("startTime", "", new { @class = "input_text1",@autocomplete="off", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowWeek:true,isShowClear:true,readOnly:true})" }))至@(Html.TextBox("endTime", "", new { @class = "input_text1",@autocomplete="off",@onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowWeek:true,isShowClear:true,readOnly:true})" }))
+    <span>订单交易状态： </span>
+    @Html.DropDownList("tradeState", StoreHelpr.GetOrderTrade(), new { @class = "input_text2" })
+    <input type="button" value="查询" class="btn btn-default" onclick="search();" />&nbsp;&nbsp;
+    <input type="button" value="导出" class="btn btn-default" onclick="importData();" /><br />
+    <span>订单编号： </span>
+    @(Html.TextBox("txtoid", "", new { @class = "input_text1", @autocomplete = "off" }))
+    <span>手机号： </span>
+    @(Html.TextBox("txtphone", "", new { @class = "input_text1", @autocomplete = "off" }))
+   
+   
+</div>
+
+<div class="box_m2" style="border: 1px solid #dddddd;margin-top:10px; margin-bottom: 10px; padding-top: 10px">
+    <form action="/Order/ImportShipping" method="post" enctype="multipart/form-data">
+        <ul style="list-style:none">
+            <li>
+                <span style="float:left;width:200px"><strong>批量导入快递单号</strong></span>
+                <input style="float:left;width:180px" type="file" name="file" />
+                <input type="submit" value="导入" style="width:150px" onclick="" />
+                <a target="_blank" href="../UploadImg/Shipping.xlsx" class="text-center">下载导入文件模板</a>
+            </li>
+        </ul>
+    </form>
+</div>
+
+
+<div id="orderlist">
+</div>
+
+
+<div id="divPageList">
+    @{
+        Html.RenderAction("PartialPage", new { index = 1, size = 10 });
+    }
+</div>
+
+<style>
+    .span {
+        width: 70px;
+        background-color: #00ADFF;
+        height: 30px;
+        border: 0;
+        padding: 0;
+        margin-top: 0;
+        text-align: center;
+    }
+</style>
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    //列表分页
+    function GetPageList(pageIndex) {
+        var data = {
+            oid: $("#txtoid").val(),
+            startTime: $("#startTime").val(),
+            endTime: $("#endTime").val(),
+            tradeState: $("#tradeState").val(),
+            phone: $("#txtphone").val(),
+            index: pageIndex,
+            size: 10
+        };
+        var url = "@Url.Action("PartialPage")";
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: data,
+            success: function (msg) {
+                $("#divPageList").html(msg);
+            }
+        });
+    }
+    function importOrder() {
+
+    }
+
+    //保存查询条件
+    function search() {
+        GetPageList(1);
+    }
+    //状态分组查询
+    function groupsearch(state) {
+        $("#selstate").val(state);
+        GetPageList(1);
+    }
+    //导出数据到Excel
+    function importData() {
+        var data = {
+            oid: $("#txtoid").val(),
+            startTime: $("#startTime").val(),
+            endTime: $("#endTime").val(),
+            tradeState: $("#tradeState").val(),
+            phone: $('#txtphone').val()
+        };
+        var url = "@Url.Action("ExportData")";
+        window.open(url + "/?oid=" + data.oid + "&startTime=" + data.startTime + "&endTime=" + data.endTime + "&tradeState=" + data.tradeState + "&phone" + data.phone);
+    }
+</script>

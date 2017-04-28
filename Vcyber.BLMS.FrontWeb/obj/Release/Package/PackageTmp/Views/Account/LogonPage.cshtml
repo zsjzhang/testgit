@@ -1,0 +1,494 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "账号登录";
+}
+<script src="~/Scripts/controller/ReDealerController.js"></script>
+
+<style>
+    .yyrk_cont {
+        margin-top: 0px;
+    }
+</style>
+
+<style>
+    .zsyLoginBox {
+        position: relative;
+        margin: 0 auto;
+        width: 510px;
+        height: 368px;
+        border: 1px solid #d9dfe1;
+        border-top: 1px solid #9fa3a5;
+        margin-top: 30px;
+    }
+
+        .zsyLoginBox ul {
+            width: 100%;
+            height: 37px;
+            overflow: hidden;
+        }
+
+    .zsy_nr ul li {
+        margin-left: 0;
+        width: 50%;
+        float: left;
+        height: 37px;
+        line-height: 37px;
+        text-align: center;
+        background: #eee;
+        cursor: pointer;
+    }
+
+    .zsyLoginBox li.on {
+        background: url(/Img/VipImg/bgLogTab.jpg) repeat-x;
+        color:#3D3F43;
+    }
+
+    .zsyLoginBox div {
+        display: none;
+        margin: 20px;
+        width: 436px;
+        height: 243px;
+        border: 1px solid #eaeeed;
+        padding-top: 25px;
+        font-size: 14px;
+        padding-left: 32px;
+    }
+
+        .zsyLoginBox div label {
+            display: inline-block;
+            width: 92px;
+            font-size: 14px;
+            color: #3d3f43;
+            text-align: left;
+        }
+
+        .zsyLoginBox div input {
+            height: 28px;
+            border: 1px solid #bdc7d8;
+            line-height: 28px;
+            padding: 0 5px;
+            vertical-align: middle;
+            width: 180px;
+        }
+
+    #LogonPageAccount {
+        width: 289px;
+    }
+
+    .zsyLoginBox div input.logTelBox {
+        width: 289px;
+    }
+
+    .zsyLoginBox div.act {
+        display: block;
+    }
+
+    .gy_nr p {
+        margin-bottom: 15px;
+    }
+
+    .gy_nr img {
+        display: inline;
+        vertical-align: middle;
+        margin: 0;
+        margin-left: 15px;
+    }
+
+    #register_bot {
+        position: relative;
+        width: 230px;
+        height: 37px;
+        line-height: 37px;
+        left: 50%;
+        margin-left: -115px;
+        text-align: center;
+        border: 0;
+        cursor: pointer;
+    }
+
+        #register_bot:hover {
+            background: #0b63b7;
+            color: #fff;
+        }
+
+    .forget_pass {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        margin-left:150px;
+        text-decoration: none;
+    }
+
+        .forget_pass:hover {
+            color: #075090;
+            text-decoration: underline;
+        }
+
+    .gy_nr p.no_huiyuan {
+        margin-top: 15px;
+        text-decoration: none;
+        color: #3d3f43;
+        cursor:auto;
+    }
+
+        .gy_nr p.no_huiyuan i:hover {
+            color: #075090;
+            text-decoration: underline;
+            display:inline-block;
+            cursor:pointer;
+        }
+
+    .reSend {
+        display: inline-block;
+        background: #075090;
+        width: 87px;
+        height: 28px;
+        line-height: 28px;
+        text-align: center;
+        margin-left: 15px;
+        border: 1px solid #bdc7d8;
+        vertical-align: middle;
+        color:#fff;
+    }
+    .reSend1 {
+        background: #e7e7e7;
+        color:#767575;
+    }
+
+    /*160602*/
+.zsyLoginBox ul{ width:100%; height:58px; overflow:hidden;}
+.zsyLoginBox ul i{ position:absolute; display:block; background:url(/Img/VipImg/indexLogIcon.png) no-repeat; width:56px; height:56px; left:50%; margin-left:-28px; top:1px;}
+.zsy_nr ul li{ margin-left:0;width:50%; float:left; height:58px; line-height:58px; text-align:center; background:#eee; cursor:pointer; color:#777;}
+    .pay_active {
+        cursor:pointer;
+    }
+.pay_active:hover,.reSend:hover{
+        background:#0b63b7;
+        color:#fff;
+    }
+    .zsy_nr {
+        min-height:800px;
+    }
+    .zsyLoginBox div input.btnStyle{
+        text-align: center; margin-left: 96px; width:230px; height:30px; line-height:30px; border:none; font-size:16px;
+    }
+    a.zhuceWord:hover {
+        text-decoration:underline;
+        color:#075090;
+    }
+/*end*/
+
+.zzDivBox{ position: fixed; width:100%; height:100%; left:0; top:0; z-index:1000;}
+.zzDivBg{ position:absolute; left:0; top:0; width:100%; height:100%; background:#000; opacity:.5;filter:alpha(opacity:50); }
+.zzConBox1{ position:absolute; left:50%; top:50%; margin-left:-345px; margin-top:-185px; width:690px; height:370px; background:#fff; border-radius:5px; padding:0 5px 5px 5px; color:#3d3f43}
+.closeIcon{ position:absolute; display:block; width:30px; height:31px; right:-14px; top:-12px; background:url(/img/VipImg/closeIcon.png) no-repeat center; cursor:pointer;}
+.closeIcon:hover{background: url(/img/VipImg/closeIcon_1.png) no-repeat center; }
+.zzMegTit1{ width:100%; height:24px; padding-top:10px; line-height:24px; text-align:center;}
+.zzErrMeg{ width:21px; height:16px; display:inline-block; background:url(/img/VipImg/zzErrMeg.png) no-repeat center; vertical-align:middle;}
+.zzPrompt{ width:20px; height:20px; display:inline-block; background:url(/img/VipImg/zzPrompt.png) no-repeat center; vertical-align:middle;}
+.zzProTxt{ display:inline-block; vertical-align:middle; margin-left:5px; font-size:16px;}
+.zzConTxtBox{ position:relative; width:100%; height:294px; padding:17px 0 15px; background:#edf7ff; margin-top:10px;}
+.blueBoy1{ position: absolute; margin-left:24px; display:inline-block; margin-right:15px; width:45px; height:61px; background:url(/img/VipImg/blueBoy.png) no-repeat center; }
+.zzMegCon{ position:relative; display:inline-block; height:61px; width:200px; text-align:center; font-size:14px; vertical-align:middle; display:table; }
+.zzConBtn1{ position: relative; left:50%; margin-left:-60px; margin-top:7px; background:#075090; color:#fff; font-size:14px; text-align:center; cursor:pointer; padding:7px 15px; width:160px;}
+.zzConBtn1:hover{ background:#0b63b7; color:#fff; border:1px solid #0b63b7;}
+.zzConTxtBox dl{ position:relative; height:61px; width:100%; overflow:hidden;}
+.zzConTxtBox dt,.zzConTxtBox dd{ float:left;}
+.zzMegCon b{display:table-cell; vertical-align:middle; line-height:20px;}
+.zzConTxtProm{ font-size:12px; color:#a0a0a0; padding: 0 20px 0 90px; line-height:20px;}
+.zzConTxtSelc{ position:relative; width:500px; margin:15px auto 0 auto; overflow:hidden;}
+.payBtnBox{ position:relative; width:100%; height:45px; overflow:hidden; margin-top:15px;}
+.payBtnBox a{ position:absolute; top:0; left:50%; display:block; float:left;}
+#btnApplyToDealer_AccountLoginVip{ margin-left:-230px;}
+#btnInputPayNumberToLoginVip{ margin-left:35px;}
+
+</style>
+
+<script>
+    $(function () {
+        $('.zsyLoginBox li').on('mouseover', function () {
+            $('.zsyLoginBox li').removeClass('on');
+            $(this).addClass('on');
+            $('.zsyLoginBox div').removeClass('act');
+            $('.zsyLoginBox div').eq($(this).index()).addClass('act');
+            console.log($('.zsyLoginBox div').eq($(this).index()))
+        });
+        $("#loginPageSendSMSCaptcha").click(function () {
+            $("#loginMobileerrored").hide();
+            $("#loginPageCaptchaerrored").hide();
+            var _mobile = $("#homeAccountPhone").val();
+            var _imageCode = $("#LoginCaptcha").val();
+
+            //校验是否重复点击
+            if ($(this).attr("disabled")) {
+                return false;
+            }
+           
+
+            if (_mobile === null || _mobile === "") {
+                popWindownBlue( '请输入手机号码');
+                return false;
+            } else {
+                var PhoneReg = /^(1[3|4|5|7|8|][0-9]{9})$/;
+                if (!PhoneReg.test(_mobile)) {
+                    popWindownBlue( "请正确输入手机号码");
+                    return false;
+                }
+            }
+            if (!_imageCode) {
+                //$("#loginPageCaptchaerrored").show();
+                popWindownBlue( "请输入图片验证码");
+                return false;
+            }
+            //验证码发送
+            loginsendCaptchaAndCheckImageCode(_mobile, _imageCode, this);
+        });
+
+        var loginsendCaptchaAndCheckImageCode = function (mobile, imageCode, obj) {
+
+            $.ajax({
+                url: "/Captcha/sendCaptchaAndCheckImageCode",
+                dataType: "json",
+                type: "post",
+                data: { mobile: mobile, imageCode: imageCode },
+                success: function (result) {
+                    if (!result || result.code == "400") {
+                        popWindownBlue( "验证码发送失败,请重新发送");
+                        return false;
+                    }
+                    else if (!result || result.code == "401") {
+                        popWindownBlue( "图形验证码输入错误");
+                        return false;
+                    }
+                    else if (result.code == "200") {
+                        //更新剩余时长
+                        countDown(obj, 60);
+                        popWindownBlue( "短信验证码已发送");
+                        return false;
+                    }
+                },
+                error: function (err) {
+                    popWindownBlue( "err");
+                }
+            });
+        };
+
+     
+    });
+
+    $(function () {
+        $(".closeIcon").on("click", function () {
+            $(".zzDivBox").css('display', 'none');
+            window.location = "/MyCenter/Index?pageName=MyCenter";
+        });
+        $(".zzConBtn").on("click", function () {
+            $(".zzDivBox").css('display', 'none');
+        });
+    });
+</script>
+<script src="~/Scripts/jquery.form.js"></script>
+<script>
+    $(function () {
+        if (!('placeholder' in document.createElement('input'))) {
+            $('input[placeholder],textarea[placeholder]').each(function () {
+                var that = $(this),
+                text = that.attr('placeholder');
+
+                if (that.val() === "") {
+                    that.val(text).addClass('placeholder');
+                }
+                that.focus(function () {
+                    if (that.val() === text) {
+                        that.val("").removeClass('placeholder');
+                    }
+                })
+                .blur(function () {
+                    if (that.val() === "") {
+                        that.val(text).addClass('placeholder');
+                    }
+                })
+                .closest('form').submit(function () {
+                    if (that.val() === text) {
+                        that.val('');
+                    }
+                });
+            });
+        }
+     
+    });
+
+    function loadUrl() {
+        var _curReturnUrl = getQueryString("returnUrl");
+        if (_curReturnUrl != null && _curReturnUrl != "") {
+            if (_curReturnUrl.indexOf("from=CS", 0) >= 0) {
+                location.href = "/Account/AccountRegister?returnUrl=" + encodeURIComponent(_curReturnUrl) + "&source=cs_questionnaire";
+            } else {
+                location.href = "/Account/AccountRegister?returnUrl=" + encodeURIComponent(_curReturnUrl) + "&source=blms_questionnaire";
+            }
+        } else {
+            location.href = "/Account/AccountRegister";
+        }
+    }
+</script>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Home" })
+    </div>
+
+    <div class="n_all_cont">
+        <div class="n_left_cont">
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+
+        </div>
+
+        <div class="n_right_cont">
+            <div class="gy_cont" style="margin-top:0;">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>登录</h1>
+                        <span>Login</span>
+                        @*<img src="/img/arrow.png" class="arrow_n" />*@
+                    </div>
+                </div>
+                <div class="gy_nr zsy_nr">
+
+                    <div class="zsyLoginBox">
+                        <ul>
+                            <li class="on">账号登录</li>
+                            <li>动态密码登录</li>
+                            <i></i>
+                        </ul>
+                        <div class="act">
+                         
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" id="returnUrl" name="returnUrl" value="@ViewBag.returnUrl" />
+                                <p>
+                                   
+                                    <label>输入账号：</label>
+                                    <input id="homeAccount" name="UserName" type="text" placeholder="手机/用户名/邮箱/会员卡号" />
+                                 
+                                    <span style="display:none;" class="error_red">请输入账号</span>
+                                </p>
+                                <p>
+                                  
+                                    <label>输入密码：</label>
+                                    <input id="homePasswd" name="Password" type="password" placeholder="密码" />
+                                  
+                                    <span style="display:none;" class="error_red">请输入密码</span>
+                                </p>
+                                <p>
+                                   
+                                    <label>验证码：</label>
+                                
+                                    <input id="homeCaptcha" name="Captcha" type="text" placeholder="验证码" />
+                                   
+                                    <img src="/ValidateCode/Index?ID=1" id="imgCode" alt="单击可刷新" onclick="clickRemoveChangeCode()" />
+                                    <span style="display:none;" class="error_red">请输入密码</span>
+                                </p>
+                                
+                                <input id="btnCenterLogon"  type="button"  class="register_bot pay_active btnStyle" value="登录">
+                                <a href="/Account/ResetPasswd" class="forget_pass">忘记密码？</a>
+                                <p class="no_huiyuan" >还不是会员？<a class="zhuceWord" href="javascript:void(0);" onclick="loadUrl()">立即注册</a></p>
+                          
+
+                        </div>
+                        <div class="">
+                         
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" id="returnUrl" name="returnUrl" value="@ViewBag.returnUrl" />
+                                <p>
+                                    <label>手机号：</label>
+                                    <input type="tel" id="homeAccountPhone"  name="UserName" placeholder="请输入11位手机号码">
+
+                                    <span id="loginMobileerrored" style="display:none;" class="error_red">请输入11位手机号码</span>
+                                </p>
+                                <p>
+                                    <label>验证码：</label>
+
+                                    <input id="LoginCaptcha" name="Captcha" type="text" placeholder="验证码">
+
+                                    <img src="/ValidateCode/Index?ID=1" id="imgCodephone" alt="单击可刷新" onclick="clickRemoveChangeCodeByPhone()">
+                                    <span id="loginPageCaptchaerrored " style="display:none;" class="error_red">验证码</span>
+
+                                </p>
+                                <p>
+                                    <label>短信验证码：</label>
+                                    <input placeholder="请输入短信验证码" id="LoginSMSCaptcha" name="SMSCaptcha" type="text">
+
+                                    <span id="loginMobileerrorred" style="display:none;" class="error_red">请输入短信验证码</span>
+                                    <a id="loginPageSendSMSCaptcha" class="reSend" style="font-size:12px; cursor:pointer;">获取短信码</a>
+                                    
+                                </p>
+                                
+                                
+                            <input id="btnCenterPhoneLogon" type="button"  class="register_bot pay_active btnStyle" value="登录">
+                                <p class="no_huiyuan" >还不是会员？<a class="zhuceWord" href=" javascript:void(0);" onclick="loadUrl()">立即注册</a></p>
+                          
+                        </div>
+                    </div>
+                    <!-- 弹框 -->
+                    <div class="zhuce_tan">
+                        <img src="/img/duigou.png" />
+                        <span>申请已经提交，请您耐心等待，<br>审核时间最多需要5个工作日。</span>
+                    </div>
+                    <!-- 弹框 End -->
+                </div>
+                      
+                    </div>
+        </div>
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>
+
+
+<div class="zzDivBox" style="width: 100%; float: left;  display: none " id="account_AccountRegisterIsSonataUser">
+    <div class="zzDivBg"></div>
+    <div style=" display:block;" class="regCon zzConBox1">
+        <span class="closeIcon"></span>
+        <p class="zzMegTit1">
+            <span class="zzPrompt"></span><!--zzPrompt是"提示"的图标，zzErrMeg是“错误”的图标-->
+            <span class="zzProTxt">选择入会特约店缴费</span>
+        </p>
+        <div class="zzConTxtBox">
+            <div class="blueBoy1"></div>
+            <div class="zzConTxtProm">
+
+
+                <p> 尊敬的会员您好。您可以线上通过天猫缴费通道(立即支付)或线下到特约店完成缴费，即</p>
+                <p> 可获取价值400~700元奖励积分，积分可抵维保现金消费。详情请咨询400-800-1100，</p>
+                <p> 祝您生活愉快！</p>
+                <p><span id="reIntegralmsg" style=" display :none"></span></p>
+            </div>
+            <div class="zzConTxtSelc">
+                <div style="overflow:hidden; font-size:14px; margin-left:-125px;">
+                    @Html.Action("ReAccountPageProvince", "Car")
+                </div>
+                <div style="margin-top: 22px; height: 26px; line-height: 26px; overflow:hidden;">
+                    <input type="hidden" id="accountPayNumber">
+                    <input type="hidden" id="accountActivityType">
+                    <input type="hidden" id="userid">
+                    <input type="hidden" id="loginIdentityNo" />
+                    <span style="font-size: 12px;color: #a0a0a0; "><span style="color:#3D3F43; font-size:16px; padding-right:10px;">支付会费</span>如果您已经与申请的特约店沟通并向其支付了会费，也可以选择向特约店申请。</span>
+                </div>
+                <div class="payBtnBox">
+                    <a class="pay_active apply_member register_bot zzConBtn1" id="btnApplyToDealer_AccountLoginVip">向特约店申请</a>
+                    <a target="_blank" href="http://detail.tmall.com/item.htm?spm=0.0.0.0.YYWYh4&amp;id=44232536739" class="pay_active lijizhufu register_bot zzConBtn1" id="btnInputPayNumberToLoginVip">立即支付</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

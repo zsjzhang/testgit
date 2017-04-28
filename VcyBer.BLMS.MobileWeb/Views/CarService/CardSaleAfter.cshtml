@@ -1,0 +1,210 @@
+﻿
+@{
+    ViewBag.Title = "春/夏/冬季售后卡券";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    body {
+        background-color: #ffffff;
+        margin-bottom: 15px;
+        margin-right:8px;
+        font-family: "Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu;
+    }
+
+    
+
+        .header .logo {
+            line-height: 40px;
+            vertical-align: central;
+        }
+
+        .header .title {
+            font-size: 12px;
+        }
+
+    .section {
+        background-color: #f2f2f3;
+        margin-left: 6px;
+        margin-right: 6px;
+        padding-bottom: 10px;
+        margin-top: -15px;
+    }
+
+    .fontColor {
+        color: #ff8500;
+    }
+
+    .b {
+        font-weight: bold;
+    }
+
+    .section .desc {
+        width: 100%;
+        height: auto;
+        background: #f2f2f3;
+        border-radius: 4px;
+    }
+
+        .section .desc h4 {
+            color: #ff8500;
+            line-height: 26px;
+            height: 26px;
+            text-align: center;
+            padding-top: 6px;
+        }
+
+        .section .desc h6 {
+            margin: 0px 0px 0px 6px;
+            font-size: 12px;
+            color: #ff8500;
+        }
+
+        .section .desc dl {
+            display: table;
+            margin-top: 16px;
+            font-size: 14px;
+        }
+
+    dl dt {
+        float: left;
+        margin-left: 6px;
+    }
+
+        dl dt img {
+            width: 39px;
+        }
+
+    dl dd {
+        margin-left: 48px;
+        margin-top: -10px;
+    }
+
+        dl dd h5 {
+            color: #ff8500;
+            margin-top: 4px;
+            margin-bottom: 0px;
+        }
+
+        dl dd p {
+            margin-top: 3px;
+            padding-right: 8px;
+            line-height: 16px;
+            padding: 0;
+        }
+
+    .flow {
+        width: 100%;
+        display: block;
+        margin-top: 18px;
+    }
+
+    .upgrate_bot {
+        display: table;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+        .upgrate_bot a {
+            display: block;
+        }
+
+            .upgrate_bot a img {
+                margin: 0 auto;
+                display: block;
+            }
+
+    #havecode {
+        color: #ff8500;
+        margin: 0;
+        font-size: 4px;
+        text-decoration: none;
+        width: 29%;
+        float: right;
+        position: relative;
+        top: -22px;
+    }
+
+    .div_pop {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.9);
+        text-align: center;
+        top: 0;
+        left: 0;
+        z-index: 105;
+        display: none;
+        margin: 0 auto;
+    }
+
+    .div_content {
+        background-color: #ffffff;
+        width: 90%;
+        height: 150px;
+        margin-left: 4%;
+        border-radius: 5px;
+        position: relative;
+        top: 30%;
+    }
+
+        .div_content #close_btn {
+            float: right;
+            margin-top: 3px;
+            margin-right: 3px;
+        }
+
+        .div_content p {
+            margin: 0;
+            color: #7c7b7b;
+        }
+
+        .div_content span {
+            border-radius: 3px;
+            line-height: 25px;
+            height: 26px;
+            width: 60%;
+            margin-left: 20%;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            background-color: #b6b6b6;
+            display: block;
+        }
+
+    .xiangqingBox {
+        font-size: 14px;
+        line-height: 22px;
+        padding:2%;
+        box-sizing:border-box;
+    }
+    strong {font-weight: bold;}
+     .xiangqingBox h3{font-size: 1.17em; margin:.6em 0;
+	font-weight: bold;}
+    .xiangqingBox p {
+        margin:.4em 0;
+    }
+</style>
+@*<link href="~/Content/css/style.css" rel="stylesheet" />*@
+<section class="xiangqingBox">
+    <h3>春/夏/冬季售后卡券</h3>
+    <p>北京现代针对bluemembers会员客户，开展季节性售后服务活动，对参加活动车辆提供专享车辆检测，并通过微信公众号等平台提供售后卡券。</p>
+    <p><strong>服务对象：</strong>bluemembers会员</p>
+    <p><strong>客户流程：</strong></p>
+
+    <p><img src="~/img/service/cxqd.png" width="100%"></p>
+
+</section>
+
+<div class="div_pop" id="div_pop">
+    <div class="div_content">
+        <div style="height:25px;">
+            <img src="~/img/service/close_img.png" id="close_btn" style="width:20px;" alt="">
+        </div>
+        <p>
+            领取成功！您的权益码是
+        </p>
+        <span id="span_serviceCode"></span>
+        <p>
+            请您妥善保存<br>（长按可复制）
+        </p>
+    </div>
+</div>

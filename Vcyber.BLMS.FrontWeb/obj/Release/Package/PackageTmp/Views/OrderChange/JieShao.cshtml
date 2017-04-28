@@ -1,0 +1,83 @@
+﻿@{
+    Layout = null;
+}
+
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/ExChangeStyle.css">
+    <link rel="stylesheet" type="text/css" href="/css/ExChangeAward.css">
+    <link rel="stylesheet" type="text/css" href="/layer/skin/layer.css">
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <!--转动插件rotate,js-->
+    <script type="text/javascript" src="~/Scripts/ExChangeAwardRotate.js"></script>
+    <!--抽奖-->
+    <script type="text/javascript" src="~/Scripts/ExChangeAward.js"></script>
+    <!--弹出层layer-->
+    <script type="text/javascript" src="/layer/layer.js"></script>
+    <title>置换月活动_活动介绍 </title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="mainBox jieshao">
+            <div class="header">
+                <dl>
+                    <dd><a href="/OrderChange/Index">首　页</a></dd>
+                    <dd class="on"><a href="/OrderChange/JieShao">活动介绍</a></dd>
+                    <dt><a href="/"></a></dt>
+                    <dd><a href="/OrderChange/JiangPing">奖品设置</a></dd>
+                    <dd><a href="/OrderChange/ZhongJiang">中奖名单</a></dd>
+                </dl>
+            </div>
+            <div class="jieshaoCon">
+                <h4 class="firstBtn">活动流程</h4>
+                <p><strong>第一步：</strong>进入活动页面。</p>
+                <p><strong>第二步：</strong>选择意向车型。</p>
+                <p><strong>第三步：</strong></p>
+                <p>
+                    1、完成预约试驾（置换），抽取定制礼品，成功购车再享2万元购车大礼包。
+                </p>
+                <p>
+                    2、车主会员推荐好友购车，抽取定制礼品，好友购车再享2万元购车大礼包。
+                </p>
+                <p><strong>第四步：</strong>获得礼品，分享好友。</p>
+
+                <h4>注意事项</h4>
+                <p class="pIndent1">1、【预约试驾(置换)】、【推荐好友购车】，会员可同时参与以上两项活动，每项活动仅获得一次礼品，推荐有礼活动仅限车主会员参与。</p>
+
+                <p class="pIndent1">2、活动中“2万元购车大礼包”（“置换补贴”+“分期贴息”+“购车、置换积分”组成），礼包价值以活动中购买车型赠送为准。</p>
+
+                <p class="pIndent1">3、购车分期贴息、置换补贴详情，可直接垂询当地经销商。</p>
+
+                <p class="pIndent1">4、会员积分发放：3个月内成功入会bluemembers会员，系统自动发放。未按时注册，将不予补发。会员积分可用于积分商城兑换礼品或预约保养时，抵扣现金使用。</p>
+
+                <p class="pIndent1">5、您于本平台提供的个人信息，只用于北京现代本次活动与您沟通联络时使用。活动结束后，5个工作日内工作人员邮寄礼品。若预留地址有误，3日内无法联系到您，且无主动反馈，视为主动放弃获奖资格，奖品不予保留。</p>
+
+                <p class="pIndent1">6、本活动最终解释权归北京现代汽车有限公司所有。活动中如有疑问请及时拨打北京现代24小时客服热线：400-800-1100（手机拨打）或咨询bluemembers在线客服。</p>
+
+            </div>
+            <div style="height:40px;"></div>
+        </div>
+    </div>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?0b4e366e453f3524b50e08dc17833d51";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        _hmt.push(['_trackPageview', "/OrderChange/JieShao?Source=@ViewBag.Source"]);
+    </script>
+
+    <script type="text/javascript">
+        try {
+            if (/Android|webOS|iPhone|iPod|BlackBerry|iPad/i.test(navigator.userAgent)) {
+                window.location.href = window.location.protocol + "//" + window.location.host + "/weixin/OrderChange/jieshao?Source=@ViewBag.Source";
+            }
+        } catch (e) { }
+    </script> 
+</body>
+</html>

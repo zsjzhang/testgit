@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "车主故事";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Scripts/bootstrap-datepicker/datepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+<script src="~/Scripts/bootstrap-datepicker/bootstrap-datepicker.zh-CN.js"></script>
+<style type="text/css">
+    .fancybox-nav span {
+        visibility: visible !important;
+    }
+</style>
+<div class="panel-default">
+    <div class="panel-body">
+
+        <div class="form-group">
+            <label class="col-md-2 control-label text-right" style="padding-top:10px">手机号码：</label>
+            <div class="col-md-3 text-left">
+                <input class="form-control" id="phoneNumber">
+            </div>
+            <label class="col-md-2 control-label text-right" style="padding-top:10px" id="time">创建时间：</label>
+            <div class="col-md-2 text-left">
+                <input class="form-control datepicker" id="StartTime" data-date-format="yyyy-mm-dd">
+            </div>
+
+            <label class="col-md-1 control-label" style="padding-top:10px">--</label>
+            <div class="col-md-2 text-left">
+                <input class="form-control datepicker" id="EndTime" data-date-format="yyyy-mm-dd">
+            </div>
+
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-primary" type="submit" onclick="search()" style="margin-top:10px">查询</button>
+                <button class="btn btn-primary" type="button" onclick="toExcel()" style="margin-top:10px">导出</button>
+                @*<input class="btn btn-primary" type="button" id="btnExport" style="margin-top:10px" value="导出">*@
+                @*<a class="btn btn-primary" href="/newreport/dealerstorytoexcel" style="margin-top:10px">导出</a>*@
+            </div>
+        </div>
+        <div id="divPageList">
+
+        </div>
+    </div>
+
+</div>
+<link href="~/Content/fancybox/jquery.fancybox.css" rel="stylesheet" />
+<script src="~/Content/fancybox/jquery.fancybox.js"></script>
+<script src="~/Content/fancybox/jquery.fancybox.pack.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $('.datepicker').datepicker();
+        $("#btnExport").click(function () {
+            $.post("/newreport/dealerstorytoexcel", { phoneNumber: $("#phoneNumber").val(), StartTime: $("#StartTime").val(), EndTime: $("#EndTime").val() }, function () {
+                
+            })
+        })
+    });
+
+    function check() {
+        debugger;
+        var start = new Date($("#StartTime").val());
+        var end = new Date($("#EndTime").val());
+        if ($("#StartTime").val() == "" || $("#EndTime").val() == "") {
+            alert("时间必填");
+            return false;
+        }
+        if (Date.parse(start) > Date.parse(end)) {
+            alert("开始时间不能大于结束时间");
+            return false;
+        }
+        return true;
+    }
+    function search() {
+        $.post("/newReport/DealerStoryPartial", { phoneNumber: $("#phoneNumber").val(), StartTime: $("#StartTime").val(), EndTime: $("#EndTime").val() }, function (result) {
+            $("#divPageList").html(result);
+        })
+    }
+
+    function picSee(ele) {
+        $.fancybox.open($(ele).next().find("a[rel=group]"),
+           {
+               //showNavArrows: true,
+               arrows:true
+               //prevEffect: 'none',
+               //nextEffect: 'none',
+               //padding: 0,
+               //openEffect: 'elastic',
+               //openSpeed: 150,
+               //closeEffect: 'elastic',
+               //closeSpeed: 150,
+               //width: '100px',
+               //height: '100px',
+               //autoDimensions: false
+               //helpers: {
+               //    overlay: null,
+               //}
+           });
+    }
+    function toExcel() {
+        var ids = [];
+        $('input[name="chk_list"]:checked').each(function () {
+            ids.push($(this).val());
+        });
+        ids.join(',');
+        window.location.href = "/newreport/dealerstorytoexcel?ids=" +ids;
+        //window.location.href = "/newreport/dealerstorytoexcel?phoneNumber=" + $("#phoneNumber").val()
+        //    + "&&StartTime=" + $("#StartTime").val()
+        //+ "&&EndTime=" + $("#EndTime").val();
+    }
+</script>

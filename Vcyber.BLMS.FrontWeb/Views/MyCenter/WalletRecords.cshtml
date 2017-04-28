@@ -1,0 +1,92 @@
+﻿@model PagedList<Vcyber.BLMS.Entity.BLMSMoney.UserIntegralRecord>
+@using Webdiyer.WebControls.Mvc;
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "我的积分";
+}
+<div class="header">
+    @Html.Action("HomeHeader", "Header", new
+{
+    pageName = "Mycenter"
+})
+    <!--个人中心-->
+    <link href="~/css/base/information.css" rel="stylesheet" />
+    <link href="~/css/base/dd.css" rel="stylesheet" />
+    <script type="text/javascript" src="js/js.js"></script>
+    <style>
+        .f_y_1 { width: 695px; }
+
+        .f_y_1 div.a_n { margin-left: 7px; }
+
+        .f_y_1 div.a_n:first-child { margin-left: 0; }
+
+        .f_y_1 ul li.on { background: #EEEEEE; color: #3D3F43; }
+
+        .recordBox{ width:100%; min-height:500px; }
+.jfRecordTab{ width:100%; margin:0 auto 0 auto; border:1px solid #ccc; background:#fef4d6; font-size:14px; color:#3D3F43;}
+.jfRecordTab tr th{width:33%;background:#eee; color:#333;padding:15px; text-align:center;border:1px solid #ccc;}
+.jfRecordTab tbody tr td{ width:33%;background:#fff; padding:15px;border:1px solid #ccc; text-align:center;}
+.jfRecordTab tbody tr td span{ display:inline-block; padding-right:5px; margin-right:5px; border-right:1px solid #3D3F43;height: 17px;line-height: 17px;}
+
+    </style>
+</div>
+<div>
+
+    <div class="n_all_cont">
+        <div class="n_left_cont">
+
+            @Html.Partial("_PartialUserInfo", ViewData["curUserEntity"])
+            @Html.Partial("_PartialMyWallet", ViewData["curUserEntity"])
+        </div>
+        <div class="n_right_cont">
+            <p class="select_menu">
+                <a href="/MyCenter/Index">个人中心 ></a><a href="#">我的积分</a>
+            </p>
+            <input hidden="hidden" id="pageSurplus" name="pageSurplus" value="@ViewBag.pageSurplus" />
+            <div class="recordBox">
+                <table class="jfRecordTab">
+                    <thead>
+                        <tr>
+                            <th>积分记录</th>
+                            <th>剩余积分</th>
+                            <th>时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            if (Model != null)
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @if (!string.IsNullOrEmpty(item.IntegralType))
+                                            { <span>@item.IntegralType </span>  }
+                                            <em>@item.value 积分</em>
+                                        </td>
+                                        <td>@item.surplus</td>
+                                        <td>@DateTime.Parse(item.CreateTime).ToString("yyyy-MM-dd HH:mm:ss")</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="3">暂无记录</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+                @Html.Pager(Model, new PagerOptions { PageIndexParameterName = "pageindex", CurrentPagerItemTemplate = "<span class=\"current\">{0}</span>", DisabledPagerItemTemplate = "<span class=\"disabled\">{0}</span>", Id = "badoopager" })
+
+
+
+            </div>
+        </div>
+    </div>
+        <div class="footer">
+            @Html.Action("Index", "Footer")
+        </div>
+  
+</div>

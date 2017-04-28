@@ -1,0 +1,11 @@
+﻿@model System.Collections.Generic.List<Vcyber.BLMS.FrontWeb.Models.BBS.BBSMember>
+
+@{ 
+    Layout = null;
+}
+
+@foreach (var m in Model)
+{
+    var u = string.Format("../../content/bbs/images/0{0}.gif",m.Head); 
+    <img src="@u"/> 
+}

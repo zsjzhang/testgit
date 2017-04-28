@@ -1,0 +1,288 @@
+﻿@model Vcyber.BLMS.Entity.Order
+
+@{
+    ViewBag.Title = "编辑订单";
+    ViewBag.TitleFocus = "4-1-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Vcyber.BLMS.ManageWeb.Helper;
+@using Vcyber.BLMS.Entity.Enum;
+@using Vcyber.BLMS.Entity;
+@using Vcyber.BLMS.Common;
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<input type="hidden" id="hidstate" value="@Model.TradeState" />
+<style type="text/css">
+    .materDiv {
+        text-align: center;
+    }
+
+    .orderTable {
+        width: 940px;
+        margin: auto;
+    }
+
+
+
+        .orderTable div div {
+            width: 236px;
+            height: 20px;
+            float: left;
+            border: 1px solid DarkGray;
+        }
+
+    .orerColumon {
+    }
+
+    .productDiv {
+        width: 1000px;
+        margin: auto;
+    }
+
+        .productDiv div div {
+            width: 157px;
+            height: 60px;
+            float: left;
+            border: 1px solid DarkGray;
+            line-height: 60px;
+        }
+
+    .addressDiv {
+        width: 1000px;
+        margin: auto;
+    }
+
+        .addressDiv div div {
+            width: 315px;
+            height: 20px;
+            float: left;
+            border: 1px solid DarkGray;
+        }
+
+    .shippingDiv {
+        width: 1000px;
+        margin: auto;
+        margin-left: 0px;
+    }
+
+        .shippingDiv div {
+            float: left;
+            height: 150px;
+            border: 1px solid DarkGray;
+        }
+
+        .shippingDiv table {
+            width: 868px;
+        }
+
+            .shippingDiv table tr td {
+                width: 50px;
+            }
+
+    .orderTrack {
+        width: 1000px;
+        margin: auto;
+    }
+
+        .orderTrack div div {
+            width: 315px;
+            height: 20px;
+            float: left;
+            border: 1px solid DarkGray;
+        }
+</style>
+<div class="panel panel-default">
+    <div class="panel-heading">基本信息</div>
+    <table class="table table-bordered table-responsive">
+        <tr>
+            <td style="width: 10%">订单号</td>
+            <td style="width: 40%">@Model.OrderId</td>
+            <td style="width: 10%">订单状态</td>
+            <td style="width: 40%">@{ETradeState trade = (ETradeState)Model.TradeState;}@trade.GetDiscribe()</td>
+        </tr>
+        <tr>
+            <td style="width: 10%">下单人</td>
+            <td style="width: 40%">@Model.UserName</td>
+            <td style="width: 10%">下单日期</td>
+            <td style="width: 40%">@Model.Createtime.ToString()</td>
+        </tr>
+        <tr>
+            <td style="width: 10%">订单积分</td>
+            <td style="width: 40%">@Model.Integral</td>
+            @*<td style="width: 10%">订单蓝豆</td>
+            <td style="width: 40%">@Model.BlueBean</td>*@
+        </tr>
+        <tr>
+            <td style="width: 10%">支付方式</td>
+            <td style="width: 90%" colspan="3">@{EPayType type = (EPayType)Model.Type;}@type.GetDiscribe()</td>
+        </tr>
+        <tr>
+            <td style="width: 10%">物流类型</td>
+            <td style="width: 40%">@StoreHelpr.GetShippingName(Model.Shipping.Type)</td>
+            <td style="width: 10%">发货时间</td>
+            <td style="width: 40%">@Model.Shipping.DeliveryTime</td>
+        </tr>
+    </table>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">商品信息</div>
+    <table class="table table-bordered table-responsive">
+        <tr>
+            <td>商品ID</td>
+            <td>商品图片</td>
+            <td>商品名称</td>
+            <td>商品积分</td>
+            @*<td>商品蓝豆</td>*@
+            <td>购买数量</td>
+            <td>小计</td>
+        </tr>
+        @{
+            List<OrderProduct> list = Model.OrderProduct;
+            foreach (var item in list)
+            {
+                <tr>
+                    <td>@item.ProductID</td>
+                    <td><img src="@item.Img" style="width: 50px; height: 50px;" /></td>
+                    <td>@item.Name</td>
+                    <td>@item.Integral</td>
+                    @*<td>@item.BlueBean</td>*@
+                    <td>@item.Qty</td>
+                    <td>@{int value =item.BlueBean<=0 ?item.Qty * item.Integral:item.Qty*item.BlueBean;}@value</td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">收货信息</div>
+    <table class="table table-bordered table-responsive">
+        <tr>
+            <td>姓名</td>
+            <td>手机号码</td>
+            <td>详细地址</td>
+        </tr>
+        @if (Model.OrderAddress != null)
+        {
+            OrderAddress addEntity = Model.OrderAddress;
+            <tr>
+                <td>@addEntity.ReceiveName</td>
+                <td>@addEntity.Phone</td>
+                <td>@addEntity.PCC @addEntity.Detail</td>
+            </tr>
+        }
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">操作信息</div>
+    <div class="container">
+        <table class="table table-bordered table-responsive">
+            <tr>
+                <td style="width:20%; vertical-align: middle">操作备注：</td>
+                <td style="width:80%;padding-left:30px;">
+                    <div class="row"style="width:500px;height:auto;">
+                        @if (Model.Shipping != null)
+                        {
+                            OrderShipping orderSheeping = Model.Shipping;
+                            if (orderSheeping.Number != null && orderSheeping.Name != null)
+                            {
+                                <span style="display:block;float:left">物流单号：</span><input id="shipnumber" style="display:block;float:left" type="text" value="@orderSheeping.Number" />
+                                <span style="display:block;float:left">物流类型：</span><input id="shiptype" style="display:block;float:left " type="text" value="@orderSheeping.Name" />
+                     
+                                //物流单号：<input id="shipnumber" type="text" value="" />
+                                //物流类型：<input id="shiptype" type="text" value="" />
+                            }
+                            else
+                            {
+                                <span style="display:block;float:left">物流单号：</span>
+                                <input id="shipnumber" style="display:block;float:left" type="text" value="@orderSheeping.Number" />
+                                <span style="display:block;float:left">物流类型：</span>
+                                <input id="shiptype" style="display:block;float:left " type="text" value="@orderSheeping.Name" />
+
+
+                            }
+                        }
+
+                        @*@Html.DropDownList("shiptype", StoreHelpr.GetShippingType(), new { @class = "input_text2" })*@
+                    </div>
+                    <div class="row">
+                        @*操作备注*@
+                        @if(Model.OrderTrack!=null)
+                        { 
+                            List<OrderTrack> trackInfo=Model.OrderTrack;
+                            if (trackInfo.Count > 0) 
+                            { 
+                                foreach(var item in trackInfo)
+                                { 
+                                    <textarea id="content" cols="110" rows="3" class="form-control">@item.Content</textarea>
+                                }
+                            }
+                            else
+                            {
+                                <textarea id="content" cols="110" rows="3" class="form-control"></textarea>
+                            }
+                        }
+                                              
+                        
+                    </div>
+                    <div class="row">
+                        @{string dis = Model.TradeState != ETradeState.DFH.ToInt32() ? "disabled='disabled'" : "";}
+                        <input type="button" value="已发货" @dis onclick="delivery('@Model.OrderId')" />
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">订单跟踪</div>
+    <table class="table table-bordered table-responsive">
+        <tr>
+            <td>操作人</td>
+            <td>操作内容</td>
+            <td>操作时间</td>
+        </tr>
+        @if (Model.OrderTrack != null)
+        {
+            List<OrderTrack> tracks = Model.OrderTrack;
+            foreach (var item in tracks)
+            {
+                <tr>
+                    <td>@item.OperateUser</td>
+                    <td>@item.Content</td>
+                    <td>@item.OperateTime</td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+    
+    <script>
+        //发货
+        function delivery(oid) {
+            var shipnumber = $('#shipnumber').val();
+            var shipname = $('#shiptype').val();
+            var content = $('#content').val().trim();
+            if ($.trim(shipnumber) == "") {
+                alert('物流号不能为空！');
+                return;
+            }
+
+            if ($.trim(shipname) == "") {
+                alert('物流名称不能为空！');
+                return;
+            }
+
+            if (content == "") {
+                alert('操作内容不能为空！');
+                return;
+            }
+            $.post('/Order/Shipping', { 'oid': oid, 'shipnumber': shipnumber, 'shipname': shipname, 'content': content }, function (data) {
+                if (data == 'ok') {
+                    window.location.href = '/Order/Detail?orderId=' + oid;
+                } else {
+                    alert("修改失败！");
+                }
+            })
+        }
+    </script>

@@ -1,0 +1,104 @@
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin: 0; padding: 0; }
+html {font-size:100px; width:100%; height:100%;}
+body {font-family:"Microsoft YaHei", SimHei, helvetica, arial, verdana, tahoma, sans-serif; position: relative; width:100%; height:100%;/* min-width:12.8rem; -moz-min-width:12.8rem;*/}
+/*body {font-size: 14px;}*/
+h1, h2, h3, h4, h5, h6 { font-size: 100%; }
+ul, ol { list-style:none; }
+img { border:0; }
+em,i,b,strong{ font-style:normal; font-weight:normal;}
+a { text-decoration:none; }
+.clealfix:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.clealfix {
+	zoom: 1;
+}
+a,button,input,select,textarea,form {-webkit-tap-highlight-color: rgba(0,0,0,0);tap-highlight-color: rgba(0,0,0,0);-webkit-tap-highlight-color: rgba(0,0,0,0);-webkit-tap-highlight-color: transparent; /* For some Androids */}
+/***********reset end********************/
+
+
+
+.result_bg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: .5;
+  filter: alpha(opacity=50);
+  z-index: 99;
+}
+.noaward{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+
+.noaward .awardb{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.noaward .awardb .btn:hover{
+  background: #1997ea;
+}
+
+.award_bg .award .numb i{
+	font-style: normal;
+	color: #fffc00;
+	font-weight: bold;
+}
+
+
+
+
+
+
+.bluePopupWin{width: 90% !important;height: 3.5rem !important; font-size:.26rem;}
+.bluePopupWin .layui-layer-content{
+	background: url(../images/blueBoyS.png) no-repeat;
+    background-size: 1.02rem 1.38rem;
+    margin-left: .4rem;
+    margin-top: .6rem;
+    padding: 0 0.6rem 0.6rem 1.3rem;
+    height: 1.8rem;
+    line-height: .4rem;
+    color: #075090;}
+.bluePopupWin .layui-layer-btn{ position:relative; z-index:100; text-align:center;   }
+.bluePopupWin .layui-layer-btn .layui-layer-btn0{ background:#075090; width:1rem; margin-top: -0.7rem;}
+.bluePopupWin .layui-layer-btn .layui-layer-btn0:hover{ background:#0B63b7;}
+
+.winListSearch  input.searchPhone{ height:.64rem;}
+
+
+ul.move{ position:absolute; left:3.5%; top:0; }
+.move{
+	-webkit-animation-name:move;
+	-webkit-animation-duration:5s;
+	-webkit-animation-timing-function:linear;
+	-webkit-animation-iteration-count:infinite;
+}
+
+@-webkit-keyframes move{
+	to{
+		top:-3.5rem;		
+	}	
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,120 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Activities>
+@{
+    Layout = null;
+}
+
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+<div class="hot_Ac">
+    <div class="gy_title">
+        <div class="gy_zi">
+            <h1>往期活动</h1>
+            <span>Past activities</span>
+        </div>
+    </div>
+
+    <div class="apply">
+
+        <div class="img_l"><img src="/img/prev.png" id="pastPrevMovement" /></div>
+
+        <div class="apply_nav">
+            <div class="apply_w" style="width:auto;" id="past_container">
+                @{
+                    if (Model != null && Model.Any())
+                    {
+                        int initstartindex = 0;
+                        int index = 0;
+                        foreach (var item in Model)
+                        {
+                            string _pastmovementid = "pastmovementid" + index;
+                            <div class="apply_array" style="margin-right:3px;" id="@_pastmovementid">
+                                <a href="/Mavement/Detail?id=@item.Id">
+                                    <img src="@item.TrueMajorImageUrl" />
+                                </a>
+                                <h3 style="height:24px; overflow:hidden;"><a href="/Mavement/Detail?id=@item.Id" style="background: #ffffff; color: #000000; font-size:18px; height:30px; line-height:30px; ">@item.Title</a></h3>
+                                <div>已结束</div>
+                            </div>
+                            index++;
+                        }
+                        <div style="display:none;">
+                            <input type="hidden" id="pastmovementtotalcount" value="@Model.Count()" />
+                            <input type="hidden" id="pastmovementstartindex" value="@initstartindex" />
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="img_r"><img src="/img/next.png" id="pastNextMovement" /></div>
+    </div>
+</div>
+<script>
+    $(function () {
+        var totalCount = $("#pastmovementtotalcount").val();
+        $("#pastPrevMovement").click(function () {
+            try {
+                var startIndex = $("#pastmovementstartindex").val();
+                startIndex = parseInt(startIndex);
+                if (totalCount <= 3 || startIndex <= 0) {
+                    return;
+                }
+                var newStartIndexId = startIndex - 1;
+                var startIndexId = "pastmovementid" + newStartIndexId;
+                $("#" + startIndexId).show();                
+                $("#pastmovementstartindex").val(newStartIndexId);
+            }
+            catch (e) {
+                console.log(e.message);
+            }
+            finally {
+               
+            }
+
+        });
+        $("#pastNextMovement").click(function () {
+            try {
+                var startIndex = $("#pastmovementstartindex").val();
+                startIndex=parseInt(startIndex);
+                if (totalCount <= 3 || startIndex + 3 >= totalCount) {
+                    return;
+                }
+                var startIndexId = "pastmovementid" + startIndex;
+                $("#" + startIndexId).hide();
+                var newStartIndexId = parseInt(startIndex) + 1;
+                $("#pastmovementstartindex").val(newStartIndexId);
+            }
+            catch (e) {
+                console.log(e.message);
+            }
+            finally {
+               
+            }
+        });
+    });
+</script>

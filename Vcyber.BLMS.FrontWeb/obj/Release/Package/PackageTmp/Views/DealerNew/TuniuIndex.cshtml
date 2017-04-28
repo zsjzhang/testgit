@@ -1,0 +1,210 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "特约商户-途牛五星会员权益";
+}
+<link href="~/css/DealerNew/reset.css" rel="stylesheet" />
+<link href="~/css/DealerNew/brand.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnGotoLogin").click(function () {
+            var returnUrl = encodeURIComponent("/DealerNew/TuniuIndex");
+            location.href = "/Account/LogonPage?returnUrl=" + returnUrl;
+            return false;
+        });
+        $("#btnGotoRegister").click(function () {
+            var returnUrl = encodeURIComponent("/DealerNew/TuniuIndex");
+            location.href = "/Account/AccountRegister?returnUrl=" + returnUrl;
+            return false;
+        });
+
+        $("#btnToBeMember").click(function () {
+            location = "http://www.tuniu.com/zt/bjxd/";
+            $("#divGetCodeSuccess").hide("slow");
+            return false;
+        });
+    });
+</script>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "BlueVIP" })
+    </div>
+    <div class="n_all_cont">
+
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+
+                @(this.User.Identity.IsAuthenticated ? this.Html.Action("HomeLogonSuccess", "Account") : this.Html.Action("HomeLogon", "Account"))
+
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+        </div>
+        <div class="n_right_cont">
+            <p class="select_menu" style="font-family:'Microsoft YaHei'"><a href="/BlueVIP/Index">蓝缤权益</a> > <a href="/LifeService/Index">生活服务  </a>   > 途牛五星会员权益</p>
+            <div class="gy_cont">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>途牛五星会员权益</h1>
+                        <span>Star Member Rights</span>
+                    </div>
+                </div>
+
+                @*<div class="fwxq_box">
+
+                    </div>*@
+                <div class="wrap" id="tuniu">
+                    @*<div class="head_Bg"></div>*@
+                    <div class="copywrite">
+                        <h2><a href=""><img src="/Img/DealerNew/tuniu.png" alt=""></a>途牛五星会员权益</h2>
+                        <p class="show_text">
+                            爱车、爱旅行。bluemembers联合途牛旅游网为北京现代车主会员提供超值五星会员特权通道，享受全方位旅游服务贵宾权益。申请途牛五星会员权益，享受专属顾问、免费“牛到家”服务，提供免费上门签约、材料收发服务，足不出户即可享受途牛贴心到家的全面服务；预定奖励、抵用特权、0元wifi服务，让您尊享超值旅游体验。
+                        </p>
+
+                        <div class="activity">
+                            <h2>途牛五星会员权益</h2>
+                            <dl>
+                                <dt><img src="/Img/DealerNew/tu1.png" alt=""></dt>
+                                <dd>
+                                    <h3>抵用特权</h3>
+                                    <p>
+                                        您可以在任意时间享受预定产品时使用2倍数*线路可使用抵用券数量的特权；
+                                    </p>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><img src="/Img/DealerNew/tu2.png" alt=""></dt>
+                                <dd>
+                                    <h3 style="margin-top: 7px;">预订奖励</h3>
+                                    <p>
+                                        会员在途牛预订相应品类的旅游品，出游归来后可获得1.5倍数*订单实际支付金额/100的牛大头；
+                                    </p>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><img src="/Img/DealerNew/tu3.png" alt=""></dt>
+                                <dd>
+                                    <h3>
+                                        签到特权
+                                    </h3>
+                                    <p>
+                                        途牛会员在途牛APP连续签到，可获得签到奖励；
+                                    </p>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><img src="/Img/DealerNew/tu4.png" alt=""></dt>
+                                <dd>
+                                    <h3 style="margin-top: 0;">活动尊享</h3>
+                                    <p>
+                                        会员可在会员日当天（每月16日）享受会员日频道所有活动特权（如出境游送wifi、签约送双倍牛大头、送礼品等，具体特权以实际发布为准）；同时可受邀参加途牛线下沙龙活动；
+                                    </p>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><img src="/Img/DealerNew/tu5.png" alt=""></dt>
+                                <dd>
+                                    <h3>生日关怀</h3>
+                                    <p>
+                                        您在预订旅游产品时可使用双倍抵用券；出游归来并完成点评，获赠双倍抵用券；
+                                    </p>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><img src="/Img/DealerNew/tu6.png" alt=""></dt>
+                                <dd>
+                                    <h3>专属顾问</h3>
+                                    <p>
+                                        途牛将为您安排“一对一“专属顾问服务；
+                                    </p>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><img src="/Img/DealerNew/tu7.png" alt=""></dt>
+                                <dd>
+                                    <h3>牛到家</h3>
+                                    <p>
+                                        您可享受上门签约服务；
+                                    </p>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><img src="/Img/DealerNew/tu8.png" alt=""></dt>
+                                <dd>
+                                    <h3>wifi特权</h3>
+                                    <p>
+                                        预订出境跟团、自助旅游产品，每订单赠送无线wifi1部；
+                                    </p>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><img src="/Img/DealerNew/tu9.png" alt=""></dt>
+                                <dd>
+                                    <h3>贵宾通道</h3>
+                                    <p>
+                                        您可享受门市专属柜台服务。
+                                    </p>
+                                </dd>
+                            </dl>
+
+
+                            <h4>
+                                * 详细途牛五星会员权益使用请以途牛官方网站为准；
+                                <br />
+                                车主会员成为途牛五星会员后，途牛会员账号级别、权益均以途牛网站管理为准，bluemembers会员权益不受影响；
+                            </h4>
+                            <img src="/Img/DealerNew/tuniu-liuc.png" alt="" class="flow" />
+                            <div class="upgrate_bot">
+                                <a href="javascript:DealerNewCtr.GetRightCode();"><img src="/Img/DealerNew/qym.png" /></a>
+                                <a href="javascript:DealerNewCtr.UpgradeFiveStarMembers();"><img src="/Img/DealerNew/fast.png" /></a>
+                                <a href="javascript:void(0);" id="have_name">（已有权益码）</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>
+
+<div id="divAlertLogin" class="alertbox" style="width: 550px; height: 120px; margin-left: -250px; display: none">
+    <div class="alertclose" onclick="$('#divAlertLogin').hide();">
+        &times;
+    </div>
+    <p style="height:80px;line-height:80px;font-size:16px;text-align:center;">
+        请登录/注册bluemembers车主会员账号，领取途牛五星会员权益礼包！
+    </p>
+    <div style="width:320px;margin:auto;float:none;">
+        <div class="btn" id="btnGotoLogin">立即登录</div>
+        <div class="btn" id="btnGotoRegister">注册</div>
+    </div>
+</div>
+
+<div id="divGetCodeSuccess" class="alertbox" style="width: 600px; height: 120px; margin-left: -300px; display: none">
+    <div class="alertclose" onclick="$('#divGetCodeSuccess').hide();">
+        &times;
+    </div>
+    <p id="alertMessage" style="height:80px;line-height:80px;font-size:16px;text-align:center;">
+        您已成功领取途牛五星会员权益码:152362，立即激活您的途牛会员权益吧！
+    </p>
+    <div style="width:140px;margin:auto;float:none;">
+        <div class="btn" id="btnToBeMember">成为途牛五星会员</div>
+    </div>
+</div>
+
+

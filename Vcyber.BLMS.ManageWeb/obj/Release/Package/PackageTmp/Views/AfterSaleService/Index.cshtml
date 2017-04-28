@@ -1,0 +1,129 @@
+﻿@{
+    Layout = null;
+}
+
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>售后服务 - 卡劵核销</strong></div>
+</div>
+
+<div class="container panel panel-default" data-ng-init="load()">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-horizontal" name="form1">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">活动名称：</label>
+                        <select id="selActivityType" class="col-md-2 form-control" ng-model="formData.SelectActivityType" ng-change="activityChange()">
+                            <option value="Y" selected>三八活动</option>
+                            <option value="spring">春季免检活动 </option>
+                            <option value="lingdong">领动新车上市 </option>
+                            <option value="carshow">北京车展</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">卡劵类型：</label>
+                        <select ng-change="activityChangetype()" id="ii" class="col-md-2 form-control" ng-model="formData.SelectCardType" ng-options="m.cardid as m.cardtitle for m in cardTypes">
+                            <option value="">请选择</option>
+                            @*<option value="pmXbSjvHWuRNfjXKz9PHnGSN4H6k">4L机油兑换券-三八活动</option>
+            <option value="pmXbSjl4yW3dzOJ6PlrsZx_ZOYFo">4L机油8.5折兑换券-三八活动</option>
+            <option value="pmXbSjlxGUgln7h2Fu0y4xBlK9kw">基础保养体验券-三八活动 </option>
+            <option value="pmXbSjlRlUKd7XfMN2xgq-DcUdKU">4L机油8.5折代金券-春季免检活动 </option>
+            <option value="pmXbSjv9vwzLD8eFXStW0BbHEk5w">1L机油兑换券-春季免检活动 </option>
+            <option value="pmXbSjvzf3nS_BHJvXd1N_4ngJVI">2瓶玻璃水兑换券-春季免检活动 </option>
+            <option value="pmXbSjh59fOta8gbh-nYBZB1RXSk">基础保养兑换券-春季免检活动 </option>*@
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">活动代码：</label>
+                        <input class="col-md-2 form-control" type="text" id="hddm" ng-model="formData.Code" disabled="disabled" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">卡劵号码：</label>
+                        <input class="col-md-2 form-control" type="text" id="kqhm" placeholder="卡劵号码" ng-model="formData.CardNo" ng-change="cardNoChange()" required />
+                        <input class="btn btn-primary col-md-1" style="margin-left:5px" type="button" ng-click="getCardInfo()" value="验证" />
+                        <input type="hidden" ng-model="formData.CardInfo" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">领取手机号：</label>
+                        <input class="col-md-2 form-control" type="text" ng-model="formData.PhoneNumber" id="txtphonenumber" ng-readonly="PhoneNumberReadOnly()" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">车架号：</label>
+                        <input class="col-md-2 form-control" type="text" placeholder="车架号" ng-model="formData.VIN" required />
+                        <input class="btn btn-primary col-md-1" style="margin-left:5px" type="button" ng-click="GetCustAndCarInfo()" value="验证" />
+                        <input type="hidden" ng-model="formData.OpenId" />
+                        <input type="hidden" ng-model="formData.UserId" />
+                    </div>
+                    <!--
+                    <div class="form-group">
+                        <label class="col-md-2 control-label"></label>
+                        <label class="text-danger">* 请准确输入17位车架号，如果输入的车架号有错误，将无法提交相关索赔，得不到相应补偿。</label>
+                    </div>
+                    -->
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">车型：</label>
+                        <input class="col-md-2 form-control" type="text" ng-model="formData.CarCategory" id ="txtcarcategory" readonly />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">姓名：</label>
+                        <input class="col-md-2 form-control" type="text" placeholder="姓名" ng-model="formData.CustName" id="txtcustname" required/>
+                    </div>
+
+                    <div class="form-group" style="display:none" id="Recommend2">
+                        <label class="col-md-2 control-label">试驾人姓名：</label>
+                        <input class="col-md-2 form-control" type="text" placeholder="被推荐人姓名" ng-model="formData.RecommendCustName" id="txtRecommendCustName" />
+                    </div>
+
+                    <div class="form-group" style="display:none" id="Recommend1">
+                        <label class="col-md-2 control-label">试驾人手机号：</label>
+                        <input class="col-md-2 form-control" type="text" placeholder="被推荐人手机号" ng-model="formData.RecommendPhone" id="txtRecommendPhone" />
+                       
+                    </div>
+
+                   
+
+                   
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">行驶里程：</label>
+                        <input class="col-md-2 form-control" type="text" placeholder="行驶里程" ng-model="formData.Mileage" ng-change="checkMileage()" />
+                        <label class="col-md-3 control-label" style="text-align:left">km (数值区间为  0 ~ 100万)</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">核销时间：</label>
+                        <input class="col-md-2 form-control" data-date-format="yyyy-mm-dd" ng-model="formData.ConsumeDate" required readonly />
+                    </div>
+
+                    <div class="form-group">
+                        <input class="btn btn-primary col-md-offset-3" type="button" ng-click="submit()" ng-disabled="!form1.$valid" value="确认核销" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

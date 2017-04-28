@@ -1,0 +1,62 @@
+﻿@{
+    Layout = null;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<div class="header">
+    <div class="top_title">
+        <div class="title_cont">
+            <span>24小时客服热线：400-800-1100</span>
+            <div class="search_input">
+                <input type="text" placeholder="搜索" />
+                <span><img src="/img/icon_search.png" /></span>
+            </div>
+            <label>English</label><label class="lb">中文    |</label>
+        </div>
+    </div>
+    <div class="logo_cont">
+        <div class="logo_width">
+            <img src="img/bjxd.png" class="ll_img" />
+            <img src="img/blue_member.png" class="ll_img1" />
+            <img src="img/wx.png" class="ll_img2" />
+            <img src="img/tel.png" class="ll_img2" />
+
+        </div>
+    </div>
+    <div class="nav">
+        <ul>
+            <li class="nn">首页</li>
+            <li>会员计划</li>
+            <li>车辆服务</li>
+            <li>生活服务</li>
+            <li>活动中心</li>
+            <li>积分商城</li>
+            <li>索九专区</li>
+        </ul>
+    </div>
+</div>

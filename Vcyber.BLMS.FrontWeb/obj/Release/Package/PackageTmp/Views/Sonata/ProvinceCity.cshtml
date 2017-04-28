@@ -1,0 +1,28 @@
+﻿@model IEnumerable<string>
+@{
+    Layout = null;
+}
+
+
+
+<select id="sltProvince2" onchange="Dealer2.city(this);">
+    <option value="-1">请选择</option>
+    @{
+        if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <option>@item</option>
+            }
+        }
+    }
+</select>
+
+<select id="sltCity2" onchange="Dealer2.list(this, document.getElementById('sltProvince2'));">
+    <option value="-1">请选择</option>
+</select>
+
+<select id="sltDealer2" style="display:none">
+    <option value="-1">请选择</option>
+</select>
+

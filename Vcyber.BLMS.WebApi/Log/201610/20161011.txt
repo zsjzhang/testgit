@@ -1,0 +1,140 @@
+用户IP:::1
+发生时间:2016/10/11 16:48:24
+发生异常页: http://localhost:56318/InvitationAddIntegral?userid=00000AD2-09B3-4289-98F2-25F0CD94478
+异常信息: 
+错误源:System.Web
+堆栈信息:   在 System.Web.Util.FileUtil.CheckSuspiciousPhysicalPath(String physicalPath)
+   在 System.Web.CachedPathData.ValidatePath(String physicalPath)
+   在 System.Web.HttpContext.ValidatePath()
+   在 System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+-----------------------------------------------------------------------------------------------------------------
+用户IP:::1
+发生时间:2016/10/11 16:49:51
+发生异常页: http://localhost:56318/InvitationAddIntegral?userid=00000AD2-09B3-4289-98F2-25F0CD94478
+异常信息: 
+错误源:System.Web
+堆栈信息:   在 System.Web.Util.FileUtil.CheckSuspiciousPhysicalPath(String physicalPath)
+   在 System.Web.CachedPathData.ValidatePath(String physicalPath)
+   在 System.Web.HttpContext.ValidatePath()
+   在 System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+-----------------------------------------------------------------------------------------------------------------
+用户IP:::1
+发生时间:2016/10/11 16:55:15
+发生异常页: http://localhost:56318/Help/Api/POST-InvitationAddIntegral
+异常信息: 
+错误源:System.Web
+堆栈信息:   在 System.Web.Util.FileUtil.CheckSuspiciousPhysicalPath(String physicalPath)
+   在 System.Web.CachedPathData.ValidatePath(String physicalPath)
+   在 System.Web.HttpContext.ValidatePath()
+   在 System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+-----------------------------------------------------------------------------------------------------------------
+用户IP:::1
+发生时间:2016/10/11 16:56:55
+发生异常页: http://localhost:56318/InvitationAddIntegral?userid=00000AD2-09B3-4289-98F2-25F0CD94478
+异常信息: 
+错误源:System.Web
+堆栈信息:   在 System.Web.Util.FileUtil.CheckSuspiciousPhysicalPath(String physicalPath)
+   在 System.Web.CachedPathData.ValidatePath(String physicalPath)
+   在 System.Web.HttpContext.ValidatePath()
+   在 System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+-----------------------------------------------------------------------------------------------------------------
+用户IP:::1
+发生时间:2016/10/11 16:58:20
+发生异常页: http://localhost:56318/InvitationAddIntegral?userid=00000AD2-09B3-4289-98F2-25F0CD94478
+异常信息: 
+错误源:System.Web
+堆栈信息:   在 System.Web.Util.FileUtil.CheckSuspiciousPhysicalPath(String physicalPath)
+   在 System.Web.CachedPathData.ValidatePath(String physicalPath)
+   在 System.Web.HttpContext.ValidatePath()
+   在 System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+-----------------------------------------------------------------------------------------------------------------
+用户IP:::1
+发生时间:2016/10/11 17:13:47
+发生异常页: http://localhost:56318/InvitationAddIntegral?userid=00000AD2-09B3-4289-98F2-25F0CD94478
+异常信息: 
+错误源:System.Web
+堆栈信息:   在 System.Web.Util.FileUtil.CheckSuspiciousPhysicalPath(String physicalPath)
+   在 System.Web.CachedPathData.ValidatePath(String physicalPath)
+   在 System.Web.HttpContext.ValidatePath()
+   在 System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+-----------------------------------------------------------------------------------------------------------------
+用户IP:::1
+发生时间:2016/10/11 18:28:20
+发生异常页: http://localhost:56318/InvitationAddIntegral?userid=1
+异常信息: 
+错误源:System.Web
+堆栈信息:   在 System.Web.Util.FileUtil.CheckSuspiciousPhysicalPath(String physicalPath)
+   在 System.Web.CachedPathData.ValidatePath(String physicalPath)
+   在 System.Web.HttpContext.ValidatePath()
+   在 System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+-----------------------------------------------------------------------------------------------------------------
+用户IP:::1
+发生时间:2016/10/11 18:28:59
+发生异常页: http://localhost:56318/InvitationAddIntegral?userid=1
+异常信息: 
+错误源:System.Web
+堆栈信息:   在 System.Web.Util.FileUtil.CheckSuspiciousPhysicalPath(String physicalPath)
+   在 System.Web.CachedPathData.ValidatePath(String physicalPath)
+   在 System.Web.HttpContext.ValidatePath()
+   在 System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+-----------------------------------------------------------------------------------------------------------------
+用户IP:::1
+发生时间:2016/10/11 18:49:15
+发生异常页: http://localhost:56318/InvitationAddIntegral?userid=1
+异常信息: 
+错误源:System.Web
+堆栈信息:   在 System.Web.Util.FileUtil.CheckSuspiciousPhysicalPath(String physicalPath)
+   在 System.Web.CachedPathData.ValidatePath(String physicalPath)
+   在 System.Web.HttpContext.ValidatePath()
+   在 System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+-----------------------------------------------------------------------------------------------------------------
+用户IP:::1
+发生时间:2016/10/11 18:49:50
+发生异常页: http://localhost:56318/InvitationAddIntegral?userid=1
+异常信息: 
+错误源:System.Web
+堆栈信息:   在 System.Web.Util.FileUtil.CheckSuspiciousPhysicalPath(String physicalPath)
+   在 System.Web.CachedPathData.ValidatePath(String physicalPath)
+   在 System.Web.HttpContext.ValidatePath()
+   在 System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+-----------------------------------------------------------------------------------------------------------------
+用户IP:::1
+发生时间:2016/10/11 18:49:58
+发生异常页: http://localhost:56318/InvitationAddIntegral?userid=1
+异常信息: 
+错误源:System.Web
+堆栈信息:   在 System.Web.Util.FileUtil.CheckSuspiciousPhysicalPath(String physicalPath)
+   在 System.Web.CachedPathData.ValidatePath(String physicalPath)
+   在 System.Web.HttpContext.ValidatePath()
+   在 System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+-----------------------------------------------------------------------------------------------------------------
+用户IP:::1
+发生时间:2016/10/11 18:51:42
+发生异常页: http://localhost:56318/InvitationAddIntegral?userid=1
+异常信息: 
+错误源:System.Web
+堆栈信息:   在 System.Web.Util.FileUtil.CheckSuspiciousPhysicalPath(String physicalPath)
+   在 System.Web.CachedPathData.ValidatePath(String physicalPath)
+   在 System.Web.HttpContext.ValidatePath()
+   在 System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+-----------------------------------------------------------------------------------------------------------------
+用户IP:::1
+发生时间:2016/10/11 18:53:44
+发生异常页: http://localhost:56318/InvitationAddIntegral?userid=02010d5a-a9d7-4f76-afc0-6caf847d3998
+异常信息: 
+错误源:System.Web
+堆栈信息:   在 System.Web.Util.FileUtil.CheckSuspiciousPhysicalPath(String physicalPath)
+   在 System.Web.CachedPathData.ValidatePath(String physicalPath)
+   在 System.Web.HttpContext.ValidatePath()
+   在 System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+-----------------------------------------------------------------------------------------------------------------
+用户IP:::1
+发生时间:2016/10/11 18:54:47
+发生异常页: http://localhost:56318/InvitationAddIntegral?userid=00000AD2-09B3-4289-98F2-25F0CD94478
+异常信息: 
+错误源:System.Web
+堆栈信息:   在 System.Web.Util.FileUtil.CheckSuspiciousPhysicalPath(String physicalPath)
+   在 System.Web.CachedPathData.ValidatePath(String physicalPath)
+   在 System.Web.HttpContext.ValidatePath()
+   在 System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+-----------------------------------------------------------------------------------------------------------------

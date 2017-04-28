@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "中间表编辑";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.TitleFocus = "2-2-1";
+}
+
+<head>
+    <style>
+        body {
+            display: none;
+        }
+        /*.form-group
+        {
+            margin-bottom:45px;
+        }*/
+    </style>
+    <script>
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    </script>
+    <script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+</head>
+
+<div class="panel">
+    <div class="form-horizontal" novalidate>
+        <div class="form-group">
+            <label class="col-md-2 control-label">姓名</label>
+            <div class="col-md-4 text-left">
+                <input class="form-control" style="max-width: 800px" type="text" id="txtname" autocomplete="off" />
+            </div>
+            <label class="col-md-2 control-label">手机号</label>
+            <div class="col-md-4 text-left">
+                <input class="form-control" style="max-width: 800px" type="text" id="txtphone" autocomplete="off" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">证件号</label>
+            <div class="col-md-4 text-left">
+                <input class="form-control" style="max-width: 800px" type="text" id="txtidentitynumber" autocomplete="off" />
+            </div>
+            <label class="col-md-2 control-label">CustId</label>
+            <div class="col-md-4 text-left">
+                <input class="form-control" style="max-width: 800px" type="text" id="txtCustId" autocomplete="off" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input class="btn btn-primary" type="submit" onclick="searchCustomer();" value="查询">
+                <input class="btn btn-primary" type="button" value="重置" onclick="Reset();" />
+            </div>
+        </div>
+    </div>
+</div>
+<div id="divPageList">
+    @{
+        Html.RenderAction("QueryCustomer");
+    }
+</div>
+<script>
+    function searchCustomer() {
+        var name = $("#txtname").val().trim();
+        var phone = $("#txtphone").val().trim();
+        var identityNumber = $("#txtidentitynumber").val().trim();
+        var custId = $("#txtCustId").val().trim();
+
+        if (name == "" && phone == "" && identityNumber == "" && custId == "") {
+            alert("请输入客户查询条件。");
+            return;
+        }
+
+        var data = { Name: name, Phone: phone, IdentityNumber: identityNumber, CustId: custId };
+        var url = '/Report/QueryCustomer';
+        //window.location.href = url;
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function (msg) {
+                $('#divPageList').html(msg);
+            }
+        });
+    }
+    function Reset() {
+        $("#txtname").val("");
+        $("#txtphone").val("");
+        $("#txtidentitynumber").val("");
+        $("#txtCustId").val("");
+    }
+</script>

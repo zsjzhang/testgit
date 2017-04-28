@@ -1,0 +1,73 @@
+﻿@{
+    Layout = null;
+}
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>内容管理 - 电子手册</strong></div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <span class="col-md-6">电子手册管理</span>
+            <div class="col-md-6 text-right">
+                <button type="button" class="btn btn-primary" ng-click="createUserGuide()">添加</button>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <form name="form" class="form-horizontal" novalidate>
+          
+            <div class="form-group">
+                <label class="col-md-1 control-label">标题：</label>
+                <div class="col-md-3 text-left">
+                    <input class="form-control" type="text" ng-model="title"/>
+                </div>
+
+                <div class="col-md-3">
+                    <button class="btn btn-primary" type="submit" ng-click="search()">查询</button>
+                </div>
+            </div>
+        </form>
+        <div class="gridStyle" style="min-height: 410px; border: 1px solid rgb(212, 212, 212)" ng-grid="gridOptions">
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="userGuideApproveListModal" tabindex="-1" role="dialog" aria-labelledby="userGuideApproveListModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="userGuideApproveListModal">查看审批记录</h4>
+            </div><div class="modal-body">
+                <div style="min-height: 420px;min-width:400px">
+                    <div class="gridStyle" style="height: 350px; border: 1px solid rgb(212,212,212)" ng-grid="approveGridOptions">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+

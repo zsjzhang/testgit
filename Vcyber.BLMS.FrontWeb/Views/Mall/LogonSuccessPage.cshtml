@@ -1,0 +1,124 @@
+﻿@model Vcyber.BLMS.FrontWeb.Models.ApplicationUser
+@{
+    Layout = null;
+}
+
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            url: "/DealerNew/IsDealerMemberShip",
+            data: {},
+            datatype: "json",
+            type: "post",
+            success: function (result) {
+                if (result.code == null || result.code == 400) {
+                    $("#imgTuniuDealer").hide();
+                    $("#imgHaihangDealer").hide();
+                    return false;
+                } else if (result.code == 200) {
+                    if (result.Tuniu) {
+                        $("#imgTuniuDealer").show();
+                        if (result.Haihang) {
+                            $("#imgHaihangDealer").css("margin-left", "20px");
+                            $("#imgHaihangDealer").show();
+                        }
+                        return false;
+                    }
+                    else {
+                        if (result.Haihang) {
+                            $("#imgHaihangDealer").show();
+                        }
+                        return false;
+                    }
+                    return false;
+                }
+            },
+            error: function () { }
+        });
+    });
+</script>
+<div class="logon1">
+    <div class="fywz_name" style="margin-top: -16px;">
+        @{
+            if (Model != null && !string.IsNullOrEmpty(Model.Id))
+            {
+                string levelName = "注册用户";
+                switch (Model.MLevel)
+                {
+                    case 1:
+                        levelName = "注册用户";
+                        break;
+                    case 10:
+                        levelName = "普卡会员";
+                        break;
+                    case 11:
+                        levelName = "银卡会员";
+                        break;
+                    case 12:
+                        levelName = "金卡会员";
+                        break;
+                }
+                string _defaultUserImage = "/img/VipImg/blueBoyBg.png";
+                if (!string.IsNullOrEmpty(Model.FaceImage))
+                {
+                    _defaultUserImage = Model.FaceImage;
+                }
+    <dl>
+        <dt><img src="@_defaultUserImage" onerror="this.src='@("/img/VipImg/blueBoyBg.png")'" class="fywz_img" /></dt>
+        <dd>
+            <h1 style="height: 20px; overflow: hidden;">@Model.NickName </h1>
+            <div class="tuNiuImg">
+                @*<img src="/img/VipImg/tuniu.png" />*@
+                <span style="display:inline-block;height:30px;margin-top:-30px;">
+                    <img src="~/Img/VipImg/tuniu.png" style="display:none;float:left;height:30px;" id="imgTuniuDealer" alt="途牛五星会员" title="途牛五星会员" />
+                    <img src="~/Img/DealerNew/icon-02.png" style="display: none; float: left; height: 30px;" id="imgHaihangDealer" alt="礼悦会钻石会员" title="礼悦会钻石会员" />
+                </span>
+            </div>
+            <em><a href="/MsgCenter/Index">@Html.Raw(string.Format("未读消息({0}条)", ViewBag.UnReadMsgCount))</a>  </em>
+            <span>积分：@ViewBag.totalScore</span>
+            <span>等级：@(levelName)</span>
+        </dd>
+    </dl>
+
+            }
+
+    <div class="my_j_b">
+        <a onclick="window.location = '/MyCenter/Index?pageName=MyCenter';" href="/MyCenter/Index" class="jinru">进入个人中心</a>
+        <form method="post" action="/Account/LogOff" id="mallLogonSuccessForm">
+            @Html.AntiForgeryToken()
+            <a href="javascript:void(0);" onclick="document.getElementById('mallLogonSuccessForm').submit();" class="tuichu">退出登录</a>
+        </form>
+
+    </div>
+        }
+
+    </div>
+
+    </div>

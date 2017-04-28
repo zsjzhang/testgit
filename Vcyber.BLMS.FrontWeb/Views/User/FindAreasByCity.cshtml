@@ -1,0 +1,17 @@
+﻿@model List<Vcyber.BLMS.Common.City.Area>
+@{
+    Layout = null;
+}
+
+<select id="myOrderAddressCounty" class="select-city">
+    <option value="-1">请选择</option>
+    @{
+        if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <option value="@item.Code" title="@item.ID">@item.Name</option>
+            }
+        }
+    }
+</select>

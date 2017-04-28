@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Product>
+@{
+    Layout = null;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<div style="width:100%;">
+    @{
+        if (Model != null && Model.Any())
+        {
+            <ul>
+                @foreach (var item in Model)
+                {
+                    <li style="width:100%; float:left; padding:5px 0;">
+                        <label>@item.Name</label>
+                        <span>
+                            <label>积分</label>
+                            <label>
+                                @item.Integral
+                            </label>
+                        </span>
+                        <span>
+                            <label>蓝豆</label>
+                            <label>
+                                @item.BlueBean
+                            </label>
+                        </span>
+                    </li>
+                }
+            </ul>
+        }
+    }
+</div>

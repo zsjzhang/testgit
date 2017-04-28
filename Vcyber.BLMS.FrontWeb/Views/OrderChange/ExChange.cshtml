@@ -1,0 +1,111 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "预约置换";
+}
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/controller/OrderChangeController.js")"></script>
+<script src="/Content/laydate/laydate.js"></script>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "MediaCenter" })
+    </div>
+
+    <div class="n_all_cont">
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+        </div>
+        <div class="n_right_cont">
+            <p class="RelatedListTitle">
+                <span class="RelatedListTitleTag"></span>
+
+                <form action="">
+                    <p>
+                        <label class="col-md-2 control-label">车型：</label>
+                        <input type="text" class="form-control" id="CarSeriers" name="CarSeriers" value="领动、全新胜达" />
+                    </p>
+                    <p>
+                        <span>*</span><label>选择经销商：</label>
+                        @Html.Action("ProvinceCity", "Car", new { IsDingChe = 1 })
+                    </p>
+                    <p>
+                        <label class="col-md-2 control-label">姓名：</label>
+                        <input type="text" class="form-control" id="Name" name="Name" value="" />
+                    </p>
+                    <p>
+                        <label class="col-md-2 control-label">联系方式：</label>
+                        <input type="text" class="form-control" id="Mobile" name="Mobile" value="" />
+                    </p>
+                    <p>
+                        <label class="col-md-2 control-label">省：</label>
+                        <input type="text" class="form-control" id="SendProvince" name="SendProvince" value="" />
+                    </p>
+                    <p>
+                        <label class="col-md-2 control-label">市：</label>
+                        <input type="text" class="form-control" id="SendCity" name="SendCity" value="" />
+                    </p>
+                    <p>
+                        <label class="col-md-2 control-label">街道：</label>
+                        <input type="text" class="form-control" id="SendAddress" name="SendAddress" value="" />
+                    </p>
+                    <p>
+                        <label class="col-md-2 control-label">原品牌：</label>
+                        <input type="text" class="form-control" id="OldCarBrand" name="OldCarBrand" value="" />
+                    </p>
+                    <p>
+                        <label class="col-md-2 control-label">原车型：</label>
+                        <input type="text" class="form-control" id="OldCarSeriers" name="OldCarSeriers" value="" />
+                    </p>
+                    <p>
+                        <label class="col-md-2 control-label">上牌时间：</label>
+                        <input type="text" class="form-control" id="OldCarLicenseTime" name="OldCarLicenseTime" value="" />
+                        <script>
+                            $(function () {
+                                laydate({
+                                    elem: '#OldCarLicenseTime',
+                                    //min: laydate.now(+2), //-1代表昨天，-2代表前天，以此类推
+                                    min: laydate.now(+1), //wrl修改
+                                    max: laydate.now(+60),
+                                    istoday: false
+                                });
+                            });
+                        </script>
+
+                    </p>
+                    <p>
+                        <label class="col-md-2 control-label">行驶公里：</label>
+                        <input type="text" class="form-control" id="OldCarDriver" name="OldCarDriver" value="" />
+                    </p>
+            <input type="hidden"  id="hidActivityId" value="1"/>
+            <input type="button" value="提交" id="btnAddOrderChange" />
+            <input type="button" value="提交推荐" id="btnAddXDInviter" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

@@ -1,0 +1,28 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>预约试驾</title>
+    <script type="text/javascript">
+        window.onload = function () {
+            var result = @Request.Params["code"];
+            if (result != undefined && result == "200") {
+                popWindownBlue( "您已成功申请试驾！注册成为蓝缤会员赢取更多豪礼！");
+            } else {
+                popWindownBlue( "预约失败！请核对您的预约信息重试！");
+            }
+            window.top.location.href = "https://www.bluemembers.com.cn";
+        };
+</script>
+</head>
+<body>
+    <div>
+    </div>
+</body>
+</html>

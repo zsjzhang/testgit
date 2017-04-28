@@ -1,0 +1,198 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="user-scalable=no, width=device-width,initial-scale=1.0, maximum-scale=1.0" />
+    <meta name="baidu-site-verification" content="qSbMsfRL2A" />
+    <title>暖心候机礼  服务再升级</title>
+    @*<link href="~/css/base/common.css" rel="stylesheet" />
+        <link href="~/css/base/index.css" rel="stylesheet" />
+        <link href="~/css/base/airportservice.css" rel="stylesheet" />*@
+    <link href="~/css/AirportService/index.css" rel="stylesheet" />
+    <link href="~/css/AirportService/alert.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/controller/Main.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="~/Scripts/controller/AirportServiceController.js"></script>
+    <script>
+        function GetRequest() {
+            var url = location.search; //获取url中"?"符后的字串
+            var theRequest = new Object();
+
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                strs = str.split("&");
+                for (var i = 0; i < strs.length; i++) {
+                    theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+                }
+            }
+            return theRequest;
+        }
+
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?0b4e366e453f3524b50e08dc17833d51";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        _hmt.push(['_setCustomVar', 1, 'ques_visitor', 'ALL', 3]);
+        var Request = GetRequest();
+        var sourceId = Request['source'];
+        if (sourceId == 'airport_app') {
+            _hmt.push(['_setCustomVar', 1, 'ques_visitor', 'APP', 3]);
+        }
+        else if (sourceId == 'airport_blms') {
+            _hmt.push(['_setCustomVar', 1, 'ques_visitor', '网站', 3]);
+        }
+        else if (sourceId == 'airport_weixin') {
+            _hmt.push(['_setCustomVar', 1, 'ques_visitor', '微信', 3]);
+        }
+        else if (sourceId == 'airport_sms') {
+            _hmt.push(['_setCustomVar', 1, 'ques_visitor', '短信', 3]);
+        }
+        else if (sourceId == 'airport_weibo') {
+            _hmt.push(['_setCustomVar', 1, 'ques_visitor', '微博', 3]);
+        }
+        else if (sourceId == 'airport_edm') {
+            _hmt.push(['_setCustomVar', 1, 'ques_visitor', 'EDM', 3]);
+        }
+        else if (sourceId == "airport_other") {
+            _hmt.push(['_setCustomVar', 1, 'ques_visitor', '线下', 3]);
+        }
+        else if (sourceId == "airport_shouhang") {
+            _hmt.push(['_setCustomVar', 1, 'ques_visitor', '首航', 3]);
+        }
+        else {
+            _hmt.push(['_setCustomVar', 1, 'ques_visitor', '其他', 3]);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <a href="/AirportService/NewPolicy?source=@ViewBag.source&oid=@ViewBag.oid"><img src="/Img/AirportService/main_btn1.png" /></a>
+            <a href="/AirportService/AirportActivity?source=@ViewBag.source&oid=@ViewBag.oid"><img src="/Img/AirportService/main_btn2.png" /></a>
+            <a href="/AirportService/TestDriveInfo?source=@ViewBag.source&oid=@ViewBag.oid"><img src="/Img/AirportService/main_btn3.png" /></a>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- 横屏出现提示 -->
+    <div class="turn"></div>
+    <div class="fxlayer"></div>
+
+
+
+    <!--    弹窗         -->
+    <!--  一种结果候机码    -->
+
+    <div class="alert_box houji" style="display: none;">
+        <span><img src="/Img/AirportService/close.png"></span>
+        <p>手气好赞！恭喜您获得机场服务码一个！</p>
+        <a href=""><img src="/Img/AirportService/wsxx.png" /></a>
+
+    </div>
+
+    <!--  一种中奖结果四件套    -->
+
+    <div class="alert_box houji">
+        <span><img src="/Img/AirportService/close.png"></span>
+        <p>手气好赞！恭喜您获得旅行四件套一份！</p>
+        <a href=""><img src="/Img/AirportService/wsxx.png" /></a>
+
+    </div>
+
+    <!--  未中奖提示    -->
+
+    <div class="alert_box wzj">
+        <span><img src="/Img/AirportService/close.png"></span>
+        <p>亲，这次手气不佳哦！试驾也有好礼哦！</p>
+        <div class="a_bot">
+            <a href=""><img src="/Img/AirportService/jkyy.png" /></a>
+            <a href=""><img src="/Img/AirportService/cancel.png" /></a>
+        </div>
+
+    </div>
+
+    <!--  提交完个人信息提示      -->
+
+    <div class="alert_box wzj">
+        <span><img src="/Img/AirportService/close.png"></span>
+        <p>信息已提交成功，预约试驾大奖再来一份！</p>
+        <div class="a_bot">
+            <a href=""><img src="/Img/AirportService/jkyy.png" /></a>
+            <a href=""><img src="/Img/AirportService/cancel.png" /></a>
+        </div>
+
+    </div>
+
+    <!--  两种中奖提示语      -->
+
+    <div class="alert_box wzj">
+        <span><img src="/Img/AirportService/close.png"></span>
+        <p>手气好赞！中奖咯！请选择您心仪的奖品</p>
+        <div class="a_bot">
+            <a href=""><img src="/Img/AirportService/jcfwm.png" /></a>
+            <a href=""><img src="/Img/AirportService/lxzjt.png" /></a>
+        </div>
+
+    </div>
+
+    <!--  已参与过抽奖再次参与抽奖提示语      -->
+
+    <div class="alert_box wzj cj">
+        <span><img src="/Img/AirportService/close.png"></span>
+        <p>您好，每天只有一次抽奖机会哦，明天再来试试吧。</p>
+        <div class="a_bot">
+            <a href=""><img src="/Img/AirportService/zjmd.png" /></a>
+            <a href=""><img src="/Img/AirportService/zjmd.png" /></a>
+        </div>
+
+    </div>
+
+    <!--  预约成功      -->
+
+    <div class="alert_box wzj cj">
+        <span>预约成功!<img src="/Img/AirportService/close.png"></span>
+        <p>您好，您已成功预约_年_月_日，________（特约店），________(车型)的店内试驾。 到店试驾后将试驾照片发送到bluemembers官方微信即可哦！</p>
+
+    </div>
+
+    <!--  活动规则6      -->
+
+    <div class="alert_box play_rule">
+        <span><img src="/Img/AirportService/close.png"></span>
+        <h2><img src="/Img/AirportService/paly_rule.png" /></h2>
+        <div class="rule_txt">
+            <p>
+                <b>1)</b>
+                <span>到店试驾礼，必须先通过活动提交预约表单，再到店试驾并上传试驾图片及个人手机号码到北京现代bluemembers微信才能领取尊享候机码。</span>
+            </p>
+            <div style="clear: both;"></div>
+            <p>
+                <b>2)</b>
+                <span>到店试驾礼，必须先通过活动提交预约表单，再到店试驾并上传试驾图片及个人手机号码到北京现代bluemembers微信才能领取尊享候机码。</span>
+            </p>
+        </div>
+
+        <h3>温馨提示:尊享候机码为9位数字服务码，如若抽中会以短信形式发送。乘机出行时到达制定机场休息室出示该服务码短信即可使用。</h3>
+    </div>
+
+    <!--  活动介绍5      -->
+
+    <div class="alert_box play_rule">
+        <span><img src="/Img/AirportService/close.png"></span>
+        <h2><img src="/Img/AirportService/paly_show.png" /></h2>
+
+        <h3>即日起，在线预约并到店试驾，发送“试驾图片”及”您的有效手机号码“到北京现代bluemembers微信即可获得2次免费候机服务。<br />另外，活动期间成功购买第九代索纳塔或全新胜途的车主，激活bluemembers银卡会员即可获得4次免费候机服务及400元等值积分。</h3>
+    </div>
+</body>
+</html>
+

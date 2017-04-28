@@ -1,0 +1,216 @@
+﻿@using System.Web.Configuration
+@using System.Web.UI.WebControls
+@using PetaPoco
+@using Vcyber.BLMS.Common
+@using Vcyber.BLMS.Entity.Enum
+@using Vcyber.BLMS.Entity.Generated
+@using System.Web.Mvc.Html
+@using WebGrease.Css.Extensions
+@model Vcyber.BLMS.Entity.CarService.QueryParamEntity
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "预约维保";
+}
+@{
+    Page<CSMaintenance> list = (Page<CSMaintenance>)ViewData["data"];
+}
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+@using (Html.BeginForm("QueryOrders", "ScheduleMaint", FormMethod.Get, new { @class = "form-horizontal", @id="QueryOrderForm" }))
+{
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.Phone, new { @class = "col-md-3 control-label" })
+        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "col-md-3 form-control text-left" } })
+    </div>
+    @*<div class="form-group col-md-6">
+            @Html.LabelFor(model => model.CreateFromDate, new { @class = "col-md-3 control-label" })
+            @Html.EditorFor(model => model.CreateFromDate)
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.CreateToDate)
+            @Html.EditorFor(model => model.CreateToDate)
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.ScheduleFromDate)
+            @Html.EditorFor(model => model.ScheduleFromDate)
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.ScheduleToDate)
+            @Html.EditorFor(model => model.ScheduleToDate)
+        </div>*@
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.OrderNo, new { @class = "col-md-3 control-label" })
+        @Html.EditorFor(model => model.OrderNo, new { htmlAttributes = new { @class = "col-md-3 form-control text-left" } })
+    </div>
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.CarSeries, new { @class = "col-md-3 control-label" })
+        @Html.EditorFor(model => model.CarSeries, new { htmlAttributes = new { @class = "col-md-3 form-control text-left" } })
+    </div>
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.LicensePlate, new { @class = "col-md-3 control-label" })
+        @Html.EditorFor(model => model.LicensePlate, new { htmlAttributes = new { @class = "col-md-3 form-control text-left" } })
+    </div>
+    <div class="form-group col-md-6">
+        @Html.LabelFor(model => model.State, new { @class = "col-md-3 control-label" })
+        @Html.DropDownListFor(model => model.State, Model.State.ToSelectList("All"), new { @class = "col-md-3 text-left form-control" })
+        <input type="hidden" id="page" name="page" value="@list.CurrentPage"/>
+    </div>
+    <div class="form-group col-md-6">
+        <div class="btn-toolbar col-md-3 col-md-offset-3">
+            <button style="padding-left:-15px;" type="submit" id="btn-submit-cs" class=" btn btn-primary"><i class="fa"></i>查询</button>
+        </div>
+    </div>
+}
+
+<div class="data-container">
+    <table class="table">
+        <thead>
+            <tr style="background-color: #eaeaea;">
+                <th>序号</th>
+                <th>订单号</th>
+                <th>车型</th>
+                <th>姓名</th>
+                <th>电话</th>
+                <th>性别</th>
+                <th>电子邮箱</th>
+                <th>经销商</th>
+                <th>预约时间</th>
+                <th>车牌号</th>
+                <th>车架号</th>
+                <th>购车年份</th>
+                <th>行驶里程</th>
+                <th>服务项目</th>
+                <th>补充说明</th>
+                <th>创建时间</th>
+                <th>受理人</th>
+                <th>受理时间</th>
+                <th>受理状态</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < list.Items.Count; i++)
+            {
+                var entity = list.Items[i];
+                EOrderState state;
+                if (!Enum.TryParse((entity.State ?? 0).ToString(), out state))
+                {
+                    state = EOrderState.ToBeProcess;
+                }
+
+                string scheduleDate = entity.ScheduleDate == null ? "" : ((DateTime)entity.ScheduleDate).ToString("yyyy-MM-dd");
+                <tr>
+                    <td>@(i + 1)</td>
+                    <td>@entity.OrderNo</td>
+                    <td>@entity.CarSeries</td>
+                    <td>@entity.UserName</td>
+                    <td>@entity.Phone</td>
+                    <td>@(entity.UserSex==1 ? "男" : "女")</td>
+                    <td>@entity.Email</td>
+                    <td>@entity.DealerName</td>
+                    <td>@scheduleDate</td>
+                    <td>@entity.LicensePlate</td>
+                    <td>@entity.VIN</td>
+                    <td>@entity.PurchaseYear</td>
+                    <td>@entity.MileAge</td>
+                    <td>@(((EServiceType)entity.ServiceType).DisplayName());</td>
+                    <td>@entity.Comment</td>
+                    <td>@entity.CreateTime.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>@entity.UpdateName</td>
+                    <td>@entity.UpdateTime.ToString("yyyy-MM-dd HH:mm")</td>
+                    @{
+                        if (state == EOrderState.Processed)
+                        {
+                            <td>
+                                已受理
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <a title="编辑" href="javascript:if(confirm('确定受理吗?'))location='@Url.Action("update", "ScheduleMaint" , new { id=entity.Id, phone=Model.Phone, orderNo=Model.OrderNo, carSeries=Model.CarSeries, licensePlat=Model.LicensePlate, state=Model.State, page=list.CurrentPage, itemsperpage=list.ItemsPerPage })'">
+                                    待受理
+                                </a>
+                            </td>
+                        }
+
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <div style="float:left">总共:@list.TotalItems</div>
+    <div style="float: right; margin-right: 10px; margin-top: 5px; line-height: 25px;" class="ngPagerControl">
+        <button type="button" onclick=" pageToFirst() " class="ngPagerButton" title="First Page">
+            <div class="ngPagerFirstTriangle">
+                <div class="ngPagerFirstBar"></div>
+            </div>
+        </button>
+        <button type="button" onclick=" pageBackward() " class="ngPagerButton" title="Previous Page">
+            <div class="ngPagerFirstTriangle ngPagerPrevTriangle"></div>
+        </button>
+        <input id="incurrpage" type="number" style="width: 50px; height: 24px; margin-top: 1px; padding: 0 4px;" value="@list.CurrentPage" onchange=" inputCurrentPage() ">
+        <span class="ngGridMaxPagesNumber">/@list.TotalPages</span>
+        <button type="button" onclick=" pageForward() " class="ngPagerButton" title="Next Page">
+            <div class="ngPagerLastTriangle ngPagerNextTriangle"></div>
+        </button>
+        <button type="button" onclick=" pageToLast() " class="ngPagerButton" title="Last Page">
+            <div class="ngPagerLastTriangle">
+                <div class="ngPagerLastBar"></div>
+            </div>
+        </button>
+    </div>
+</div>
+<script type="text/javascript">
+    function pageToFirst() {
+        $("#page").val("1");
+        $("#QueryOrderForm").submit();
+    }
+
+    function pageBackward() {
+        @{
+            long pageIndexBackward = list.CurrentPage - 1;
+            if (pageIndexBackward < 1) { pageIndexBackward = 1; }
+         }
+        $("#page").val("@pageIndexBackward");
+        $("#QueryOrderForm").submit();
+    }
+    
+    function pageForward() {
+        @{
+            long pageIndexForward = list.CurrentPage + 1;
+            if (pageIndexForward > list.TotalPages) { pageIndexForward = list.TotalPages; }
+         }
+        $("#page").val("@pageIndexForward");
+        $("#QueryOrderForm").submit();
+    }
+
+    function pageToLast() {
+        $("#page").val("@list.TotalPages");
+        $("#QueryOrderForm").submit();
+    }
+
+    function inputCurrentPage() {
+        $("#page").val($("#incurrpage").val());
+        $("#QueryOrderForm").submit();
+    }
+</script>

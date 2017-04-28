@@ -1,0 +1,41 @@
+.map{
+	width: 998px;
+	height: 585px;
+	margin: 0 auto;
+	margin-top: 30px;
+	border: 1px solid #eee;
+}
+.map img{
+	display: block;
+	margin: 10px auto;
+}
+.map_1{
+	width: 1000px;
+	height: 90px;
+	margin: 0 auto;
+}
+table{
+	width: 430px;
+	height: 80px;
+	margin-top: 20px;
+	margin-left: 30px;
+	font-family: "微软雅黑";
+	font-size: 16px;
+}
+
+table select{
+	width: 224px;
+	height: 28px;
+}
+
+.map_A a{
+	display: block;
+	width: 224px;
+	height: 61px;
+	position: fixed;
+	bottom: 50px;
+	right: 250px;
+	background: url(../img/exist_2.png) no-repeat;
+	cursor: pointer;
+}
+

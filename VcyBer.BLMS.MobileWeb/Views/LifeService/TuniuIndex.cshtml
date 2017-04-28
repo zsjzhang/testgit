@@ -1,0 +1,134 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "特约商户-途牛专题";
+}
+
+<link href="/Content/css/resetzsy.css" rel="stylesheet" />
+<link href="~/Content/css/alert.css" rel="stylesheet" />
+<script src="~/Scripts/LifeService/tuniu.js"></script>
+<body class="lyhBody tuniuBody">
+    <input type="hidden" value="@ViewBag.level" id="islogin">
+    <header class="headerLyh">
+        <div class="logolyh">
+            <img src="~/img/tuniu_logo.png" alt="" />
+            <img src="~/img/tuniu_bag.png" alt="" />
+        </div>
+        <div class="title">
+            爱车、爱旅行。bluemembers联合途牛旅游网为北京现代车主会提供超值五星会员通道，享受全访问旅游服务贵宾权益。申请途牛五星会员权益，享受专属顾问、免费“牛到家”服务，提供免费上门签约、材料收发服务，足不出户即可享受途牛贴心到家的全面服务；预定奖励、抵用特权、0元wifi服务，让您尊享超值旅游体验。
+        </div>
+    </header>
+    <section class="sectionLyh">
+        <div class="desc">
+            <h4>途牛五星会员权益</h4>
+            <dl>
+                <dt><img src="~/img/tequan.png" alt=""></dt>
+                <dd>
+                    <h5>抵用特权</h5>
+                    <p>
+                        您可以在任意时间享受预定产品时使用2倍数*线路可使用抵用券数量的特权；
+                    </p>
+                </dd>
+            </dl>
+            <dl>
+                <dt><img src="~/img/liping.png" alt=""></dt>
+                <dd>
+                    <h5>预定奖励</h5>
+                    <p>
+                        会员在途牛预订相应品类的旅游品，出游归来后可获得1.5倍数*订单实际支付金额/100的牛大头；
+                    </p>
+                </dd>
+            </dl>
+            <dl>
+                <dt><img src="~/img/qiandao.png" alt=""></dt>
+                <dd>
+                    <h5>签到特权</h5>
+                    <p>
+                        途牛会员在途牛APP连续签到，可获得签到奖励；
+                    </p>
+                </dd>
+            </dl>
+            <dl>
+                <dt><img src="~/img/huodong.png" alt=""></dt>
+                <dd>
+                    <h5>活动尊享</h5>
+                    <p>
+                        会员可在会员日当天（每月16日）享受会员日频道所有活动特权（如出境游送wifi、签约送双倍牛大头、送礼品等，具体特权以实际发布为准）；同时可受邀参加途牛线下沙龙活动；
+                    </p>
+                </dd>
+            </dl>
+            <dl>
+                <dt><img src="~/img/shengri.png" alt=""></dt>
+                <dd>
+                    <h5>生日关怀</h5>
+                    <p>
+                        您在预订旅游产品时可使用双倍抵用券；出游归来并完成点评，获赠双倍抵用券；
+                    </p>
+                </dd>
+            </dl>
+            <dl>
+                <dt><img src="~/img/zhuanshu.png" alt=""></dt>
+                <dd>
+                    <h5>专属顾问</h5>
+                    <p>
+                        途牛将为您安排“一对一“专属顾问服务；
+                    </p>
+                </dd>
+            </dl>
+            <dl>
+                <dt><img src="~/img/niudaojia.png" alt=""></dt>
+                <dd>
+                    <h5>牛到家</h5>
+                    <p>
+                        您可享受上门签约服务；
+                    </p>
+                </dd>
+            </dl>
+            <dl>
+                <dt><img src="~/img/wifi.png" alt=""></dt>
+                <dd>
+                    <h5>wifi特权</h5>
+                    <p>
+                        预订出境跟团、自助旅游产品，每订单赠送无线wifi1部；
+                    </p>
+                </dd>
+            </dl>
+            <dl>
+                <dt><img src="~/img/vip.png" alt=""></dt>
+                <dd>
+                    <h5>贵宾通道</h5>
+                    <p>
+                        您可享受门市专属柜台服务。
+                    </p>
+                </dd>
+            </dl>
+            <h6>
+                * 详细途牛五星会员权益使用请以途牛官方网站为准；<br>
+                &nbsp;&nbsp;车主会员成为途牛五星会员后，途牛会员账号级别、权益均以途牛网站管理为准，bluemembers会员权益不受影响；
+            </h6>
+            <img src="~/img/buzhou.png" alt="" class="flow">
+            <div class="upgrate_bot">
+                <a href="javascript:void(0);" id="btn_servicecode">
+                    <img src="~/img/quanyi_btn.png" alt="" style="width:30%;">
+                </a>
+                <a href="http://www.tuniu.com/zt/bjxd/" style="margin-top:10px;">
+                    <img src="~/img/wuxing_btn.png" alt="" style="width:40%;">
+                </a>
+                <a href="javascript:void(0)" id="havecode">（已有权益码）</a>
+            </div>
+        </div>
+    </section>
+    <div class="div_pop" id="div_pop" style="display:none">
+        <div class="div_content">
+            <div style="height:25px;">
+                <img src="~/img/close_img.png" id="close_btn" style="width:20px;" alt="" />
+            </div>
+            <p>
+                领取成功！您的权益码是
+            </p>
+            <span id="span_serviceCode"></span>
+            <p>
+                请您妥善保存<br />（长按可复制）
+            </p>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,108 @@
+﻿@{ViewBag.Title = "报表管理";
+Layout = "~/Views/Shared/_Layout.cshtml"; ;
+}
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/bootstrap")
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Scripts/bootstrap-datepicker/datepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+<script src="~/Scripts/bootstrap-datepicker/bootstrap-datepicker.zh-CN.js"></script>
+
+<div class="panel-default">
+    @if (User.Identity.Name.ToLower().Equals("admin"))
+    {
+        <div class="panel-body">
+
+            <div class="form-group">
+                <label class="col-md-2 control-label text-right" style="padding-top:10px">报表类型：</label>
+                <div class="col-md-3 text-left">
+                    <select class="form-control" id="reportType">
+                        <option value="[dbo].[BLMS_DealerId_MemberJoindate]">购车入会率</option>
+                        @*<option value="[dbo].[BLMS_MemberJoindateEnd2]">新车主入会率</option>
+                        <option value="[dbo].[BLMS_MemberJoindateEnd3]" id="dbd">累积入会率</option>*@
+                    </select>
+                </div>
+
+                <label class="col-md-2 control-label text-right" style="padding-top:10px" id="time">入会时间：</label>
+                <div class="col-md-2 text-left">
+                    <input class="form-control datepicker" id="StartTime" data-date-format="yyyy-mm-dd">
+                </div>
+
+                <label class="col-md-1 control-label" style="padding-top:10px">--</label>
+                <div class="col-md-2 text-left">
+                    <input class="form-control datepicker" id="EndTime" data-date-format="yyyy-mm-dd">
+                </div>
+
+            </div>
+            <div class="form-group" style="width:800px; height:10px">
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label text-right" style="padding-top:10px">店代码：</label>
+                <div class="col-md-3 text-left">
+                    <input class="form-control" id="region" type="text">
+                </div>
+                <label class="col-md-2 control-label text-right" style="padding-top:10px" id="time">购车时间：</label>
+                <div class="col-md-2 text-left">
+                    <input class="form-control datepicker" id="buyStartTime" data-date-format="yyyy-mm-dd">
+                </div>
+
+                <label class="col-md-1 control-label" style="padding-top:10px">--</label>
+                <div class="col-md-2 text-left">
+                    <input class="form-control datepicker" id="buyEndTime" data-date-format="yyyy-mm-dd">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn btn-primary" type="submit" onclick="search()" style="margin-top:10px">查询</button>
+                    <button class="btn btn-primary" type="submit" onclick="toReportExcel()" style="margin-top:10px">导出</button>
+                </div>
+            </div>
+            <div id="divPageList">
+
+            </div>
+        </div>
+    }
+
+</div>
+<script>
+
+    $('.datepicker').datepicker();
+    function search() {
+        var data = {
+            tableName: $("#reportType").val(),
+            startTime: $("#StartTime").val(),
+            endTime: $("#EndTime").val(),
+
+            buyStartTime: $("#buyStartTime").val(),
+            buyEndTime: $("#buyEndTime").val(),
+
+            region: $("#region").val()
+        };
+        var url = "@Url.Action("DealeridPartialPageNew")";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function (msg) {
+                $('#divPageList').html(msg);
+            }
+        });
+    }
+
+    function toReportExcel() {
+
+        var _t = $("#reportType").val();
+        var _sTime = $("#StartTime").val();
+        var _eTime = $("#EndTime").val();
+
+        var _sbTime = $("#buyStartTime").val();
+        var _ebTime = $("#buyEndTime").val();
+
+        var _region = $("#region").val();
+
+        location.href = '/NewReport/DealeridGetMemberJoinDate?startTime=' + _sTime + '&endTime=' + _eTime + '&buyStartTime=' + _sbTime + '&buyEndTime=' + _ebTime + '&region=' + _region + '&tableName=' + _t;
+    }
+</script>

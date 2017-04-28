@@ -1,0 +1,46 @@
+﻿@model Vcyber.BLMS.FrontWeb.Models.BBS.BBSColumns
+
+@{
+    Layout = null;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+                top.location.hostname;
+                if (top.location.hostname != window.location.hostname) {
+                top.location.href =window.location.href;
+            }
+            }
+                catch(e){
+                top.location.href = window.location.href;
+            }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+
+
+<h2><b></b>@Model.Column_Name @Html.ActionLink("更多", "Show", "BBSHome", new { id = Model.Id }, new { })</h2>
+<img src="../../@Model.ImageSrc" />
+@{
+    var cms = @Model.BBSGuestBook.Where(e => e.G_Recycle == 1 && e.G_approved).Take(3).ToList();
+}
+@foreach (var gb in cms)
+{
+    <p class="forum">
+        @Html.ActionLink(gb.G_Title, "comment", "BBSHome", new { id = gb.Id }, new { })
+    </p>
+}

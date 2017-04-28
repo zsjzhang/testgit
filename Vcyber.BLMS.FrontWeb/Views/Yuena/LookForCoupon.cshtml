@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "查看优惠券";
+    Layout = "~/Views/Shared/_LayoutYuena.cshtml";
+}
+<div class="findstyle">
+    <div class="findstyle_con">
+        <h2>如何找到卡券</h2>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="~/Contents/yuena/images/findstyle1.png"></div>
+                <div class="swiper-slide"><img src="~/Contents/yuena/images/findstyle2.png"></div>
+                <div class="swiper-slide"><img src="~/Contents/yuena/images/findstyle3.png"></div>
+            </div>
+        </div>
+        <a class="btn_prev disabled" href="#"><img src="~/Contents/yuena/images/prev.png"></a>
+        <a class="btn_next" href="#"><img src="~/Contents/yuena/images/next.png"></a>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var mySwiper = new Swiper('.swiper-container', {
+        mode: 'horizontal',
+        keyboardControl: true,
+        mousewheelControl: true
+    });
+    $('.btn_prev').click(function () {
+        mySwiper.swipePrev();
+        if (mySwiper.activeIndex == 0) {
+            $('.btn_prev').addClass('disabled');
+        } else {
+            $('.btn_prev').removeClass('disabled');
+            $('.btn_next').removeClass('disabled');
+        }
+    })
+    $('.btn_next').click(function () {
+        mySwiper.swipeNext();
+        if (mySwiper.activeIndex == 2) {
+            $('.btn_next').addClass('disabled');
+        } else {
+            $('.btn_prev').removeClass('disabled');
+            $('.btn_next').removeClass('disabled');
+        }
+    })
+</script>

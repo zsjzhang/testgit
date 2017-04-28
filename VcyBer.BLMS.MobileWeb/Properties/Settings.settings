@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="VcyBer.BLMS.MobileWeb.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="VcyBer_BLMS_MobileWeb_com_tanglarewards_lps_MemberService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://127.0.0.1:443/HNAWebService/webService/memberWebService</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

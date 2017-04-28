@@ -1,0 +1,31 @@
+﻿@using Vcyber.BLMS.Entity
+@model ReturnUserCustomCardInfo
+@{
+    ViewBag.Title = "卡券详情";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/css/resetzsy.css" rel="stylesheet" />
+<div class="wrapper">
+    @if (Model == null)
+    { 
+    <div>卡券信息出错了！</div>
+    }
+    else
+    { 
+    <header class="headerDet">
+            <h1><img src="@Model.CardLogoUrl" /></h1>
+    </header>
+    <section class="secVouDet">
+        <h2>卡券二维码</h2>
+        <div class="bgVouErBox">
+            <img src="@Url.Content("~/myCenter/GetQCode?id=" + Server.UrlEncode(Model.CardCode))" />
+        </div>
+        <h3><i>兑换码：</i>@Model.CardCode</h3>
+        <h4>有效期：@Model.CardBeginDate.ToString("yyyy-MM-dd") 至 @Model.CardEndDate.ToString("yyyy-MM-dd")</h4>
+        <h5>使用方法简介：@Html.Raw(Model.Instructions)</h5>
+    </section>
+    }
+</div>
+
+
+

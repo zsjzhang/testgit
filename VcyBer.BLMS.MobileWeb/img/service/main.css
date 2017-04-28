@@ -1,0 +1,58 @@
+﻿@charset "utf-8";
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+    *:before, *:after {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+    background-color: #2d3132;
+}
+
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, code, form, fieldset, legend, button, input, textarea, select, option, th, td, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    margin: 0;
+    padding: 0;
+}
+
+ol, ul, li {
+    list-style: none;
+}
+
+body, button, input, select, textarea {
+    font-family: "微软雅黑",Helvetica,Arial,sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+body {
+    font-family: "微软雅黑";
+    color: #091b37;
+}
+
+.index-main {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    background-color:#f0f9fa;
+}
+
+.search-background {
+    background:#eeeeee url(../../images/service/search.png) no-repeat;
+    background-size:50%;
+    background-position:center;
+}

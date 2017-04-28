@@ -1,0 +1,442 @@
+﻿@charset "utf-8";
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+    *:before, *:after {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+    background-color: #2d3132;
+}
+
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, code, form, fieldset, legend, button, input, textarea, select, option, th, td, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    margin: 0;
+    padding: 0;
+}
+
+ol, ul, li {
+    list-style: none;
+}
+
+body, button, input, select, textarea {
+    font-family: "微软雅黑",Helvetica,Arial,sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+body {
+    font-family: "微软雅黑";
+    color: #091b37;
+}
+
+.commonBg {
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    z-index: 1;
+}
+
+.close {
+    opacity: 0.5;
+    margin-left: 80vw;
+    margin-top: 11vh;
+    padding: 0;
+    position: absolute;
+    display: inline;
+    width: 100%;
+}
+
+.logo {
+    margin-left: 4vw;
+    margin-top: 1.5vh;
+    padding: 0;
+    position: absolute;
+    display: inline;
+    width: 100%;
+}
+
+    .logo img {
+        width: 28%;
+    }
+
+.bottom {
+    margin-left: 4vw;
+    vertical-align: bottom;
+    bottom: 1.5vh;
+    padding: 0;
+    position: absolute;
+    /*display: inline;*/
+    width: 100%;
+}
+
+    .bottom img {
+        width: 37%;
+    }
+
+.up {
+    text-align: center;
+    bottom: 2vh;
+    width: 100%;
+    position: absolute;
+    animation: upmove 1s ease-in-out 0s infinite alternate-reverse;
+    -moz-animation: upmove 1s ease-in-out 0s infinite alternate-reverse;
+    -webkit-animation: upmove 1s ease-in-out 0s infinite alternate-reverse;
+    -o-animation: upmove 1s ease-in-out 0s infinite alternate-reverse;
+}
+
+.go {
+    text-align: center;
+    bottom: 2vh;
+    width: 100%;
+    position: absolute;
+    animation: go 1s ease-in-out 0s infinite alternate-reverse;
+    -moz-animation: go 1s ease-in-out 0s infinite alternate-reverse;
+    -webkit-animation: go 1s ease-in-out 0s infinite alternate-reverse;
+    -o-animation: go 1s ease-in-out 0s infinite alternate-reverse;
+}
+
+@keyframes upmove {
+    0% {
+        bottom: 2vh;
+    }
+
+    100% {
+        bottom: 1vh;
+    }
+}
+
+@-moz-keyframes upmove /* Firefox */
+{
+    0% {
+        bottom: 2vh;
+    }
+
+    100% {
+        bottom: 1vh;
+    }
+}
+
+@-webkit-keyframes upmove /* Safari and Chrome */
+{
+    0% {
+        bottom: 2vh;
+    }
+
+    100% {
+        bottom: 1vh;
+    }
+}
+
+@-o-keyframes upmove /* Opera */
+{
+    0% {
+        bottom: 2vh;
+    }
+
+    100% {
+        bottom: 1vh;
+    }
+}
+
+.up2 {
+    animation: upmove2 1s ease-in-out 0s infinite alternate-reverse;
+    -moz-animation: upmove2 1s ease-in-out 0s infinite alternate-reverse;
+    -webkit-animation: upmove2 1s ease-in-out 0s infinite alternate-reverse;
+    -o-animation: upmove2 1s ease-in-out 0s infinite alternate-reverse;
+}
+
+@keyframes upmove2 {
+    0% {
+        margin-top: 1vh;
+    }
+
+    100% {
+        margin-top: 0vh;
+    }
+}
+
+@-moz-keyframes upmove2 /* Firefox */
+{
+    0% {
+        margin-top: 1vh;
+    }
+
+    100% {
+        margin-top: 0vh;
+    }
+}
+
+@-webkit-keyframes upmove2 /* Safari and Chrome */
+{
+    0% {
+        margin-top: 1vh;
+    }
+
+    100% {
+        margin-top: 0vh;
+    }
+}
+
+@-o-keyframes upmove2 /* Opera */
+{
+    0% {
+        margin-top: 1vh;
+    }
+
+    100% {
+        margin-top: 0vh;
+    }
+}
+
+@keyframes botmove {
+    0% {
+        opacity: 0.9;
+    }
+
+    25% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    75% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 0.1;
+    }
+}
+
+@-moz-keyframes botmove /* Firefox */
+{
+    0% {
+        opacity: 0.9;
+    }
+
+    25% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    75% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 0.1;
+    }
+}
+
+@-webkit-keyframes botmove /* Safari and Chrome */
+{
+    0% {
+        opacity: 0.9;
+    }
+
+    25% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    75% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 0.1;
+    }
+}
+
+@-o-keyframes botmove /* Opera */
+{
+    0% {
+        opacity: 0.9;
+    }
+
+    25% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    75% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 0.1;
+    }
+}
+
+@keyframes go {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}
+
+@-moz-keyframes go /* Firefox */
+{
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}
+
+@-webkit-keyframes go /* Safari and Chrome */
+{
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}
+
+@-o-keyframes go /* Opera */
+{
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}
+
+.index-main {
+    position: relative;
+    height: 100vh;
+    background: url(../../images/lingdong/bg.jpg) no-repeat;
+    background-size: 100% 100%;
+    overflow: hidden;
+}
+
+.scroll {
+    display: inline-block;
+    text-align: center;
+    overflow-y: auto;
+    width: 84vw;
+    height: 60vh;
+}
+
+.scroll-out {
+    display: inline-block;
+    text-align: center;
+    width: 86vw;
+    height: 64vh;
+    padding: 2vh 0 2vh 0;
+}
+
+.scroll-bg {
+    background-image: url(../../images/lingdong/quantou_rect.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.main {
+    display: inline-block;
+    text-align: center;
+    background-image: url(../../images/lingdong/quantou_rect2.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 86vw;
+    height: 46vh;
+    margin-top: 8vh;
+}
+
+.show-bg1 {
+    background-image: url(../../images/lingdong/quantou1.jpg);
+    background-repeat: no-repeat;
+}
+
+.show-bg2 {
+    background-image: url(../../images/lingdong/quantou2.jpg);
+    background-repeat: no-repeat;
+}
+
+.show-bg3 {
+    background-image: url(../../images/lingdong/quantou3.jpg);
+    background-repeat: no-repeat;
+}
+
+.show-bg4 {
+    background-image: url(../../images/lingdong/quantou4.jpg);
+    background-repeat: no-repeat;
+}
+
+.seat {
+    height: 2vh;
+}
+
+
+.scroll::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.scroll::-webkit-scrollbar-button:decrement {
+    background: transparent;
+}
+
+.scroll::-webkit-scrollbar-button:increment {
+    background: transparent;
+}
+
+.scroll::-webkit-scrollbar-track {
+    /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+    background: transparent;
+}
+
+.scroll::-webkit-scrollbar-track-piece {
+    /*background: url(http://www.lyblog.net/wp/wp-content/themes/mine/img/stripes_tiny_08.png);*/
+}
+
+.scroll::-webkit-scrollbar-thumb {
+    /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);*/
+    background: transparent;
+    /*border-radius: 8px;*/
+}
+
+.scroll::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+.scroll::-webkit-scrollbar-resizer {
+    background: transparent;
+}

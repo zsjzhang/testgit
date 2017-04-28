@@ -1,0 +1,43 @@
+﻿@model IEnumerable<string>
+@{
+    Layout = null;
+}
+
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+<select id="sltProvince" onchange="Dealer.city(this);" style="width:100px">
+    <option value="-1">请选择</option>
+    @{
+        if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <option>@item</option>
+            }
+        }
+    }
+</select>
+<select id="sltCity"  style="width:100px" @*onchange="Dealer.list(this, document.getElementById('sltProvince'));"*@>
+    <option value="-1">请选择</option>
+</select>
+<select id="sltDealer2" style="display:none" hidden="true">
+    <option value="-1">请选择</option>
+</select>
+
+
+

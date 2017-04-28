@@ -1,0 +1,1021 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "剧院魅影";
+}
+
+@section AddToHeadCss{
+    <link href="/css/MusicalPC_Index.css" rel="stylesheet" />
+    <style>
+        #overtips {
+            position: fixed;
+            width: 640px;
+            top: 100px;
+            display: none;
+            background: #fff;
+            border-radius: 5px;
+        }
+
+            #overtips p {
+                margin: 10px;
+                line-height: 30px;
+                font-size: 1.5em;
+                color: #000;
+            }
+
+            #overtips a {
+                padding: 10px;
+                float: left;
+                position: relative;
+                left: 50%;
+                margin-left: -45px;
+                background-color: #01b7f7;
+                color: #fff;
+                font-family: 微软雅黑;
+                margin-bottom: 10px;
+                border-radius: 3px;
+                font-size: 1.5em;
+            }
+        .winner {
+            width: 640px;
+            height: auto;
+            font-family: "微软雅黑";
+            border-radius: 8px;
+            padding-bottom: 30px;
+            position: relative;
+            z-index: 2;
+            behavior: url(iecss3.htc);
+        }
+
+            .winner span img {
+                position: absolute;
+                right: 4px;
+                top: 4px;
+                z-index: 9;
+                cursor: pointer;
+            }
+
+        .search {
+            width: 100%;
+            height: 124px;
+            background: #e5e5e5;
+            border-radius: 8px;
+            position: relative;
+            z-index: 2;
+            behavior: url(iecss3.htc);
+        }
+
+        .search_box {
+            width: 560px;
+            height: 52px;
+            position: relative;
+            margin: 0 auto;
+            padding-top: 32px;
+        }
+
+            .search_box input {
+                width: 488px;
+                height: 28px;
+                border: 1px solid #ccc;
+                font-family: "微软雅黑";
+                background: #fff;
+                outline: none;
+                padding: 10px 0;
+                padding-left: 70px;
+                font-size: 20px;
+                border-radius: 22px;
+                position: relative;
+                z-index: 2;
+                behavior: url(iecss3.htc);
+            }
+
+            .search_box img {
+                position: absolute;
+                top: 44px;
+                left: 18px;
+                z-index: 3;
+                cursor: pointer;
+            }
+
+        .winner h2 {
+            font-size: 32px;
+            color: #0fb7e4;
+            font-weight: normal;
+            background: url(/img/musical/winnner-user.png) no-repeat 214px center;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .win-box {
+            width: 96%;
+            border: 1px solid #ccc;
+            margin: 0 auto;
+            border-radius: 6px;
+            background: #ffffff;
+            margin-top: 20px;
+            position: relative;
+            z-index: 2;
+            behavior: url(iecss3.htc);
+        }
+
+            .win-box h3 {
+                text-align: center;
+                font-size: 24px;
+                font-weight: normal;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                color: #000;
+            }
+
+            .win-box li {
+                list-style: none;
+                width: 100%;
+                height: 50px;
+                line-height: 40px;
+                font-size: 16px;
+            }
+
+                .win-box li p {
+                    float: left;
+                    color: #a2a2a2;
+                    margin: 0 13px;
+                    width:281px;
+                }
+
+                    .win-box li p label {
+                        color: #000;
+                    }
+
+                .win-box li span {
+                    margin: 0 8px;
+                    display: inline-block;
+                }
+
+        .have_bg {
+            background: #fff;
+            display: table;
+            width: 100%;
+            border-top-left-radius: 0;
+            padding-bottom: 30px;
+            border-radius: 8px;
+            margin-top: -12px;
+            position: relative;
+            z-index: 2;
+            behavior: url(iecss3.htc);
+        }
+
+        #powercontentparentcontainer {
+            height: 200px;
+            overflow: hidden;
+        }
+        .winnername {
+            width: 96px;
+            float: left;
+        }
+    </style>
+}
+@section AddToPlayer{
+    <script src="/Scripts/controller/UserController.js"></script>
+    <script src="/Scripts/jquery.placeholder.js"></script>
+    <script type="text/javascript">
+        (function browserRedirect() {
+            var url = decodeURI(location.search); //获取url中"?"符后的字串
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                strs = str.split("&");
+                for (var i = 0; i < strs.length; i++) {
+                    theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+                }
+            }
+            var sUserAgent = navigator.userAgent.toLowerCase();
+            var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+            var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+            var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+            var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+            var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+            var bIsAndroid = sUserAgent.match(/android/i) == "android";
+            var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+            var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+            var isweixin = sUserAgent.match(/MicroMessenger/i) == "micromessenger";
+            if (isweixin) {
+                //document.writeln("wx");
+                window.location = "/WeChat/Index?source=" + theRequest["source"];
+                return false;
+            } else if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+                //document.writeln("phone");
+                window.location = "/Activitymobile/mobile?source=" + theRequest["source"];
+            } else {
+                //document.writeln("pc");
+            }
+        })();
+
+        //placeholder兼容ie浏览器
+        $(function () {
+            $('input,textarea').placeholder();
+        });
+    </script>
+}
+@section AddToFooterJs{
+    <script type="text/javascript">
+
+        var objlayer = null;
+        var layerObject = null;
+        //抢票
+        function getTicket() {
+            //先检查用户是否登录
+            $.ajax({
+                url: "/Activity/IsLogin",
+                type: "get",
+                success: function (msg) {
+                    //如果是未登录，则弹出未登录提示
+                    if (msg.msg == "N") {
+                        objlayer = layer.open({
+                            type: 1,   //0-4的选择,
+                            title: false,
+                            border: [0],
+                            closeBtn: [0, true],
+                            shadeClose: false,
+                            area: ['540px', '230px'],
+                           content: $('#notice')
+                        });
+                    }
+                        //如果已登录，则填写具体信息
+                    else {
+                        objlayer = layer.open({
+                            type: 1,   //0-4的选择,
+                            title: false,
+                            border: [0],
+                            closeBtn: [0, true],
+                            shadeClose: false,
+                            area: ['643px', '394px'],
+                           content: $('#userDetail') 
+                        });
+                    }
+                },
+                error: function () {
+
+                }
+            });
+        }
+
+        //直接抢票
+        function Ticket() {
+            //关掉用户详细信息页面
+            layer.close(objlayer);
+            objlayer = layer.open({
+                type: 1,   //0-4的选择,
+                title: false,
+                border: [0],
+                closeBtn: [0, true],
+                shadeClose: false,
+                area: ['643px', '394px'],
+               content: $('#userDetail') 
+            });
+
+        }
+
+        //跳转到登录页面
+        function login() {
+            layer.close(objlayer);
+            objlayer = layer.open({
+                type: 1,   //0-4的选择,
+                title: false,
+                border: [0],
+                closeBtn: [0, true],
+                shadeClose: false,
+                area: ['643px', '350px'],
+                content: $('.pc_login') 
+            });
+            //var returnUrl = "/Activity/Index";
+            //location.href = "/Account/LogonPage?returnUrl=" + encodeURIComponent(returnUrl);
+        }
+
+        //跳转到注册页面
+        function register() {
+            var returnUrl = "/Activity/Index?source=@ViewBag.source";
+            location.href = "/Account/AccountRegister?returnUrl=" + encodeURIComponent(returnUrl) + "&source=@ViewBag.source";
+        }
+
+        //弹出选择面具层
+        function showMaskDiv() {
+            var userName = $('#userName').val();
+            var userMobile = $('#userMobile').val();
+            var userAddress = $('#userAddress').val();
+            var pro = $("#myOrderAddressProvince").find("option:selected").text();
+            var city = $("#myOrderAddressCity").find("option:selected").text();
+            var coun = $("#myOrderAddressCounty").find("option:selected").text();
+            var counvalue = $("#myOrderAddressCounty").val();
+            //验证姓名
+            if (userName == "") {
+                popWindownBlue( "姓名不能为空");
+                return false;
+            }
+            //验证手机号码
+            var reg = /^1[3|4|5|8][0-9]\d{4,8}$/;
+            if (userMobile == "" || userMobile.length != 11 || !reg.test(userMobile)) {
+                popWindownBlue( "请输入正确的手机号")
+                return false;
+            }
+            //验证地址
+            if (userAddress == "" || counvalue == -1) {
+                popWindownBlue( "地址不能为空");
+                return false;
+            }
+            //关掉之前的层
+            layer.close(objlayer);
+            $.ajax({
+                url: "/Activity/JoinActivity",
+                dataType: "json",
+                type: "post",
+                data: { Name: userName, Tel: userMobile, Address: userAddress, Province: pro, City: city, Area: coun, Results3: $("input[name='Result3']").val() },
+                success: function (result) {
+                    if (result.msg == "true") {  //保存成功 选择面具
+                        objlayer = layer.open({
+                            type: 1,   //0-4的选择,
+                            title: false,
+                            border: [0],
+                            closeBtn: [0, true],
+                            shadeClose: false,
+                            area: ['643px', '350px'],
+                           content: $('#selectMask')
+                        });
+                        $("#btnSelectMask").attr("data-result", result.id);
+                    }
+                    else {  //保存失败
+
+                    }
+                }
+            })
+
+        }
+
+        //弹出选择面具结果层
+        function showMaskResult() {
+            //获取用户的选项
+            var result = $('input:radio:checked').val();
+            var resultDom = "";
+            //测试完成之后分享的文案
+            var _shareSource = "";
+            //分享地址
+            var url = "https://www.bluemembers.com.cn/Activity/index";
+            //用户姓名
+            var name = $('#userName').val();
+            //角色
+            var role = "";
+            //标题
+            var title = "";
+            //文案末尾
+            var endContent = "快来测测你是谁，还有《剧院魅影》门票免费领。";
+            if (result == null) {
+                popWindownBlue( "请选择1种面具");
+                return false;
+            }
+            else {
+                //关掉之前的层
+                layer.close(objlayer);
+                if (result == "1") {
+                    resultDom = "#maskBlue";
+                    role = "是《剧院魅影》中的女主角——克里斯汀。";
+                    title = name + role + endContent;
+                }
+                else if (result == "2") {
+                    resultDom = "#maskBlack";
+                    role = "是《剧院魅影》中的魅影——埃里克。";
+                    title = name + role + endContent;
+                }
+                else if (result == "3") {
+                    role = "是《歌剧魅影》中的子爵——拉乌尔。";
+                    resultDom = "#maskGold";
+                    title = name + role + endContent;
+                }
+                else {
+                    role = "是《剧院魅影》中的音乐创作者——安德鲁·劳埃德·韦伯。"
+                    resultDom = "#maskRed";
+                    title = name + role + endContent;
+                }
+                $(".bds_tsina").attr("href", "http://v.t.sina.com.cn/share/share.php?url=" + url + "&title=" + title);
+                $(".bds_renren").attr("href", "http://widget.renren.com/dialog/share?resourceUrl=" + url + "&title=" + title);
+                $(".bds_touban").attr("href", "http://www.douban.com/share/service?image=&href=" + url + "&text=" + title);
+            }
+            $.ajax({
+                url: "/ActivityMobile/AddMaskToActivity",
+                type: "post",
+                data: { id: $("#btnSelectMask").attr("data-result"), maskName: result },
+                dataType: "json",
+                success: function (resultData) {
+                }
+            });
+            objlayer = layer.open({
+                type: 1,   //0-4的选择,
+                title: false,
+                border: [0],
+                closeBtn: [0, true],
+                shadeClose: false,
+                area: ['643px', '350px'],
+               content:$(resultDom)
+            });
+
+        }
+
+
+        //测试完成后点击分享给好友文案
+        $('.selectMaskBtn').click(function () {
+            //关掉之前的层
+            layer.close(objlayer);
+            objlayer = layer.open({
+                type: 1,   //0-4的选择,
+                title: false,
+                border: [0],
+                closeBtn: [0, true],
+                shadeClose: false,
+                area: ['643px', '350px'],
+              contet: $('#share_erweima')
+            });
+            //点击关闭按钮
+            $("#share_close").click(function () {
+                layer.close(objlayer);
+            })
+
+            //清空用户数据
+            $('#userName').val('');
+            $('#userMobile').val('');
+            $('#userAddress').val('');
+            //清空位置数据
+            $("#myOrderAddressProvince").val('-1');
+            $("#myOrderAddressCity").val('-1');
+            $("#myOrderAddressCounty").val('-1');
+        })
+
+        ////点击关闭按钮
+        //$('.close_pc').click(function () {
+        //    layer.close(objlayer);
+        //})
+
+        function Sharestat(sharetype) {
+            $.ajax({
+                url: "/ActivityMobile/ShareStat",
+                type: "post",
+                data: { Source: $("input[name='Result3']").val(), ShareType: sharetype, ActivityId: 1 },
+                dataType: "json",
+                success: function () { }
+            });
+        }
+
+        //点击分享给好友
+        $(function () {
+            //清空用户数据
+            $('#userName').val('');
+            $('#userMobile').val('');
+            $('#userAddress').val('');
+            //清空位置数据
+            $("#myOrderAddressProvince").val('-1');
+            $("#myOrderAddressCity").val('-1');
+            $("#myOrderAddressCounty").val('-1');
+            //清空选择面具数据
+            var title = "极致文化巅峰  bluemembers与您品鉴经典。即日起参与《剧院魅影》互动，价值1960元门票、卡片式移动电源等好礼免费送";
+            var url = "https://www.bluemembers.com.cn/Activity/index";
+            $('#shareBtn').click(function () {
+                $(".bds_tsina").attr("href", "http://v.t.sina.com.cn/share/share.php?url=" + url + "&title=" + title);
+                $(".bds_renren").attr("href", "http://widget.renren.com/dialog/share?resourceUrl=" + url + "&title=" + title);
+                $(".bds_touban").attr("href", "http://www.douban.com/share/service?image=&href=" + url + "&text=" + title);
+                var objlayer = layer.open({
+                    type: 1,   //0-4的选择,
+                    title: false,
+                    border: [0],
+                    closeBtn: [0, true],
+                    shadeClose: false,
+                    area: ['643px', '350px'],
+                   content: $('#share_erweima') 
+                });
+                //点击关闭按钮
+                $("#share_close").click(function () {
+                    layer.close(objlayer);
+                })
+
+            })
+
+            $(".pclogin").click(function () {
+
+                var name = $("#login_name").val();
+                var pwd = $("#login_pwd").val();
+                var num = $("#login_num").val();
+                var returnURL = "";//encodeURIComponent("/Activity/Index");
+                $.ajax({
+                    url: "../Activity/Login?returnUrl=" + returnURL,
+                    dataType: "json",
+                    type: "post",
+                    data: { UserName: name, Password: pwd, Captcha: num },
+                    success: function (resultdata) {
+                        if (resultdata) {
+                            if (resultdata) {
+                                if (resultdata.msg) {
+                                    popWindownBlue( resultdata.msg);
+                                    return;
+                                } else if (resultdata.url) {
+                                    $(".pc_login").css("display", "none");
+                                    objlayer = layer.open({
+                                        type: 1,   //0-4的选择,
+                                        title: false,
+                                        border: [0],
+                                        closeBtn: [0, true],
+                                        shadeClose: false,
+                                        area: ['643px', '394px'],
+                                       content: $('#userDetail')
+                                    });
+                                }
+                            }
+                        }
+                    },
+                    error: function () {
+                        popWindownBlue( "系统异常");
+                    }
+                })
+
+            })
+            $("#pcsearchsection").click(function () {
+                $.ajax({
+                    url: "/ActivityMobile/FindWinnerInfoByMobile",
+                    type: "get",
+                    dataType: "json",
+                    data: { mobile: $("#pcsearchsectionkeyword").val() },
+                    success: function (resultData) {
+                        if (resultData.code == 200 && resultData.result) {
+                            if (resultData.result.PrizesId == "9") {
+                                $("#piaocontent").html("<li><p><b class='winnername'>姓名：<label>" + resultData.result.UserName + "</label></b><span></span>手机号：<label>" + resultData.result.UserTel + "</label></p></li>");
+                                $("#powercontent").html("");
+                                $("#powercontenttmp").html("");
+                            }
+                            else {
+                                $("#piaocontent").html("");
+                                $("#powercontent").html("");
+                                $("#powercontenttmp").html("<li><p><b class='winnername'>姓名：<label>" + resultData.result.UserName + "</label></b><span></span>手机号：<label>" + resultData.result.UserTel + "</label></p></li>");
+                            }
+                        } else {
+                            popWindownBlue( "您输入的手机号没有中奖哦");
+                            $("#piaocontent").html("");
+                            $("#powercontent").html("");
+                            $("#powercontenttmp").html("");
+                        }
+                    }
+                });
+            });
+            $("#closewinnerinfopage").click(function () {
+                $("#ActivityWinnerInfo").hide();
+            });
+        })
+
+
+        function showWinnerInfo() {
+            //关掉用户详细信息页面
+            layer.close(objlayer);
+            $("#ActivityWinnerInfo").show();
+            var _powerparent = document.getElementById("powercontentparentcontainer");
+            var _powercontent = document.getElementById("powercontent");
+            var _powercontenttmp = document.getElementById("powercontenttmp");
+            var mypowermarspeed = 100;
+            var mypowermarnnn = 4550 / _powercontent.offsetHeight;
+            console.info(mypowermarnnn);
+            for (var i = 0; i < mypowermarnnn; i++) {
+                _powercontent.innerHTML += _powercontent.innerHTML;
+            }
+            _powercontenttmp.innerHTML = _powercontent.innerHTML;
+            function powermarquee() {
+                console.info("_powercontenttmp.offsetTop=" + _powercontenttmp.offsetTop);
+                console.info("_powerparent.offsetTop=" + _powerparent.offsetTop);
+                console.info("_powercontent.offsetHeight=" + _powercontent.offsetHeight);
+                if (_powercontenttmp.offsetTop - _powerparent.scrollTop <= 0) {
+                    _powerparent.scrollTop -= _powercontent.offsetHeight;
+                } else {
+                    _powerparent.scrollTop++;
+                }
+            }
+
+            var mypowermar = setInterval(powermarquee, mypowermarspeed);
+            _powerparent.onmouseover = function () { clearInterval(mypowermar); }
+            _powerparent.onmouseout = function () { mypowermar = setInterval(powermarquee, mypowermarspeed); }
+            return false;
+        }
+
+        //加载获奖名单
+        objlayer = layer.open({
+            type: 1,   //0-4的选择,
+            title: false,
+            border: [0],
+            closeBtn: [0],
+            shadeClose: false,
+            area: ['640px', ''],
+           content: $('#overtips') 
+        });
+        $(".xubox_shade").click(function () {
+            layer.close(objlayer);
+        })
+    </script>
+}
+
+<body>
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?0b4e366e453f3524b50e08dc17833d51";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+
+        _hmt.push(['_setCustomVar', 5, 'ques_visitor', '网站', 3]);
+    </script>
+    <img src="/img/Musical/body-bg.png" class="body_bg" />
+    <div class="head">
+        <input type="hidden" name="Result3" value="@ViewBag.source" />
+        <div class="head_left"><img src="/img/Musical/head_logo.png" /></div>
+        <div class="head_right"><img src="/img/Musical/head_right.png"></div>
+    </div>
+    <div class="contentTop">
+        <div class="contentTopWrap">
+            <div class="contentTop_Logo"><img src="/img/Musical/contentTop_Left.png"></div>
+            <div class="contentTop_Right"><img src="/img/Musical/contentTop_right_beijing.png" alt="北京场"></div>
+        </div>
+        <div class="red">价值1960元《剧院魅影》门票来袭，还是免费的！</div>
+        <p class="font">即日起参与互动，免费领取价值1960元门票、卡片式移动电源。</p>
+        <p class="font">这个季节最值得期待的剧目，等你来抢！</p>
+    </div>
+    <div id="shareArea">
+        @*<div id="getTicketBtn" onclick="getTicket()"><img src="/img/Musical/GetTicketBtn.png"></div>
+            <div><img src="/img/Musical/share.png" /></div>*@
+        @*<div id="getTicketBtn" onclick="showWinnerInfo()" style="cursor:pointer;"><img src="/img/Musical/GetTicketBtn.png"></div>*@
+        @*<div id="getTicketBtn" onclick="getTicket()" style="cursor:pointer;"><img src="/img/Musical/GetTicketBtn.png"></div>*@
+        <div id="getTicketBtn" onclick="showWinnerInfo()" style="cursor:pointer;"><img src="/img/Musical/activity-winnerinfo.png"></div>
+        <div id="shareBtn"><img src="/img/Musical/share.png" />&nbsp;告诉好友一起抢</div>
+        <div id="car"><img src="/img/Musical/car.png" /></div>
+        @*<ul>
+                <li onclick="getTicket()"></a><img src="/img/Musical/GetTicketBtn.png"></li>
+                <li><img src="/img/Musical/share.png" />告诉好友一起抢</li>
+                <li><img src="/img/car1.png" /></li>
+            </ul>*@
+        @*<div id="car"><img src="/img/Musical/car.png"></div>*@
+        <div class="bw_ew">
+            <img src="/img/Musical/bm_wx.png">
+            <p>关注官方微信<br />北京现代bluemembers<br />更有多重惊喜 </p>
+        </div>
+    </div>
+    <div id="imgCenter"><img src="/img/Musical/contentCenter.png"></div>
+    <div id="centerLine"><img src="/img/Musical/centerLine.png" /></div>
+    <div id="activitySummary">
+        <div id="summaryTitle">
+            <img src="/img/Musical/leftArrow.png" class="arrowImg" />活动简介<img src="/img/Musical/rightArrow.png" class="arrowImg" />
+        </div>
+        <div id="summaryContent">
+            <p class="summary_firstLine">爱是永恒，音乐剧之父韦伯早已将爱赋予不朽的音乐之上……</p>
+            @*<p class="summary">现在，只需要动动手指就能<span class="blueFont">免费</span>携手bluemembers一起品鉴音乐巨制《剧院魅影》精彩的音乐、惊险的剧</p>*@
+            <p class="summary">精彩的音乐、惊险的剧情、完美的布景，让它成为音乐剧中永恒的佳作</p>
+            <p class="summary">点击“<span class="blueFont">抢票</span>”参与互动即有机会获得价值<span class="blueFont">1960</span>元的《剧院魅影》门票或卡片式电源</p>
+        </div>
+    </div>
+    <div id="activityDesc">
+        <div id="activityRules" class="descContent">
+            <div class="activityTitle"><img src="/img/Musical/leftArrow.png" class="arrowImg" /><span class="titleFont">活动规则</span><img src="/img/Musical/rightArrow.png" class="arrowImg" /></div>
+            <p><span class="blueFont">活动时间</span>： 即日起-2015.12.10（北京场）</p>
+            @*<p>注：敬请期待2015年11月10日-2015年12月10日（北京场）活动</p>*@
+            <br>
+            <p><span class="blueFont">参与方式： </span></p>
+            <p>第一步  通过网站/微信/APP进入活动页面，登录会员账号</p>
+            <p>第二步  点击“抢票”，填写信息</p>
+            <p>第三步  参与互动，选择您喜爱的面具，获取抽奖机会</p>
+            <p>第四步  分享测试结果，邀请好友“免费抢票”</p>
+            <br>
+            <p><span class="blueFont">奖品设置： </span></p>
+            <p>特等奖：10个     价值1960元《剧院魅影》门票一套（每套两张）</p>
+            <p>关爱奖：100个   卡片式移动电源</p>
+        </div>
+        <div id="activityLine"><img src="/img/Musical/activityLine.png" /></div>
+        <div id="activityNotice" class="descContent">
+            <div class="activityTitle"><img src="/img/Musical/leftArrow.png" class="arrowImg" /><span class="titleFont">注意事项</span><img src="/img/Musical/rightArrow.png" class="arrowImg" /></div>
+            <p>①&nbsp;参与活动的所有会员，如填写信息不完善，活动结束后抽奖资格将被取消，请如实填写个人信息，否则视为弃奖</p>
+            <br>
+            <p>②&nbsp;本活动所有用户均可参与，获奖者将从bluemembers会员中抽取，如您还未成为bluemembers会员，请注册后参与抢票获取抽奖资格</p>
+            <br>
+            <p>③&nbsp;每名会员仅有一次抢票和获奖资格，活动奖品不可重复获得</p>
+            <br>
+            <p>④&nbsp;活动结束后两个工作日内抽奖并安排礼品发送，请及时关注获奖名单</p>
+        </div>
+    </div>
+    <div id="centerLine"><img src="/img/Musical/centerLine.png" /></div>
+    <div id="bottom">
+        <p>*详情请拨打北京现代24小时客服热线：  <span class="blueFont">400-800-1100</span>（手机拨打）或咨询bluemembers在线客服</p>
+        <p>*您于本网站提供的个人信息只用于北京现代本次活动与您沟通联络时使用</p>
+        <p>*本活动最终解释权归北京现代汽车有限公司所有，如有疑问请及时与bluemembers网站在线客服联系</p>
+    </div>
+
+</body>
+<div>
+
+    <div id="userDetail" style="display:none;">
+
+        <h2>请填写您的真实信息，以便您能准确收到门票或礼品哦！</h2>
+        @*<p class="tips"><span class="close_pc"><img src="/Img/Musical/pc-close.png"></span></p>*@
+        <ul>
+            <li><input id="userName" name="userName" class="input_name" placeholder="姓名" style="color:#999;" /><input id="userMobile" name="userMobile" class="input_name" placeholder="手机" style="color:#999;" /></li>
+            <li>
+                <span style="margin-right:0;">
+                    <select id="myOrderAddressProvince" onchange="User.FindCityByProvince(this);">
+                        <option value="-1">省</option>
+                        @{
+                            List<Vcyber.BLMS.Common.City.Provinces> _provinceList = ViewData["provinceList"] as List<Vcyber.BLMS.Common.City.Provinces>;
+                            if (_provinceList != null && _provinceList.Any())
+                            {
+                                foreach (var province in _provinceList)
+                                {
+                                    <option value="@province.Code" title="@province.ID">@province.Name</option>
+                                }
+                            }
+                        }
+                    </select>
+                </span>
+
+                <span id="myOrderAddressCitySpan" style="margin-right:0;">
+                    <select id="myOrderAddressCity" onchange="User.FindAreasByCity(this);">
+                        <option value="-1">市</option>
+                    </select>
+                </span>
+                <span id="myOrderAddressAreaSpan" style="margin-right:0;">
+                    <select id="myOrderAddressCounty">
+                        <option value="-1">区</option>
+                    </select>
+                </span>
+            </li>
+            <li><input id="userAddress" name="userAddress" class="input_address" placeholder="详细地址" style="color:#999;" /></li>
+        </ul>
+        <p style="text-align:center;">
+            <a href="#" onclick="showMaskDiv()" id="nextStep">提交，测测我的剧院人生</a>
+        </p>
+    </div>
+    <!--未登录的弹出层-->
+    <div id="notice" style="display:none;">
+
+        <h2>尊敬的用户，登陆bluemebers会员账号参与抢票，获奖机会更高哦~@*<span class="close_pc"><img src="/Img/Musical/pc-close.png"></span>*@</h2>
+        <div>
+            <input type="button" class="loginBtn" value="登录" onclick="login()">
+            <input type="button" class="loginBtn" value="注册" onclick="register()">
+            <input typeof="button" class="loginBtn" value="直接抢票" onclick="Ticket()">
+        </div>
+
+    </div>
+    <!--选择面具层-->
+    <!--选择面具层-->
+    <div id="selectMask" style="display:none;">
+        <h2>选择您喜爱的面具，看看您的《剧院魅影》人生</h2>
+        @*<p class="tips"><span class="close_pc"><img src="/Img/Musical/pc-close.png"></span></p>*@
+        <ul>
+            <li class="maskLi"><img src="/img/Musical/blueMask.png" style="    position: relative;top: 5px;" /><img src="/img/Musical/blackMask.png" style=" position: relative; top: 12px;" /><img src="/img/Musical/goldMask.png" /><img src="/img/Musical/redMask.png" /></li>
+            <li style="height:27px;"><div style="width:124px;"><input type="radio" id="blue" value="1" name="mask" checked />蓝焰</div><div style="width:174px;"> <input type="radio" id="black" value="2" name="mask" />黑魅 </div><div style="width:129px;"><input type="radio" id="gold" value="3" name="mask" />金煌 </div><div style="width:135px;"><input type="radio" id="red" value="4" name="mask" />赤烈</div></li>
+            @*<li class="slectMaskLi"><button id="selectMaskBtn" class="blueBtn" onclick="showMaskResult()">选好了，查看结果</button></li>*@
+        </ul>
+        <p style="text-align:center;padding-right:40px;"><a class="selectMask" id="btnSelectMask" data-result="-1" onclick="showMaskResult()">确认，查看结果</a></p>
+    </div>
+    <!--选择面具结果展示-->
+    <!--蓝焰-->
+    <div class="maskResult" id="maskBlue" style="display:none;">
+        @*<img class="resultClose" src="/Img/Musical/pc-close.png">*@
+        <div class="maskResultDiv">
+            <dl>
+                <dt><img src="/Img/Musical/Kristen.png" /></dt>
+                <dd>哇，原来你是《剧院魅影》中最大的女主角——克里斯汀，音乐天使，眼神纯净，笑容甜美，从迷茫中逐渐成长，变得勇敢，选择自己的爱情，选择自己的人生。</dd>
+            </dl>
+            <p>恭喜您，我们已收到您的抢票信息。如抽取到您获得免费门票，我们会在开奖后第一时间通知您，请保持您的手机畅通！</p>
+        </div>
+        <p style="text-align:center;"><a class="selectMaskBtn" style="font-size:24px;">分享给小伙伴</a></p>
+    </div>
+    <!--黑魅-->
+    <div>
+        <div class="maskResult" id="maskBlack" style="display:none;">
+            <div class="maskResultDiv">
+                <dl>
+                    <dt><img src="/Img/Musical/Ehrich.png" /></dt>
+                    <dd>哇哦，你就是《剧院魅影》中的第一boss魅影——埃里克，疯狂、天才、极致已不足以形容你的跌宕人生，有着矛盾、繁复的心理，渴望爱情，拥有复杂和善良的真实人性。</dd>
+                </dl>
+                <p>恭喜您，我们已收到您的抢票信息。如抽取到您获得免费门票，我们会在开奖后第一时间通知您，请保持您的手机畅通！</p>
+            </div>
+            <p style="text-align:center;"><button class="selectMaskBtn" style="font-size:24px;">分享给小伙伴</button></p>
+        </div>
+    </div>
+    <!--金煌-->
+    <div>
+        <div class="maskResult" id="maskGold" style="display:none;">
+            <div class="maskResultDiv">
+                <dl>
+                    <dt><img src="/Img/Musical/Raoul.png" /></dt>
+                    <dd>啊哦，你是《剧院魅影》中的真爱获得者子爵——拉乌尔，潇洒的公子，骄傲与飞扬的个性，有着勇敢追求并为爱牺牲的精神，即有高贵的骄傲，也懂得爱的包容。</dd>
+                </dl>
+                <p>恭喜您，我们已收到您的抢票信息。如抽取到您获得免费门票，我们会在开奖后第一时间通知您，请保持您的手机畅通！</p>
+            </div>
+            <p style="text-align:center;"><button class="selectMaskBtn" style="font-size:24px;">分享给小伙伴</button></p>
+        </div>
+    </div>
+    <!--赤烈-->
+    <div>
+        <div class="maskResult" id="maskRed" style="display:none;">
+            <div class="maskResultDiv">
+                <dl>
+                    <dt><img src="/Img/Musical/Andrew.png" /></dt>
+                    <dd>OMG，你才是《剧院魅影》当之无愧的音乐创作者——安德鲁·劳埃德·韦伯，天赋的艺术家，丰富的创造力和深厚的文学功底，才华横溢、思智过人，更是带着光环的人生赢家。</dd>
+                </dl>
+                <p>恭喜您，我们已收到您的抢票信息。如抽取到您获得免费门票，我们会在开奖后第一时间通知您，请保持您的手机畅通！</p>
+            </div>
+            <p style="text-align:center;"><button class="selectMaskBtn" style="font-size:24px;">分享给小伙伴</button></p>
+        </div>
+    </div>
+</div>
+<!--分享-->
+<div id="share_erweima" class="share_erweima" style="display:none;">
+    <h2>
+        分享给好友，一起来抢票！
+        @*<span id="share_close"><img src="/Img/Musical/pc-close.png"></span>*@
+    </h2>
+    <dl>
+        <dt>
+            <img src="/Img/Musical/bm_wx.png" style="width:148px; height:148px;">
+            <p>微信扫描二维码</p>
+        </dt>
+        <dd>
+            <div>
+                <a href="" onclick="Sharestat('tsina');" data-cmd="tsina" target="_blank" class="bds_tsina" title="分享到新浪微博">
+                    <img src="/Img/Musical/pc-wb.png">
+                </a>
+                <p>微博</p>
+            </div>
+            <div>
+                <a href="" onclick="Sharestat('renren');" data-cmd="renren" target="_blank" class="bds_renren">
+                    <img src="/Img/Musical/pc-rrw.png">
+                    <p>人人网</p>
+                </a>
+            </div>
+            <div>
+                <a href="" onclick="Sharestat('touban');" data-cmd="tsina" target="_blank" class="bds_touban" title="分享到豆瓣">
+                    <img src="/Img/Musical/pc-douban.png">
+                </a>
+                <p>豆瓣</p>
+            </div>
+        </dd>
+    </dl>
+</div>
+
+<!--登录-->
+<div id="share_erweima" class="pc_login" style="display:none;">
+    <p>
+        <span>
+            <img src="/Img/Musical/pc-user.png" />
+
+
+            <input type="text" id="login_name" placeholder="手机/用户名/邮箱" />
+        </span>
+        <span>
+            <img src="/Img/Musical/pc-lock.png" />
+
+
+            <input type="password" id="login_pwd" placeholder="密码" />
+        </span>
+    </p>
+    <p>
+        <span>
+            <img src="/Img/Musical/pc-yzm.png" />
+
+
+            @*<input type="text" id="login_num" placeholder="验证码" />*@
+            <input id="login_num" name="Captcha" type="text" placeholder="验证码" />
+
+        </span>
+
+
+        <span>
+            @*<img src="/Img/Musical/pc-yzmbg.png" />*@
+            <img src="/ValidateCode/Index?ID=1" style="width: 120px; height: 56px; padding: 0; margin: 0; padding-left: 10px;" id="imgCode" alt="单击可刷新" onclick="clickRemoveChangeCode()" />
+        </span>
+    </p>
+
+    <div class="pc_login_but">
+
+
+
+        <a href="#" style="  padding: 20px 0px;font-size:28px;" class="pclogin denglu">登录</a>
+        @*<input style="padding: 20px 0px;font-size:28px;" type="submit" class="register_bot pay_active" value="登录">*@
+        <span>没有账号,现在<a href="javascript:register()" style="font-size:20px;">注册</a></span>
+    </div>
+</div>
+
+
+<div style="position:fixed;top:0px;left:50%;margin-left:-320px; display:none;" id="ActivityWinnerInfo">
+    <div class="winner">
+        <span><img src="/img/musical/winner-close.png" id="closewinnerinfopage" /></span>
+        <div class="search">
+            <div class="search_box">
+                <input type="text" placeholder="通过手机号查询" id="pcsearchsectionkeyword">
+                <img src="/img/musical/winner-search.png" id="pcsearchsection">
+            </div>
+        </div>
+        <div class="have_bg">
+            <h2>获奖名单</h2>
+            <div class="win-box">
+                <h3>《剧院魅影》门票1套</h3>
+                <ul id="piaocontent">
+                    @{
+                        var piaoWinerList = ViewData["piaoWinerList"] as List<Vcyber.BLMS.Entity.WinningInfo>;
+                        var powerWinnerList = ViewData["powerWinnerList"] as List<Vcyber.BLMS.Entity.WinningInfo>;
+
+                        if (piaoWinerList != null && piaoWinerList.Any())
+                        {
+                            decimal _totals = Convert.ToDecimal(piaoWinerList.Count());
+                            decimal _rows = Math.Ceiling(_totals / 2);
+
+                            for (int i = 0; i < _rows; i++)
+                            {
+
+                                string _tel = string.Empty;
+                                string _tel2 = string.Empty;
+                                for (int j = 0; j < piaoWinerList[2 * i].UserTel.Length; j++)
+                                {
+                                    if (j >= 3 && j <= 6)
+                                    {
+                                        _tel += "*";
+                                        _tel2 += "*";
+                                    }
+                                    else
+                                    {
+                                        _tel += piaoWinerList[2 * i].UserTel[j];
+                                        if (i * 2 + 1 < _totals)
+                                        {
+                                            _tel2 += piaoWinerList[2 * i + 1].UserTel[j];
+                                        }
+                                    }
+                                }
+                                <li>
+                                    <p><b class="winnername"> 姓名：<label>@piaoWinerList[i * 2].UserName</label></b><span></span>手机号：<label>@_tel</label></p>
+                                    @if (i * 2 + 1 < _totals)
+                                    {
+                                        <p><b class="winnername">姓名：<label>@piaoWinerList[i * 2 + 1].UserName</label></b><span></span>手机号：<label>@_tel2</label></p>
+                                    }
+                                </li>
+                            }
+                        }
+                    }
+                </ul>
+            </div>
+            <div class="win-box" style="height:200px; overflow:hidden;" id="powercontentparent">
+                <h3>卡片式移动电源</h3>
+                <div id="powercontentparentcontainer">
+                    <ul id="powercontent">
+                        @{
+                            if (powerWinnerList != null && powerWinnerList.Any())
+                            {
+                                decimal _totals = Convert.ToDecimal(powerWinnerList.Count());
+                                decimal _rows = Math.Ceiling(_totals / 2);
+
+                                for (int i = 0; i < _rows; i++)
+                                {
+                                    string _tel = string.Empty;
+                                    string _tel2 = string.Empty;
+                                    for (int j = 0; j < powerWinnerList[2 * i].UserTel.Length; j++)
+                                    {
+                                        if (j >= 3 && j <= 6)
+                                        {
+                                            _tel += "*";
+                                            _tel2 += "*";
+                                        }
+                                        else
+                                        {
+                                            _tel += powerWinnerList[2 * i].UserTel[j];
+                                            if (i * 2 + 1 < _totals)
+                                            {
+                                                _tel2 += powerWinnerList[2 * i + 1].UserTel[j];
+                                            }
+                                        }
+                                    }
+                        <li>
+                            <p><b class="winnername">姓名：<label>@powerWinnerList[i * 2].UserName</label></b><span></span>手机号：<label>@_tel</label></p>
+                            @if (i * 2 + 1 < _totals)
+                                        {
+                            <p><b class="winnername">姓名：<label>@powerWinnerList[i * 2 + 1].UserName</label></b><span></span>手机号：<label>@_tel2</label></p>
+                                        }
+                        </li>
+                                }
+                            }
+                        }
+                    </ul>
+                    <ul id="powercontenttmp"></ul>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<div id="overtips">
+    <p style="font-family:微软雅黑;">亲爱的客户您好，极致文化巅峰bluemembers与您品鉴经典（北京场）活动已结束，您可以查看获奖名单，看看您是否获奖哦~</p>
+    @*<p style="color: #45caf9;">敬请期待11月10日北京场活动</p>*@
+    <div style="float: left; width: 100%;">
+        <a href="javascript:void(0);" onclick="showWinnerInfo();">获奖名单</a>
+    </div>
+</div>
+

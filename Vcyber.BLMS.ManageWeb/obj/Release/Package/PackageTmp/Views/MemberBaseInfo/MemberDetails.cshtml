@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "会员基本信息";
+    Layout = null;
+}
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>基本信息</strong></div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h4>会员基本信息</h4></div>
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <tr>
+                <td>会员账户名</td>
+                <td ng-bind="memberDetail.userName"></td>
+                <td>真实姓名</td>
+                <td ng-bind="memberDetail.realName"></td>
+            </tr>
+            <tr>
+                <td>商城平台</td>
+                <td ng-bind="memberDetail.systemName"></td>
+                <td>性别</td>
+                <td ng-bind="memberDetail.sexName"></td>
+            </tr>
+            <tr>
+                <td>电话</td>
+                <td ng-bind="memberDetail.telephone"></td>
+                <td>证件号</td>
+                <td ng-bind="memberDetail.idNo"></td>
+            </tr>
+            <tr>
+                <td>用户状态</td>
+                <td ng-bind="memberDetail.stateName"></td>
+                <td>地址</td>
+                <td ng-bind="memberDetail.location"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+@*@model Vcyber.BLMS.ManageWeb.Models.KUserInfoModel
+@{
+    ViewBag.Title = "会员基本信息";
+}
+
+<div class="g_page_content_title">基本信息</div>
+<div class="g_page_grid_form">
+    <table>
+        <tr>
+            <td>会员账户名</td>
+            <td>@Model.userName</td>
+            <td>真实姓名</td>
+            <td>@Model.realName</td>
+        </tr>
+        <tr>
+            <td>商城平台</td>
+            <td>@Model.systemName</td>
+            <td>性别</td>
+            <td>@Model.sexName</td>
+        </tr>
+        <tr>
+            <td>电话</td>
+            <td>@Model.telephone</td>
+            <td>证件号</td>
+            <td>@Model.idNo</td>
+        </tr>
+        <tr>
+            <td>用户状态</td>
+            <td>@Model.stateName</td>
+            <td>地址</td>
+            <td>@Model.location</td>
+        </tr>
+        
+    </table>
+</div>*@

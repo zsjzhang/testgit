@@ -1,0 +1,139 @@
+﻿
+.Questionnaire {
+    width: 1000px;
+    min-height: 100%;
+    display: block;
+    margin: auto;
+    font-size: 14px;
+    color: #666666;
+    float: none;
+    margin-bottom: 20px;
+    background-color:#E0E0E0;
+    margin-top:15px;
+    padding-bottom:30px;
+    font-family: 'Microsoft YaHei';
+}
+
+    .Questionnaire .QuestionnaireTheme {
+        font-family: 'Microsoft YaHei';
+        color: #014488;
+        font-size: 25px;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .Questionnaire .QuestionnaireAltTheme {
+        font-family: 'Microsoft YaHei';
+        color: #f49600;
+        font-size: 15px;
+        margin-top: 10px;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .Questionnaire label {
+        font-family: 'Microsoft YaHei';
+        color:#666666;
+    }
+
+    .Questionnaire p.title {
+        margin-left: 10px;
+        text-align: left;
+        margin-top: 5px;
+        height: auto;
+        line-height: 20px;
+    }
+
+    .Questionnaire divContent p.left {
+        /*text-align: left;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        height: auto;
+        line-height: 30px;
+        overflow:auto;
+        background-color:red;*/
+        color:#0057a5;
+    }
+
+        .Questionnaire divContent p.left::first-line {
+        }
+
+    .Questionnaire div.divContent {
+        width: 960px;
+        min-height: 100px;
+        margin-left: 20px;
+        float: none;
+    }
+
+    .Questionnaire td {
+        min-width: 180px;
+        vertical-align: middle;
+    }
+
+    .Questionnaire #divLine {
+        height: 3px;
+        width: 1000px;
+        background-color: #3c9ccf;
+        border-radius: 2px;
+    }
+
+    .Questionnaire #btnQuestionnaireSubmit {
+        cursor: pointer;
+        display: block;
+        float: left;
+        color: white;
+        margin-top: 20px;
+        margin-left: 20px;
+        float: none;
+        background-color: #075090;
+        height: 30px;
+        width: 120px;
+        text-align: center;
+        border: 0px solid transparent;
+        font-size: 15px;
+        font-weight: bold;
+        border-radius: 1px;
+    }
+
+        .Questionnaire #btnQuestionnaireSubmit:hover {
+            background-color: #3c9ccf;
+        }
+
+
+    .Questionnaire textarea[name='userSuggest'] {
+        width: 90%;
+        float: none;
+        font-size: 14px;
+        min-height: 80px;
+        margin-left: 20px;
+        margin-bottom: 10px;
+        border: 1px solid gray;
+        border-radius: 2px;
+        outline: none;
+    }
+
+    .Questionnaire .resultInputButton {
+        height: 27px;
+        width: 80px;
+        margin-left: 10px;
+        border: 1px solid gray;
+        background-color: #EEEEEE;
+        border-radius: 1px;
+        margin-top: 5px;
+        color: black;
+    }
+
+        .Questionnaire .resultInputButton:hover {
+            background-color: #E0E0E0;
+            color: gray;
+        }
+
+    .Questionnaire textarea[name='userSuggest']::-webkit-input-placeholder {
+        vertical-align: text-top;
+        padding-left: 10px;
+    }
+
+    .Questionnaire textarea[name='userSuggest']::-moz-placeholder {
+        vertical-align: text-top;
+        margin-left: 10px;
+    }

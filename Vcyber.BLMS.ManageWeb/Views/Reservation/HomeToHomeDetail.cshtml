@@ -1,0 +1,66 @@
+﻿@model Vcyber.BLMS.Entity.Generated.CSSonataService
+
+@{
+    ViewBag.Title = "服务详情";
+    ViewBag.TitleFocus = "4-1-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">基本信息</div>
+    <table class="table table-bordered table-responsive">
+        <tr>
+            <td style="width: 10%">取车地点</td>
+            <td style="width: 40%">@Model.TakeAddress</td>
+            <td style="width: 10%">送车地点</td>
+            <td style="width: 40%">@Model.ReturnAddress</td>
+        </tr>
+        <tr>
+            <td style="width: 10%">4S店</td>
+            <td style="width: 40%">@Model.DealerName</td>
+            <td style="width: 10%">车型</td>
+            <td style="width: 40%">@Model.CarSeries</td>
+        </tr>
+        <tr>
+            <td style="width: 10%">车牌号</td>
+            <td style="width: 40%">@Model.LicensePlate</td>
+            <td style="width: 10%">车架号</td>
+            <td style="width: 40%">@Model.VIN</td>
+        </tr>
+        <tr>
+            <td style="width: 10%">取车时间</td>
+            <td style="width: 40%">@(Model.ScheduleDate==null?"":((DateTime)Model.ScheduleDate).ToString("yyyy/MM/dd"))</td>
+            <td style="width: 10%">送车时间</td>
+            <td style="width: 40%">@(Model.ReturnDate == null ? "" : ((DateTime)Model.ReturnDate).ToString("yyyy/MM/dd"))</td>
+        </tr>
+        <tr>
+            <td style="width: 10%">姓名</td>
+            <td style="width: 40%">@Model.UserName</td>
+            <td style="width: 10%">性别</td>
+            <td style="width: 40%">@{ string value = Model.UserSex==1 ? "男" : "女";}@value</td>
+        </tr>
+        <tr>
+            <td style="width: 10%">电子邮箱</td>
+            <td style="width: 40%">@Model.Email</td>
+            <td style="width: 10%">手机号</td>
+            <td style="width: 40%">@Model.Phone</td>
+        </tr>
+        <tr>
+            <td style="width: 10%">服务需求</td>
+            <td style="width: 40%">@Model.Comment</td>
+            <td style="width: 10%"></td>
+            <td style="width: 40%"></td>
+        </tr>
+    </table>
+    <div class="panel-footing" style="padding: 10px 0px 10px 20px">
+        <button type="button" id="btn-submit-cs" class=" btn btn-primary"><i class="fa"></i>返回</button>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn-submit-cs').click(function () {
+            parent.history.back();
+            return false;
+        });
+    });
+</script>

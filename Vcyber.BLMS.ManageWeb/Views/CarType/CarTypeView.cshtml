@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Generated.CSBaseCar>
+@{
+    Layout = null;
+}
+
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+<select id="carType" name="carType">
+    @{
+        if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <option value="@item.Id">@item.SeriesName</option>
+            }
+        }
+        else
+        {
+            <option>请选择</option>
+        }
+    }
+</select>

@@ -1,0 +1,237 @@
+﻿@using Vcyber.BLMS.Entity;
+@using Vcyber.BLMS.ManageWeb.Helper;
+@model  Vcyber.BLMS.Entity.Questionnaire
+@{
+    ViewBag.Title = "添加问卷";
+    ViewBag.TitleFocus = "2-2-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //int questionnaireId = ViewBag.QuestionnaireId;
+}
+@Html.AntiForgeryToken()
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/Uploadify/jquery.uploadify.js")"></script>
+<link href="@Url.Content("~/Scripts/uploadify/uploadify.css")" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/Uploadify/jquery.uploadify.min.js"></script>
+<script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+
+<link rel="stylesheet" type="text/css" href="@Url.Content("~/Scripts/ueditor/themes/default/css/ueditor.css")" />
+<script type="text/javascript" src="@Url.Content("~/Scripts/ueditor/ueditor.config.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/ueditor/ueditor.all.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/ueditor/lang/zh-cn/zh-cn.js")"></script>
+<style type="text/css">
+    li span {
+        margin-left: 10px;
+    }
+
+    .span {
+        width: 70px;
+        background-color: #00ADFF;
+        height: 30px;
+        border: 0;
+        padding: 0;
+        margin-top: 0;
+        text-align: center;
+    }
+</style>
+<div class="container panel panel-default">
+    <div class="panel-body form-horizontal">
+        @using (Html.BeginForm())
+        {
+            bool IsCs = Convert.ToBoolean(ViewBag.IsCs);
+            <input type="hidden" id="Id" value="@Model.Id" />
+            @Html.HiddenFor(m => m.State)
+            <div class="form-group">
+                <label class="col-md-2 control-label">问卷主标题</label>
+                <div class="col-md-4 text-left">
+                    @Html.TextBoxFor(m => m.Theme, new { @class = "input_text2 form-control", @width = "300px" })
+                    @Html.ValidationMessageFor(m => m.Theme)
+                    <span style=" color:red;float:right;margin-right:-10px;margin-top:-25px;">*</span>
+                </div>
+                <label class="col-md-2 control-label">问卷副标题</label>
+                <div class="col-md-4 text-left">
+                    @Html.TextBoxFor(m => m.AlternateTheme, new { @class = "form-control", @width = "300px" })
+                    @Html.ValidationMessageFor(m => m.AlternateTheme)
+                    <span style=" color:red;float:right;margin-right:-10px;margin-top:-25px;">*</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">期数</label>
+                <div class="col-md-4 text-left">
+                    @Html.TextBoxFor(m => m.PeriodicalCount, new { @class = "input_text2 form-control", @width = "300px" })
+                    @Html.ValidationMessageFor(m => m.PeriodicalCount)
+                    <span style=" color:red;float:right;margin-right:-10px;margin-top:-25px;">*</span>
+                </div>
+                @*@if (!IsCs)
+                {*@ 
+                <label class="col-md-2 control-label">赠送积分</label>
+                <div class="col-md-4 text-left">
+                    @Html.TextBoxFor(m => m.BlueBeanCount, new { @class = "input_text2 form-control", @width = "300px" })
+                    @Html.ValidationMessageFor(m => m.BlueBeanCount)
+                </div>
+                @*}*@
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">开始时间</label>
+                <div class="col-md-4 text-left">
+                    @(Html.TextBoxFor(m => m.BeginTime, new { @class = "input_text1", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd',isShowWeek:true,isShowClear:true,readOnly:true})" }))
+                    @Html.ValidationMessageFor(m => m.BeginTime)
+                    <span style=" color:red;float:right;margin-right:90px;margin-top:5px;">*</span>
+                </div>
+                <label class="col-md-2 control-label">结束时间</label>
+                <div class="col-md-4 text-left">
+                    @(Html.TextBoxFor(m => m.EndTime, new { @class = "input_text1", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd',isShowWeek:true,isShowClear:true,readOnly:true})" }))
+                    @Html.ValidationMessageFor(m => m.EndTime)
+                    <span style=" color:red;float:right;margin-right:90px;margin-top:5px;">*</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">问卷类型</label>
+                <div class="col-md-4 text-left">
+                    <select id="Category" class="form-control" name="Category">
+                        <option value="-1">请选择</option>
+                        <option value="1">半结构式</option>
+                    </select>
+                    <span style=" color:red;float:right;margin-right:-10px;margin-top:-25px;">*</span>
+                </div>
+                <label class="col-md-2 control-label">列表备注</label>
+                <div class="col-md-4 text-left">
+                    @(Html.TextBoxFor(m => m.LbRemarks, new { @class = "input_text2 form-control", @width = "300px" }))
+                    @Html.ValidationMessageFor(m => m.LbRemarks)
+                </div>
+            </div>
+            
+            if (!IsCs)
+            { 
+            <div class="form-group">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 text-center" style="height:150px;">
+                    <div style="float:left;width:110px;height:110px;margin-right:40px;">
+                        <div>
+                            <img id="imgSl" src="@Model.Image" style="height:100px;width:100px;" />
+                            <div>主视觉图</div>
+                        </div>
+                        <div class="imgDiv">
+                            <input type="file" id="fileImage" name="fileImage" style="display:none;" />
+                        </div>
+                        @Html.HiddenFor(m => m.Image)
+                    </div>
+                    <div style="float:left;width:110px;height:110px;margin-right:40px;">
+                        <div>
+                            <img id="syImgSl" src="@Model.SyImage" style="height:100px;width:100px;" />
+                            <div>列表缩略图</div>
+                        </div>
+                        <div class="imgDiv">
+                            <input type="file" id="syFileImage" name="syFileImage" style="display:none;" />
+                        </div>
+                        @Html.HiddenFor(m => m.SyImage)
+                    </div>
+                </div>
+            </div>
+            }
+            <div class="form-group">
+                <div class="col-md-12">
+                    <script id="editor" type="text/plain" style="height: 400px;">
+                    </script>
+                    @Html.HiddenFor(m => m.Remarks)
+                </div>
+                @*<label class="col-md-2 control-label">备注</label>
+                    <div class="col-md-4 text-left">
+                        @Html.TextAreaFor(m => m.Remarks, new {@class="input_text2 form-control",@width="300px" })
+                        @Html.ValidationMessageFor(m=>m.Remarks)
+                    </div>*@
+            </div>
+        }
+        <div class="col-md-12"><a href="#" class="btn-lg btn-primary " onclick="SubmitForm(); ">提交</a></div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        selectCategory();
+
+        var editor = new UE.ui.Editor({ initialFrameWidth: "100%" });
+        editor.render("editor");
+        editor.ready(function () {
+            //显示新闻内容
+            editor.setContent(decodeURI($("#Remarks").val()));
+        });
+    });
+
+    function selectCategory() {
+        var de = "@Model.Category";
+        de = parseInt(de);
+        if (de > 0) {
+            $("#Category").val(de);
+        }
+    }
+
+    function SubmitForm() {
+        var content = encodeURI(UE.getEditor('editor').getContent());
+        $("#Remarks").val(content);
+        var id = $("#Id").val();
+        $.ajax({
+            type: "post",
+            url: "/Questionnaire/CreateSelect",
+            data: { beginTime: $("#BeginTime").val(), id: id, "__RequestVerificationToken": document.getElementsByName('__RequestVerificationToken')[0].value },
+            async: false,
+            success: function (data) {
+                if (data == "True") {
+                    alert("问卷时间有冲突！");
+                } else {
+                    $("form").submit();
+                }
+            }
+        });
+
+
+    }
+
+    $("#fileImage").uploadify({
+        'buttonImg': "@Model.Image",
+        'buttonText': '修改图片',
+        'fileTypeDesc': 'Image Files',
+        'fileTypeExts': '*.jpg;*.jpge;*.gif;*.png;*.bmp',
+        'swf': '@Url.Content("~/Scripts/Uploadify/uploadify.swf")',
+        'uploader': "/Questionnaire/UploadImage",
+        'auto': true,
+        'multi': false,
+        'wmode': 'transparent',
+        'fileSizeLimit': '10485760kb',
+        //                'removeCompleted' : false,
+        // Your options here
+        //上传到服务器，服务器返回相应信息到data里
+        'onUploadSuccess': function (file, data, response) {
+            if (file.size < 10485760) {
+                $("#imgSl").attr("src", data);
+                $("#Image").val(data);
+            }
+            else {
+                alert("上传文件不能大于10485760KB")
+            }
+        }
+    });
+
+    $("#syFileImage").uploadify({
+        'buttonImg': "@Model.Image",
+        'buttonText': '修改图片',
+        'fileTypeDesc': 'Image Files',
+        'fileTypeExts': '*.jpg;*.jpge;*.gif;*.png;*.bmp',
+        'swf': '@Url.Content("~/Scripts/Uploadify/uploadify.swf")',
+        'uploader': "/Questionnaire/UploadImage",
+        'auto': true,
+        'multi': false,
+        'wmode': 'transparent',
+        'fileSizeLimit': '10485760kb',
+        //                'removeCompleted' : false,
+        // Your options here
+        //上传到服务器，服务器返回相应信息到data里
+        'onUploadSuccess': function (file, data, response) {
+            if (file.size < 10485760) {
+                $("#syImgSl").attr("src", data);
+                $("#SyImage").val(data);
+            }
+            else {
+                alert("上传文件不能大于10485760KB")
+            }
+        }
+    });
+</script>

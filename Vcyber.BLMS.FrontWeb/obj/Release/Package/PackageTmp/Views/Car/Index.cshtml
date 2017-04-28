@@ -1,0 +1,38 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "车辆服务";
+}
+
+<link href="~/css/service.css" rel="stylesheet" />
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Car" })
+    </div>
+    <div class="service">
+        <div class="service_l">
+            <div>
+                <img src="/img/service.png">
+            </div>
+            <div class="service_l_1">
+                <a href="/Sonata/OTwoOService"><img src="/img/service_5.png"></a>
+                <a href="/Sonata/GoHomeForm"><img src="/img/service_6.png"></a>
+                <a href="/Sonata/FreeMot"><img src="/img/service_7.png"></a>
+                <a><img src="/img/service_8.png"></a>
+                <a><img src="/img/service_9.png"></a>
+            </div>
+        </div>
+        <div class="service_r">
+            <div>
+                <img src="/img/service_1.png">
+            </div>
+            <div class="service_r_1">
+                <a href="/Car/HomeReserveDrive" target="_blank"><img src="/img/service_2.png"></a>
+                <a href="/Car/HomeCarReserveBuy" target="_blank"><img src="/img/service_3.png"></a>
+                <a href="/Car/HomeCarReserveMaintenance" target="_blank"><img src="/img/service_4.png"></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

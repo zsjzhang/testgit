@@ -1,0 +1,573 @@
+*{
+	font-family: '微软雅黑';
+}
+p,b,ul,li,ol,a,span,label,td{
+	font-family: '微软雅黑';
+}
+
+input,select{
+	background: #FFFFFF;
+}
+
+
+.all_cont{
+	width: 1000px;
+	height: 100%;
+	margin:0 auto;
+	margin-top: 28px;
+}
+.sjyy_title{
+	height: 48px;
+	line-height: 48px;
+	background: #eeeeee;
+	width: 100%;
+	text-align: center;
+}
+.sjyy_title p{
+	font-size: 18px;
+	font-family: '微软雅黑';
+	color: #3d3f43;
+}
+.yysj_cont{
+	width: 938px;
+	height: 100%;
+	border:1px solid #eeeeee;
+	margin-top: 20px;
+	padding:30px;
+}
+.yysj_cont .p1{
+	font-size: 16px;
+	color: #929396;
+	font-weight: bold;
+	line-height: 24px;
+}
+.yysj_cont .num_p{
+	color: #f8981d;
+	font-size: 20px;
+	font-family: '微软雅黑';
+	height: 80px;
+	line-height: 80px;
+}
+.p_input{
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	margin-bottom: 10px;
+}
+.p_input span{
+	display: block;
+	width: 10px;
+	height: 40px;
+	color: #ff0000;
+	font-family: '微软雅黑';
+	float: left;
+}
+.p_input label{
+	font-size: 18px;
+	color: #000000;
+	font-family: '微软雅黑';
+	float: left;
+	margin-left: 4px;
+	width: 126px;
+	text-align: right;
+
+}
+.p_input select{
+	width: 214px;
+	border: 1px solid #cbcbcb;
+	height: 42px;
+	float: left;
+	margin-top: 6px;
+	padding-left: 10px;
+	margin-right: 10px;
+	font-size: 18px;
+	color: #cbcbcb;
+
+}
+.p_input input{
+	width: 202px;
+	border: 1px solid #cbcbcb;
+	height: 42px;
+	float: left;
+	margin-top: 6px;
+	padding-left: 10px;
+	margin-right: 10px;
+	font-size: 18px;
+	color: #cbcbcb;
+}
+.p_input b{
+	float: left;
+	font-family: '微软雅黑';
+}
+.radio_btn_cc{
+	width: 20px !important;
+	display:block;
+}
+.p_input ol{
+	float: left;
+	color: #fe0000;
+	font-size: 18px;
+	text-decoration: underline;
+	font-family: '微软雅黑';
+	margin-left: 80px;
+}
+.cc_submit_btn{
+	width: 199px;
+	height: 48px;
+	text-align: center;
+	line-height: 48px;
+	background: #075090;
+	color: #fff;
+	font-family: '微软雅黑';
+	margin:30px auto;
+	margin-top: 50px;
+	cursor: pointer;
+
+}
+.p_input b{
+	font-weight: 300;
+	color: #929396;
+	font-size: 18px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.my_order{
+	width: 100%;
+	height: 170px;
+
+}
+.my_order_title{
+	height: 28px;
+	border-bottom: 2px solid #075090;
+}
+.my_order_title .weird_1{
+	width: 100%;
+	height: 27px;
+	border-bottom: 2px solid #075090;
+}
+.my_order_title .weird_1 span{
+	background: #075090;
+	padding: 0px 30px;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	color: #fff;
+	display: block;
+	line-height: 27px;
+	float: left;
+}
+.my_order_title .weird_1 div.bg{
+	float: left;
+	width: 15px;
+	height: 27px;
+	background: url(../img/weird_1.png) no-repeat;
+}
+.my_order_title .weird_1 a{
+	display: block;
+	float: right;
+	font-size: 12px;
+	color: #000;
+	margin-top: 10px;
+	text-decoration: none;
+}
+.order_news{
+	width: 998px;
+	height: 140px;
+	line-height: 140px;
+	border: 1px solid #eeeeee;
+	border-top: none;
+}
+.order_news b{
+	font-size: 18px;
+	color: #3d3f43;
+	margin-left: 50px;
+	cursor: pointer;
+}
+.order_news span{
+	margin-left: 40px;
+}
+.order_news span, .order_news label{
+	color: #3d3f43;
+	cursor: pointer;
+
+}
+.order_list{
+	width: 1000px;
+}
+.order_list table{
+	border: 1px solid #eeeeee;
+    word-break: break-all;
+}
+.table_title{
+	background: #075090;
+	height: 30px;
+	line-height: 30px;	
+}
+.table_title td{
+	font-size: 14px;
+	color: #fff;
+	font-family: '微软雅黑';
+	text-align: center;
+}
+.table_title1{
+	background: #eeeeee;
+	height: 30px;
+	line-height: 30px;
+}
+.table_title1 td{
+	font-family: '微软雅黑';
+	font-size: 12px;
+	color: #3d3f43;
+}
+.table_title1 span{
+	margin-left: 25px;
+	font-family: '微软雅黑';
+}
+.table_title2{
+	height: 110px;
+	vertical-align: center;
+}
+.table_title2 img{
+	float: left;
+	margin-top: 22px;
+	margin-left: 27px;
+}
+
+.table_title2 td{
+	font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+}
+.table_ul{
+	float: left;
+}
+.table_ul li{
+	cursor: pointer;
+}
+
+
+.duihuan_cg{
+	border-top: 2px solid #075090;
+}
+
+
+.dh_lose{
+	width: 998px;
+	border: 1px solid #eeeeee;
+	height: 500px;
+}
+
+.dh_lose dl{
+	width: 240px;
+	margin: 0 auto;
+	margin-top: 150px;
+}
+
+.shop_car dl{
+	width: 266px;
+}
+
+.dh_lose  dt{
+	float: left;
+	margin-right: 28px;
+}
+
+.dh_lose dd h2{
+	font-size: 18px;
+	color: #3D3F43;
+	padding-top: 14px;
+}
+
+.dh_lose dd  a{
+	color: #075090;
+	font-size: 12px;
+	text-decoration: none;
+	display: block;
+	margin-top: 20px;
+	margin-left: 72px;
+}
+
+.shop_car dd a{
+	margin-left: 86px;
+}
+
+
+.lose_news{
+	font-family: '微软雅黑';
+	font-size: 18px;
+	color: #3d3f43;
+	margin-top: 150px;
+	line-height: 24px;
+
+}
+.my_order_l{
+	width: 100%;
+	height: 29px;
+}
+
+
+.my_order_l_title .weird_1{
+	width: 100%;
+	height: 27px;
+	border-bottom: 2px solid #075090;
+}
+.my_order_l_title .weird_1 span{
+	background: #075090;
+	padding: 0px 30px;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	color: #fff;
+	display: block;
+	line-height: 27px;
+	float: left;
+}
+.my_order_l_title .weird_1 div.bg{
+	float: left;
+	width: 15px;
+	height: 27px;
+	background: url(../img/weird_1.png) no-repeat;
+}
+.my_order_l_title .weird_1 a{
+	display: block;
+	float: right;
+	font-size: 12px;
+	color: #000;
+	margin-top: 10px;
+	text-decoration: none;
+}
+
+.xx_cont{
+	width: 998px;
+	border: 1px solid #eeeeee;
+	margin:0 auto;
+	border-top: none;
+}
+
+.xx_left{
+	width: 248px;
+	float: left;
+	height: 100%;
+	border:1px solid #eeeeee;
+	border-left: none;
+}
+.ddxx{
+	width: 100%;
+	height: 142px;
+	background: #eaeaea;
+}
+.ddxx h1{
+	display: block;
+	width: 90%;
+	font-size: 16px;
+	color: #3d3f43;
+	height: 48px;
+	line-height: 48px;
+	font-family: '微软雅黑';
+	margin:0 auto;
+	margin-bottom: 20px;
+}
+.ddxx p{
+	font-size: 14px;
+	color: #3d3f43;
+	height: 20px;
+	line-height: 20px;
+	display: block;
+	width: 90%;
+	margin: 0 auto;
+}
+.spzj{
+	width: 90%;
+	margin:0 auto;
+	height: 142px;
+	border-bottom: 1px dashed #eeeeee;
+	line-height: 142px;
+}
+.spzj span{
+	float: left;
+	font-size: 14px;
+}
+.spzj label{
+	float: right;
+	font-size: 14px;
+}
+.ywc_yfzj{
+	width: 90%;
+	height: 140px;
+	margin:0 auto;
+
+}
+.ywc_yfzj p{
+	height: 74px;
+	line-height: 74px;
+	font-size: 14px;
+}
+.ywc_yfzj p label{
+	float: right;
+	color: #f8981d;
+}
+.ywc_yfzj h2{
+	color: #f8981d;
+	font-size: 20px;
+	font-family: '微软雅黑';
+	text-align:center;
+}
+.shr_news{
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	background: #eaeaea;
+}
+.shr_news h1{
+	width: 90%;
+	margin:0 auto;
+	font-family: '微软雅黑';
+}
+.shr_news p{
+	height: 52px;
+	line-height: 52px;
+	border-bottom: 1px dashed #eee;
+	width: 90%;
+	margin: 0 auto
+
+}
+.shr_news p span{
+	display: block;
+	width: 80px;
+	float: left;
+	text-align: right;
+}
+
+.xx_right{
+	width: 694px;
+	height: 100%;
+	float: right;
+	margin-right: 26px;
+}
+.dd_three{
+	width: 100%;
+	height: 72px;
+	line-height: 72px;
+}
+.d1{
+	width: 231px;
+	float: left;
+}
+.d1 span{
+	float: left;
+	margin-right: 20px;
+}
+.d1 label{
+	font-size: 20px;
+	color: #f8981d;
+}
+
+.ddxx_num{
+	width: 100%;
+	height: 170px;
+	background: #eaeaea;
+	position: relative;
+}
+.num1{
+	width: 24px;
+	height: 24px;
+	display: block;
+	border-radius: 15px;
+	background: #075090;
+	line-height: 24px;
+	text-align: center;
+	color: #fff;
+	position: absolute;
+	top: 32px;
+
+}
+.num2{
+	width: 24px;
+	height: 24px;
+	display: block;
+	border-radius: 15px;
+	background: #a0a0a0;
+	line-height: 24px;
+	text-align: center;
+	color: #fff;
+	position: absolute;
+	top: 32px;
+}
+.num3{
+	display: block;
+	line-height: 24px;
+	color: #3d3f43;
+	position: absolute;
+	top: 70px;
+	font-size: 14px;
+}
+.blue_bg{
+	width: 173px;
+	height: 10px;
+	background: #075090;
+	position: absolute;
+	top: 40px;
+}
+.grey_bg{
+	width: 173px;
+	height: 10px;
+	background: #a0a0a0;
+	position: absolute;
+	top: 40px;
+}
+.wl_zf{
+	width: 100%;
+	height: 175px;
+	margin-top: 40px;
+}
+.wl_zf ul li{
+	float: left;
+	width: 138px;
+	height: 42px;
+	line-height: 42px;
+	text-align: center;
+	cursor: pointer;
+	border: 1px solid #eee;
+}
+.wl_cc{
+	background: #eaeaea;
+}
+.wl_zf table tr{
+	height: 42px;
+	line-height: 42px;
+}
+.wl_zf table tr td{
+	border:1px solid #eeeeee;
+	padding-left: 10px;
+}
+.tt_bg{
+	background: #eaeaea;
+	font-size: 16px;
+	color: #3d3f43;
+}
+
+.ddxx_table{
+	width: 100%;
+	height: 229px;
+}
+
+.ddxx_table p{
+	float: right;
+	display: block;
+	height: 80px;
+	line-height: 80px;
+
+}
+.ddxx_table label{
+	color: #f8981d;
+}

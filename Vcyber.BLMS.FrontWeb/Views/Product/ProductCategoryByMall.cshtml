@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Category>
+@{
+    Layout = null;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<div style="padding:5px; float:left; width:100%;">
+    <div style="width:100%; float:left;">
+        <div style="width:20%; float:left;">分类：</div>
+        <div style="width:80%; float:left;">
+            @{
+                if (Model != null && Model.Any())
+                {
+                    <ul style="width:100%; float:left;">
+                        @foreach (var item in Model)
+                        {
+                            <li style="width:25%; float:left;">
+                                <a href="javascript:void(0);">@item.Name</a>
+                            </li>
+                        }
+                    </ul>
+                }
+            }
+        </div>
+    </div>
+
+</div>
+<div style="padding:5px; float:left; width:100%;">
+    <div style="width:100%; float:left;">
+        <div style="width:20%; float:left;">对换方式：</div>
+        <div style="width:80%; float:left;">
+            <ul style="width:100%; float:left;">
+                <li style="width:25%; float:left;">
+                    <a href="javascript:void(0);">积分</a>
+                </li>
+                @*<li>
+                    <a href="javascript:void(0);">蓝豆</a>
+                </li>*@
+            </ul>
+        </div>
+    </div>
+
+</div>
+

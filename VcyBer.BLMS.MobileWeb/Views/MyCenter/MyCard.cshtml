@@ -1,0 +1,390 @@
+﻿@using VcyBer.BLMS.MobileWeb.Models
+@model MyCard
+@{
+    ViewBag.Title = "卡券";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/css/resetzsy.css" rel="stylesheet" />
+<div class="wrapper">
+    <div class="geren_box couConBox">
+        <div class="CouBox">
+            @switch ((string)(ViewBag.Type))
+            {
+                case "1":
+                default:
+                    {
+                        <ul class="tabTilBox">
+                            <li class="on">北京现代</li>
+                            <li>合作商户</li>
+                            <li>候机服务券</li>
+                        </ul>
+                        <div class="tabConBox" style="display: block;" tag="1">
+                            <dl>
+                                <dt>
+                                    <span class="on">未使用(@(Model.BmCardList != null && Model.BmCardList.ReceivedCustomCardList != null ? Model.BmCardList.ReceivedCustomCardList.Count : 0))</span>
+                                    <span>已使用(@(Model.BmCardList != null && Model.BmCardList.UsedCustomCardList != null ? Model.BmCardList.UsedCustomCardList.Count : 0))</span>
+                                    <span>已过期(@(Model.BmCardList != null && Model.BmCardList.ExpiredCustomCardList != null ? Model.BmCardList.ExpiredCustomCardList.Count : 0))</span>
+                                </dt>
+                                <!--未使用-->
+                                <dd class="couponsBox" style="display: block;">
+                                    @{
+                        if (Model.BmCardList != null)
+                        {
+                            foreach (var ReceiveCardModel in Model.BmCardList.ReceivedCustomCardList)
+                            {
+                                <div class="couOnlyBox " style="background-color:@ReceiveCardModel.CardColor">
+                                    <i></i>
+                                    <a href="@Url.Action("MyCardDetail", "myCenter", new { id = ReceiveCardModel.Id })" class="bgCardVou">
+                                        <div class="cvRight">
+                                            <h2>@ReceiveCardModel.CardName</h2>
+                                            <h3>适用活动：@ReceiveCardModel.ActivityName</h3>
+                                            <h4>有效期：@ReceiveCardModel.CardBeginDate.ToString("yyyy-MM-dd") 至 @ReceiveCardModel.CardEndDate.ToString("yyyy-MM-dd")</h4>
+                                        </div>
+                                        <em>详情</em>
+                                    </a>
+                                </div>
+                            }
+                        }
+
+                                    }
+                                </dd>
+                                <!--已使用-->
+                                <dd class="couponsBox">
+
+                                    @{
+
+                        if (Model.BmCardList != null)
+                        {
+                            foreach (var UsedCardModel in Model.BmCardList.UsedCustomCardList)
+                            {
+                                <div class="couOnlyBox " style="background-color:@UsedCardModel.CardColor">
+                                    <i class="on"></i><!--加‘on’就是已使用，不加不显示-->
+                                    <a href="@Url.Action("MyCardDetail", "myCenter", new { id = UsedCardModel.Id })" class="bgCardVou">
+                                        <div class="cvRight">
+                                            <h2>@UsedCardModel.CardName</h2>
+                                            <h3>适用活动：@UsedCardModel.ActivityName</h3>
+                                            <h4>有效期：@UsedCardModel.CardBeginDate.ToString("yyyy-MM-dd") 至 @UsedCardModel.CardEndDate.ToString("yyyy-MM-dd") </h4>
+                                        </div>
+                                        <em>详情</em>
+                                    </a>
+                                </div>
+                            }
+                        }
+
+                                    }
+                                </dd>
+                                <!--已过期-->
+                                <dd class="couponsBox">
+
+                                    @{
+
+                        if (Model.BmCardList != null)
+                        {
+                            foreach (var ExpiredCardModel in Model.BmCardList.ExpiredCustomCardList)
+                            {
+                                <div class="couOnlyBox gray">
+                                    <!--加‘gray’就是已过期，不加不显示-->
+                                    <i></i>
+                                    <a href="@Url.Action("MyCardDetail", "myCenter", new { id = ExpiredCardModel.Id })" class="bgCardVou">
+                                        <div class="cvRight">
+                                            <h2>@ExpiredCardModel.CardName</h2>
+                                            <h3>适用活动：@ExpiredCardModel.ActivityName</h3>
+                                            <h4>有效期：@ExpiredCardModel.CardBeginDate.ToString("yyyy-MM-dd") 至 @ExpiredCardModel.CardEndDate.ToString("yyyy-MM-dd") </h4>
+                                        </div>
+                                        <em>详情</em>
+                                    </a>
+                                </div>
+                            }
+                        }
+
+                                    }
+
+                                </dd>
+
+                            </dl>
+
+                        </div>
+                        <div class="tabConBox" tag="2"></div>
+                        <div class="tabConBox" tag="3"></div>
+                        break;
+                    }
+                case "2":
+                    {
+                        <ul class="tabTilBox">
+                            <li>北京现代</li>
+                            <li class="on">合作商户</li>
+                            <li>候机服务券</li>
+                        </ul>
+                        <div class="tabConBox" tag="1"></div>
+                        <div class="tabConBox" style="display: block;" tag="2">
+                            <dl>
+                                <dt>
+                                    <span class="on">未使用(@(Model.PartnerCardList != null && Model.PartnerCardList.ReceivedCustomCardList != null ? Model.PartnerCardList.ReceivedCustomCardList.Count : 0))</span>
+                                    <span>已使用(@(Model.PartnerCardList != null && Model.PartnerCardList.UsedCustomCardList != null ? Model.PartnerCardList.UsedCustomCardList.Count : 0))</span>
+                                    <span>已过期(@(Model.PartnerCardList != null && Model.PartnerCardList.ExpiredCustomCardList != null ? Model.PartnerCardList.ExpiredCustomCardList.Count : 0))</span>
+                                </dt>
+                                <!--未使用-->
+                                <dd class="couponsBox" style="display: block;">
+                                    @{
+                        if (Model.PartnerCardList != null)
+                        {
+                            foreach (var ReceiveCardModel in Model.PartnerCardList.ReceivedCustomCardList)
+                            {
+                                <div class="couOnlyBox " style="background-color:@ReceiveCardModel.CardColor">
+                                    <i></i>
+                                    <a href="@Url.Action("MyCardDetail", "myCenter", new { id = ReceiveCardModel.Id })" class="bgCardVou">
+                                        <div class="cvRight">
+                                            <h2>@ReceiveCardModel.CardName</h2>
+                                            <h3>适用活动：@ReceiveCardModel.ActivityName</h3>
+                                            <h4>有效期：@ReceiveCardModel.CardBeginDate.ToString("yyyy-MM-dd") 至 @ReceiveCardModel.CardEndDate.ToString("yyyy-MM-dd")</h4>
+                                        </div>
+                                        <em>详情</em>
+                                    </a>
+                                </div>
+                            }
+                        }
+
+                                    }
+                                </dd>
+                                <!--已使用-->
+                                <dd class="couponsBox">
+
+                                    @{
+
+                        if (Model.PartnerCardList != null)
+                        {
+                            foreach (var UsedCardModel in Model.PartnerCardList.UsedCustomCardList)
+                            {
+                                <div class="couOnlyBox " style="background-color:@UsedCardModel.CardColor">
+                                    <i class="on"></i><!--加‘on’就是已使用，不加不显示-->
+                                    <a href="@Url.Action("MyCardDetail", "myCenter", new { id = UsedCardModel.Id })" class="bgCardVou">
+                                        <div class="cvRight">
+                                            <h2>@UsedCardModel.CardName</h2>
+                                            <h3>适用活动：@UsedCardModel.ActivityName</h3>
+                                            <h4>有效期：@UsedCardModel.CardBeginDate.ToString("yyyy-MM-dd") 至 @UsedCardModel.CardEndDate.ToString("yyyy-MM-dd") </h4>
+                                        </div>
+                                        <em>详情</em>
+                                    </a>
+                                </div>
+                            }
+                        }
+
+                                    }
+                                </dd>
+                                <!--已过期-->
+                                <dd class="couponsBox">
+
+                                    @{
+
+                        if (Model.PartnerCardList != null)
+                        {
+                            foreach (var ExpiredCardModel in Model.PartnerCardList.ExpiredCustomCardList)
+                            {
+                                <div class="couOnlyBox gray">
+                                    <!--加‘gray’就是已过期，不加不显示-->
+                                    <i></i>
+                                    <a href="@Url.Action("MyCardDetail", "myCenter", new { id = ExpiredCardModel.Id })" class="bgCardVou">
+                                        <div class="cvRight">
+                                            <h2>@ExpiredCardModel.CardName</h2>
+                                            <h3>适用活动：@ExpiredCardModel.ActivityName</h3>
+                                            <h4>有效期：@ExpiredCardModel.CardBeginDate.ToString("yyyy-MM-dd") 至 @ExpiredCardModel.CardEndDate.ToString("yyyy-MM-dd") </h4>
+                                        </div>
+                                        <em>详情</em>
+                                    </a>
+                                </div>
+                            }
+                        }
+
+                                    }
+
+                                </dd>
+
+                            </dl>
+                        </div>
+                        <div class="tabConBox" tag="3"></div>
+                        break;
+                    }
+                case "3":
+                    {
+                        <ul class="tabTilBox">
+                            <li>北京现代</li>
+                            <li>合作商户</li>
+                            <li class="on">候机服务券</li>
+                        </ul>
+                        <div class="tabConBox" tag="1"></div>
+                        <div class="tabConBox" tag="2"></div>
+                        <div class="tabConBox" style="display: block;" tag="3">
+                            <dl>
+                                <dt>
+                                    <span class="on">未使用(@(Model.FlightNoUseCardList != null ? Model.FlightNoUseCardList.Count : 0))</span>
+                                    <span>已使用(@(Model.FlightCardUseList != null ? Model.FlightCardUseList.Count : 0))</span>
+                                    <span>已过期(@(Model.FlightCardOverUseList != null ? Model.FlightCardOverUseList.Count : 0))</span>
+                                </dt>
+                                <!--未使用-->
+                                <dd class="couponsBox" style="display: block;">
+                                    @{
+                        if (Model.FlightNoUseCardList != null)
+                        {
+                            foreach (var item in Model.FlightNoUseCardList)
+                            {
+                                <div class="couOnlyBox" style="background-color:#509fc9">
+                                    <i></i>
+                                    <a href="@Url.Action("MyCardFightAwaitDetail", "myCenter", new { id = item.Id })" class="bgCardVou">
+                                        <div class="cvRight">
+                                            <h2>空港易行候机服务码:@item.SNCode</h2>
+                                            <h3>适用活动：机场预约服务</h3>
+                                            <h4>有效期：@(((DateTime)item.SendTime).ToString("yyyy-MM-dd")) 至 @(((DateTime)item.SendTime).AddMonths(3).AddDays(-1).ToString("yyyy-MM-dd"))</h4>
+                                        </div>
+                                        <em>详情</em>
+                                    </a>
+                                </div>
+                            }
+                        }
+
+                                    }
+                                </dd>
+
+                                <!--已使用-->
+                                <dd class="couponsBox">
+
+                                    @{
+
+                        if (Model.FlightCardUseList != null)
+                        {
+                            foreach (var item in Model.FlightCardUseList)
+                            {
+                                var cardDate = string.Format("{0}至{1}", DateTime.Parse(item.SendTime.ToString()).ToString("yyyy-MM-dd"), DateTime.Parse(item.SendTime.ToString()).AddMonths(3).AddDays(-1).ToShortDateString());
+                                //var merchantLogoUrl = imgPath + item.MerchantLogoUrl;
+                                <div class="couOnlyBox" style="background-color:#2c9f67">
+                                    <a href="@Url.Action("MyCardFightAwaitDetail", "myCenter", new { id = item.Id })" class="couContentBox merchants xbk" style="background:#66ABC8">
+                                        <i></i><!--没有class不显示，有couUsed时是已使用状态，有couOverdue是已过期状态-->
+                                        <div class="couConTop">
+                                            <span></span>
+                                            <h2>
+                                                <img src="~/Img/life_pic1.png" />
+                                                <em>空港易行候机服务码</em>
+                                            </h2>
+                                            <h3>适用活动：机场预约服务</h3>
+                                            <b>有效期：@cardDate</b>
+                                        </div>
+                                        <p>
+                                            <span>详情</span>
+                                        </p>
+                                    </a>
+                                </div>
+                            }
+                        }
+
+                                    }
+                                </dd>
+                                <!--已过期-->
+                                <dd class="couponsBox">
+
+                                    @{
+
+                        if (Model.FlightCardOverUseList != null)
+                        {
+                            foreach (var item in Model.FlightCardOverUseList)
+                            {
+                                var cardDate = string.Format("{0}至{1}", DateTime.Parse(item.SendTime.ToString()).ToString("yyyy-MM-dd"), DateTime.Parse(item.SendTime.ToString()).AddMonths(3).AddDays(-1).ToShortDateString());
+                                //var merchantLogoUrl = imgPath + item.MerchantLogoUrl;
+                                <div class="couOnlyBox" style="background-color:#63b359">
+                                    <a href="@Url.Action("MyCardFightAwaitDetail", "myCenter", new { id = item.Id })" class="couContentBox merchants xbk" style="background:#66ABC8">
+                                        <i></i><!--没有class不显示，有couUsed时是已使用状态，有couOverdue是已过期状态-->
+                                        <div class="couConTop">
+                                            <span></span>
+                                            <h2>
+                                                <img src="~/Img/life_pic1.png" />
+                                                <em>空港易行候机服务码</em>
+                                            </h2>
+                                            <h3>适用活动：机场预约服务</h3>
+                                            <b>有效期：@cardDate</b>
+                                        </div>
+                                        <p>
+                                            <span>详情</span>
+                                        </p>
+                                    </a>
+                                </div>
+                            }
+                        }
+
+                                    }
+
+                                </dd>
+
+                            </dl>
+
+                        </div>
+                        break;
+                    }
+            }
+        </div>
+        <input id="phone" type="hidden" value="@ViewBag.Phone" />
+    </div>
+</div>
+<link href="~/Content/css/myCenter/common_wx.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(function () {
+        $(".CouBox .tabTilBox li").click(function () {
+            var index = $(".CouBox .tabTilBox li").index($(this)) + 1;
+            if (index == 2) {
+                //发送验证码
+                $.post("/myCenter/sendCodeMyCard", {}, function (result) {
+                    if (result.IsSuccess && result.Message == "已验证") {
+                        window.location.href = "/myCenter/myCard?type=2";
+                    }
+                    else {
+                        //AlertSuccess(result.Message);
+                        codeAlert(result.Message);
+                    }
+                })
+                return false;
+            }
+            window.location.href = "/myCenter/myCard?type=" + index;
+        });
+        $(".tabConBox[style='display: block;'] dt span").click(function () {
+            $(".tabConBox[style='display: block;'] dt span").removeClass('on');
+            $(this).addClass('on');
+            var index = $(".tabConBox[style='display: block;'] dt span").index($(this));
+            $(".tabConBox[style='display: block;'] dd.couponsBox[style='display: block;']")[0].style.display = "";
+            $(".tabConBox[style='display: block;'] dd.couponsBox:eq(" + index + ")")[0].style.display = "block";
+        });
+
+    });
+    function codeAlert(msg) {
+        var displayMsg = "验证码已发送" + $("#phone").val();
+        if (msg != "")
+        { displayMsg = msg; }
+        layer.open({
+            type: 1,
+            skin: '',
+            title: 0,
+            shift: 2,
+            closeBtn: 0,
+            shadeClose: true,
+            area: ['5.8rem', '3.33rem'],
+            btn: [],
+            content: '<div class="tan"><p>为了您的账户安全，请验证身份!</p><input type="text" placeholder="请输入验证码" /><h2>' + displayMsg + '</h2><a href="javascript:void(0);" onclick="validSendCode()"><span class="ensure">确定</span></a></div>',
+            end: function () {
+            }
+        });
+    }
+    function validSendCode() {
+        if ($(".tan input").val() == "") {
+            $(".tan h2").text("验证码不能为空");
+            return;
+        }
+        //验证验证码是否正确
+        $.post("/myCenter/validSendCode", { code: $(".tan input").val() }, function (result) {
+            if (result.IsSuccess) {
+                //验证码正确则跳转
+                window.location.href = "/myCenter/myCard?type=2";
+            }
+            else {
+                //layer.closeAll();
+                //验证错误则提示
+                $(".tan h2").text(result.Message);
+            }
+        })
+    }
+</script>

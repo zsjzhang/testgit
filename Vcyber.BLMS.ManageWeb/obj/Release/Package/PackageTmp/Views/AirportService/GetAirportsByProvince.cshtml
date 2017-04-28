@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Airport>
+@{
+    Layout = null;
+}
+
+@{
+
+
+
+    if (Model != null && Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            <text>
+                <option value="@item.Id">@item.AirportName</option>
+            </text>
+        }
+    }
+    else
+    {
+        <option value="-1">请选择</option>
+    }
+}

@@ -1,0 +1,37 @@
+﻿@using AspNet.Identity.SQL
+@model FrontIdentityUser
+@{
+    ViewBag.Title = "免费取送车服务";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<input type="hidden" name="UserId" id="UserId" value="@Model.Id">
+<input type="hidden" name="ServicesRecordCount" id="ServicesRecordCount" value="@ViewBag.RecordCount">
+<input type="hidden" name="MLevel" id="MLevel" value="@Model.MLevel">
+<div class="wrapper" id="wrapper">
+    <div class="s9-wrap">
+        <div class="s9-wrap-title">
+            <img src="~/img/service/freecar.png" />
+            <span>免费取送车服务</span>
+            <p>bluemembers金卡会员，自升级之日起1年内赠送1次免费取送车服务</p>
+            <a href="javascript:void(0);" id="btnSubscribe" class="button">预约服务</a>
+        </div>
+        <hr>
+        <p>
+            bluemembers金卡会员，自升级之日起1年内赠送1次免费取送车服务。
+        </p>
+        <p>
+            <strong>服务对象：</strong><br>
+            bluemembers金卡会员。
+        </p>
+        <p>
+            <strong>服务方式：</strong><br>
+            您可直接通过北京现代bluemembers官方网站、微信、APP或致电北京现代400客服热线进行预约，也可直接向北京现代授权经销商致电享受此服务。
+        </p>
+        <p>
+            <strong>特别提示：</strong><br>
+            取送车地点需距离提供服务的经销商20km之内。
+        </p>
+    </div>
+</div>
+<script src="~/Scripts/CarService/freeCar.js"></script>

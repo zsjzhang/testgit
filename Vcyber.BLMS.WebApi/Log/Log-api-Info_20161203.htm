@@ -1,0 +1,881 @@
+<HR COLOR=blue>
+日志时间：2016-12-03 11:37:06,197 [13] <BR>
+日志级别：ERROR     <BR>
+日志类：bm-web-api-controller [(null)] <BR>
+信息： <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.WebApi\App_Start\FilterConfig.cs <BR>
+ <HR Size=1>System.Web.Http.HttpResponseException: Processing of the HTTP request resulted in an exception. Please see the HTTP response returned by the 'Response' property of this exception for details.
+   在 System.Web.Http.ModelBinding.FormatterParameterBinding.ReadContentAsync(HttpRequestMessage request, Type type, IEnumerable`1 formatters, IFormatterLogger formatterLogger, CancellationToken cancellationToken)
+   在 System.Web.Http.ModelBinding.FormatterParameterBinding.ReadContentAsync(HttpRequestMessage request, Type type, IEnumerable`1 formatters, IFormatterLogger formatterLogger)
+   在 System.Web.Http.ModelBinding.FormatterParameterBinding.<ExecuteBindingAsyncCore>d__0.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.Controllers.HttpActionBinding.<ExecuteBindingAsyncCore>d__0.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__2.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.Controllers.AuthenticationFilterResult.<ExecuteAsync>d__0.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__0.MoveNext()
+<HR COLOR=blue>
+日志时间：2016-12-03 11:37:13,606 [18] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：sample string 1 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 174
+<HR COLOR=blue>
+日志时间：2016-12-03 11:37:13,640 [18] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：sample string 1 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 174
+<HR COLOR=blue>
+日志时间：2016-12-03 11:37:13,659 [18] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：sample string 1 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 203
+<HR COLOR=blue>
+日志时间：2016-12-03 11:37:13,679 [18] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：sample string 1 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 203
+<HR COLOR=blue>
+日志时间：2016-12-03 11:37:13,714 [18] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：sample string 1 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 115
+<HR COLOR=blue>
+日志时间：2016-12-03 11:37:13,734 [18] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：sample string 1 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 115
+<HR COLOR=blue>
+日志时间：2016-12-03 11:37:13,736 [18] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：sample string 1 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.WebApi\Controllers\SettlementController.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2016-12-03 11:42:29,314 [13] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：sample string 1 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 174
+<HR COLOR=blue>
+日志时间：2016-12-03 11:42:29,356 [13] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：sample string 1 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 174
+<HR COLOR=blue>
+日志时间：2016-12-03 11:42:29,372 [13] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：sample string 1 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 203
+<HR COLOR=blue>
+日志时间：2016-12-03 11:42:29,388 [13] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：sample string 1 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 203
+<HR COLOR=blue>
+日志时间：2016-12-03 11:42:29,406 [13] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：sample string 1 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 115
+<HR COLOR=blue>
+日志时间：2016-12-03 11:42:29,424 [13] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：sample string 1 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 115
+<HR COLOR=blue>
+日志时间：2016-12-03 11:42:29,425 [13] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：sample string 1 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.WebApi\Controllers\SettlementController.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2016-12-03 11:42:59,134 [13] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：sample string 1 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 174
+<HR COLOR=blue>
+日志时间：2016-12-03 11:43:07,068 [13] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：sample string 1 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 174
+<HR COLOR=blue>
+日志时间：2016-12-03 11:43:21,758 [13] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：sample string 1 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 203
+<HR COLOR=blue>
+日志时间：2016-12-03 11:43:26,677 [13] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：sample string 1 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 203
+<HR COLOR=blue>
+日志时间：2016-12-03 12:05:40,154 [10] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：sample string 1 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 176
+<HR COLOR=blue>
+日志时间：2016-12-03 12:05:40,230 [10] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：sample string 1 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 176
+<HR COLOR=blue>
+日志时间：2016-12-03 12:05:40,251 [10] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：sample string 1 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 207
+<HR COLOR=blue>
+日志时间：2016-12-03 12:05:40,272 [10] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：sample string 1 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 207
+<HR COLOR=blue>
+日志时间：2016-12-03 12:05:40,299 [10] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：sample string 1 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 115
+<HR COLOR=blue>
+日志时间：2016-12-03 12:05:40,316 [10] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：sample string 1 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 115
+<HR COLOR=blue>
+日志时间：2016-12-03 12:05:40,318 [10] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：sample string 1 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.WebApi\Controllers\SettlementController.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2016-12-03 13:37:34,962 [101] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 176
+<HR COLOR=blue>
+日志时间：2016-12-03 13:37:34,980 [101] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 176
+<HR COLOR=blue>
+日志时间：2016-12-03 13:37:34,997 [101] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 207
+<HR COLOR=blue>
+日志时间：2016-12-03 13:37:35,013 [101] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 207
+<HR COLOR=blue>
+日志时间：2016-12-03 13:37:38,939 [101] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 115
+<HR COLOR=blue>
+日志时间：2016-12-03 13:37:38,960 [101] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 115
+<HR COLOR=blue>
+日志时间：2016-12-03 13:39:47,538 [101] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 176
+<HR COLOR=blue>
+日志时间：2016-12-03 13:39:47,568 [101] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 176
+<HR COLOR=blue>
+日志时间：2016-12-03 13:39:47,589 [101] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 207
+<HR COLOR=blue>
+日志时间：2016-12-03 13:39:47,611 [101] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 207
+<HR COLOR=blue>
+日志时间：2016-12-03 13:39:47,630 [101] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 115
+<HR COLOR=blue>
+日志时间：2016-12-03 13:39:47,649 [101] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 115
+<HR COLOR=blue>
+日志时间：2016-12-03 13:39:47,650 [101] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.WebApi\Controllers\SettlementController.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2016-12-03 13:41:12,371 [100] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 176
+<HR COLOR=blue>
+日志时间：2016-12-03 13:41:12,389 [100] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 176
+<HR COLOR=blue>
+日志时间：2016-12-03 13:41:12,407 [100] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 207
+<HR COLOR=blue>
+日志时间：2016-12-03 13:41:12,424 [100] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 207
+<HR COLOR=blue>
+日志时间：2016-12-03 13:41:12,445 [100] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 115
+<HR COLOR=blue>
+日志时间：2016-12-03 13:41:12,465 [100] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 115
+<HR COLOR=blue>
+日志时间：2016-12-03 13:41:12,467 [100] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.WebApi\Controllers\SettlementController.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2016-12-03 13:42:24,754 [100] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 115
+<HR COLOR=blue>
+日志时间：2016-12-03 13:42:24,777 [100] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 115
+<HR COLOR=blue>
+日志时间：2016-12-03 13:42:27,242 [100] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.WebApi\Controllers\SettlementController.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2016-12-03 13:43:13,388 [101] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 115
+<HR COLOR=blue>
+日志时间：2016-12-03 13:43:13,408 [101] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 115
+<HR COLOR=blue>
+日志时间：2016-12-03 13:43:13,409 [101] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.WebApi\Controllers\SettlementController.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2016-12-03 13:44:32,778 [100] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.WebApi\Controllers\SettlementController.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2016-12-03 14:02:51,240 [9] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 从字符串转换日期和/或时间时，转换失败。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 117
+ClientConnectionId:d5b1cbe0-dbc3-4268-873c-f89abcc30582
+Error Number:241,State:1,Class:16
+<HR COLOR=blue>
+日志时间：2016-12-03 14:02:51,333 [9] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 从字符串转换日期和/或时间时，转换失败。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.InsertDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 117
+ClientConnectionId:d5b1cbe0-dbc3-4268-873c-f89abcc30582
+Error Number:241,State:1,Class:16
+<HR COLOR=blue>
+日志时间：2016-12-03 14:02:51,335 [9] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.WebApi\Controllers\SettlementController.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2016-12-03 14:46:58,629 [10] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1100 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.WebApi\Controllers\SettlementController.cs <BR>
+ <HR Size=1>

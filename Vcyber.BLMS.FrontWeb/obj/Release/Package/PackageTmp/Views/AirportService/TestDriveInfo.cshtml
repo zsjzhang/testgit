@@ -1,0 +1,199 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="user-scalable=no, width=device-width,initial-scale=1.0, maximum-scale=1.0" />
+    <title>试驾信息</title>
+    <link href="~/css/base/common.css" rel="stylesheet" />
+    @*<link href="~/css/base/airportservice.css" rel="stylesheet" />*@
+    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+    <link href="~/css/AirportService/alert.css" rel="stylesheet" />
+    <link href="~/css/AirportService/index.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Content/laydate/laydate.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/controller/Main.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="~/Scripts/controller/AirportServiceController.js"></script>
+    <script src="~/Scripts/controller/DealerController.js"></script>
+    <style type="text/css">
+        /* WebKit browsers */
+        ::-webkit-input-placeholder {
+            color: #fff;
+        }
+        /* Mozilla Firefox 4 to 18 */
+        :-moz-placeholder {
+            color: #fff;
+            opacity: 1;
+        }
+        /* Mozilla Firefox 19+ */
+        ::-moz-placeholder {
+            color: #fff;
+            opacity: 1;
+        }
+        /* Internet Explorer 10+ */
+        :-ms-input-placeholder {
+            color: #fff;
+        }
+
+        select {
+            height: 30px;
+            background-color: transparent;
+            margin-top: 12px;
+            line-height: 30px;
+        }
+
+        #sltProvince {
+            float: left;
+            border-right: 1px solid #fff;
+        }
+
+        #sltCity {
+            float: right;
+        }
+
+
+        #sltCity, #sltProvince {
+            outline: none;
+            border: none;
+            width: 45%;
+            color: #FFFFFF;
+            background-color: transparent;
+            -webkit-appearance: none;
+        }
+
+        #sltDealer {
+            outline: none;
+            border: none;
+            width: 106%;
+            color: #FFFFFF;
+            margin-bottom: 7px;
+            height: 51px;
+            line-height: 51px;
+            position: relative;
+            padding-left: 6%;
+            margin-left: -20px;
+            background: url(/Img/AirportService/p4.png) no-repeat;
+            margin-top: 17px;
+            -webkit-appearance: none;
+        }
+
+        input, #carType {
+            outline: none;
+            border: none;
+            width: 100%;
+            padding-left: 6%;
+            color: #FFFFFF;
+            margin-bottom: 7px;
+            -webkit-appearance: none;
+        }
+
+        .select-contrainer {
+            height: 116px;
+        }
+    </style>
+    <script>
+        //初始化数据
+        $(function () {
+            $("input").each(function () {
+                $(this).val("");
+            });
+            $("#sltProvince").val(-1);
+            $("#sltCity").val(-1);
+            $("#sltDealer").val(-1);
+            $("#carType").val(-1);
+            return false;
+        });
+    </script>
+</head>
+<body>
+    <div class="wrapper4">
+        <div class="form" style="top:15%;">
+            <input type="text" id="testDrivetUserName" class="p1" maxlength="20" placeholder="姓名" />
+            <input type="text" id="testDriveUserTel" class="p2" placeholder="电话" />
+            <input type="text" id="testDriveDateTime" class="p3" placeholder="预约日期" />
+            <script>
+                $(function () {
+                    laydate({
+                        elem: '#testDriveDateTime',
+                        min: laydate.now(), //-1代表昨天，-2代表前天，以此类推
+                        max: laydate.now(+60),
+                        istoday: false
+                    });
+                });
+            </script>
+            <!--选择经销商-->
+            <div class="select-contrainer">
+                <p class="p3">
+                    @Html.Action("AirportProvinceCity", "AirportService")
+                </p>
+            </div>
+            <!--选择车型-->
+            <div class="p5">
+                @Html.Action("AirportCarType", "AirportService")
+            </div>
+        </div>
+
+        <div class="tjyy">
+            <a href="javascript:AirportCtr.completedriveuserinfo();">
+                <img src="/Img/AirportService/tjyy.png" />
+            </a>
+        </div>
+
+        <div class="content3">
+            @*<a href="javascript:$('#divTestDriveInfo').show('1000');" target="_blank"><img src="/Img/AirportService/y_btn1.png" /></a>
+                <a href="javascript:$('#divTestDriveRule').show('1000');" target="_blank"><img src="/Img/AirportService/y_btn2.png" /></a>*@
+
+            <a href="javascript:void(0)" target="_blank">
+                <img src="/Img/AirportService/y_btn1.png" onclick="AirportCtr.togglerShow('#divTestDriveInfo');" />
+            </a>
+            <a href="javascript:void(0)" target="_blank">
+                <img src="/Img/AirportService/y_btn2.png" onclick="AirportCtr.togglerShow('#divTestDriveRule');" />
+            </a>
+        </div>
+    </div>
+
+    @*活动简介*@
+    <div class="alert_box play_rule" id="divTestDriveInfo" style="top: 15vh; height: 70vh; width: 90%;">
+        <span style="height: 10%;"><img src="/Img/AirportService/close.png" onclick="$('#divTestDriveInfo').hide('500');"></span>
+        <div style="height:90%; ">
+            <h2 style="height:20%;"><img src="/Img/AirportService/paly_show.png" /></h2>
+            <div style="height: 75%; margin-bottom:5%; overflow-y: scroll; color: #fff; margin-top: 0; display: block; ">
+                <h3 style="margin-top: 0;">即日起，在线预约并到店试驾，发送“试驾图片”及”您的有效手机号码“到北京现代bluemembers微信即可获得2次免费候机服务。<br />另外，活动期间成功购买第九代索纳塔或全新胜途的车主，激活bluemembers银卡会员即可获得4次免费候机服务及400元等值积分。</h3>
+            </div>
+        </div>
+    </div>
+
+    @*活动规则*@
+    <div class="alert_box play_rule" id="divTestDriveRule" style="top: 15vh; height: 70vh; width: 90%;" id="divActivityRule">
+        <span style="height: 10%;"><img src="/Img/AirportService/close.png" onclick="$('#divTestDriveRule').hide('500');"></span>
+        <div style="height:90%; ">
+            <h2 style="height:20%;"><img src="/Img/AirportService/paly_rule.png" /></h2>
+            <div class="rule_txt" style="height: 75%; margin-bottom:5%; overflow-y: scroll; color: #fff; margin-top: 0; display: block; ">
+                <p>
+                    <b>1)</b>
+                    <span>到店试驾礼，必须先通过活动提交预约表单，再到店试驾并上传试驾图片及个人手机号码到北京现代bluemembers微信才能领取尊享候机码。</span>
+                </p>
+                <div style="clear: both;"></div>
+                <p>
+                    <b>2)</b>
+                    <span>到店试驾礼，必须先通过活动提交预约表单，再到店试驾并上传试驾图片及个人手机号码到北京现代bluemembers微信才能领取尊享候机码。</span>
+                </p>
+                <h3>温馨提示:尊享候机码为9位数字服务码，如若抽中会以短信形式发送。乘机出行时到达制定机场休息室出示该服务码短信即可使用。</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert_box wzj cj" id="divTestDriveSuccess">
+        <span>预约成功!<img src="/Img/AirportService/close.png" onclick="$('#divTestDriveSuccess').hide('500'); location.href = '/AirportService/Index?source=@ViewBag.source&oid=@ViewBag.oid';"></span>
+        <p id="testDriveSubmitInfo" style="margin-bottom:10px;"></p>
+
+    </div>
+</body>
+</html>

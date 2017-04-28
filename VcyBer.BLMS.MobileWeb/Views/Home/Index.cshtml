@@ -1,0 +1,125 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<style>
+    .testDriving-hd-bar a {
+        width: 24%;
+    }
+
+    .home .banner {
+        height: auto;
+    }
+
+    .swiper-pagination-bullet {
+        width: .2rem;
+        height: .2rem;
+        border-radius: 50%;
+    }
+</style>
+
+<div class="home">
+
+    <div class="banner">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                @*<div class="swiper-slide" style="background:url() no-repeat;background-size:cover;width:100%;">
+                    <a href="http://card.club-beijing-hyundai.com/html/index.php"><img src="../../img/home/HappyNewYear.jpg"></a>
+                </div>*@
+                <div class="swiper-slide" style="background:url() no-repeat;background-size:cover;width:100%;">
+                    <a href="@Url.Action("MemberActivity")"><img src="../../img/home/MemberActivity.jpg"></a>
+                </div>
+                <div class="swiper-slide" style="background:url() no-repeat;background-size:cover;width:100%;">
+                    <a href="@Url.Action("ExChangePolicy")">
+                        <img src="../../img/home/ExChangePolicy170117.jpg">
+                    </a>
+                </div>
+                <div class="swiper-slide" style="background:url() no-repeat;background-size:cover;width:100%;">
+                    <a href="@Url.Action("MemberSystemUpGrade")">
+                        <img src="../../img/home/MemberSystemUpGrade.jpg">
+                    </a>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="main_1">
+            <ul>
+                <li><a href="/Common/TestDrive"><span>预约试驾</span><img src="~/img/pm_wap_main1.png" /></a></li>
+                <li><a href="/Common/ReservationService"><span>预约维保</span><img src="~/img/pm_wap_main2.png" /></a></li>
+                <li><a href="/Common/PartsQuery"><span>纯正配件查询</span><img src="~/img/pm_wap_main3.png" /></a></li>
+                <li><a href="/Common/DealerQuiry"><span>经销商查询</span><img src="~/img/pm_wap_main4.png" /></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main_2">
+        <ul>
+            <li><a href="http://app.beijing-hyundai.com.cn/app/dl?p=75"><i class="iconfont">&#xe63e;</i><em>APP下载</em></a></li>
+            <li id="Publicnumber" onclick=""><a @*href="https://www.bluemembers.com.cn/Home/WechatCode"*@><i class="iconfont">&#xe664;</i><em>公众号</em></a></li>
+            <li><a href="/Common/MessageCenter"><i class="iconfont">&#xe66b;</i><em>消息中心</em></a></li>
+            <li id="onlineservice"><a @*href="https://www.bluemembers.com.cn/Home/OnLineService"*@><i class="iconfont">&#xe6d5;</i><em>客服热线</em></a></li>
+        </ul>
+    </div>
+</div>
+
+<script src="~/Scripts/car/slide.js"></script>
+
+<script>
+    var i = 0;
+    var c = null;
+    c = setTimeout(carousel, 5000);//开始执行
+    function carousel() {
+        clearTimeout(c);//清除定时器
+        var slideactive = $(".swiper-slide-active");
+        var bulletactive = $(".swiper-pagination-bullet-active");
+        if (i > 1) {
+            bulletactive.removeClass("swiper-pagination-bullet-active");
+            $(".swiper-wrapper div:eq('0')").addClass("swiper-pagination-bullet-active");
+            i = 0;
+            $(".swiper-pagination span:eq('0')").addClass("swiper-pagination-bullet-active");
+        }
+        else {
+            slideactive.removeClass("swiper-slide-active");
+            slideactive.next().addClass("swiper-slide-active");
+            i++;
+            bulletactive.removeClass("swiper-pagination-bullet-active");
+            bulletactive.next().addClass("swiper-pagination-bullet-active");
+        }
+        $(".swiper-wrapper").css("transform", "translate3d(-" + i * screen.width + "px, 0px, 0px)");
+        c = setTimeout(carousel, 5000); //设定定时器，循环执行
+    }
+    $("#Publicnumber").click(function () {
+
+        layer.open({
+            type: 1,
+            skin: 'bmPop',
+            title: 0,
+            shift: 2,
+            closeBtn: 0,
+            shadeClose: true,
+            area: ['5.4rem', '3.23rem'],
+            btn: ['确定'],
+            content: '<img src="../img/boy1.png" /><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;更多惊喜尽在北京现代bluemembers，请登录微信关注公众号"北京现代bluemembers"。</span>'
+        });
+    });
+
+    $("#onlineservice").click(function () {
+        layer.open({
+            type: 1,
+            skin: 'bmPop',
+            title: 0,
+            shift: 2,
+            closeBtn: 0,
+            shadeClose: true,
+            area: ['5.4rem', '3.23rem'],
+            btn: ['确定'],
+            content: '<img src="../img/boy1.png" /><span><b>欢迎拨打24小时客服热线</b><i>400-800-1100</i></span>'
+        });
+    });
+</script>
+
+
+

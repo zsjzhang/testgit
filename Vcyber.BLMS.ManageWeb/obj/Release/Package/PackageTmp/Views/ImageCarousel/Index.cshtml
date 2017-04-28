@@ -1,0 +1,252 @@
+﻿@{
+    Layout = null;
+}
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>内容管理 - 轮播图</strong></div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <span class="col-md-6">内容管理</span>
+            <div class="col-md-6 text-right"><button type="button" data-toggle="modal" data-target="#createImageCarouselModal" ng-click="createData=null" class="btn btn-primary">添加</button></div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <form name="form" class="form-horizontal" novalidate>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">轮播图类型：</label>
+                <div class="col-md-2 text-left">
+                    <select class="form-control" ng-model="ImageCarouselType.select">
+                        <option ng-repeat="it in ImageCarouselType.data" value="{{it.id}}">{{it.value}}</option>
+                    </select>
+                </div>
+                <div class="col-md-8">
+                    <button class="btn btn-primary" type="submit" ng-click="search()">查询</button>
+                </div>
+            </div>
+        </form>
+        <div class="gridStyle" style="min-height: 410px; border: 1px solid rgb(212, 212, 212)" ng-grid="gridOptions">
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="createImageCarouselModal" tabindex="-1" role="dialog" aria-labelledby="createImageCarouseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="createImageCarouselModal">创建轮播图</h4>
+            </div>
+            <form class="form-horizontal" name="uiform" ng-submit="createImageCarousel(form.$valid)" novalidate>
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">图片名称:</label>
+                            <div class="col-md-10">
+                                <input class="form-control" name="title" ng-model="createData.Title" ng-required="true" ng-maxlength="20" />
+                                <span ng-show="uiform.title.$invalid">不能为空,20个字符内</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">缩略图:</label>
+                            <div class="col-md-10">
+                                <input class="form-control" ng-model="createData.ImageUrl" ng-show="0" />
+                                <img ng-src="{{createData.image}}" style="height:100px;width:200px" class="img-responsive">
+                                <input type="file" ng-file-select ng-file-change="upload($files,'uploadimage')" multiple accept="image/*">
+                                <div class="button" ng-file-select ng-file-change="upload($files,'uploadimage')" data-multiple="true"></div>
+                                <p class="label-warning">支持gif、jpeg、jpg、png格式<br />建议上传尺寸：首页、新闻&nbsp;1000*305<br />&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;活&nbsp;动&nbsp;中&nbsp;心&nbsp;&nbsp;&nbsp;695*262<br />&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;商&#12288;&#12288;&nbsp;&nbsp;&nbsp;城&nbsp;&nbsp;&nbsp;490*262</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">权重设置:</label>
+                            <div class="col-md-10">
+                                <input name="Priority" class="form-control" rows="4" ng-model="createData.Priority" ng-required="true" />
+                                <span ng-show="uiform.createurl.$invalid">不能为空</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">关联URL:</label>
+                            <div class="col-md-10">
+                                <input name="createurl" class="form-control" rows="4" ng-model="createData.LinkUrl" ng-required="true" />
+                                <span ng-show="uiform.createurl.$invalid">不能为空，URL格式</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">轮播图类型：</label>
+                            <div class="col-md-10">
+                                <select class="form-control" ng-model="ImageCarouselCreateType.select">
+                                    <option ng-repeat="it in ImageCarouselType.data" value="{{it.id}}">{{it.value}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="uiform.$invalid" onclick="close_clear()">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    function close_clear()
+    {
+        $(".form-horizontal input").val("");
+        $(".form-horizontal select").val("-1");
+    }
+</script>
+
+<div class="modal fade" id="editImageCarouselModal" tabindex="-1" role="dialog" aria-labelledby="editImageCarouseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="editImageCarouselModal">编辑轮播图</h4>
+            </div>
+            <form class="form-horizontal" name="form1" ng-submit="editImageCarousel(form.$valid)" novalidate>
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">图片名称:</label>
+                            <div class="col-md-10">
+                                <input class="form-control" name="title" ng-model="editData.Title" ng-required="true" ng-maxlength="20" />
+                                <span ng-show="form1.title.$invalid">不能为空,20个字符内</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">图片上传:</label>
+                            <div class="col-md-10">
+                                <input class="form-control" ng-model="editData.ImageUrl" ng-show="0" />
+                                <img ng-src="{{editData.image}}" style="height:100px;width:200px" class="img-responsive">
+                                <input type="file" ng-file-select ng-file-change="uploadEdit($files,'uploadimage')" multiple accept="image/*">
+                                <div class="button" ng-file-select ng-file-change="uploadEdit($files,'uploadimage')" data-multiple="true"></div>
+                                <p class="label-warning">支持gif、jpeg、jpg、png格式<br>建议上传尺寸：首页、新闻&nbsp;1000*305<br>　　　　　　　活&nbsp;动&nbsp;中&nbsp;心&nbsp;&nbsp;&nbsp;695*262<br>　　　　　　　商　　&nbsp;&nbsp;&nbsp;城&nbsp;&nbsp;&nbsp;490*262</p>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">权重设置:</label>
+                            <div class="col-md-10">
+                                <input name="Priority" class="form-control" rows="4" ng-model="editData.Priority" ng-required="true" />
+                                <span ng-show="form1.url.$invalid">不能为空</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">关联URL:</label>
+                            <div class="col-md-10">
+                                <input name="url" class="form-control" rows="4" ng-model="editData.LinkUrl" ng-required="true" />
+                                <span ng-show="form1.url.$invalid">不能为空，URL格式</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">轮播图类型：</label>
+                            <div class="col-md-10">
+                                <select class="form-control" ng-model="ImageCarouselEditType.select">
+                                    <option ng-repeat="it in ImageCarouselType.data" value="{{it.id}}">{{it.value}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="form1.$invalid">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="imageCarouselApproveListModal" tabindex="-1" role="dialog" aria-labelledby="imageCarouselApproveListModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="imageCarouselApproveListModal">查看审批记录</h4>
+            </div>
+            <div class="modal-body">
+                <div style="min-height: 420px; min-width: 400px">
+                    <div class="gridStyle" style="height: 350px; border: 1px solid rgb(212, 212, 212)" ng-grid="approveGridOptions">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="imageCarouselOperationListModal" tabindex="-1" role="dialog" aria-labelledby="imageCarouselOperationListModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="imageCarouselOperationListModal">查看操作记录</h4>
+            </div><div class="modal-body">
+                <div style="min-height: 420px;min-width:400px">
+                    <div class="gridStyle" style="height: 350px; border: 1px solid rgb(212,212,212)" ng-grid="operationGridOptions">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="priorityModal" tabindex="-1" role="dialog" aria-labelledby="priorityModalModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="priorityModalModal">编辑权重</h4>
+            </div>
+            <form class="form-horizontal" name="form" ng-submit="UpdatePriority(form.$valid)" novalidate>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">权重:</label>
+                            <div class="col-md-10">
+                                <input type="number" class="form-control" name="priority" ng-model="selectItem.Priority" ng-required="true" />
+                                <span ng-show="form.priority.$invalid">数字</span>
+                                <p class="label-warning">轮播图排序根据权值从大到小</p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

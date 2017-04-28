@@ -1,0 +1,370 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "账号注册";
+}
+<link href="~/css/base/AccountRegister.css" rel="stylesheet" />
+
+<script>
+    //弹出层
+
+    $(function () {
+        $(".closeIcon").on("click", function () {
+            $(".zzDivBox").css('display', 'none');
+            window.location = "/MyCenter/Index?pageName=MyCenter";
+        });
+        $(".zzConBtn").on("click", function () {
+            $(".zzDivBox").css('display', 'none');
+        });
+    });
+   
+
+    var accountRegisterPasswdCheck = function (obj) {
+        //var passReg = /^(([a-z]+[A-Z]+[0-9]+)|([0-9]+[a-z]+[A-Z]+))[A-Za-z0-9]*$/;
+        var passReg = /^(?=.*[0-9].*)(?=.*[A-Z].*)(?=.*[a-z].*).{8,100}$///匹配必须包含数字大小写字母 长度为8-100
+        if ($(obj).val().length < 8|| !passReg.test($(obj).val())) {
+            popWindownBlue( '密码必须8位以上数字和大小写字母组合');
+            return false;
+        }
+    }
+</script>
+<!--banner+新的表单开始-->
+<style>
+    .ad_banner {
+        width: 1002px;
+        height: 70px;
+        margin: 0 auto;
+    }
+
+        .ad_banner img {
+            width: 100%;
+            height: 100%;
+        }
+
+    .n_all_cont {
+        border: 1px solid #eeeeee;
+        -webkit-box-shadow: 0px 2px 5px #ccc inset;
+        -moz-box-shadow: 0px 2px 5px #ccc inset;
+        box-shadow: 0px 2px 5px #ccc inset;
+    }
+
+    .n_all_cont_center {
+        width: 964px;
+        margin-left: 20px;
+        margin-top: 12px;
+    }
+
+        .n_all_cont_center h2 {
+            font-size: 16px;
+            color: #3d3f43;
+            font-weight: bold;
+            padding-bottom: 7px;
+            border-bottom: 1px solid #cfd7d9;
+        }
+
+    .n_all_cont_inset {
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 24px;
+        display: table;
+    }
+
+    .n_right_cont_new {
+        width: 470px;
+        _border: 1px solid #eaeeed;
+        float: left;
+        height: 100%;
+        padding-bottom: 20px;
+    }
+
+    .n_rightnext_cont {
+        width: 470px;
+        float: right;
+    }
+
+    .cont_tips {
+        _width: 100%;
+        margin-top: 28px;
+        margin-left: 18px;
+        padding-right: 13px;
+    }
+
+        .cont_tips p {
+            font-size: 14px;
+            line-height: 28px;
+        }
+
+    .register_new {
+        padding-top: 16px;
+    }
+
+        .register_new p {
+            margin-left: 24px;
+            margin-bottom: 10px;
+            _overflow: hidden;
+        }
+
+    .n_all_cont .error_red {
+        color: #FF0000;
+    }
+
+    .register .register_bot {
+        margin-top: 20px;
+    }
+
+    .register p input {
+        width: 244px;
+        position: relative;
+        top: 13px;
+        margin-left: 8px;
+    }
+
+    .user_base_info_select {
+        width: 276px;
+    }
+
+    .register p label {
+        width: 88px;
+    }
+
+    .register p b {
+        width: 6px;
+    }
+
+    .clearfix:after {
+        display: block;
+        content: "";
+        clear: both;
+    }
+
+    .user_base_info_select {
+        margin-left: 8px;
+        margin-top: 12px;
+    }
+   
+.zzDivBox{ position: fixed; width:100%; height:100%; left:0; top:0; z-index:1000;}
+.zzDivBg{ position:absolute; left:0; top:0; width:100%; height:100%; background:#000; opacity:.5;filter:alpha(opacity:50); }
+.zzConBox1{ position:absolute; left:50%; top:50%; margin-left:-345px; margin-top:-185px; width:690px; height:370px; background:#fff; border-radius:5px; padding:0 5px 5px 5px; color:#3d3f43}
+.closeIcon{ position:absolute; display:block; width:30px; height:31px; right:-14px; top:-12px; background:url(/img/VipImg/closeIcon.png) no-repeat center; cursor:pointer;}
+.closeIcon:hover{background: url(/img/VipImg/closeIcon_1.png) no-repeat center; }
+.zzMegTit1{ width:100%; height:24px; padding-top:10px; line-height:24px; text-align:center;}
+.zzErrMeg{ width:21px; height:16px; display:inline-block; background:url(/img/VipImg/zzErrMeg.png) no-repeat center; vertical-align:middle;}
+.zzPrompt{ width:20px; height:20px; display:inline-block; background:url(/img/VipImg/zzPrompt.png) no-repeat center; vertical-align:middle;}
+.zzProTxt{ display:inline-block; vertical-align:middle; margin-left:5px; font-size:16px;}
+.zzConTxtBox{ position:relative; width:100%; height:294px; padding:17px 0 15px; background:#edf7ff; margin-top:10px;}
+.blueBoy1{ position: absolute; margin-left:24px; display:inline-block; margin-right:15px; width:45px; height:61px; background:url(/img/VipImg/blueBoy.png) no-repeat center; }
+.zzMegCon{ position:relative; display:inline-block; height:61px; width:200px; text-align:center; font-size:14px; vertical-align:middle; display:table; }
+.zzConBtn1{ position: relative; left:50%; margin-left:-60px; margin-top:7px; background:#075090; color:#fff; font-size:14px; text-align:center; cursor:pointer; padding:7px 15px; width:160px;}
+.zzConBtn1:hover{ background:#0b63b7; color:#fff; border:1px solid #0b63b7;}
+.zzConTxtBox dl{ position:relative; height:61px; width:100%; overflow:hidden;}
+.zzConTxtBox dt,.zzConTxtBox dd{ float:left;}
+.zzMegCon b{display:table-cell; vertical-align:middle; line-height:20px;}
+.zzConTxtProm{ font-size:12px; color:#a0a0a0; padding: 0 20px 0 90px; line-height:20px;}
+.zzConTxtSelc{ position:relative; width:500px; margin:15px auto 0 auto; overflow:hidden;}
+.payBtnBox{ position:relative; width:100%; height:45px; overflow:hidden; margin-top:15px;}
+.payBtnBox a{ position:absolute; top:0; left:50%; display:block; float:left;}
+#btnApplyToDealer_AccountRegisterVip{ margin-left:-230px;}
+#btnInputPayNumberToRegisterVip{ margin-left:35px;}
+.reSend {
+        width:87px; height:18px;border: 1px solid #bdc7d8; padding: 6px 2px; cursor:pointer; background-color:#075090; color:#fff; text-align:center; line-height:18px; display:block; font-size:12px; float:right; margin-right:58px;
+    }
+.reSend1{
+    background-color:#e7e7e7;
+    color:#767575;
+}
+.bluePopup { height: 220px;}
+.bluePopup .layui-layer-content {
+        height: 90px;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        function isChk() {
+            var hasChk = $('#registerIdentityNo_account_radio_new').is(':checked')
+            if (hasChk) {
+
+                $('#registerIdentityNo_account_radio_new').parent().siblings().show();
+            } else {
+
+                $('#registerIdentityNo_account_radio_new').parent().siblings().hide();
+            }
+        }
+        $("#registerIdentityNo_account_radio_new").click(function () {
+            isChk();
+        })
+    })
+</script>
+<div class="header">
+    @Html.Action("HomeHeader", "Header", new { pageName = "Home" })
+</div>
+<div>
+
+    <div class="ad_banner">
+        <img src="/Img/VipImg/bannerReg.jpg" />
+    </div>
+    <div class="n_all_cont">
+        <div class="n_all_cont_center">
+            <h2>
+                <a href="javascript:;">用户注册</a>
+                <input type="hidden" id="returnUrl" value="@ViewBag.returnUrl" />
+                <input type="hidden" id="source" value="@ViewBag.source" />
+            </h2>
+            <div class="n_all_cont_inset">
+                <div class="n_right_cont  n_right_cont_new">
+                    <div class="gy_cont" style="margin-top:0;">
+                        <div class="gy_nr" style="width:100%; float:left; padding-bottom:20px;">
+                            <div class="register register_new">
+                                <form>
+                                    <p style="position: relative;" class="clearfix">
+                                        <b>*</b>
+                                        <label>手机号：</label>
+                                        <input type="text" id="registerMobile" placeholder=" 请输入11位手机号码">
+                                        <span style="display: none; position:absolute; left: 76px; bottom:-14px;" id="registerMobileerrorred" class="error_red">请输入手机号</span>
+                                    </p>
+                                    <p style="position: relative;" class="clearfix">
+                                        <b>*</b>
+                                        <label>图形验证码：</label>
+                                        <input type="text" style="width:130px;" id="registerImageCode" name="registerImageCode" placeholder=" 请输入图形验证码">
+                                        <img src="/ValidateCode/Index?ID=1" style=" margin-right: 69px; float :right; top:4px;" id="imgCode" alt="单击可刷新" onclick="clickRemoveChangeCode()">
+                                        <span id="registerImageCodeerrored" style="display: none; position: absolute; left: 76px; bottom: -14px;" class="error_red">输入图形验证码</span>
+                                    </p>
+                                    <p style="margin-top:16px; position: relative;" class="clearfix">
+                                        <b style="line-height:30px;">*</b>
+                                        <label style="line-height:30px;">短信验证码：</label>
+                                        <input type="text" id="registerCaptcha" style="width: 130px; top:0px;">
+                                        <a id="AccountRegisterSendCaptcha" class="reSend" >获取验证码</a>
+                                        <span style="padding-top:5px; padding-left:16px;">
+                                            <label style="padding-left: 76px; width: inherit; line-height: 20px; font-size: 12px; color: #000;">验证码有效时间为3分钟，超过则验证码失效</label>
+                                        </span>
+                                        <span style="display: none; position:absolute; left: 76px; bottom:-26px;" class="error_red">请输入验证码</span>
+                                    </p>
+                                    <p class="clearfix">
+                                        <b>*</b>
+                                        <label>创建密码：</label>
+                                        <input type="password" id="registerPasswd" placeholder=" 必须8位以上数字和大小写字母组合">
+                                      
+                                        <span style="padding-top:18px;">
+                                            <label style="padding-left: 8px; width: inherit; line-height: 20px; font-size: 12px; color: #000;">例如：bM123456789</label>
+                                        </span>
+                                    </p>
+                                    <p style="position: relative;" class="clearfix">
+                                        <b>*</b>
+                                        <label>确认密码：</label>
+                                        <input type="password" id="registerComfirmPasswd">
+                                        <span style="display:none; position:absolute; left: 76px; bottom:-14px;" class="error_red">请确认密码</span>
+                                    </p>
+
+                                    <div>
+                                        <div style="margin-left: -144px; font-size: 14px; color: #3D3F43;" class="checkbox_one">
+                                            <input type="checkbox" id="registerIdentityNo_account_radio_new" value="1" name="IsAccountRegisterCarOwner">
+                                            <label for="registerIdentityNo_account_radio_new" style=" float:left;">我是车主</label>
+                                        </div>
+                                        <p id="registerPaperWork_Span" style="display:none;" class="clearfix">
+                                            <b>*</b>
+                                            <label>证件类型：</label>
+                                            <select id="accountregisterUserPaperWork" name="PaperWork" class="user_base_info_select">
+                                                <option value="-1">请选择</option>
+                                                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerIdentificationType.IdentityCard)">身份证</option>
+                                                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerIdentificationType.Passport)">护照</option>
+                                                <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerIdentificationType.Officer)">军官证</option>
+                                            </select>
+                                            <span class="ssr" style="margin-left: 0; font-size: 12px; color: #a0a0a0;"></span>
+                                        </p>
+                                        <p style="display:none" class="clearfix">
+                                            <b>*</b>
+                                            <label>证件号码：</label>
+                                            <input type="text" id="registerIdentityNo" placeholder="英文字母注意大写">
+                                            <span class="ssr" style="margin-left: 0; font-size: 12px; color: #a0a0a0;">为便于匹配到您的车辆信息，请填写您购车时提供的证件号码。</span>
+                                        </p>
+
+                                    </div>
+
+
+                                    <div class="checkbox_one" style="margin-top:0;">
+                                        <input type="checkbox" style="margin-left:24px" id="btnAccountRegisterAgreeRegister" checked="checked">
+                                        <label for="btnAccountRegisterAgreeRegister">我已阅读并同意<a href="/Account/RegisterStatement" style="color: #005AA0;" target="_blank">《bluemembers会员章程及免责条款》</a></label>
+                                    </div>
+                                    <div style="float:left; width:100%;">
+                                        <a href="javascript:void(0);" id="btnRegisterAccountRegVip" class="register_bot pay_active">注<b style="margin: 0 6px;"></b>册</a>
+                                    </div>
+                                </form>
+
+                                <!-- 弹框 -->
+                                <div class="zhuce_tan">
+                                    <img src="./账号注册_files/duigou.png">
+                                    <span>申请已经提交，请您耐心等待，<br>审核时间最多需要5个工作日。</span>
+                                </div>
+                                <!-- 弹框 End -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="n_rightnext_cont">
+                    <div class="gy_cont" style="margin-top:0;">
+                        <div class="gy_title">
+                            <div class="gy_zi">
+                                <h1>温馨提示</h1>
+                                <span>Tips</span>
+                            </div>
+                        </div>
+                        <div class="cont_tips">
+                            <p>1. 北京现代车主注册请勾选“我是车主”，填写证件信息完成车辆绑定</p>
+                            <p>2. 用户注册成功系统会随机分配用户名，用户名可至个人中心修改</p>
+                            <p>3. 密码格式：必须8位以上数字和大小写字母组合</p>
+                            <p>4. 如果您确认填写的信息正确，但无法提交成功，请拨打24小时客户服务热线400-800-1100咨询</p>
+                            <p>5. 用户在登录时，使用新手机号＋短信随机码进行登录，系统将为您注册分配用户名，用户名可至个人中心修改</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--banner+新的表单结束-->
+    <div class="zzDivBox" style="width: 100%; float: left;  display: none " id="account_AccountRegisterIsSonataUser">
+        <div class="zzDivBg"></div>
+        <div style=" display:block;" class="regCon zzConBox1">
+            <span class="closeIcon"></span>
+            <p class="zzMegTit1">
+                <span class="zzPrompt"></span><!--zzPrompt是"提示"的图标，zzErrMeg是“错误”的图标-->
+                <span class="zzProTxt">选择入会特约店缴费</span>
+            </p>
+            <div class="zzConTxtBox">
+                <div class="blueBoy1"></div>
+                <div class="zzConTxtProm">
+                    <p>亲爱的会员，您好。感谢您对北京现代bluemembers的支持！马上缴费获取积分好礼，更有尊享权益等您享，具体详情请查看“会员权益”</p>
+                    <p>您可以选择购买车辆的特约店，也可以选择其他您常去的特约店进行缴费。</p>
+                    <label id="reIntegralmsg" style="display: block;"></label>
+                </div>
+                <div class="zzConTxtSelc">
+
+                    <div style="overflow:hidden; font-size:14px; margin-left:-125px;">
+                        @Html.Action("AccountPageProvince", "Car")
+                    </div>
+                        <div style="margin-top: 22px; height: 26px; line-height: 26px; overflow:hidden;">
+                            <input type="hidden" id="accountPayNumber">
+                            <input type="hidden" id="accountActivityType">
+                            <input type="hidden" id="userid">
+                            <span style="font-size: 12px;color: #a0a0a0; "><span style="color:#3D3F43; font-size:16px; padding-right:10px;">支付会费</span>如果您已经与申请的特约店沟通并向其支付了会费，也可以选择向特约店申请。</span>
+                        </div>
+
+                        <div class="payBtnBox">
+                            <a class="pay_active apply_member register_bot zzConBtn1" id="btnApplyToDealer_AccountRegisterVip">向特约店申请</a>
+                            <a target="_blank" href="http://detail.tmall.com/item.htm?spm=0.0.0.0.YYWYh4&amp;id=44232536739" class="pay_active lijizhufu register_bot zzConBtn1" id="btnInputPayNumberToRegisterVip">立即支付</a>
+
+                        </div>
+
+                   
+
+                    </div>
+                </div>
+        </div>
+
+   </div>
+
+
+
+
+        
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>

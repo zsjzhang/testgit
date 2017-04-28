@@ -1,0 +1,310 @@
+﻿@using Vcyber.BLMS.Entity;
+@{
+    ViewBag.Title = "商品类型";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model  List<SCServiceCardType>
+@{
+    var datas = this.ViewBag.Data as List<Category>;
+}
+<div>
+    <div><input type="button" value="添加类型" class="btn btn-default" onclick="category.ShowAdd()"  /></div>
+    <div>
+        <table class="table table-bordered">
+            <tr>
+                <th>商品类型</th>
+                <th>卡券类型</th>
+                <th>操作</th>
+            </tr>
+            @foreach (var item in datas)
+            {
+                <tr>
+                    <td>
+                        <span class="glyphicon glyphicon-plus" onclick="category.ShowChild(this, @item.ID)" parentid="@item.ID"></span>
+                        <span class="glyphicon glyphicon-minus" onclick="category.ShowChild(this, @item.ID)" parentid="@item.ID" style="display: none"></span>
+                        <span name="@item.ID">@item.Name</span>
+                        <input type="text" name="@item.ID" class="form-control" style="display: none" />
+                    </td>
+                    <td></td>
+                    <td>
+                        <a href="javascript:return void()" onclick="category.Save(@item.ID,this,0,'@Session["csxfguid"]')" name="@item.ID" style="display:none">保存</a>
+                        <a href="javascript:return void()" onclick="category.CancelEdit(@item.ID,this)" name="@item.ID" style="display:none">取消</a>
+                        <input type="hidden" name="@item.ID" value="" autocomplete="off" />
+                        <a href="javascript:return void()" onclick="category.Edit(@item.ID,this)" name="@item.ID">编辑</a>
+                        <a href="javascript:return void()" onclick="category.Delete(@item.ID,this,'@Session["csxfguid"]');" name="@item.ID">删除</a>
+                        <a href="javascript:return void()" onclick="category.ShowChildAdd(@item.ID,'@Session["csxfguid"]')">添加子类型</a>
+                    </td>
+                </tr>
+                foreach (var childItem in item.Childs)
+                {
+                    <tr parentid="@item.ID" style="display:none">
+                        <td>
+                            &nbsp;&nbsp;<span name="@childItem.ID">@childItem.Name</span><input type="text" name="@childItem.ID" class="form-control" style="display: none" />
+                        </td>
+                        <td>
+                            <select id="@Html.Raw(string.Format("{0}_selectcardype", childItem.ID))" name="selectcardype">
+
+                                <option value="">请选择</option>
+                                @foreach (var m in Model)
+                                {
+                                    if (childItem.CardType == m.CardType)
+                                    {
+                                        <option selected="selected" value="@m.CardType">@m.CardTypeName</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@m.CardType">@m.CardTypeName</option>
+                                    }
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            <a href="javascript:return void()" onclick="category.Save(@childItem.ID,this,@item.ID,'@Session["csxfguid"]')" name="@childItem.ID" style="display:none">保存</a>
+                            <a href="javascript:return void()" onclick="category.CancelEdit(@childItem.ID,this)" name="@childItem.ID" style="display:none">取消</a>
+                            <input type="hidden" name="@childItem.ID" value="" autocomplete="off" />
+                            <a href="javascript:return void()" onclick="category.Edit(@childItem.ID,this)" name="@childItem.ID">编辑</a>
+                            <a href="javascript:return void()" onclick="category.Delete(@childItem.ID,this,'@Session["csxfguid"]');" name="@childItem.ID">删除</a>
+                        </td>
+                    </tr>
+                }
+                <tr style="display:none" childtr="@item.ID">
+                    @{var saveTextId = "nameChildText" + @item.ID;}
+                    <td>&nbsp;&nbsp;<input type='text' id='@saveTextId' class="form-control" /></td>
+                    <td>
+                        <select id="@Html.Raw(string.Format("{0}_selectcardype", item.ID))" name="selectcardype">
+
+                            <option value="">请选择</option>
+                            @foreach (var m in Model)
+                            {
+                                <option value="@m.CardType">@m.CardTypeName</option>
+                            }
+                        </select>
+                    </td>
+
+                    <td> <a href='javascript:return void()' onclick="category.AddChild(@item.ID,'@Session["csxfguid"]')">保存</a>&nbsp;&nbsp;<a href='javascript:return void()' onclick="category.CancelChildAdd('@saveTextId');">取消</a></td>
+                </tr>
+            }
+
+            <tr id="addName" style="display:none">
+                <td><input type='text' id='nameText' class="form-control" autocomplete="off" /></td>
+                <td> <a href='javascript:return void()' onclick="category.Add('@Session["csxfguid"]')">保存</a>&nbsp;&nbsp;<a href='javascript:return void()' onclick='    category.CancelAdd();'>取消</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+
+
+
+    function category() { }
+
+    category.ShowAdd = function () {
+        $("#addName").each(function () {
+            $(this).show();
+        });
+    }
+
+    category.CancelAdd = function () {
+        $("#nameText").parent().parent().hide();
+        $("#nameText").val("");
+    }
+
+    category.CancelChildAdd = function (savaTextId) {
+        $("#" + savaTextId).parent().parent().hide();
+        $("#" + savaTextId).val("");
+    }
+
+    category.CancelEdit = function (id, instance) {
+        var value = "";
+        $("[name='" + id + "']").filter("input").each(function () {
+            value = $(this).val();
+            $(this).hide();
+        });
+
+        $("[name='" + id + "']").filter(":text").each(function () {
+            $(this).val("");
+            $(this).hide();
+        });
+
+        $("[name='" + id + "']").filter("span").each(function () {
+            $(this).val(value);
+            $(this).show();
+        });
+
+        $("[name='" + id + "']").filter("a").each(function () {
+            if ($(this).is(":hidden")) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    }
+
+    category.Add = function (guidtext) {
+        var name = $("#nameText").val().trim();
+
+        if (name == "") {
+            alert("商品类型不能为空！");
+            return;
+        }
+
+        $.post("/Category/Add", { "name": name, "parentId": 0, "cardtype": "","guidtext":guidtext }, function (data) {
+            if (data.Code == "Success") {
+                location.href = "/Category/Index";
+            } else {
+                if (data.Code == "Repeat") {
+                    alert("商品类型名称重复！");
+                } else {
+                    alert("添加失败！");
+                }
+            }
+        });
+    }
+
+    category.AddChild = function (id,guidtext) {
+        var name = $("#nameChildText" + id).val().trim();
+        var cardtype = $("#" + id + "_selectcardype");
+        if (name == "") {
+            alert("商品类型不能为空！");
+            return;
+        }
+
+        $.post("/Category/Add", { "name": name, "parentId": id, "cardtype": cardtype.val(),"guidtext":guidtext }, function (data) {
+            if (data.Code == "Success") {
+                location.href = "/Category/Index";
+            } else {
+                if (data.Code == "Repeat") {
+                    alert("商品类型名称重复！");
+                } else {
+                    alert("添加失败！");
+                }
+            }
+        });
+    }
+
+    category.ShowChild = function (instance, id) {
+        $("[parentid='" + id + "']").filter("span:hidden").each(function () {
+            $(this).show();
+        });
+
+        $(instance).hide();
+
+        $("[parentid='" + id + "']").filter("tr").each(function () {
+            if ($(this).is(":hidden")) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    }
+
+    category.ShowChildAdd = function (id) {
+        $("[childTr='" + id + "']").each(function () {
+            $(this).show();
+        });
+    }
+
+    category.Edit = function (id, instance) {
+        
+        var value = "";
+        $("[name='" + id + "']").filter("span").each(function () {
+            value = $(this).text();
+            $(this).hide();
+        });
+
+        $("[name='" + id + "']").filter(":text").each(function () {
+            $(this).val(value);
+            $(this).show();
+        });
+
+        $("[name='" + id + "']").filter("input").each(function () {
+            $(this).val(value);
+        });
+
+        $("[name='" + id + "']").filter("a").each(function () {
+            if ($(this).is(":hidden")) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    }
+
+    category.Save = function (id, instance, parentid,guidtext) {
+        var cardtype = $("#" + id + "_selectcardype");
+        var result = true;
+        var name = "";
+        $("[name='" + id + "']").filter(":text").each(function () {
+            name = $(this).val();
+
+            if (name == "") {
+                alert("类型名称不能为空！");
+                result = false;
+                return false;
+            }
+        });
+
+        if (!result) {
+            return;
+        }
+        $.post("/Category/Update", { "id": id, "name": name, "parentid": parentid, "cardtype": cardtype.val(),"guidtext":guidtext }, function (data) {
+            if (data.Code == "Success") {
+                $("[name='" + id + "']").filter("a").each(function () {
+                    if ($(this).is(":hidden")) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+
+                $(instance).hide();
+
+
+                var value = "";
+                $("[name='" + id + "']").filter(":text").each(function () {
+                    value = $(this).val();
+                    $(this).hide();
+                });
+
+                $("[name='" + id + "']").filter("span").each(function () {
+                    $(this).text(value);
+                    $(this).show();
+                });
+            } else {
+                if (data.Code == "Repeat") {
+                    alert("商品类型名称重复！");
+                } else {
+                    alert("保存失败！");
+                }
+
+            }
+        });
+
+
+    }
+
+    category.Delete = function (id, instance,guidtext) {
+
+        var result = confirm("确认要删除吗?");
+
+        if (result) {
+            $.post("/Category/Delete", { "id": id,"guidtext":guidtext }, function (data) {
+                if (data.Code == "Success") {
+                    $(instance).parent().parent().each(function () {
+                        $(this).remove();
+                        $("[parentid='" + id + "']").filter("tr").each(function () {
+                            $(this).remove();
+                        });
+                    });
+                } else {
+                    if (data.Code == "Repeat") {
+                        alert("类型下存在商品！");
+                    } else {
+                        alert("删除失败！");
+                    }
+                }
+            });
+        }
+    }
+</script>

@@ -1,0 +1,672 @@
+
+
+/*   我的卡券    */
+
+.jinruluntan{
+	padding: 11px 0;
+	width: 100%;
+	height: 34px;
+	background: #EEEEEE;
+	margin-bottom: 1px;
+}
+
+.jinruluntan dl{
+	width: 154px;
+	margin: 0 auto;
+	height: 34px;
+	color: #3D3F43;
+}
+
+.jinruluntan dt{
+	float: left;
+	margin-right: 6px;
+}
+
+.jinruluntan dd h3{
+	font-size: 18px;
+}
+
+.jinruluntan dd span{
+	font-size: 12px;
+}
+
+.geren_ka{
+	width: 100%;
+height: 84px;
+border-top: 1px solid #fff;
+background: #EEEEEE;
+}
+
+.geren_ka dl{
+	margin-left: 17px;
+	padding-top: 16px;
+}
+
+.geren_ka dt{
+	float: left;
+	margin-right: 10px;
+}
+
+.geren_ka dd p{
+	font-size: 16px;
+	margin-bottom: 12px;
+}
+
+.kaquan_box{
+	height: 350px;
+	width: 99.8%;
+	border: 1px solid #EEEEEE;
+	margin-top: 20px;
+}
+
+.kaquan_box h2{
+	height: 50px;
+	line-height: 50px;
+	font-size: 14px;
+	text-align: center;
+	background: #EEEEEE;
+}
+
+.kaquan_box ul{
+	width: 630px;
+	margin: 0 auto;
+	margin-top: 30px;
+}
+
+.kaquan_box li{
+	background: url(../img/erwei_bg.png) no-repeat;
+	width: 186px;
+	height: 226px;
+	float: left;
+	margin-right: 36px;
+}
+
+.kaquan_box li:last-child{
+	margin-right: 0;
+}
+
+.kaquan_box li img{
+	display:block;
+	margin: 0 auto;
+	width:147px;
+	height: 147px;
+	margin-top: 18px;
+}
+
+.kaquan_b{
+	color: #004587;
+}
+
+.kaquan_box li p{
+	height: 38px;
+	line-height: 38px;
+	font-size: 12px;
+	text-align: center;
+	margin-top: 21px;
+}
+
+.kaquan_box li span{
+	font-size: 12px;
+	text-align: center;
+	display:block;
+	margin-top: 10px;
+}
+
+/*  车辆信息   */
+
+.gy_nr{
+	padding-bottom: 10px;
+}
+
+.gy_nr p{
+	line-height: 14px;
+	margin-left: 28px;
+	font-size: 14px;
+}
+
+#dateed{
+	border-bottom: 1px dashed #e3e3e3;
+	display: block;
+	margin: 12px 6px 0;
+}
+
+.clxx_box{
+	width: 100%;
+}
+
+.clxx_box img{
+	width: 695px;
+	height: 426px;
+	display: block;
+	margin-bottom: 38px;
+}
+
+.clxx_line{
+	width: 100%;
+	border-top:2px solid #3d3f43 ;
+}
+
+.clxx_line p{
+	border-bottom:1px solid #3d3f43;
+	height: 50px;
+	line-height: 50px;
+	font-size: 18px;
+	padding-left: 40px;
+}
+
+.clxx_line p span{
+	font-size: 16px;
+	margin-left: 92px;
+}
+
+
+/*     服务记录          */
+
+.shaixuan{
+	height: 50px;
+	line-height: 50px;
+	background: #EEEEEE;
+	font-size: 14px;
+}
+
+.shaixuan label{
+	padding-left: 22px;
+	
+}
+
+.shaixuan select{
+	width: 230px;
+	height: 30px;
+	line-height: 30px;
+	margin-left: 20px;
+}
+
+.server_list{
+	width: 100%;
+	margin-top: 24px;
+}
+
+.server_left{
+
+}
+
+.ser_left_box{
+	width: 100%;
+	border: 1px solid #EEEEEE;
+	margin-bottom: 20px;
+}
+
+.ser_zt{
+	height: 40px;
+	line-height: 40px;
+	background: #EEEEEE;
+	font-size: 14px;
+}
+
+.ser_zt h3{
+	margin-left: 22px;
+	float: left;
+}
+
+.ser_zt span{
+	float: right;
+	margin-right: 22px;
+}
+
+.ser_text{
+	width: 100%;
+	padding-bottom: 16px;
+}
+
+.ser_text p{
+	margin-top: 16px;
+	font-size: 12px;
+}
+
+.ser_text p b{
+	width:126px;
+	margin-left: 20px;
+	display: inline-block;
+}
+
+.ser_text p em{
+	margin-left: 24px;
+}
+
+.ser_text p i{
+	margin-left: 14px;
+}
+
+.ser_text p a{
+	color: #075090;
+}
+
+.ser_text_left{
+	  width: 300px;
+  float: left;
+}
+
+.ser_text_right{
+	  width: 300px;
+  float: right;
+}
+
+.ser_text_full{
+	  width: 600px;
+  float: left;
+}
+
+.server_right{
+
+}
+
+.ser_er{
+	background: url(../img/ser_tan_bg.png) no-repeat;
+	width: 394px;
+	height: 416px;
+	position: absolute;
+	top:240px;
+	left: 50%;
+	margin-left: -197px;
+	z-index: 999;
+}
+
+.ser_er img{
+	width: 233px;
+	height: 235px;
+	display: block;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+
+.ser_er a{
+	width: 233px;
+	height: 32px;
+	background: #075090;
+	display: block;
+	color: #FFFFFF;
+	text-align: center;
+	line-height: 32px;
+	font-size: 14px;
+	margin: 0 auto;
+	margin-top: 44px;
+}
+
+.kk_left{
+      margin-left: 1px;
+}
+
+
+/*      个人中心          */
+
+.gy_nr span{
+	font-size: 12px;
+	color: #bebebe;
+	margin-left: 28px;
+}
+
+.geren_box{
+	border: 1px solid #EEEEEE;
+	display: table;
+	width: 99.8%;
+	padding-bottom: 26px;
+	margin-bottom: 20px;
+}
+
+.jindu{
+	position: relative;
+}
+
+.silder{
+	margin-top: 36px;
+	margin-left: 58px;
+	height: 24px;
+	margin-bottom: 10px;
+}
+
+.silder b{
+	width: 24px;
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+	font-size: 16px;
+	border-radius: 12px;
+	display: block;
+	color: #FFFFFF;
+	float: left;
+	margin-right: 16px;
+}
+
+.silder img{
+	display: block;
+	margin-right: 16px;
+	float: left;
+}
+
+.yuan_s{
+	background: #075090;
+}
+
+.yuan_e{
+	background: #a0a0a0;
+}
+
+.jindu_txt {
+	margin-left: 46px;
+}
+
+.jindu_txt li{
+	float: left;
+	font-size: 14px;
+	margin-top: 10px;
+	margin-right: 126px;
+}
+
+.jindu_time{
+	margin-left:16px;
+}
+
+.jindu_time li{
+	float: left;
+	font-size: 12px;
+	margin-top: 10px;
+	margin-right:67px;
+}
+
+.jiaofei{
+	color: #FFFFFF;
+	background: #075090;
+	width: 120px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	font-size: 14px;
+	display: block;
+	position: absolute;
+	right: 46px;
+	top:112px
+}
+
+
+.zh_xinxi ul{
+	padding:0 20px;
+}
+
+
+
+.zh_xinxi ul li{
+	font-size: 12px;
+	float: left;
+	width:32%;
+	text-align: left;
+	height: 12px;
+	line-height: 12px;
+	margin-top: 14px;
+}
+
+.zh_xinxi ul li:first-child{
+	width: 36%;
+}
+
+.gy_right{
+	float: right;
+	position: relative;
+	top: -32px;
+	right: 28px;
+}
+
+.gy_right p{
+	font-size: 12px;
+	line-height: 16px;
+	text-align: right;
+}
+
+
+.me_car ul{
+	padding: 22px 28px;
+}
+
+.me_car ul li{
+	float: left;
+	width: 306px;
+	margin-right: 25px;
+}
+
+.me_car ul li img{
+	width: 306px;
+}
+
+.me_car ul li:last-child{
+	margin-right: 0;
+}
+
+.me_car ul li p{
+	font-size: 14px;
+	margin: 10px 0;
+}
+
+.me_car ul li span{
+	font-size: 12px;
+	color: #BEBEBE;
+}
+
+.huise{
+	font-size: 12px;
+	color: #BEBEBE;
+}
+
+.huise a{
+	color: #075090;
+}
+
+
+/*  个人中心-非车主页    */
+
+.renzheng_box{
+	width: 100%;
+	height: 210px;
+}
+
+.renzheng_box p{
+	font-size: 18px;
+	text-align: center;
+	padding-top: 54px;
+}
+
+.renzheng_box a{
+	width: 228px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	color: #FFFFFF;
+	background: #075090;
+	display: block;
+	margin: 50px auto;
+	font-size: 14px;
+	border: 1px solid #075090;
+}
+
+.renzheng_box a:hover,
+.car_but a:hover{
+	background: #0b63b7;
+	border: 1px solid #0b63b7;
+	color: #fff;
+}
+
+
+/*      弹窗     */
+
+.car_yuyue{
+	background: url(../img/car_tanchuang1.png) no-repeat;
+	height: 315px;
+	width: 550px;
+	position: fixed;
+	top:300px;
+	left: 50%;
+	margin-left:-275px ;
+	z-index: 10;
+	display: none;
+}
+
+.car_yuyue div{
+	width: 490px;
+	margin: 50px 0 0 60px;
+}
+
+.car_yuyue div p{
+	height: 30px;
+	line-height: 30px;
+}
+
+.car_yuyue div p b{
+	color: #FE0000;
+	margin-right: 4px;
+}
+
+.car_yuyue div p label{
+	font-size: 14px;
+}
+
+.car_yuyue div p input{
+	width: 272px;
+	padding-right: 32px;
+	height: 28px;
+	line-height: 28px;
+	margin-left: 12px;
+	text-indent: 12px;
+}
+
+.car_yuyue div p img{
+	position: relative;
+	left: -24px;
+}
+
+.car_tishi{
+	font-size: 12px;
+	color: #BEBEBE;
+	margin-top: 16px;
+	margin-left: 120px;
+	display: block;
+}
+
+.suojiu_c{
+	font-size: 14px;
+	margin-top:34px;
+	margin-left: 120px;
+	display: block;
+}
+
+.car_but{
+	height: 32px;
+	margin-top: 56px;
+}
+
+.car_but a{
+	height: 30px;
+	line-height: 30px;
+	width: 228px;
+	display: block;
+	float: left;
+	color: #FFFFFF;
+	background: #075090;
+	text-align: center;
+	font-size: 14px;
+	margin-left:30px;
+	border: 1px solid #075090;
+}
+
+
+.shenqin_tj{
+	background: url(../img/car_tanchuang2.png) no-repeat;
+	height:217px;
+	width:413px;
+	position: fixed;
+	top:300px;
+	left: 50%;
+	margin-left:-206px ;
+	z-index: 10;
+	display: none;
+}
+
+.shenqin_tj div{
+	width: 310px;
+	height: 50px;
+	margin: 0 auto;
+	margin-top: 80px;
+}
+
+.shenqin_tj img{
+	width: 46px;
+	height: 46px;
+	display: block;
+	float: left;
+	margin-right: 8px;
+}
+
+.shenqin_tj p{
+	font-size: 18px;
+	line-height: 24px;
+}
+
+
+/*  车主没匹配到车  */
+
+.no_car{
+	width: 100%;
+	height: 212px;
+}
+
+.no_car p{
+	color: #BEBEBE;
+	font-size: 18px;
+	text-align: center;
+	line-height:38px;
+}
+
+.no_car p:first-child{
+	padding-top: 54px;
+}
+
+/* 钱包记录  */
+
+.landou_jilu{
+	width: 100%;
+	border: 1px solid #A0A0A0;
+}
+
+.landou_jilu h4{
+	height: 24px;
+	line-height: 24px;
+	font-size: 14px;
+	color: #FFFFFF;
+	text-align: right;
+	padding-right: 92px;
+	background: #a0a0a0;
+}
+
+.landou_jilu p{
+	height: 66px;
+	line-height: 66px;
+	border-bottom: 1px solid #A0A0A0;
+}
+
+.landou_jilu p:last-child{
+	border-bottom: none;
+}
+
+.landou_jilu p span{
+	font-size: 16px;
+	background: url(../img/jilu_d.png) no-repeat left center;
+	padding-left: 30px;
+	margin-left: 24px;
+}
+
+.landou_jilu p b{
+	color: #929396;
+	font-size: 16px;
+	margin-right: 27px;
+	float: right;
+}
+
+
+

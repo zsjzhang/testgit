@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{350C18D4-DFD8-45D9-9EF3-A949EB2BF56B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vcyber.BLMS.IRepository</RootNamespace>
+    <AssemblyName>Vcyber.BLMS.IRepository</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Activities\IGetVinCustTime.cs" />
+    <Compile Include="Activities\IActivitiesSignUpStorager.cs" />
+    <Compile Include="Activities\IActivitiesStorager.cs" />
+    <Compile Include="AfterSaleService\ISC_ServiceCardUsedRecordStorager.cs" />
+    <Compile Include="ApproveRecord\IApproveRecordStorager.cs" />
+    <Compile Include="BLMSMoney\IBlueBeanRuleStorager.cs" />
+    <Compile Include="BLMSMoney\ITradeFlowStorager.cs" />
+    <Compile Include="BLMSMoney\IUserBlueBeanStorager.cs" />
+    <Compile Include="BLMSMoney\IUserEmpiricRuleStorager.cs" />
+    <Compile Include="BLMSMoney\IUserEmpiricStorager.cs" />
+    <Compile Include="BLMSMoney\IUserIntegralStorager.cs" />
+    <Compile Include="BlowCar\IBlowCarRecordStorager.cs" />
+    <Compile Include="BlowCar\IBlowCarWinningStorager.cs" />
+    <Compile Include="BluebeanActivity\IBluebeanActiveRecordStorager.cs" />
+    <Compile Include="BluebeanActivity\IBluebeanWinRecordStorager.cs" />
+    <Compile Include="BMGame\IShareRecordStorager.cs" />
+    <Compile Include="BMGame\IWinningInfoStorager.cs" />
+    <Compile Include="BMGame\IPrizesInfoStorager.cs" />
+    <Compile Include="BMGame\IJoinActivityStorager.cs" />
+    <Compile Include="BMGame\IActivityInfoStorager.cs" />
+    <Compile Include="BrandService\IBrandServiceCodeStorager.cs" />
+    <Compile Include="BrandService\IMembershipBrandStorager.cs" />
+    <Compile Include="BrandService\IRequestLogStorager.cs" />
+    <Compile Include="CarService\ICarServiceUserStorager.cs" />
+    <Compile Include="CarService\ICarServiceStoragerBase.cs" />
+    <Compile Include="CarService\IBaseCarStorager.cs" />
+    <Compile Include="CarService\IConsumeStorager.cs" />
+    <Compile Include="CarService\ICSConsultantStorager.cs" />
+    <Compile Include="CarService\IFittingValidateStorager.cs" />
+    <Compile Include="CarService\IRepairRecordStorager.cs" />
+    <Compile Include="CarService\IScheduleServiceStorager.cs" />
+    <Compile Include="CarService\ISonataServiceStorager.cs" />
+    <Compile Include="CarService\IOrderCarStorager.cs" />
+    <Compile Include="CarService\IScheduleMaintStorager.cs" />
+    <Compile Include="CarService\ITestDriveStorager.cs" />
+    <Compile Include="Common\IIdGeneratorStorager.cs" />
+    <Compile Include="AirportService\ISNCardStorager.cs" />
+    <Compile Include="Common\IDictionary.cs" />
+    <Compile Include="Common\IDealerStorager.cs" />
+    <Compile Include="FreeRoadRescue\IFreeRoadRescueStorager.cs" />
+    <Compile Include="Function\IFunctionStorager.cs" />
+    <Compile Include="Function\IFunctionUrlStorager.cs" />
+    <Compile Include="IInvoiceForReserveRepository.cs" />
+    <Compile Include="ImageCarousel\IImageCarouselStorager.cs" />
+    <Compile Include="ImageCarousel\IImgPraiseRecordStorager.cs" />
+    <Compile Include="ISmsStorager.cs" />
+    <Compile Include="IUserGuidStorager\IUserGuideStorager.cs" />
+    <Compile Include="LoginNotify\IMembershipLoginNotifyStorager.cs" />
+    <Compile Include="Magazine\IMagazineApplyStorager.cs" />
+    <Compile Include="Magazine\IMagazineStorager.cs" />
+    <Compile Include="Maintain\IMaintainServiceRepository.cs" />
+    <Compile Include="Maint\IMaintCarOilStorager.cs" />
+    <Compile Include="Maint\IMaintCarPackageStorager.cs" />
+    <Compile Include="Membership\IDealerMembershipStorager.cs" />
+    <Compile Include="Membership\IOweAggregationsStorager.cs" />
+    <Compile Include="Member\IMemberNumberRepository.cs" />
+    <Compile Include="Member\IReceiveRecordRepository.cs" />
+    <Compile Include="News\INewsStorager.cs" />
+    <Compile Include="NoticeInfo\INoticeInfoStorager.cs" />
+    <Compile Include="OnlineService\IOnlineServiceStorager.cs" />
+    <Compile Include="OperationLog\ILoginMemRecordStorager.cs" />
+    <Compile Include="OperationLog\ILogOperatorStorager.cs" />
+    <Compile Include="OrderChange\IXDActivityStorager.cs" />
+    <Compile Include="OrderChange\IXDInviterStorager.cs" />
+    <Compile Include="OrderChange\IXDLotteryRecordStorager.cs" />
+    <Compile Include="OrderChange\IXDLotteryStorager.cs" />
+    <Compile Include="OrderChange\IXDOrderChangeStorager.cs" />
+    <Compile Include="OrderChange\IXDSendInfoStorager.cs" />
+    <Compile Include="Order\IAddressStorager.cs" />
+    <Compile Include="Order\IOrderStorager.cs" />
+    <Compile Include="Order\IPaymentRecordStorager.cs" />
+    <Compile Include="Product\ICategoryStorager.cs" />
+    <Compile Include="Product\IProductStorager.cs" />
+    <Compile Include="Product\IShoppingStorager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Questionnaire\IAnswerStorager.cs" />
+    <Compile Include="Questionnaire\IOptionStorager.cs" />
+    <Compile Include="Questionnaire\IQuestionnaireRecordStorager.cs" />
+    <Compile Include="Questionnaire\IQuestionnaireStorager.cs" />
+    <Compile Include="Questionnaire\IQuestionnaireVisitorStorager.cs" />
+    <Compile Include="Questionnaire\IQuestionnaireWinningStorager.cs" />
+    <Compile Include="Questionnaire\IQuestionStorager.cs" />
+    <Compile Include="Questionnaire\IQuestionnaireManageStorager.cs" />
+    <Compile Include="Report\IReportStorager.cs" />
+    <Compile Include="SendSMSSchedulePlan\ISendSMSSchedulePlanStorager.cs" />
+    <Compile Include="ServiceCard\IXDrClaimInformationStorager.cs" />
+    <Compile Include="ServiceCard\ICustomCardInfoStorager.cs" />
+    <Compile Include="ServiceCard\ICustomCardMerchantConsumeCodeStorager.cs" />
+    <Compile Include="ServiceCard\ICustomCardStorager.cs" />
+    <Compile Include="ServiceCard\ISCServiceCardTypeStorager.cs" />
+    <Compile Include="ServiceCard\IServiceCardBatchConsumeStorager.cs" />
+    <Compile Include="ServiceCard\IServiceCardBatchStorager.cs" />
+    <Compile Include="ServiceCard\IServiceCardStorager.cs" />
+    <Compile Include="ServiceCard\IServiceCardUsedRecordStorager.cs" />
+    <Compile Include="ServiceCard\ISysConsumePointStorager.cs" />
+    <Compile Include="Settlement\IXDSettlementsStorager.cs" />
+    <Compile Include="ShareResources\IShareResourcesStorager.cs" />
+    <Compile Include="UserMessageRecord\IUserMessageRecordStorager.cs" />
+    <Compile Include="User\IPwQuestionStorager.cs" />
+    <Compile Include="User\IUserAccountRelevanceStorager.cs" />
+    <Compile Include="User\IUserPwQuestionStorager.cs" />
+    <Compile Include="User\IUserRecordStorager.cs" />
+    <Compile Include="User\IUserStateStorager.cs" />
+    <Compile Include="User\IUserStorager.cs" />
+    <Compile Include="User\IUserVerifyStorager.cs" />
+    <Compile Include="User\IUserWXStorager.cs" />
+    <Compile Include="User\IValidateCodeStorager.cs" />
+    <Compile Include="Weixin\ICustomerServiceMessageStorager.cs" />
+    <Compile Include="Weixin\IRedPackStorager.cs" />
+    <Compile Include="Weixin\IWeixinMerchantStorager.cs" />
+    <Compile Include="_DbSession.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Vcyber.BLMS.Common\Vcyber.BLMS.Common.csproj">
+      <Project>{47cfcbbd-d6cc-48c6-83ad-962350d42ac8}</Project>
+      <Name>Vcyber.BLMS.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcyber.BLMS.Entity\Vcyber.BLMS.Entity.csproj">
+      <Project>{197fd01d-355d-485d-b6e0-7b4a2940d2aa}</Project>
+      <Name>Vcyber.BLMS.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

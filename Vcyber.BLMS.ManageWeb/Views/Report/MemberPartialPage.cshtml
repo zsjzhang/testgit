@@ -1,0 +1,138 @@
+﻿@model List<Vcyber.BLMS.Entity.MemberReportInfo>
+@using Vcyber.BLMS.Entity.Enum;
+@using Vcyber.BLMS.Common;
+@using Vcyber.BLMS.ManageWeb.Helper;
+<head>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+            }
+            }
+                catch(e){
+                top.location.href = window.location.href;
+            }
+    </script>
+</head>
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+<div class="data-container" style="padding-top:30px">
+    <table class="table table-bordered">
+        <thead>
+            <tr class="l1">
+                <th>序号</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>用户名</th>
+                <th>年龄</th>
+                <th>会员等级</th>
+                <th>身份证号</th>
+                <th>手机号</th>
+                <th>车型</th>
+                <th>车架号</th>
+                <th>购车时间</th>
+                <th>购车店代码</th>
+                <th>购车店名称</th>
+                <th>购车区域</th>
+                <th>办事处</th>
+                <th>注册时间</th>
+                <th>成为会员时间</th>
+                <th>银卡申请状态</th>
+                <th>申请渠道</th>
+                <th>支付方式</th>
+                <th>缴费经销商</th>
+                <th>市</th>
+                <th width="150">地址</th>
+                <th>邮箱</th>
+                <th>出生日期</th>
+                <th>兴趣爱好</th>
+
+            </tr>
+        <thead>
+            @{int count = 0;}
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@{int value = ++count;}@value</td>
+                    <td>@item.RealName</td>
+                    <td>@{string genderName = item.Gender == 1 ? "男" : "女";}@genderName</td>
+                    <td>@item.NickName</td>
+                    <td>@item.Age</td>
+                    <td>@item.MLevelName</td>
+                    <td>@item.IdentityNumber</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>@item.CarCategory</td>
+                    <td>@item.VIN</td>
+                    <td>@{string buyTime = item.BuyTime == DateTime.MinValue ? "" : item.BuyTime.ToString();}@buyTime</td>
+                    <td>@item.DealerId</td>
+                    <td>@item.DealerName</td>
+                    <td>@item.BuyingArea</td>
+                    <td>@item.BuyingRegion</td>
+                    <td>@{string registerTime = item.RegisterTime == DateTime.MinValue ? "" : item.RegisterTime.ToString();}@registerTime</td>
+                    <td>@item.MemberTime</td>
+                    <td>@item.YKStatusName</td>
+                    <td>@item.SDataSourceName</td>
+                    <td>@{string payModeName = item.IsPay == "0" ? "" : string.IsNullOrEmpty(item.PayNumber) ? "4S店支付" : "天猫支付";}@payModeName</td>
+                    <td>@item.PayDealerName</td>
+                    <td>@item.City</td>
+                    <td width="150">@item.Address</td>
+                    <td>@item.Email</td>
+                    <td>@item.Birthday</td>
+                    <td>@item.Interest</td>
+                </tr>
+            }
+        <tbody>
+    </table>
+</div>
+<div class="box_a2">
+    <div class="pagbox">
+        <span>共@{@ViewBag.Total}条</span>
+        <a href="javascript:void(0);" onclick="GetPageList(1)">首页</a>
+        <a href="javascript:void(0);" onclick="ShowPages('Pre')"><<</a>
+        <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.PrePage)">上一页</a>
+        @{
+            int PageIndex = (int)ViewBag.PageIndex;
+            int PageCurrentGroup = (int)(PageIndex / 10);
+        }
+        @*@for (int i = 1; i <= (int)ViewBag.EndPage; i++)
+        {
+            if ((i < PageCurrentGroup * 10) || (i >= (PageCurrentGroup + 1) * 10))
+            {
+                <a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)" style="display:none;">@i</a>
+            }
+            else
+            {
+                if (i == (int)ViewBag.PageIndex)
+                {<a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)" style="color: blue">@i</a> }
+                else
+                {<a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)">@i</a> }
+            }
+        }*@
+        <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.NextPage, 10)">下一页</a>
+        <a href="javascript:void(0);" onclick="ShowPages('Next')">>></a>
+        <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.EndPage, 10)">尾页</a>
+    </div>
+</div>
+<input type="hidden" autocomplete="off" id="hidCurrentPage" value="@ViewBag.PageIndex" />
+<input type="hidden" autocomplete="off" id="hidEndPage" value="@ViewBag.EndPage" />
+<input type="hidden" autocomplete="off" id="hidCurrentGroup" value="@PageCurrentGroup" />
+

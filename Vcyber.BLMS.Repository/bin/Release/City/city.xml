@@ -1,0 +1,3063 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Cities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <City>
+    <ID>33</ID>
+    <code>110000</code>
+    <letter>B</letter>
+    <name>北京市</name>
+    <Provincecode>110000</Provincecode>
+    <EnName>Beijing Shi</EnName>
+    <ShortName>BJ</ShortName>
+  </City>
+  <City>
+    <ID>35</ID>
+    <code>120000</code>
+    <letter>T</letter>
+    <name>天津市</name>
+    <Provincecode>120000</Provincecode>
+    <EnName>Tianjin Shi</EnName>
+    <ShortName>TJ</ShortName>
+  </City>
+  <City>
+    <ID>37</ID>
+    <code>130100</code>
+    <letter>S</letter>
+    <name>石家庄市</name>
+    <Provincecode>130000</Provincecode>
+    <EnName>Shijiazhuang Shi</EnName>
+    <ShortName>SJW</ShortName>
+  </City>
+  <City>
+    <ID>38</ID>
+    <code>130200</code>
+    <letter>T</letter>
+    <name>唐山市</name>
+    <Provincecode>130000</Provincecode>
+    <EnName>Tangshan Shi</EnName>
+    <ShortName>TGS</ShortName>
+  </City>
+  <City>
+    <ID>39</ID>
+    <code>130300</code>
+    <letter>Q</letter>
+    <name>秦皇岛市</name>
+    <Provincecode>130000</Provincecode>
+    <EnName>Qinhuangdao Shi</EnName>
+    <ShortName>SHP</ShortName>
+  </City>
+  <City>
+    <ID>40</ID>
+    <code>130400</code>
+    <letter>H</letter>
+    <name>邯郸市</name>
+    <Provincecode>130000</Provincecode>
+    <EnName>Handan Shi</EnName>
+    <ShortName>HDS</ShortName>
+  </City>
+  <City>
+    <ID>41</ID>
+    <code>130500</code>
+    <letter>X</letter>
+    <name>邢台市</name>
+    <Provincecode>130000</Provincecode>
+    <EnName>Xingtai Shi</EnName>
+    <ShortName>XTS</ShortName>
+  </City>
+  <City>
+    <ID>42</ID>
+    <code>130600</code>
+    <letter>B</letter>
+    <name>保定市</name>
+    <Provincecode>130000</Provincecode>
+    <EnName>Baoding Shi</EnName>
+    <ShortName>BDS</ShortName>
+  </City>
+  <City>
+    <ID>43</ID>
+    <code>130700</code>
+    <letter>Z</letter>
+    <name>张家口市</name>
+    <Provincecode>130000</Provincecode>
+    <EnName>Zhangjiakou Shi </EnName>
+    <ShortName>ZJK</ShortName>
+  </City>
+  <City>
+    <ID>44</ID>
+    <code>130800</code>
+    <letter>C</letter>
+    <name>承德市</name>
+    <Provincecode>130000</Provincecode>
+    <EnName>Chengde Shi</EnName>
+    <ShortName>CDS</ShortName>
+  </City>
+  <City>
+    <ID>45</ID>
+    <code>130900</code>
+    <letter>C</letter>
+    <name>沧州市</name>
+    <Provincecode>130000</Provincecode>
+    <EnName>Cangzhou Shi</EnName>
+    <ShortName>CGZ</ShortName>
+  </City>
+  <City>
+    <ID>46</ID>
+    <code>131000</code>
+    <letter>L</letter>
+    <name>廊坊市</name>
+    <Provincecode>130000</Provincecode>
+    <EnName>Langfang Shi</EnName>
+    <ShortName>LFS</ShortName>
+  </City>
+  <City>
+    <ID>47</ID>
+    <code>131100</code>
+    <letter>H</letter>
+    <name>衡水市</name>
+    <Provincecode>130000</Provincecode>
+    <EnName>Hengshui Shi </EnName>
+    <ShortName>HGS</ShortName>
+  </City>
+  <City>
+    <ID>48</ID>
+    <code>140100</code>
+    <letter>T</letter>
+    <name>太原市</name>
+    <Provincecode>140000</Provincecode>
+    <EnName>Taiyuan Shi</EnName>
+    <ShortName>TYN</ShortName>
+  </City>
+  <City>
+    <ID>49</ID>
+    <code>140200</code>
+    <letter>D</letter>
+    <name>大同市</name>
+    <Provincecode>140000</Provincecode>
+    <EnName>Datong Shi </EnName>
+    <ShortName>DTG</ShortName>
+  </City>
+  <City>
+    <ID>50</ID>
+    <code>140300</code>
+    <letter>Y</letter>
+    <name>阳泉市</name>
+    <Provincecode>140000</Provincecode>
+    <EnName>Yangquan Shi</EnName>
+    <ShortName>YQS</ShortName>
+  </City>
+  <City>
+    <ID>51</ID>
+    <code>140400</code>
+    <letter>C</letter>
+    <name>长治市</name>
+    <Provincecode>140000</Provincecode>
+    <EnName>Changzhi Shi</EnName>
+    <ShortName>CZS</ShortName>
+  </City>
+  <City>
+    <ID>52</ID>
+    <code>140500</code>
+    <letter>J</letter>
+    <name>晋城市</name>
+    <Provincecode>140000</Provincecode>
+    <EnName>Jincheng Shi </EnName>
+    <ShortName>JCG</ShortName>
+  </City>
+  <City>
+    <ID>53</ID>
+    <code>140600</code>
+    <letter>S</letter>
+    <name>朔州市</name>
+    <Provincecode>140000</Provincecode>
+    <EnName>Shuozhou Shi </EnName>
+    <ShortName>SZJ</ShortName>
+  </City>
+  <City>
+    <ID>54</ID>
+    <code>140700</code>
+    <letter>J</letter>
+    <name>晋中市</name>
+    <Provincecode>140000</Provincecode>
+    <EnName>Jinzhong Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>55</ID>
+    <code>140800</code>
+    <letter>Y</letter>
+    <name>运城市</name>
+    <Provincecode>140000</Provincecode>
+    <EnName>Yuncheng Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>56</ID>
+    <code>140900</code>
+    <letter>X</letter>
+    <name>忻州市</name>
+    <Provincecode>140000</Provincecode>
+    <EnName>Xinzhou Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>57</ID>
+    <code>141000</code>
+    <letter>L</letter>
+    <name>临汾市</name>
+    <Provincecode>140000</Provincecode>
+    <EnName>Linfen Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>58</ID>
+    <code>141100</code>
+    <letter>L</letter>
+    <name>吕梁市</name>
+    <Provincecode>140000</Provincecode>
+    <EnName>Lvliang Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>59</ID>
+    <code>150100</code>
+    <letter>H</letter>
+    <name>呼和浩特市</name>
+    <Provincecode>150000</Provincecode>
+    <EnName>Hohhot Shi</EnName>
+    <ShortName>Hhht</ShortName>
+  </City>
+  <City>
+    <ID>60</ID>
+    <code>150200</code>
+    <letter>B</letter>
+    <name>包头市</name>
+    <Provincecode>150000</Provincecode>
+    <EnName>Baotou Shi </EnName>
+    <ShortName>BTS</ShortName>
+  </City>
+  <City>
+    <ID>61</ID>
+    <code>150300</code>
+    <letter>W</letter>
+    <name>乌海市</name>
+    <Provincecode>150000</Provincecode>
+    <EnName>Wuhai Shi</EnName>
+    <ShortName>WHM</ShortName>
+  </City>
+  <City>
+    <ID>62</ID>
+    <code>150400</code>
+    <letter>C</letter>
+    <name>赤峰市</name>
+    <Provincecode>150000</Provincecode>
+    <EnName>Chifeng (Ulanhad)Shi</EnName>
+    <ShortName>CFS</ShortName>
+  </City>
+  <City>
+    <ID>63</ID>
+    <code>150500</code>
+    <letter>T</letter>
+    <name>通辽市</name>
+    <Provincecode>150000</Provincecode>
+    <EnName>Tongliao Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>64</ID>
+    <code>150600</code>
+    <letter>E</letter>
+    <name>鄂尔多斯市</name>
+    <Provincecode>150000</Provincecode>
+    <EnName>Eerduosi Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>65</ID>
+    <code>150700</code>
+    <letter>H</letter>
+    <name>呼伦贝尔市</name>
+    <Provincecode>150000</Provincecode>
+    <EnName>Hulunbeier Shi </EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>66</ID>
+    <code>150800</code>
+    <letter>B</letter>
+    <name>巴彦淖尔市</name>
+    <Provincecode>150000</Provincecode>
+    <EnName>Bayannaoer Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>67</ID>
+    <code>150900</code>
+    <letter>W</letter>
+    <name>乌兰察布市</name>
+    <Provincecode>150000</Provincecode>
+    <EnName>Wulanchabu Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>68</ID>
+    <code>152200</code>
+    <letter>X</letter>
+    <name>兴安盟</name>
+    <Provincecode>150000</Provincecode>
+    <EnName>Hinggan Meng</EnName>
+    <ShortName>HIN</ShortName>
+  </City>
+  <City>
+    <ID>69</ID>
+    <code>152500</code>
+    <letter>X</letter>
+    <name>锡林郭勒盟</name>
+    <Provincecode>150000</Provincecode>
+    <EnName>Xilin Gol Meng</EnName>
+    <ShortName>XGO</ShortName>
+  </City>
+  <City>
+    <ID>70</ID>
+    <code>152900</code>
+    <letter>A</letter>
+    <name>阿拉善盟</name>
+    <Provincecode>150000</Provincecode>
+    <EnName>Alxa Meng</EnName>
+    <ShortName>ALM</ShortName>
+  </City>
+  <City>
+    <ID>71</ID>
+    <code>210100</code>
+    <letter>S</letter>
+    <name>沈阳市</name>
+    <Provincecode>210000</Provincecode>
+    <EnName>Shenyang Shi</EnName>
+    <ShortName>SHE</ShortName>
+  </City>
+  <City>
+    <ID>72</ID>
+    <code>210200</code>
+    <letter>D</letter>
+    <name>大连市</name>
+    <Provincecode>210000</Provincecode>
+    <EnName>Dalian Shi</EnName>
+    <ShortName>DLC</ShortName>
+  </City>
+  <City>
+    <ID>73</ID>
+    <code>210300</code>
+    <letter>A</letter>
+    <name>鞍山市</name>
+    <Provincecode>210000</Provincecode>
+    <EnName>AnShan Shi</EnName>
+    <ShortName>ASN</ShortName>
+  </City>
+  <City>
+    <ID>74</ID>
+    <code>210400</code>
+    <letter>F</letter>
+    <name>抚顺市</name>
+    <Provincecode>210000</Provincecode>
+    <EnName>Fushun Shi</EnName>
+    <ShortName>FSN</ShortName>
+  </City>
+  <City>
+    <ID>75</ID>
+    <code>210500</code>
+    <letter>B</letter>
+    <name>本溪市</name>
+    <Provincecode>210000</Provincecode>
+    <EnName>Benxi Shi</EnName>
+    <ShortName>BXS</ShortName>
+  </City>
+  <City>
+    <ID>76</ID>
+    <code>210600</code>
+    <letter>D</letter>
+    <name>丹东市</name>
+    <Provincecode>210000</Provincecode>
+    <EnName>Dandong Shi</EnName>
+    <ShortName>DDG</ShortName>
+  </City>
+  <City>
+    <ID>77</ID>
+    <code>210700</code>
+    <letter>J</letter>
+    <name>锦州市</name>
+    <Provincecode>210000</Provincecode>
+    <EnName>Jinzhou Shi</EnName>
+    <ShortName>JNZ</ShortName>
+  </City>
+  <City>
+    <ID>78</ID>
+    <code>210800</code>
+    <letter>Y</letter>
+    <name>营口市</name>
+    <Provincecode>210000</Provincecode>
+    <EnName>Yingkou Shi</EnName>
+    <ShortName>YIK</ShortName>
+  </City>
+  <City>
+    <ID>79</ID>
+    <code>210900</code>
+    <letter>F</letter>
+    <name>阜新市</name>
+    <Provincecode>210000</Provincecode>
+    <EnName>Fuxin Shi</EnName>
+    <ShortName>FXS</ShortName>
+  </City>
+  <City>
+    <ID>80</ID>
+    <code>211000</code>
+    <letter>L</letter>
+    <name>辽阳市</name>
+    <Provincecode>210000</Provincecode>
+    <EnName>Liaoyang Shi</EnName>
+    <ShortName>LYL</ShortName>
+  </City>
+  <City>
+    <ID>81</ID>
+    <code>211100</code>
+    <letter>P</letter>
+    <name>盘锦市</name>
+    <Provincecode>210000</Provincecode>
+    <EnName>Panjin Shi</EnName>
+    <ShortName>PJS</ShortName>
+  </City>
+  <City>
+    <ID>82</ID>
+    <code>211200</code>
+    <letter>T</letter>
+    <name>铁岭市</name>
+    <Provincecode>210000</Provincecode>
+    <EnName>Tieling Shi</EnName>
+    <ShortName>TLS</ShortName>
+  </City>
+  <City>
+    <ID>83</ID>
+    <code>211300</code>
+    <letter>C</letter>
+    <name>朝阳市</name>
+    <Provincecode>210000</Provincecode>
+    <EnName>Chaoyang Shi</EnName>
+    <ShortName>CYS</ShortName>
+  </City>
+  <City>
+    <ID>84</ID>
+    <code>211400</code>
+    <letter>H</letter>
+    <name>葫芦岛市</name>
+    <Provincecode>210000</Provincecode>
+    <EnName>Huludao Shi</EnName>
+    <ShortName>HLD</ShortName>
+  </City>
+  <City>
+    <ID>85</ID>
+    <code>220100</code>
+    <letter>C</letter>
+    <name>长春市</name>
+    <Provincecode>220000</Provincecode>
+    <EnName>Changchun Shi </EnName>
+    <ShortName>CGQ</ShortName>
+  </City>
+  <City>
+    <ID>86</ID>
+    <code>220200</code>
+    <letter>J</letter>
+    <name>吉林市</name>
+    <Provincecode>220000</Provincecode>
+    <EnName>Jilin Shi </EnName>
+    <ShortName>JLS</ShortName>
+  </City>
+  <City>
+    <ID>87</ID>
+    <code>220300</code>
+    <letter>S</letter>
+    <name>四平市</name>
+    <Provincecode>220000</Provincecode>
+    <EnName>Siping Shi</EnName>
+    <ShortName>SPS</ShortName>
+  </City>
+  <City>
+    <ID>88</ID>
+    <code>220400</code>
+    <letter>L</letter>
+    <name>辽源市</name>
+    <Provincecode>220000</Provincecode>
+    <EnName>Liaoyuan Shi</EnName>
+    <ShortName>LYH</ShortName>
+  </City>
+  <City>
+    <ID>89</ID>
+    <code>220500</code>
+    <letter>T</letter>
+    <name>通化市</name>
+    <Provincecode>220000</Provincecode>
+    <EnName>Tonghua Shi</EnName>
+    <ShortName>THS</ShortName>
+  </City>
+  <City>
+    <ID>90</ID>
+    <code>220600</code>
+    <letter>B</letter>
+    <name>白山市</name>
+    <Provincecode>220000</Provincecode>
+    <EnName>Baishan Shi</EnName>
+    <ShortName>BSN</ShortName>
+  </City>
+  <City>
+    <ID>91</ID>
+    <code>220700</code>
+    <letter>S</letter>
+    <name>松原市</name>
+    <Provincecode>220000</Provincecode>
+    <EnName>Songyuan Shi</EnName>
+    <ShortName>SYU</ShortName>
+  </City>
+  <City>
+    <ID>92</ID>
+    <code>220800</code>
+    <letter>B</letter>
+    <name>白城市</name>
+    <Provincecode>220000</Provincecode>
+    <EnName>Baicheng Shi</EnName>
+    <ShortName>BCS</ShortName>
+  </City>
+  <City>
+    <ID>93</ID>
+    <code>222400</code>
+    <letter>Y</letter>
+    <name>延边朝鲜族自治州</name>
+    <Provincecode>220000</Provincecode>
+    <EnName>Yanbian Chosenzu Zizhizhou</EnName>
+    <ShortName>YBZ</ShortName>
+  </City>
+  <City>
+    <ID>94</ID>
+    <code>230100</code>
+    <letter>H</letter>
+    <name>哈尔滨市</name>
+    <Provincecode>230000</Provincecode>
+    <EnName>Harbin Shi</EnName>
+    <ShortName>HRB</ShortName>
+  </City>
+  <City>
+    <ID>95</ID>
+    <code>230200</code>
+    <letter>Q</letter>
+    <name>齐齐哈尔市</name>
+    <Provincecode>230000</Provincecode>
+    <EnName>Qiqihar Shi</EnName>
+    <ShortName>NDG</ShortName>
+  </City>
+  <City>
+    <ID>96</ID>
+    <code>230300</code>
+    <letter>J</letter>
+    <name>鸡西市</name>
+    <Provincecode>230000</Provincecode>
+    <EnName>Jixi Shi</EnName>
+    <ShortName>JXI</ShortName>
+  </City>
+  <City>
+    <ID>97</ID>
+    <code>230400</code>
+    <letter>H</letter>
+    <name>鹤岗市</name>
+    <Provincecode>230000</Provincecode>
+    <EnName>Hegang Shi</EnName>
+    <ShortName>HEG</ShortName>
+  </City>
+  <City>
+    <ID>98</ID>
+    <code>230500</code>
+    <letter>S</letter>
+    <name>双鸭山市</name>
+    <Provincecode>230000</Provincecode>
+    <EnName>Shuangyashan Shi</EnName>
+    <ShortName>SYS</ShortName>
+  </City>
+  <City>
+    <ID>99</ID>
+    <code>230600</code>
+    <letter>D</letter>
+    <name>大庆市</name>
+    <Provincecode>230000</Provincecode>
+    <EnName>Daqing Shi</EnName>
+    <ShortName>DQG</ShortName>
+  </City>
+  <City>
+    <ID>100</ID>
+    <code>230700</code>
+    <letter>Y</letter>
+    <name>伊春市</name>
+    <Provincecode>230000</Provincecode>
+    <EnName>Yichun Shi</EnName>
+    <ShortName>YCH</ShortName>
+  </City>
+  <City>
+    <ID>101</ID>
+    <code>230800</code>
+    <letter>J</letter>
+    <name>佳木斯市</name>
+    <Provincecode>230000</Provincecode>
+    <EnName>Jiamusi Shi</EnName>
+    <ShortName>JMU</ShortName>
+  </City>
+  <City>
+    <ID>102</ID>
+    <code>230900</code>
+    <letter>Q</letter>
+    <name>七台河市</name>
+    <Provincecode>230000</Provincecode>
+    <EnName>Qitaihe Shi</EnName>
+    <ShortName>QTH</ShortName>
+  </City>
+  <City>
+    <ID>103</ID>
+    <code>231000</code>
+    <letter>M</letter>
+    <name>牡丹江市</name>
+    <Provincecode>230000</Provincecode>
+    <EnName>Mudanjiang Shi</EnName>
+    <ShortName>MDG</ShortName>
+  </City>
+  <City>
+    <ID>104</ID>
+    <code>231100</code>
+    <letter>H</letter>
+    <name>黑河市</name>
+    <Provincecode>230000</Provincecode>
+    <EnName>Heihe Shi</EnName>
+    <ShortName>HEK</ShortName>
+  </City>
+  <City>
+    <ID>105</ID>
+    <code>231200</code>
+    <letter>S</letter>
+    <name>绥化市</name>
+    <Provincecode>230000</Provincecode>
+    <EnName>Suihua Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>106</ID>
+    <code>232700</code>
+    <letter>D</letter>
+    <name>大兴安岭地区</name>
+    <Provincecode>230000</Provincecode>
+    <EnName>Da Hinggan Ling Diqu</EnName>
+    <ShortName>DHL</ShortName>
+  </City>
+  <City>
+    <ID>107</ID>
+    <code>310000</code>
+    <letter>S</letter>
+    <name>上海市</name>
+    <Provincecode>310000</Provincecode>
+    <EnName>Shanghai Shi</EnName>
+    <ShortName>SH</ShortName>
+  </City>
+  <City>
+    <ID>109</ID>
+    <code>320100</code>
+    <letter>N</letter>
+    <name>南京市</name>
+    <Provincecode>320000</Provincecode>
+    <EnName>Nanjing Shi</EnName>
+    <ShortName>NKG</ShortName>
+  </City>
+  <City>
+    <ID>110</ID>
+    <code>320200</code>
+    <letter>W</letter>
+    <name>无锡市</name>
+    <Provincecode>320000</Provincecode>
+    <EnName>Wuxi Shi</EnName>
+    <ShortName>WUX</ShortName>
+  </City>
+  <City>
+    <ID>111</ID>
+    <code>320300</code>
+    <letter>X</letter>
+    <name>徐州市</name>
+    <Provincecode>320000</Provincecode>
+    <EnName>Xuzhou Shi</EnName>
+    <ShortName>XUZ</ShortName>
+  </City>
+  <City>
+    <ID>112</ID>
+    <code>320400</code>
+    <letter>C</letter>
+    <name>常州市</name>
+    <Provincecode>320000</Provincecode>
+    <EnName>Changzhou Shi</EnName>
+    <ShortName>CZX</ShortName>
+  </City>
+  <City>
+    <ID>113</ID>
+    <code>320500</code>
+    <letter>S</letter>
+    <name>苏州市</name>
+    <Provincecode>320000</Provincecode>
+    <EnName>Suzhou Shi</EnName>
+    <ShortName>SZH</ShortName>
+  </City>
+  <City>
+    <ID>114</ID>
+    <code>320600</code>
+    <letter>N</letter>
+    <name>南通市</name>
+    <Provincecode>320000</Provincecode>
+    <EnName>Nantong Shi</EnName>
+    <ShortName>NTG</ShortName>
+  </City>
+  <City>
+    <ID>115</ID>
+    <code>320700</code>
+    <letter>L</letter>
+    <name>连云港市</name>
+    <Provincecode>320000</Provincecode>
+    <EnName>Lianyungang Shi</EnName>
+    <ShortName>LYG</ShortName>
+  </City>
+  <City>
+    <ID>116</ID>
+    <code>320800</code>
+    <letter>H</letter>
+    <name>淮安市</name>
+    <Provincecode>320000</Provincecode>
+    <EnName>Huai,an Xian</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>117</ID>
+    <code>320900</code>
+    <letter>Y</letter>
+    <name>盐城市</name>
+    <Provincecode>320000</Provincecode>
+    <EnName>Yancheng Shi</EnName>
+    <ShortName>YCK</ShortName>
+  </City>
+  <City>
+    <ID>118</ID>
+    <code>321000</code>
+    <letter>Y</letter>
+    <name>扬州市</name>
+    <Provincecode>320000</Provincecode>
+    <EnName>Yangzhou Shi</EnName>
+    <ShortName>YZH</ShortName>
+  </City>
+  <City>
+    <ID>119</ID>
+    <code>321100</code>
+    <letter>Z</letter>
+    <name>镇江市</name>
+    <Provincecode>320000</Provincecode>
+    <EnName>Zhenjiang Shi</EnName>
+    <ShortName>ZHE</ShortName>
+  </City>
+  <City>
+    <ID>120</ID>
+    <code>321200</code>
+    <letter>T</letter>
+    <name>泰州市</name>
+    <Provincecode>320000</Provincecode>
+    <EnName>Taizhou Shi</EnName>
+    <ShortName>TZS</ShortName>
+  </City>
+  <City>
+    <ID>121</ID>
+    <code>321300</code>
+    <letter>S</letter>
+    <name>宿迁市</name>
+    <Provincecode>320000</Provincecode>
+    <EnName>Suqian Shi</EnName>
+    <ShortName>SUQ</ShortName>
+  </City>
+  <City>
+    <ID>122</ID>
+    <code>330100</code>
+    <letter>H</letter>
+    <name>杭州市</name>
+    <Provincecode>330000</Provincecode>
+    <EnName>Hangzhou Shi</EnName>
+    <ShortName>HGH</ShortName>
+  </City>
+  <City>
+    <ID>123</ID>
+    <code>330200</code>
+    <letter>N</letter>
+    <name>宁波市</name>
+    <Provincecode>330000</Provincecode>
+    <EnName>Ningbo Shi</EnName>
+    <ShortName>NGB</ShortName>
+  </City>
+  <City>
+    <ID>124</ID>
+    <code>330300</code>
+    <letter>W</letter>
+    <name>温州市</name>
+    <Provincecode>330000</Provincecode>
+    <EnName>Wenzhou Shi</EnName>
+    <ShortName>WNZ</ShortName>
+  </City>
+  <City>
+    <ID>125</ID>
+    <code>330400</code>
+    <letter>J</letter>
+    <name>嘉兴市</name>
+    <Provincecode>330000</Provincecode>
+    <EnName>Jiaxing Shi</EnName>
+    <ShortName>JIX</ShortName>
+  </City>
+  <City>
+    <ID>126</ID>
+    <code>330500</code>
+    <letter>H</letter>
+    <name>湖州市</name>
+    <Provincecode>330000</Provincecode>
+    <EnName>Huzhou Shi </EnName>
+    <ShortName>HZH</ShortName>
+  </City>
+  <City>
+    <ID>127</ID>
+    <code>330600</code>
+    <letter>S</letter>
+    <name>绍兴市</name>
+    <Provincecode>330000</Provincecode>
+    <EnName>Shaoxing Shi</EnName>
+    <ShortName>SXG</ShortName>
+  </City>
+  <City>
+    <ID>128</ID>
+    <code>330700</code>
+    <letter>J</letter>
+    <name>金华市</name>
+    <Provincecode>330000</Provincecode>
+    <EnName>Jinhua Shi</EnName>
+    <ShortName>JHA</ShortName>
+  </City>
+  <City>
+    <ID>129</ID>
+    <code>330800</code>
+    <letter>Q</letter>
+    <name>衢州市</name>
+    <Provincecode>330000</Provincecode>
+    <EnName>Quzhou Shi</EnName>
+    <ShortName>QUZ</ShortName>
+  </City>
+  <City>
+    <ID>130</ID>
+    <code>330900</code>
+    <letter>Z</letter>
+    <name>舟山市</name>
+    <Provincecode>330000</Provincecode>
+    <EnName>Zhoushan Shi</EnName>
+    <ShortName>ZOS</ShortName>
+  </City>
+  <City>
+    <ID>131</ID>
+    <code>331000</code>
+    <letter>T</letter>
+    <name>台州市</name>
+    <Provincecode>330000</Provincecode>
+    <EnName>Taizhou Shi</EnName>
+    <ShortName>TZZ</ShortName>
+  </City>
+  <City>
+    <ID>132</ID>
+    <code>331100</code>
+    <letter>L</letter>
+    <name>丽水市</name>
+    <Provincecode>330000</Provincecode>
+    <EnName>Lishui Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>133</ID>
+    <code>340100</code>
+    <letter>H</letter>
+    <name>合肥市</name>
+    <Provincecode>340000</Provincecode>
+    <EnName>Hefei Shi</EnName>
+    <ShortName>HFE</ShortName>
+  </City>
+  <City>
+    <ID>134</ID>
+    <code>340200</code>
+    <letter>W</letter>
+    <name>芜湖市</name>
+    <Provincecode>340000</Provincecode>
+    <EnName>Wuhu Shi</EnName>
+    <ShortName>WHI</ShortName>
+  </City>
+  <City>
+    <ID>135</ID>
+    <code>340300</code>
+    <letter>B</letter>
+    <name>蚌埠市</name>
+    <Provincecode>340000</Provincecode>
+    <EnName>Bengbu Shi</EnName>
+    <ShortName>BBU</ShortName>
+  </City>
+  <City>
+    <ID>136</ID>
+    <code>340400</code>
+    <letter>H</letter>
+    <name>淮南市</name>
+    <Provincecode>340000</Provincecode>
+    <EnName>Huainan Shi</EnName>
+    <ShortName>HNS</ShortName>
+  </City>
+  <City>
+    <ID>137</ID>
+    <code>340500</code>
+    <letter>M</letter>
+    <name>马鞍山市</name>
+    <Provincecode>340000</Provincecode>
+    <EnName>Ma,anshan Shi</EnName>
+    <ShortName>MAA</ShortName>
+  </City>
+  <City>
+    <ID>138</ID>
+    <code>340600</code>
+    <letter>H</letter>
+    <name>淮北市</name>
+    <Provincecode>340000</Provincecode>
+    <EnName>Huaibei Shi</EnName>
+    <ShortName>HBE</ShortName>
+  </City>
+  <City>
+    <ID>139</ID>
+    <code>340700</code>
+    <letter>T</letter>
+    <name>铜陵市</name>
+    <Provincecode>340000</Provincecode>
+    <EnName>Tongling Shi</EnName>
+    <ShortName>TOL</ShortName>
+  </City>
+  <City>
+    <ID>140</ID>
+    <code>340800</code>
+    <letter>A</letter>
+    <name>安庆市</name>
+    <Provincecode>340000</Provincecode>
+    <EnName>Anqing Shi</EnName>
+    <ShortName>AQG</ShortName>
+  </City>
+  <City>
+    <ID>141</ID>
+    <code>341000</code>
+    <letter>H</letter>
+    <name>黄山市</name>
+    <Provincecode>340000</Provincecode>
+    <EnName>Huangshan Shi</EnName>
+    <ShortName>HSN</ShortName>
+  </City>
+  <City>
+    <ID>142</ID>
+    <code>341100</code>
+    <letter>C</letter>
+    <name>滁州市</name>
+    <Provincecode>340000</Provincecode>
+    <EnName>Chuzhou Shi</EnName>
+    <ShortName>CUZ</ShortName>
+  </City>
+  <City>
+    <ID>143</ID>
+    <code>341200</code>
+    <letter>F</letter>
+    <name>阜阳市</name>
+    <Provincecode>340000</Provincecode>
+    <EnName>Fuyang Shi</EnName>
+    <ShortName>FYS</ShortName>
+  </City>
+  <City>
+    <ID>144</ID>
+    <code>341300</code>
+    <letter>S</letter>
+    <name>宿州市</name>
+    <Provincecode>340000</Provincecode>
+    <EnName>Suzhou Shi</EnName>
+    <ShortName>SUZ</ShortName>
+  </City>
+  <City>
+    <ID>145</ID>
+    <code>341400</code>
+    <letter>C</letter>
+    <name>巢湖市</name>
+    <Provincecode>340000</Provincecode>
+    <EnName>Chaohu Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>146</ID>
+    <code>341500</code>
+    <letter>L</letter>
+    <name>六安市</name>
+    <Provincecode>340000</Provincecode>
+    <EnName>Liu,an Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>147</ID>
+    <code>341600</code>
+    <letter>H</letter>
+    <name>亳州市</name>
+    <Provincecode>340000</Provincecode>
+    <EnName>Bozhou Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>148</ID>
+    <code>341700</code>
+    <letter>C</letter>
+    <name>池州市</name>
+    <Provincecode>340000</Provincecode>
+    <EnName>Chizhou Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>149</ID>
+    <code>341800</code>
+    <letter>X</letter>
+    <name>宣城市</name>
+    <Provincecode>340000</Provincecode>
+    <EnName>Xuancheng Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>150</ID>
+    <code>350100</code>
+    <letter>F</letter>
+    <name>福州市</name>
+    <Provincecode>350000</Provincecode>
+    <EnName>Fuzhou Shi</EnName>
+    <ShortName>FOC</ShortName>
+  </City>
+  <City>
+    <ID>151</ID>
+    <code>350200</code>
+    <letter>X</letter>
+    <name>厦门市</name>
+    <Provincecode>350000</Provincecode>
+    <EnName>Xiamen Shi</EnName>
+    <ShortName>XMN</ShortName>
+  </City>
+  <City>
+    <ID>152</ID>
+    <code>350300</code>
+    <letter>P</letter>
+    <name>莆田市</name>
+    <Provincecode>350000</Provincecode>
+    <EnName>Putian Shi</EnName>
+    <ShortName>PUT</ShortName>
+  </City>
+  <City>
+    <ID>153</ID>
+    <code>350400</code>
+    <letter>S</letter>
+    <name>三明市</name>
+    <Provincecode>350000</Provincecode>
+    <EnName>Sanming Shi</EnName>
+    <ShortName>SMS</ShortName>
+  </City>
+  <City>
+    <ID>154</ID>
+    <code>350500</code>
+    <letter>Q</letter>
+    <name>泉州市</name>
+    <Provincecode>350000</Provincecode>
+    <EnName>Quanzhou Shi</EnName>
+    <ShortName>QZJ</ShortName>
+  </City>
+  <City>
+    <ID>155</ID>
+    <code>350600</code>
+    <letter>Z</letter>
+    <name>漳州市</name>
+    <Provincecode>350000</Provincecode>
+    <EnName>Zhangzhou Shi</EnName>
+    <ShortName>ZZU</ShortName>
+  </City>
+  <City>
+    <ID>156</ID>
+    <code>350700</code>
+    <letter>N</letter>
+    <name>南平市</name>
+    <Provincecode>350000</Provincecode>
+    <EnName>Nanping Shi</EnName>
+    <ShortName>NPS</ShortName>
+  </City>
+  <City>
+    <ID>157</ID>
+    <code>350800</code>
+    <letter>L</letter>
+    <name>龙岩市</name>
+    <Provincecode>350000</Provincecode>
+    <EnName>Longyan Shi</EnName>
+    <ShortName>LYF</ShortName>
+  </City>
+  <City>
+    <ID>158</ID>
+    <code>350900</code>
+    <letter>N</letter>
+    <name>宁德市</name>
+    <Provincecode>350000</Provincecode>
+    <EnName>Ningde Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>159</ID>
+    <code>360100</code>
+    <letter>N</letter>
+    <name>南昌市</name>
+    <Provincecode>360000</Provincecode>
+    <EnName>Nanchang Shi</EnName>
+    <ShortName>KHN</ShortName>
+  </City>
+  <City>
+    <ID>160</ID>
+    <code>360200</code>
+    <letter>J</letter>
+    <name>景德镇市</name>
+    <Provincecode>360000</Provincecode>
+    <EnName>Jingdezhen Shi</EnName>
+    <ShortName>JDZ</ShortName>
+  </City>
+  <City>
+    <ID>161</ID>
+    <code>360300</code>
+    <letter>P</letter>
+    <name>萍乡市</name>
+    <Provincecode>360000</Provincecode>
+    <EnName>Pingxiang Shi</EnName>
+    <ShortName>PXS</ShortName>
+  </City>
+  <City>
+    <ID>162</ID>
+    <code>360400</code>
+    <letter>J</letter>
+    <name>九江市</name>
+    <Provincecode>360000</Provincecode>
+    <EnName>Jiujiang Shi</EnName>
+    <ShortName>JIU</ShortName>
+  </City>
+  <City>
+    <ID>163</ID>
+    <code>360500</code>
+    <letter>X</letter>
+    <name>新余市</name>
+    <Provincecode>360000</Provincecode>
+    <EnName>Xinyu Shi</EnName>
+    <ShortName>XYU</ShortName>
+  </City>
+  <City>
+    <ID>164</ID>
+    <code>360600</code>
+    <letter>Y</letter>
+    <name>鹰潭市</name>
+    <Provincecode>360000</Provincecode>
+    <EnName>Yingtan Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>165</ID>
+    <code>360700</code>
+    <letter>G</letter>
+    <name>赣州市</name>
+    <Provincecode>360000</Provincecode>
+    <EnName>Ganzhou Shi</EnName>
+    <ShortName>GZH</ShortName>
+  </City>
+  <City>
+    <ID>166</ID>
+    <code>360800</code>
+    <letter>J</letter>
+    <name>吉安市</name>
+    <Provincecode>360000</Provincecode>
+    <EnName>Ji,an Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>167</ID>
+    <code>360900</code>
+    <letter>Y</letter>
+    <name>宜春市</name>
+    <Provincecode>360000</Provincecode>
+    <EnName>Yichun Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>168</ID>
+    <code>361000</code>
+    <letter>W</letter>
+    <name>抚州市</name>
+    <Provincecode>360000</Provincecode>
+    <EnName>Wuzhou Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>169</ID>
+    <code>361100</code>
+    <letter>S</letter>
+    <name>上饶市</name>
+    <Provincecode>360000</Provincecode>
+    <EnName>Shangrao Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>170</ID>
+    <code>370100</code>
+    <letter>J</letter>
+    <name>济南市</name>
+    <Provincecode>370000</Provincecode>
+    <EnName>Jinan Shi</EnName>
+    <ShortName>TNA</ShortName>
+  </City>
+  <City>
+    <ID>171</ID>
+    <code>370200</code>
+    <letter>Q</letter>
+    <name>青岛市</name>
+    <Provincecode>370000</Provincecode>
+    <EnName>Qingdao Shi</EnName>
+    <ShortName>TAO</ShortName>
+  </City>
+  <City>
+    <ID>172</ID>
+    <code>370300</code>
+    <letter>Z</letter>
+    <name>淄博市</name>
+    <Provincecode>370000</Provincecode>
+    <EnName>Zibo Shi</EnName>
+    <ShortName>ZBO</ShortName>
+  </City>
+  <City>
+    <ID>173</ID>
+    <code>370400</code>
+    <letter>Z</letter>
+    <name>枣庄市</name>
+    <Provincecode>370000</Provincecode>
+    <EnName>Zaozhuang Shi</EnName>
+    <ShortName>ZZG</ShortName>
+  </City>
+  <City>
+    <ID>174</ID>
+    <code>370500</code>
+    <letter>D</letter>
+    <name>东营市</name>
+    <Provincecode>370000</Provincecode>
+    <EnName>Dongying Shi</EnName>
+    <ShortName>DYG</ShortName>
+  </City>
+  <City>
+    <ID>175</ID>
+    <code>370600</code>
+    <letter>Y</letter>
+    <name>烟台市</name>
+    <Provincecode>370000</Provincecode>
+    <EnName>Yantai Shi</EnName>
+    <ShortName>YNT</ShortName>
+  </City>
+  <City>
+    <ID>176</ID>
+    <code>370700</code>
+    <letter>W</letter>
+    <name>潍坊市</name>
+    <Provincecode>370000</Provincecode>
+    <EnName>Weifang Shi</EnName>
+    <ShortName>WEF</ShortName>
+  </City>
+  <City>
+    <ID>177</ID>
+    <code>370800</code>
+    <letter>J</letter>
+    <name>济宁市</name>
+    <Provincecode>370000</Provincecode>
+    <EnName>Jining Shi</EnName>
+    <ShortName>JNG</ShortName>
+  </City>
+  <City>
+    <ID>178</ID>
+    <code>370900</code>
+    <letter>T</letter>
+    <name>泰安市</name>
+    <Provincecode>370000</Provincecode>
+    <EnName>Tai,an Shi</EnName>
+    <ShortName>TAI</ShortName>
+  </City>
+  <City>
+    <ID>179</ID>
+    <code>371000</code>
+    <letter>W</letter>
+    <name>威海市</name>
+    <Provincecode>370000</Provincecode>
+    <EnName>Weihai Shi</EnName>
+    <ShortName>WEH</ShortName>
+  </City>
+  <City>
+    <ID>180</ID>
+    <code>371100</code>
+    <letter>R</letter>
+    <name>日照市</name>
+    <Provincecode>370000</Provincecode>
+    <EnName>Rizhao Shi</EnName>
+    <ShortName>RZH</ShortName>
+  </City>
+  <City>
+    <ID>181</ID>
+    <code>371200</code>
+    <letter>L</letter>
+    <name>莱芜市</name>
+    <Provincecode>370000</Provincecode>
+    <EnName>Laiwu Shi</EnName>
+    <ShortName>LWS</ShortName>
+  </City>
+  <City>
+    <ID>182</ID>
+    <code>371300</code>
+    <letter>L</letter>
+    <name>临沂市</name>
+    <Provincecode>370000</Provincecode>
+    <EnName>Linyi Shi</EnName>
+    <ShortName>LYI</ShortName>
+  </City>
+  <City>
+    <ID>183</ID>
+    <code>371400</code>
+    <letter>D</letter>
+    <name>德州市</name>
+    <Provincecode>370000</Provincecode>
+    <EnName>Dezhou Shi</EnName>
+    <ShortName>DZS</ShortName>
+  </City>
+  <City>
+    <ID>184</ID>
+    <code>371500</code>
+    <letter>L</letter>
+    <name>聊城市</name>
+    <Provincecode>370000</Provincecode>
+    <EnName>Liaocheng Shi</EnName>
+    <ShortName>LCH</ShortName>
+  </City>
+  <City>
+    <ID>185</ID>
+    <code>371600</code>
+    <letter>B</letter>
+    <name>滨州市</name>
+    <Provincecode>370000</Provincecode>
+    <EnName>Binzhou Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>186</ID>
+    <code>371700</code>
+    <letter>H</letter>
+    <name>菏泽市</name>
+    <Provincecode>370000</Provincecode>
+    <EnName>Heze Shi</EnName>
+    <ShortName>HZ</ShortName>
+  </City>
+  <City>
+    <ID>187</ID>
+    <code>410100</code>
+    <letter>Z</letter>
+    <name>郑州市</name>
+    <Provincecode>410000</Provincecode>
+    <EnName>Zhengzhou Shi</EnName>
+    <ShortName>CGO</ShortName>
+  </City>
+  <City>
+    <ID>188</ID>
+    <code>410200</code>
+    <letter>K</letter>
+    <name>开封市</name>
+    <Provincecode>410000</Provincecode>
+    <EnName>Kaifeng Shi</EnName>
+    <ShortName>KFS</ShortName>
+  </City>
+  <City>
+    <ID>189</ID>
+    <code>410300</code>
+    <letter>L</letter>
+    <name>洛阳市</name>
+    <Provincecode>410000</Provincecode>
+    <EnName>Luoyang Shi</EnName>
+    <ShortName>LYA</ShortName>
+  </City>
+  <City>
+    <ID>190</ID>
+    <code>410400</code>
+    <letter>P</letter>
+    <name>平顶山市</name>
+    <Provincecode>410000</Provincecode>
+    <EnName>Pingdingshan Shi</EnName>
+    <ShortName>PDS</ShortName>
+  </City>
+  <City>
+    <ID>191</ID>
+    <code>410500</code>
+    <letter>A</letter>
+    <name>安阳市</name>
+    <Provincecode>410000</Provincecode>
+    <EnName>Anyang Shi</EnName>
+    <ShortName>AYS</ShortName>
+  </City>
+  <City>
+    <ID>192</ID>
+    <code>410600</code>
+    <letter>H</letter>
+    <name>鹤壁市</name>
+    <Provincecode>410000</Provincecode>
+    <EnName>Hebi Shi</EnName>
+    <ShortName>HBS</ShortName>
+  </City>
+  <City>
+    <ID>193</ID>
+    <code>410700</code>
+    <letter>X</letter>
+    <name>新乡市</name>
+    <Provincecode>410000</Provincecode>
+    <EnName>Xinxiang Shi</EnName>
+    <ShortName>XXS</ShortName>
+  </City>
+  <City>
+    <ID>194</ID>
+    <code>410800</code>
+    <letter>J</letter>
+    <name>焦作市</name>
+    <Provincecode>410000</Provincecode>
+    <EnName>Jiaozuo Shi</EnName>
+    <ShortName>JZY</ShortName>
+  </City>
+  <City>
+    <ID>195</ID>
+    <code>410900</code>
+    <letter>P</letter>
+    <name>濮阳市</name>
+    <Provincecode>410000</Provincecode>
+    <EnName>Puyang Shi</EnName>
+    <ShortName>PYS</ShortName>
+  </City>
+  <City>
+    <ID>196</ID>
+    <code>411000</code>
+    <letter>X</letter>
+    <name>许昌市</name>
+    <Provincecode>410000</Provincecode>
+    <EnName>Xuchang Shi</EnName>
+    <ShortName>XCS</ShortName>
+  </City>
+  <City>
+    <ID>197</ID>
+    <code>411100</code>
+    <letter>L</letter>
+    <name>漯河市</name>
+    <Provincecode>410000</Provincecode>
+    <EnName>Luohe Shi</EnName>
+    <ShortName>LHS</ShortName>
+  </City>
+  <City>
+    <ID>198</ID>
+    <code>411200</code>
+    <letter>S</letter>
+    <name>三门峡市</name>
+    <Provincecode>410000</Provincecode>
+    <EnName>Sanmenxia Shi</EnName>
+    <ShortName>SMX</ShortName>
+  </City>
+  <City>
+    <ID>199</ID>
+    <code>411300</code>
+    <letter>N</letter>
+    <name>南阳市</name>
+    <Provincecode>410000</Provincecode>
+    <EnName>Nanyang Shi</EnName>
+    <ShortName>NYS</ShortName>
+  </City>
+  <City>
+    <ID>200</ID>
+    <code>411400</code>
+    <letter>S</letter>
+    <name>商丘市</name>
+    <Provincecode>410000</Provincecode>
+    <EnName>Shangqiu Shi</EnName>
+    <ShortName>SQS</ShortName>
+  </City>
+  <City>
+    <ID>201</ID>
+    <code>411500</code>
+    <letter>X</letter>
+    <name>信阳市</name>
+    <Provincecode>410000</Provincecode>
+    <EnName>Xinyang Shi</EnName>
+    <ShortName>XYG</ShortName>
+  </City>
+  <City>
+    <ID>202</ID>
+    <code>411600</code>
+    <letter>Z</letter>
+    <name>周口市</name>
+    <Provincecode>410000</Provincecode>
+    <EnName>Zhoukou Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>203</ID>
+    <code>411700</code>
+    <letter>Z</letter>
+    <name>驻马店市</name>
+    <Provincecode>410000</Provincecode>
+    <EnName>Zhumadian Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>204</ID>
+    <code>420100</code>
+    <letter>W</letter>
+    <name>武汉市</name>
+    <Provincecode>420000</Provincecode>
+    <EnName>Wuhan Shi</EnName>
+    <ShortName>WUH</ShortName>
+  </City>
+  <City>
+    <ID>205</ID>
+    <code>420200</code>
+    <letter>H</letter>
+    <name>黄石市</name>
+    <Provincecode>420000</Provincecode>
+    <EnName>Huangshi Shi</EnName>
+    <ShortName>HIS</ShortName>
+  </City>
+  <City>
+    <ID>206</ID>
+    <code>420300</code>
+    <letter>S</letter>
+    <name>十堰市</name>
+    <Provincecode>420000</Provincecode>
+    <EnName>Shiyan Shi</EnName>
+    <ShortName>SYE</ShortName>
+  </City>
+  <City>
+    <ID>207</ID>
+    <code>420500</code>
+    <letter>Y</letter>
+    <name>宜昌市</name>
+    <Provincecode>420000</Provincecode>
+    <EnName>Yichang Shi</EnName>
+    <ShortName>YCO</ShortName>
+  </City>
+  <City>
+    <ID>208</ID>
+    <code>420600</code>
+    <letter>X</letter>
+    <name>襄樊市</name>
+    <Provincecode>420000</Provincecode>
+    <EnName>Xiangfan Shi</EnName>
+    <ShortName>XFN</ShortName>
+  </City>
+  <City>
+    <ID>209</ID>
+    <code>420700</code>
+    <letter>E</letter>
+    <name>鄂州市</name>
+    <Provincecode>420000</Provincecode>
+    <EnName>Ezhou Shi</EnName>
+    <ShortName>EZS</ShortName>
+  </City>
+  <City>
+    <ID>210</ID>
+    <code>420800</code>
+    <letter>J</letter>
+    <name>荆门市</name>
+    <Provincecode>420000</Provincecode>
+    <EnName>Jingmen Shi</EnName>
+    <ShortName>JMS</ShortName>
+  </City>
+  <City>
+    <ID>211</ID>
+    <code>420900</code>
+    <letter>X</letter>
+    <name>孝感市</name>
+    <Provincecode>420000</Provincecode>
+    <EnName>Xiaogan Shi</EnName>
+    <ShortName>XGE</ShortName>
+  </City>
+  <City>
+    <ID>212</ID>
+    <code>421000</code>
+    <letter>J</letter>
+    <name>荆州市</name>
+    <Provincecode>420000</Provincecode>
+    <EnName>Jingzhou Shi</EnName>
+    <ShortName>JGZ</ShortName>
+  </City>
+  <City>
+    <ID>213</ID>
+    <code>421100</code>
+    <letter>H</letter>
+    <name>黄冈市</name>
+    <Provincecode>420000</Provincecode>
+    <EnName>Huanggang Shi</EnName>
+    <ShortName>HE</ShortName>
+  </City>
+  <City>
+    <ID>214</ID>
+    <code>421200</code>
+    <letter>X</letter>
+    <name>咸宁市</name>
+    <Provincecode>420000</Provincecode>
+    <EnName>Xianning Xian</EnName>
+    <ShortName>XNS</ShortName>
+  </City>
+  <City>
+    <ID>215</ID>
+    <code>421300</code>
+    <letter>S</letter>
+    <name>随州市</name>
+    <Provincecode>420000</Provincecode>
+    <EnName>Suizhou Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>216</ID>
+    <code>422800</code>
+    <letter>E</letter>
+    <name>恩施土家族苗族自治州</name>
+    <Provincecode>420000</Provincecode>
+    <EnName>Enshi Tujiazu Miaozu Zizhizhou</EnName>
+    <ShortName>ESH</ShortName>
+  </City>
+  <City>
+    <ID>217</ID>
+    <code>429000</code>
+    <letter>S</letter>
+    <name>省直辖县级行政区划</name>
+    <Provincecode>420000</Provincecode>
+    <EnName>shengzhixiaxianjixingzhengquhua</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>218</ID>
+    <code>430100</code>
+    <letter>C</letter>
+    <name>长沙市</name>
+    <Provincecode>430000</Provincecode>
+    <EnName>Changsha Shi</EnName>
+    <ShortName>CSX</ShortName>
+  </City>
+  <City>
+    <ID>219</ID>
+    <code>430200</code>
+    <letter>Z</letter>
+    <name>株洲市</name>
+    <Provincecode>430000</Provincecode>
+    <EnName>Zhuzhou Shi</EnName>
+    <ShortName>ZZS</ShortName>
+  </City>
+  <City>
+    <ID>220</ID>
+    <code>430300</code>
+    <letter>X</letter>
+    <name>湘潭市</name>
+    <Provincecode>430000</Provincecode>
+    <EnName>Xiangtan Shi</EnName>
+    <ShortName>XGT</ShortName>
+  </City>
+  <City>
+    <ID>221</ID>
+    <code>430400</code>
+    <letter>H</letter>
+    <name>衡阳市</name>
+    <Provincecode>430000</Provincecode>
+    <EnName>Hengyang Shi</EnName>
+    <ShortName>HNY</ShortName>
+  </City>
+  <City>
+    <ID>222</ID>
+    <code>430500</code>
+    <letter>S</letter>
+    <name>邵阳市</name>
+    <Provincecode>430000</Provincecode>
+    <EnName>Shaoyang Shi</EnName>
+    <ShortName>SYR</ShortName>
+  </City>
+  <City>
+    <ID>223</ID>
+    <code>430600</code>
+    <letter>Y</letter>
+    <name>岳阳市</name>
+    <Provincecode>430000</Provincecode>
+    <EnName>Yueyang Shi</EnName>
+    <ShortName>YYG</ShortName>
+  </City>
+  <City>
+    <ID>224</ID>
+    <code>430700</code>
+    <letter>C</letter>
+    <name>常德市</name>
+    <Provincecode>430000</Provincecode>
+    <EnName>Changde Shi</EnName>
+    <ShortName>CDE</ShortName>
+  </City>
+  <City>
+    <ID>225</ID>
+    <code>430800</code>
+    <letter>Z</letter>
+    <name>张家界市</name>
+    <Provincecode>430000</Provincecode>
+    <EnName>Zhangjiajie Shi</EnName>
+    <ShortName>ZJJ</ShortName>
+  </City>
+  <City>
+    <ID>226</ID>
+    <code>430900</code>
+    <letter>Y</letter>
+    <name>益阳市</name>
+    <Provincecode>430000</Provincecode>
+    <EnName>Yiyang Shi</EnName>
+    <ShortName>YYS</ShortName>
+  </City>
+  <City>
+    <ID>227</ID>
+    <code>431000</code>
+    <letter>C</letter>
+    <name>郴州市</name>
+    <Provincecode>430000</Provincecode>
+    <EnName>Chenzhou Shi</EnName>
+    <ShortName>CNZ</ShortName>
+  </City>
+  <City>
+    <ID>228</ID>
+    <code>431100</code>
+    <letter>Y</letter>
+    <name>永州市</name>
+    <Provincecode>430000</Provincecode>
+    <EnName>Yongzhou Shi</EnName>
+    <ShortName>YZS</ShortName>
+  </City>
+  <City>
+    <ID>229</ID>
+    <code>431200</code>
+    <letter>H</letter>
+    <name>怀化市</name>
+    <Provincecode>430000</Provincecode>
+    <EnName>Huaihua Shi</EnName>
+    <ShortName>HHS</ShortName>
+  </City>
+  <City>
+    <ID>230</ID>
+    <code>431300</code>
+    <letter>L</letter>
+    <name>娄底市</name>
+    <Provincecode>430000</Provincecode>
+    <EnName>Loudi Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>231</ID>
+    <code>433100</code>
+    <letter>X</letter>
+    <name>湘西土家族苗族自治州</name>
+    <Provincecode>430000</Provincecode>
+    <EnName>Xiangxi Tujiazu Miaozu Zizhizhou </EnName>
+    <ShortName>XXZ</ShortName>
+  </City>
+  <City>
+    <ID>232</ID>
+    <code>440100</code>
+    <letter>C</letter>
+    <name>广州市</name>
+    <Provincecode>440000</Provincecode>
+    <EnName>Guangzhou Shi</EnName>
+    <ShortName>CAN</ShortName>
+  </City>
+  <City>
+    <ID>233</ID>
+    <code>440200</code>
+    <letter>S</letter>
+    <name>韶关市</name>
+    <Provincecode>440000</Provincecode>
+    <EnName>Shaoguan Shi</EnName>
+    <ShortName>HSC</ShortName>
+  </City>
+  <City>
+    <ID>234</ID>
+    <code>440300</code>
+    <letter>S</letter>
+    <name>深圳市</name>
+    <Provincecode>440000</Provincecode>
+    <EnName>Shenzhen Shi</EnName>
+    <ShortName>SZX</ShortName>
+  </City>
+  <City>
+    <ID>235</ID>
+    <code>440400</code>
+    <letter>Z</letter>
+    <name>珠海市</name>
+    <Provincecode>440000</Provincecode>
+    <EnName>Zhuhai Shi</EnName>
+    <ShortName>ZUH</ShortName>
+  </City>
+  <City>
+    <ID>236</ID>
+    <code>440500</code>
+    <letter>S</letter>
+    <name>汕头市</name>
+    <Provincecode>440000</Provincecode>
+    <EnName>Shantou Shi</EnName>
+    <ShortName>SWA</ShortName>
+  </City>
+  <City>
+    <ID>237</ID>
+    <code>440600</code>
+    <letter>F</letter>
+    <name>佛山市</name>
+    <Provincecode>440000</Provincecode>
+    <EnName>Foshan Shi</EnName>
+    <ShortName>FOS</ShortName>
+  </City>
+  <City>
+    <ID>238</ID>
+    <code>440700</code>
+    <letter>J</letter>
+    <name>江门市</name>
+    <Provincecode>440000</Provincecode>
+    <EnName>Jiangmen Shi</EnName>
+    <ShortName>JMN</ShortName>
+  </City>
+  <City>
+    <ID>239</ID>
+    <code>440800</code>
+    <letter>Z</letter>
+    <name>湛江市</name>
+    <Provincecode>440000</Provincecode>
+    <EnName>Zhanjiang Shi</EnName>
+    <ShortName>ZHA</ShortName>
+  </City>
+  <City>
+    <ID>240</ID>
+    <code>440900</code>
+    <letter>M</letter>
+    <name>茂名市</name>
+    <Provincecode>440000</Provincecode>
+    <EnName>Maoming Shi</EnName>
+    <ShortName>MMI</ShortName>
+  </City>
+  <City>
+    <ID>241</ID>
+    <code>441200</code>
+    <letter>Z</letter>
+    <name>肇庆市</name>
+    <Provincecode>440000</Provincecode>
+    <EnName>Zhaoqing Shi</EnName>
+    <ShortName>ZQG</ShortName>
+  </City>
+  <City>
+    <ID>242</ID>
+    <code>441300</code>
+    <letter>H</letter>
+    <name>惠州市</name>
+    <Provincecode>440000</Provincecode>
+    <EnName>Huizhou Shi</EnName>
+    <ShortName>HUI</ShortName>
+  </City>
+  <City>
+    <ID>243</ID>
+    <code>441400</code>
+    <letter>M</letter>
+    <name>梅州市</name>
+    <Provincecode>440000</Provincecode>
+    <EnName>Meizhou Shi</EnName>
+    <ShortName>MXZ</ShortName>
+  </City>
+  <City>
+    <ID>244</ID>
+    <code>441500</code>
+    <letter>S</letter>
+    <name>汕尾市</name>
+    <Provincecode>440000</Provincecode>
+    <EnName>Shanwei Shi</EnName>
+    <ShortName>SWE</ShortName>
+  </City>
+  <City>
+    <ID>245</ID>
+    <code>441600</code>
+    <letter>H</letter>
+    <name>河源市</name>
+    <Provincecode>440000</Provincecode>
+    <EnName>Heyuan Shi</EnName>
+    <ShortName>HEY</ShortName>
+  </City>
+  <City>
+    <ID>246</ID>
+    <code>441700</code>
+    <letter>Y</letter>
+    <name>阳江市</name>
+    <Provincecode>440000</Provincecode>
+    <EnName>Yangjiang Shi</EnName>
+    <ShortName>YJI</ShortName>
+  </City>
+  <City>
+    <ID>247</ID>
+    <code>441800</code>
+    <letter>Q</letter>
+    <name>清远市</name>
+    <Provincecode>440000</Provincecode>
+    <EnName>Qingyuan Shi</EnName>
+    <ShortName>QYN</ShortName>
+  </City>
+  <City>
+    <ID>248</ID>
+    <code>441900</code>
+    <letter>D</letter>
+    <name>东莞市</name>
+    <Provincecode>440000</Provincecode>
+    <EnName>Dongguan Shi</EnName>
+    <ShortName>DGG</ShortName>
+  </City>
+  <City>
+    <ID>249</ID>
+    <code>442000</code>
+    <letter>Z</letter>
+    <name>中山市</name>
+    <Provincecode>440000</Provincecode>
+    <EnName>Zhongshan Shi</EnName>
+    <ShortName>ZSN</ShortName>
+  </City>
+  <City>
+    <ID>250</ID>
+    <code>445100</code>
+    <letter>C</letter>
+    <name>潮州市</name>
+    <Provincecode>440000</Provincecode>
+    <EnName>Chaozhou Shi</EnName>
+    <ShortName>CZY</ShortName>
+  </City>
+  <City>
+    <ID>251</ID>
+    <code>445200</code>
+    <letter>J</letter>
+    <name>揭阳市</name>
+    <Provincecode>440000</Provincecode>
+    <EnName>Jieyang Shi</EnName>
+    <ShortName>JIY</ShortName>
+  </City>
+  <City>
+    <ID>252</ID>
+    <code>445300</code>
+    <letter>Y</letter>
+    <name>云浮市</name>
+    <Provincecode>440000</Provincecode>
+    <EnName>Yunfu Shi</EnName>
+    <ShortName>YFS</ShortName>
+  </City>
+  <City>
+    <ID>253</ID>
+    <code>450100</code>
+    <letter>N</letter>
+    <name>南宁市</name>
+    <Provincecode>450000</Provincecode>
+    <EnName>Nanning Shi</EnName>
+    <ShortName>NNG</ShortName>
+  </City>
+  <City>
+    <ID>254</ID>
+    <code>450200</code>
+    <letter>L</letter>
+    <name>柳州市</name>
+    <Provincecode>450000</Provincecode>
+    <EnName>Liuzhou Shi</EnName>
+    <ShortName>LZH</ShortName>
+  </City>
+  <City>
+    <ID>255</ID>
+    <code>450300</code>
+    <letter>G</letter>
+    <name>桂林市</name>
+    <Provincecode>450000</Provincecode>
+    <EnName>Guilin Shi</EnName>
+    <ShortName>KWL</ShortName>
+  </City>
+  <City>
+    <ID>256</ID>
+    <code>450400</code>
+    <letter>W</letter>
+    <name>梧州市</name>
+    <Provincecode>450000</Provincecode>
+    <EnName>Wuzhou Shi</EnName>
+    <ShortName>WUZ</ShortName>
+  </City>
+  <City>
+    <ID>257</ID>
+    <code>450500</code>
+    <letter>B</letter>
+    <name>北海市</name>
+    <Provincecode>450000</Provincecode>
+    <EnName>Beihai Shi</EnName>
+    <ShortName>BHY</ShortName>
+  </City>
+  <City>
+    <ID>258</ID>
+    <code>450600</code>
+    <letter>F</letter>
+    <name>防城港市</name>
+    <Provincecode>450000</Provincecode>
+    <EnName>Fangchenggang Shi</EnName>
+    <ShortName>FAN</ShortName>
+  </City>
+  <City>
+    <ID>259</ID>
+    <code>450700</code>
+    <letter>Q</letter>
+    <name>钦州市</name>
+    <Provincecode>450000</Provincecode>
+    <EnName>Qinzhou Shi</EnName>
+    <ShortName>QZH</ShortName>
+  </City>
+  <City>
+    <ID>260</ID>
+    <code>450800</code>
+    <letter>G</letter>
+    <name>贵港市</name>
+    <Provincecode>450000</Provincecode>
+    <EnName>Guigang Shi</EnName>
+    <ShortName>GUG</ShortName>
+  </City>
+  <City>
+    <ID>261</ID>
+    <code>450900</code>
+    <letter>Y</letter>
+    <name>玉林市</name>
+    <Provincecode>450000</Provincecode>
+    <EnName>Yulin Shi</EnName>
+    <ShortName>YUL</ShortName>
+  </City>
+  <City>
+    <ID>262</ID>
+    <code>451000</code>
+    <letter>B</letter>
+    <name>百色市</name>
+    <Provincecode>450000</Provincecode>
+    <EnName>Baise Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>263</ID>
+    <code>451100</code>
+    <letter>H</letter>
+    <name>贺州市</name>
+    <Provincecode>450000</Provincecode>
+    <EnName>Hezhou Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>264</ID>
+    <code>451200</code>
+    <letter>H</letter>
+    <name>河池市</name>
+    <Provincecode>450000</Provincecode>
+    <EnName>Hechi Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>265</ID>
+    <code>451300</code>
+    <letter>L</letter>
+    <name>来宾市</name>
+    <Provincecode>450000</Provincecode>
+    <EnName>Laibin Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>266</ID>
+    <code>451400</code>
+    <letter>C</letter>
+    <name>崇左市</name>
+    <Provincecode>450000</Provincecode>
+    <EnName>Chongzuo Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>267</ID>
+    <code>460100</code>
+    <letter>H</letter>
+    <name>海口市</name>
+    <Provincecode>460000</Provincecode>
+    <EnName>Haikou Shi</EnName>
+    <ShortName>HAK</ShortName>
+  </City>
+  <City>
+    <ID>268</ID>
+    <code>460200</code>
+    <letter>S</letter>
+    <name>三亚市</name>
+    <Provincecode>460000</Provincecode>
+    <EnName>Sanya Shi</EnName>
+    <ShortName>SYX</ShortName>
+  </City>
+  <City>
+    <ID>269</ID>
+    <code>469000</code>
+    <letter>S</letter>
+    <name>省直辖县级行政区划</name>
+    <Provincecode>460000</Provincecode>
+    <EnName>shengzhixiaxianjixingzhengquhua</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>270</ID>
+    <code>500000</code>
+    <letter>C</letter>
+    <name>重庆市</name>
+    <Provincecode>500000</Provincecode>
+    <EnName>Chongqing Shi</EnName>
+    <ShortName>CQ</ShortName>
+  </City>
+  <City>
+    <ID>273</ID>
+    <code>510100</code>
+    <letter>C</letter>
+    <name>成都市</name>
+    <Provincecode>510000</Provincecode>
+    <EnName>Chengdu Shi</EnName>
+    <ShortName>CTU</ShortName>
+  </City>
+  <City>
+    <ID>274</ID>
+    <code>510300</code>
+    <letter>Z</letter>
+    <name>自贡市</name>
+    <Provincecode>510000</Provincecode>
+    <EnName>Zigong Shi</EnName>
+    <ShortName>ZGS</ShortName>
+  </City>
+  <City>
+    <ID>275</ID>
+    <code>510400</code>
+    <letter>P</letter>
+    <name>攀枝花市</name>
+    <Provincecode>510000</Provincecode>
+    <EnName>Panzhihua Shi</EnName>
+    <ShortName>PZH</ShortName>
+  </City>
+  <City>
+    <ID>276</ID>
+    <code>510500</code>
+    <letter>L</letter>
+    <name>泸州市</name>
+    <Provincecode>510000</Provincecode>
+    <EnName>Luzhou Shi</EnName>
+    <ShortName>LUZ</ShortName>
+  </City>
+  <City>
+    <ID>277</ID>
+    <code>510600</code>
+    <letter>D</letter>
+    <name>德阳市</name>
+    <Provincecode>510000</Provincecode>
+    <EnName>Deyang Shi</EnName>
+    <ShortName>DEY</ShortName>
+  </City>
+  <City>
+    <ID>278</ID>
+    <code>510700</code>
+    <letter>M</letter>
+    <name>绵阳市</name>
+    <Provincecode>510000</Provincecode>
+    <EnName>Mianyang Shi</EnName>
+    <ShortName>MYG</ShortName>
+  </City>
+  <City>
+    <ID>279</ID>
+    <code>510800</code>
+    <letter>G</letter>
+    <name>广元市</name>
+    <Provincecode>510000</Provincecode>
+    <EnName>Guangyuan Shi</EnName>
+    <ShortName>GYC</ShortName>
+  </City>
+  <City>
+    <ID>280</ID>
+    <code>510900</code>
+    <letter>S</letter>
+    <name>遂宁市</name>
+    <Provincecode>510000</Provincecode>
+    <EnName>Suining Shi</EnName>
+    <ShortName>SNS</ShortName>
+  </City>
+  <City>
+    <ID>281</ID>
+    <code>511000</code>
+    <letter>N</letter>
+    <name>内江市</name>
+    <Provincecode>510000</Provincecode>
+    <EnName>Neijiang Shi</EnName>
+    <ShortName>NJS</ShortName>
+  </City>
+  <City>
+    <ID>282</ID>
+    <code>511100</code>
+    <letter>L</letter>
+    <name>乐山市</name>
+    <Provincecode>510000</Provincecode>
+    <EnName>Leshan Shi</EnName>
+    <ShortName>LES</ShortName>
+  </City>
+  <City>
+    <ID>283</ID>
+    <code>511300</code>
+    <letter>N</letter>
+    <name>南充市</name>
+    <Provincecode>510000</Provincecode>
+    <EnName>Nanchong Shi</EnName>
+    <ShortName>NCO</ShortName>
+  </City>
+  <City>
+    <ID>284</ID>
+    <code>511400</code>
+    <letter>M</letter>
+    <name>眉山市</name>
+    <Provincecode>510000</Provincecode>
+    <EnName>Meishan Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>285</ID>
+    <code>511500</code>
+    <letter>Y</letter>
+    <name>宜宾市</name>
+    <Provincecode>510000</Provincecode>
+    <EnName>Yibin Shi</EnName>
+    <ShortName>YBS</ShortName>
+  </City>
+  <City>
+    <ID>286</ID>
+    <code>511600</code>
+    <letter>G</letter>
+    <name>广安市</name>
+    <Provincecode>510000</Provincecode>
+    <EnName>Guang,an Shi</EnName>
+    <ShortName>GAC</ShortName>
+  </City>
+  <City>
+    <ID>287</ID>
+    <code>511700</code>
+    <letter>D</letter>
+    <name>达州市</name>
+    <Provincecode>510000</Provincecode>
+    <EnName>Dazhou Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>288</ID>
+    <code>511800</code>
+    <letter>Y</letter>
+    <name>雅安市</name>
+    <Provincecode>510000</Provincecode>
+    <EnName>Ya,an Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>289</ID>
+    <code>511900</code>
+    <letter>B</letter>
+    <name>巴中市</name>
+    <Provincecode>510000</Provincecode>
+    <EnName>Bazhong Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>290</ID>
+    <code>512000</code>
+    <letter>Z</letter>
+    <name>资阳市</name>
+    <Provincecode>510000</Provincecode>
+    <EnName>Ziyang Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>291</ID>
+    <code>513200</code>
+    <letter>A</letter>
+    <name>阿坝藏族羌族自治州</name>
+    <Provincecode>510000</Provincecode>
+    <EnName>Aba(Ngawa) Zangzu Qiangzu Zizhizhou</EnName>
+    <ShortName>ABA</ShortName>
+  </City>
+  <City>
+    <ID>292</ID>
+    <code>513300</code>
+    <letter>G</letter>
+    <name>甘孜藏族自治州</name>
+    <Provincecode>510000</Provincecode>
+    <EnName>Garze Zangzu Zizhizhou</EnName>
+    <ShortName>GAZ</ShortName>
+  </City>
+  <City>
+    <ID>293</ID>
+    <code>513400</code>
+    <letter>L</letter>
+    <name>凉山彝族自治州</name>
+    <Provincecode>510000</Provincecode>
+    <EnName>Liangshan Yizu Zizhizhou</EnName>
+    <ShortName>LSY</ShortName>
+  </City>
+  <City>
+    <ID>294</ID>
+    <code>520100</code>
+    <letter>G</letter>
+    <name>贵阳市</name>
+    <Provincecode>520000</Provincecode>
+    <EnName>Guiyang Shi</EnName>
+    <ShortName>KWE</ShortName>
+  </City>
+  <City>
+    <ID>295</ID>
+    <code>520200</code>
+    <letter>L</letter>
+    <name>六盘水市</name>
+    <Provincecode>520000</Provincecode>
+    <EnName>Liupanshui Shi</EnName>
+    <ShortName>LPS</ShortName>
+  </City>
+  <City>
+    <ID>296</ID>
+    <code>520300</code>
+    <letter>Z</letter>
+    <name>遵义市</name>
+    <Provincecode>520000</Provincecode>
+    <EnName>Zunyi Shi</EnName>
+    <ShortName>ZNY</ShortName>
+  </City>
+  <City>
+    <ID>297</ID>
+    <code>520400</code>
+    <letter>A</letter>
+    <name>安顺市</name>
+    <Provincecode>520000</Provincecode>
+    <EnName>Anshun Xian</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>298</ID>
+    <code>522200</code>
+    <letter>T</letter>
+    <name>铜仁地区</name>
+    <Provincecode>520000</Provincecode>
+    <EnName>Tongren Diqu</EnName>
+    <ShortName>TRD</ShortName>
+  </City>
+  <City>
+    <ID>299</ID>
+    <code>522300</code>
+    <letter>Q</letter>
+    <name>黔西南布依族苗族自治州</name>
+    <Provincecode>520000</Provincecode>
+    <EnName>Qianxinan Buyeizu Zizhizhou</EnName>
+    <ShortName>QXZ</ShortName>
+  </City>
+  <City>
+    <ID>300</ID>
+    <code>522400</code>
+    <letter>B</letter>
+    <name>毕节地区</name>
+    <Provincecode>520000</Provincecode>
+    <EnName>Bijie Diqu</EnName>
+    <ShortName>BJD</ShortName>
+  </City>
+  <City>
+    <ID>301</ID>
+    <code>522600</code>
+    <letter>Q</letter>
+    <name>黔东南苗族侗族自治州</name>
+    <Provincecode>520000</Provincecode>
+    <EnName>Qiandongnan Miaozu Dongzu Zizhizhou</EnName>
+    <ShortName>QND</ShortName>
+  </City>
+  <City>
+    <ID>302</ID>
+    <code>522700</code>
+    <letter>Q</letter>
+    <name>黔南布依族苗族自治州</name>
+    <Provincecode>520000</Provincecode>
+    <EnName>Qiannan Buyeizu Miaozu Zizhizhou</EnName>
+    <ShortName>QNZ</ShortName>
+  </City>
+  <City>
+    <ID>303</ID>
+    <code>530100</code>
+    <letter>K</letter>
+    <name>昆明市</name>
+    <Provincecode>530000</Provincecode>
+    <EnName>Kunming Shi</EnName>
+    <ShortName>KMG</ShortName>
+  </City>
+  <City>
+    <ID>304</ID>
+    <code>530300</code>
+    <letter>Q</letter>
+    <name>曲靖市</name>
+    <Provincecode>530000</Provincecode>
+    <EnName>Qujing Shi</EnName>
+    <ShortName>QJS</ShortName>
+  </City>
+  <City>
+    <ID>305</ID>
+    <code>530400</code>
+    <letter>Y</letter>
+    <name>玉溪市</name>
+    <Provincecode>530000</Provincecode>
+    <EnName>Yuxi Shi</EnName>
+    <ShortName>YXS</ShortName>
+  </City>
+  <City>
+    <ID>306</ID>
+    <code>530500</code>
+    <letter>B</letter>
+    <name>保山市</name>
+    <Provincecode>530000</Provincecode>
+    <EnName>Baoshan Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>307</ID>
+    <code>530600</code>
+    <letter>S</letter>
+    <name>昭通市</name>
+    <Provincecode>530000</Provincecode>
+    <EnName>Zhaotong Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>308</ID>
+    <code>530700</code>
+    <letter>L</letter>
+    <name>丽江市</name>
+    <Provincecode>530000</Provincecode>
+    <EnName>Lijiang Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>309</ID>
+    <code>530800</code>
+    <letter>P</letter>
+    <name>普洱市</name>
+    <Provincecode>530000</Provincecode>
+    <EnName>Simao Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>310</ID>
+    <code>530900</code>
+    <letter>L</letter>
+    <name>临沧市</name>
+    <Provincecode>530000</Provincecode>
+    <EnName>Lincang Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>311</ID>
+    <code>532300</code>
+    <letter>C</letter>
+    <name>楚雄彝族自治州</name>
+    <Provincecode>530000</Provincecode>
+    <EnName>Chuxiong Yizu Zizhizhou</EnName>
+    <ShortName>CXD</ShortName>
+  </City>
+  <City>
+    <ID>312</ID>
+    <code>532500</code>
+    <letter>H</letter>
+    <name>红河哈尼族彝族自治州</name>
+    <Provincecode>530000</Provincecode>
+    <EnName>Honghe Hanizu Yizu Zizhizhou</EnName>
+    <ShortName>HHZ</ShortName>
+  </City>
+  <City>
+    <ID>313</ID>
+    <code>532600</code>
+    <letter>W</letter>
+    <name>文山壮族苗族自治州</name>
+    <Provincecode>530000</Provincecode>
+    <EnName>Wenshan Zhuangzu Miaozu Zizhizhou</EnName>
+    <ShortName>WSZ</ShortName>
+  </City>
+  <City>
+    <ID>314</ID>
+    <code>532800</code>
+    <letter>X</letter>
+    <name>西双版纳傣族自治州</name>
+    <Provincecode>530000</Provincecode>
+    <EnName>Xishuangbanna Daizu Zizhizhou</EnName>
+    <ShortName>XSB</ShortName>
+  </City>
+  <City>
+    <ID>315</ID>
+    <code>532900</code>
+    <letter>D</letter>
+    <name>大理白族自治州</name>
+    <Provincecode>530000</Provincecode>
+    <EnName>Dali Baizu Zizhizhou</EnName>
+    <ShortName>DLZ</ShortName>
+  </City>
+  <City>
+    <ID>316</ID>
+    <code>533100</code>
+    <letter>D</letter>
+    <name>德宏傣族景颇族自治州</name>
+    <Provincecode>530000</Provincecode>
+    <EnName>Dehong Daizu Jingpozu Zizhizhou</EnName>
+    <ShortName>DHG</ShortName>
+  </City>
+  <City>
+    <ID>317</ID>
+    <code>533300</code>
+    <letter>N</letter>
+    <name>怒江傈僳族自治州</name>
+    <Provincecode>530000</Provincecode>
+    <EnName>Nujiang Lisuzu Zizhizhou</EnName>
+    <ShortName>NUJ</ShortName>
+  </City>
+  <City>
+    <ID>318</ID>
+    <code>533400</code>
+    <letter>D</letter>
+    <name>迪庆藏族自治州</name>
+    <Provincecode>530000</Provincecode>
+    <EnName>Deqen Zangzu Zizhizhou</EnName>
+    <ShortName>DEZ</ShortName>
+  </City>
+  <City>
+    <ID>319</ID>
+    <code>540100</code>
+    <letter>L</letter>
+    <name>拉萨市</name>
+    <Provincecode>540000</Provincecode>
+    <EnName>Lhasa Shi</EnName>
+    <ShortName>LXA</ShortName>
+  </City>
+  <City>
+    <ID>320</ID>
+    <code>542100</code>
+    <letter>C</letter>
+    <name>昌都地区</name>
+    <Provincecode>540000</Provincecode>
+    <EnName>Qamdo Diqu</EnName>
+    <ShortName>QAD</ShortName>
+  </City>
+  <City>
+    <ID>321</ID>
+    <code>542200</code>
+    <letter>S</letter>
+    <name>山南地区</name>
+    <Provincecode>540000</Provincecode>
+    <EnName>Shannan Diqu</EnName>
+    <ShortName>SND</ShortName>
+  </City>
+  <City>
+    <ID>322</ID>
+    <code>542300</code>
+    <letter>R</letter>
+    <name>日喀则地区</name>
+    <Provincecode>540000</Provincecode>
+    <EnName>Xigaze Diqu</EnName>
+    <ShortName>XID</ShortName>
+  </City>
+  <City>
+    <ID>323</ID>
+    <code>542400</code>
+    <letter>N</letter>
+    <name>那曲地区</name>
+    <Provincecode>540000</Provincecode>
+    <EnName>Nagqu Diqu</EnName>
+    <ShortName>NAD</ShortName>
+  </City>
+  <City>
+    <ID>324</ID>
+    <code>542500</code>
+    <letter>A</letter>
+    <name>阿里地区</name>
+    <Provincecode>540000</Provincecode>
+    <EnName>Ngari Diqu</EnName>
+    <ShortName>NGD</ShortName>
+  </City>
+  <City>
+    <ID>325</ID>
+    <code>542600</code>
+    <letter>L</letter>
+    <name>林芝地区</name>
+    <Provincecode>540000</Provincecode>
+    <EnName>Nyingchi Diqu</EnName>
+    <ShortName>NYD</ShortName>
+  </City>
+  <City>
+    <ID>326</ID>
+    <code>610100</code>
+    <letter>X</letter>
+    <name>西安市</name>
+    <Provincecode>610000</Provincecode>
+    <EnName>Xi,an Shi</EnName>
+    <ShortName>SIA</ShortName>
+  </City>
+  <City>
+    <ID>327</ID>
+    <code>610200</code>
+    <letter>T</letter>
+    <name>铜川市</name>
+    <Provincecode>610000</Provincecode>
+    <EnName>Tongchuan Shi</EnName>
+    <ShortName>TCN</ShortName>
+  </City>
+  <City>
+    <ID>328</ID>
+    <code>610300</code>
+    <letter>B</letter>
+    <name>宝鸡市</name>
+    <Provincecode>610000</Provincecode>
+    <EnName>Baoji Shi</EnName>
+    <ShortName>BJI</ShortName>
+  </City>
+  <City>
+    <ID>329</ID>
+    <code>610400</code>
+    <letter>X</letter>
+    <name>咸阳市</name>
+    <Provincecode>610000</Provincecode>
+    <EnName>Xianyang Shi</EnName>
+    <ShortName>XYS</ShortName>
+  </City>
+  <City>
+    <ID>330</ID>
+    <code>610500</code>
+    <letter>W</letter>
+    <name>渭南市</name>
+    <Provincecode>610000</Provincecode>
+    <EnName>Weinan Shi</EnName>
+    <ShortName>WNA</ShortName>
+  </City>
+  <City>
+    <ID>331</ID>
+    <code>610600</code>
+    <letter>Y</letter>
+    <name>延安市</name>
+    <Provincecode>610000</Provincecode>
+    <EnName>Yan,an Shi</EnName>
+    <ShortName>YNA</ShortName>
+  </City>
+  <City>
+    <ID>332</ID>
+    <code>610700</code>
+    <letter>H</letter>
+    <name>汉中市</name>
+    <Provincecode>610000</Provincecode>
+    <EnName>Hanzhong Shi</EnName>
+    <ShortName>HZJ</ShortName>
+  </City>
+  <City>
+    <ID>333</ID>
+    <code>610800</code>
+    <letter>Y</letter>
+    <name>榆林市</name>
+    <Provincecode>610000</Provincecode>
+    <EnName>Yulin Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>334</ID>
+    <code>610900</code>
+    <letter>A</letter>
+    <name>安康市</name>
+    <Provincecode>610000</Provincecode>
+    <EnName>Ankang Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>335</ID>
+    <code>611000</code>
+    <letter>S</letter>
+    <name>商洛市</name>
+    <Provincecode>610000</Provincecode>
+    <EnName>Shangluo Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>336</ID>
+    <code>620100</code>
+    <letter>L</letter>
+    <name>兰州市</name>
+    <Provincecode>620000</Provincecode>
+    <EnName>Lanzhou Shi</EnName>
+    <ShortName>LHW</ShortName>
+  </City>
+  <City>
+    <ID>337</ID>
+    <code>620200</code>
+    <letter>J</letter>
+    <name>嘉峪关市</name>
+    <Provincecode>620000</Provincecode>
+    <EnName>Jiayuguan Shi</EnName>
+    <ShortName>JYG</ShortName>
+  </City>
+  <City>
+    <ID>338</ID>
+    <code>620300</code>
+    <letter>J</letter>
+    <name>金昌市</name>
+    <Provincecode>620000</Provincecode>
+    <EnName>Jinchang Shi</EnName>
+    <ShortName>JCS</ShortName>
+  </City>
+  <City>
+    <ID>339</ID>
+    <code>620400</code>
+    <letter>B</letter>
+    <name>白银市</name>
+    <Provincecode>620000</Provincecode>
+    <EnName>Baiyin Shi</EnName>
+    <ShortName>BYS</ShortName>
+  </City>
+  <City>
+    <ID>340</ID>
+    <code>620500</code>
+    <letter>T</letter>
+    <name>天水市</name>
+    <Provincecode>620000</Provincecode>
+    <EnName>Tianshui Shi</EnName>
+    <ShortName>TSU</ShortName>
+  </City>
+  <City>
+    <ID>341</ID>
+    <code>620600</code>
+    <letter>W</letter>
+    <name>武威市</name>
+    <Provincecode>620000</Provincecode>
+    <EnName>Wuwei Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>342</ID>
+    <code>620700</code>
+    <letter>Z</letter>
+    <name>张掖市</name>
+    <Provincecode>620000</Provincecode>
+    <EnName>Zhangye Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>343</ID>
+    <code>620800</code>
+    <letter>P</letter>
+    <name>平凉市</name>
+    <Provincecode>620000</Provincecode>
+    <EnName>Pingliang Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>344</ID>
+    <code>620900</code>
+    <letter>J</letter>
+    <name>酒泉市</name>
+    <Provincecode>620000</Provincecode>
+    <EnName>Jiuquan Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>345</ID>
+    <code>621000</code>
+    <letter>Q</letter>
+    <name>庆阳市</name>
+    <Provincecode>620000</Provincecode>
+    <EnName>Qingyang Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>346</ID>
+    <code>621100</code>
+    <letter>D</letter>
+    <name>定西市</name>
+    <Provincecode>620000</Provincecode>
+    <EnName>Dingxi Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>347</ID>
+    <code>621200</code>
+    <letter>L</letter>
+    <name>陇南市</name>
+    <Provincecode>620000</Provincecode>
+    <EnName>Longnan Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>348</ID>
+    <code>622900</code>
+    <letter>L</letter>
+    <name>临夏回族自治州</name>
+    <Provincecode>620000</Provincecode>
+    <EnName>Linxia Huizu Zizhizhou </EnName>
+    <ShortName>LXH</ShortName>
+  </City>
+  <City>
+    <ID>349</ID>
+    <code>623000</code>
+    <letter>G</letter>
+    <name>甘南藏族自治州</name>
+    <Provincecode>620000</Provincecode>
+    <EnName>Gannan Zangzu Zizhizhou</EnName>
+    <ShortName>GNZ</ShortName>
+  </City>
+  <City>
+    <ID>350</ID>
+    <code>630100</code>
+    <letter>X</letter>
+    <name>西宁市</name>
+    <Provincecode>630000</Provincecode>
+    <EnName>Xining Shi</EnName>
+    <ShortName>XNN</ShortName>
+  </City>
+  <City>
+    <ID>351</ID>
+    <code>632100</code>
+    <letter>H</letter>
+    <name>海东地区</name>
+    <Provincecode>630000</Provincecode>
+    <EnName>Haidong Diqu</EnName>
+    <ShortName>HDD</ShortName>
+  </City>
+  <City>
+    <ID>352</ID>
+    <code>632200</code>
+    <letter>H</letter>
+    <name>海北藏族自治州</name>
+    <Provincecode>630000</Provincecode>
+    <EnName>Haibei Zangzu Zizhizhou</EnName>
+    <ShortName>HBZ</ShortName>
+  </City>
+  <City>
+    <ID>353</ID>
+    <code>632300</code>
+    <letter>H</letter>
+    <name>黄南藏族自治州</name>
+    <Provincecode>630000</Provincecode>
+    <EnName>Huangnan Zangzu Zizhizhou</EnName>
+    <ShortName>HNZ</ShortName>
+  </City>
+  <City>
+    <ID>354</ID>
+    <code>632500</code>
+    <letter>H</letter>
+    <name>海南藏族自治州</name>
+    <Provincecode>630000</Provincecode>
+    <EnName>Hainan Zangzu Zizhizhou</EnName>
+    <ShortName>HNN</ShortName>
+  </City>
+  <City>
+    <ID>355</ID>
+    <code>632600</code>
+    <letter>G</letter>
+    <name>果洛藏族自治州</name>
+    <Provincecode>630000</Provincecode>
+    <EnName>Golog Zangzu Zizhizhou</EnName>
+    <ShortName>GOL</ShortName>
+  </City>
+  <City>
+    <ID>356</ID>
+    <code>632700</code>
+    <letter>Y</letter>
+    <name>玉树藏族自治州</name>
+    <Provincecode>630000</Provincecode>
+    <EnName>Yushu Zangzu Zizhizhou</EnName>
+    <ShortName>YSZ</ShortName>
+  </City>
+  <City>
+    <ID>357</ID>
+    <code>632800</code>
+    <letter>H</letter>
+    <name>海西蒙古族藏族自治州</name>
+    <Provincecode>630000</Provincecode>
+    <EnName>Haixi Mongolzu Zangzu Zizhizhou</EnName>
+    <ShortName>HXZ</ShortName>
+  </City>
+  <City>
+    <ID>358</ID>
+    <code>640100</code>
+    <letter>Y</letter>
+    <name>银川市</name>
+    <Provincecode>640000</Provincecode>
+    <EnName>Yinchuan Shi</EnName>
+    <ShortName>INC</ShortName>
+  </City>
+  <City>
+    <ID>359</ID>
+    <code>640200</code>
+    <letter>S</letter>
+    <name>石嘴山市</name>
+    <Provincecode>640000</Provincecode>
+    <EnName>Shizuishan Shi</EnName>
+    <ShortName>SZS</ShortName>
+  </City>
+  <City>
+    <ID>360</ID>
+    <code>640300</code>
+    <letter>W</letter>
+    <name>吴忠市</name>
+    <Provincecode>640000</Provincecode>
+    <EnName>Wuzhong Shi</EnName>
+    <ShortName>WZS</ShortName>
+  </City>
+  <City>
+    <ID>361</ID>
+    <code>640400</code>
+    <letter>G</letter>
+    <name>固原市</name>
+    <Provincecode>640000</Provincecode>
+    <EnName>Guyuan Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>362</ID>
+    <code>640500</code>
+    <letter>Z</letter>
+    <name>中卫市</name>
+    <Provincecode>640000</Provincecode>
+    <EnName>Zhongwei Shi</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>363</ID>
+    <code>650100</code>
+    <letter>W</letter>
+    <name>乌鲁木齐市</name>
+    <Provincecode>650000</Provincecode>
+    <EnName>Urumqi Shi</EnName>
+    <ShortName>URC</ShortName>
+  </City>
+  <City>
+    <ID>364</ID>
+    <code>650200</code>
+    <letter>K</letter>
+    <name>克拉玛依市</name>
+    <Provincecode>650000</Provincecode>
+    <EnName>Karamay Shi</EnName>
+    <ShortName>KAR</ShortName>
+  </City>
+  <City>
+    <ID>365</ID>
+    <code>652100</code>
+    <letter>T</letter>
+    <name>吐鲁番地区</name>
+    <Provincecode>650000</Provincecode>
+    <EnName>Turpan Diqu</EnName>
+    <ShortName>TUD</ShortName>
+  </City>
+  <City>
+    <ID>366</ID>
+    <code>652200</code>
+    <letter>H</letter>
+    <name>哈密地区</name>
+    <Provincecode>650000</Provincecode>
+    <EnName>Hami(kumul) Diqu</EnName>
+    <ShortName>HMD</ShortName>
+  </City>
+  <City>
+    <ID>367</ID>
+    <code>652300</code>
+    <letter>C</letter>
+    <name>昌吉回族自治州</name>
+    <Provincecode>650000</Provincecode>
+    <EnName>Changji Huizu Zizhizhou</EnName>
+    <ShortName>CJZ</ShortName>
+  </City>
+  <City>
+    <ID>368</ID>
+    <code>652700</code>
+    <letter>B</letter>
+    <name>博尔塔拉蒙古自治州</name>
+    <Provincecode>650000</Provincecode>
+    <EnName>Bortala Monglo Zizhizhou</EnName>
+    <ShortName>BOR</ShortName>
+  </City>
+  <City>
+    <ID>369</ID>
+    <code>652800</code>
+    <letter>B</letter>
+    <name>巴音郭楞蒙古自治州</name>
+    <Provincecode>650000</Provincecode>
+    <EnName>bayinguolengmengguzizhizhou</EnName>
+    <ShortName>2</ShortName>
+  </City>
+  <City>
+    <ID>370</ID>
+    <code>652900</code>
+    <letter>A</letter>
+    <name>阿克苏地区</name>
+    <Provincecode>650000</Provincecode>
+    <EnName>Aksu Diqu</EnName>
+    <ShortName>AKD</ShortName>
+  </City>
+  <City>
+    <ID>371</ID>
+    <code>653000</code>
+    <letter>K</letter>
+    <name>克孜勒苏柯尔克孜自治州</name>
+    <Provincecode>650000</Provincecode>
+    <EnName>Kizilsu Kirgiz Zizhizhou</EnName>
+    <ShortName>KIZ</ShortName>
+  </City>
+  <City>
+    <ID>372</ID>
+    <code>653100</code>
+    <letter>K</letter>
+    <name>喀什地区</name>
+    <Provincecode>650000</Provincecode>
+    <EnName>Kashi(Kaxgar) Diqu</EnName>
+    <ShortName>KSI</ShortName>
+  </City>
+  <City>
+    <ID>373</ID>
+    <code>653200</code>
+    <letter>H</letter>
+    <name>和田地区</name>
+    <Provincecode>650000</Provincecode>
+    <EnName>Hotan Diqu</EnName>
+    <ShortName>HOD</ShortName>
+  </City>
+  <City>
+    <ID>374</ID>
+    <code>654000</code>
+    <letter>Y</letter>
+    <name>伊犁哈萨克自治州</name>
+    <Provincecode>650000</Provincecode>
+    <EnName>Ili Kazak Zizhizhou</EnName>
+    <ShortName>ILD</ShortName>
+  </City>
+  <City>
+    <ID>375</ID>
+    <code>654200</code>
+    <letter>T</letter>
+    <name>塔城地区</name>
+    <Provincecode>650000</Provincecode>
+    <EnName>Tacheng(Qoqek) Diqu</EnName>
+    <ShortName>TCD</ShortName>
+  </City>
+  <City>
+    <ID>376</ID>
+    <code>654300</code>
+    <letter>A</letter>
+    <name>阿勒泰地区</name>
+    <Provincecode>650000</Provincecode>
+    <EnName>Altay Diqu</EnName>
+    <ShortName>ALD</ShortName>
+  </City>
+  <City>
+    <ID>377</ID>
+    <code>659000</code>
+    <letter>Z</letter>
+    <name>自治区直辖县级行政区划</name>
+    <Provincecode>650000</Provincecode>
+    <EnName>zizhiquzhixiaxianjixingzhengquhua</EnName>
+    <ShortName>2</ShortName>
+  </City>
+</Cities>

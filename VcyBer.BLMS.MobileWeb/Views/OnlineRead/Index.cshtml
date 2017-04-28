@@ -1,0 +1,124 @@
+﻿@model  List<Vcyber.BLMS.Entity.Magazine>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "在线阅读";
+}
+
+<link href="/Content/css/resetzsy.css" rel="stylesheet" />
+<link href="/Content/css/online.css" rel="stylesheet" />
+<script src="/Scripts/js/fontSize.js"></script>
+<script>
+    $(function () {
+        $(".swiper-wrapper div:first").addClass('on');
+        $("#divRound span:first").addClass('swiper-pagination-bullet-active');
+        $(".magListBox div:first").show();
+        var swiper = new Swiper('#divSwiper', {
+            pagination: '.swiper-pagination',
+            centeredSlides: false,
+            slidesPerView: 3,
+            paginationClickable: true,
+            spaceBetween: 0,
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            freeMode: false
+        });
+        $('.swiper-slide').on('click', function () {
+            $('.swiper-slide').removeClass('on');
+            $(this).addClass('on');
+            $('.readList').css('display', 'none');
+            $('.readList:eq(' + $(this).index() + ')').css('display', 'block');
+            $('.magListBox').find('.readList').hide();
+            $('.magListBox').find('.readList').eq($(this).index()).show();
+        });
+    });
+</script>
+
+<div class="wrapper readBg">
+    <div class="readSwpBox">
+        <div class="readonlineSwp">
+            <div class="swiper-container swiper-container-horizontal" id="divSwiper">
+                <!--年份-->
+                <div class="swiper-wrapper">
+                    @if (ViewBag.Years != null)
+                    {
+                        foreach (var item in ViewBag.Years)
+                        {
+                            <div class="swiper-slide" name="swiper-slide">
+                                @item
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+
+            <!--导航按钮-->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+        <!--圆点-->
+        <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets" id="divRound">
+            @if (ViewBag.Years != null)
+                {
+                    foreach (var item in ViewBag.Years)
+                    {
+                <span class="swiper-pagination-bullet"></span>
+                    }
+                }
+        </div>
+    </div>
+    <div class="magListBox">
+        @if (ViewBag.Years != null)
+            {
+                for (int i = 0; i < ViewBag.Years.Count; i++)
+                {
+                    var list = Model.FindAll(delegate(Vcyber.BLMS.Entity.Magazine magaList) { return magaList.Year == ViewBag.Years[i]; }).ToList();
+            <div class="readList">
+                @foreach (var item in list)
+                        {
+                        <dl class="clearfix">
+                            <dt>
+                                <div><a href="@item.ReadLink"><img src="@item.TrueImageUrl" /></a></div>
+                            </dt>
+                            <dd>
+                                <ul>
+                                    <li class="magTitle">@item.Title</li>
+                                    <li class="magAfterTitle">本期看点</li>
+                                    <li class="magIntro">@Html.Raw(item.TrueSummary)</li>
+                                </ul>
+                                <div class="readbtnBox">
+                                        @if (!string.IsNullOrEmpty(item.TrueLinkUrl) && !string.IsNullOrEmpty(item.ReadLink))
+                                        {
+                                            <a href="@item.ReadLink" class="readonlin">在线阅读</a>
+                                        }
+                                        else
+                                        {
+                                            if (!string.IsNullOrEmpty(item.ReadLink))
+                                            {
+                                                <a href="@item.ReadLink" class="readonlin">在线阅读</a>
+                                            }
+                                            if (!string.IsNullOrEmpty(item.TrueLinkUrl))
+                                            {
+                                                <a href="@item.TrueLinkUrl" class="readdownload">下载</a>
+                                            }
+                                        }
+                                </div>
+                            </dd>
+                        </dl>
+                        }
+            </div>
+                }
+            }
+    </div>
+    <!--页脚footer-->
+    @*<footer>
+            <div class="footNavTit"></div>
+            <div class="fontNavCon">
+                <a href="javascript:;" class="nav-1">预约服务</a>
+                <a href="javascript:;" class="nav-2">会员计划</a>
+                <a href="javascript:;" class="nav-5a ">个人中心</a>
+                <a href="javascript:;" class="nav-3">蓝缤权益</a>
+                <a href="javascript:;" class="nav-4">在线商城</a>
+            </div>
+        </footer>*@
+</div>
+

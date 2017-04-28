@@ -1,0 +1,513 @@
+﻿@model Vcyber.BLMS.FrontWeb.Models.ApplicationUser
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "个人中心";
+}
+<!--新增-->
+
+<style>
+    .jfProgBox {
+        position: relative;
+        width: 394px;
+        height: 75px;
+        margin: 40px auto 10px auto;
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+        .jfProgBox dl {
+            position: relative;
+            float: left;
+            margin-right: 95px;
+            width: 66px;
+            height: 75px;
+            text-align: center;
+        }
+
+            .jfProgBox dl.jfpNoMar {
+                margin-right: 0;
+            }
+
+            .jfProgBox dl dt {
+                position: relative;
+                width: 100%;
+                height: 50px;
+                z-index: 10;
+            }
+
+                .jfProgBox dl dt.on {
+                    background: url(/img/VipImg/bgProgOn.png) no-repeat center top;
+                }
+
+            .jfProgBox dl dd {
+                color: #075192;
+                font-size: 16px;
+            }
+
+    .jfpLine1, .jfpLine2, .jfpLine3 {
+        height: 3px;
+        background: #075192;
+        position: absolute;
+        left: 0;
+        top: 18px;
+        z-index: 1;
+    }
+
+    .jfProgBox dl dd.org {
+        background: #f49600;
+    }
+
+    .jfProgBox dl dd.txtOrg {
+        color: #f49600;
+    }
+
+    .jfpLine1 {
+        width: 32px;
+    }
+
+    .jfpLine2, .jfpLine3 {
+        left: -132px;
+        width: 200px;
+    }
+
+
+    .regCon {
+        width: 650px;
+        background: #fff;
+    }
+
+        .regCon label {
+            margin-right: 10px;
+            line-height: 30px;
+            height: 30px;
+        }
+
+        .regCon p {
+            text-align: center;
+        }
+
+        .regCon select {
+            border: 1px solid #bdc7d8;
+            height: 30px;
+            line-height: 30px;
+        }
+
+    .regBtnZl {
+        display: inline-block;
+        padding: 5px;
+        text-align: center;
+        width: 192px;
+        position: relative;
+        background: #075090;
+        cursor: pointer;
+        margin: 10px 15px 0 15px;
+    }
+
+    a.regBtnZl:hover {
+        background: #0b63b7;
+        border: 1px solid #0b63b7;
+        color: #fff;
+        width: 192px;
+        height: 22px;
+    }
+
+    .rgeConClose {
+        display: block;
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        line-height: 30px;
+        text-align: center;
+        z-index: 10;
+        right: 0;
+        top: 0;
+        font-size: 25px;
+        color: #333;
+        background: #eee;
+        cursor: pointer;
+    }
+
+    #btnInputPayNumberToRegisterVip:hover, #btnApplyToDealer_AccountRegisterVip:hover {
+        background: #0b63b7;
+        border: 1px solid #0b63b7;
+        cursor: pointer;
+        color: #fff;
+    }
+
+    .jfContBox {
+        position: relative;
+        width: 652px;
+        font-size: 14px;
+        line-height: 22px;
+        padding: 20px 20px 0 20px;
+    }
+
+    .jfInpBox {
+        height: 30px;
+        line-height: 30px;
+        margin-top: 25px;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+
+        .jfInpBox input {
+            margin-top: 5px;
+            margin-right: 7px;
+        }
+
+        .jfInpBox input, .jfInpBox label {
+            vertical-align: middle;
+        }
+
+    .regCon {
+        width: 650px;
+        padding-top: 20px;
+        background: #fff;
+    }
+
+        .regCon label {
+            margin-right: 10px;
+            line-height: 30px;
+            height: 30px;
+        }
+
+        .regCon p {
+            text-align: center;
+        }
+
+        .regCon select {
+            border: 1px solid #bdc7d8;
+            height: 30px;
+            line-height: 30px;
+        }
+
+    .regBtnZl {
+        display: inline-block;
+        padding: 5px;
+        text-align: center;
+        width: 192px;
+        position: relative;
+        background: #075090;
+        cursor: pointer;
+        margin: 10px 15px 0 15px;
+    }
+
+    a.regBtnZl:hover {
+        background: #0b63b7;
+        border: 1px solid #0b63b7;
+        color: #fff;
+        width: 192px;
+        height: 22px;
+    }
+
+    .rgeConClose {
+        display: block;
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        line-height: 30px;
+        text-align: center;
+        z-index: 10;
+        right: 0;
+        top: 0;
+        font-size: 25px;
+        color: #333;
+        background: #eee;
+        cursor: pointer;
+    }
+
+    .jfjf {
+        display: inline-block;
+        width: 230px;
+        height: 34px;
+        line-height: 34px;
+        font-size: 14px;
+        text-align: center;
+        cursor: pointer;
+        background: #075090;
+        color: #fff;
+    }
+
+        .jfjf:hover {
+            background: #0b63b7;
+        }
+
+    .jfbtnAclass {
+        display: inline-block;
+        width: 200px;
+        margin: 10px;
+        position: relative;
+        text-align: center;
+        height: 30px;
+        line-height: 30px;
+    }
+
+    .jfSlectBox {
+        width: 100%;
+        margin-top: 20px;
+        margin-left: -64px;
+        overflow: hidden;
+    }
+
+    .jfTitlBox {
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        margin-top: 20px;
+        margin-left: 60px;
+    }
+
+    .jfTitlBox2 {
+        width: 100%;
+        margin-top: 26px;
+        height: 26px;
+        line-height: 26px;
+        margin-left: 60px;
+    }
+
+    .jfBtnABox {
+        width: 80%;
+        margin-top: 26px;
+        position: relative;
+        left: 50%;
+        margin-left: -33%;
+    }
+
+    .jfbtnAclass:hover, .register_bot:hover {
+        background: #0b63b7;
+        border: 1px solid #0b63b7;
+        color: #fff;
+        cursor: pointer;
+    }
+</style>
+<script>
+    $(function () {
+        $('.jfjf').on('click', function () {
+            $('.regCon').toggle();
+
+        })
+    });
+</script>
+
+
+
+
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Mycenter" })
+        <!--个人中心-->
+        <link href="~/css/base/information.css" rel="stylesheet" />
+        <link href="~/css/base/dd.css" rel="stylesheet" />
+    </div>
+    <div class="n_all_cont">
+        <div class="n_left_cont">
+            @Html.Partial("_PartialUserInfo", this.Model)
+            <div style="margin: 15px 0; padding: 10px 0; background: #eee;  display :none ; border-top: 2px solid #075090; text-align: center;">
+                <a href="javascript:void(0);" id="mycenter-upload-Invoice">上传凭证</a>
+                <script>
+                    $(function () {
+                        $("#mycenter-upload-Invoice").click(function () {
+                            layer.open({
+                                type: 2,
+                                shade: [0],
+                                fix: false,
+                                title: '凭证上传',
+                                maxmin: true,
+                                iframe: { src: '/Invoice/UploadInvoice' },
+                                area: ['800px', '350px'],
+                                close: function (index) {
+
+                                }
+                            });
+                        });
+                    });
+                </script>
+            </div>
+            @Html.Partial("_PartialMyWallet", this.Model)
+            @Html.Action("MySoonService", "Car")
+
+            <div class="gy_cont">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>我的保养</h1>
+                        <span>Car Maintenance</span>
+                        <a href="/Car/CsConsumePagelist"><img src="/img/arrow.png" class="arrow_n" /></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="n_right_cont">
+
+            <!--新增修改-->
+            @{
+                if (((Model.SystemMType == 2) && Model.IsPay == 2) && ViewBag.reIntegralType != -1) //正式环境取消注释
+                {
+
+                    <div class="gy_title">
+                        <div class="gy_zi">
+                            <h1>缴费获取积分</h1>
+                            <span>Pay to Get Point Progress</span>
+                        </div>
+                    </div>
+
+                    <div class="jfProgBox">
+                        <dl>
+                            <!--以下元素:dt 加"on",dd1加"org", dd2加"txtOrg"会变成完成状态-->
+                            <dt class="on"></dt>
+                            <dd class="jfpLine1 org"></dd>
+                            <dd class="txtOrg">提交申请</dd>
+                        </dl>
+                        <dl>
+                            <dt class="on"></dt>
+                            <dd class="jfpLine2 org"></dd>
+                            <dd class="txtOrg">认证审核</dd>
+                        </dl>
+                        <dl class="jfpNoMar">
+                            <dt></dt>
+                            <dd class="jfpLine3"></dd>
+                            <dd>获取积分</dd>
+                        </dl>
+                    </div>
+                        <!--新增修改end-->
+
+                }
+
+                @*if (((Model.SystemMType == 2) && Model.IsPay == 0) && ViewBag.reIntegralType != -1) //正式环境取消注释
+                     {
+                         <div class="jfProgBox">
+                             <dl>
+                                 <!--以下元素:dt 加"on",dd1加"org", dd2加"txtOrg"会变成完成状态-->
+                                 <dt class="on"></dt>
+                                 <dd class="jfpLine1 org"></dd>
+                                 <dd class="txtOrg">提交申请</dd>
+                             </dl>
+                             <dl>
+                                 <dt></dt>
+                                 <dd class="jfpLine2"></dd>
+                                 <dd>认证审核</dd>
+                             </dl>
+                             <dl class="jfpNoMar">
+                                 <dt></dt>
+                                 <dd class="jfpLine3"></dd>
+                                 <dd>获取积分</dd>
+                             </dl>
+                         </div>
+                         <!--新增修改end-->
+
+                    }*@
+            }
+            @{
+                //当登录用户未交费且符合反积分条件时显示缴费获取积分业务
+                if (ViewBag.reIntegralType != -1 && Model.IsPay == 0 && ViewBag.registerUserGetIntegral != 0)
+                {
+                    int reIntegral = ViewBag.reIntegralType;
+                    int registerUserGetIntegral = ViewBag.registerUserGetIntegral;
+                    string reIntegraltext = string.Empty;
+
+                    switch (reIntegral)
+                    {
+                        case 0:
+                            reIntegraltext = "您交费100元即可获得价值" + registerUserGetIntegral + "元积分奖励";
+                            break;
+                        case 1:
+                            reIntegraltext = "您交费100元即可获得价值" + registerUserGetIntegral + "元积分奖励";
+                            break;
+                        case 2:
+                            reIntegraltext = "您交费50元即可获得价值" + registerUserGetIntegral + "元积分奖励";
+                            break;
+                        case 3:
+                            reIntegraltext = "您交费50元即可获得价值" + registerUserGetIntegral + "元积分奖励";
+                            break;
+                        case -1:
+                            reIntegraltext = "";
+                            break;
+                        default:
+                            reIntegraltext = "";
+                            break;
+                    }
+
+                    <div class="geren_box zh_xinxi">
+                        <div class="gy_title">
+                            <div class="gy_zi">
+                                <h1>缴费获取积分申请</h1>
+                                <span>Pay to Get Point Application</span>
+                            </div>
+                        </div>
+                        <div class="jfContBox">
+
+                            <p>
+                                亲爱的会员，您好。感谢您对北京现代Bluemembers的支持！马上缴费获取积分好礼，更有尊享权益等您
+                                享。具体详情请查看“会员权益”。<span>@reIntegraltext</span>
+                            </p>
+                            <p class="jfInpBox">
+                                <a href="javascript:;" class="jfjf">缴费获取积分</a>
+                            </p>
+
+                            <div style=" display:none;" class="regCon">
+
+                                <div class="jfTitlBox">
+
+                                    <span style="padding-bottom: 0; font-size: 16px; color:#3D3F43">选择入会特约店</span>
+                                    <label style="font-size: 12px; margin-left: 10px; color: #a0a0a0;">您可以选择购买车辆的特约店，也可以选择其他您常去的特约店进行缴费。</label>
+
+
+                                </div>
+                                <div class="jfSlectBox">
+                                    @Html.Action("AccountPageProvince", "Car")
+
+                                </div>
+                                <div class="jfTitlBox2">
+                                    <input type="hidden" id="accountPayNumber">
+                                    <input type="hidden" id="accountActivityType">
+                                    <input type="hidden" id="registerIdentityNo" value="@ViewBag.registerIdentityNo" />
+                                    <span style=" font-size: 16px; color: #3D3F43; ">支付会费</span>
+                                    <span style=" margin-left: 10px;font-size: 12px; color: #a0a0a0;">如果您已经与申请的特约店沟通并向其支付了会费，也可以选择向特约店申请。</span>
+                                </div>
+                                <div class="jfBtnABox">
+                                    <div style="width:100%;  position:relative;">
+                                        <a class="pay_active apply_member register_bot jfbtnAclass" id="btnApplyToDealer_AccountRegisterVip">向特约店申请</a>
+
+
+                                        @if (reIntegral < 2)
+                                        {
+                                            <a target="_blank" href="https://detail.tmall.com/item.htm?spm=a1z10.4-b.w5003-12994442256.3.cmKogk&id=44232536739&rn=f01d8240d8d928afde8c46ce6322d111&abbucket=8&skuId=3184713456111&scene=taobao_shop " class="pay_active lijizhufu register_bot jfbtnAclass" id="btnInputPayNumberToRegisterVip">立即支付</a>
+                                        }
+                                        else// 50天猫链接暂未提供
+                                        {
+                                            <a target="_blank" href="https://detail.tmall.com/item.htm?spm=a1z10.4-b.w5003-12994442256.2.cmKogk&id=533870432232&rn=eff56e7365ac38eb25caa9cacf22327b&abbucket=5&skuId=3184550976675&scene=taobao_shop " class="pay_active lijizhufu register_bot jfbtnAclass" id="btnInputPayNumberToRegisterVip">立即支付</a>
+                                        }
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                }
+
+
+            }
+
+
+
+            @Html.Action("AccountInfo", "MyCenter")
+            @Html.Action("CarOwnerInfo", "MyCenter")
+            @Html.Action("MyCar", "MyCenter")
+
+            @Html.Action("MyLastOrder", "Order")
+
+        </div>
+    </div>
+
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>
+
+
+
+<div id="ToCheckCarowner" style="display :none ">
+    @Html.Action("ToCheckCarowner", "MyCenter")
+</div>
+

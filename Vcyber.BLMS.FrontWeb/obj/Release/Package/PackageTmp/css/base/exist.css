@@ -1,0 +1,59 @@
+.exist{
+	width: 1000px;
+	margin: 0 auto;
+	margin-top: 30px;
+}
+.exist_1{
+	height: 48px;
+	background: url(/img/exist.png) no-repeat;
+	line-height: 48px;
+	text-align: center;
+	font-family: "微软雅黑";
+	font-size: 18px;
+	color: #fff;
+}
+.exist_2{
+	margin-top: 20px;
+	width: 998px;
+	border: 1px solid #eee;
+}
+.exist_2 p{
+	width: 922px;
+	height: auto;
+	margin: 0 auto;
+	font-family: "宋体";
+	font-size: 16px;
+	line-height: 34px;
+	text-indent:2em;
+	font-weight: bold;
+	margin-top: 30px;
+}
+.exist_2 img{
+	width: 922px;
+	height: 285px;
+	margin: 0 auto;
+	margin-top: 30px;
+	display: block;
+	border: none;
+}
+.exist_A a{
+	display: block;
+	width: 224px;
+	height: 61px;
+	position: fixed;
+	bottom: 50px;
+	right: 250px;
+	background: url(/img/exist_2.png) no-repeat;
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+

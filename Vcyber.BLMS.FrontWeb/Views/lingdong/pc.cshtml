@@ -1,0 +1,652 @@
+﻿@{
+    Layout = null;
+
+    string[] listProvince = ViewBag.ListProvince as string[];
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>北京现代领动上市活动</title>
+    <link href="~/Contents/Scripts/jqueryui/jquery-ui.min.css" rel="stylesheet" />
+    <link id="link1" rel="stylesheet" href="~/Contents/css/lingdong/style.css" />
+    <script src="~/Contents/Scripts/jquery-1.11.2.min.js"></script>
+    <script src="~/Contents/Scripts/jqueryui/jquery-ui.min.js"></script>
+    <script src="~/Contents/Scripts/jqueryui/datepicker-zh-CN.js"></script>
+    <script src="~/Contents/Scripts/lingdong-pc/main.js"></script>
+    <script src="~/Contents/Scripts/province.city.area.js"></script>
+    <script src="~/Contents/Scripts/lingdongExpired.js"></script>
+    <script>
+        $(function () {
+            $("#ScheduleDate").datepicker();
+            $("#ScheduleDate").datepicker("option", "dateFormat", "yy-mm-dd");
+            $("#ScheduleDate").datepicker($.datepicker.regional["zh-CN"]);
+        });
+
+        addReady(function () {
+            if (window.navigator.userAgent.indexOf('MSIE 6.0') != -1
+		|| window.navigator.userAgent.indexOf('MSIE 8.0') != -1
+		|| window.navigator.userAgent.indexOf('MSIE 7.0') != -1) {
+                document.getElementById('link1').href = '/Contents/css/lingdong/style_ie8.css';
+
+
+            } else {
+                document.getElementById('link1').href = '/Contents/css/lingdong/style.css';
+
+            }
+            //scroJs();
+            moveUp('ul1', 'p1', 'p2');
+            moveUp('ul2', 'p3', 'p4');
+            navTab();//导航切换
+            //tab_box('ptab_box');//轮播图
+            /*--------20160408新增--------*/
+            //bling();
+            pushBtn();
+        });
+
+      window.onload=function(){
+	tab_box('ptab_box');//轮播图
+	scroJs();
+
+	}
+
+    </script>
+
+    <script>
+        function GetRequest() {
+            var url = location.search; //获取url中"?"符后的字串
+            var theRequest = new Object();
+
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                strs = str.split("&");
+                for (var i = 0; i < strs.length; i++) {
+                    theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+                }
+            }
+            return theRequest;
+        }
+
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?0b4e366e453f3524b50e08dc17833d51";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+
+        _hmt.push(['_setCustomVar', 5, 'ques_visitor', '全部', 3]);
+
+        var Request = GetRequest();
+        var sourceId = Request['source'];
+
+        if (sourceId == 'app') {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', 'APP', 3]);
+        }
+        else if (sourceId == 'blms') {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', '网站', 3]);
+        }
+        else if (sourceId == 'weixin') {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', '微信', 3]);
+        }
+        else if (sourceId == 'sms') {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', '短信', 3]);
+        }
+        else if (sourceId == 'weibo') {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', '微博', 3]);
+        }
+        else if (sourceId == 'edm') {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', 'EDM', 3]);
+        }
+        else if (sourceId == "magazine") {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', '杂志', 3]);
+        }
+        else if (sourceId == "sms") {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', '短信', 3]);
+        }
+        else if (sourceId == "dealer") {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', '经销商', 3]);
+        }
+        else if (sourceId == "tieba") {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', '贴吧', 3]);
+        }
+        else if (sourceId == "share") {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', '微信分享', 3]);
+        }
+        else if (sourceId = "shopping") {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', '商场', 3]);
+        }
+        else {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', '其他', 3]);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="layerD"></div>
+    <div class="backIe8" id="backIe8">
+        <img src="/Contents/images/lingdong-pc/bg_con.jpg" height="100%" width="100%" />
+    </div>
+
+    <div class="home boxName" style="display:block;">
+        <img src="/Contents/images/lingdong-pc/bg_home.jpg" width="100%" height="100%" />
+        @*<div class="btnCyHomg">
+            <img src="/Contents/images/lingdong-pc/gifmove.gif" width="100%" height="100%" class="btnImg" onclick="gotoReadme()" />
+        </div>*@
+    </div>
+
+
+    <div class="nav" id="nav">
+        <a href="javascript:;" class="opt1on">活动首页</a>
+        <a href="javascript:;" class="opt2">活动介绍</a>
+        <span></span>
+        <a href="javascript:;" class="opt3">奖品设置</a>
+        <a href="javascript:;" class="opt4">中将名单</a>
+    </div>
+    <div class="wrapper cont_bg" id="contAll">
+        <div class="bk_65"></div>
+        <a href="javascript:;" class="logo"></a>
+
+
+        <div class="con_box" style="display:block;">
+            <!--首页-->
+            <!--活动介绍-->
+            <div id="readme-container" class="hdjs boxName" style="display:block;">
+                <div id="main">
+                    <div id="context">
+                        <div id="txt" style="top: 0\9;">
+                            <b class="no1B"><img src="/Contents/images/lingdong-pc/hdjz.png" /></b>
+                            <strong>领新而动，蓝缤多重礼遇领不停</strong>
+                            <span>
+                                专注本质胜过表现 ，领动震撼上市，bluemembers蓝缤邀约老车主参与试驾/推荐好友购车，多重礼遇领不停，就在这个春天，令天下为之
+
+                                所动，领新而动，更有千元加油卡免费抢！快来参加吧！<br>
+                                活动时间：即日起至2016年4月30日
+                            </span>
+                            <b><img src="/Contents/images/lingdong-pc/hdgz.png" /></b>
+                            <span>
+                                1、试驾有礼 ：<br>
+                                进入“试驾有礼”页面，填写预约试驾信息，免费抽取定制礼品（运动手环、幻响车充、旅行四件套、卡片电源）。<br>
+
+                                2、推荐有礼：<br>
+
+                                进入“推荐有礼”活动界面，老车主推荐好友购车，填写推荐信息，免费得服务卡券（1L玻璃水，机场候机尊享服务券）。
+                                新车主成功购车后，老车主再得常规保养券抽奖资格。
+                            </span>
+                            <!--参与流程-->
+                            <b><img src="/Contents/images/lingdong-pc/cylc.png" /></b>
+
+                            <span class="step">
+                                <strong>第一步：</strong>点击“立即参与”按钮，进入活动页面。<br>
+                                <strong>第二步：</strong>感受【领动】4大全新技能。<br>
+                                <strong>第三步：</strong>完成预约试驾申请，抽取定制礼品，成功购车再得千元加油卡抽奖资格。车主会员完成推荐好友购车，抽取服务
+
+                                卡券，好友购车后再得保养券抽奖资格。<br>
+                                <strong>第四步：</strong>领取礼品，分享好友。
+                            </span>
+                            <b style="text-align:left;">【注意事项】</b>
+                            <span class="zysx">
+                                1.试驾有礼、推荐有礼，会员可同时参与两项活动，每项限得一次礼品，推荐有礼活动仅限车主会员参与。千元加油卡、保养券抽奖时间：
+
+                                2016年5月1日系统后台自动抽奖，电话通知中奖用户。<br>
+                                2.活动中获得的卡券，存储在微信【优惠券】中，2016年7月31日前特约店使用。<br>
+                                3.获得机场候机尊享服务券，卡券存储在【会员中心】【个人中心】【电子卡券】中。2016年7月31日前预约使用，电话预约：拨打北京现代
+
+                                24小时客服热线400-800-1100进行候机服务预约。<br>
+                                4.实物礼品中奖后填写正确邮寄地址，奖品发送将在获奖名单公布后10个工作日内进行邮寄，如遇节假日则顺延发出。<br>
+                                5.您于本网站提供的个人信息只用于北京现代本次活动与您沟通联络时使用。本活动最终解释权归北京现代汽车有限公司所有，如有疑问请及
+
+                                时在北京现代bluemembers微信平台留言，届时会有专业人士为您解答。
+
+                            </span><br>
+
+                            <b class="btn_cy"><img src="/Contents/images/lingdong-pc/gifmove.gif" class="btnImg" onclick="goto()" /></b>
+                        </div>
+                    </div>
+                    <div id="r_scr">
+                        <span id="up"></span>
+                        <div id="scr">
+                            <span id="span" style="height: 171px\9;"></span>
+                        </div>
+                        <span id="down"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--奖品设置-->
+            <div class="hdjs jpsz boxName" style="display:none;">
+                <b><img src="/Contents/images/lingdong-pc/jpsz.png" /></b>
+                <h3>试驾有礼</h3>
+                <div class="dlBox">
+                    <dl>
+                        <dt><img src="/Contents/images/lingdong-pc/jp1.png" /></dt>
+                        <dd>运动手环</dd>
+                    </dl>
+                    <dl>
+                        <dt><img src="/Contents/images/lingdong-pc/jp2.png" /></dt>
+                        <dd>幻想车充</dd>
+                    </dl>
+                    <dl>
+                        <dt><img src="/Contents/images/lingdong-pc/jp3.png" /></dt>
+                        <dd>旅行四件套</dd>
+                    </dl>
+                    <dl>
+                        <dt><img src="/Contents/images/lingdong-pc/jp4.png" /></dt>
+                        <dd>卡片电源</dd>
+                    </dl>
+                </div>
+
+                <p class="sj">(完成试驾预约填写，即可抽取)</p>
+                <p class="yk">千元加油卡</p>
+                <p class="sj">(预约试驾，成功购车后，系统抽取)</p>
+
+                <div class="ykBox"><img src="/Contents/images/lingdong-pc/jyka.png" /></div>
+
+                <h3>推荐有礼</h3>
+                <div class="dlBox">
+                    <dl>
+                        <dt><img src="/Contents/images/lingdong-pc/tj1.png" /></dt>
+                        <dd>1L玻璃水</dd>
+                    </dl>
+                    <dl style=" width:1.54rem;margin-right:.5rem;">
+                        <dt><img src="/Contents/images/lingdong-pc/tj2.png" /></dt>
+                        <dd style="width:.75rem;line-height:.15rem">机场候机尊享服务券</dd>
+                    </dl>
+                    <dl style="width:1.4rem;">
+                        <dt><img src="/Contents/images/lingdong-pc/tj3.png" /></dt>
+                        <dd style="width:.6rem;">基础保养券</dd>
+                    </dl>
+                </div>
+                <p class="sj sj1">(车主会员，完成推荐好友信息填写)</p>
+                <p class="sj sj1 sj2">(新车主完成购车，系统抽取，老车主获得)</p>
+
+            </div>
+            <!--中奖名单-->
+            <div class="hdjs zjmd boxName" style="display:none;">
+                <b><img src="/Contents/images/lingdong-pc/zjmd.png" /></b>
+                <div class="inputBox">
+                    <input id="award-phone" type="text" placeholder="请输入手机号" />
+                    <span onclick="getAward()" style="cursor: pointer;">查询</span>
+                </div>
+                <h3>试驾有礼</h3>
+                <div class="dlBox">
+                    <dl>
+                        <dt><img src="/Contents/images/lingdong-pc/jp1.png" /></dt>
+                        <dd>运动手环</dd>
+                    </dl>
+                    <dl>
+                        <dt><img src="/Contents/images/lingdong-pc/jp2.png" /></dt>
+                        <dd>幻想车充</dd>
+                    </dl>
+                    <dl>
+                        <dt><img src="/Contents/images/lingdong-pc/jp3.png" /></dt>
+                        <dd>旅行四件套</dd>
+                    </dl>
+                    <dl>
+                        <dt><img src="/Contents/images/lingdong-pc/jp4.png" /></dt>
+                        <dd>卡片电源</dd>
+                    </dl>
+                </div>
+                <h3>推荐有礼</h3>
+                <div class="dlBox">
+                    <dl>
+                        <dt><img src="/Contents/images/lingdong-pc/tj1.png" /></dt>
+                        <dd>1L玻璃水</dd>
+                    </dl>
+                    <dl>
+                        <dt><img src="/Contents/images/lingdong-pc/tj2.png" /></dt>
+                        <dd>机场候机尊享服务券</dd>
+                    </dl>
+                    <dl>
+                        <dt><img src="/Contents/images/lingdong-pc/tj3.png" /></dt>
+                        <dd>基础保养券</dd>
+                    </dl>
+                </div>
+                <div class="ul1" id="ul1">
+                    <p id="p1">
+                        @{
+                            if (ViewBag.drvAwardList != null)
+                            {
+                                foreach (Vcyber.BLMS.Entity.LotteryModel item in ViewBag.drvAwardList)
+                                {
+                                    string p = item.PhoneNumber.Substring(0, 3) + "****" + item.PhoneNumber.Substring(7, 4) + " ";
+                                    <a href="javascript:;">@p</a><br>
+                                }
+                            }
+                        }
+                    </p>
+                    <p id="p2"></p>
+                </div>
+
+                <div class="ul2" id="ul2">
+                    <p id="p3">
+                        @{
+                            if (ViewBag.rmdAwardList != null)
+                            {
+                                foreach (Vcyber.BLMS.Entity.LotteryModel item in ViewBag.rmdAwardList)
+                                {
+                                    string p = item.PhoneNumber.Substring(0, 3) + "****" + item.PhoneNumber.Substring(7, 4) + " ";
+                                    <a href="javascript:;">@p</a><br>
+                                }
+                            }
+                        }
+                    </p>
+                    <p id="p4"></p>
+                </div>
+
+
+            </div>
+            <!--试驾-->
+            <div class="hdjs testdrive-container" style="display:none;">
+
+
+                <!--填写预约试架信息-->
+                <div class="swiper-slide" id="form-testdrive">
+                    <div class="yuyue tianxie">
+                        <h3>填写预约信息</h3>
+                        @*<h5 style="color:#882025; margin-bottom:.1rem; text-align:center;">该手机号已参与过预约试驾,请重新填写</h5>*@
+                        <ul>
+                            <li>
+                                <label for="cx">车型:</label>
+                                <select id="CarSeries" name="CarSeries">
+                                    <option value="领动">领动</option>
+                                </select>
+                            </li>
+                            <li>
+                                <label>特约店：</label>
+                                <select id="DealerProvince" name="DealerProvince" onchange="provinceChange(this)" style="width: 80px;">
+                                    <option value="0">请选择</option>
+                                    @foreach (var item in listProvince)
+                                    {
+                                        if (!string.IsNullOrWhiteSpace(item))
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
+                                    }
+                                </select>
+                                <select id="DealerCity" name="DealerCity" onchange="cityChange(this)" style="width: 80px;">
+                                    <option value="0">请选择</option>
+                                </select>
+                                <select id="DealerId" name="DealerId" style="width: 80px;">
+                                    <option value="0">请选择</option>
+                                </select>
+                            </li>
+                            <li>
+                                <label>试驾时间：</label>
+                                <input id="ScheduleDate" name="ScheduleDate" type="text" />
+                            </li>
+                            <li>
+                                <label>性别：</label>
+                                <input id="sex1" type="radio" value="1" name="sex" style="width: auto; height:.15rem; margin-right:.02rem; vertical-align:middle;" checked /><label style="width:auto;">先生</label>
+                                <input id="sex2" type="radio" value="0" name="sex" style="width: auto; height:.15rem;margin-right:.02rem; vertical-align:middle;" /><label style="width:auto;">女士</label>
+                            </li>
+                            <li>
+                                <label>您的姓名：</label>
+                                <input id="UserName" type="text" value="" />
+                            </li>
+                            <li>
+                                <label>您的手机：</label>
+                                <input id="Phone1" value="" style="width:1rem;" />
+                                <button style="display:inline-block; width:.75rem; height:.22rem; background:#95a1b2; line-height:.21rem; color:#fff; text-align:center; border:1px solid #7785a5; cursor: pointer;" onclick="sendValidate($('#Phone1').val(), this)">发送验证码</button>
+                            </li>
+                            <li>
+                                <label>短信验证码：</label>
+                                <input id="validateCode1" name="validateCode" value="" />
+                            </li>
+                            <li class="btnLi" style="margin-top:.2rem;">
+                                <img src="/Contents/images/lingdong-pc/tijiao.png" onclick="submit_testDrive()" />
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <!--您已成功预约试驾,但没中奖-->
+                @*<div class="swiper-slide" style="display: none;">
+                        <div class="yuyue sjSuccNo">
+                            <h3>您已成功预约试驾</h3>
+                            <h4>很遗憾，您没有中奖</h4>
+                            <h5>参加推荐有礼活动还有机会参与抽奖哦！</h5>
+                            <ul>
+
+                                <li class="btnLi" style="margin-top:.2rem;"><img src="/Contents/images/lingdong-pc/tjyl.png" /></li>
+                            </ul>
+                        </div>
+                    </div>*@
+
+                <!--您已成功预约试驾，且中奖，请填写地址-->
+                <div id="test_award" class="swiper-slide" style="display: none;">
+                    <div class="yuyue sjzj">
+                        <h3>您已成功预约试驾</h3>
+                        <h4></h4>
+                        <h5 style="text-align: center; color: #901d22;"></h5><!--各种礼品-->
+                        <div id="test-award-back" style="display: none;">
+                            <ul style="display: inline;">
+                                <li class="btnLi" style="margin-top:.2rem;">
+                                    <img src="/Contents/images/lingdong-pc/tjyl.png" style="cursor: pointer;" onclick="gotoRecommend()" />
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="test_award_address">
+                            <em>地　址</em>
+                            <ul>
+                                <li>
+                                    <select id="Province" name="Province" class="global-select global-select-other">
+                                        <option value="">省份</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    <select id="City" name="City" class="global-select global-select-other">
+                                        <option value="">城市</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    <select id="Area" name="Area" class="global-select global-select-other">
+                                        <option value="">地区</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    <input id="addPart4" type="text" /><label>街道</label>
+                                </li>
+                                <li>
+                                    <input id="addPart5" type="text" /><label>地址</label>
+                                </li>
+                            </ul>
+
+                            <p>本次活动的参与者须确认个人信息的真实性。如因填写资料有误，导致相关信息无法传达，则视为自动放弃。</p>
+                            <p class="btnCenter">
+                                <img src="/Contents/images/lingdong-pc/qrdz.png" style="cursor: pointer;" onclick="postAddress()" />
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--您中奖地址已填写完成-->
+                <div id="address-complete" class="swiper-slide" style="display: none;">
+                    <div class="yuyue sjSucc">
+
+                        <h4>您已完成邮寄地址填写，奖品派发将在获奖名单公布后10个工作日内进行邮寄，如遇节假日则顺延发出。</h4>
+                        <h5>快去参加推荐有礼活动得免费保养券！</h5>
+                        <ul>
+                            <li class="btnLi" style="margin-top:.2rem;">
+                                <img src="/Contents/images/lingdong-pc/tjyl.png" style="cursor: pointer;" onclick="gotoRecommend()" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--试驾end-->
+            <!--推荐-->
+            <div class="hdjs recommend-container" style="display:none; overflow-y: auto;">
+                <!--车主信息认证-->
+                <div id="recommend-carowner-check" class="swiper-slide">
+                    <div class="yuyue tianxie renzhen">
+                        <h3>车主信息认证</h3>
+
+                        <!--报错信息1-->
+                        @*<span>对不起，验证车主身份失败</span>
+                            <em>请重新填写</em>*@
+                        <ul>
+
+                            <li><label>姓名</label><input id="carowner-check-name" value="" /></li>
+                            <li>
+                                <label>手机号码</label><input id="carowner-check-phone" value="" style="width:1rem;" />
+                                <button style="display: inline-block; width: .75rem; height: .22rem; background: #95a1b2; line-height: .21rem; color: #fff; text-align: center; border: 1px solid #7785a5; cursor: pointer;" onclick="sendValidate($('#carowner-check-phone').val(), this)">发送验证码</button>
+                            </li>
+                            <li><label>短信验证码</label><input id="carowner-check-valide" value="" /></li>
+                            <li><label>身份证</label><input id="carowner-check-card" value="" /></li>
+                            <li><label>车架号码</label><input id="carowner-check-vin" value="" /></li>
+                            <li class="btnLi" style="margin-top:.2rem;">
+                                <img src="/Contents/images/lingdong-pc/tijiao.png" style="cursor: pointer;" onclick="carOwnerCheck()" />
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <!--推荐好友购车-->
+                <div id="form-recommend" class="swiper-slide" style="display: none;">
+                    <div class="yuyue tianxie renzhen">
+                        <h3>推荐好友购车</h3>
+
+                        <ul id="form-recommend-item" style="margin-top:10px;">
+                            <li><label>姓名</label><input id="rec-name-0" value="" /></li>
+                            <li>
+                                <label>手机号码</label><input id="rec-phone-0" value="" />
+                            </li>
+                        </ul>
+                        <div style="text-align: center; margin-top: 20px;">
+                            <img src="/Contents/images/lingdong-pc/jiahao.png" style="cursor: pointer;" onclick="addRecItem()" />
+                        </div>
+                        <div style="text-align: center; margin-top: 10px; margin-bottom: 10px;">
+                            <img src="/Contents/images/lingdong-pc/tijiao.png" style="cursor: pointer;" onclick="submitRecommend()" />
+                        </div>
+                    </div>
+                </div>
+
+                <!--推荐好友购车ERR-->
+                @*<div class="swiper-slide" style="display: none;">
+                        <div class="yuyue tianxie renzhen">
+                            <h3>推荐好友购车</h3>
+                            <span>填写手机号错误或已经购车</span>
+                            <em>请核对后重新填写</em>
+                            <ul style="margin-top:.2rem;">
+
+                                <li><label>姓名</label><input id="3" value="" /></li>
+                                <li>
+                                    <label>手机号码</label><input id="4" value="" />
+
+                                </li>
+
+                                <li style="text-align:center; margin-top:.5rem; cursor:pointer;"><img src="/Contents/images/lingdong-pc/jiahao.png" /></li>
+                                <li class="btnLi" style="margin-top:.3rem;"><img src="/Contents/images/lingdong-pc/tijiao.png" /></li>
+
+                            </ul>
+                        </div>
+                    </div>*@
+
+                <!--您已成功推荐好友购车-->
+                <div id="rec-complete" class="swiper-slide" style="display: none;">
+                    <div class="yuyue sjSuccNo">
+                        <h3>您已成功推荐好友购车</h3>
+                        <h4></h4>
+                        <h5></h5>
+                        <div style="text-align: center;">参加试驾预约，抽取定制手环等精美礼品，更有机会得千元加油卡。</div>
+                        <ul style="text-align: center; display: inline;">
+                            <li class="btnLi" style="margin-top:.2rem;"><img src="/Contents/images/lingdong-pc/btn_sjyl.png" style="cursor: pointer;" onclick="gotoTestDrive()" /></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--推荐end-->
+
+        </div>
+
+
+
+        <span class="logo_bottom"></span>
+    </div>
+
+    <!--参与活动轮播图-->
+    <div class="swiBox tabPos">
+        <div class="ptab_box" id="ptab_box">
+            <ul style="left:0;">
+                <li>
+                    <img src="/Contents/images/lingdong-pc/cy0.jpg" />
+                </li>
+                <li>
+                    <img src="/Contents/images/lingdong-pc/cy1.jpg" />
+                    <span class="redDot1" id="red1"></span>
+                    <em class="redDot1"></em>
+                    <b class="pop1" style="display:none;"></b>
+                </li>
+                <li>
+                    <img src="/Contents/images/lingdong-pc/cy2.jpg" />
+                    <span class="redDot2"></span>
+                    <em class="redDot2"></em>
+                    <b class="pop2" style="display:none;"></b>
+                </li>
+                <li>
+                    <img src="/Contents/images/lingdong-pc/cy3.jpg" />
+                    <span class="redDot3"></span>
+                    <em class="redDot3"></em>
+                    <b class="pop3" style="display:none;"></b>
+                </li>
+                <li>
+                    <img src="/Contents/images/lingdong-pc/cy4.jpg" />
+                    <span class="redDot4"></span>
+                    <em class="redDot4"></em>
+                    <b class="pop4" style="display:none;"></b>
+                </li>
+                <li>
+                    <div class="btnABox">
+                        <a id="btn-nav-testdrive" class="btnA" onclick="testDrive()"><img src="/Contents/images/lingdong-pc/btn_sjyl.png" style="cursor: pointer;" /></a><br>
+                        <a id="btn-nav-recommend" class="btnA" onclick="recommend()"><img src="/Contents/images/lingdong-pc/btn_tjyl.png" style="cursor: pointer;" /></a><br>
+                    </div>
+                </li>
+            </ul>
+            <ol style="display:block;">
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ol>
+            <a href="javascript:;" class="pprev" id="prev">&lt;</a>
+            <a href="javascript:;" class="pnext" id="next">&gt;</a>
+        </div>
+    </div>
+    <!--参与活动end-->
+</body>
+</html>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+
+

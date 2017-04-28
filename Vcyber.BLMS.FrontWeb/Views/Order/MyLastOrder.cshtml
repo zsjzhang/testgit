@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.OrderProduct>
+@{
+    Layout = null;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<div class="gy_cont product_show">
+    <div class="gy_title">
+        <div class="gy_zi">
+            <h1>兑换的礼品</h1>
+            <span>Exchange of gifts</span>
+            <a href="/order/myorders"><img src="/img/arrow.png" class="arrow_n" /></a>
+        </div>
+    </div>
+    <ul style="height: 226px;">
+        @{
+            if (Model != null && Model.Any())
+            {
+                int _total = 0;
+                foreach (var productItem in Model)
+                {
+                    if (_total < 3)
+                    {
+                        Vcyber.BLMS.Entity.Product _OrderProductEntity = Vcyber.BLMS.Application._AppContext.ProductApp.GetProductById(productItem.ProductID);
+                        string _totalPrice = string.Empty;
+                        if (productItem.Integral > 0)
+                        {
+                            _totalPrice = string.Format("{0}积分", productItem.Integral * productItem.Qty);
+                        }
+                        //else
+                        //{
+                        //    if (productItem.BlueBean > 0)
+                        //    {
+                        //        _totalPrice = string.Format("{0}蓝豆", productItem.BlueBean * productItem.Qty);
+                        //    }
+                        //}
+                        <li>
+                            <a target="_blank" href="/Product/ProductDetail?productId=@productItem.ProductID">
+                             @if(_OrderProductEntity !=null)
+                             { 
+                                
+                                   <span style=" width:110px; height:110px; display:inline-block;">
+                                    <img src="@_OrderProductEntity.Image" style="width:110px; height:110px;" />
+                                </span>
+                             }
+                            </a>
+                            <a href="/Product/ProductDetail?productId=@productItem.ProductID">
+                                <h3>@productItem.Name</h3>
+                            </a>
+                            <p class="huise">消费：@_totalPrice</p>
+                            <p class="huise">兑换日期：@productItem.Createtime.ToString("yyyy-MM-dd")</p>
+                        </li>
+                    }
+                    _total++;
+                }
+            }
+        }
+    </ul>
+</div>

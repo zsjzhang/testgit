@@ -1,0 +1,75 @@
+﻿@model Vcyber.BLMS.FrontWeb.Models.ApplicationUser
+@{
+    Layout = null;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+@{
+    if (Model != null && !string.IsNullOrEmpty(Model.Id) && Model.MLevel > 1)
+    {
+        string _identityNo = Model.IdentityNumber;
+        if (!string.IsNullOrEmpty(Model.IdentityNumber) && Model.IdentityNumber.Length > 10)
+        {
+            _identityNo = Model.IdentityNumber.Substring(0, 10);
+            _identityNo = _identityNo + "****";
+        }
+        <div class="geren_box zh_xinxi">
+            <div class="gy_title">
+                <div class="gy_zi">
+                    <h1>车主信息</h1>
+                    <span>Owner Information</span>
+                </div>
+            </div>
+
+            <ul style="padding-top:10px;">
+                <li>姓名：@Model.RealName </li>
+                <li>性别： @(Model.Gender == "1" ? "男" : Model.Gender == "0" ? "女" : "") </li>
+                <li>手机号：@Model.PhoneNumber</li>
+            </ul>
+            <ul>
+
+
+                <li>邮箱：@Model.Email</li>
+
+                @{
+        int paperwork= 0;
+        int.TryParse(Model.PaperWork, out paperwork);
+        var paperworkname = Vcyber.BLMS.Common.EnumExtension.GetDiscribe((Vcyber.BLMS.Entity.Enum.ECustomerIdentificationType)(paperwork));
+                }
+                <li>证件类型：@paperworkname</li>
+                <li>
+                   @Html.Raw(string.Format("{0}：", paperworkname)) 
+                    @_identityNo
+                </li>
+            </ul>
+            <ul>
+                <li>住址：@Model.Address </li>
+            </ul>
+        </div>
+    }
+}

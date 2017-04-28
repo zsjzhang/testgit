@@ -1,0 +1,74 @@
+﻿@model Vcyber.BLMS.FrontWeb.Models.ApplicationUser
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "个人中心";
+}
+<div class="header">
+    @Html.Action("HomeHeader", "Header", new { pageName = "Mycenter" })
+    <!--个人中心-->
+    <link href="~/css/base/information.css" rel="stylesheet" />
+    <link href="~/css/base/dd.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.three_nav ul li').hover(function () {
+                $(this).addClass("zz_click").siblings().removeClass("zz_click");
+                $(".three_cont>div").eq($(this).index()).show().siblings().hide();
+            });
+        })
+    </script>
+    <style>
+        .reSend {
+        background-color: #075090; border: 1px solid #BEBEBE; color: #fff; text-align:center; cursor:pointer;width:90px; height:30px; line-height:30px; display:inline-block;
+    }
+    .reSend1{
+        background-color: #EEEEEE;
+        color: #767575; 
+    }
+    </style>
+</div>
+<div>
+
+    <div class="n_all_cont">
+        <div class="n_left_cont">
+            
+            @Html.Partial("_PartialUserInfo", this.Model)
+           
+
+           
+            @Html.Partial("_PartialMyWallet", this.Model)            
+        </div>
+        <div class="n_right_cont" >
+            <p class="select_menu">
+                <a href="/MyCenter/Index">个人中心 ></a><a href="#">账户管理</a>
+            </p>
+            <div class="three_tab" style="border:1px solid #eeeeee; float:left;">
+                <div class="three_nav" style="background-color:#eee;">
+                    <ul>
+                        <li style="margin-left:0;" class="zz_click">
+                            <img src="/img/z1.png" />
+                            <span>修改个人信息</span>
+                        </li>
+                        <li style="margin-left:1px;">
+                            <img src="/img/z2.png" />
+                            <span>修改密码</span>
+                        </li>
+                        <li style="margin-left:1px;">
+                            <img src="/img/z4.png" />
+                            <span>修改手机号</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="three_cont">
+                    @Html.Action("SetBaseInfo", "MyCenter")
+                    @Html.Action("MyCenterResetPasswd", "MyCenter")
+                    @Html.Action("SetAccount", "MyCenter")
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

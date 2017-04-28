@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "兑换失败";
+}
+<div>
+    @Html.Action("HomeHeader", "Header")
+    <div>
+        <span>
+            <label>
+                很抱歉，您的积分不足1800，无法兑换。
+            </label>
+            <a>
+                5秒后返回生活服务首页
+            </a>
+        </span>
+    </div>
+    @Html.Action("Index", "Footer")
+</div>

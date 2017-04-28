@@ -1,0 +1,73 @@
+﻿@model Vcyber.BLMS.Entity.CarService.TestDriveEntity
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.Hidden("UserId", "010")
+    <div class="form-group">
+        @Html.LabelFor(model => model.CarSeries)
+        @Html.EditorFor(model => model.CarSeries)
+        @Html.ValidationMessageFor(model => model.CarSeries)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DealerId)
+        @Html.EditorFor(model => model.DealerId)
+        @Html.ValidationMessageFor(model => model.DealerId)
+
+    </div>
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.DealerName)
+        @Html.EditorFor(model => model.DealerName)
+        @Html.ValidationMessageFor(model => model.DealerName)
+
+    </div>
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.DealerCity)
+        @Html.EditorFor(model => model.DealerCity)
+        @Html.ValidationMessageFor(model => model.DealerCity)
+
+    </div>
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.DealerProvince)
+        @Html.EditorFor(model => model.DealerProvince)
+        @Html.ValidationMessageFor(model => model.DealerProvince)
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ScheduleDate)
+        @Html.TextBoxFor(model => model.ScheduleDate, "{0:d}", new { @class = "as_datepicker form-control", @Value = "2015-02-22", @readonly = "" })
+        @Html.ValidationMessageFor(model => model.ScheduleDate)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.PurchaseTimeFrame)
+        @Html.EditorFor(model => model.PurchaseTimeFrame)
+        @Html.ValidationMessageFor(model => model.PurchaseTimeFrame)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.UserName)
+        @Html.EditorFor(model => model.UserName)
+        @Html.ValidationMessageFor(model => model.UserName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.UserSex)
+        @Html.EditorFor(model => model.UserSex)
+        @Html.ValidationMessageFor(model => model.UserSex)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Phone)
+        @Html.EditorFor(model => model.Phone)
+        @Html.ValidationMessageFor(model => model.Phone)
+    </div>
+
+    <div class="btn-toolbar">
+        <button type="submit" class="btn btn-primary"><i class="fa"></i>提交</button>
+    </div>
+}
+

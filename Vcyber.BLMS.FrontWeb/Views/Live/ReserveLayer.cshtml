@@ -1,0 +1,110 @@
+﻿@{
+    Layout = null;
+}
+
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+<div class="click_yy">
+    <div class="yuyue_div">
+        <span>使用免费次数预约：</span>
+        <input type="hidden" id="source" value="@ViewBag.source" />
+        <div class="pase_num">
+            <a style="border: 1px solid #eeeeee;padding: 0 10px; float:left;" href="javascript:void(0);" id="SonataLiveReserveFreeReduce" onclick="Live.FreeReduce();">-</a>
+            <input style="width:50px; float:left; margin-top:2px; " type="text" id="SonataLiveReserveFreeFrequency" value="0" onchange="Live.FreeChange();">
+            <a style="border: 1px solid #eeeeee;padding: 0 10px; float:left; " href="javascript:void(0);" id="SonataLiveReserveFreePlus" onclick="Live.FreePlus();">+</a>
+        </div>
+        <b>您可用免费次数为<label id="surplusFreeFrequency">@ViewBag.SurplusFreeFrequency</label>次。</b>
+    </div>
+    <div class="yuyue_div">
+        <span>使用积分兑换预约：</span>
+        <div class="pase_num">
+            
+                <a style="border: 1px solid #eeeeee;padding: 0 10px; float:left;" href="javascript:void(0);" id="SonataLiveReserveScoreReduce" onclick="Live.ScoreReduce();">-</a>
+                <input style="width:50px;float:left; margin-top:2px; " type="text" id="SonataLiveReserveScoreFrequency" value="0" onchange="Live.ScoreChange();">
+                <a style="border: 1px solid #eeeeee;padding: 0 10px;float:left;" href="javascript:void(0);" id="SonataLiveReserveScorePlus" onclick="Live.ScorePlus();">+</a>
+          
+        </div>
+        <b>您有<label id="surplusScore">@ViewBag.surplusTotalScore</label>积分，最多可以预约<label id="surplusScoreFrequency">@ViewBag.surplusScoreFrequency</label>次。</b>
+    </div>
+
+    <div class="sel_plane">
+        <span>选择机场：</span>
+        <label>省份</label>
+        <select id="SonataLiveReserveProvince" onchange="Live.ProvinceChange(this)" style="width:118px;height:32px;margin-left:10px;margin-top:-8px;float:left;">
+            <option value="-1">请选择</option>
+            @{
+                IEnumerable<string> _provinces = ViewData["provinces"] as IEnumerable<string>;
+                if (_provinces != null && _provinces.Any())
+                {
+                    foreach (var item in _provinces)
+                    {
+                        <option>@item</option>
+                    }
+                }
+            }
+        </select>
+        <label>机场</label>
+        <select id="SonataLiveReserveAirportId" onchange="Live.AirportChange()" style="width:130px;height:32px;margin-left:10px;margin-top:-8px;">
+            <option value="">请选择</option>
+        </select>
+        <label style="margin-top:18px;">航站楼</label>
+        <select id="SonataLiveReserveAirportRoomId" style="width:250px;height:32px;margin-left:10px;margin-top:10px;">
+            <option value="">请选择</option>
+        </select>
+
+    </div>
+    <div class="all_btn">
+        总计
+    </div>
+
+    <p class="thre_p" style="margin-top:20px;">
+        <strong>消耗免费次数：</strong><b><label style=" font-size: 14px; color: #3D3F43;  width: 30px; line-height: 30px;" id="SonataLiveReserveTotalFreeQuantity">0</label></b>&nbsp;&nbsp;/&nbsp;&nbsp;
+        <strong>消耗积分：</strong><b><label style=" font-size: 14px; color: #3D3F43;  width: 30px; line-height: 30px;" id="SonataLiveReserveTotalScore">0</label></b>&nbsp;&nbsp;/&nbsp;&nbsp;
+        <strong>共预约候机服务 ：</strong><b><label style=" font-size: 14px; color: #3D3F43;  width: 30px; line-height: 30px;" id="SonataLiveReserveTotalQuantity">0</label>次</b>&nbsp;&nbsp;/&nbsp;&nbsp;
+    </p>
+    <p class="thre_p">
+        <span>服务码接收手机号：</span>
+        <input type="text" id="SonataLiveReserveMobile" />
+    </p>
+    <p class="thre_p">
+        <input type="checkbox" style="width:20px;" id="IsCheckConfirm" />兑换的候机服务券须在3个月内使用，逾期作废，我已知晓并同意该要求。
+    </p>
+    <style>
+        .thre_cc {
+            border:1px solid #075090;background:#075090;color:#fff;
+        }
+        .thre_cc:hover {
+            background:#0B63b7;border:1px solid #0B63b7;
+        }
+    </style>
+    <input type="hidden" id="SonataLiveReserveUserId" value="@ViewBag.userId" /><input type="hidden" id="SonataLiveReserveCloseCurPageIndex" />
+    <a class="thre_cc" style="margin:30px 30px 0 0;" id="btnSonataLiveReserveCloseCurPage" href="javascript:void(0);" onclick="layer.close(document.getElementById('SonataLiveReserveCloseCurPageIndex').value)">取消</a>
+    <a class="thre_cc" href="javascript:void(0);" onclick="Live.SonataLiveReserveSave();">确认预约</a>
+
+</div>

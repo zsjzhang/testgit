@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Magazine>
+@{
+    Layout = null;
+}
+@{
+    <script>
+        function addBlueBean() {
+            $.ajax({
+                url: "/News/AddBlueMember",
+                type: "get"
+            });
+        }
+    </script>
+    <div class="zzdow">
+        <div class="gy_cont">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <div class="gy_nr" style="height:316px;">
+                        <span style="float: left; margin: 0; width: 165px;">
+                            <img style="width: 145px; height: 211px; float: left;" src="@item.TrueImageUrl" />
+                        </span>
+                        <span style=" width: 114px; margin: 0; float: right; padding-top:10px;">
+                            @*<h2>期刊下载</h2>*@
+                            <h1>@item.Title</h1>
+                            <span class="gr_num" style="width:80px; line-height:27px;">本期看点</span>
+                            <br />
+                            <br />
+                            <br />
+                            <p class="gr_p" style=" height:104px; overflow: hidden; width: 100%; margin-left: 0;">
+                                @item.Summary
+                            </p>
+                            <a onclick="addBlueBean()" href="@item.ReadLink" style="float:left; width:104px; background-color:#075090; height: 29px; line-height:30px;cursor:pointer;text-align:center;color:white;">
+                                @*<img src="/img/dow.png" style="margin:0;" />*@
+                                在线阅读
+                            </a>
+                        </span>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+}

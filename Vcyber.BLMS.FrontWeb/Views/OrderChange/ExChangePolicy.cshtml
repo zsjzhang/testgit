@@ -1,0 +1,697 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "置换政策";
+
+}
+@model  IEnumerable<Vcyber.BLMS.Entity.XDLotteryRecord>
+
+<style>
+    .gy_cont, .gy_list {
+        margin-top: 0;
+    }
+
+    .news .gy_nr2 dd h3, .gy_list_box dd h3 {
+        font-size: 16px;
+        font-weight: 600;
+        padding-top: 15px;
+    }
+
+    .gy_list_box dd p {
+        height: 63px;
+        overflow: hidden;
+        margin-top: 20px;
+    }
+
+    .zhihuanBox {
+        position: relative;
+        width: 693px;
+        border: 1px solid #eee;
+        margin-bottom: 40px;
+    }
+
+    .zhBanner {
+        width: 100%;
+        height: 262px;
+    }
+
+        .zhBanner img {
+            width: 100%;
+            height: 100%;
+        }
+
+    .zhTitleBox {
+        position: relative;
+        margin-top: 30px;
+        padding-left: 60px;
+    }
+
+        .zhTitleBox p {
+            height: 24px;
+            line-height: 24px;
+            font-size: 14px;
+        }
+
+            .zhTitleBox p span {
+                color: #0f61aa;
+                font-weight: bold;
+            }
+
+            .zhTitleBox p i {
+                color: #333;
+            }
+
+    .winListZh {
+        position: relative;
+        width: 100%;
+        height: 320px;
+        z-index: 88;
+    }
+
+        .winListZh .ListoverZh {
+            position: relative;
+            width: 120%;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .winListZh ul li {
+            float: left;
+            width: 270px;
+            height: 38px;
+            line-height: 38px;
+            padding-left: 18px;
+            border-bottom: 2px dotted #eee;
+            font-size: 14px;
+            color: #075090;
+            overflow: hidden;
+            font-family: '微软雅黑';
+            margin-right: 50px;
+        }
+
+            .winListZh ul li span {
+                display: block;
+                width: 85px;
+                float: left;
+            }
+
+            .winListZh ul li i {
+                margin-left: 50px;
+            }
+
+    .zhongjiangMD1 {
+        position: relative;
+        width: 640px;
+        margin: 30px auto 0 auto;
+    }
+
+    .zjListTitBox {
+        position: relative;
+        width: 100%;
+        border-bottom: 1px dashed #eee;
+        color: #f58700;
+        font-weight: bold;
+        overflow: hidden;
+        height: 24px;
+        margin-bottom: 20px;
+    }
+
+        .zjListTitBox li {
+            float: left;
+        }
+
+    .zjTit1 {
+        padding-left: 18px;
+        width: 85px;
+    }
+
+    .zjTit2 {
+        padding-left: 50px;
+        width: 185px;
+    }
+
+    .zjTit3 {
+        padding-left: 50px;
+        width: 85px;
+    }
+
+    .zhzcP {
+        position: relative;
+        width: 630px;
+        line-height: 25px;
+        color: #333;
+        font-size: 14px;
+        margin: 20px auto;
+    }
+
+        .zhzcP p {
+            text-indent: 2em;
+        }
+
+    .zhiHuanMBox {
+        border: 1px solid #eee;
+        width: 693px;
+    }
+
+    .winAttention {
+        width: 100%;
+        font-size: 14px;
+        color: #333;
+        margin-bottom: 30px;
+    }
+
+        .winAttention h2 {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .winAttention p {
+            line-height: 25px;
+            overflow: hidden;
+        }
+
+            .winAttention p i, .winAttention p span {
+                float: left;
+            }
+
+            .winAttention p i {
+                text-indent: 1em;
+            }
+
+            .winAttention p span {
+                width: 600px;
+            }
+
+    .zhConL {
+        position: relative;
+        width: 420px;
+        margin: 20px auto;
+    }
+
+    .exApp {
+        position: relative;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+        .exApp p {
+            font-size: 12px;
+            color: #3d3f43;
+            margin-bottom: 18px;
+            font-family: '微软雅黑';
+        }
+
+            .exApp p input {
+                width: 290px;
+                height: 16px;
+                border: 1px solid #bdc7d8;
+                padding: 5px;
+            }
+
+            .exApp p textarea {
+                width: 288px;
+                height: 50px;
+                overflow: hidden;
+                padding: 5px;
+                color: #333;
+            }
+
+            .exApp p select option {
+                color: #333;
+            }
+
+            .exApp p select {
+                width: 75px;
+                height: 26px;
+                border: 1px solid #bdc7d8;
+                margin-right: 10px;
+                color: #333;
+            }
+
+                .exApp p select.zhCarModle {
+                    width: 250px;
+                }
+
+            .exApp p label {
+                display: inline-block;
+                height: 30px;
+                line-height: 30px;
+                width: 92px;
+                margin-right: 10px;
+                text-align: left;
+            }
+
+            .exApp p input.subBtn {
+                position: relative;
+                width: 192px;
+                border: 0;
+                height: 30px;
+                font-size: 14px;
+                color: #fff;
+                margin: 0 auto;
+                background: #075090;
+                cursor: pointer;
+            }
+
+                .exApp p input.subBtn:hover {
+                    background: #0b63b7;
+                }
+
+            .exApp p.zhBtnBox {
+                text-align: center;
+                margin-top: 30px;
+                margin-bottom: 15px;
+            }
+
+            .exApp p select.carBrand {
+                width: 100px;
+                margin-right: 0;
+            }
+
+            .exApp p label.carBarnd {
+                margin-left: 20px;
+                width: 60px;
+            }
+
+            .exApp p i {
+                color: red;
+            }
+
+    .bluePopup {
+        width: 330px;
+        height: 240px;
+        font-size: 14px;
+    }
+
+        .bluePopup .layui-layer-btn .layui-layer-btn0, .bluePopup .layui-layer-btn .layui-layer-btn1 {
+            width: 100px;
+            margin: 50px 10px 0px 10px;
+        }
+</style>
+
+<script src="~/Contents/Scripts/Me/province.city.area.js"></script>
+<script src="/Content/laydate/laydate.js"></script>
+<script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+<script src="~/Scripts/controller/OrderChangeController.js"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        loadPCA();
+
+        //中奖名单滚动数值
+        var oLiH = $('.ListoverZh').find('li:eq(1)').height();
+        var oUlH = oLiH * Math.ceil($('.ListoverZh').find('li').length / 2);
+        $('.ListoverZh').find("ul").css('height', oUlH);
+
+        $('.ListoverZh').myScroll({
+            speed: 30, //数值越大，速度越慢
+            rowHeight: 40 //li的高度
+        });
+
+    });
+    // 中奖名单滚动
+    (function ($) {
+        $.fn.myScroll = function (options) {
+            //默认配置
+            var defaults = {
+                speed: 30,  //滚动速度,值越大速度越慢
+                rowHeight: 24 //每行的高度
+            };
+            var opts = $.extend({}, defaults, options), intId = [];
+            function marquee(obj, step) {
+
+
+                obj.find("ul").animate({
+                    marginTop: '-=1'
+                }, 0, function () {
+                    var s = Math.abs(parseInt($(this).css("margin-top")));
+                    if (s >= step) {
+                        $(this).find("li").slice(0, 2).appendTo($(this));
+                        $(this).css("margin-top", 0);
+                    }
+                });
+            }
+
+            this.each(function (i) {
+                var sh = opts["rowHeight"], speed = opts["speed"], _this = $(this);
+                intId[i] = setInterval(function () {
+                    if (_this.find("ul").height() <= _this.height()) {
+                        clearInterval(intId[i]);
+                    } else {
+                        marquee(_this, sh);
+                    }
+                }, speed);
+
+                _this.hover(function () {
+                    clearInterval(intId[i]);
+                }, function () {
+                    intId[i] = setInterval(function () {
+                        if (_this.find("ul").height() <= _this.height()) {
+                            clearInterval(intId[i]);
+                        } else {
+                            marquee(_this, sh);
+                        }
+                    }, speed);
+                });
+            });
+        }
+    })(jQuery);
+
+    //input输入框光标点入，默认文字消失
+    function inpTextF(id, text, att) {
+        $(id).focus(function () {
+            if ($(this).attr('placeholder')) {
+                $(this).attr(att, '');
+            }
+        });
+        $(id).blur(function () {
+
+            if ($(this).attr(att) == '') {
+                $(this).attr(att, text);
+            }
+        });
+    }
+    $(function () {
+        inpTextF('#zhMil', '如12万', 'placeholder');
+        inpTextF('#zhName', '请输入您的姓名', 'placeholder');
+        inpTextF('#zhTel', '请输入11位手机号码', 'placeholder');
+        inpTextF('#zhiHuanAddText', '详细街道（发放礼品使用）', 'placeholder');
+
+
+        $("#carType").prepend("<option value='' selected='true'>选择车型</option>");
+    });
+
+
+</script>
+
+
+
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "OrderChange" })
+    </div>
+    <div class="n_all_cont" style="height:1200px;">
+        <div class="n_left_cont">
+            <div class="center logon" style="width: 286px; height: auto; margin-top:0;">
+
+                <div class="logon" style=" margin-top:0px">
+                    @{
+                        if (this.User.Identity.IsAuthenticated)
+                        {
+                            @Html.Action("HomeLogonSuccess", "Account")
+                        }
+                        else
+                        {
+                            @Html.Action("HomeLogon", "Account")
+                        }
+                    }
+                </div>
+            </div>
+            <div class="homereserve">
+                @Html.Action("FindDealer", "Home")
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            @*<div class="homeproduct">
+                    @Html.Action("HotExchangeProductList", "Product")
+                </div>
+                <div class="homehotnews">
+                    @Html.Action("HotNewsRegion", "home")
+                </div>*@
+        </div>
+        <div class="n_right_cont">
+
+            <div class="n_right_cont">
+                <div class="gy_cont product_show zhiHuanMBox">
+                    <div class="gy_title">
+                        <div class="gy_zi">
+                            <h1>置换政策</h1>
+                            <span>Displacement Policy</span>
+                        </div>
+
+                    </div>
+                    <div class="zhzcP">
+                        <p>
+                            置换是指客户在购买北京现代新车的同时，将原有车辆出售给北京现代授权经销商的销售模式。北京现代针对客户置换购车需求，根据客户新购车型，给予客户相应最高10,000元/台的置换补贴及0利率等多种丰富的金融分期方案。
+                        </p>
+                        <br />
+                        <p>
+                            客户通过bluemembers置换专区（bluemembers网站/微信/APP），填写“预约置换”报名，bluemembers每月将从中抽取100名幸运客户赠送定制礼品一份。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="zhihuanBox">
+                    <div class="gy_title">
+                        <div class="gy_zi">
+                            <h1>预约置换</h1>
+                            <span>Replacement Reservation</span>
+                        </div>
+                    </div>
+                    <div class="zhConL">
+                        <div class="exApp">
+                            <p>请留下您的基本信息，我们将与您联系。带"*"号的是必须填写项。</p>
+                            <form id="permuteForm" action="">
+                                <p>
+                                    <i>*</i>
+                                    <label>选择车型:</label>
+                                    @Html.Action("CarTypeView", "Car", new { })
+                                </p>
+                                <p>
+                                    <i>*</i>
+                                    <label>选择经销商:</label>
+                                    @Html.Action("ProvinceCity", "Car", new { Istestserver = 1 })
+                                </p>
+                                <p>
+                                    <i>*</i>
+                                    <label for="zhName">姓名:</label>
+                                    <input id="zhName" placeholder="请输入您的姓名" type="text" />
+                                </p>
+                                <p>
+                                    <i>*</i>
+                                    <label for="zhTel">手机:</label>
+                                    <input type="tel" placeholder="请输入11位手机号码" id="zhTel" />
+                                </p>
+                                <p>
+                                    <i>*</i>
+                                    <label>您的邮寄地址:</label>
+                                    <select id="Province"></select>
+                                    <select id="City"></select>
+                                    <select id="Area"></select>
+                                </p>
+                                <p>
+                                    <i>&nbsp;</i>
+                                    <label> </label>
+                                    <textarea id="zhiHuanAddText" placeholder="详细街道（发放礼品使用）"></textarea>
+                                </p>
+                                <p>
+                                    <i>&nbsp;</i>
+                                    <label class="col-md-2 control-label">原品牌：</label>
+                                    <input type="text" class="form-control" id="OldCarBrand" name="OldCarBrand" value="" />
+                                </p>
+                                <p>
+                                    <i>&nbsp;</i>
+                                    <label class="col-md-2 control-label">原车型：</label>
+                                    <input type="text" class="form-control" id="OldCarSeriers" name="OldCarSeriers" value="" />
+                                </p>
+                                <p>
+                                    <i>&nbsp;</i>
+                                    <label>首上牌时间:</label>
+                                    @(Html.TextBox("OldCarLicenseTime", "", new { @class = "input_text1", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd',isShowWeek:true,isShowClear:true,readOnly:true})" }))
+                                </p>
+                                <p>
+                                    <i>&nbsp;</i>
+                                    <label for="zhMil">行驶公里数:</label>
+                                    <input type="text" id="zhMil" placeholder="如 120000" style="width:255px;" />@*<label style="display:block;float:left"style="width:240px;">公里</label>*@
+                                    <em>公里</em>
+                                </p>
+
+                                <p class="zhBtnBox">
+                                    <input type="button" class="subBtn" id="btnAddOrderChange" value="提交" />
+                                    <input type="hidden" id="hidActivityId" value="1" />
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="zhihuanBox">
+                    <div class="gy_title">
+                        <div class="gy_zi">
+                            <h1>往期中奖用户</h1>
+                            <span>Completed Winning Customers</span>
+                        </div>
+
+                    </div>
+
+                    <div class="zhongjiangMD1">
+
+                        <ul class="zjListTitBox">
+                            <li class="zjTit1">中奖用户</li>
+                            <li class="zjTit2">奖品</li>
+                            <li class="zjTit1">中奖用户</li>
+                            <li class="zjTit3">奖品</li>
+                        </ul>
+                        <div class="winListZh">
+                            <div class="ListoverZh">
+                                <ul>
+                                    @*@foreach (var m in Model)
+                                        {
+                                            var tel = "";
+                                            if (!string.IsNullOrEmpty(m.UserMobile))
+                                            {
+                                                int entlen = m.UserMobile.Length - 4;
+                                                tel = string.Format("{0}****{1}", m.UserMobile.Substring(0, 3),
+                                                    m.UserMobile.Substring(entlen, 4));
+                                            }
+                                            <li><span>@tel</span><i>@m.LotteryName</i></li>
+                                            <li><span>@tel</span><i>精美礼品</i></li>
+                                        }*@
+                                    <li><span>1347****585</span><i>精美礼品</i></li>
+                                    <li><span>1868****489</span><i>精美礼品</i></li>
+                                    <li><span>1506****757</span><i>精美礼品</i></li>
+                                    <li><span>1865****526</span><i>精美礼品</i></li>
+                                    <li><span>1896****297</span><i>精美礼品</i></li>
+                                    <li><span>1383****966</span><i>精美礼品</i></li>
+                                    <li><span>1591****627</span><i>精美礼品</i></li>
+                                    <li><span>1515****271</span><i>精美礼品</i></li>
+                                    <li><span>1822****230</span><i>精美礼品</i></li>
+                                    <li><span>1565****353</span><i>精美礼品</i></li>
+                                    <li><span>1590****375</span><i>精美礼品</i></li>
+                                    <li><span>1877****000</span><i>精美礼品</i></li>
+                                    <li><span>1586****815</span><i>精美礼品</i></li>
+                                    <li><span>1858****866</span><i>精美礼品</i></li>
+                                    <li><span>1811****932</span><i>精美礼品</i></li>
+                                    <li><span>1596****256</span><i>精美礼品</i></li>
+                                    <li><span>1805****886</span><i>精美礼品</i></li>
+                                    <li><span>1860****664</span><i>精美礼品</i></li>
+                                    <li><span>1516****513</span><i>精美礼品</i></li>
+                                    <li><span>1383****056</span><i>精美礼品</i></li>
+                                    <li><span>1897****806</span><i>精美礼品</i></li>
+                                    <li><span>1339****020</span><i>精美礼品</i></li>
+                                    <li><span>1507****765</span><i>精美礼品</i></li>
+                                    <li><span>1525****589</span><i>精美礼品</i></li>
+                                    <li><span>1599****380</span><i>精美礼品</i></li>
+                                    <li><span>1571****037</span><i>精美礼品</i></li>
+                                    <li><span>1598****941</span><i>精美礼品</i></li>
+                                    <li><span>1330****128</span><i>精美礼品</i></li>
+                                    <li><span>1391****851</span><i>精美礼品</i></li>
+                                    <li><span>1393****585</span><i>精美礼品</i></li>
+                                    <li><span>1586****399</span><i>精美礼品</i></li>
+                                    <li><span>1390****095</span><i>精美礼品</i></li>
+                                    <li><span>1583****508</span><i>精美礼品</i></li>
+                                    <li><span>1839****000</span><i>精美礼品</i></li>
+                                    <li><span>1372****955</span><i>精美礼品</i></li>
+                                    <li><span>1555****859</span><i>精美礼品</i></li>
+                                    <li><span>1390****385</span><i>精美礼品</i></li>
+                                    <li><span>1812****033</span><i>精美礼品</i></li>
+                                    <li><span>1889****558</span><i>精美礼品</i></li>
+                                    <li><span>1876****926</span><i>精美礼品</i></li>
+                                    <li><span>1518****135</span><i>精美礼品</i></li>
+                                    <li><span>1831****883</span><i>精美礼品</i></li>
+                                    <li><span>1346****577</span><i>精美礼品</i></li>
+                                    <li><span>1525****693</span><i>精美礼品</i></li>
+                                    <li><span>1529****597</span><i>精美礼品</i></li>
+                                    <li><span>1301****963</span><i>精美礼品</i></li>
+                                    <li><span>1520****399</span><i>精美礼品</i></li>
+                                    <li><span>1361****007</span><i>精美礼品</i></li>
+                                    <li><span>1381****781</span><i>精美礼品</i></li>
+                                    <li><span>1829****215</span><i>精美礼品</i></li>
+                                    <li><span>1378****626</span><i>精美礼品</i></li>
+                                    <li><span>1836****071</span><i>精美礼品</i></li>
+                                    <li><span>1539****909</span><i>精美礼品</i></li>
+                                    <li><span>1394****984</span><i>精美礼品</i></li>
+                                    <li><span>1598****930</span><i>精美礼品</i></li>
+                                    <li><span>1589****319</span><i>精美礼品</i></li>
+                                    <li><span>1590****336</span><i>精美礼品</i></li>
+                                    <li><span>1335****267</span><i>精美礼品</i></li>
+                                    <li><span>1534****099</span><i>精美礼品</i></li>
+                                    <li><span>1398****006</span><i>精美礼品</i></li>
+                                    <li><span>1365****864</span><i>精美礼品</i></li>
+                                    <li><span>1386****090</span><i>精美礼品</i></li>
+                                    <li><span>1553****876</span><i>精美礼品</i></li>
+                                    <li><span>1805****619</span><i>精美礼品</i></li>
+                                    <li><span>1358****912</span><i>精美礼品</i></li>
+                                    <li><span>1872****363</span><i>精美礼品</i></li>
+                                    <li><span>1880****000</span><i>精美礼品</i></li>
+                                    <li><span>1512****601</span><i>精美礼品</i></li>
+                                    <li><span>1379****582</span><i>精美礼品</i></li>
+                                    <li><span>1853****044</span><i>精美礼品</i></li>
+                                    <li><span>1530****565</span><i>精美礼品</i></li>
+                                    <li><span>1521****218</span><i>精美礼品</i></li>
+                                    <li><span>1887****546</span><i>精美礼品</i></li>
+                                    <li><span>1356****760</span><i>精美礼品</i></li>
+                                    <li><span>1523****063</span><i>精美礼品</i></li>
+                                    <li><span>1396****639</span><i>精美礼品</i></li>
+                                    <li><span>1360****908</span><i>精美礼品</i></li>
+                                    <li><span>1891****700</span><i>精美礼品</i></li>
+                                    <li><span>1527****171</span><i>精美礼品</i></li>
+                                    <li><span>1560****266</span><i>精美礼品</i></li>
+                                    <li><span>1390****688</span><i>精美礼品</i></li>
+                                    <li><span>1806****324</span><i>精美礼品</i></li>
+                                    <li><span>1314****333</span><i>精美礼品</i></li>
+                                    <li><span>1838****989</span><i>精美礼品</i></li>
+                                    <li><span>1809****455</span><i>精美礼品</i></li>
+                                    <li><span>1380****823</span><i>精美礼品</i></li>
+                                    <li><span>1384****287</span><i>精美礼品</i></li>
+                                    <li><span>1386****051</span><i>精美礼品</i></li>
+                                    <li><span>1360****909</span><i>精美礼品</i></li>
+                                    <li><span>1386****156</span><i>精美礼品</i></li>
+                                    <li><span>1560****783</span><i>精美礼品</i></li>
+                                    <li><span>1379****477</span><i>精美礼品</i></li>
+                                    <li><span>1329****897</span><i>精美礼品</i></li>
+                                    <li><span>1896****564</span><i>精美礼品</i></li>
+                                    <li><span>1345****866</span><i>精美礼品</i></li>
+                                    <li><span>1399****102</span><i>精美礼品</i></li>
+                                    <li><span>1361****124</span><i>精美礼品</i></li>
+                                    <li><span>1883****111</span><i>精美礼品</i></li>
+                                    <li><span>1538****689</span><i>精美礼品</i></li>
+                                    <li><span>1522****933</span><i>精美礼品</i></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="winAttention">
+                            <h2>【注意事项】：</h2>
+
+                            <p>
+                                <i>1、</i>
+                                <span>北京现代各车型置换补贴政策及贴息政策详情，请垂询当地经销商。</span>
+                            </p>
+                            <p>
+                                <i>2、</i>
+                                <span>每月10日，系统随机抽取100名预约用户，5个工作日内，工作人员邮寄定制礼品。若预约填写地址有误，3日内无法联系到您，视为主动放弃获奖资格，奖品不予保留。</span>
+                            </p>
+                            <p>
+                                <i>3、</i>
+                                <span>本活动最终解释权归北京现代汽车有限公司所有。活动中如有疑问请及时拨打北京现代24小时客服热线：400-800-1100（手机拨打）或咨询bluemembers在线客服。</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+    <div class="footer" style="float:left;">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?0b4e366e453f3524b50e08dc17833d51";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    _hmt.push(['_trackPageview', "/OrderChange/ExChangePolicy?Source=@ViewBag.Source"]);
+</script>
+

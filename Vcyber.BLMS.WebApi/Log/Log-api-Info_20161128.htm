@@ -1,0 +1,216 @@
+<HR COLOR=blue>
+日志时间：2016-11-28 13:46:17,016 [12] <BR>
+日志级别：ERROR     <BR>
+日志类：bm-web-api-controller [(null)] <BR>
+信息：System.Data.SqlClient.SqlException (0x80131904): 列名 'ISAgree' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 164
+   在 Vcyber.BLMS.Domain.XDSettlementApp.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Domain\Settlement\XDSettlementApp.cs:行号 37
+   在 Vcyber.BLMS.WebApi.Controllers.SettlementController.GetDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.WebApi\Controllers\SettlementController.cs:行号 91
+   在 lambda_method(Closure , Object , Object[] )
+   在 System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClass10.<GetExecutor>b__9(Object instance, Object[] methodParameters)
+   在 System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.Execute(Object instance, Object[] arguments)
+   在 System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ExecuteAsync(HttpControllerContext controllerContext, IDictionary`2 arguments, CancellationToken cancellationToken)
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.Controllers.ApiControllerActionInvoker.<InvokeActionAsyncCore>d__0.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__2.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.Controllers.AuthenticationFilterResult.<ExecuteAsync>d__0.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__0.MoveNext()
+ClientConnectionId:2d542393-153c-41b0-ada7-1809ef211f50
+Error Number:207,State:1,Class:16 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.WebApi\App_Start\FilterConfig.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2016-11-28 13:52:50,131 [10] <BR>
+日志级别：ERROR     <BR>
+日志类：bm-web-api-controller [(null)] <BR>
+信息：System.Data.SqlClient.SqlException (0x80131904): 在将 nvarchar 值 'Y' 转换成数据类型 tinyint 时失败。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 184
+   在 Vcyber.BLMS.Domain.XDSettlementApp.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Domain\Settlement\XDSettlementApp.cs:行号 37
+   在 Vcyber.BLMS.WebApi.Controllers.SettlementController.GetDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.WebApi\Controllers\SettlementController.cs:行号 91
+   在 lambda_method(Closure , Object , Object[] )
+   在 System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClass10.<GetExecutor>b__9(Object instance, Object[] methodParameters)
+   在 System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.Execute(Object instance, Object[] arguments)
+   在 System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ExecuteAsync(HttpControllerContext controllerContext, IDictionary`2 arguments, CancellationToken cancellationToken)
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.Controllers.ApiControllerActionInvoker.<InvokeActionAsyncCore>d__0.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__2.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.Controllers.AuthenticationFilterResult.<ExecuteAsync>d__0.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__0.MoveNext()
+ClientConnectionId:9acb60e7-851d-4b6f-be18-825c43bf68a1
+Error Number:245,State:1,Class:16 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.WebApi\App_Start\FilterConfig.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2016-11-28 13:52:59,785 [10] <BR>
+日志级别：ERROR     <BR>
+日志类：bm-web-api-controller [(null)] <BR>
+信息：System.Data.SqlClient.SqlException (0x80131904): 在将 nvarchar 值 'Y' 转换成数据类型 tinyint 时失败。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 184
+   在 Vcyber.BLMS.Domain.XDSettlementApp.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Domain\Settlement\XDSettlementApp.cs:行号 37
+   在 Vcyber.BLMS.WebApi.Controllers.SettlementController.GetDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.WebApi\Controllers\SettlementController.cs:行号 91
+   在 lambda_method(Closure , Object , Object[] )
+   在 System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClass10.<GetExecutor>b__9(Object instance, Object[] methodParameters)
+   在 System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.Execute(Object instance, Object[] arguments)
+   在 System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ExecuteAsync(HttpControllerContext controllerContext, IDictionary`2 arguments, CancellationToken cancellationToken)
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.Controllers.ApiControllerActionInvoker.<InvokeActionAsyncCore>d__0.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__2.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.Controllers.AuthenticationFilterResult.<ExecuteAsync>d__0.MoveNext()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__0.MoveNext()
+ClientConnectionId:9acb60e7-851d-4b6f-be18-825c43bf68a1
+Error Number:245,State:1,Class:16 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.WebApi\App_Start\FilterConfig.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2016-11-28 14:30:56,914 [11] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.WebApi\Controllers\SettlementController.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 在将 nvarchar 值 'Y' 转换成数据类型 tinyint 时失败。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 184
+   在 Vcyber.BLMS.Domain.XDSettlementApp.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Domain\Settlement\XDSettlementApp.cs:行号 37
+   在 Vcyber.BLMS.WebApi.Controllers.SettlementController.GetDMSIntegralList(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.WebApi\Controllers\SettlementController.cs:行号 91
+ClientConnectionId:02b2df3a-ab54-45a3-bc93-8ce38971f67b
+Error Number:245,State:1,Class:16
+<HR COLOR=blue>
+日志时间：2016-11-28 14:33:02,997 [9] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.WebApi\Controllers\SettlementController.cs <BR>
+ <HR Size=1><HR COLOR=blue>
+日志时间：2016-11-28 16:07:21,558 [9] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 在将 nvarchar 值 'Y' 转换成数据类型 int 时失败。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 174
+ClientConnectionId:05c05f82-0988-4f72-a0f4-195ff0036fbd
+Error Number:245,State:1,Class:16
+<HR COLOR=blue>
+日志时间：2016-11-28 16:07:32,262 [9] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs <BR>
+ <HR Size=1>System.Data.SqlClient.SqlException (0x80131904): 在将 nvarchar 值 'Y' 转换成数据类型 int 时失败。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 3310
+   在 Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1310
+   在 Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 d:\Dev\dapper-dot-net\Dapper NET40\SqlMapper.cs:行号 1185
+   在 Vcyber.BLMS.Common.DbHelp.Execute(String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Common\DatabaseService\DbHelp.cs:行号 90
+   在 Vcyber.BLMS.Repository.XDSettlementStorager.UpdateBMSettlementStatus(DMSIntergralListV data) 位置 D:\project\Vcyber.BLMS\Vcyber.BLMS.Repository\Settlement\XDSettlementStorager.cs:行号 174
+ClientConnectionId:05c05f82-0988-4f72-a0f4-195ff0036fbd
+Error Number:245,State:1,Class:16
+<HR COLOR=blue>
+日志时间：2016-11-28 16:07:49,619 [9] <BR>
+日志级别：ERROR     <BR>
+日志类：积分结算过程中，DMS的积分清单 [(null)] <BR>
+信息：D1109 <BR>
+所在文件：D:\project\Vcyber.BLMS\Vcyber.BLMS.WebApi\Controllers\SettlementController.cs <BR>
+ <HR Size=1>

@@ -1,0 +1,102 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "重置密码";
+}
+<style>
+    .yyrk_cont {
+        margin-top: 0px;
+    }
+    .reSend {
+        background-color: #075090; border: 1px solid #BEBEBE; color: #fff; text-align:center; cursor:pointer;width:90px; height:30px; line-height:30px; display:inline-block;
+    }
+    .reSend1{
+        background-color: #EEEEEE;
+        color: #767575; 
+    }
+</style>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Home" })
+        <input type="hidden" id="resetPasswdSource" value="@ViewBag.source" />
+    </div>
+
+    <div class="n_all_cont">
+        <div class="n_left_cont">
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+
+        </div>
+
+        <div class="n_right_cont">
+            <div class="gy_cont" style="margin-top:0;">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>重置密码</h1>
+                        <span>Reset Password</span>
+                        <img src="/img/arrow.png" class="arrow_n" />
+                    </div>
+                </div>
+                <div class="gy_nr">
+                    <div class="register" style="height:800px;">
+                        <form method="post" action="/Account/Login" id="LogonPageForm">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" id="returnUrl" name="returnUrl" value="@ViewBag.returnUrl" />
+                            <p>
+                                <b>*</b>
+                                <label>输入手机号：</label>
+                                <input type="text" id="resetPasswdMobile" name="resetPasswdMobile" placeholder="请输入手机号">
+                                <img src="/img/h_iphone.png" />
+                                <span style="display: none; position: relative; left: 12px; top: 5px;" id="resetpasswdmobileerrormsg" class="error_red">请输入手机号</span>
+                            </p>
+                            <p>
+                                <b>*</b>
+                                <label>图形验证码：</label>
+                                <input type="text" style="width:80px;" id="resetPasswdImageCode" name="resetPasswdImageCode" placeholder="图形验证码" />
+                                <img src="/img/h_lock.png" />
+                                <img src="/ValidateCode/Index?ID=1" style="margin-right: 160px; float: right; top:4px;" id="imgCode" alt="单击可刷新" onclick="clickRemoveChangeCode()" />
+                                <span id="resetpasswriamgecodeerror" style="display: none; position: relative; left: 12px; top: 5px;" class="error_red">输入图形验证码</span>
+                            </p>
+                            <p>
+                                <b>*</b>
+                                <label>输入验证码：</label>
+                                <input type="text" style="width:80px;" id="resetPasswdCaptcha" name="resetPasswdCaptcha" placeholder="输入验证码" />
+                                <img src="/img/h_user.png" />
+                                <a class="reSend" id="resetpasswdSendCaptcha">获取验证码</a>
+                                <span style="display:none;" class="error_red">请输入验证码</span>
+                            </p>
+                            <p>
+                                <b>*</b>
+                                <label>输入新密码：</label>
+                                <input type="password" id="resetPasswdPasswd" name="resetPasswdPasswd" placeholder="必须8位以上数字和大小写字母组合" />
+                                <img src="/img/h_lock.png" />
+                                <span style="display:none;" class="error_red">输入新密码</span>
+                            </p>
+                            <p>
+                                <b>*</b>
+                                <label>确认新密码：</label>
+                                <input type="password" id="reResetPasswdPasswd" name="reResetPasswdPasswd" placeholder="确认新密码" />
+                                <img src="/img/h_lock.png" />
+                                <span style="display:none;" class="error_red">确认新密码</span>
+                            </p>
+                            <a class="register_bot pay_active" id="btnresetpasswddatasave">确认</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

@@ -1,0 +1,14 @@
+D:\project\Vcyber.BLMS\Vcyber.BLMS.Search\bin\Release\FilterKey.txt
+D:\project\Vcyber.BLMS\Vcyber.BLMS.Search\bin\Release\ReplaceKey.txt
+D:\project\Vcyber.BLMS\Vcyber.BLMS.Search\bin\Release\Vcyber.BLMS.Search.dll
+D:\project\Vcyber.BLMS\Vcyber.BLMS.Search\bin\Release\Vcyber.BLMS.Search.pdb
+D:\project\Vcyber.BLMS\Vcyber.BLMS.Search\bin\Release\log4net.dll
+D:\project\Vcyber.BLMS\Vcyber.BLMS.Search\bin\Release\Lucene.Net.Analysis.PanGu.dll
+D:\project\Vcyber.BLMS\Vcyber.BLMS.Search\bin\Release\Lucene.Net.dll
+D:\project\Vcyber.BLMS\Vcyber.BLMS.Search\bin\Release\Newtonsoft.Json.dll
+D:\project\Vcyber.BLMS\Vcyber.BLMS.Search\bin\Release\PanGu.dll
+D:\project\Vcyber.BLMS\Vcyber.BLMS.Search\bin\Release\PanGu.HighLight.dll
+D:\project\Vcyber.BLMS\Vcyber.BLMS.Search\bin\Release\Newtonsoft.Json.xml
+D:\project\Vcyber.BLMS\Vcyber.BLMS.Search\bin\Release\PanGu.xml
+D:\project\Vcyber.BLMS\Vcyber.BLMS.Search\obj\Release\Vcyber.BLMS.Search.dll
+D:\project\Vcyber.BLMS\Vcyber.BLMS.Search\obj\Release\Vcyber.BLMS.Search.pdb

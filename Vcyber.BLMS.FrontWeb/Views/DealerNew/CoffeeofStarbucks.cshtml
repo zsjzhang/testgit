@@ -1,0 +1,153 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "生活服务-星巴克电子饮品券";
+}
+<link href="~/css/DealerNew/reset.css" rel="stylesheet" />
+<link href="~/css/DealerNew/brand.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnGotoLogin").click(function () {
+            var returnUrl = encodeURIComponent("/DealerNew/CoffeeofStarbucks");
+            location.href = "/Account/LogonPage?returnUrl=" + returnUrl;
+            return false;
+        });
+        $("#btnGotoRegister").click(function () {
+            var returnUrl = encodeURIComponent("/DealerNew/CoffeeofStarbucks");
+            location.href = "/Account/AccountRegister?returnUrl=" + returnUrl;
+            return false;
+        });
+
+
+    });
+</script>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "BlueVIP" })
+    </div>
+    <div class="n_all_cont">
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+                @(this.User.Identity.IsAuthenticated ? this.Html.Action("HomeLogonSuccess", "Account") : this.Html.Action("HomeLogon", "Account"))
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+        </div>
+        <style>
+            .jqImgBox {
+                border: 1px solid #eee;
+                padding-top: 20px;
+                font-family: inherit;
+                padding-bottom: 40px;
+            }
+
+                .jqImgBox .pBox {
+                    text-align: center;
+                    margin: 15px 0;
+                }
+
+                .jqImgBox h3 {
+                    font-weight: 600;
+                    font-size: 18px;
+                    text-align: center;
+                    color: #065090;
+                    margin: 25px 0 0 0;
+                }
+
+                .jqImgBox .pContent {
+                    font-size: 14px;
+                    line-height: 30px;
+                    padding: 0 25px;
+                    text-indent: 2em;
+                }
+                .pImgBox{
+                    text-align:center;
+                    margin:30px 0;
+                    padding:0 25px;
+                }
+        </style>
+        <div class="n_right_cont">
+            <p class="select_menu" style="font-family:'Microsoft YaHei'"><a href="/BlueVIP/Index">蓝缤权益</a> > <a href="/LifeService/Index">生活服务  </a>>星巴克电子饮品券</p>
+            <div class="gy_cont">
+                <div class="gy_title">
+                    <div class="gy_zi" style="font-family:'微软雅黑';">
+                        <h1>
+                            星巴克电子饮品券
+                        </h1>
+                        <span> A Large Americano Coffee of Starbucks</span>
+                    </div>
+                </div>
+                
+                <div class="gy_list_box">
+                <style>
+				.xbkTitle{ color:#00684d; font-size:16px; font-weight:bold; overflow:hidden; margin:15px 0; height:50px; line-height:50px;}
+				.xbkTitle i{ float:left; margin-right:18px; vertical-align:middle;}
+				.pXbk{ line-height:26px; font-size:14px; text-indent:2em; margin-bottom:20px;font-family:'微软雅黑';}
+				.gy_list_box{ padding:0 20px;}
+				.grayXbk{ background:#f2f2f3;margin-bottom: 20px;padding-bottom: 10px;}
+				.centerP{ text-align:center; margin-bottom:20px;}
+				.grayXbk h3{ text-align:center; color:#00684d; font-weight:bold; padding:22px 0;}
+				/*a.btnXbkBg{ display:block; width:142px; font-size:16px; height:33px; margin:40px auto; background:url(/Img/VipImg/btnXbkBg.png) no-repeat; line-height:30px; text-align:center; color:#fff; }*/
+				a.btnXbkBg{ display:block; width:142px; font-size:16px; height:33px; margin:40px auto; background:#004587; line-height:30px; text-align:center; color:#fff; }
+                a.btnXbkBg:hover{ background: #0b63b7; }
+
+				</style>
+                	<p class="xbkTitle">
+                    	<i><img src="/Img/VipImg/logXbk.png" /></i>
+                        <i style="font-family:'微软雅黑';">星巴克电子饮品券</i>
+                    </p>
+                    <p class="pXbk" style="font-family:'微软雅黑';">尊敬的车主您好，北京现代推出星巴克电子饮品券兑换活动，以最经典的浓缩咖啡中加以热水，让咖啡香气浓郁蔓溢，回味更悠长。经典星巴克美式咖啡，诚邀品鉴。</p>
+                    <div class="grayXbk">
+                        <h3 style="font-family:'微软雅黑';">星巴克电子饮品券</h3>
+                        <p class="centerP"><img src="/Img/VipImg/xbkBg.png" width="386" height="276"></p>
+                        <h3 style="font-family:'微软雅黑';">电子饮品券购买及使用流程</h3>
+                        <p class="centerP"><img src="/Img/VipImg/xbkquan.png" width="540" height="205"></p>
+                        <p class="centerP"><img src="/Img/VipImg/xbkLine.png" width="100%"></p>
+                        <a href="https://www.bluemembers.com.cn/Product/ProductDetail?productId=510" id="OrderService" class="btnXbkBg" style="font-family:'微软雅黑';">立即兑换</a>
+                    
+                    </div>
+
+            </div>
+
+                </div>
+        </div>
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>
+@*<div id="divDialogInfo" class="alertbox" style="width: 100%; height: 100%; top: 0; left:0; display: none;background-color:rgba(0,0,0,0.5);padding-top:10vh;">
+        @Html.Action("MembershipTerms", "DealerNew")
+    </div>
+    <div id="divSubmitSuccess" class="alertbox" style="width: 500px; height: 120px; margin-left: -250px; display: none">
+        <div class="alertclose" onclick="$('#divSubmitSuccess').hide();">
+            &times;
+        </div>
+        <p id="alertMessage" style="height:80px;line-height:80px;font-size:16px;text-align:center;">
+            您已成功领取礼悦会钻石级会员特权，即刻享受优质服务体验。
+        </p>
+        <div style="width:140px;margin:auto;float:none;">
+            <div class="btn" onclick="$('#divSubmitSuccess').hide();">确定</div>
+        </div>
+    </div>
+    <div id="divAlertLogin" class="alertbox" style="width: 500px; height: 120px; margin-left: -250px; display: none">
+        <div class="alertclose" onclick="$('#divAlertLogin').hide();">
+            &times;
+        </div>
+        <p style="height:80px;line-height:80px;font-size:16px;text-align:center;">
+            请登录/注册bluemembers车主会员账号，升级礼悦会钻石会员！
+        </p>
+        <div style="width:320px;margin:auto;float:none;">
+            <div class="btn" id="btnGotoLogin">立即登录</div>
+            <div class="btn" id="btnGotoRegister">注册</div>
+        </div>
+    </div>*@

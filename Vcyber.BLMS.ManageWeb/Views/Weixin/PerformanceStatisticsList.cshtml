@@ -1,0 +1,116 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "报表管理 - 多客服绩效统计";
+    ViewBag.TitleFocus = "2-2-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+<style type="text/css">
+    li {
+        margin: 5px;
+    }
+
+    li span {
+        margin-left: 10px;
+        text-align: left;
+    }
+
+    .input_text2 {
+        width: 200px;
+    }
+
+    .input_text1 {
+        width: 200px;
+    }
+</style>
+
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+<div class="path">
+
+</div>
+<div style="height:20px;"></div>
+<div class="panel panel-default">
+    <table class="table table-bordered table-responsive">
+        <tr>
+            <td>时间：</td>
+            <td colspan="4">
+                @(Html.TextBox("begintime", "", new { @class = "input_text1", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd',isShowWeek:true,isShowClear:true,readOnly:true})" }))
+            至@(Html.TextBox("endTime", "", new { @class = "input_text1", @onfocus = "WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true,readOnly:true})" }))
+        </td>
+        <td>
+            <input type="button" value="查询" id="searchQuery" class="btn btn-primary" />
+            <input class="btn btn-primary" type="submit" id="exportExcel" value="导出" />
+        </td>
+    </tr>
+</table>
+</div>
+<div id="divPageList">
+    <div class="data-container" style="padding-top:30px">
+        <table class="table table-bordered">
+            <thead>
+                <tr class="l1">        
+                    <th style="text-align:center;">序号</th>            
+                    <th style="text-align:center;">时间</th>
+                    <th style="text-align:center;">进线数量</th>
+                    <th style="text-align:center;">进线人数</th>
+                    <th style="text-align:center;">回复数量</th>
+                    <th style="text-align:center;">回复人数</th>
+                    @*<th style="text-align:center;">平均响应时长（秒）</th>*@
+                    <th style="text-align:center;">首次响应时长（秒）</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < Model.Rows.Count; i++)
+                {
+                    <tr>       
+                        <td style="text-align:center;">@(i+1)</td>                 
+                        <td style="text-align:center;">@Model.Rows[i][0].ToString()</td>
+                        <td style="text-align:right;">@Model.Rows[i][1].ToString()</td>
+                        <td style="text-align:right;">@Model.Rows[i][2].ToString()</td>
+                        <td style="text-align:right;">@Model.Rows[i][3].ToString()</td>
+                        <td style="text-align:right;">@Model.Rows[i][4].ToString()</td>
+                        @*<td style="text-align:right;">@Model.Rows[i][5].ToString()</td>*@
+                        <td style="text-align:right;">@Model.Rows[i][6].ToString()</td>
+                    </tr>
+                }
+            <tbody>
+        </table>
+    </div>
+</div>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    $(function () {
+        $("#searchQuery").on("click", function () {
+            var beginTime = $("#begintime").val();
+            var endTime = $("#endTime").val();
+            var url = window.location.pathname + "?begintime=" + beginTime + "&endtime=" + endTime;
+            window.location.href = url;
+        });
+        $("#exportExcel").on("click", function () {
+            var beginTime = $("#begintime").val();
+            var endTime = $("#endTime").val();
+            var url = "/Weixin/PerformanceStatisticsToExcel" + "?begintime=" + beginTime + "&endtime=" + endTime;
+            window.location.href = url;
+        });
+    });
+</script>
+

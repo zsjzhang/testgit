@@ -1,0 +1,81 @@
+﻿@{
+    Layout = null;
+}
+
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/ExChangeStyle.css">
+    <link rel="stylesheet" type="text/css" href="/css/ExChangeAward.css">
+    <link rel="stylesheet" type="text/css" href="/layer/skin/layer.css">
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <!--转动插件rotate,js-->
+    <script type="text/javascript" src="~/Scripts/ExChangeAwardRotate.js"></script>
+    <!--抽奖-->
+    <script type="text/javascript" src="~/Scripts/ExChangeAward.js"></script>
+    <!--弹出层layer-->
+    <script type="text/javascript" src="/layer/layer.js"></script>
+    <script>
+$(function(){
+	$('.tuijian em i').on('click',function(){
+		if($(this).text()=='+'){
+			$(this).text('-');
+			$('.colonDiv').css('display','block');
+		}else{
+			$(this).text('+');
+			$('.colonDiv').css('display','none');
+		}
+
+
+	});
+});
+    </script>
+    <title>置换月活动_绑定车主</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="mainBox" style="height: 100%;">
+            <div class="header">
+                <dl>
+                    <dd class="on"><a href="/OrderChange/Index">首　页</a></dd>
+                    <dd><a href="/OrderChange/JieShao">活动介绍</a></dd>
+                    <dt><a href="/"></a></dt>
+                    <dd><a href="/OrderChange/JiangPing">奖品设置</a></dd>
+                    <dd><a href="/OrderChange/ZhongJiang">中奖名单</a></dd>
+                </dl>
+            </div>
+            <div class="mainCont bangding">
+                <p>您尚未绑定车主身份，<br>立即绑定，尊享车主身份。</p>
+                <h2>绑定身份</h2>
+                <p><input type="text" id="identityNumber" placeholder="请输入您的身份证号" /></p>
+                <a href="javascript:void(0);" id="btnBind" class="btnS1">确认提交</a>
+                <em>提交信息立即参与抽奖</em>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="hidSource" value="@ViewBag.Source" />
+    <input type="hidden" id="hidFlag" value="@ViewBag.Flag" />
+    <script src="~/Scripts/controller/orderchange.bindcar.js"></script>
+
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?0b4e366e453f3524b50e08dc17833d51";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        _hmt.push(['_trackPageview', "/OrderChange/BangDing?Source=@ViewBag.Source"]);
+    </script>
+
+    <script type="text/javascript">
+        try {
+            if (/Android|webOS|iPhone|iPod|BlackBerry|iPad/i.test(navigator.userAgent)) {
+                window.location.href = window.location.protocol + "//" + window.location.host + "/weixin/OrderChange/BindCar?Source=@ViewBag.Source";
+            }
+        } catch (e) { }
+    </script> 
+</body>
+</html>

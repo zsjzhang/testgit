@@ -1,0 +1,82 @@
+.prefecture{
+	width: 1000px;
+	margin: 0 auto;
+}
+.prefecture_1{
+	height: 48px;
+	background: url(/img/exist.png) no-repeat;
+	line-height: 48px;
+	text-align: center;
+	font-family: "微软雅黑";
+	font-size: 18px;
+	color: #fff;
+	margin-top: 30px;
+}
+.prefecture_2{
+	width: 998px;
+	height: 350px;
+	border-left: 1px solid #eee;
+	border-right: 1px solid #eee;
+}
+.prefecture_2 a{
+	float: left;
+	display: block;
+	margin-left:24px;
+	margin-top: 21px;
+	cursor: pointer;	
+}
+.prefecture_2 a img{
+	border-radius: 6px;
+	width: 218px;
+	height: 308px;
+	border: 1px solid #eee;
+	display: block;
+}
+.prefecture_3{
+	height: 48px;
+    line-height: 48px;
+    font-family: "微软雅黑";
+	font-size: 14px;
+	color: #929396;
+	background: #eee;
+	text-align: center;
+}
+.prefecture_3 a{
+    cursor: pointer;
+}
+.prefecture_4{
+	width: 998px;
+	height: 350px;
+	border-left: 1px solid #eee;
+	border-right: 1px solid #eee;
+}
+.prefecture_4 a{
+    cursor: pointer;
+    display: block;
+}
+.prefecture_4 a img{   
+    display: block;
+    margin: 0 auto;
+    padding-top: 26px;
+}
+.prefecture_5{
+	width: 998px;
+	height: 265px;
+	border-left: 1px solid #eee;
+	border-right: 1px solid #eee;
+}
+.prefecture_5  li{
+	border: 1px solid #eee;
+	float: left;
+	margin-top: 20px;
+    margin-left: 20px;
+}
+.prefecture_5  li a{
+    cursor: pointer;
+    display: block;
+}
+.prefecture_5 a img{   
+    display: block;
+    width: 222px;
+    height: 221px;
+}

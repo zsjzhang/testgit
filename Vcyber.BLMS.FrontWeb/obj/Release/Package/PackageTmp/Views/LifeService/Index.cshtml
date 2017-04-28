@@ -1,0 +1,293 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "生活服务";
+}
+
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "BlueVIP" })
+    </div>
+    <div class="n_all_cont">
+
+    <div class="n_left_cont">
+        <div class="center logon" style="width: 286px; height: auto; margin-top: 0;">
+            @{
+                if (this.User.Identity.IsAuthenticated)
+                {
+                    @Html.Action("HomeLogonSuccess", "Account")
+                }
+                else
+                {
+                    @Html.Action("HomeLogon", "Account")
+                }
+            }
+        </div>
+        <div class="homereserve">
+            @Html.Action("ReserveRegion", "Home")
+        </div>
+        <div class="homeShortcut">
+            @Html.Action("ShortcutRegion", "Home")
+        </div>
+        <div class="homeproduct">
+            @Html.Action("HotExchangeProductList", "Product")
+        </div>
+        <div class="homehotnews">
+            @Html.Action("HotNewsRegion", "home")
+        </div>
+    </div>
+        <!--新增-->
+        <style>
+            .gy_cont, .gy_list {
+                margin-top: 0;
+            }
+
+            .news .gy_nr2 dd h3, .gy_list_box dd h3 {
+                font-size: 16px;
+                font-weight: 600;
+                padding-top: 15px;
+            }
+
+            .gy_list_box dd p {
+                height: 63px;
+                overflow: hidden;
+            }
+
+            clearfix_tit:after {
+                display: block;
+                content: "";
+                clear: both;
+            }
+
+            .gy_list_tit {
+                width: 695px;
+                height: 56px;
+                background-color: #eeeeee;
+            }
+
+                .gy_list_tit li {
+                    list-style: none;
+                    width: 233px;
+                    height: 54px;
+                    float: left;
+                    font-size: 18px;
+                    color: #3d3f43;
+                    font-weight: 600;
+                 /*   border-bottom: 2px solid #075090;*/
+                    cursor: pointer;
+                }
+
+                    .gy_list_tit li i, .gy_list_tit li p {
+                        float: left;
+                        height: 100%;
+                    }
+
+                    .gy_list_tit li p {
+                        line-height: 22px;
+                    }
+
+                    .gy_list_tit li div {
+                        width: 132px;
+                        height: 22px;
+                        margin-left: 62px;
+                        margin-top: 16px;
+                    }
+
+            .touring_hotel i {
+                width: 23px;
+                height: 21px;
+                background-image: url(/img/VipImg/touring_hotel.png);
+                display: block;
+                margin-right: 10px;
+            }
+
+            .entertainment i {
+                width: 25px;
+                height: 21px;
+                background-image: url(/img/VipImg/entertainment.png);
+                display: block;
+                margin-right: 10px;
+            }
+
+            .education_training i {
+                width: 10px;
+                height: 21px;
+                background-image: url(/img/VipImg/education_training.png);
+                display: block;
+                margin-right: 10px;
+            }
+
+            /*之前的样式*/
+            /*.gy_list_tit .tit_active {
+                border-left: 2px solid #075090;
+                border-right: 2px solid #075090;
+                border-top: 2px solid #075090;
+                border-bottom: none;
+            }*/
+            /*新改的样式*/
+             .gy_list_tit .tit_active {
+                border-left: 1px solid #eee;
+				border-right: 1px solid #eee;
+				border-top: 1px solid #eee;
+				border-bottom: none;
+				background: #fff;
+            }
+
+
+            .gy_list_box dd p {
+                margin-top: 20px;
+            }
+         .gy_list_box dt a {
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
+            .gy_list_box dt a img {
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+        <script>
+   
+	$(document).ready(function(){
+		var abtn = $('.gy_list_tit li');
+		var list_box = $('.gy_list_box');
+		abtn.mouseover(function(){
+			abtn.removeClass('tit_active');
+			$(this).addClass('tit_active');
+			list_box.hide();
+			list_box.eq($(this).index()).show();
+		})
+	})
+  
+        </script>
+        <div class="n_right_cont">
+            <p class="select_menu"><a href="/BlueVIP/Index">蓝缤权益</a> >生活服务</p>
+            <div class="gy_list ">
+                <ul class="gy_list_tit clearfix_tit">
+                    <li class="touring_hotel tit_active">@*tit_active*@
+                        <div>
+                            <i></i>
+                            <p>旅行酒店</p>
+                        </div>
+                    </li>
+                    <li class="entertainment">
+                        <div>
+                            <i></i>
+                            <p>餐饮娱乐</p>
+                        </div>
+                    </li>
+                    @*<li class="education_training">
+        <div>
+            <i></i>
+            <p>教育培训</p>
+        </div>
+    </li>*@
+                </ul>
+                <div class="gy_list_box">
+                    <dl>
+                        <dt style="width:300px;">
+                            <a href="/Live/Index"><img src="/img/big_img.png"></a>
+                        </dt>
+                        <dd style="height:120px;">
+                            <a href="/Live/Index">
+                                <h3>50个机场候机尊享服务</h3>
+                            </a>
+                            <p>北京现代为bluemembers会员提供全国29个省及直辖市，50家机场嘉宾休息室尊享候机服务.让您体验高端、便捷候机服务；茶点、书刊、音像免费提供，尊享优质舒适候机服务。</p>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt style="width:300px;">
+                            <a href="/DealerNew/TuniuIndex"><img src="/img/s92.jpg"></a>
+                        </dt>
+                        <dd style="height:120px;">
+                            <a href="/DealerNew/TuniuIndex">
+                                <h3>途牛五星会员权益</h3>
+                            </a>
+                            <p>bluemembers联合途牛旅游网为北京现代车主会员提供超值五星会员特权通道，享受全方位旅游服务贵宾权益。</p>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt style="width:300px;">
+                            <a href="/DealerNew/LiyueIndex"><img src="/img/s93.png"></a>
+                        </dt>
+                        <dd style="height:120px;">
+                            <a href="/DealerNew/LiyueIndex">
+                                <h3>礼悦会钻石会员权益</h3>
+                            </a>
+                            <p>bluemembers联合海航酒店集团忠诚计划——礼悦会为北京现代车主会员提供超值钻石级会员特权通道，享受高端完美酒店服务。</p>
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt style="width:300px;">
+                            <a href="/DealerNew/ExchangeTicket"><img src="/Img/VipImg/ExchengeTiket.jpg"></a>
+                        </dt>
+                        <dd style="height:120px;">
+                            <a href="/DealerNew/ExchangeTicket">
+                                <h3>景区门票兑换</h3>
+                            </a>
+                            <p>bluemembers蓝缤现推出积分兑换景区门票服务。北京、广东、浙江、河南四省，每省每月提供一家自驾游景区，节假日正常使用，全年循环有效，景点月月换新。
+</p>
+                        </dd>
+                    </dl>
+                    <!--160817新增-->
+                    <dl>
+                        <dt style="width:300px;">
+                            <a href="/DealerNew/TujiaMemberRules"><img src="/Img/VipImg/tjPicS.jpg" /></a>
+                        </dt>
+                        <dd style="height:120px;">
+                            <a href="/DealerNew/TujiaMemberRules">
+                                <h3>途家会员权益</h3>
+                            </a>
+                            <p>
+                                bluemembers联合途家网为北京现代车主打造会员专享权益。申请途家权益，享北京现代车主会员专属身份、注册好礼、订房8折优惠、积分多重翻倍等权益，让您旅途生活精彩便捷。
+                            </p>
+                        </dd>
+                    </dl>
+                    <!--160817新增end-->   
+                </div>
+                <div class="gy_list_box" style="display:none">
+
+                    <dl>
+                        <dt style="width:300px;">
+                            <a href="/DealerNew/CoffeeofStarbucks"><img src="/Img/VipImg/CoffeeofStarbucks.jpg"></a>
+                        </dt>
+                        <dd style="height:120px;">
+                            <a href="/DealerNew/CoffeeofStarbucks">
+                                <h3>星巴克电子饮品券</h3>
+                            </a>
+                            <p>北京现代bluemembers现推出星巴克电子饮品券兑换活动，以最经典的浓缩咖啡中加以热水，让咖啡香气浓郁蔓溢，回味更悠长。经典星巴克美式咖啡，诚邀品鉴</p>
+                        </dd>
+                    </dl>
+                   
+                    <dl>
+                        <dt style="width:300px;">
+                            <a href="/DealerNew/liftmovie"><img src="/Img/CinemaTicket.jpg"></a>
+                        </dt>
+                        <dd style="height:120px;">
+                            <a href="/DealerNew/liftmovie">
+                                <h3>网票网电子影票</h3>
+                            </a>
+                            <p>北京现代bluemembers现推出积分兑换电子影票服务。覆盖全国1500余家影院，2D、3D通用，蓝缤+电影，让枯燥的平日充满更多精彩，给您不一样的优质生活。</p>
+                        </dd>
+                    </dl>
+
+                </div>
+             
+
+            </div>
+
+
+            @Html.Action("HotProductsRegion", "Home")
+
+        </div>
+
+
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>
+
+

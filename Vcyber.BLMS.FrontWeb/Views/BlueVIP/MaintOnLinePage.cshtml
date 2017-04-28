@@ -1,0 +1,149 @@
+﻿
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <style>
+        .two_sel {
+            width: 98%;
+            margin: 0 auto;
+            height: 134px;
+        }
+
+            .two_sel p {
+                height: 40px;
+                line-height: 40px;
+            }
+
+                .two_sel p select {
+                    width: 222px;
+                    height: 31px;
+                }
+
+                .two_sel p span {
+                    margin-left: 140px;
+                    margin-right: 8px;
+                }
+
+        .jyzl_cont {
+            width: 98%;
+            margin: 0 auto;
+            float: left;
+            margin-left: 8px;
+        }
+
+            .jyzl_cont p {
+                height: 36px;
+                line-height: 36px;
+                border-bottom: 1px solid #eaeaea;
+                width: 100%;
+                font-size: 14px;
+                color: #3d3f43;
+                text-indent: 0;
+            }
+
+            .jyzl_cont ul li {
+                border: 1px solid #eaeaea;
+                width: 138px;
+                height: 36px;
+                text-align: center;
+                line-height: 36px;
+                font-size: 14px;
+                color: #3d3f43;
+            }
+
+            .jyzl_cont ul {
+                float: left;
+                margin-left: 1px;
+                margin-top: 10px;
+            }
+
+        .grey_jy {
+            background: #eaeaea;
+        }
+
+        .go_buy {
+            width: 232px;
+            height: 33px;
+            line-height: 33px;
+            text-align: center;
+            background: #075090;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            display: block;
+            float: left;
+            margin-top: 150px;
+            margin-left: 220px;
+        }
+    </style>
+    <script>
+        try{
+                top.location.hostname;
+                if (top.location.hostname != window.location.hostname) {
+                top.location.href =window.location.href;
+            }
+            }
+                catch(e){
+                top.location.href = window.location.href;
+            }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<div id="divContent">
+    <div class="jyzl_cont">
+        <p>机油种类</p>
+        @{
+            IEnumerable<Vcyber.BLMS.Entity.MaintCarOil> Oils = ViewBag.Oils;
+            if (Oils != null)
+            {
+                foreach (var item in Oils)
+                {
+                    <ul>
+                        <li class="grey_jy">@item.OilType</li>
+                        <li>@item.OilName</li>
+                    </ul>
+                }
+            }
+        }
+    </div>
+    <div class="jyzl_cont">
+        <p>基本套餐</p>
+        @{
+            IEnumerable<Vcyber.BLMS.Entity.MaintCarPackage> Packages = ViewBag.Packages;
+            if (Packages != null)
+            {
+                foreach (var item in Packages.Where(x => x.PackageType == "基本套餐"))
+                {
+                    <ul>
+                        <li class="grey_jy">@item.ItemName</li>
+                    </ul>
+                }
+            }
+        }
+    </div>
+    <div class="jyzl_cont">
+        <p>推荐项目</p>
+        @{
+    if (Packages != null)
+    {
+        foreach (var item in Packages.Where(x => x.PackageType == "推荐项目"))
+        {
+            <ul>
+                <li class="grey_jy">@item.ItemName</li>
+            </ul>
+        }
+    }
+}
+    </div>
+</div>

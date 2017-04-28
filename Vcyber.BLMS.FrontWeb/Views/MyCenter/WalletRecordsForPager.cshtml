@@ -1,0 +1,13 @@
+﻿@model IList<Vcyber.BLMS.Entity.UserblueBean>
+@{
+    Layout = null;
+}
+
+@{ if (Model != null && Model.Any())
+ {
+     foreach (var item in Model)
+     {
+        <p><span>@item.integralSourceName 获得 @item.value 蓝豆</span><b>@item.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")</b></p>
+     }
+ }
+}

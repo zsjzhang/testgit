@@ -1,0 +1,206 @@
+﻿.ruleBody {
+    background: url(/Img/MoreMember/ruleBgLow.jpg);
+    background-size: cover;
+    height:520px;
+}
+
+#wrap {
+    width: 100%;
+}
+/*背景图像*/
+.bgImg {
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+}
+
+.title {
+    font-size: 1.5em;
+    font-family: "黑体";
+    margin-top: 39%;
+    margin-left: 10%;
+    color: #fff5e0;
+}
+
+/*标题*/
+.ruleTit {
+    background: url(/Img/MoreMember/ruleTitBg.png) no-repeat;
+    color: #5e0a0a;
+    font-size: 1.3em;
+    height: 40px;
+    margin-top: 7%;
+    text-align: left;
+}
+
+    .ruleTit span {
+        padding-left: 67px;
+        padding-top: 10px;
+        display: block;
+    }
+
+#titImg {
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+}
+
+/*内容*/
+#content {
+    font-size: 1.1em;
+    color: #ffd777;
+    margin-top: 2%;
+    padding: 0 5%;
+    line-height: 20px;
+}
+
+/*尾部*/
+#footer {
+    width: 90%;
+    position: fixed;
+    bottom: 2%;
+    text-align: center;
+    padding: 0 5%;
+}
+
+#introduction {
+    height: 30px;
+    line-height: 30px;
+    width: 30%;
+    background-color: #cc1b25;
+    color: #fff;
+    font-size: 1.3em;
+    border: 0;
+    display: inline-block;
+}
+
+#startGame {
+    width: 60%;
+    background: url('/Img/MoreMember/green.png') repeat-x;
+    font-size: 1.3em;
+    color: #fff;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+}
+
+/*游戏介绍页面样式*/
+.introductionBody {
+    background: url(/Img/MoreMember/introductionBg1.jpg);
+    background-size: cover;
+}
+
+.wrap {
+    width: 100%;
+}
+
+/*标题*/
+#introductionTitle {
+    width: 100%;
+    margin-top: 44%;
+    position: absolute;
+    top: 5%;
+
+}
+
+    #introductionTitle img {
+        width: 100%;
+        height: auto;
+        position: absolute;
+        top: 30%;
+    }
+
+    #introductionTitle p {
+        position: absolute;
+        top: 30%;
+        color: #fff;
+        line-height: 20px;
+        width: 87%;
+        font-size: 1em;
+        padding: 5px 0 0 10px;
+    }
+/*活动介绍*/
+.introductionContent {
+    color: #ffd777;
+    margin-top: 5%;
+    padding: 0 5%;
+    line-height: 22px;
+}
+
+.introductionContent p {
+    font-size: 1.12em;
+    line-height: 22px;
+}
+
+/*活动介绍首行缩进*/
+.firstLine {
+    text-indent:2em;
+}
+/*活动规则*/
+/*活动规则内容固定高度*/
+#typeContent {
+    height:167px;
+}
+#typeContent dl {
+    width:100%;
+}
+#typeContent dt {
+    float:left;
+    width:13%;
+    padding-right:10px;
+}
+#typeContent dd {
+    float:left;
+    width:83%;
+}
+
+/*奖品展示*/
+#prizeShowContent {
+    height:516px;
+    width:90%;
+    margin:0 auto ;
+}
+#prizeShowContent ul {
+    padding-left:5%;
+    padding-top:5%;
+    float:left;
+    color:#efbc69;
+    width:42%;
+}
+#prizeShowContent ul li {
+    background:url(/Img/MoreMember/frame.png) no-repeat;
+    height:117px;
+    width:117px;
+    padding-bottom: 7%;
+    text-align:center;
+    margin: 0 auto;
+}
+    #prizeShowContent ul li span {
+        width:117px;
+        height:53px;
+        /*padding-left:28%;*/
+        padding-top:17%;
+        display:inline-block;
+    }
+    /*中等图片上面距离也要修改*/
+    #prizeShowContent ul li .middleImg {
+        padding-top:20%;
+    }
+    /*图片小的上面距离要加大*/
+#prizeShowContent ul li .littleImg {
+    padding-top:38px;
+    height:33px;
+}
+    #prizeShowContent ul li img {
+        height:auto;
+
+    }
+#prizeShowContent ul li p {
+    padding: 18% 5% 0 5%;
+    text-align:center;
+    line-height: 15px;
+    font-weight:bold;
+}
+    /*段落字体长的单独样式*/
+    #prizeShowContent ul li .longP {
+        padding:0 0 0 0;
+    }

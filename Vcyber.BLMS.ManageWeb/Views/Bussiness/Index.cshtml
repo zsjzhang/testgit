@@ -1,0 +1,139 @@
+﻿@*@{
+        ViewBag.Title = "会员收支明细";
+    }
+
+    @Scripts.Render("~/Scripts/MemberBusinessFlow/MemberBusinessFlowInfo.js")
+    <div class="g_page_content"><div id="BussinessFlowContainer" style="height: 700px"></div></div>*@
+@{
+    ViewBag.Title = "会员收支明细";
+    Layout = null;
+}
+
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>会员收支明细</strong></div>
+</div>
+<div class="container panel panel-default">
+    <div class="panel-body">
+        <form name="form" class="form-horizontal" novalidate>
+            <div class="form-group">
+                <label class="col-md-2 control-label">日期</label>
+                <div class="col-md-2 text-left">
+                    <input class="form-control datepicker" ng-model="startDate" data-date-format="yyyy-mm-dd">
+                </div>
+                <div class="col-md-2 text-left">
+                    <input class="form-control datepicker" ng-model="endDate" data-date-format="yyyy-mm-dd">
+                </div>
+                <script type="text/javascript">
+                    $('.datepicker').datepicker();
+                </script>
+                <label class="col-md-2 control-label">资金流向</label>
+                <div class="col-md-3 text-left">
+                    <select class="form-control" ng-model="financeFlowDw.select">
+                        <option ng-repeat="it in financeFlowDw.data" value="{{it.id}}">{{it.value}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">商城平台</label>
+                <div class="col-md-4 text-left">
+                    <select class="form-control" ng-model="destinationDw.select">
+                        <option ng-repeat="it in destinationDw.data" value="{{it.id}}">{{it.value}}</option>
+                    </select>
+                </div>
+                <label class="col-md-2 control-label">订单/退款编号</label>
+                <div class="col-md-3 text-left">
+                    <input class="form-control" type="text" ng-model="orderCode" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn btn-primary" type="submit" ng-click="search()">查询</button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="gridStyle" style="height: 410px; border: 1px solid rgb(212,212,212)" ng-grid="gridOptions">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+=======
+﻿@*@{
+    ViewBag.Title = "会员收支明细";
+}
+
+@Scripts.Render("~/Scripts/MemberBusinessFlow/MemberBusinessFlowInfo.js")
+<div class="g_page_content"><div id="BussinessFlowContainer" style="height: 700px"></div></div>*@
+@{
+    ViewBag.Title = "会员收支明细";
+    Layout = null;
+}
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>会员收支明细</strong></div>
+</div>
+<div class="container panel panel-default">
+    <div class="panel-body">
+        <form name="form" class="form-horizontal" novalidate>
+            <div class="form-group">
+                <label class="col-md-2 control-label">日期</label>
+                <div class="col-md-2 text-left">
+                    <input class="form-control datepicker" ng-model="startDate" data-date-format="yyyy-mm-dd">
+                </div>
+                <div class="col-md-2 text-left">
+                    <input class="form-control datepicker" ng-model="endDate" data-date-format="yyyy-mm-dd">
+                </div>
+                <script type="text/javascript">
+                    $('.datepicker').datepicker();
+                </script>
+                <label class="col-md-2 control-label">资金流向</label>
+                <div class="col-md-3 text-left">
+                    <select class="form-control" ng-model="financeFlowDw.select">
+                        <option ng-repeat="it in financeFlowDw.data" value="{{it.id}}">{{it.value}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">商城平台</label>
+                <div class="col-md-4 text-left">
+                    <select class="form-control" ng-model="destinationDw.select">
+                        <option ng-repeat="it in destinationDw.data" value="{{it.id}}">{{it.value}}</option>
+                    </select>
+                </div>
+                <label class="col-md-2 control-label">订单/退款编号</label>
+                <div class="col-md-3 text-left">
+                    <input class="form-control" type="text" ng-model="orderCode" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn btn-primary" type="submit" ng-click="search()">查询</button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="gridStyle" style="height: 410px; border: 1px solid rgb(212,212,212)" ng-grid="gridOptions">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

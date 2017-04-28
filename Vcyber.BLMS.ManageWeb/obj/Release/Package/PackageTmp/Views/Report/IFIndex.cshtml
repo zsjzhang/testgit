@@ -1,0 +1,150 @@
+﻿@model List<Vcyber.BLMS.Entity.IntegralOutReportInfo>
+@{
+    ViewBag.Title = "中间表查询(物理表)";
+    ViewBag.TitleFocus = "2-2-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+    try {
+        top.location.hostname;
+        if (top.location.hostname != window.location.hostname) {
+            top.location.href = window.location.href;
+        }
+    }
+    catch (e) {
+        top.location.href = window.location.href;
+    }
+</script>
+@using Vcyber.BLMS.ManageWeb.Helper
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+<style type="text/css">
+    /*.input_text2 {
+        width: 100px;
+    }
+
+    .input_text1 {
+        width: 100px;
+    }*/
+</style>
+<div class="path">
+
+</div>
+<div style="height:20px;"></div>
+<div class="panel panel-default">
+    <table class="table table-bordered table-responsive">
+        <tr>
+            <td>
+                VIN：<input type="text" class="input_text1" id="txtvin" />
+                <input type="button" value="查询" onclick="searchCar();" class="btn btn-primary" />
+            </td>
+        </tr>
+    </table>
+
+    <table class="table table-bordered table-responsive" style="margin-top:10px;">
+        <tr>
+            <td>
+                姓名：<input type="text" class="input_text1" id="txtname" />
+            </td>
+            <td>
+                手机号：<input type="text" class="input_text1" id="txtphone" />
+            </td>
+            <td>
+                证件号：<input type="text" class="input_text1" id="txtidentitynumber" />
+            </td>
+            <td>
+                <input type="button" value="查询" onclick="searchCustomer();" class="btn btn-primary" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value="添加旧中间表" onclick="addCustomerShow();" class="btn btn-primary" />
+            </td>
+            <td colspan="3">
+                <form action="/Report/ImportCoustomer" method="post" enctype="multipart/form-data" target="_blank">
+                    <ul style="list-style:none">
+                        <li>
+                            <span style="float:left;width:200px"><strong>批量导入客户信息</strong></span>
+                            <input style="float:left;width:180px" type="file" name="file" />
+                            <input type="submit" value="导入" style="width: 100px" />
+                            <a target="_blank" href="../UploadImg/客户信息模板.xls" class="text-center">下载导入文件模板</a>
+                        </li>
+                    </ul>
+                </form>
+            </td>
+        </tr>
+    </table>
+    @{Html.RenderPartial("AddCustomer");}
+</div>
+<div id="divPageList">
+    @{
+        Html.RenderAction("FindCar");
+    }
+</div>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    //搜索VIN
+    function searchCar() {
+        var vinValue = $("#txtvin").val().trim();
+
+        if (vinValue == "") {
+            alert("请输入VIN。");
+            return;
+        }
+
+        var data = { vin: vinValue };
+        var url = "@Url.Action("FindCar")";
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function (msg) {
+                $('#divPageList').html(msg);
+            }
+        });
+    }
+
+    function searchCustomer() {
+        var name = $("#txtname").val().trim();
+        var phone = $("#txtphone").val().trim();
+        var identityNumber = $("#txtidentitynumber").val().trim();
+
+        if (name == "" && phone == "" && identityNumber == "") {
+            alert("请输入客户查询条件。");
+            return;
+        }
+
+        var data = { Name: name, Phone: phone, IdentityNumber: identityNumber };
+        var url = "@Url.Action("FindCustomer")";
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function (msg) {
+                $('#divPageList').html(msg);
+            }
+        });
+    }
+
+    function addCustomerShow() {
+        $("#customerDiv").show(500);
+    }
+
+</script>

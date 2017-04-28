@@ -1,0 +1,741 @@
+﻿@using Vcyber.BLMS.Entity;
+@using Vcyber.BLMS.ManageWeb.Helper;
+@model  Vcyber.BLMS.Entity.Product
+@{
+    ViewBag.Title = "编辑商品";
+    ViewBag.TitleFocus = "2-2-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<link rel="stylesheet" type="text/css" href="@Url.Content("~/Scripts/ueditor/themes/default/css/ueditor.css")" />
+<script type="text/javascript" src="@Url.Content("~/Scripts/ueditor/ueditor.config.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/ueditor/ueditor.all.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/ueditor/lang/zh-cn/zh-cn.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.form.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/Uploadify/jquery.uploadify.js")"></script>
+
+<link href="@Url.Content("~/Scripts/uploadify/uploadify.css")" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/Uploadify/jquery.uploadify.min.js"></script>
+
+<script>
+
+    //$().ready(function () {
+    //    $("#Integral").blur(function () {
+    //        //alert("test");
+    //        var Integral = $("#Integral").val();
+    //        if (Integral != "") {
+    //            $("#GoldMemberIntegral").val(Integral*1 * 0.8);
+    //            $("#SilverMemberIntegral").val(Integral*1 * 0.9);
+
+    //        }
+
+    //    });
+    //    });
+
+</script>
+<style type="text/css">
+    .ui-datepicker {
+        z-index: 9999 !important;
+    }
+
+    .uploadify-button-text {
+        float: none !important;
+        color: White !important;
+    }
+
+    .fileName {
+        float: none !important;
+    }
+
+    .data {
+        float: none !important;
+    }
+
+    .uploadify {
+        position: relative;
+        margin-bottom: 1em;
+        margin-left: 90px;
+        /*margin-top: -65px;*/
+    }
+
+    .imgDiv div {
+        margin-left: 0px;
+    }
+
+    select {
+        width: 155px;
+    }
+
+    li label {
+        width: 120px;
+        text-align: left;
+    }
+
+    .input_text2 {
+        display: block;
+        width: 100%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.428571429;
+        color: #555555;
+        vertical-align: middle;
+        background-color: #ffffff;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+        transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    }
+
+    .input_text1 {
+        display: block;
+        width: 100%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.428571429;
+        color: #555555;
+        vertical-align: middle;
+        background-color: #ffffff;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+        transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    }
+
+    .input_text3 {
+        display: block;
+        width: 100%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.428571429;
+        color: #555555;
+        vertical-align: middle;
+        background-color: #ffffff;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+        transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    }
+</style>
+<div class="container panel panel-default">
+    <div class="panel-body form-horizontal">
+        @using (Html.BeginForm())
+        {
+            <div class="form-group">
+                <label class="col-md-2 control-label">商品类型</label>
+                <div class="col-md-4 text-left">
+                    @Html.DropDownListFor(m => m.ParentCategory.ID, StoreFilterSelectList.GetProductCategory(), new { @class = "form-control", @onchange = "categorySelect.GetChilds()" })
+                    @Html.ValidationMessageFor(m => m.ParentCategory.ID)
+                </div>
+                <label class="col-md-2 control-label">商品子类型</label>
+                <div class="col-md-4 text-left">
+                    @Html.DropDownListFor(m => m.ChildCategory.ID, StoreFilterSelectList.GetProductCategory(Model.ParentCategory.ID), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.ChildCategory.ID)
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">商品名称</label>
+                <div class="col-md-4 text-left">
+                    @Html.TextBoxFor(m => m.Name, new { @class = "input_text2 form-control", @width = "300px" })
+                    @Html.ValidationMessageFor(m => m.Name)
+                </div>
+                @*<label class="col-md-2 control-label">商品短标题</label>
+                <div class="col-md-4 text-left">
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @width = "300px" })
+                    @Html.ValidationMessageFor(m => m.Title)
+                </div>*@
+                <label class="col-md-2 control-label">普卡价</label>
+                <div class="col-md-4 text-left">
+                    @Html.TextBoxFor(m => m.Integral, new { @class = "input_text1 form-control" })
+                    @Html.ValidationMessageFor(m => m.Integral)
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">金卡会员价</label>
+                <div class="col-md-4 text-left">
+                    @Html.TextBoxFor(m => m.GoldMemberIntegral, new { @class = "input_text1 form-control" })
+                    @Html.ValidationMessageFor(m => m.GoldMemberIntegral)
+                </div>
+                <label class="col-md-2 control-label">银卡会员价</label>
+                <div class="col-md-4 text-left">
+                    @Html.TextBoxFor(m => m.SilverMemberIntegral, new { @class = "input_text1 form-control" })
+                    @Html.ValidationMessageFor(m => m.SilverMemberIntegral)
+                </div>
+
+            </div>
+            @*<div class="form-group">
+                <label class="col-md-2 control-label">蓝豆价</label>
+                <div class="col-md-4 text-left">
+                    @Html.TextBoxFor(m => m.BlueBean, new { @class = "input_text1 form-control" })
+                    @Html.ValidationMessageFor(m => m.BlueBean)
+                </div>
+                <label class="col-md-2 control-label">库存</label>
+                <div class="col-md-4 text-left">
+                    @Html.TextBoxFor(m => m.Qty, new { @class = "input_text1 form-control" })
+                    @Html.ValidationMessageFor(m => m.Qty)
+                </div>
+            </div>*@
+            <div class="form-group">
+                <label class="col-md-2 control-label">购买者身份限制</label>
+                <div class="col-md-4 text-left">
+                    @Html.DropDownListFor(m => m.IsIdentity, StoreFilterSelectList.GetProductIdentity(), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.IsIdentity)
+                </div>
+                <label class="col-md-2 control-label">是否上架</label>
+                <div class="col-md-4 text-left">
+                    @Html.DropDownListFor(m => m.State, StoreFilterSelectList.GetProductStatusList(), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.State)
+                </div>
+            </div>
+            <div class="form-group">
+
+                <label class="col-md-2 control-label">限量</label>
+                <div class="col-md-4 text-left">
+                    @Html.TextBoxFor(m => m.MaxPer, new { @class = "input_text1 form-control" })
+                    @Html.ValidationMessageFor(m => m.MaxPer)
+                </div>
+                <label class="col-md-2 control-label">限次</label>
+                <div class="col-md-4 text-left">
+                    @Html.TextBoxFor(m => m.MaxUser, new { @class = "input_text1 form-control" })
+                    @Html.ValidationMessageFor(m => m.MaxUser)
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">推荐设置</label>
+                <div class="col-md-4 text-left">
+                    @Html.DropDownListFor(m => m.IsRecommend, StoreFilterSelectList.GetProductRecommendList(), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.IsRecommend)
+                </div>
+                <label class="col-md-2 control-label">权重</label>
+                <div class="col-md-4 text-left">
+                    @Html.TextBoxFor(m => m.Weight, new { @class = "input_text1 form-control" })
+                    @Html.ValidationMessageFor(m => m.Weight)
+                </div>
+            </div>
+             <div class="form-group">
+                @*<label class="col-md-2 control-label">蓝豆价</label>
+                <div class="col-md-4 text-left">
+                    @Html.TextBoxFor(m => m.BlueBean, new { @class = "input_text1 form-control" })
+                    @Html.ValidationMessageFor(m => m.BlueBean)
+                </div>*@
+                <label class="col-md-2 control-label">库存</label>
+                <div class="col-md-4 text-left">
+                    @Html.TextBoxFor(m => m.Qty, new { @class = "input_text1 form-control" })
+                    @Html.ValidationMessageFor(m => m.Qty)
+                </div>
+            </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label">商品属性</label>
+        <div class="col-md-4 text-left">
+             @foreach (ProductType producttype in StoreFilterSelectList.GetAllProductTypesList())
+             {    
+                 var isback =false;
+                 foreach ( ProductType mproducttype in Model.ProductTypeList)
+                 { 
+                   if (producttype .Id ==mproducttype .Id )
+                    {
+                        isback = true; 
+                       
+                    }
+                    
+                  }
+                  if(isback )
+                  {
+                     <input  name="chktype" id="chktype"    value="@producttype.Id"  checked="true" type="checkbox"   />  @producttype.Text
+                  }
+                  else
+                  { 
+                  <input  name="chktype" id="chktype"    value="@producttype.Id"   type="checkbox"   />  @producttype.Text
+                  }
+                    
+                  
+                  
+              }
+                    @Html.HiddenFor( m=>m.ProductTypeIds)
+
+                </div>
+        <label class="col-md-2 control-label">商品颜色</label>
+        <div class="col-md-4 text-left">
+            @foreach (ProductColor productcolor in StoreFilterSelectList.GetAllProductColorsList())
+            {
+                var  isback=false;
+                foreach (ProductColor mproductcolor in Model.ProductColorList)
+                {
+                    if (productcolor.Id == mproductcolor.Id)
+                    {
+                        isback = true;
+                    }
+                }
+
+                if (isback)
+                {
+                    <input name="chkcolor" id="chkcolor" value="@productcolor.Id" checked="true" type="checkbox" />  @productcolor.Text
+
+                }
+                else
+                {
+                    <input name="chkcolor" id="chkcolor" value="@productcolor.Id"  type="checkbox" />  @productcolor.Text
+                }
+            }
+            @Html.HiddenFor(m => m.ProductColorIds)
+
+            
+        </div>
+     </div>
+            <div class="form-group">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 text-center" style="height: 150px;">
+                    @for (int i = 0; i < Model.Images.Count; i++)
+                    {
+                        var checkeds = Model.Images[i].IsDefault == 1 ? "checked='checked'" : "";
+                        <div style="float: left; width: 110px; height: 110px; margin-right: 40px;">
+                            <div>
+                                <img id="@i" src="@Model.Images[i].Image" style="height: 100px; width: 100px;" />
+                                <div><input type="radio" name="defaultImg" @checkeds imgindex="@i" imgid="@Model.Images[i].ID" />默认</div>
+                            </div>
+                            <div class="imgDiv" imgindex="@i">
+                                <input type="file" name="fileImage" id="fileImage_@i" style="display: none;" />
+                            </div>
+                            @Html.HiddenFor(m => m.Images[i].IsDefault)
+                            @Html.HiddenFor(m => m.Images[i].Image)
+                            @Html.HiddenFor(m => m.Images[i].ID)
+                        </div>
+                    }
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <script id="editor" type="text/plain" style="height: 400px;">
+                    </script>
+                    @Html.HiddenFor(m => m.Detail.Description)
+                    @if (Model.Detail != null)
+                    {
+                        @Html.HiddenFor(m => m.Detail.ID)
+                        @Html.HiddenFor(m => m.Detail.ProductID)
+                    }
+
+                    @Html.HiddenFor(m => m.Datastate)
+                    @Html.HiddenFor(m => m.Createtime)
+                    <input type="hidden" value="@Model.ID" id="ID" name="ID" />
+                    <input id="rurl" type="hidden" value="@ViewData["rurl"]" name="rurl" />
+                </div>
+            </div>
+        }
+        <div class="col-md-12"><a href="#" class="btn-lg btn-primary " onclick="SubmitForm(); ">提交</a></div>
+    </div>
+</div>
+<div>
+
+    <script type="text/javascript">
+
+        //实例化编辑器
+        //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+        //var ue = UE.getEditor('editor');
+        //var ue = new baidu.editor.ui.Editor();
+        //ue.render("editor");
+
+        function isFocus(e) {
+            alert(UE.getEditor('editor').isFocus());
+            UE.dom.domUtils.preventDefault(e);
+        }
+        function setblur(e) {
+            UE.getEditor('editor').blur();
+            UE.dom.domUtils.preventDefault(e);
+        }
+        function insertHtml() {
+            var value = prompt('插入html代码', '');
+            UE.getEditor('ue').execCommand('insertHtml', value);
+        }
+        function createEditor() {
+            enableBtn();
+            UE.getEditor('editor');
+        }
+        function getAllHtml() {
+            alert(UE.getEditor('editor').getAllHtml());
+        }
+        function getContent() {
+            return UE.getEditor('editor').getContent();
+        }
+        function getPlainTxt() {
+            var arr = [];
+            arr.push("使用editor.getPlainTxt()方法可以获得编辑器的带格式的纯文本内容");
+            arr.push("内容为：");
+            arr.push(UE.getEditor('editor').getPlainTxt());
+            alert(arr.join('\n'));
+        }
+        function setContent(isAppendTo) {
+            var arr = [];
+            arr.push("使用editor.setContent('欢迎使用ueditor')方法可以设置编辑器的内容");
+            UE.getEditor('editor').setContent('欢迎使用ueditor', isAppendTo);
+            alert(arr.join("\n"));
+        }
+        function setDisabled() {
+            UE.getEditor('editor').setDisabled('fullscreen');
+            disableBtn("enable");
+        }
+
+        function setEnabled() {
+            UE.getEditor('editor').setEnabled();
+            enableBtn();
+        }
+
+        function getText() {
+            //当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
+            var range = UE.getEditor('editor').selection.getRange();
+            range.select();
+            var txt = UE.getEditor('editor').selection.getText();
+            alert(txt);
+        }
+
+        function getContent() {
+            return UE.getEditor('editor').getContent();
+        }
+        function hasContent() {
+            var arr = [];
+            arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
+            arr.push("判断结果为：");
+            arr.push(UE.getEditor('editor').hasContents());
+            alert(arr.join("\n"));
+        }
+        function setFocus() {
+            UE.getEditor('editor').focus();
+        }
+        function deleteEditor() {
+            disableBtn();
+            UE.getEditor('editor').destroy();
+        }
+        function disableBtn(str) {
+            var div = document.getElementById('btns');
+            var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+            for (var i = 0, btn; btn = btns[i++];) {
+                if (btn.id == str) {
+                    UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+                } else {
+                    btn.setAttribute("disabled", "true");
+                }
+            }
+        }
+        function enableBtn() {
+            var div = document.getElementById('btns');
+            var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+            for (var i = 0, btn; btn = btns[i++];) {
+                UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+            }
+        }
+
+        function getLocalData() {
+            alert(UE.getEditor('editor').execCommand("getlocaldata"));
+        }
+
+        function clearLocalData() {
+            UE.getEditor('editor').execCommand("clearlocaldata");
+            alert("已清空草稿箱")
+        }
+
+        $(":file").each(function (index, element) {
+            $("#fileImage_" + index).uploadify({
+                'buttonImg': "@Model.Image",
+                'buttonText': '修改图片',
+                'fileTypeDesc': 'Image Files',
+                'fileTypeExts': '*.jpg;*.jpge;*.gif;*.png;*.bmp',
+                'swf': '@Url.Content("~/Scripts/Uploadify/uploadify.swf")',
+                'uploader': "/Product/UploadImage",
+                'auto': true,
+                'multi': false,
+                'wmode': 'transparent',
+                'fileSizeLimit': '10485760kb',
+                //                'removeCompleted' : false,
+                // Your options here
+                //上传到服务器，服务器返回相应信息到data里
+                'onUploadSuccess': function (file, data, response) {
+                    if (file.size < 10485760) {
+                        var indexs = $("#fileImage_" + index).parent().attr("imgindex");
+                        $("#Images_" + indexs + "__Image").val(data);
+                        $("#" + indexs).attr("src", data);
+                        $("#MajorImgUrl").val(data);
+                    }
+                    else {
+                        alert("上传文件不能大于10485760KB")
+                    }
+                }
+            });
+        });
+
+
+
+        var editor = new UE.ui.Editor({ initialFrameWidth: "100%" });
+        editor.render("editor");
+        editor.ready(function () {
+            //显示新闻内容
+            editor.setContent(decodeURI($("#Detail_Description").val()));
+        });
+        
+        //提交表单
+        function SubmitForm() {
+            var content = encodeURI(UE.getEditor('editor').getContent());
+            $("#Detail_Description").val(content);
+            //var colorids='';
+            var chkcolor_value = [];
+            $('input[name="chkcolor"]:checked').each(function () {
+                chkcolor_value.push($(this).val());
+            });
+           // alert(chkcolor_value);
+            $("#ProductColorIds").val(chkcolor_value);
+            var chktype_value = [];
+            $('input[name="chktype"]:checked').each(function () {
+                chktype_value.push($(this).val());
+            });
+            $("#ProductTypeIds").val(chktype_value);
+            var parentCategoryId = $("#ParentCategory_ID").val();
+            var childCategoryId = $("#ChildCategory_ID").val();
+
+            if (parentCategoryId==-1&&childCategoryId==-1) {
+                alert("请选择商品类型");
+                return false;
+            }
+
+            var result = productEdit.ValidateData();
+
+            if (!result) {
+                return false;
+            }
+
+            var result2 = false;
+            var imgIndex = -1;
+            $(":checked").filter(":radio").each(function () {
+                result2 = true;
+                imgIndex = $(this).attr("imgindex");
+            });
+
+
+            if (!result2) {
+                alert("请选择默认图片！");
+                return;
+            }
+
+            if (result2) {
+                var imgPath = "";
+
+                $("[id='" + imgIndex + "']").filter("img").each(function () {
+                    imgPath = $(this).attr("src");
+                });
+
+                if (imgPath == "") {
+                    alert("请上传默认商品图片！");
+                    return;
+                }
+            }
+
+            if (result && result2) {
+                $("form").submit();
+            }
+
+        }
+
+        function categorySelect() { }
+
+        categorySelect.GetChilds = function () {
+            var parentId = $("#ParentCategory_ID").val();
+
+            $.post("/Product/ChildCategory", { "parentid": parentId }, function (data) {
+                $("#ChildCategory_ID").children().remove();
+                $("#ChildCategory_ID").html(data);
+            });
+
+        }
+
+        function productEdit() { }
+
+        productEdit.SetImg = function () {
+            $(":radio").each(function () {
+                $(this).click(function () {
+
+                    var imgindex = $(this).attr("imgindex");
+                    var imgid = $(this).attr("imgid");
+                    var pid = $("#ID").val();
+
+                    $.post("/Product/SetDefault", { "productId": pid, "imgId": imgid }, function (data) {
+                        $(this).attr("checked", "checked");
+                        $(":radio").each(function () {
+                            var imgindex2 = $(this).attr("imgindex");
+                            $("#Images_" + imgindex2 + "__IsDefault").val(0);
+                        });
+
+                        $("#Images_" + imgindex + "__IsDefault").val(1);
+                    });
+                });
+            });
+        };
+
+        productEdit.ValidateData = function () {
+
+            var result = true;
+
+            $(".input_text2").each(function () {
+
+                var value = $(this).val();
+
+                if (value == "") {
+                    alert("请输入商品名称");
+                    result = false;
+                    return false;
+                }
+
+                if (value.length > 100) {
+                    $(this).val(value.substring(0, 100));
+                    result = false;
+                    return false;
+                }
+
+                return result;
+            });
+
+            if (result) {
+                $(".input_text1").each(function (index, element) {
+                    var array = ["普卡价格",'银卡价格','金卡价格'];
+                    var value = $(this).val();
+                    var reg = new RegExp("^[0-9]*$");
+                    $(this).css("border-color", "#cccccc");
+                    if (!reg.test(value) || value < 0 || (value.substring(0, 1) == 0 && value.length != 1)) {
+                        alert("请输入" + array[index]);
+                        $(this).val(0);
+                        $(this).focus();
+
+
+                        $(this).css("border-color", "red")
+                        result = false;
+                        return false;
+                    }
+
+                    if (value.length > 6) {
+                        $(this).val(value.substring(0, 6));
+                        result = false;
+                        return false;
+                    }
+
+                    return result;
+                });
+            }
+
+            if (result) {
+                $(".input_text3").each(function (index, element) {
+                    var value = $(this).val();
+                    $(this).css("border-color", "#cccccc");
+                    var reg = new RegExp("^(([0-9]{1,})|([0-9]{1,}\.[0-9]{1,})|([0-9]{1,}\.{1})){1,}$");
+
+                    if (!reg.test(value) || value < 0 || (value.substring(0, 1) == 0 && value.length != 1 && value != "0.00")) {
+                        alert("请输入合法数字");
+                        $(this).val(0);
+                        $(this).focus();
+                        $(this).css("border-color", "red")
+                        result = false;
+                        return false;
+                    }
+
+                    if (value.length > 6) {
+                        $(this).val(value.substring(0, 6));
+                        result = false;
+                        return false;
+                    }
+
+                    return result;
+                });
+            }
+
+            return result;
+        };
+
+        productEdit.ValidateNumber = function () {
+            $(".input_text1").each(function (index, element) {
+                $(this).css("border-color", "#cccccc");
+                $(this).keyup(function () {
+                    var value = $(this).val();
+                    var reg = new RegExp("^[0-9]*$");
+
+                    if (value=="") {
+                        return;
+                    }
+
+                    if (!reg.test(value) || value < 0 || (value.substring(0, 1) == 0 && value.length != 1)) {
+                        alert("请输入合法数字");
+                        $(this).val(0);
+                        $(this).focus();
+                        $(this).css("border-color", "red")
+                        return false;
+                    }
+
+                    if (value.length > 6) {
+                        $(this).val(value.substring(0, 6));
+                        return false;
+                    }
+                    return true;
+                });
+
+            });
+
+            $(".input_text3").each(function (index, element) {
+                $(this).keyup(function () {
+                    $(this).css("border-color", "#cccccc");
+                    var value = $(this).val();
+                    var reg = new RegExp("^(([0-9]{1,})|([0-9]{1,}\.[0-9]{1,})|([0-9]{1,}\.{1})){1,}$");
+
+                    if (value == "") {
+                        return;
+                    }
+
+                    if (!reg.test(value) || value < 0 || (value.substring(0, 1) == 0 && value.length != 1 && value != "0.00")) {
+                        alert("请输入合法数字");
+                        $(this).focus();
+                        $(this).css("border-color", "red")
+                        $(this).val(0);
+                        return false;
+                    }
+
+                    if (value.length > 6) {
+                        $(this).val(value.substring(0, 6));
+                        return false;
+                    }
+
+                    return true;
+                });
+            });
+        };
+
+        productEdit.ValidateName = function () {
+            $(".input_text2").each(function (index, element) {
+                $(this).keyup(function () {
+                    var value = $(this).val();
+
+                    if (value == "") {
+                       
+                        return false;
+                    }
+
+                    if (value.length > 100) {
+                        $(this).val(value.substring(0, 100));
+                        return false;
+                    }
+
+                    return true;
+                });
+            });
+        };
+
+        $(function () {
+            productEdit.ValidateNumber();
+            productEdit.ValidateName();
+            productEdit.SetImg();
+            // setContent("hello");
+        });
+    </script>
+</div>

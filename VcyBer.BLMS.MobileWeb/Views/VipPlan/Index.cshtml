@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "会员计划";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<style>
+    #pagenavi a.active {border-bottom: 0em solid #ceeaff;}
+</style>
+<div class="wrapper" id="wrapper" style="background:#f6f6f6;padding-bottom:25%;">
+    <div class="shopSlideWrap aboutSlideWrap">
+        <div class="shopSlide">
+            <ul id="slider">
+                <li>
+                    <img src="~/img/NewImg/test_img_about01new.jpg" />
+                </li>
+                <li>
+                    <img src="~/img/NewImg/test_img_about02new.jpg" />
+                </li>
+            </ul>
+        </div>
+        <div id="pagenavi">
+            <a href="javascript:void(0);" class="active">0</a>
+            <a href="javascript:void(0);">1</a>
+        </div>
+    </div>
+    <ul class="about-list vipplan_list">
+        <li class="ico-s8"><a href="@Url.Action("IntegralRule")">会员积分规则</a></li>
+        <li class="ico-s10"><a href="@Url.Action("MemCaption")">会员手册</a></li>
+        <li class="ico-s7"><a href="@Url.Action("MemRight")">会员权益</a></li>
+        <li class="ico-s12"><a href="@Url.Action("CommonProblems")">常见问题</a></li>
+
+    </ul>
+</div>
+<script src="~/Scripts/car/slide.js"></script>
+<script>
+    var active = 0,
+        as = document.getElementById('pagenavi').getElementsByTagName('a');
+    for (var i = 0; i < as.length; i++) {
+        (function () {
+            var j = i;
+            as[i].onclick = function () {
+                t2.slide(j);
+                return false;
+            }
+        })();
+    }
+    var t2 = new TouchSlider({
+        'auto': false, id: 'slider', speed: 600, timeout: 20000, before: function (index) {
+            as[active].className = '';
+            active = index;
+            as[active].className = 'active';
+        }
+    });
+</script>

@@ -1,0 +1,195 @@
+﻿@{
+    ViewBag.Title = "创建密保问题";
+}
+
+<h2>创建密保问题</h2>
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-9" ng-switch on="showId" data-ng-init="load()">
+
+        <!--验证支付密码-->
+        <section id="f1" ng-switch-when="f1">
+
+            <form class="form-horizontal" novalidate>
+                <div>
+                    <p class="col-md-2 complete-and-next">1.身份验证</p>
+                    <p class="col-md-offset-1 col-md-2 nocomplete-and-next">2.填写密保</p>
+                    <p class="col-md-offset-1 col-md-2 nocomplete-and-next">3.验证密保</p>
+                    <p class="col-md-offset-1 col-md-2 nocomplete-and-next">4.创建完成</p>
+                </div>
+
+                <hr class="col-md-12" />
+                <span class="col-md-12 help-block alert-warning" ng-show="errorMessage">{{ errorMessage }}</span>
+                <hr />
+
+                <div class="form-group" ng-class="{ 'has-error' : errorPayPassword }">
+                    <label for="txtPayPassword" class="col-md-2 control-label">支付密码</label>
+                    <div class="col-md-4">
+                        <input id="txtPayPassword" type="password" class="form-control" placeholder="请输入支付密码" ng-model="formData.PayPassword" required />
+                    </div>
+                    <span class="col-md-offset-1 col-md-3 help-block" ng-show="errorPayPassword">{{ errorPayPassword }}</span>
+                </div>
+
+                <hr />
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="button" class="btn btn-success" ng-click="clickValidatePayPassword()" value="下一步" />
+                    </div>
+                </div>
+            </form>
+
+        </section>
+
+        <!--填写密保问题-->
+        <section id="f2" ng-switch-when="f2">
+
+            <form class="form-horizontal">
+                <div>
+                    <p class="col-md-2 complete-and-next">1.身份验证</p>
+                    <p class="col-md-offset-1 col-md-2 complete-and-next">2.填写密保</p>
+                    <p class="col-md-offset-1 col-md-2 nocomplete-and-next">3.验证密保</p>
+                    <p class="col-md-offset-1 col-md-2 nocomplete-and-next">4.创建完成</p>
+                </div>
+
+                <hr class="col-md-12" />
+                <span class="col-md-12 help-block alert-warning" ng-show="errorMessage">{{ errorMessage }}</span>
+                <hr />
+
+                <div class="form-group" ng-class="{ 'has-error' : errorAnswer1 }">
+                    <label class="col-md-1 control-label">问题一</label>
+                    <select class="col-md-3 form-control" ng-model="userQuestions[0].PwId" ng-options="m.Id as m.Content for m in questions">
+                        <option value="">请选择密保问题</option>
+                    </select>
+                    <label class="col-md-1 control-label">答案</label>
+                    <input class="col-md-1 form-control" type="text" ng-model="userQuestions[0].Answer" />
+                    <span class="col-md-2 help-block" ng-show="errorAnswer1">{{ errorAnswer1 }}</span>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error' : errorAnswer2 }">
+                    <label class="col-md-1 control-label">问题二</label>
+                    <select class="col-md-3 form-control" ng-model="userQuestions[1].PwId" ng-options="m.Id as m.Content for m in questions">
+                        <option value="">请选择密保问题</option>
+                    </select>
+                    <label class="col-md-1 control-label">答案</label>
+                    <input class="col-md-1 form-control" type="text" ng-model="userQuestions[1].Answer" />
+                    <span class="col-md-2 help-block" ng-show="errorAnswer2">{{ errorAnswer2 }}</span>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error' : errorAnswer3 }">
+                    <label class="col-md-1 control-label">问题三</label>
+                    <select class="col-md-3 form-control" ng-model="userQuestions[2].PwId" ng-options="m.Id as m.Content for m in questions">
+                        <option value="">请选择密保问题</option>
+                    </select>
+                    <label class="col-md-1 control-label">答案</label>
+                    <input class="col-md-1 form-control" type="text" ng-model="userQuestions[2].Answer" />
+                    <span class="col-md-2 help-block" ng-show="errorAnswer3">{{ errorAnswer3 }}</span>
+                </div>
+
+                <hr />
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="button" class="btn btn-success" ng-click="clickCreateUserQuestion()" value="下一步" />
+                    </div>
+                </div>
+            </form>
+
+        </section>
+
+        <!--验证密保问题-->
+        <section id="f3" ng-switch-when="f3">
+
+            <form class="form-horizontal">
+                <div>
+                    <p class="col-md-2 complete-and-next">1.身份验证</p>
+                    <p class="col-md-offset-1 col-md-2 complete-and-next">2.填写密保</p>
+                    <p class="col-md-offset-1 col-md-2 complete-and-next">3.验证密保</p>
+                    <p class="col-md-offset-1 col-md-2 nocomplete-and-next">4.创建完成</p>
+                </div>
+
+                <hr />
+                <span class="col-md-12 help-block alert-warning" ng-show="errorMessage">{{ errorMessage }}</span>
+                <hr />
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">已绑定手机：</label>
+                    <label class="col-md-2 control-label">{{formData.PassPhoneNumber}}</label>
+                    <input class="btn btn-default" type="button" ng-click="clickSendValidateCode()" ng-disabled="mySwitch" value="发送短信验证码" />
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : errorPhoneValidateCode }">
+                    <label class="col-md-3 control-label">短信验证码：</label>
+                    <input type="text" class="col-md-2 form-control" ng-model="formData.PhoneValidateCode" required placeholder="请输入收到的手机验证码" />
+                    <span class="col-md-offset-1 col-md-4 help-block" ng-show="errorPhoneValidateCode">{{ errorPhoneValidateCode }}</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">安全保护问题一：</label>
+                    <label class="control-label">{{questions[0].Question}}</label>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : errorAnswer1 }">
+                    <label class="col-md-3 control-label">答案：</label>
+                    <input type="text" class="col-md-2 form-control" ng-model="questions[0].Answer" />
+                    <span class="col-md-offset-1 col-md-4 help-block" ng-show="errorAnswer1">{{ errorAnswer1 }}</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">安全保护问题二：</label>
+                    <label class="control-label">{{questions[1].Question}}</label>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : errorAnswer2 }">
+                    <label class="col-md-3 control-label">答案：</label>
+                    <input type="text" class="col-md-2 form-control" ng-model="questions[1].Answer" />
+                    <span class="col-md-offset-1 col-md-4 help-block" ng-show="errorAnswer2">{{ errorAnswer2 }}</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">安全保护问题三：</label>
+                    <label class="control-label">{{questions[2].Question}}</label>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : errorAnswer3 }">
+                    <label class="col-md-3 control-label">答案：</label>
+                    <input type="text" class="col-md-2 form-control" ng-model="questions[2].Answer" />
+                    <span class="col-md-offset-1 col-md-4 help-block" ng-show="errorAnswer3">{{ errorAnswer3 }}</span>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-3">
+                        <input type="button" class="btn btn-success" ng-click="clickValidate(2)" value="提交身份验证" />
+                    </div>
+                </div>
+            </form>
+
+        </section>
+
+        <!--创建成功-->
+        <section id="f4" ng-switch-default>
+            <form class="form-horizontal">
+                <div>
+                    <p class="col-md-2 complete-and-next">1.身份验证</p>
+                    <p class="col-md-offset-1 col-md-2 complete-and-next">2.填写密保</p>
+                    <p class="col-md-offset-1 col-md-2 complete-and-next">3.验证密保</p>
+                    <p class="col-md-offset-1 col-md-2 complete-and-next">4.创建完成</p>
+                </div>
+                <hr />
+
+                <div class="form-group">
+                    <label class="text-center col-md-12">修改成功，请牢记您的密保问题！</label>
+                </div>
+
+                <div class="form-group">
+                    <label class="text-center col-md-12">您已成功为您的车音通账户设置了新的密保问题。</label>
+                </div>
+                <hr />
+
+                <div class="form-group">
+                    <div class="col-md-offset-12 text-center">
+                        <input type="button" class="btn btn-success" ng-click="clickFinish()" value="确定" />
+                    </div>
+                </div>
+            </form>
+        </section>
+
+    </div>
+</div>

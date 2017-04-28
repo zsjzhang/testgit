@@ -1,0 +1,45 @@
+﻿@model Vcyber.BLMS.Entity.Questionnaire
+@{
+    <div class="zzdow">
+        <div class="gy_cont">
+            @if (Model != null)
+            {
+                <div class="gy_nr" style="height:316px;">
+                    <span style="float: left; margin: 0; width: 165px;">
+                        @{
+                string imgPath = System.Web.Configuration.WebConfigurationManager.AppSettings["ImgPath"];
+                <img style="width: 145px; height: 211px; float: left;" src="@string.Format(imgPath+"{0}",Model.SyImage)" />
+                        }
+                    </span>
+                    <span style=" width: 114px; margin: 0; float: right;">
+                        @*<h1 style="text-align: right; margin-top: 10px; margin-right: 30px; color: black;">@Model.Theme</h1>*@
+                        <h1 style="text-align: right; margin-top: 10px; margin-right: 10px; color: #474747;width:109px;letter-spacing:7px; text-align:right; ">蓝缤有礼</h1>
+                        <h2 style="text-align: right; margin-top: 8px; margin-bottom: 0; margin-right: 15px; color: #474747;">爱答题</h2>
+                        @*<h1>@string.Format("问卷第{0}期", Model.PeriodicalCount)</h1>*@
+                        @*<span class="gr_num" style="width:80px; line-height:27px;">问卷摘要</span>*@
+                        <br />
+                        <p class="gr_p" style=" min-height: 100px; overflow: hidden; margin-right:12px;margin-bottom:0px; width: auto;margin-left:0;  text-indent:2em; text-align:justify;text-justify:inter-ideograph;">
+                            @*@Model.AlternateTheme*@
+                            @*参与在线调研,精美礼品享不停.为了让您享受到更贴心更优质的生活服务,请您留下宝贵的建议.*@
+                            蓝缤有礼爱答题第二期问卷活动华丽来袭！为了给您提供更优质、更具趣味性的活动，请您留下宝贵建议。
+                        </p>
+                        @if (Model.State == 3)
+                        {
+                            <a href="/Questionnaire/Result?qid=@Model.Id" style="float: left; height: 29px; margin-top: 13px;">
+                                @*<img src="/img/dow.png" style="margin:0;" />*@
+                                <div style="height:29px;width:104px;background-color:#075090;color:white;font-size:15px;line-height:29px;text-align:center;">获奖名单</div>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="/Questionnaire/Index" style="float: left; height: 29px; margin-top: 13px;">
+                                @*<img src="/img/dow.png" style="margin:0;" />*@
+                                <div style="height:29px;width:104px;background-color:#075090;color:white;font-size:15px;line-height:29px;text-align:center;">进入问卷</div>
+                            </a>
+                        }
+                    </span>
+                </div>
+            }
+        </div>
+    </div>
+}

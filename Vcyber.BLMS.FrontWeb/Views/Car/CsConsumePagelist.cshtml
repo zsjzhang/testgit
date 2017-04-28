@@ -1,0 +1,140 @@
+﻿@model PagedList<Vcyber.BLMS.Entity.Generated.CSConsume>
+@using Webdiyer.WebControls.Mvc;
+
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "我的保养记录";
+}
+
+    <!--20150525新增-->
+<style type="text/css">
+    table.myEnjoyTab {
+        width: 100%;
+        border: 1px solid #999;
+        font-size: 12px;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .myEnjoyTab tr {
+        border-bottom: 1px solid #ccc;
+    }
+
+        .myEnjoyTab tr:nth-last-child(1) {
+            border-bottom: none;
+        }
+
+    .myEnjoyTab thead tr td {
+        width: 25%;
+        padding: 15px 0;
+        background-color: #0c5194;
+        color: #fff;
+        border-right: 1px solid #ccc;
+        font-size: 14px;
+    }
+
+    .myEnjoyTab thead td:nth-child(4) {
+        border-right: none;
+    }
+
+    .myEnjoyTab tbody td {
+        border-right: 1px solid #ccc;
+        background-color: #eaf6fd;
+        padding: 15px 0;
+    }
+
+        .myEnjoyTab tbody td:nth-child(4n) {
+            border-right: none;
+        }
+</style>
+
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Car" })
+    </div>
+    <div class="n_all_cont" style="height:1200px;">
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+        </div>
+        
+        <div class="n_right_cont">
+            <div class=" new_menu">
+                <p class="select_menu"><a href="/MyCenter/Index?pageName='Mycenter'">个人中心 </a> >我的保养</p>
+            </div>
+            <div style="border:1px solid #eee; width:100%; min-height:800px;">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <a href="javascript:void(0); " style=" cursor:default" target=" _blank"><h1>保养记录</h1></a>
+                        <a href="javascript:void(0); " style="cursor:default " target=" _blank"><span>Enjoy The Service</span></a>
+
+                    </div>
+                </div>
+
+                <div class="three_cont">
+                    <table cellspacing="0" cellpadding="0" class="myEnjoyTab">
+                        <thead>
+                            <tr>
+                                <td>经销商名称</td>
+                                <td>预约单号</td>
+                                <td>总费用</td>
+                                <td>消耗积分</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                if (Model != null)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.DealerName</td>
+                                            <td>@item.ScheduleOrderNo</td>
+                                            <td>@item.TotalCost</td>
+                                            <td>@item.ConsumePoints</td>
+                                        </tr>
+
+                                    }
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+
+
+                @Html.Pager(Model, new PagerOptions { PageIndexParameterName = "pageIndex", CurrentPagerItemTemplate = "<span class=\"current\">{0}</span>", DisabledPagerItemTemplate = "<span class=\"disabled\">{0}</span>", Id = "badoopager" })
+            </div>
+
+    </div>
+</div>
+<div class="footer">
+    @Html.Action("Index", "Footer")
+</div>
+
+
+

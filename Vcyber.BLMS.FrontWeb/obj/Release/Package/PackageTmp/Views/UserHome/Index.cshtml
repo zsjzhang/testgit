@@ -1,0 +1,61 @@
+﻿@using Vcyber.BLMS.FrontWeb.Models;
+@using Vcyber.BLMS.Entity;
+@using Vcyber.BLMS.Entity.Enum;
+@using Vcyber.BLMS.Common;
+@{
+    ViewBag.Title = "用户首页";
+    
+}
+@{
+    var homeData = ViewBag.Datas as HomeInfo;
+    var orderDatas=ViewBag.OrderDatas as List<OrderInfo>;
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<link href="~/css/UserHome.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(function () {
+        var length = $(".RowDiv").length;
+        $("#TableDiv").height(length*45);
+    });
+</script>
+
+<div>
+    <div id="OneDiv">
+        <div>@homeData.RealName</div>
+        <div><a href="~/User/BaseInfo">个人信息</a></div>
+        <div>身份证：<a href="@homeData.IdentityUrl">@homeData.IdentityConfirmedName</a>&nbsp;&nbsp;手机号：<a href="@homeData.PhoneNumberUrl">@homeData.PhoneNumberConfirmedName</a></div>
+        <div style="width:350px;border-right-width:0px">上次登录时间：<label>@homeData.LoginTime</label></div>
+    </div>
+    <hr />
+    <div id="TwoDiv">
+        关联账户：@foreach (var item in homeData.Relevances)
+        {<label>@item.MallName&nbsp;&nbsp;</label>}
+    </div>
+    <hr />
+    <div>
+        <label>最近交易记录</label>&nbsp;&nbsp;<label><a href="~/UserBusiness/Index">收支明细</a></label><label style="float:right"><a href="#">更多</a></label>
+    </div>
+    <div id="ThreeDiv">
+        <div id="TableDiv">
+            <div id="HeaderDiv">
+                <div>交易时间</div>
+                <div>商城平台</div>
+                <div>商城订单号</div>
+                <div>金额</div>
+                <div>状态</div>
+                <div>操作 </div>
+            </div>
+            @foreach (var item in orderDatas)
+            {
+                <div class="RowDiv">
+                    <div>@item.CreateTime.ToString()</div>
+                    <div>@item.MallName</div>
+                    <div>@item.OrderCode</div>
+                    <div>@item.PayTotalMoney</div>
+                    <div>@{var statusName=((ETradeType)item.TradeStatus).GetDiscribe();}@statusName</div>
+                    <div><a href="~/UserTrade/Detail?orderCode=@item.OrderCode">查看详情</a></div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

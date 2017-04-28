@@ -1,0 +1,79 @@
+﻿@{
+    Layout = null;
+}
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+<link href="~/Scripts/bootstrap-datepicker/datepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+<script src="~/Scripts/bootstrap-datepicker/bootstrap-datepicker.zh-CN.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#datepicker").datepicker();
+    });
+</script>
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>电子杂志申请管理 - 查询</strong></div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <form name="form" class="form-horizontal" novalidate>
+            <div class="form-group hidden">
+                <label class="col-md-2 control-label">报刊标题：</label>
+                <div class="col-md-3 text-left">
+                    <input id="titleInput" class="form-control" type="text" ng-model="title" />
+                </div>
+                <label class="col-md-2 control-label" style="margin-left:0px; padding-left:0px;">申请时间：</label>
+                <div class="col-md-3 text-left">
+                    <input id="datepicker" class="form-control datepicker" data-date-format="yyyy-mm-dd" type="text" ng-model="datetime" />
+                </div>
+            </div> 
+            <div class="form-group">
+                @*<label class="col-md-2 control-label">手机号：</label>
+                <div class="col-md-3 text-left">
+                    <input id="phoneNumberInput" class="form-control" type="text" ng-model="phoneNum" />
+                </div>*@
+                <label class="col-md-2 control-label">手机号：</label>
+                <div class="col-md-3 text-left">
+                    <input id="phoneNumberInput" class="form-control" type="text" ng-model="phoneNum" />
+                </div>
+                <label class="col-md-2 control-label hidden" style="margin-left:0px; padding-left:0px;">车型：</label>
+                <div class="col-md-3 text-left hidden">
+                    <select class="form-control">
+                        <option value="-1">-- 请选择 --</option>
+                        <option ng-repeat="cartype in carTypes" value="{{cartype.Id}}">
+                            {{cartype.SeriesName}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"></label>
+                <div class="col-md-3 text-left">
+                    <button class="btn btn-primary" type="submit" ng-click="searchApply()">查询</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a class="btn btn-primary" href="/Magazine/ExportMagazineApplyData?datetime={{datetime}}&title={{title}}">导出</a>
+                </div>
+            </div>
+        </form>
+        <div class="gridStyle" style="min-height: 410px; border: 1px solid rgb(212, 212, 212)" ng-grid="gridOptions">
+        </div>
+    </div>
+
+</div>
+

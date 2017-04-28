@@ -1,0 +1,158 @@
+﻿@{
+    Layout = null;
+}
+<!doctype html>
+<html>
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/ExChangeStyle.css">
+    <link rel="stylesheet" type="text/css" href="/css/ExChangeAward.css">
+    <link rel="stylesheet" type="text/css" href="/layer/skin/layer.css">
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <!--转动插件rotate,js-->
+    <script type="text/javascript" src="~/Scripts/ExChangeAwardRotate.js"></script>
+    <!--抽奖-->
+    <script type="text/javascript" src="~/Scripts/ExChangeAward.js"></script>
+    <!--弹出层layer-->
+    <script type="text/javascript" src="/layer/layer.js"></script>
+    <script src="~/Scripts/controller/orderchange.index.js"></script>
+    <title>"惠"聚蓝缤，畅享2万元置换礼包</title>
+   
+</head>
+
+<body>
+    <script type="text/javascript">
+        layer.open({
+            type: 1,
+            skin: 'bluePopup', //样式类名
+            closeBtn: 1, //不显示关闭按钮
+            shift: 2,
+            // area:['330px','200px'],
+            shadeClose: false, //开启遮罩关闭
+            content: "置换月活动全新升级,敬请期待!",
+            end: function () {
+                window.location.href = "/";
+            },
+            btn: ['确定']
+        });
+    </script>
+
+    <div class="wrapper">
+        <div class="fixBox" style="display:none;">
+            <div class="fixPage">
+            </div>
+            <div class="homeImgLiBox">
+                <em class="imgLiBoxClose"><img src="/images/homeClose.png" /></em>
+                <ul>
+                    
+                    <li><img src="/images/home5.png" /></li>
+                    <li><img src="/images/home6.png" /></li>
+                    <li><img src="/images/home7.png" /></li>
+                    <li><img src="/images/home8.png"/></li>
+                    <li><img src="/images/home1.png" /></li>
+                    <li><img src="/images/home2.png" /></li>
+                    <li><img src="/images/home3.png" /></li>
+                    <li><img src="/images/home4.png" /></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mainBox homeOne">
+            <div class="header">
+                <dl>
+                    <dd class="on"><a href="/OrderChange/Index">首　页</a></dd>
+                    <dd><a href="/OrderChange/JieShao">活动介绍</a></dd>
+                    <dt><a href="/"></a></dt>
+                    <dd><a href="/OrderChange/JiangPing">奖品设置</a></dd>
+                    <dd><a href="/OrderChange/ZhongJiang">中奖名单</a></dd>
+                </dl>
+            </div>
+            <div class="mainCont">
+                <p class="homeImgBox"><img src="/images/homeTit.png" /></p>
+                <div class="homeCards"><img src="/images/home-car.png" /></div>
+
+                <div class="homeP2" style="display:none;">
+                    <dl>
+                        <dt>
+                            <img src="/images/home-lingdong.png" />
+                            @*<a href="/OrderChange/LibaoLD?source=@ViewBag.Source" class="btnLup">领取礼包</a>
+                            <a href="javascript:OrderChange.IsCanInviter(1);" class="btnLdown">推荐好友</a>*@
+                            <a href="javascript:;" class="btnLup">领取礼包</a>
+                            <a href="javascript:;" class="btnLdown">推荐好友</a>
+                        </dt>
+                        <dd>
+                            <a href="javascript:;" class="imBtn"><img src="/images/homeL1.png" /></a>
+                            <a href="javascript:;" class="imBtn"><img src="/images/homeL2.png" /></a>
+                            <a href="javascript:;" class="imBtn"><img src="/images/homeL3.png" /></a>
+                            <a href="javascript:;" class="imBtn"><img src="/images/homeL4.png" /></a>
+                        </dd>
+                    </dl>
+
+                    <dl style="margin-left:127px;">
+                        <dt>
+                            <img src="/images/homeshengda.png" style="margin-top:8px;" />
+                            @*<a href="/OrderChange/LibaoSD?source=@ViewBag.Source" class="btnRup">领取礼包</a>
+                            <a href="javascript:OrderChange.IsCanInviter(2);" class="btnRdown">推荐好友</a>*@
+                            <a href="javascript:;" class="btnRup">领取礼包</a>
+                            <a href="javascript:;" class="btnRdown">推荐好友</a>
+                        </dt>
+                        <dd>
+                            <a href="javascript:;" class="imBtn"><img src="/images/homeL5.png" /></a>
+                            <a href="javascript:;" class="imBtn"><img src="/images/homeL6.png" /></a>
+                            <a href="javascript:;" class="imBtn"><img src="/images/homeL7.png" /></a>
+                            <a href="javascript:;" class="imBtn"><img src="/images/homeL8.png" /></a>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            @*<a href="javascript:;" class="homeOneBtn" >立即参与</a>*@
+            <a href="javascript:void(0);" class="homeOneBtn">立即参与</a>
+        </div>
+    </div>
+    <input type="hidden" id="hidSource" value="@ViewBag.Source" />
+    <input type="hidden" id="SourceType" value="@ViewBag.SourceType" />
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?0b4e366e453f3524b50e08dc17833d51";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        _hmt.push(['_trackPageview', "/OrderChange/Index?Source=@ViewBag.Source"]);
+    </script>
+    <script type="text/javascript">
+        try {
+            if (/Android|webOS|iPhone|iPod|BlackBerry|iPad/i.test(navigator.userAgent)) {
+                window.location.href = window.location.protocol + "//" + window.location.host + "/weixin/OrderChange/Index?Source=@ViewBag.Source";
+            }
+        } catch (e) { }
+    </script>
+</body>
+</html>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+

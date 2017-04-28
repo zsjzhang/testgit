@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width" />
+    <meta name="baidu-site-verification" content="qSbMsfRL2A" />
+    <title>@ViewBag.Title</title>
+    <!--悦纳活动JS文件结束-->
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Content/layer/layer.min.js"></script>
+    <script src="~/Scripts/base/silder.js"></script>
+    <script src="~/Scripts/base/js.js"></script>
+    <script src="~/Scripts/controller/Main.js"></script>
+    <script src="~/Scripts/controller/UserController.js"></script>
+    <script src="~/Scripts/controller/CarController.js"></script>
+
+    <!--悦纳活动样式-->
+    <link href="~/Contents/yuena/css/style.css" type="text/css" rel="stylesheet" />
+    <link href="~/Contents/yuena/css/inputbox.css" rel="stylesheet" />
+    <link href="~/Contents/yuena/css/idangerous.swiper.css" rel="stylesheet" />
+    <link href="~/Contents/yuena/css/jquery.mCustomScrollbar.css" rel="stylesheet" />
+    
+    <!--悦纳活动样式结束-->
+    <!--悦纳活动js-->
+    @*<script src="~/Contents/yuena/js/jquery-1.10.1.min.js"></script>*@
+    <script src="~/Contents/yuena/js/idangerous.swiper.min.js"></script>
+    <script src="~/Contents/yuena/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/Contents/yuena/js/inputbox.js"></script>
+    <script src="~/Contents/yuena/js/main.js"></script>
+
+    
+</head>
+<body>
+   @*首页 头部导航栏*@
+    <div class="logo"><a href="#"><img src="~/Contents/yuena/images/logo.png" /></a></div>
+    <div class="right-icon"><img src="~/Contents/yuena/images/right-icon.png" /></div>
+    <div class="nav">
+        <img src="~/Contents/yuena/images/nav1.png" usemap="#Map">
+        <map name="Map">
+            @*首页  活动介绍  即刻推荐  中奖名单  北京现代官网*@
+            <area shape="rect" coords="70,21,127,48" href="/Yuena/Index">
+            <area shape="rect" coords="137,21,215,48" href="/Yuena/Introduce">
+            <area shape="rect" coords="400,20,476,47" href="/Yuena/WinnersList">
+            <area shape="rect" coords="500,20,609,48" href="https://www.beijing-hyundai.com.cn" target="_blank">
+            <area shape="poly" coords="277,6,365,6,389,22,348,58,296,60,254,22" href="/Yuena/RecommendFriend">
+        </map>
+    </div>
+
+    @RenderBody()
+
+    @*首页 底部栏目*@
+    <div class="footer clearfix">
+        <p class="footer_left">Copyright © 2009-2016 BEIJING HYUNDAI MOTOR COMPANY Corporation All Rights Reserved</p>
+        <p class="footer_right">服务热线：400-800-1100</p>
+    </div>
+
+    @*@if (IsSectionDefined("AddToFooterJs"))
+    {
+        @RenderSection("AddToFooterJs", false)
+    }*@
+</body>
+</html>

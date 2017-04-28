@@ -1,0 +1,110 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Product>
+@{
+    Layout = null;
+}
+
+
+<style>
+    .product_show ul {
+        height: 260px;
+    }
+
+    .carName {
+        font-size: 12px;
+        text-align: center;
+        line-height: 20px;
+    }
+
+        .carName span {
+            display: block;
+            color: #f49600;
+            height: 25px;
+        }
+
+        .carName b {
+            display: block; /*color:#065090;*/
+            color: #f49600;
+            height: 25px;
+        }
+
+        .carName em {
+            display: block; /*color:#777;*/
+            color: #f49600;
+            height: 25px;
+        }
+
+    .list_show dl {
+        height: 125px;
+    }
+</style>
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<div class="gy_cont product_show" style="float:left;">
+    <div class="gy_title">
+        <div class="gy_zi">
+            <h1>热门礼品兑换</h1>
+            <span>Gift List</span>
+            <a href="/Mall/Index?pageName=Mall"><img src="/img/arrow.png" class="arrow_n"></a>
+        </div>
+    </div>
+
+    <div class="list_show">
+        <ul>
+            @{
+                if (Model != null && Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <li>
+                            <a href="/Product/ProductDetail?productId=@item.ID" target="_blank">
+                                <span style=" width:110px; height:110px; display:inline-block;">
+                                    <img src="@item.Image" style="width:110px; height:110px;" />
+                                </span>
+                            </a>
+                            <h3>
+                                <a href="/Product/ProductDetail?productId=@item.ID">
+                                    @item.Name
+                                </a>
+                            </h3>
+                            <p class="carName">
+                                <span>金卡：@Html.Raw(string.Format("{0}积分", item.FrontGoldMemberIntegral))</span>
+                                <b>银卡：@Html.Raw(string.Format("{0}积分", item.FrontSilverMemberIntegral))</b>
+                                <em>普卡：@Html.Raw(string.Format("{0}积分", item.Integral))</em>
+                            </p>
+                        </li>
+
+                    }
+                }
+            }
+
+        </ul>
+
+    </div>
+
+
+</div>

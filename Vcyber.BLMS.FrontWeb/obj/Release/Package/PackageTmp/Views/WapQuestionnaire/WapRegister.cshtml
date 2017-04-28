@@ -1,0 +1,204 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="user-scalable=no, width=device-width,height=device-height,initial-scale=1.0, maximum-scale=1.0" />
+    <title>用户注册</title>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/controller/Main.js"></script>
+    <script src="~/Scripts/controller/DealerController.js"></script>
+    <script src="~/Scripts/controller/UserController.js"></script>
+    <script src="~/Scripts/controller/WapQuestionnaireController.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            min-width: 320px;
+        }
+
+        .divwapregister {
+            color: gray;
+        }
+
+        .divtitle {
+            height: 40px;
+            line-height: 40px;
+            width: 100%;
+            color: white;
+            text-align: center;
+            background-color: #3D3F43;
+        }
+
+        .inputinfo {
+            height: 35px;
+            width: 85%;
+            margin: 2em auto;
+            padding-left: 10px;
+            padding-right: 10%;
+            float: none;
+            display: block;
+            border-radius: 8px;
+            border: 1px solid gray;
+        }
+
+        .errmsg {
+            width: 100%;
+            color: red;
+            margin: 5px auto 10px 15px;
+            font-size: 14px;
+            float: left;
+        }
+
+        .enableclick {
+            background: #3387D7;
+        }
+
+        input[type='button'][value='注册'] {
+            width: 85%;
+            height: 35px;
+            line-height: 35px;
+            float: none;
+            margin: 0 auto 2em auto;
+            display: block;
+            color: #fff;
+            text-align: center;
+            padding: 0;
+            border-radius: 8px;
+            border: 1px solid gray;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        a, a:hover, a:visited, a:link {
+            text-align: center;
+            line-height: 35px;
+            display: block;
+            text-decoration: none;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .forgetpwd {
+            font-size: 15px;
+            font-weight: normal;
+            width: auto;
+            color: gray;
+            margin: 0;
+            text-align: left;
+            height: auto;
+        }
+
+        .divwapregister select {
+            float: none;
+            display: block;
+            border-radius: 8px;
+            border: 1px solid gray;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="divwapregister">
+        <div class="divtitle">
+            注&nbsp;册
+            <input type="hidden" id="returnUrl" value="@ViewBag.returnUrl" />
+            <input type="hidden" id="source" value="@ViewBag.source" />
+        </div>
+        <input type="image" src="/Img/bluememberLogo.jpg" style="width:100%;margin-top:10px;" />
+        <form style="margin-top:25px;">
+            <div style="border:none;width:85%;height:auto;margin:auto;display:block;">
+                <label for="IsAccountRegisterCarOwner"><input type="radio" name="AccountRegisterCarOwner" id="IsAccountRegisterCarOwner" checked="checked" value="2" style="margin-right:10px;" />我是车主</label>
+                <label for="NoAccountRegisterCarOwner"><input type="radio" name="AccountRegisterCarOwner" id="NoAccountRegisterCarOwner" value="1" style="margin: auto 10px;" />我不是车主</label>
+            </div>
+            <input type="text" id="registerMobile" placeholder="请输入手机号"
+                   style="background: url(/img/h_iphone.png) 98% center no-repeat;" class="inputinfo" />
+            <div style="width:85%;margin:auto auto 25px auto;height:35px">
+                <input type="text" class="inputinfo" id="registerImageCode_Wap" name="registerImageCode" placeholder="请输入图形验证码" style="background: url(/img/h_lock.png) 98% center no-repeat; width: 60%; display: block; float: left; height: 35px; margin: 0;" />
+                <img src="/ValidateCode/Index?ID=1" style="float: right; display: block; width: 35%; height: 35px; margin: auto; vertical-align: top; background: #3387D7; border-radius: 5px;" id="imgCode" alt="单击可刷新" onclick="clickRemoveChangeCode()" />
+            </div>
+            <div style="width:85%;margin:auto;height:35px;">
+                <input type="text" id="registerCaptcha" placeholder="输入验证码" class="inputinfo"
+                       style="background: url(/img/h_lock.png) 98% center no-repeat;width:60%;display:block;float:left;height:35px;margin:0;" />
+                <a id="AccountRegisterSendCaptcha_Wap" style="float: right; display: block; width: 35%; height: 35px; margin: auto; vertical-align: top; background: #3387D7; border-radius: 5px; cursor: pointer;">
+                    获取验证码
+                    @*<div id="AccountRegisterSendCaptcha" style="background: #3387D7; border-radius: 5px;">获取验证码</div>*@
+                </a>
+            </div>
+            <input type="password" id="registerPasswd" placeholder="创建密码（6-20位字符）" style="background: url(/img/h_lock.png) 98% center no-repeat;" class="inputinfo" />
+
+            <input type="password" id="registerComfirmPasswd" placeholder="请确认密码" style="background: url(/img/h_lock.png) 98% center no-repeat;" class="inputinfo" />
+
+            <input type="text" id="registerNickname" placeholder="请输入用户名" style="background: url(/img/h_user.png) 98% center no-repeat;" class="inputinfo" />
+
+            <div id="accountregisterisownerchecked" style="border: none; width: 85%; height: auto; margin: auto; display: block;float: none;">
+                <label for="registerIdentityNo_account_radio"><input type="radio" name="registerIdentityNo_account" id="registerIdentityNo_account_radio" checked="checked" value="2" style="margin-right:10px;" />个人用户</label>
+                <label for="zuzhijigouNo_account_radio"><input type="radio" name="registerIdentityNo_account" id="zuzhijigouNo_account_radio" value="1" style="margin: auto 10px;" />企业用户</label>
+
+                <p id="registerPaperWork_Span">
+                    <select id="accountregisterUserPaperWork" name="PaperWork" class="inputinfo" style="width:100%;">
+                        <option value="-1">请选择有效证件</option>
+                        <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerIdentificationType.IdentityCard)">身份证</option>
+                        <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerIdentificationType.Passport)">护照</option>
+                        <option value="@((int)Vcyber.BLMS.Entity.Enum.ECustomerIdentificationType.Officer)">军官证</option>
+                    </select>
+                </p>
+                <p class="ssr" style="margin:1em auto; font-size: 12px; color: #a0a0a0;">为便于匹配到您的车辆信息,请填写您购车时提供的证件号码</p>
+                <input type="text" id="registerIdentityNo" class="inputinfo" style="width: 100%; background: url(/img/h_user.png) 98% center no-repeat;margin-top:0;" placeholder="英文字母注意大写" />
+                <p id="registerVIN_Span" style="display:none;">
+                    <input type="text" id="registerVIN" class="inputinfo" style="width: 100%; background: url(/img/h_user.png) 98% center no-repeat; margin-top: 0;" placeholder="输入VIN" />
+                <p id="registerVIN_Span" style="display:none;">
+                </p>
+                <div style="margin:2em auto;display:block;">
+                    <input type="checkbox" id="AccountRegisterIsSonataUser">
+                    <label for="AccountRegisterIsSonataUser">我是第九代索纳塔车主 ,申请成为银卡会员</label>
+                </div>
+                <div style="display:none;" id="account_AccountRegisterIsSonataUser">
+
+                    <label style=" float: left; font-size: 12px; margin-left: 10px; color: #a0a0a0;">您可以选择购买车辆的特约店，也可以选择其他您常去的特约店。</label>
+                    <div style="width:100%;">@Html.Action("WapAccountPageProvince", "WapQuestionnaire")</div>
+                    <div style=" width: 100%; float: left;height: auto; display:block;">
+                        <input type="hidden" id="accountPayNumber">
+                        <input type="hidden" id="accountActivityType">
+                        <p style="width:100%; float: left; font-size: 12px; color: #a0a0a0;">支付会费如果您已经与申请的特约店沟通并向其支付了会费，也可以选择向特约店申请。</p>
+                    </div>
+                    <div style="float: none;width:100%;height:auto;display:block;margin-top:1em;">
+                        <span style="display:block;width:45%;float:left;">
+                            <input type="radio" value="2" id="btnApplyMemberToDealer_AccountRegister_Wap" name="ActivityType" checked="checked" />
+                            <label for="btnApplyMemberToDealer_AccountRegister_Wap">向特约店申请</label>
+                        </span>
+                        <span style="display:block;width:45%;float:right;">
+                            <input type="radio" value="1" id="btnInputPayNumberToActive_AccountRegister_Wap" name="ActivityType" />
+                            <label for="btnInputPayNumberToActive_AccountRegister_Wap">天猫支付</label>
+                        </span>
+                        <input type="text" id="btnInputText_PayNumber_Wap" name="ActivityType" class="inputinfo"
+                               style="width: 100%; margin-top: 2em; display: none; float: left; background: url(/img/h_lock.png) 98% center no-repeat;" placeholder="天猫付款码" />
+                        @*<a id="btnApplyMemberToDealer_AccountRegister" style=" width: 200px; float: left; margin-top: 10px; margin-left: -100px; left: 50%; position: relative;">
+                                <div style="width:50%; float:left; position:relative;">向特约店申请</div>
+                            </a>
+                            <div style="width:50%; float:left; position:relative;">
+                                <a target="_blank" href="http://detail.tmall.com/item.htm?spm=0.0.0.0.YYWYh4&amp;id=44232536739" id="btnInputPayNumberToActive_AccountRegister" style=" width: 200px; float: left; margin-top: 10px; margin-left: -100px; left: 50%; position: relative;">天猫支付</a>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+
+            <div style="width: 100%; margin: 1em auto; display: block; float: left;">
+                <div style="width: 85%; margin:auto; display: block; float: none;">
+                    <label><input type="checkbox" id="AccountRegisterAgreeRegister_wap" style="margin-right:5px;">我已阅读并同意</label>
+                </div>
+                <a href="/Account/RegisterStatement" style="color: #005AA0;" target="_blank">《bluemembers会员章程及免责条款》</a>
+            </div>
+            <input type="button" id="btnRegisterAccountReg_Wap" value="注册" />
+        </form>
+    </div>
+</body>
+</html>

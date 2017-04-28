@@ -1,0 +1,18 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="my_car">
+    <dl>
+        <dt><img src="/img/ma-car.png"></dt>
+        <dd>
+            <h3>
+                <a href="/Cart/Index">我的兑换车  <label id="CartByMallTotalQuantity"></label>  </a>
+            </h3>
+            <p>My Shopping Cart</p>
+        </dd>
+    </dl>
+    <script type="text/javascript">
+        $("#CartByMallTotalQuantity").html(ShoppingCart.MyCart().totalQuantity);
+    </script>
+</div>

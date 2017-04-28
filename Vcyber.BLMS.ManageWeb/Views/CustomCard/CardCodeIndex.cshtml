@@ -1,0 +1,234 @@
+﻿@{
+    ViewBag.Title = "合作商户券码管理";
+    ViewBag.TitleFocus = "2-2-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Vcyber.BLMS.ManageWeb.Helper
+@using Webdiyer.WebControls.Mvc
+@model Vcyber.BLMS.Entity.CustomCardMerchantConsumeCode
+<link href="~/Scripts/fileinput.min.css" rel="stylesheet" />
+
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>合作商户券码管理 - 券码导入</strong></div>
+</div>
+
+<div class="container panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">活动类型：</label>
+                        <select class="col-md-2 form-control" id="selectcardtype">
+                            <option value="">请选择</option>
+                        </select>
+                        <label class="col-md-2 control-label">卡券类型：</label>
+                        <select class="col-md-2 form-control" id="selectcardname">
+                            <option value="">请选择</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="btn btn-primary col-md-offset-2" type="button" data-toggle="modal" data-target="#cardImportModal" value="导入(txt)" />
+                        <input class="btn btn-primary col-md-offset-1" type="button" id="btnSearch" value="查询" />
+                    </div>
+                </form>
+                <div id="divPageList">
+                    @{
+                        Html.RenderAction("PartialCustomCode");
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="cardImportModal" tabindex="-1" role="dialog" aria-labelledby="cardImportModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="cardImportModal1">导入卡券</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group">
+                        <label class="col-md-3">选择卡券文件</label>
+                        <a target="_blank" href="/Card/Template" class="text-center">下载卡券模板</a>
+                    </div>
+                    <div>
+                        <input id="file-Portrait" name="file-Portrait" type="file" class="file" data-show-preview="false">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="submit" class="btn btn-primary" onclick="cardCodeImport(this)">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<input id="hidCardCode" type="hidden" value="" />
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/fileinput.js"></script>
+<script src="~/Scripts/fileinput_locale_zh.js"></script>
+<script type="text/javascript">
+
+
+    $("#btnSearch").on("click", function() {
+        searchCard();
+    });
+    $(".col-md-offset-2").on("click", function() {
+        $(".modal-dialog").show();
+    });
+
+    function searchCard() {
+        GetPageList(1);
+    }
+
+    //列表分页
+    function GetPageList(pageIndex) {
+        var modelCardName = '@Model.CardType';
+        var modelactName = '@Model.ActivityType';
+        var cardname = $("#selectcardname").val();
+        var cardtype = $("#selectcardtype").val();
+
+        if (cardname == "") {
+            cardname = modelCardName;
+            cardtype = modelactName;
+        }
+        if (cardtype == "") {
+            alert("请选择活动类型");
+        } else if (cardname == "") {
+            alert("请选择卡券类型");
+        } else {
+            var url = "@Url.Action("PartialCustomCode")";
+            $.ajax({
+                url: url + "?cardType=" + cardname + "&pageIndex=" + pageIndex,
+                type: "POST",
+                data: null,
+                success: function (msg) {
+                    $("#divPageList").html(msg);
+                }
+            });
+        }
+    }
+
+    //function sendImport() {
+    //    var filePath = $("#hidCardCode").val();
+    //    if (filePath == "") {
+    //        alert("请上传券码");
+    //        return;
+    //    }
+    //    $.ajax({
+    //        url: "/CustomCard/CardCodeImport",
+    //        type: 'POST',
+    //        data: { path: filePath },
+    //        success: function (data) {
+    //            if (data.IsSuccess) {
+    //                alert("发送卡券成功");
+    //                $(".modal-backdrop, .modal-dialog").hide()
+    //                searchCard();
+    //                //$("#cardImportModal").hide();
+
+    //            } else {
+    //                alert(data.Message);
+    //            }
+    //        }
+    //    });
+    //}
+
+    function cardCodeImport(obj) {
+        var cardname = $("#selectcardname").val();
+        var cardtype = $("#selectcardtype").val();
+        var filePath = $("#hidCardCode").val();
+        if (cardtype == "") {
+            alert("请选择活动类型");
+        }
+        else if (cardname == "") {
+            alert("请选择卡券类型");
+        }
+        else if (filePath == "") {
+            alert("请上传券码");
+        } else {
+            $(obj).attr("disabled", "true");
+            $.ajax({
+                url: "/CustomCard/CardCodeImport",
+                type: 'POST',
+                data: { cardType: cardname, path: filePath },
+                success: function (data) {
+                    if (data.IsSuccess) {
+                        alert("导入券码成功");
+                        $(obj).removeAttr("disabled");
+                        // window.location = "/CustomCard/CardCodeIndex";
+                        $(".modal-backdrop, .modal-dialog").hide()
+                        //window.location = "/CustomCard/CardCodeIndex?actType=" + cardtype + "&cardType=" + cardname + "";
+                        searchCard();
+                        //$("#cardImportModal").hide();
+
+                    } else {
+                        alert(data.Message);
+                    }
+                }
+            });
+        }
+    }
+
+    $("#file-Portrait").fileinput({
+        language: 'zh', //设置语言
+        uploadUrl: "/CustomCard/UploadCardCode", //上传的地址
+        allowedFileExtensions: ['txt', 'jpg', 'png'],//接收的文件后缀
+        showUpload: true, //是否显示上传按钮
+        browseClass: "btn btn-primary", //按钮样式
+        previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+        enctype: 'multipart/form-data'
+    }).on("fileuploaded", function (event, data, previewId, index) {
+        if (data.response.IsSuccess) {
+            $("#hidCardCode").val(data.response.Message);
+        } else {
+            alert(data.response.Message);
+        }
+    });
+
+    var selectcardtype = $("#selectcardtype");
+    var url = "/CustomCard/GetSCServiceCardTypeList";
+    $.ajax({
+        url: url,
+        type: 'Get',
+        data: { type: 1, source: 2,iswx :0 },
+        success: function (data) {
+            if (data != null) {
+                $.each(data, function (i, n) {
+                    var option = $("<option>").text(n).val(n);
+                    selectcardtype.append(option);
+                });
+            }
+        }
+    });
+
+    selectcardtype.on("change", function (o) {
+        var cardname = $("#selectcardname");
+        var url = "/CustomCard/GetSCServiceCardNameList";
+        $.ajax({
+            url: url,
+            type: 'Get',
+            data: { name: $("#selectcardtype").val() },
+            success: function (data) {
+                if (data != null) {
+                    cardname.empty();
+                    var option = $("<option>").text("请选择").val("");
+                    cardname.append(option);
+                    $.each(data, function (i, n) {
+                        var option = $("<option>").text(n.CardTypeName).val(n.CardType);
+                        cardname.append(option);
+                    });
+                }
+            }
+        });
+
+    });
+</script>

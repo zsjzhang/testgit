@@ -1,0 +1,236 @@
+﻿@model Vcyber.BLMS.Entity.CarService.SonataServiceEntity
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+
+    <script>
+
+        $(function () {
+            if (self == top) {
+                var theBody = document.getElementsByTagName('body')[0];
+                theBody.style.display = "block";
+            } else {
+                top.location = self.location;
+            }
+        });
+
+
+    </script>
+</head>
+    <body>
+        
+        <div id="container" style="height:600px;width:800px;"></div>
+        <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=3lX7GmQLza5KzQWde4ZIzMul"></script>
+
+        <script type="text/javascript">
+            var pLong, pLat, pProvince, pCity, pAddr;
+            var map = new BMap.Map("container");    // 创建Map实例
+            map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+            var myCity = new BMap.LocalCity();
+            myCity.get(myFun);
+            function myFun(result) {
+                var cityName = result.name;
+                map.centerAndZoom(cityName, 11);
+                //map.setCenter(cityName);
+            }
+
+            var geoc = new BMap.Geocoder();
+            
+          //点击事件
+            map.addEventListener("click", showInfo);
+            
+            function showInfo(e) {
+                var pt = e.point;
+                pLong = pt.lng;
+                pLat = pt.lat;
+                geoc.getLocation(pt, function(rs) {
+                    var addComp = rs.addressComponents;
+                    alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+                    pProvince = addComp.province;
+                    pCity = addComp.city;
+                    pAddr = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber;
+                    getDealers();
+                });
+            }
+            
+            function getDealers() {
+                $.ajax({
+                    url: "/SonataService/GetDealerList",
+                    type: "POST",
+                    data:{province:pProvince,city:pCity, _long:pLong, lat:pLat, distance:20}
+                }).done(function (msg) {
+                    alert(msg.length);
+                });
+            }
+        </script>
+        @using (Html.BeginForm()) 
+        {
+            @Html.AntiForgeryToken()
+        
+            <div class="form-horizontal">
+                <h4>SonataServiceEntity</h4>
+                <hr />
+                @Html.ValidationSummary(true)
+    
+                <div class="form-group">
+                    @Html.LabelFor(model => model.OrderType, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.OrderType)
+                        @Html.ValidationMessageFor(model => model.OrderType)
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserId, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.UserId)
+                        @Html.ValidationMessageFor(model => model.UserId)
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DealerId, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DealerId)
+                        @Html.ValidationMessageFor(model => model.DealerId)
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DealerName, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.DealerName, null)
+                        @Html.ValidationMessageFor(model => model.DealerName)
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DealerCity, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DealerCity)
+                        @Html.ValidationMessageFor(model => model.DealerCity)
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DealerProvince, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DealerProvince)
+                        @Html.ValidationMessageFor(model => model.DealerProvince)
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PurchaseDate, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PurchaseDate)
+                        @Html.ValidationMessageFor(model => model.PurchaseDate)
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserName, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.UserName)
+                        @Html.ValidationMessageFor(model => model.UserName)
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserSex, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.UserSex)
+                        @Html.ValidationMessageFor(model => model.UserSex)
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Phone, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Phone)
+                        @Html.ValidationMessageFor(model => model.Phone)
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Email)
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Comment, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Comment)
+                        @Html.ValidationMessageFor(model => model.Comment)
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ScheduleDate, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ScheduleDate)
+                        @Html.ValidationMessageFor(model => model.ScheduleDate)
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserAddress, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.UserAddress)
+                        @Html.ValidationMessageFor(model => model.UserAddress)
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserLong, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.UserLong)
+                        @Html.ValidationMessageFor(model => model.UserLong)
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserLat, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.UserLat)
+                        @Html.ValidationMessageFor(model => model.UserLat)
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ReturnDate, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ReturnDate)
+                        @Html.ValidationMessageFor(model => model.ReturnDate)
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+    
+    
+
+    </body>
+</html>

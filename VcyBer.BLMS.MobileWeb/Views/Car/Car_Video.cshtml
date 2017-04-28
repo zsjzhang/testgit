@@ -1,0 +1,39 @@
+﻿@using VcyBer.BLMS.MobileWeb.Models
+@model CarVideo
+@{
+    ViewBag.Title = Model.SeriesName + "-精彩视频";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<script src="~/Scripts/car/html5media.min.js"></script>*@
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<style>
+    .testDriving-hd-bar a {
+        width: 24%;
+    }
+</style>
+<div class="wrapper" id="wrapper">
+    <div class="testDriving-hd">
+        <div class="testDriving-hd-bar">
+            <a href="@Url.Action("Car_Feature", "Car", new { carType = Model.CarType, seriesName = Model.SeriesName })">产品特性</a>
+            <a href="@Url.Action("Car_Video", "Car", new { carType = Model.CarType, seriesName = Model.SeriesName })">精彩视频</a>
+            @*<a href="@Url.Action("Car_Feature", "Car", new { carType = Model.CarType })" style="border-left: none;">动态页面</a>*@
+            <a href="@Url.Action("Car_Item", "Car", new { carType = Model.CarType, seriesName = Model.SeriesName })" style="border-left: none;">车型报价</a>
+            <a href="@Url.Action("TestDrive", "Car", new { carType = Model.CarType, seriesName = Model.SeriesName })" id="btnTestDrive">预约试驾</a>
+        </div>
+    </div>
+    <article class="article-product article-video-box">
+        <section>
+            <video controls="" autoplay="" width="100%" name="media"><source src="@Model.Url" type="@Model.Type"></video>
+            @*            <video src="@Model.Url" width="100%" controls preload></video>*@
+        </section>
+    </article>
+</div>
+<script type="text/javascript">
+    $(function () {
+        if (typeof($("section source").attr("src"))=="undefined"||$("section source").attr("src").length == 0)
+        {
+            AlertFalse('敬请期待！');
+        }
+
+    })
+</script>

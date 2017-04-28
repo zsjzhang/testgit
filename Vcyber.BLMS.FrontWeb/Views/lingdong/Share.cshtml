@@ -1,0 +1,57 @@
+﻿@{
+    Layout = null;
+    var sharePageContent = ViewBag.sharePageContent ?? "1";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>北京现代领动上市活动</title>
+    <link href="~/Contents/css/lingdong/main.css" rel="stylesheet" />
+    <style type="text/css">
+    </style>
+</head>
+<body>
+    <div class="commonBg">
+        <img src="~/Contents/images/lingdong/share.jpg" style="width: 100%; height: 100%;" />
+    </div>
+    <input type="hidden" id="sharePageContent" value="(@sharePageContent)" /> 
+    <script src="~/Contents/Scripts/jquery-1.11.2.min.js"></script>
+    <script src="~/Contents/Scripts/Me/common.method.js"></script>
+    <script src="~/Contents/Scripts/lingdongExpired.js"></script>
+</body>
+</html>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+

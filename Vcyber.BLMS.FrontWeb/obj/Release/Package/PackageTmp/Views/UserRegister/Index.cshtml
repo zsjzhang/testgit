@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/UserRegister/UserRegister.js"></script>
+<div >
+    
+    <div id="RegisterOne" >
+        <div>
+            <label for="PhoneNumber">手机号：</label><input type="text" id="PhoneNumber" onkeyup="register.IsUserName(this)" /><input type="button" id="SMSCode" value="获取短信验证码" disabled="disabled" onclick="    register.getValidateCode();" /><br />
+        </div>
+        <div>
+            <label for="ValidateCode">短信验证码：</label><input type="text" id="ValidateCode" />
+        </div>
+        <div>
+            <input type="checkbox"  name="Agree" id="Agree"/><label for="Agree">同意</label><a href="#">《车音通用户注册协议》</a>
+        </div>
+        <div>
+            <input type="button" value="下一步" id="NextOne" onclick="register.NextOne();" />
+        </div>
+    </div>
+    <div id="RegisterTwo" style="display:none">
+        @Html.AntiForgeryToken()
+        <div>为了您账户安全，请填写真实的身份信息。车音会为您提供优质的会员保障服务。个人账户信息注意保密，不要随意告知他人。</div>
+        <div><label>账户：</label><label id="UserName"></label></div>
+        <hr />
+        <div>
+            <div><label style="font-size:larger">请设置账户登录密码&nbsp;&nbsp;</label><label>车音通平台登录第一层安全保护。</label></div>
+            <div><label for="loginPwOne">输入登录密码：</label><input type="password" id="loginPwOne" /></div>
+            <div><label for="loginPwTwo">确认登录密码：</label><input type="password" id="loginPwTwo" /></div>
+            <hr />
+        </div>
+        <div style="display:none">
+            <div><label>请设置账户支付密码</label><label>使用车音通平台账户余额支付，或提现时第二层安全保护。支付密码需与登录密码不同。</label></div>
+            <div><label for="payPwOne">输入支付密码：</label><input type="password" id="payPwOne" /></div>
+            <div><label for="payPwOne">确认支付密码：</label><input type="password" id="payPwTwo" /></div>
+            <hr />
+        </div>
+        <div>
+            <div><label style="font-size:larger">请设置账户身份信息&nbsp;&nbsp;</label><label>车音通平台找回账户登录密码、支付密码的身份验证凭证。我们承诺：隐私信息未经本人许会严格保密。</label></div>
+            <div><label for="realName">真实姓名：</label><input type="text" id="realName" /></div>
+            <div><label for="identityNumber">身份证号码：</label><input type="text" id="identityNumber" onkeyup="register.IsIdentityNumber(this);" /></div>
+        </div>
+        <div>
+            <input type="button" value="下一步" id="NextTwo" onclick="register.NextTwo();" />
+        </div>
+    </div>
+    <div id="RegisterThree" style="display:none">
+        <div style="width:218px;height:195px"><img src="~/Img/register.png" alt="注册成功" /></div>
+        <div><label style="font-size:30px;">恭喜您已成功注册车音通。请牢记您账户安全信息。</label></div>
+    </div>
+</div>
+

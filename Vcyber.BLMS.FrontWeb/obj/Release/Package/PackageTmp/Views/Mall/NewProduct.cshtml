@@ -1,0 +1,115 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Product>
+@{
+    Layout = null;
+}
+
+
+<style>
+    .product_show ul {
+        height: 260px;
+    }
+
+    .carName {
+        font-size: 12px;
+        text-align: center;
+        line-height: 20px;
+    }
+
+        .carName span {
+            display: block;
+            color: #f49600;
+            height: 25px;
+            text-align:left;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+            width:100%;
+        }
+
+        .carName b {
+            display: block; /*color:#065090;*/
+            color: #f49600;
+            height: 25px;
+            text-align:left;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+            width:100%;
+        }
+
+        .carName em {
+            display: block; /*color:#777;*/
+            color: #f49600;
+            height: 25px;
+            text-align:left;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+            width:100%;
+        }
+
+    .list_show dl {
+        height: 125px;
+    }
+</style>
+<div class="product_show">
+    <div class="biaoti_title">
+        <dl>
+            <dt></dt>
+            <dd>
+                <h3>最新上架</h3>
+                <p>New Update</p>
+            </dd>
+        </dl>
+    </div>
+    <ul>
+        @{
+            if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <li>
+                        <a href="/Product/ProductDetail?productId=@item.ID" target="_blank">
+                            <span style=" width:110px; height:110px; display:inline-block;">
+                                <img src="@item.Image" style="width:110px; height:110px;" />
+                            </span>
+                        </a>
+                        <h3>
+                            <a href="/Product/ProductDetail?productId=@item.ID">
+                                @item.Name
+                            </a>
+                        </h3>
+                        <p class="carName">
+                            @if (item.IsIdentity == 12)
+                            {
+                                <span>金卡：@Html.Raw(string.Format("{0}积分", item.FrontGoldMemberIntegral)) </span>
+                            }
+                            else if (item.IsIdentity == 11)
+                            {
+                                <b>银卡：@Html.Raw(string.Format("{0}积分", item.FrontSilverMemberIntegral))</b>
+                            }
+                            else if (item.IsIdentity == 10)
+                            {
+                                <em>普卡：@Html.Raw(string.Format("{0}积分", item.Integral))</em>
+                            }
+                            else if (item.IsIdentity == 13)
+                            {
+
+                                <span>金卡：@Html.Raw(string.Format("{0}积分", item.FrontGoldMemberIntegral)) </span>
+                                <b>银卡：@Html.Raw(string.Format("{0}积分", item.FrontSilverMemberIntegral))</b>
+                            }
+                            else
+                            {
+                                <span>金卡：@Html.Raw(string.Format("{0}积分", item.FrontGoldMemberIntegral)) </span>
+                                <b>银卡：@Html.Raw(string.Format("{0}积分", item.FrontSilverMemberIntegral))</b>
+                                <em>普卡：@Html.Raw(string.Format("{0}积分", item.Integral))</em>
+
+                            }
+                        </p>
+                    </li>
+                   
+                }
+            }
+        }
+    </ul>
+</div>

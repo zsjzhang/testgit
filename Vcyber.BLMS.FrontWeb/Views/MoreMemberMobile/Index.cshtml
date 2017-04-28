@@ -1,0 +1,231 @@
+﻿@{
+    ViewBag.Title = "游戏规则";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>BM会员发展计划-车主入会激励<</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/MemberMobile.css" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Content/layer/layer.min.js"></script>
+    <script src="~/Scripts/controller/Main.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+        var _json = {
+            title: "BM会员发展计划-车主入会激励",
+            desc: "bluemembers蓝缤车主汇 入会就有礼。北京现代诚邀新老车主加入蓝缤会员服务网站，尊享会员服务。即日起注册成为蓝缤会员即可参与中秋特色博饼游戏，攒好运，赢大奖。三星Gear 2 Neo智能手表 、卓棒Jawbone UP24智能手环等惊喜大奖等你来领。百分百中奖率，惊喜礼品疯狂送不停。",
+            link: "https://www.bluemembers.com.cn/MoreMemberMobile/index",
+            imgUrl: "https://www.bluemembers.com.cn/img/Musical/wx_share.png"
+        };
+        var currUrl = window.location.href;
+        $.ajax({
+            url: "https://www.bluemembers.com.cn/weixin/WeChat/Common/JSSDK_Signature",
+            data: { url: currUrl },
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                data.data.jsApiList = ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'getLocation'];
+                wx.config(data.data);
+                wx.ready(function (argument) {
+                    wx.onMenuShareTimeline({
+                        title: _json.title, // 分享标题
+                        desc: _json.desc, // 分享描述
+                        link: _json.link, // 分享链接
+                        imgUrl: _json.imgUrl, // 分享图标
+                        success: function () {
+                            // 用户确认分享后执行的回调函数
+                            //$("#shareit").css("display", "none");
+                        },
+                        cancel: function () {
+                            // 用户取消分享后执行的回调函数
+                        }
+                    });
+                    //分享给朋友
+                    wx.onMenuShareAppMessage({
+                        title: _json.title, // 分享标题
+                        desc: _json.desc, // 分享描述
+                        link: _json.link, // 分享链接
+                        imgUrl: _json.imgUrl, // 分享图标
+                        type: '', // 分享类型,music、video或link，不填默认为link
+                        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                        success: function () {
+                            // 用户确认分享后执行的回调函数
+                            //$("#shareit").css("display", "none");
+                        },
+                        cancel: function () {
+                            // 用户取消分享后执行的回调函数
+                        }
+                    });
+                    //分享到QQ
+                    wx.onMenuShareQQ({
+                        title: _json.title, // 分享标题
+                        desc: _json.desc, // 分享描述
+                        link: _json.link, // 分享链接
+                        imgUrl: _json.imgUrl, // 分享图标
+                        success: function () {
+                            // 用户确认分享后执行的回调函数
+                            //$("#shareit").css("display", "none");
+                        },
+                        cancel: function () {
+                            // 用户取消分享后执行的回调函数
+                        }
+                    });
+                    //分享到腾讯微博
+                    wx.onMenuShareWeibo({
+                        title: _json.title, // 分享标题
+                        desc: _json.desc, // 分享描述
+                        link: _json.link, // 分享链接
+                        imgUrl: _json.imgUrl, // 分享图标
+                        success: function () {
+                            // 用户确认分享后执行的回调函数
+                            //$("#shareit").css("display", "none");
+                        },
+                        cancel: function () {
+                            // 用户取消分享后执行的回调函数
+                        }
+                    });
+                });
+                wx.error(function (res) {
+
+
+                });
+            }
+
+        });
+    </script>
+
+    <script>
+        $(function () {
+            var objlyear = null;
+            //判断是否登录
+            $(".btn_happy").click(function () {
+                $.ajax({
+                    url: "/MoreMemberMobile/GetLogin",
+                    type: "get",
+                    success: function (result) {
+                        if (result.msg == "true") { //已登录
+                            location.href = "/MoreMemberMobile/Game?source=@ViewBag.source";
+                        }
+                        else {  //未登录
+                            objlyear = layer.open({
+                                type: 1,   //0-4的选择,
+                                title: false,
+                                border: [0],
+                                closeBtn: [0],
+                                shadeClose: false,
+                                area: ['92%', ''],
+                              content: $('.choose')
+                            });
+                        }
+                        $(".xubox_shade").click(function () {
+                            layer.close(objlyear);
+                        })
+                    },
+                    error: function () {
+
+                    }
+
+                })
+
+
+            });
+            $(".wati").click(function () {
+                layer.close(objlyear);
+            })
+            //登录注册跳转
+            $("#register").click(function () {
+                layer.close(objlyear);
+                var returnUrl = "/MoreMemberMobile/Index?source=@ViewBag.source";
+                location.href = "/WapQuestionnaire/WapRegister?returnUrl=" + encodeURIComponent(returnUrl) + "&source=@ViewBag.source";
+            })
+            $("#login").click(function () {
+                layer.close(objlyear);
+                var returnUrl = "/MoreMemberMobile/Index?source=@ViewBag.source";
+                location.href = "/WapQuestionnaire/WapLogin?returnUrl=" + encodeURIComponent(returnUrl) + "&source=@ViewBag.source";
+            })
+        })
+    </script>
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?0b4e366e453f3524b50e08dc17833d51";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+
+        _hmt.push(['_setCustomVar', 3, 'ques_visitor', 'MOBILE', 3]);
+    </script>
+</head>
+<body>
+    <div class="wrap">
+
+        <img src="/Img/MoreMember/MobilebgImg.jpg" class="bgImg" style="height:100vh;" />
+        <p class="share" style=" margin-top: 0; padding-top: 25px; position: relative; left: 55%;">
+            @*<span>分享到:</span>*@
+            <a target="_blank" href="http://v.t.sina.com.cn/share/share.php?url=https%3a%2f%2fwww.bluemembers.com.cn%MoreMemberMobile%2fIndex?source=member_web_weibo&title='北京现代蓝缤车主汇，入会就有礼。即日起加入北京现代会员服务网站（www.bluemembers.com.cn）即可参与趣味摇骰子游戏攒好运赢大奖。百分百中奖率，让您入会更精彩！注册蓝缤会员，领取精美礼品，请猛戳链接(https%3a%2f%2fwww.bluemembers.com.cn%2fMoreMember%2fIndex)'"> <img class="share_img" src="/Img/MoreMember/weibo-mobile.png" /></a>
+            <a target="_blank" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3a%2f%2fwww.bluemembers.com.cn%MoreMemberMobile%2fIndex?source=member_web_bmwebsite&title='北京现代蓝缤车主汇，入会就有礼。即日起加入北京现代会员服务网站（www.bluemembers.com.cn）即可参与趣味摇骰子游戏攒好运赢大奖。百分百中奖率，让您入会更精彩！注册蓝缤会员，领取精美礼品，请猛戳链接(https%3a%2f%2fwww.bluemembers.com.cn%2fMoreMember%2fIndex)'"><img class="share_img" src="/Img/MoreMember/kj-mobile.png" /></a>
+            <a target="_blank" href="http://www.douban.com/share/service?image=&href=https%3a%2f%2fwww.bluemembers.com.cn%MoreMemberMobile%2fIndex?source=member_web_bmwebsite&text='北京现代蓝缤车主汇，入会就有礼。即日起加入北京现代会员服务网站（www.bluemembers.com.cn）即可参与趣味摇骰子游戏攒好运赢大奖。百分百中奖率，让您入会更精彩！注册蓝缤会员，领取精美礼品，请猛戳链接(https%3a%2f%2fwww.bluemembers.com.cn%2fMoreMember%2fIndex)'"><img class="share_img" src="/Img/MoreMember/dou-mobile.png" /></a>
+        </p>
+        <p class="time"></p>
+        <div class="foot">
+            <a href="#" class="foot_game"><input type="button" name="name" class="btn_happy" value="开始游戏" /></a>
+            <div class="detail">
+                <a href="@Url.Action("Introduction")"><input type="button" name="name" class="btn_detail" value="活动介绍" style="margin-right: 3%;" /></a>
+                <a href="@Url.Action("Rule")"><input type="button" name="name" class="btn_detail" value="游戏规则" style="margin-right: 3%;" /></a>
+                <a href="@Url.Action("Prize")"><input type="button" name="name" class="btn_detail" value="获奖名单" /></a>
+            </div>
+        </div>
+    </div>
+    <div class="choose" style="display:none">
+        <span>
+            <a href="#" id="login"><input type="button" style="  margin-top: 80px;" class="choose_btn" value="登录" /></a>
+            <a href="#" id="register"><input type="button" style="margin-top:15px;" class="choose_btn" value="注册" /></a>
+
+        </span>
+        <div style="margin-top:20px;">
+            <a href="" class="wati">稍后再说</a>
+        </div>
+    </div>
+    @{
+        string source = ViewBag.source;
+    }
+    @Html.Hidden("source", source)
+</body>
+</html>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+

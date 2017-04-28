@@ -1,0 +1,96 @@
+﻿@{
+    Layout = null;
+}
+
+<!doctype html>
+<html>
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/ExChangeStyle.css">
+    <link rel="stylesheet" type="text/css" href="/css/ExChangeAward.css">
+    <link rel="stylesheet" type="text/css" href="/layer/skin/layer.css">
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <!--转动插件rotate,js-->
+    <script type="text/javascript" src="~/Scripts/ExChangeAwardRotate.js"></script>
+    <!--抽奖-->
+    <script type="text/javascript" src="~/Scripts/ExChangeAward.js"></script>
+    <!--弹出层layer-->
+    <script type="text/javascript" src="/layer/layer.js"></script>
+    <title>置换月活动_推荐好友</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="mainBox" style="height:100%;">
+            <div class="header">
+                <dl>
+                    <dd class="on"><a href="/OrderChange/Index">首　页</a></dd>
+                    <dd><a href="/OrderChange/JieShao">活动介绍</a></dd>
+                    <dt><a href="/"></a></dt>
+                    <dd><a href="/OrderChange/JiangPing">奖品设置</a></dd>
+                    <dd><a href="/OrderChange/ZhongJiang">中奖名单</a></dd>
+                </dl>
+            </div>
+            <div class="mainCont bangding tuijian">
+                <p><input type="text" id="username1" placeholder="姓名" /></p>
+                <p><input type="text" id="phone1" placeholder="电话" /></p>
+                <em style="font-size:20px;"><i>+</i>同时可以推荐2个好友，会增加中奖机会呦！</em>
+                <div class="colonDiv" style="display:none;">
+                    <p><input type="text" id="username2" placeholder="姓名" /></p>
+                    <p><input type="text" id="phone2" placeholder="电话" /></p>
+                </div>
+                <a href="javascript:void(0);" id="btnInviter" class="btnS1">确认提交</a>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="hidSource" value="@ViewBag.Source" />
+    <input type="hidden" id="hidFlag" value="@ViewBag.Flag" />
+    <script src="~/Scripts/controller/orderchange.inviter.js"></script>
+
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?0b4e366e453f3524b50e08dc17833d51";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        _hmt.push(['_trackPageview', "/OrderChange/TuiJian?Source=@ViewBag.Source"]);
+    </script>
+
+    <script type="text/javascript">
+        try {
+            if (/Android|webOS|iPhone|iPod|BlackBerry|iPad/i.test(navigator.userAgent)) {
+                window.location.href = window.location.protocol + "//" + window.location.host + "/weixin/OrderChange/Inviter?Source=@ViewBag.Source";
+            }
+        } catch (e) { }
+    </script> 
+</body>
+</html>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+

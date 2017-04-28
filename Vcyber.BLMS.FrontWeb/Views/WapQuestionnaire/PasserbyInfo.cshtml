@@ -1,0 +1,151 @@
+﻿@model Vcyber.BLMS.Entity.QuestionnaireVisitor
+
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+    <style type="text/css">
+        *[placeholder] {
+            color: #666666;
+            font-family: 'Microsoft YaHei';
+        }
+
+        .spanSelectAddress > select, select {
+            width: 100%;
+            padding: 0px;
+            padding-left: 10px;
+            height: 35px;
+            border: 1px solid gray;
+            margin: 10px auto;
+            float: none;
+            color: #666666;
+            font-family: 'Microsoft YaHei';
+        }
+
+        option {
+            width: auto;
+            padding: 0px;
+            color: #666666;
+            padding-left: 10px;
+            font-family: 'Microsoft YaHei';
+        }
+
+        .spanSelectAddress {
+            width: 100%;
+            margin: 0 auto;
+            color: #666666;
+            float: none;
+            font-family: 'Microsoft YaHei';
+        }
+    </style>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<div id="hidden_div_info_of_passerby">
+    <div style="line-height: 35px;margin-top:10px;">
+        <img src="/Img/users.png" style="height:20px;" />
+        <span style="font-size: 16px; color: #3D3F43">用户信息</span>
+    </div>
+    <div style="line-height: 35px; width: 100%; border-top: 1px dotted #3D3F43; border-bottom: 1px dotted #3D3F43; ">
+        请留下您的一些基本信息:(请您准确填写，便于获奖后我们与您取得联系)
+    </div>
+    <p><input id="inputPasserbyName" type="text" maxlength="20" value="@Model.VName" placeholder="请输入姓名（2-20位汉字或字母组合）" /></p>
+    <p>
+        <select id="inputPasserbySex">
+            <option value="-1">请选择性别</option>
+            <option value="man" @if (Model.Sex == 1) { <text> selected="selected" </text>      }>男</option>
+            <option value="woman" @if (Model.Sex == 2) { <text> selected="selected" </text>      }>女</option>
+        </select>
+    </p>
+    <p>
+        <select id="inputPasserbyAge">
+            <option value="-1">@(string.IsNullOrEmpty(Model.Age) ? "请选择年龄段" : Model.Age)</option>
+            <option value="20以下">20以下</option>
+            <option value="20-30">21-30</option>
+            <option value="30-40">31-40</option>
+            <option value="40-50">41-50</option>
+            <option value="50以上">51以上</option>
+        </select>
+    </p>
+    <p>
+        <select id="inputPasserbyEducation">
+            <option value="-1">@(string.IsNullOrEmpty(Model.Education) ? "请选择学历" : Model.Education)</option>
+            <option value="大学">大学</option>
+            <option value="学士">学士</option>
+            <option value="硕士">硕士</option>
+            <option value="博士">博士</option>
+            <option value="大专">大专</option>
+            <option value="中专">中专</option>
+            <option value="高中以下">高中以下</option>
+        </select>
+    </p>
+    <p>
+        <input type="text" id="inputPasserbyPhone"
+               value="@Model.PhoneNumber" placeholder="请输入联系电话" />
+    </p>
+    @*<p>
+        <input type="text" id="inputPasserbyEmail"
+               value="@Model.Email" placeholder="请输入Email地址" />
+    </p>*@
+    请选择车型:
+    <label style="margin-left:10px;">
+        <input type="checkbox" value="其它品牌" name="inputPasserbyCar" style="width:30px;" id="inputPasserbyCarOtherType" onclick="WapQuestionnaire.OtherTypeOwnerClick(this)" />其它品牌
+    </label>
+    <label style="margin-left:10px;">
+        <input type="checkbox" value="非车主" name="inputPasserbyCar" style="width:30px;" id="inputPasserbyCarOtherNotOwner" onclick="WapQuestionnaire.OtherTypeClick(this)" />非车主
+    </label>
+    <br />
+    @Html.Action("CarTypeView", "Car", new { })
+    请填写邮寄地址：
+    <p>
+        <select id="selectPasserbyAddressProvince" onchange="User.FindCityByProvince(this);">
+            <option value="-1">@(string.IsNullOrEmpty(Model.Provency) ? "省" : Model.Provency)</option>
+            @{
+                List<Vcyber.BLMS.Common.City.Provinces> _provinceList = ViewData["provinceList"] as List<Vcyber.BLMS.Common.City.Provinces>;
+                if (_provinceList != null && _provinceList.Any())
+                {
+                    foreach (var province in _provinceList)
+                    {
+                        <option value="@province.Code" title="@province.ID">@province.Name</option>
+                    }
+                }
+            }
+        </select>
+    </p>
+    <p>
+        <span id="myOrderAddressCitySpan" class="spanSelectAddress">
+            <select id="myOrderAddressCity" onchange="User.FindAreasByCity(this);">
+                <option value="-1">@(string.IsNullOrEmpty(Model.City) ? "市" : Model.City)</option>
+            </select>
+        </span>
+    </p><p>
+        <span id="myOrderAddressAreaSpan" class="spanSelectAddress">
+            <select id="myOrderAddressCounty">
+                <option value="-1">@(string.IsNullOrEmpty(Model.Area) ? "区" : Model.Area)</option>
+            </select>
+        </span>
+    </p>
+    <p>
+        <input type="text" id="passerbyinfoAddress" name="Address" value="@Model.MailAddress" placeholder="为确保礼品邮寄，请正确填写详细地址" />
+    </p>
+</div>

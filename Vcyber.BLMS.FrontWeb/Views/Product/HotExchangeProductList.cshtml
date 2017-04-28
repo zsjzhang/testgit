@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Product>
+@{
+    Layout = null;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<div class="gy_cont">
+    <div class="gy_title">
+        <div class="gy_zi">
+            <h1>热门商品</h1>
+            <span>Hot Commodity</span>
+            <a href="/Mall/Index"><img src="/img/arrow.png" class="arrow_n" /></a>
+        </div>
+    </div>
+    @{
+        if (Model != null && Model.Any())
+        {
+            <div class="gy_nr" style="text-align:center;">
+                @{
+            foreach (var productItem in Model)
+            {
+                <a href="/Product/ProductDetail?productId=@productItem.ID" target="_blank" style="width:100%; text-align:center;">
+                    <img src="@productItem.Image" class="erji_img" style="width: 160px;">
+                </a>
+
+            }
+                }
+
+            </div>
+        }
+    }
+
+</div>
+
+
+
+
+@*@{
+        if (Model != null && Model.Any())
+        {
+            <div class="prefecture_1">
+                <label>热门商品</label>
+            </div>
+            <ul class="prefecture_5">
+                @foreach (var productItem in Model)
+                {
+                    <li>
+                        <a>
+                            <img src="@productItem.Image" style="width: 263px;height: 164px;" />
+                        </a>
+                    </li>
+                }
+            </ul>
+        }
+    }*@

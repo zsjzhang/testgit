@@ -1,0 +1,233 @@
+﻿@{
+    Layout = null;
+}
+
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>活动管理 - 奖品列表</strong></div>
+</div>
+
+<div class="container panel panel-default" data-ng-init="load()">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" style="text-align:left">活动编号：</label>
+                        <input class="col-md-6 form-control" type="text" placeholder="活动编号" ng-model="formData.ActivityId" />
+                        <div class="col-md-4 form-horizontal">
+                            <button type="button" data-toggle="modal" ng-click="search()" class="btn btn-primary">查询</button>
+                            <button type="button" data-toggle="modal" data-target="#addPrizesInfoModal" class="btn btn-primary col-md-offset-1">添加</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="gridStyle" style="height: 410px; border: 1px solid rgb(212,212,212)" ng-grid="gridPrizeInfoOptions"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addPrizesInfoModal" tabindex="-1" role="dialog" aria-labelledby="PrizesInfoModal" aria-hidden="false"
+     style="width:100%;height:100%;padding:0;margin:0">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="addRoleModalLabel">添加奖品</h4>
+            </div>
+            <!--奖品名称 价格 数量 中间概率 图片 奖品周期-->
+            <div class="modal-body">
+                <div class="row">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">活动编号:</label>
+                            <div class="col-md-4">
+                                <select class="form-control" ng-model="prizesinfoData.ActivityId" required>
+                                    @Html.Action("ActivityIdOptions", "BMGameManage")
+                                </select>
+                            </div>
+                            <label class="col-md-2 control-label">奖品等级:</label>
+                            <div class="col-md-4 input-group">
+                                <input class="form-control datepicker" type="number" ng-model="prizesinfoData.PrizeLevel" min="1" required />
+                                <div class="input-group-addon">等奖</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">奖品名称:</label>
+                            <div class="col-md-4"><input class="form-control datepicker" type="text" ng-model="prizesinfoData.Title" required /></div>
+                            <label class="col-md-2 control-label">奖品价格:</label>
+                            <div class="col-md-4 input-group">
+                                <div class="input-group-addon">$</div>
+                                <input class="form-control datepicker" type="number" ng-model="prizesinfoData.Price" min="0" required />
+                                <div class="input-group-addon">元</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">奖品数量:</label>
+                            <div class="col-md-4 input-group"><input class="form-control" min="0" type="number" ng-model="prizesinfoData.TotalNum" required /></div>
+                            <label class="col-md-2 control-label">中奖概率:</label>
+                            <div class="col-md-4 input-group"><input class="form-control" min="0" max="1" type="number" ng-model="prizesinfoData.Rate" required /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">周期设置:</label>
+                            <div class="col-md-10 input-group">
+                                <div class="input-group-addon">每</div>
+                                <select class="form-control" ng-model="prizesinfoData.CyclesFlag">
+                                    <option value="0" selected>无</option>
+                                    <option value="1">日</option>
+                                    <option value="2">周</option>
+                                    <option value="3">月</option>
+                                    <option value="4">季度</option>
+                                    <option value="5">年</option>
+                                </select>
+                                <div class="input-group-addon">送出奖品数量</div>
+                                <input class="form-control" type="number" min="0" ng-model="prizesinfoData.CyclesNum" required />
+                                <div class="input-group-addon">件</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @*<label class="col-md-2 control-label">奖品图片:</label>
+                                <div>
+                                    <input type="file" class="col-md-4 " value="prizesinfoData.Img" ng-model="prizesinfoData.Img" style="margin-top:10px;" />
+                                </div>*@
+                            <label class="col-md-2 control-label">奖品类型:</label>
+                            <div class="col-md-4">
+                                <select class="form-control" ng-model="prizesinfoData.PrizeFlag">
+                                    <option value="0" selected>虚拟物品</option>
+                                    <option value="1">实体物品</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" ng-click="addPrizesInfo()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="editPrizesInfoModal" tabindex="-1" role="dialog" aria-labelledby="PrizesInfoModal" aria-hidden="false"
+     style="width:100%;height:100%;padding:0;margin:0">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="addRoleModalLabel">修改奖品</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">活动编号:</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" ng-model="selectdataitem.ActivityId" disabled />
+                            </div>
+                            <label class="col-md-2 control-label">奖品等级:</label>
+                            <div class="col-md-4 input-group">
+                                <input class="form-control datepicker" type="number" ng-model="selectdataitem.PrizeLevel" min="1" required />
+                                <div class="input-group-addon">等奖</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">奖品名称:</label>
+                            <div class="col-md-4"><input class="form-control datepicker" type="text" ng-model="selectdataitem.Title" required /></div>
+                            <label class="col-md-2 control-label">奖品价格:</label>
+                            <div class="col-md-4 input-group">
+                                <div class="input-group-addon">$</div>
+                                <input class="form-control datepicker" type="number" ng-model="selectdataitem.Price" min="0" required />
+                                <div class="input-group-addon">元</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">奖品数量:</label>
+                            <div class="col-md-4 input-group"><input class="form-control" min="0" type="number" ng-model="selectdataitem.TotalNum" required /></div>
+                            <label class="col-md-2 control-label">中奖概率:</label>
+                            <div class="col-md-4 input-group"><input class="form-control" min="0" max="1" type="number" ng-model="selectdataitem.Rate" required /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">周期设置:</label>
+                            <div class="col-md-10 input-group">
+                                <div class="input-group-addon">每</div>
+                                <select class="form-control" ng-model="selectdataitem.CyclesFlag">
+                                    <option value="0" selected>无</option>
+                                    <option value="1">日</option>
+                                    <option value="2">周</option>
+                                    <option value="3">月</option>
+                                    <option value="4">季度</option>
+                                    <option value="5">年</option>
+                                </select>
+                                <div class="input-group-addon">送出数量</div>
+                                <input class="form-control" type="number" min="0" ng-model="selectdataitem.CyclesNum" required />
+                                <div class="input-group-addon">件</div>
+                                @*<select class="form-control" ng-model="selectdataitem.PrizeFlag">
+                                        <option value="0" selected>虚拟</option>
+                                        <option value="1">实体</option>
+                                    </select>
+                                    <div class="input-group-addon">奖品</div>*@
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @*<label class="col-md-2 control-label">奖品图片:</label>
+                                <div>
+                                    <input type="file" class="col-md-4 " value="prizesinfoData.Img" ng-model="prizesinfoData.Img" style="margin-top:10px;" />
+                                </div>*@
+                            <label class="col-md-2 control-label">奖品类型:</label>
+                            <div class="col-md-4">
+                                <select class="form-control" ng-model="selectdataitem.PrizeFlag">
+                                    <option value="0" selected>虚拟物品</option>
+                                    <option value="1">实体物品</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" ng-click="editPrizesInfo()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deletePrizesInfoModal" tabindex="-1" role="dialog" aria-labelledby="PrizesInfoModal" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width:400px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="addRoleModalLabel">删除奖品</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <label class="control-label">你确定删除选中的奖品吗？</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" ng-click="deletePrizeInfo()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>

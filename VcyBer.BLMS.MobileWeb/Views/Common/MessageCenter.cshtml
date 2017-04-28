@@ -1,0 +1,70 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Vcyber.BLMS.Entity.NoReadMsgModel
+<head>
+    <title>消息中心</title>
+</head>
+<body>
+    <div class="main">
+        <!--列表页开始-->
+        <ul class="message_lister">
+            <li>
+                <a href="/Msg/MsgList?msgType=1" title="">
+                    <i class="mess_icon1 fl"></i>
+                    <p class="fl">系统消息</p>
+                    @{
+                        var count1 = Model.SysMsgCount;
+                        if (count1 > 0)
+                        {
+                            <em class="fr" >@count1</em>
+                        }
+                    }
+                    
+                </a>
+            </li>
+            <li>
+                <a href="/Msg/MsgList?msgType=3" title="" class="clearfix">
+                    <i class="mess_icon2 fl"></i>
+                    <p class="fl">积分变动提醒</p>
+                    @*<em class="fr" style="display:none">0</em>*@
+                    @{
+                        var count2 = Model.IntegralchangeMsgCount;
+                        if (count2 > 0)
+                        {
+                            <em class="fr">@count2</em>
+                        }
+                    }
+                </a>
+            </li>
+            <li>
+                <a href="/Msg/MsgList?msgType=4" title="" class="clearfix">
+                    <i class="mess_icon3 fl"></i>
+                    <p class="fl">卡券消息</p>
+                   @{
+                       var count3 = Model.CardcouponMsgCount;
+                       if (count3 > 0)
+                       {
+                        <em class="fr">@count3</em>
+                       }
+                    }
+                </a>
+            </li>
+            <li>
+                <a href="/Msg/MsgList?msgType=5" title="" class="clearfix">
+                    <i class="mess_icon4 fl"></i>
+                    <p class="fl">服务和活动</p>
+                    @{
+                        var count4 = Model.ActAndServerCount;
+                        if (count4 > 0)
+                        {
+                            <em class="fr">@count4</em>
+                        }
+                    }
+                </a>
+            </li>
+        </ul>
+        <!--列表页结束-->
+    </div>
+</body>

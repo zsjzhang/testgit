@@ -1,0 +1,66 @@
+﻿body { overflow-x: hidden; font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif; }
+.wrap { width: 100%; height: auto; /*overflow-y:hidden;*/ }
+.bgImg { width: 100%; position: absolute; z-index: -1; }
+p { margin-left: 10%; color: #fff4da; line-height: 30px; }
+.time { padding-top: 32%; }
+.share_img { width: 10%; margin-bottom: -8px; }
+.foot { position: fixed; top: 81%; left: 6%; width: 90%; }
+.btn_happy { width: 97%; background: url('/Img/MoreMember/green.png') repeat-x; color: #ffffff; border: 0px; height: 30px; }
+
+#divWinning { height: 480px; display: block; overflow: hidden; }
+.table-cus { border: 0; }
+.table-cus thead { background: #F6B750; color: #8C4C20; }
+.table-cus thead tr th { text-align: center; font-size: 15px; font-weight: normal; border: 0; padding: 12px 0; }
+.table-cus tbody { background: #A73F24; color: #ffffff; }
+.table-cus tbody tr td { text-align: center; border: 0; padding: 10px 0; }
+
+.btn_detail { border: 0px; height: 30px; background: url('/Img/MoreMember/red.png') repeat-x; color: #ffffff; width: 30%; }
+.detail { margin-top: 15px; }
+.point { text-align: center; margin-top: 10%; }
+.point_span { width: 118px; height: 50px; display: inline-block; background: url('/Img/MoreMember/MobilePointbg.png') center no-repeat; margin-right: 10px; }
+.point_img { width: 33px; height: 33px; margin-top: 8px; }
+.gamebg { text-align: center; padding-top: 50%; }
+.choose { position: fixed; top: 40%; text-align: center; width: 300px; height: 220px; background: url('/Img/MoreMember/alertbg.png') no-repeat; }
+.choose_btn { width: 70%; background: url('/Img/MoreMember/green.png') repeat-x; color: #ffffff; border: 0px; height: 30px; }
+
+.top30 { padding-top: 30px; }
+/*.lydiv { width: 300px; background: #FA671A; height: 210px; display: none; padding: 0 10px; color: #000; }
+.lydiv .content { padding: 1px 5px; }
+.lydiv h3 { color: #000000;text-shadow: 0 0 20px #000; }
+.lydiv p { text-align: center; font-size: 13px; }
+.lydiv .op { text-align: center; margin-top: 10px; }
+.btnwidth { width: 242px; }*/
+
+
+.lydiv { width: 302px; display: none; border: 5px solid #D17B4A; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
+.lydiv .content { padding: 5px 5px; }
+.lydiv .content h3 { color: #000000; text-shadow: 0 0 20px #888; text-align: center; font-weight: 600; font-size: 17px; }
+.lydiv .content p { text-align: center; font-size: 12px; color: #000; }
+.lydiv .content .op { text-align: center; margin-top: 20px; }
+
+.lyinfos .content { padding-left: 10px; }
+.lyinfos .content label { color: #000; width: 65px; font-weight: normal; font-size: 12px; }
+.lyinfos .content h3 { text-align: center; font-weight: 600; font-size: 14px; }
+.lyinfos .content p { text-align: left; font-size: 12px; }
+
+.lyinfos .content .ipuinfo { margin-top: 5px; }
+
+.lyinfos .content .iput { background-color: #FAD08B; border: 1px solid #FAD08B; width: 180px; line-height: 28px; color: #000; }
+.lyinfos .content select { width: 54px; background-color: #FAD08B; border: 1px solid #FAD08B; color: #000; margin-right: 5px; padding: 7px; }
+
+.lyjoin { height: 142px; background: url('/Img/MoreMember/lyinfo.png') center; }
+.lylogin { height: 298px; background: url('/Img/MoreMember/sm/lylog.png') center; }
+.lybeans { height: 140px; background: url('/Img/MoreMember/sm/lybearns.png') center; }
+.lyagain { height: 142px; background: url('/Img/MoreMember/sm/lyagain.png') center; }
+.lygoods { height: 268px; background: url('/Img/MoreMember/lyinfo.png') center; }
+.lyinfos { height: 358px; background: url('/Img/MoreMember/lyinfo.png') center; }
+.lykonws { height: 142px; background: url('/Img/MoreMember/sm/lyok.png') center; }
+
+.lybtn { width: 262px; height: 58px; display: block; }
+.lybtn-position { position: absolute; bottom: 15px; left: 18px; }
+.lybtn-log { margin: 25px 0 0 30px; background: url('/Img/MoreMember/btnlog.png'); }
+.lybtn-reg { margin: 80px 0 0 30px; background: url('/Img/MoreMember/btnreg.png'); }
+.lybtn-get { margin: 10px 0 0 4px; background: url('/Img/MoreMember/btnget.png'); }
+.lybtn-info { background: url('/Img/MoreMember/btnlast.png'); }
+.lybtn-know { background: url('/Img/MoreMember/btnknow.png'); }
+.lybtn-ok { background: url('/Img/MoreMember/btnok.png'); }

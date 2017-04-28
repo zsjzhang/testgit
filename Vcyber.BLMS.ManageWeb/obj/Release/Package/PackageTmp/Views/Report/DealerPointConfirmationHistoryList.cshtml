@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = "历史结算记录列表";//DealerPointConfirmationList
+    ViewBag.TitleFocus = "2-2-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+<link href="~/Scripts/bootstrap-datepicker/datepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+<script src="~/Scripts/bootstrap-datepicker/bootstrap-datepicker.zh-CN.js"></script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+
+    //列表查询
+    function GetPageList(pageIndex) {
+        //执行查询
+        var data = {
+            StartTime: $("#StartTime").val(),
+            EndTime: $("#EndTime").val(),
+            DealerId: $("#DealerId").val(),
+            index: pageIndex,
+            size: 10
+        };
+
+        var url = "@Url.Action("DealerPointConfirmationHistoryPageInfo")";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function (msg) {
+                $('#divPageList').html(msg);
+            }
+        });
+    }
+
+    //保存查询条件
+    function search() {
+        GetPageList(1);
+    }
+
+    //导出信息
+    function toReportExcel() {
+        var StartTime = $("#StartTime").val();
+        var EndTime = $("#EndTime").val();
+        var DealerId = $("#DealerId").val();        
+        window.location = '/Report/DealerPointConfirmationHistoryExport?' +
+            "&StartTime=" + StartTime + "&EndTime=" + EndTime + "&DealerId=" + DealerId;
+        return false;
+    }
+</script>
+
+<style type="text/css">
+    li {
+        margin: 5px;
+    }
+
+        li span {
+            margin-left: 10px;
+            text-align: left;
+        }
+
+    .input_text2 {
+        width: 100px;
+    }
+
+    .input_text1 {
+        width: 100px;
+    }
+    .row{width:1450px;}
+    .col-lg-2.container{width:210px}
+</style>
+
+<div class="path">
+
+</div>
+<div style="height:20px;"></div>
+<div class="panel panel-default">
+    <input name="StartTime" type="hidden" value="@ViewBag.StartTime" />
+    <input name="EndTime" type="hidden" value="@ViewBag.EndTime" />
+    <input name="DealerId" type="hidden" value="@ViewBag.DealerId" />
+    <table class="table table-bordered table-responsive">
+        <tr>            
+            <td style="width:90px">店代码：</td>
+            <td>
+                <input type="text" class="input_text1" id="DealerId" name="DealerId" value="@ViewBag.DealerId" />
+            </td>
+            <td style=" width:100px">结算时间：</td>
+            <td>@(Html.TextBox("StartTime", "", new { @class = "input_text1", @onfocus = "WdatePicker({dateFmt:'yyyy-MM',isShowWeek:true,isShowClear:true,readOnly:true})" }))至@(Html.TextBox("EndTime", "", new { @class = "input_text1", @onfocus = "WdatePicker({dateFmt:'yyyy-MM',isShowWeek:true,isShowClear:true,readOnly:true})" }))</td>
+            <td colspan="4">
+                <input type="button" value="查询" onclick="search();" class="btn btn-primary" />
+                <input class="btn btn-primary" type="submit" onclick="toReportExcel()" value="导出" />
+            </td>
+        </tr>
+    </table>
+</div>
+
+@*分页列表*@
+<div id="divPageList">
+    @{
+        Html.RenderAction("DealerPointConfirmationHistoryPageInfo", new { index = 1, size = 10 });
+    }
+</div>
+

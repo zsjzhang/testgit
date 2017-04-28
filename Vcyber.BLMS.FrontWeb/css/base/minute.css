@@ -1,0 +1,325 @@
+
+.chaxun{
+	border-top:2px solid #f49600;
+	margin-top: 20px;
+}
+
+.active_xq{
+	width: 100%;
+	margin: 0 auto;
+	margin-top:10px;
+	border: 1px solid #eee;
+	border-top: 2px solid #075090;
+	font-family: "微软雅黑";
+	padding-bottom: 90px;
+}
+
+.new_xq{
+	padding-bottom: 20px;
+}
+
+.news_title {
+	height: 80px;
+	width: 100%;
+}
+
+.active_xq .news_t_l {
+margin-left:10px;
+float: left;
+}
+
+.active_xq .fenxiang {
+float: right;
+margin-top: 48px;
+margin-right:12px;
+}
+
+.news_t_l h3 {
+font-size: 18px;
+color: #3D3F43;
+padding-top: 18px;
+}
+
+.news_t_l p {
+font-size: 12px;
+color: #949494;
+margin-top: 18px;
+}
+
+.clock {
+background: url(/img/clock.png) no-repeat left center;
+padding-left: 16px;
+margin-right: 10px;
+}
+
+.years {
+	background: url(/img/note.png) no-repeat left center;
+	padding-left: 16px;
+}
+
+
+.acx_box{
+	margin: 0 8px;
+	border-top: 1px solid #eee;
+	font-size: 14px;
+}
+
+.acx_box h2{
+	color: #00448d;
+	margin: 14px 0 16px 0;
+}
+
+.acx_box img{
+	/*width: 680px;
+	height:217px ;*/
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	
+}
+
+.acx_box h3{
+	margin-left: 2px;
+	color: #3d3f43;
+	line-height: 30px;
+}
+
+.acx_box p{
+	margin-left: 2px;
+	color: #3d3f43;
+	text-indent: 24px;
+	line-height: 26px;
+}
+
+.acx_box h4{
+	margin-left: 2px;
+	color: #3d3f43;
+	margin-top:40px;
+}
+
+.acx_box a{
+	width: 230px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	display: block;
+	margin: 0 auto;
+	margin-top: 90px;
+	background: #075090;
+	font-size: 14px;
+	color: #FFFFFF;
+	border: 1px solid #075090;
+	cursor: pointer;
+}
+
+.acx_box a:hover,
+.hdxq_bmcg a:hover{
+		background: #EEEEEE;
+		border: 1px solid #BEBEBE;
+		color: #909090;
+}
+
+
+.hdxq_but{
+	width: 230px;
+	margin:0 auto;
+	margin-top: 108px;
+}
+
+.hdxq_but a{
+	color: #a6a6a6;
+	width: 230px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	border: 1px solid #a8a8a8;
+	display: block;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+
+
+/* 弹窗  */
+
+.hdxq_bmcg{
+	background: url(../img/hdxq_tanchuang.png) no-repeat;
+	width: 467px;
+	height: 244px;
+	position: fixed;
+	top:200px;
+	left:62%;
+	margin-left: -233px;
+	display: none;
+}
+
+.hdxq_bmcg div{
+	width: 268px;
+	margin: 0 auto;
+	margin-top: 58px;
+}
+
+.hdxq_bmcg div img{
+	display: block;
+	margin-right: 8px;
+	float: left;
+}
+
+.hdxq_bmcg div p{
+	font-size: 18px;
+	line-height: 26px;
+}
+
+.hdxq_bmcg a{
+	width: 230px;
+	height:32px;
+	line-height: 32px;
+	text-align: center;
+	color: #FFFFFF;
+	font-size: 14px;
+	background: #075090;
+	border: 1px solid #075090;
+	margin: 0 auto;
+	margin-top: 44px;
+	display: block;
+	
+}
+
+
+/* 活动中心  */
+
+.hot_Ac{
+	margin-top: 20px;
+	border: 1px solid #EEEEEE;
+}
+
+.hot_Ac dl{
+	margin: 10px 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px dashed #EEEEEE;
+	height: 150px;
+}
+
+.hot_Ac dl:last-child{
+	border-bottom: none;
+}
+
+.hot_Ac dt{
+	float: left;
+	margin-right: 12px;
+	width: 228px;
+	height: 149px;
+}
+
+.hot_Ac dt img{
+	width: 228px;
+	height: 149px;
+}
+
+.hot_Ac dd {
+	margin-left: 238px;
+}
+
+.hot_Ac dd h3{
+	font-size: 20px;
+	margin-bottom: 4px;
+}
+
+.hot_Ac dd span{
+	color: #767575;
+	background: url(/img/clock2.png) no-repeat left center;
+	padding-left: 20px;
+	font-size: 12px;
+}
+
+.hot_Ac dd a{
+	width: 108px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	color: #FFFFFF;
+	display: block;
+	font-size: 14px;
+	margin-top: 10px;
+}
+
+.jjks{
+	background: #797576;
+}
+
+.ybm{
+	background: #b29e61;
+}
+
+.hot_Ac dd p{
+	color: #767575;
+	font-size: 12px;
+	line-height: 20px;
+	margin-top: 10px;
+}
+
+
+
+
+
+/* apply */
+.apply{
+	width:100%;
+	height: 254px;
+
+}
+.apply_array{width:206px;
+	float:left;
+	height:226px;
+	margin-right:5px;
+}
+
+.apply_array img{
+	width: 206px;
+	height: 119px;
+	display: block;
+}
+
+.apply_array h3{
+	font-size: 18px;
+	margin-top: 4px;
+	margin-bottom: 6px;
+	margin-left: 1px;
+}
+
+.apply_array span{
+	font-size: 12px;
+	color: #767575;
+	margin-left: 1px;
+}
+
+.apply_array div{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	display: block;
+	background: #b7bcc0;
+	color: #FFFFFF;
+	font-size: 14px;
+	margin-top: 10px;
+}
+
+.apply_nav{position:relative;width:628px;
+float:left;height:226px;overflow:hidden}
+.apply_w{position:absolute;margin-top:22px;width:1000px;float:left;left:0px}
+.apply .img_l{padding:90px 6px 0 6px;float:left;cursor:pointer;}
+.apply .img_r{padding:90px 6px 0 6px;float:left;cursor:pointer;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

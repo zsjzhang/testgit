@@ -1,0 +1,36 @@
+﻿@{
+    Layout = null;
+}
+
+<div>
+    <div class="purse">
+        <p>
+            <span>内容</span>
+            <b>发布时间</b>
+        </p>
+        <ul>
+            @{
+                var myAssets = ViewData["myAssets"];
+                if (myAssets != null)
+                {
+                    foreach (var item in myAssets)
+                    {
+                        <li>
+                            <span>@item.shuoming</span>
+                            <b>@item.createtime</b>
+                        </li>
+                    }
+
+                    @*<li>
+                            <span>登录网站获得10蓝豆</span>
+                            <b>2014-07-15 09:33:35</b>
+                        </li>*@
+                }
+            }
+
+        </ul>
+        <div class="pager">
+            @Html.Action("Pager1", "Pagers", new { })
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+﻿body { color: #EFBC69; font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif; }
+footer { margin: 50px 0; color: #993B3B; font-size: 12px; }
+p { line-height: 32px; }
+.top30 { margin-top: 45px; }
+
+.bg-header { width: 100%; position: absolute; z-index: -1; top: 0; left: 0; }
+.bg-body { width: 100%; height: 4000px; position: absolute; z-index: -2; top: 0; left: 0; }
+
+.header { color: #fff; font-size: 11px; font-weight: normal; text-align: center; }
+.lead { background: url('../Img/MoreMember/hbg.png') no-repeat -6px 8px; padding: 24px 0 0 60px; margin-left: -30px; color: #AB6940; font-weight: 500; }
+
+
+.point span { width: 238px; height: 110px; margin-right: 10px; background: url('/Img/MoreMember/poingbg.png') center no-repeat; display: inline-block; }
+.point span img { margin: 15px auto; }
+
+
+.table-win { height: 372px; display: block; overflow: hidden; }
+.table-cus { border: 0; }
+.table-cus thead { background: #F6B750; color: #8C4C20; }
+.table-cus thead tr th { text-align: center; font-size: 15px; font-weight: normal; border: 0; padding: 12px 0; }
+.table-cus tbody { background: #A73F24; color: #ffffff; }
+.table-cus tbody tr td { text-align: center; border: 0; padding: 10px 0; }
+
+
+.lydiv { width: 528px; display: none; border: 5px solid #D17B4A; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
+.lydiv .content { padding: 5px 10px; }
+.lydiv .content h3 { color: #000000; text-shadow: 0 0 20px #888; text-align: center; font-size: 21px; font-weight: 600; }
+.lydiv .content p { text-align: center; font-size: 14px; color: #000; }
+.lydiv .content .op { text-align: center; margin-top: 20px; }
+
+.lyinfos .content { padding-left: 20px; }
+.lyinfos .content label { color: #000; }
+.lyinfos .content h3 { text-align: left; font-weight: 600; }
+.lyinfos .content p { text-align: left; font-size: 18px; }
+
+.lyinfos .content .iput { background-color: #FAD08B; border: 1px solid #FAD08B; width: 346px; line-height: 32px; color: #000; }
+.lyinfos .content select { width: 104px; background-color: #FAD08B; border: 1px solid #FAD08B; color: #000; margin-right: 5px; padding: 7px; }
+
+.lyjoin { height: 165px; background: url('/Img/MoreMember/lyinfo.png') center; }
+.lylogin { height: 298px; background: url('/Img/MoreMember/lylog.png') center; }
+.lybeans { height: 235px; background: url('/Img/MoreMember/lybearns.png') center; }
+.lyagain { height: 235px; background: url('/Img/MoreMember/lyagain.png') center; }
+.lygoods { height: 268px; background: url('/Img/MoreMember/lyinfo.png') center; }
+.lyinfos { height: 386px; background: url('/Img/MoreMember/lyinfo.png') center; }
+.lykonws { height: 235px; background: url('/Img/MoreMember/lyok.png') center; }
+
+.lybtn { width: 262px; height: 58px; display: block; }
+.lybtn-position { position: absolute; bottom: 15px; left: 135px; }
+.lybtn-log { margin: 25px 0 0 115px; background: url('/Img/MoreMember/btnlog.png'); }
+.lybtn-reg { margin: 80px 0 0 115px; background: url('/Img/MoreMember/btnreg.png'); }
+.lybtn-get { margin: 10px 0 0 115px; background: url('/Img/MoreMember/btnget.png'); }
+.lybtn-info { background: url('/Img/MoreMember/btnlast.png'); }
+.lybtn-know { background: url('/Img/MoreMember/btnknow.png'); }
+.lybtn-ok { background: url('/Img/MoreMember/btnok.png'); }

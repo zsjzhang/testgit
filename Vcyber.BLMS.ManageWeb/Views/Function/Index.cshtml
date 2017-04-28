@@ -1,0 +1,236 @@
+﻿@{
+    ViewBag.Title = "权限- 权限管理";
+    Layout = null;
+}
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>权限- 权限管理</strong></div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><button type="button" data-toggle="modal" data-target="#addFunctionModal" class="btn btn-primary pull-right">添加功能</button> </div>
+    <div class="panel-body" >
+        @*<table class="table table-bordered table-responsive">
+                <thead>
+                    <tr>
+                        <th class="text-center">功能名称</th>
+                        <th class="text-center" colspan="3">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="fn in Functions.data">
+                        <td>
+                            {{fn.Name}}
+                            <table>
+                                <tr ng-repeat="cfn in fn.data">
+                                    <td>{{cfn.Name}}
+                                        <table>
+                                            <tr ng-repeat="ccfn in cfn.data">
+                                                <td ng-bind="ccfn.Name"></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <a href="javascript:return void()" data-toggle="modal" data-target="#addChildFunctionModal"><span ng-click="SendSelectId(fn.id)">添加子功能</span></a>
+                        </td>
+                        <td><a href="javascript:return void()" data-toggle="modal" data-target="#editFunctionModal" ng-click="loadEditFunction(fn.id)">编辑</a></td>
+                        <td><a href="javascript:return void()" ng-click="deleteFunction(fn.id)" ng-confirm-click="确定删除此功能?"><span ng-hide="true"></span>删除</a></td>
+
+                    </tr>
+                </tbody>
+            </table>*@
+        
+    
+
+
+        <div webix-ui view="treetable" webix-data="Functions.data" autoheight="true" autowidth="true" select="row" webix-event="onItemClick = operatorFun(id, details)">
+            <div view="column" id="id" hidden="true"></div>
+            <div view="column" id="Name" template="{common.treetable()} #Name#" width="400px">功能名称</div>
+
+            <div view="column" id="add" template='<a href="javascript:return void()" data-toggle="modal" data-target="#addChildFunctionModal" onClick="onItemClick">添加子功能'>添加</div>
+            <div view="column" id="edit" template='<a href="javascript:return void()" data-toggle="modal" data-target="#editFunctionModal" onClick="onItemClick">编辑'>编辑</div>
+            <div view="column" id="delete" template="<a href='javascript:return void()' onClick='onItemClick'>删除">删除</div>
+
+        </div>
+        </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addFunctionModal" tabindex="-1" role="dialog" aria-labelledby="addFunctionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="addFunctionModalLabel">添加权限</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form name="form" class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">权限名称:</label>
+                            <div class="col-md-9"><input class="form-control" ng-model="AddFunctionData.name" required /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">权限描述:</label>
+                            <div class="col-md-9">
+                                <textarea class="form-control" rows="3" ng-model="AddFunctionData.description"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Action:</label>
+                            <div class="col-md-9"><input class="form-control" ng-model="AddFunctionData.action" required /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Controller:</label>
+                            <div class="col-md-9"><input class="form-control" ng-model="AddFunctionData.controller" required /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">权限URL描述:</label>
+                            <div class="col-md-9"><input class="form-control" ng-model="AddFunctionData.urlDesc" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">页面路由:</label>
+                            <div class="col-md-9">
+                                <select class="form-control" ng-model="routeDw.select">
+                                    <option value="0">Angularjs Route</option>
+                                    <option value="1">Asp.net MVC</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" ng-click="addFunction()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addChildFunctionModal" tabindex="-1" role="dialog" aria-labelledby="addChildFunctionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="addChildFunctionModalLabel">添加子功能</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">权限名称:</label>
+                            <div class="col-md-10"><input class="form-control" ng-model="AddFunctionData.name" required /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">权限描述:</label>
+                            <div class="col-md-10">
+                                <textarea class="form-control" rows="4" ng-model="AddFunctionData.description"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Action:</label>
+                            <div class="col-md-10"><input class="form-control" ng-model="AddFunctionData.action" required /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Controller:</label>
+                            <div class="col-md-10"><input class="form-control" ng-model="AddFunctionData.controller" required /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">权限URL描述:</label>
+                            <div class="col-md-10"><input class="form-control" ng-model="AddFunctionData.urlDesc" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">页面路由:</label>
+                            <div class="col-md-10">
+                                <select class="form-control" ng-model="routeDw.select">
+                                    <option value="0">Angularjs Route</option>
+                                    <option value="1">Asp.net MVC</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" ng-click="addChildFunction()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="editFunctionModal" tabindex="-1" role="dialog" aria-labelledby="editFunctionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="editFunctionModalLabel">编辑权限</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">权限名称:</label>
+                            <div class="col-md-10"><input class="form-control" ng-model="functionData.Name" required /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">权限描述:</label>
+                            <div class="col-md-10">
+                                <textarea class="form-control" rows="3" ng-model="functionData.Describe"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Action:</label>
+                            <div class="col-md-10"><input class="form-control" ng-model="functionData.Action" required /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Controller:</label>
+                            <div class="col-md-10"><input class="form-control" ng-model="functionData.Controller" required /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">权限URL描述:</label>
+                            <div class="col-md-10"><input class="form-control" ng-model="functionData.UrlDescibe" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">页面路由:</label>
+                            <div class="col-md-10">
+                                <select class="form-control" ng-model="routeDw.select">
+                                    <option value="0">Angularjs Route</option>
+                                    <option value="1">Asp.net MVC</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" ng-click="editFunction()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>

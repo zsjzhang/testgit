@@ -1,0 +1,81 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "经销商查询";
+}
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.3&key=434378a9ebc771afdb9ecf0f7060dba9"></script>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "BlueVIP" })
+    </div>
+    <div class="n_all_cont" style="height:1200px;">
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+
+        </div>
+        <div class="n_right_cont">
+            <div class="gy_cont" style="margin-top:0;">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>经销商查询</h1>
+                        <span>Dealers Search</span>
+                    </div>
+                </div>
+
+                <div class="cxjxs">
+                    <p class="select_choose">
+                        <img src="/img/dingwei.png" />
+                        <span id="dealer-city">北京市</span>
+                        <span>*</span><label></label>
+                        <style>
+                            #sltCity {
+                                width: 100px;
+                            }
+
+                            #sltDealer {
+                                width: 240px;
+                            }
+                        </style>
+                        @Html.Action("ProvinceCity", "Dealer", new { })
+                        <input type="button" value="查询" />
+                    </p>
+                    <!--map begin-->
+                    <div id="mapDiv" style="width:674px;height:400px;">
+                        <div id="maptip" style="z-index: 1000;display:none;"></div>
+                    </div>
+                    <!--map end-->
+                    <div class="cxjxs_cont">
+                        <h4>经销商</h4>
+                        <ul id="dealerlist"></ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    @Html.Action("Index", "Footer")
+</div>

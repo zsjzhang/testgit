@@ -1,0 +1,1781 @@
+﻿@using Vcyber.BLMS.Entity;
+@using Vcyber.BLMS.Application;
+@using Vcyber.BLMS.Entity.Enum;
+
+@model Vcyber.BLMS.Entity.Question
+@{
+    ViewBag.Title = "问卷设计";
+    ViewBag.TitleFocus = "2-2-1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int parentId = ViewBag.ParentId;
+    Questionnaire questionnaireEntity = _AppContext.QuestionnaireApp.SelectSingle(parentId);
+    List<Question> qList = _AppContext.QuestionApp.GetQuestionByPId(parentId);
+    bool IsCS = Convert.ToBoolean(ViewBag.IsCs);
+}
+
+<script src="/Scripts/jqueryui/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="/Scripts/jqueryui/jquery-ui.min.css">
+<script src="/Scripts/layer/layer.min.js"></script>
+<style type="text/css">
+    input[type="radio"], input[type="checkbox"] {
+        cursor: pointer;
+        line-height: normal;
+        margin: 4px 0 0;
+    }
+
+    body, input, button, select, textarea, th, td {
+        color: #666666;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    input, textarea, select {
+        outline: medium none;
+        vertical-align: bottom;
+    }
+
+    body, input, textarea, select {
+        font-family: "microsoft yahei";
+        font-size: 14px;
+    }
+
+    body {
+        word-break: break-all;
+        word-wrap: break-word;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: inherit;
+        font-family: inherit;
+        font-weight: normal;
+        margin: 0;
+        text-rendering: optimizelegibility;
+    }
+
+    h4 {
+        font-size: 16px;
+    }
+
+    .cq_content a {
+        color: #717171;
+    }
+
+    .cq_content a {
+        color: #434a5d;
+        display: block;
+        outline: medium none;
+        text-decoration: none;
+    }
+
+        .cq_content a:link {
+            text-decoration: none;
+        }
+
+    ul, ol, li {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .clear::after {
+        clear: both;
+        content: ".";
+        display: block;
+        height: 0;
+        visibility: hidden;
+    }
+
+    .clear::after {
+        clear: both;
+        content: ".";
+        display: block;
+        height: 0;
+        visibility: hidden;
+    }
+
+    .cq_content {
+        position: relative;
+    }
+
+    .cq_content {
+        margin: 0 auto;
+        width: 912px;
+    }
+
+        .cq_content .rows1 {
+            width: 122px;
+        }
+
+        .cq_content .rows1 {
+            position: relative;
+            z-index: 100;
+        }
+
+        .cq_content .rows1 {
+            width: 122px;
+        }
+
+    .rows1 {
+        display: inline;
+        float: left;
+        width: 140px;
+    }
+
+    .cq_content .rows2 {
+        margin-right: -2px;
+        margin-top: 2px;
+        width: 900px;
+    }
+
+    .cq_content .rows2 {
+        position: relative;
+        z-index: 30;
+    }
+
+    .cq_content .rows2 {
+        width: 790px;
+    }
+
+    .cq_content .cq_title {
+        background: #fff none repeat scroll 0 0;
+        padding: 5px 50px 5px 57px;
+    }
+
+        .cq_content .cq_title .p_title {
+            padding: 10px 0;
+            width: 100%;
+        }
+
+    .cq_content .p_title {
+        background: #fff none repeat scroll 0 0;
+    }
+
+    .p_title {
+    }
+
+    .p_title {
+        font-size: 18px;
+        margin: 0;
+        padding: 15px 0;
+        text-align: center;
+    }
+
+    .well2 {
+        background: #f3f3f3 none repeat scroll 0 0;
+        padding: 0 0 10px;
+    }
+
+    .rows2 {
+        float: right;
+        width: 880px;
+    }
+
+    .well {
+        background-color: #fff;
+        min-height: 20px;
+        padding: 0;
+    }
+
+    .accordion-group h4 {
+        padding: 5px 0;
+    }
+
+    .tc {
+        text-align: center;
+    }
+
+    .ul-tool {
+        list-style: outside none none;
+        margin: 0;
+        padding: 0;
+    }
+
+        .ul-tool li:first-child {
+            border-top: 1px solid #f6f7f7;
+        }
+
+        .ul-tool li {
+            background: #fff none repeat scroll 0 0;
+            border-bottom: 1px solid #f6f7f7;
+            font-size: 12px;
+            height: 30px;
+            line-height: 30px;
+            padding: 2px 0;
+        }
+
+            .ul-tool li a {
+                display: block;
+                padding: 0 8px;
+            }
+
+            .ul-tool li i {
+                margin: -3px 5px 0 0;
+            }
+
+    .basic-too11-icon-active {
+        background-position: 0 -119px;
+        height: 20px;
+        width: 20px;
+    }
+
+    .basic-too12-icon-active {
+        background-position: 0 -140px;
+        height: 20px;
+        width: 20px;
+    }
+
+    .fr li a:hover [class*="-icon"], .fr li a:focus [class*="-icon"], [class^="-icon-active"], [class*="-icon-active"] {
+        background-image: url("/Content/Image/wjsj_toolico_off.png");
+    }
+
+    [class^="-icon"], [class*="-icon"] {
+        background-image: url("/Content/Image/wjsj_toolico_off.png");
+        background-repeat: no-repeat;
+        display: inline-block;
+        margin-right: 0;
+        vertical-align: middle;
+    }
+
+    .table1.bg-m {
+        background: #fff none repeat scroll 0 0;
+        margin-top: 0;
+    }
+
+    .table1 {
+        border-color: #edf0f0 -moz-use-text-color;
+        border-style: solid none;
+        border-width: 1px medium;
+        width: 100%;
+    }
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    .table1 .rb {
+        border-right: 1px solid #edf0f0;
+        width: 34px;
+    }
+
+    .table1 td {
+        padding: 8px;
+        vertical-align: top;
+    }
+
+    .p_begin_desc {
+    }
+
+    .th4 {
+        font-size: 16px;
+        min-height: 30px;
+        padding: 6px 0 0;
+        width: 750px;
+    }
+
+    .dragwen {
+        list-style: outside none none;
+        margin: 0;
+        min-height: 250px;
+        padding: 0;
+        position: relative;
+    }
+
+        .dragwen > li {
+            background: #fff none repeat scroll 0 0;
+            display: block;
+            height: auto;
+            margin-top: 6px;
+            position: relative;
+            width: 100%;
+        }
+
+    .module {
+        background: #fff none repeat scroll 0 0;
+    }
+
+    .dragwen .topic_type {
+        border-bottom: 1px solid #edf0f0;
+    }
+
+    .topic_type {
+        position: relative;
+    }
+
+    .topic_type_menu {
+        left: 0;
+        padding: 8px 3px;
+        position: absolute;
+        top: 0;
+        width: 50px;
+    }
+
+    .setup-group {
+        padding: 0 5px;
+        text-align: center;
+    }
+
+        .setup-group h4 {
+            margin-bottom: 10px;
+            padding-top: 4px;
+        }
+
+        .setup-group a {
+            margin: 0 auto 8px;
+            width: 20px;
+        }
+
+    .cq_content .module .up-icon-active {
+        background: rgba(0, 0, 0, 0) url("/Content/Image/wjsj_toolico_off.png") no-repeat scroll -23px -513px;
+        height: 20px;
+        width: 20px;
+    }
+
+    .cq_content .module .down-icon-active {
+        background: rgba(0, 0, 0, 0) url("/Content/Image/wjsj_toolico_off.png") no-repeat scroll -23px -538px;
+        height: 20px;
+        width: 20px;
+    }
+
+    .copy-icon-active {
+        background-position: -19px -360px;
+        height: 20px;
+        width: 20px;
+    }
+
+    .del2-icon-active {
+        background-position: -20px -180px;
+        height: 20px;
+        width: 20px;
+    }
+
+    .basic-too13-icon-active {
+        background-position: 0 -358px;
+        height: 20px;
+        width: 20px;
+    }
+
+    .topic_type_con {
+        border-left: 1px solid #edf0f0;
+        height: 100%;
+        margin-left: 50px;
+        min-height: 150px;
+        padding: 8px;
+    }
+
+    .Drag_area {
+        cursor: move;
+        margin: -10px 0 0 -10px;
+        padding: 5px 0 0 10px;
+        width: 100%;
+        z-index: 9;
+    }
+
+        .Drag_area .q_title, .zon_edit .q_title {
+            line-height: 30px;
+            padding: 5px 0;
+            position: relative;
+        }
+
+    .th4 {
+        font-size: 16px;
+        min-height: 30px;
+        padding: 6px 0 0;
+        width: 750px;
+    }
+
+    .unstyled {
+        display: inline-block;
+        font-size: 14px;
+        width: 100%;
+    }
+
+        .unstyled li {
+            margin-top: 5px;
+            overflow: hidden;
+            padding: 5px 0;
+        }
+
+        .unstyled input[type="radio"], .unstyled input[type="checkbox"] {
+            border: medium none !important;
+            margin: 0 5px;
+            vertical-align: middle !important;
+        }
+
+        .unstyled label {
+            max-width: 500px;
+            vertical-align: middle;
+        }
+
+    .T_edit_min, .T_edit_td {
+    }
+
+    .T_edit_td, .T_edit_min {
+        font-size: 14px;
+    }
+
+    label {
+        cursor: pointer;
+        display: inline-block;
+        font-weight: normal;
+        margin-bottom: 0px;
+    }
+
+    .operationH {
+        height: 25px;
+        margin-top: 10px;
+    }
+
+        .operationH a {
+            float: left;
+            margin-right: 8px;
+        }
+
+    .topic_type_con a {
+        display: inline-block;
+        padding: 0 1px;
+    }
+
+    .add-icon-active {
+        background-position: -20px -200px;
+        height: 20px;
+        width: 20px;
+    }
+
+    .bColor {
+        background-color: #FEE680;
+    }
+
+    .cq_button {
+        margin: 0 auto;
+        width: 912px;
+        height: 50px;
+    }
+
+    .basic-too17-icon-active {
+        background-position: 0 -240px;
+        height: 20px;
+        width: 20px;
+    }
+
+    .basic-too18-icon-active {
+        background-position: 0 -260px;
+        height: 20px;
+        width: 20px;
+    }
+
+    .basic-too15-icon-active {
+        background-position: 0 -200px;
+        height: 20px;
+        width: 20px;
+    }
+
+    .basic-too14-icon-active {
+        background-position: 0 -180px;
+        height: 20px;
+        width: 20px;
+    }
+
+    .matrix {
+        float: left;
+        overflow-x: auto;
+        width: 95%;
+    }
+
+    .table-bordered {
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-top-colors: none;
+        border-collapse: separate;
+        border-color: #dddddd #dddddd #dddddd -moz-use-text-color;
+        border-image: none;
+        border-style: solid solid solid none;
+        border-width: 1px 1px 1px 0;
+    }
+
+    .table-bordered {
+        border-collapse: separate;
+    }
+
+    .td-Tc td {
+        line-height: 28px !important;
+        overflow: hidden;
+        padding: 5px 0 5px 3px !important;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .table-bordered th, .table-bordered td {
+        border-left: 1px solid #dddddd;
+    }
+
+    .table th, .table td {
+        border-top: 1px solid #dddddd;
+        line-height: 20px;
+        padding: 8px;
+        text-align: left;
+        vertical-align: top;
+    }
+
+    .operationV {
+        float: left;
+        margin-left: 15px;
+        width: 20px;
+    }
+
+        .operationV a {
+            float: left;
+            margin-bottom: 8px;
+        }
+
+    .T_edit_min_f {
+        text-align: center;
+        border: 1px solid #000;
+        padding: 5px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .clone-icon-active {
+        background-position: -20px -220px;
+        height: 20px;
+        width: 20px;
+    }
+
+    .menu-edit2-icon {
+        background-position: -41px -142px;
+        height: 20px;
+        width: 18px;
+    }
+</style>
+<div id="tipsLayer" style="position:relative;left:50%; margin-left:-20px; width:20px;"></div>
+<div class="cq_button">
+    <a href="/Questionnaire/PreviewIndex/@parentId" target="_blank" class="btn-lg btn-primary ">预览问卷</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="#" class="btn-lg btn-primary " onclick="    UpdateState(2); ">发布问卷</a>
+</div>
+<div class="cq_content clear" style="min-height: 512px; background-color: #f3f3f3;">
+    <input type="hidden" value="@parentId" id="parentId" />
+    <div class="row-fluid clear">
+        <div class="rows1" style="">
+            <div class="well sidebar-nav affix-top">
+                <div class="accordion-group">
+                    <h4 class="tc">
+                        <a href="javascript:;">
+                            常用题型
+                        </a>
+                    </h4>
+                    <ul class="ul-tool collapse" style="display: block;">
+                        <li class="moduleL ui-draggable" name="0">
+                            <a href="javascript:;">
+                                <i class="basic-too11-icon-active"></i>
+                                单选题
+                            </a>
+                        </li>
+                        <li class="moduleL ui-draggable" name="1">
+                            <a href="javascript:;">
+                                <i class="basic-too12-icon-active"></i>
+                                多选题
+                            </a>
+                        </li>
+                        <li class="moduleL ui-draggable" name="2">
+                            <a href="javascript:;">
+                                <i class="basic-too11-icon-active"></i>
+                                判断题
+                            </a>
+                        </li>
+                        <li class="moduleL ui-draggable" name="3">
+                            <a href="javascript:;">
+                                <i class="basic-too13-icon-active"></i>
+                                留言题
+                            </a>
+                        </li>
+                        <li class="moduleL ui-draggable" name="4">
+                            <a href="javascript:;">
+                                <i class="basic-too17-icon-active"></i>
+                                矩阵单选题
+                            </a>
+                        </li>
+                        <li class="moduleL ui-draggable" name="5">
+                            <a href="javascript:;">
+                                <i class="basic-too18-icon-active"></i>
+                                矩阵多选题
+                            </a>
+                        </li>
+                        <li class="moduleL ui-draggable" name="7">
+                            <a href="javascript:;">
+                                <i class="basic-too14-icon-active"></i>
+                                满意度题
+                            </a>
+                        </li>
+                        <li class="moduleL ui-draggable" name="8">
+                            <a href="javascript:;">
+                                <i class="basic-too18-icon-active"></i>
+                                矩阵填空题
+                            </a>
+                        </li>
+                        <li class="moduleL ui-draggable" name="9">
+                            <a href="javascript:;">
+                                <i class="basic-too15-icon-active"></i>
+                                排序题
+                            </a>
+                        </li>
+                        <li class="moduleL ui-draggable" name="10">
+                            <a href="javascript:;">
+                                <i class="basic-too13-icon-active"></i>
+                                填空题
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="rows2 well2 Tj" style="min-height:512px;">
+            <div class="cq_title">
+                <h4 class="h4-bg T_edit_t p_title" name="project">@questionnaireEntity.Theme</h4>
+            </div>
+            <table class="table1 bg-m">
+                <tbody>
+                    <tr>
+                        <td class="rb"></td>
+                        <td>
+                            <div class="th4 T_edit_t p_begin_desc" name="begin_desc">@questionnaireEntity.AlternateTheme</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <ul id="question_box" class="dragwen ui-sortable" style="background: transparent none repeat scroll 0% 0%;">
+                @for (int i = 0; i < qList.Count; i++)
+                {
+                    EQuestionType eqType = (EQuestionType)qList[i].Type;
+
+                    string qTitle = "Q" + (i + 1);
+                    <li class="module">
+                        <input type="hidden" value="@qList[i].Type" class="q_type" />
+                        <input type="hidden" value="@qList[i].Id" class="q_id" />
+                        <div class="topic_type">
+                            <div class="topic_type_menu">
+                                <div class="setup-group">
+                                    <h4>@qTitle</h4>
+                                    <a class="up_cq" href="javascript:;" data-toggle="tooltip" data-placement="right" title="上移本题">
+                                        <i class="up-icon-active"></i>
+                                    </a>
+                                    <a class="down_cq" href="javascript:;" data-toggle="tooltip" data-placement="right" title="下移本题">
+                                        <i class="down-icon-active"></i>
+                                    </a>
+                                    <a class="Bub" href="javascript:;" data-toggle="tooltip" data-placement="right" title="复制题目">
+                                        <i class="copy-icon-active"></i>
+                                    </a>
+                                    <a class="Del" href="javascript:;" data-toggle="tooltip" data-placement="right" title="删除题目">
+                                        <i class="del2-icon-active"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="topic_type_con">
+                                <div class="Drag_area">
+                                    <div class="th4 T_edit q_title" name="question">@qList[i].QContent</div>
+                                </div>
+                                @switch (eqType)
+                                {
+                                    case EQuestionType.Radio:
+                                        <ul class="unstyled">
+                                            @{
+                                        List<Option> oList = _AppContext.OptionApp.GetOptionByQId(qList[i].Id);
+                                            }
+
+                                            @for (int j = 0; j < oList.Count; j++)
+                                            {
+                                                <li>
+                                                    <input type="radio" value="" name="radio" />
+                                                    <label class="T_edit_min" name="option">@oList[j].OContent</label>
+                                                    <input type="hidden" value="@oList[j].Id" class="o_id" />
+                                                    @if (oList[j].OType == Convert.ToInt32(EChildrenType.tkOption))
+                                                    {
+                                                        <input type="text" value="" />
+                                                        <input type="checkbox" class="isRelation" name="isRelation" /><label>关联</label>
+                                                    }
+                                                    @if (oList[j].OType == Convert.ToInt32(EChildrenType.RelationOption))
+                                                    {
+                                                        <input type="text" value="" />
+                                                        <input type="checkbox" class="isRelation" checked="checked" name="isRelation" /><label>关联</label>
+                                                    }
+                                                    <a class="up_cq_option" href="javascript:;" data-toggle="tooltip" data-placement="top" title="上移选项"> <i class="up-icon-active"></i></a>
+                                                    <a class="down_cq_option" href="javascript:;" data-toggle="tooltip" data-placement="top" title="下移选项"> <i class="down-icon-active"></i></a>
+                                                    <a class="Del_option" href="javascript:;" data-toggle="tooltip" data-placement="top" title="删除选项"> <i class="del2-icon-active"></i></a>
+                                                </li>
+                                            }
+                                        </ul>
+                                        <input type="hidden" class="sort" value="@oList.Count" />
+                                        <div class="operationH">
+                                            <a class="cq_add" href="javascript:;">
+                                                <i class="add-icon-active"></i>
+                                            </a>
+                                            <input type="checkbox" class="isRequired" checked="@qList[i].IsRequired" name="isRequired" />必填
+                                            <input type="checkbox" class="isChecked" checked="@qList[i].IsChecked" name="isRequired" />选中可填
+                                            <a class="cq_add_tk" href="javascript:;" data-toggle="tooltip" data-placement="top" title="添加填空选项">
+                                                <i class="clone-icon-active"></i>
+                                            </a>
+                                        </div>
+                                            break;
+                                    case EQuestionType.Check:
+                                    <ul class="unstyled">
+                                        @{
+                                            List<Option> checkList = _AppContext.OptionApp.GetOptionByQId(qList[i].Id);
+                                        }
+                                        @for (int c = 0; c < checkList.Count; c++)
+                                        {
+                                            <li>
+                                                <input type="checkbox" value="" name="radio" />
+                                                <label class="T_edit_min" name="option">@checkList[c].OContent</label>
+                                                <input type="hidden" value="@checkList[c].Id" class="o_id" />
+                                                @if (checkList[c].OType == Convert.ToInt32(EChildrenType.tkOption))
+                                                {
+                                                    <input type="text" value="" />
+                                                    <input type="checkbox" class="isRelation" name="isRelation" /><label>关联</label>
+                                                }
+                                                @if (checkList[c].OType == Convert.ToInt32(EChildrenType.RelationOption))
+                                                {
+                                                    <input type="text" value="" />
+                                                    <input type="checkbox" class="isRelation" checked="checked" name="isRelation" /><label>关联</label>
+                                                }
+                                                <a class="up_cq_option" href="javascript:;" data-toggle="tooltip" data-placement="top" title="上移选项"> <i class="up-icon-active"></i></a>
+                                                <a class="down_cq_option" href="javascript:;" data-toggle="tooltip" data-placement="top" title="下移选项"> <i class="down-icon-active"></i></a>
+                                                <a class="Del_option" href="javascript:;" data-toggle="tooltip" data-placement="top" title="删除选项"> <i class="del2-icon-active"></i></a>
+                                            </li>
+                                        }
+                                    </ul>
+                                    <input type="hidden" class="sort" value="@checkList.Count" />
+                                    <div class="operationH">
+                                        <a class="cq_add" href="javascript:;">
+                                            <i class="add-icon-active"></i>
+                                        </a>
+                                        <input type="checkbox" class="isRequired" checked="@qList[i].IsRequired" name="isRequired" />必填
+                                        <a class="cq_add_tk" href="javascript:;" data-toggle="tooltip" data-placement="top" title="添加填空选项">
+                                            <i class="clone-icon-active"></i>
+                                        </a>
+                                    </div>
+                                        break;
+                                    case EQuestionType.Message:
+                                    <ul class="unstyled">
+                                        <li>
+                                            <textarea></textarea>
+                                        </li>
+                                    </ul>
+                                    <div class="operationH">
+                                        <input type="checkbox" class="isRequired" checked="@qList[i].IsRequired" name="isRequired" />必填
+                                    </div>
+                                        break;
+                                    case EQuestionType.Judge:
+                                    <ul class="unstyled">
+                                        <li>
+                                            <input type="radio" value="" name="radio" />
+                                            <label class="T_edit_min_j" name="option">对</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" value="" name="radio" />
+                                            <label class="T_edit_min_j" name="option">错</label>
+                                        </li>
+                                    </ul>
+                                    <div class="operationH">
+                                        <input type="checkbox" class="isRequired" checked="@qList[i].IsRequired" name="isRequired" />必填
+                                    </div>
+                                        break;
+                                    case EQuestionType.JzRadio:
+                                    case EQuestionType.JzCheck:
+                                    <ul class="unstyled">
+                                        <li>
+                                            <div class="matrix">
+                                                <table class="table table-bordered td-Tc" cellspacing="0" cellpadding="0" style="width: 881px;">
+                                                    <tbody>
+                                                        @{
+                                        List<Question> cqList = _AppContext.QuestionApp.GetJzChildrenQuestion(qList[i].Id);
+                                        List<Option> jzoList = _AppContext.OptionApp.GetOptionByQId(qList[i].Id);
+                                        string questionType = string.Empty;
+                                        if (qList[i].Type ==Convert.ToInt32( EQuestionType.JzRadio))
+                                        {
+                                            questionType = "radio";
+                                        }
+                                        else
+                                        {
+                                            questionType = "checkbox";
+                                        }
+                                                        }
+                                                        @for (int jzi = 0; jzi < cqList.Count + 2; jzi++)
+                                                        {
+
+                                                            if (jzi == 0)
+                                                            {
+                                                                <tr>
+                                                                    @for (int jzj = 0; jzj < jzoList.Count + 2; jzj++)
+                                                                    {
+                                                                        if (jzj == 0)
+                                                                        {
+                                                                            <td width="150.20000000000002px"> </td>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            if (jzj == jzoList.Count + 1)
+                                                                            {
+                                                                                <td class="T_edit_min_l" width="300.40000000000003px" menutype="col" name="option"></td>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                @*<input type="hidden" class="o_id_l" value="" />*@
+                                                                                <td class="T_edit_min_l" data-id="@jzoList[jzj-1].Id" width="300.40000000000003px" menutype="col" name="option">@jzoList[jzj - 1].OContent</td>
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                </tr>
+                                                            }
+                                                            else
+                                                            {
+                                                                if (jzi == cqList.Count + 1)
+                                                                {
+                                                                    <tr class="Ed_tr">
+                                                                        @for (int jzj = 0; jzj < jzoList.Count + 2; jzj++)
+                                                                        {
+                                                                            if (jzj == 0)
+                                                                            {
+                                                                                <td></td>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                if (jzj == jzoList.Count + 1)
+                                                                                {
+                                                                                    <td></td>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <td>
+                                                                                        <a class="Del_option_l" href="javascript:;" data-sort="@jzoList[jzj-1].Sort" data-id="@jzoList[jzj-1].Id" data-toggle="tooltip" data-placement="top" title="删除选项"> <i class="del2-icon-active"></i></a>
+                                                                                    </td>
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    </tr>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <tr class="Ed_tr">
+
+                                                                        @for (int jzj = 0; jzj < jzoList.Count + 2; jzj++)
+                                                                        {
+                                                                            if (jzj == 0)
+                                                                            {
+                                                                                <input type="hidden" class="cq_id" value="@cqList[jzi-1].Id" />
+                                                                                <td class="T_edit_c" menutype="row" name="row" style="text-align:left;">@cqList[jzi - 1].QContent</td>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                if (jzj == jzoList.Count + 1)
+                                                                                {
+                                                                                    <td>
+                                                                                        @*<a class="up_cq_option" href="javascript:;" data-toggle="tooltip" data-placement="top" title="上移子项"> <i class="up-icon-active"></i></a>
+                                                                                            <a class="down_cq_option" href="javascript:;" data-toggle="tooltip" data-placement="top" title="下移子项"> <i class="down-icon-active"></i></a>*@
+                                                                                        <a class="Del_h" href="javascript:;" data-id="@cqList[jzi-1].Id" data-sort="@cqList[jzi-1].Sort" data-toggle="tooltip" data-placement="top" title="删除子项"> <i class="del2-icon-active"></i></a>
+                                                                                    </td>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <td>
+                                                                                        <input type="@questionType" name="">
+                                                                                    </td>
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    </tr>
+                                                                }
+                                                            }
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <input type="hidden" class="sort" value="@jzoList.Count" />
+                                            <input type="hidden" class="q_sort" value="@cqList.Count" />
+                                            <div class="operationV">
+                                                <a class="cq_add" href="javascript:;" data-toggle="tooltip" data-placement="right" title="添加列">
+                                                    <i class="add-icon-active"></i>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="operationH">
+                                                <a class="cq_add_h" href="javascript:;" data-toggle="tooltip" data-placement="right" title="添加行">
+                                                    <i class="add-icon-active"></i>
+                                                </a>
+                                                <input type="checkbox" class="isRequired" checked="@qList[i].IsRequired" name="isRequired" />必填
+                                            </div>
+                                        </li>
+                                    </ul>
+                                                        break;
+                                    case EQuestionType.Satisfied:
+                                    <ul class="unstyled">
+                                        @{
+                                                        List<Option> mydList = _AppContext.OptionApp.GetOptionByQId(qList[i].Id);
+                                        }
+                                        <li>
+                                            @for (int j = 0; j < mydList.Count; j++)
+                                            {
+                                                if (mydList[j].OType == 0)
+                                                {
+                                                    <label class="T_edit_min_f">@mydList[j].OContent</label>
+                                                }
+                                            }
+                                        </li>
+                                        @for (int j = 0; j < mydList.Count; j++)
+                                        {
+                                            if (mydList[j].OType == 1)
+                                            {
+                                                <li>
+                                                    <label class="T_edit_min" name="option">@mydList[j].OContent</label>
+                                                    <input type="hidden" value="@mydList[j].Id" class="o_id" />
+                                                    <input type="text" value="" />
+                                                    <a class="Del_option" href="javascript:;" data-toggle="tooltip" data-placement="top" title="删除选项"> <i class="del2-icon-active"></i></a>
+                                                </li>
+                                            }
+                                        }
+                                    </ul>
+                                    <div class="operationH">
+                                        <a class="cq_add" href="javascript:;">
+                                            <i class="add-icon-active"></i>
+                                        </a>
+                                        <a class="Del_sz" href="javascript:;"> <i class="del2-icon-active"></i></a>
+                                        <input type="checkbox" class="isRequired" checked="@qList[i].IsRequired" name="isRequired" />必填
+                                        <a class="cq_add_tk" href="javascript:;" data-toggle="tooltip" data-placement="top" title="添加填空选项">
+                                            <i class="clone-icon-active"></i>
+                                        </a>
+                                    </div>
+                                        break;
+                                    case EQuestionType.JzMessage:
+                                    <ul class="unstyled">
+                                        @{
+                                        List<Option> otkList = _AppContext.OptionApp.GetOptionByQId(qList[i].Id);
+                                        }
+
+                                        @for (int j = 0; j < otkList.Count; j++)
+                                        {
+                                            <li>
+                                                <label class="T_edit_min" name="option">@otkList[j].OContent</label>
+                                                <input type="hidden" value="@otkList[j].Id" class="o_id" />
+                                                @if (otkList[j].OType == Convert.ToInt32(EChildrenType.dpOption))
+                                                {
+
+                                                    List<Option> dpList = _AppContext.OptionApp.GetOptionsByQIdAndOType(otkList[j].Id, Convert.ToInt32(EChildrenType.childrenOption));
+                                                    <input type="hidden" class="dpo_id" value="@dpList[0].Id" />
+                                                    <input type="hidden" class="dpo_val" value="@dpList[0].OContent" />
+                                                    <select>
+                                                        <option>请选择</option>
+                                                        @if (!string.IsNullOrEmpty(dpList[0].OContent))
+                                                        {
+                                                            string[] dpsz = dpList[0].OContent.Split('|');
+                                                            for (int dz = 0; dz < dpsz.Count(); dz++)
+                                                            {
+                                                                <option>@dpsz[dz]</option>
+                                                            }
+                                                        }
+                                                    </select>
+                                                }
+                                                else
+                                                {
+                                                    if (otkList[j].OValueType == null)
+                                                    {
+                                                        <input type="text" value="" />
+                                                    }
+                                                    else
+                                                    {
+                                                        string dtext = string.Empty;
+                                                        if (otkList[j].OValueType == 1)
+                                                        {
+                                                            dtext = "整数";
+                                                        }
+                                                        if (otkList[j].OValueType == 2)
+                                                        {
+                                                            dtext = "浮点数";
+                                                        }
+                                                        <input type="text" placeholder="@dtext" value="" />
+                                                    }
+                                                }
+                                                <a class="up_cq_option" href="javascript:;" data-toggle="tooltip" data-placement="top" title="上移选项"> <i class="up-icon-active"></i></a>
+                                                <a class="down_cq_option" href="javascript:;" data-toggle="tooltip" data-placement="top" title="下移选项"> <i class="down-icon-active"></i></a>
+                                                <a class="Del_option" href="javascript:;" data-toggle="tooltip" data-placement="top" title="删除选项"> <i class="del2-icon-active"></i></a>
+                                                @if (otkList[j].OType == Convert.ToInt32(EChildrenType.dpOption))
+                                                {
+                                                    <a class="edit_dropOption" href="javascript:;" data-toggle="modal" data-target="#editOptionModal" title="下拉选项"> <i class="menu-edit2-icon"></i></a>
+                                                }
+                                                else
+                                                {
+                                                    <a class="add_dropOption" href="javascript:;" data-toggle="modal" data-target="#addOptionModal" title="下拉选项"> <i class="menu-edit2-icon"></i></a>
+                                                }
+                                            </li>
+                                        }
+                                    </ul>
+                                    <input type="hidden" class="sort" value="@otkList.Count" />
+                                    <div class="operationH">
+                                        <a class="cq_add_tk" href="javascript:;">
+                                            <i class="add-icon-active"></i>
+                                        </a>
+                                        <label>循环次数：</label>
+                                        <label class="T_edit_count">@qList[i].Cycle</label>
+                                        <input type="checkbox" class="isRequired" checked="@qList[i].IsRequired" name="isRequired" />必填
+                                        <input type="checkbox" class="TextIsBefore" checked="@qList[i].TextIsBefore" name="TextIsBefore" />文字前置
+                                    </div>
+                                        break;
+                                    case EQuestionType.Sort:
+                                    <ul class="unstyled">
+                                        @{
+                                        List<Option> sList = _AppContext.OptionApp.GetOptionByQId(qList[i].Id);
+                                        }
+
+                                        @for (int j = 0; j < sList.Count; j++)
+                                        {
+                                            string s = "（" + (j + 1).ToString() + "）";
+                                            <li>
+                                                <label>@s</label>
+                                                <label class="T_edit_min" name="option">@sList[j].OContent</label>
+                                                <input type="hidden" value="@sList[j].Id" class="o_id" />
+                                                <a class="up_cq_option" href="javascript:;" data-toggle="tooltip" data-placement="top" title="上移选项"> <i class="up-icon-active"></i></a>
+                                                <a class="down_cq_option" href="javascript:;" data-toggle="tooltip" data-placement="top" title="下移选项"> <i class="down-icon-active"></i></a>
+                                                <a class="Del_option" href="javascript:;" data-toggle="tooltip" data-placement="top" title="删除选项"> <i class="del2-icon-active"></i></a>
+                                            </li>
+                                        }
+                                    </ul>
+                                    <input type="hidden" class="sort" value="@sList.Count" />
+                                    <div class="operationH">
+                                        <a class="cq_add" href="javascript:;">
+                                            <i class="add-icon-active"></i>
+                                        </a>
+
+                                        <input type="checkbox" class="isRequired" checked="@qList[i].IsRequired" name="isRequired" />必填
+                                    </div>
+                                        break;
+                                    case EQuestionType.FillText:
+                                    <ul class="unstyled">
+                                        <li>
+                                            <input type="text" />
+                                        </li>
+                                    </ul>
+                                    <div class="operationH">
+                                        <input type="checkbox" class="isRequired" checked="@qList[i].IsRequired" name="isRequired" />必填
+                                    </div>
+                                        break;
+                                    default: break;
+                                }
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="addOptionModal" tabindex="-1" role="dialog" aria-labelledby="addOptionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="addOptionModalLabel">操作</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">操作类型:</label>
+                            <div class="col-md-10">
+                                <input type="radio" value="0" checked="checked" name="rdoOperation" />下拉
+                                <input type="radio" value="1" name="rdoOperation" />值类型
+                            </div>
+                        </div>
+                        <div class="form-group" id="dpDiv">
+                            <label class="col-md-2 control-label">下拉选项（用“|”隔开）:</label>
+                            <div class="col-md-10">
+                                <textarea class="form-control" rows="4" id="content" ng-model="optionData.Content"></textarea>
+                                <input type="hidden" id="dpParentId" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group" id="xzDiv">
+                            <label class="col-md-2 control-label">值类型:</label>
+                            <div class="col-md-10">
+                                <select id="valueType">
+                                    <option value="0">不限制</option>
+                                    <option value="1">整数</option>
+                                    <option value="2">浮点数</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="Operation()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editOptionModal" tabindex="-1" role="dialog" aria-labelledby="editOptionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="editOptionModalLabel">修改下拉选项</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">下拉选项（用“|”隔开）:</label>
+                            <div class="col-md-10">
+                                <textarea class="form-control" rows="4" id="econtent" ng-model="optionData.Content"></textarea>
+                                <input type="hidden" id="edpParentId" value="" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="EditChildrenOption()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+
+        bindCp();
+
+        //添加各类型问题
+        $(".moduleL").click(function () {
+            var type = $(this).attr("name");
+            var sort = $("#question_box li.module").length;
+            var parentId = $("#parentId").val();
+
+            $.post("/Questionnaire/AddQuestion", { type: type, sort: sort + 1, parentId: parentId }, function (data) {
+                if (type == 4 || type == 5) {
+                    window.location.reload();
+                } else {
+                    $("#question_box").append(data);
+                    bindCp();
+                    var _index = layer.tips('已实时保存', "#tipsLayer");
+                    setTimeout(function () {
+                        layer.close(_index);
+                    }, 1000);
+                }
+            });
+        });
+    });
+
+    function Operation() {
+        var rv = $("input[name='rdoOperation']:checked").val();
+        if (rv == 0) {
+            AddChildrenOption();
+        } else {
+            EditValueType();
+        }
+    }
+
+    function EditValueType() {
+        var vt = $("#valueType").val();
+        var parentId = $("#dpParentId").val();
+        $.post("/Questionnaire/EditValueType", { vType: vt, id: parentId }, function (data) {
+            if (data == "True") {
+                $('#addOptionModal').modal('hide');
+                window.location.reload();
+            }
+        });
+    }
+
+    function AddChildrenOption() {
+        var content = $("#content").val();
+        var parentId = $("#dpParentId").val();
+        $.post("/Questionnaire/AddChildrenOption", { content: content, parentId: parentId }, function (data) {
+            if (data == "True") {
+                $('#addOptionModal').modal('hide');
+                window.location.reload();
+            }
+        });
+    }
+
+    function EditChildrenOption() {
+        var content = $("#econtent").val();
+        var parentId = $("#edpParentId").val();
+        $.post("/Questionnaire/EditOption", { oContent: content, oId: parentId }, function (data) {
+            if (data == "True") {
+                $('#editOptionModal').modal('hide');
+                window.location.reload();
+            }
+        });
+
+    }
+
+    //修改问卷状态
+    function UpdateState(state) {
+        var id = $("#parentId").val();
+        $.post("/Questionnaire/UpdateState", { id: id, state: state }, function (data) {
+            if (data == "True") {
+                alert("发布成功");
+            }
+        });
+    }
+
+    //绑定事件方法
+    function bindCp() {
+        bindQuestion();
+        bindOption();
+    }
+
+    //问题事件绑定
+    function bindQuestion() {
+        var yindex;
+
+
+        //题目鼠标停留背景色改变
+        $(".T_edit,.T_edit_c,.T_edit_count").mouseover(function () {
+            $(this).addClass("bColor");
+        });
+        //题目鼠标移开背景色恢复
+        $(".T_edit,.T_edit_c,.T_edit_count").mouseout(function () {
+            $(this).removeClass("bColor");
+        });
+        //题目鼠标按下并没有抬起时，加载sortable
+        $(".T_edit,.T_edit_c").mousedown(function () {
+            $("#question_box").sortable();
+        });
+        //题目鼠标单击事件，禁用sortable并使其可编辑
+        $(".T_edit,.T_edit_c").click(function () {
+            $("#question_box").sortable("disable");
+            $(this).attr("contentEditable", "true");
+            //$(this).focus();
+        });
+        //光标失去事件，打开sortable，移除可编辑属性
+        $(".T_edit").blur(function () {
+            $("#question_box").sortable("enable");
+            $(this).removeAttr("contentEditable");
+            var content = $(this).text();
+            var id = $(this).parents(".module").find(".q_id").val();
+            $.post("/Questionnaire/EditQuestion", { content: content, id: id }, function (data) {
+                if (data == "True") {
+                    var _index = layer.tips('已实时保存', "#tipsLayer");
+                    setTimeout(function () {
+                        layer.close(_index);
+                    }, 1000);
+                }
+            });
+        });
+
+        //修改子问题
+        $(".T_edit_c").blur(function () {
+            $(this).removeAttr("contentEditable");
+            var content = $(this).text();
+            var id = $(this).parent("tr").find(".cq_id").val();
+            $.post("/Questionnaire/EditQuestion", { content: content, id: id }, function (data) {
+                if (data == "True") {
+                    var _index = layer.tips('已实时保存', "#tipsLayer");
+                    setTimeout(function () {
+                        layer.close(_index);
+                    }, 1000);
+                }
+            });
+        });
+
+
+        $("#question_box").sortable({
+            //开始拖拽事件
+            start: function (event, ui) {
+                yindex = ui.item.index() + 1;
+            },
+            //结束拖拽事件
+            deactivate: function (event, ui) {
+                var index = ui.item.index() + 1;
+                var id = ui.item.find(".q_id").val();
+                var parentId = $("#parentId").val();
+                if (yindex < index) {
+                    for (var i = yindex - 1; i < index; i++) {
+                        $("#question_box .module:eq(" + i + ")").find("h4").text("Q" + (i + 1));
+                    }
+                }
+                if (yindex > index) {
+                    for (var i = index - 1; i < yindex; i++) {
+                        $("#question_box .module:eq(" + i + ")").find("h4").text("Q" + (i + 1));
+                    }
+                }
+
+                $.post("/Questionnaire/EditQuestionSort", { sort: index, id: id, parentId: parentId, ySort: yindex }, function (data) {
+                    if (data == "True") {
+                        var _index = layer.tips('已实时保存', "#tipsLayer");
+                        setTimeout(function () {
+                            layer.close(_index);
+                        }, 1000);
+                    }
+                });
+            }
+        });
+
+        //题目上移
+        $(".up_cq").click(function () {
+            var index = $(this).parents("li").index();
+            var id = $(this).parents(".module").find(".q_id").val();
+            var parentId = $("#parentId").val();
+            if ($(this).parents("li").prev()) {
+                $("#question_box .module:eq(" + index + ")").find("h4").text("Q" + index);
+                $("#question_box .module:eq(" + (index - 1) + ")").find("h4").text("Q" + (index + 1));
+                $(this).parents("li").prev().before($(this).parents("li"));
+                $.post("/Questionnaire/EditQuestionSort", { sort: index, id: id, parentId: parentId, ySort: index + 1 }, function (data) {
+                    if (data == "True") {
+                        var _index = layer.tips('已实时保存', "#tipsLayer");
+                        setTimeout(function () {
+                            layer.close(_index);
+                        }, 1000);
+                    }
+                });
+            }
+        });
+
+        //题目下移
+        $(".down_cq").click(function () {
+            var index = $(this).parents("li").index();
+            var id = $(this).parents(".module").find(".q_id").val();
+            var parentId = $("#parentId").val();
+            if ($(this).parents("li").next()) {
+                $("#question_box .module:eq(" + index + ")").find("h4").text("Q" + (index + 2));
+                $("#question_box .module:eq(" + (index + 1) + ")").find("h4").text("Q" + (index + 1));
+                $(this).parents("li").next().after($(this).parents("li"));
+                $.post("/Questionnaire/EditQuestionSort", { sort: index + 2, id: id, parentId: parentId, ySort: index + 1 }, function (data) {
+                    if (data == "True") {
+                        var _index = layer.tips('已实时保存', "#tipsLayer");
+                        setTimeout(function () {
+                            layer.close(_index);
+                        }, 1000);
+                    }
+                });
+            }
+        });
+
+        //复制题目
+        $(".Bub").click(function () {
+            var index = $(this).parents("li").index();
+            $(this).parents("li").after($(this).parents("li").clone(true));
+            var len = $("#question_box li.module").length;
+            for (var i = index + 1; i < len; i++) {
+                $("#question_box .module:eq(" + i + ")").find("h4").text("Q" + (i + 1));
+            }
+        });
+
+        //删除题目
+        $(".Del").click(function () {
+            var index = $(this).parents("li").index();
+            var id = $(this).parents(".module").find(".q_id").val();
+            var parentId = $("#parentId").val();
+            var result;
+            $.ajax({
+                type: "post",
+                url: "/Questionnaire/DeleteQuestion",
+                data: { Id: id, parentId: parentId, sort: index + 1 },
+                async: false,
+                success: function (data) {
+                    if (data == "True") {
+                        result = true;
+                    }
+                }
+            });
+            if (result) {
+                $(this).parents("li").remove();
+                var len = $("#question_box li.module").length;
+                for (var i = index; i < len; i++) {
+                    $("#question_box .module:eq(" + i + ")").find("h4").text("Q" + (i + 1));
+                }
+            }
+        });
+
+        //删除题目
+        $(".Del_h").click(function () {
+            var index = $(this).attr("data-sort");
+            var id = $(this).attr("data-id");
+            var parentId = $(this).parents(".module").children(".q_id").val();
+            var result;
+            $.ajax({
+                type: "post",
+                url: "/Questionnaire/DeleteQuestion",
+                data: { Id: id, parentId: parentId, sort: index },
+                async: false,
+                success: function (data) {
+                    if (data == "True") {
+                        result = true;
+                    }
+                }
+            });
+            if (result) {
+                window.location.reload();
+            }
+        });
+
+        $(".cq_add_tk").click(function () {
+            var type = $(this).parents(".module").find(".q_type").val();
+            var parentId = $(this).parents(".module").find(".q_id").val();
+            var sort;
+            if (type == 4 || type == 5) {
+                sort = parseInt($(this).parents(".module").find(".sort").val()) + 1;
+            } else {
+                sort = $(this).parent("div").prev().prev("ul").children("li").length + 1;
+            }
+
+            var intData = -2;
+            $.ajax({
+                type: "post",
+                url: "/Questionnaire/AddOption",
+                data: { parentId: parentId, sort: sort, oType: 1, type: type },
+                async: false,
+                success: function (data) {
+                    intData = parseInt(data);
+                }
+            });
+
+            if (intData > 0) {
+                window.location.reload();
+            }
+        });
+
+        //添加选项
+        $(".cq_add").click(function () {
+            var type = $(this).parents(".module").find(".q_type").val();
+            var parentId = $(this).parents(".module").find(".q_id").val();
+            var sort;
+            if (type == 4 || type == 5) {
+                sort = parseInt($(this).parents(".module").find(".sort").val()) + 1;
+            } else {
+                sort = $(this).parent("div").prev().prev("ul").children("li").length + 1;
+            }
+            //var
+
+            var typeStr = "";
+            var intData = -2;
+            $.ajax({
+                type: "post",
+                url: "/Questionnaire/AddOption",
+                data: { parentId: parentId, sort: sort, oType: 0, type: type },
+                async: false,
+                success: function (data) {
+                    intData = parseInt(data);
+                }
+            });
+
+            if (intData > 0) {
+                if (type == 4 || type == 5 || type == 9 || type == 7) {
+                    window.location.reload();
+                } else {
+                    if (type == 0) {
+                        typeStr = "radio";
+                    } else {
+                        typeStr = "checkbox";
+                    }
+                    $(this).parents(".module").find(".unstyled").append("<li><input type=\"" + typeStr + "\" value=\"\" name=\"radio\" />" +
+                                                            "<label class=\"T_edit_min\" name=\"option\">选项" + sort + "</label>" +
+                                                            "<input type=\"hidden\" value=\"" + intData + "\" class=\"o_id\" />" +
+                                                            "<a class=\"up_cq_option\" href=\"javascript:;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"上移选项\"> <i class=\"up-icon-active\"></i></a>" +
+                                                            "<a class=\"down_cq_option\" href=\"javascript:;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"下移选项\"> <i class=\"down-icon-active\"></i></a>" +
+                                                            "<a class=\"Del_option\" href=\"javascript:;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"删除选项\"> <i class=\"del2-icon-active\"></i></a>" +
+                                                        "</li>");
+                    $(this).parents(".module").find(".sort").val(sort);
+                    bindOption();
+                }
+            }
+        });
+
+        $(".Del_sz").click(function () {
+            var parentId = $(this).parents(".module").find(".q_id").val();
+            $.ajax({
+                type: "post",
+                url: "/Questionnaire/DeleteMaxOption",
+                data: { parentId: parentId },
+                async: false,
+                success: function (data) {
+                    if (data == "True") {
+                        window.location.reload();
+                    }
+                }
+            });
+        });
+
+        //添加行
+        $(".cq_add_h").click(function () {
+            var parentId = $(this).parents(".module").find(".q_id").val();
+            var sort = parseInt($(this).parents(".module").find(".q_sort").val()) + 1;
+            $.ajax({
+                type: "post",
+                url: "/Questionnaire/AddQuestion",
+                data: { type: 6, sort: sort, parentId: parentId },
+                async: false,
+                success: function (data) {
+                    if (data != "") {
+                        window.location.reload();
+                    }
+                }
+            });
+        });
+
+        //是否为必填
+        $(".isRequired").change(function () {
+            var parentId = $(this).parents(".module").find(".q_id").val();
+            var isRequired = $(this).is(":checked");
+            $.ajax({
+                type: "post",
+                url: "/Questionnaire/EditQuestionIsRequired",
+                data: { isRequired: isRequired, id: parentId },
+                async: false,
+                success: function (data) {
+                    if (data == "True") {
+                        var _index = layer.tips('已实时保存', "#tipsLayer");
+                        setTimeout(function () {
+                            layer.close(_index);
+                        }, 1000);
+                    }
+                }
+            });
+        });
+        $(".TextIsBefore").change(function () {
+            var parentId = $(this).parents(".module").find(".q_id").val();
+            var TextIsBefore = $(this).is(":checked");
+            $.ajax({
+                type: "post",
+                url: "/Questionnaire/EditQuestionTextIsBefore",
+                data: { textIsBefore: TextIsBefore, id: parentId },
+                async: false,
+                success: function (data) {
+                    if (data == "True") {
+                        var _index = layer.tips('已实时保存', "#tipsLayer");
+                        setTimeout(function () {
+                            layer.close(_index);
+                        }, 1000);
+                    }
+                }
+            });
+        });
+
+        $(".isChecked").change(function () {
+            var parentId = $(this).parents(".module").find(".q_id").val();
+            var isChecked = $(this).is(":checked");
+            $.ajax({
+                type: "post",
+                url: "/Questionnaire/EditQuestionIsChecked",
+                data: { isChecked: isChecked, id: parentId },
+                async: false,
+                success: function (data) {
+                    if (data == "True") {
+                        var _index = layer.tips('已实时保存', "#tipsLayer");
+                        setTimeout(function () {
+                            layer.close(_index);
+                        }, 1000);
+                    }
+                }
+            });
+        });
+
+        //选项失去光标事件,移除可编辑属性
+        $(".T_edit_count").blur(function () {
+            $(this).removeAttr("contentEditable");
+            var content = $(this).text();
+            var count = parseInt(content);
+            var id = $(this).parents(".module").find(".q_id").val();
+
+            $.ajax({
+                type: "post",
+                url: "/Questionnaire/AddCycleOption",
+                data: { id: id, count: count },
+                async: false,
+                success: function (data) {
+                    if (data == "True") {
+                        var _index = layer.tips('已实时保存', "#tipsLayer");
+                        setTimeout(function () {
+                            layer.close(_index);
+                        }, 1000);
+                    }
+                }
+            });
+            //$.post("/Questionnaire/AddCycleOption", { id: parentId, count: content }, function (data) {
+            //    if (data == "True") {
+            //        var _index = layer.tips('已实时保存', "#tipsLayer");
+            //        setTimeout(function () {
+            //            layer.close(_index);
+            //        }, 1000);
+            //    }
+            //});
+        });
+    }
+
+    //选项事件绑定
+    function bindOption() {
+        //选项鼠标停留时背景色变黄
+        $(".T_edit_min,.T_edit_min_l").mouseover(function () {
+            $(this).addClass("bColor");
+        });
+        //选项鼠标移开背景色恢复
+        $(".T_edit_min,.T_edit_min_l").mouseout(function () {
+            $(this).removeClass("bColor");
+        });
+        //选项单击添加可编辑属性并定位光标
+        $(".T_edit_min,.T_edit_min_l,.T_edit_count").click(function () {
+            $(this).attr("contentEditable", "true");
+            $(this).focus();
+        });
+        //选项失去光标事件,移除可编辑属性
+        $(".T_edit_min").blur(function () {
+            $(this).removeAttr("contentEditable");
+            var content = $(this).text();
+            var id = $(this).parent("li").children(".o_id").val();
+            $.post("/Questionnaire/EditOption", { oContent: content, oId: id }, function (data) {
+                if (data == "True") {
+                    var _index = layer.tips('已实时保存', "#tipsLayer");
+                    setTimeout(function () {
+                        layer.close(_index);
+                    }, 1000);
+                }
+            });
+        });
+        //选项失去光标事件,移除可编辑属性
+        $(".T_edit_min_l").blur(function () {
+            $(this).removeAttr("contentEditable");
+            var content = $(this).text();
+            //var id = $(this).parent("tr").children(".o_id_l").val();
+            var id = $(this).attr("data-id");
+            $.post("/Questionnaire/EditOption", { oContent: content, oId: id }, function (data) {
+                if (data == "True") {
+                    var _index = layer.tips('已实时保存', "#tipsLayer");
+                    setTimeout(function () {
+                        layer.close(_index);
+                    }, 1000);
+                }
+            });
+        });
+
+
+
+        //上移选项
+        $(".up_cq_option").click(function () {
+            if ($(this).parent("li").prev()) {
+                var sort = $(this).parent("li").index();
+                var id = $(this).parent("li").children(".o_id").val();
+                var parentId = $(this).parents(".module").children(".q_id").val();
+                $(this).parent("li").prev().before($(this).parent("li"));
+                $.post("/Questionnaire/EditOptionSort", { sort: sort, id: id, parentId: parentId, ySort: sort + 1 }, function (data) {
+                    if (data == "True") {
+                        var _index = layer.tips('已实时保存', "#tipsLayer");
+                        setTimeout(function () {
+                            layer.close(_index);
+                        }, 1000);
+                    }
+                });
+            }
+        });
+
+        $(".add_dropOption").click(function () {
+            var parentId = $(this).parent("li").children(".o_id").val();
+            $("#dpParentId").val(parentId);
+            var rv = $("input[name='rdoOperation']:checked").val();
+            if (rv == 0) {
+                $("#dpDiv").show();
+                $("#xzDiv").hide();
+            } else {
+                $("#xzDiv").show();
+                $("#dpDiv").hide();
+            }
+        });
+
+        $(".edit_dropOption").click(function () {
+            var parentId = $(this).parent("li").children(".dpo_id").val();
+            var dpo_val = $(this).parent("li").children(".dpo_val").val();
+            $("#edpParentId").val(parentId);
+            $("#econtent").val(dpo_val);
+        });
+
+        $(".isRelation").change(function () {
+            var id = $(this).parent("li").children(".o_id").val();
+            var isChecked = $(this).is(":checked");
+            var type;
+            if (isChecked) {
+                type = 4;
+            } else {
+                type = 1;
+            }
+
+            $.post("/Questionnaire/EditOptionType", { type: type, id: id }, function (data) {
+                if (data == "True") {
+                    var _index = layer.tips('已实时保存', "#tipsLayer");
+                    setTimeout(function () {
+                        layer.close(_index);
+                    }, 1000);
+                }
+            });
+        });
+
+        $("input[name='rdoOperation']").click(function () {
+            var rv = $(this).val();
+            if (rv == 0) {
+                $("#dpDiv").show();
+                $("#xzDiv").hide();
+            } else {
+                $("#xzDiv").show();
+                $("#dpDiv").hide();
+            }
+        });
+
+        //下移选项
+        $(".down_cq_option").click(function () {
+            if ($(this).parent("li").next()) {
+                var sort = $(this).parent("li").index() + 2;
+                var id = $(this).parent("li").children(".o_id").val();
+                var parentId = $(this).parents(".module").children(".q_id").val();
+
+                $(this).parent("li").next().after($(this).parent("li"));
+                $.post("/Questionnaire/EditOptionSort", { sort: sort, id: id, parentId: parentId, ySort: sort - 1 }, function (data) {
+                    if (data == "True") {
+                        var _index = layer.tips('已实时保存', "#tipsLayer");
+                        setTimeout(function () {
+                            layer.close(_index);
+                        }, 1000);
+                    }
+                });
+            }
+        });
+
+        //删除选项
+        $(".Del_option").click(function () {
+            var sort = $(this).parent("li").index() + 1;
+            //var index = parseInt($(this).parents(".module").find(".sort").val()) - 1;
+            var id = $(this).parent("li").children(".o_id").val();
+            var parentId = $(this).parents(".module").children(".q_id").val();
+            $(this).parent("li").remove();
+            var result;
+            $.ajax({
+                type: "post",
+                url: "/Questionnaire/DeleteOption",
+                data: { id: id, parentId: parentId, sort: sort },
+                async: false,
+                success: function (data) {
+                    result = data;
+                }
+            });
+            if (result == "True") {
+                var _index = layer.tips('已实时保存', "#tipsLayer");
+                setTimeout(function () {
+                    layer.close(_index);
+                }, 1000);
+            }
+        });
+
+        //删除选项列
+        $(".Del_option_l").click(function () {
+            var sort = $(this).attr("data-sort");
+            var id = $(this).attr("data-id");
+            var parentId = $(this).parents(".module").children(".q_id").val();
+            $(this).parent("li").remove();
+            $.post("/Questionnaire/DeleteOption", { id: id, parentId: parentId, sort: sort }, function (data) {
+                if (data == "True") {
+                    window.location.reload();
+                }
+            });
+        });
+    }
+
+
+</script>

@@ -1,0 +1,44 @@
+﻿@{
+    Layout = null;
+}
+
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>活动管理 - 分享列表</strong></div>
+</div>
+
+<div class="container panel panel-default" data-ng-init="load()">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" style="text-align:left">活动编号：</label>
+                        <input class="col-md-6 form-control" type="text" placeholder="活动编号" ng-model="formData.ActivityId" />
+                        <div class="col-md-4 form-horizontal">
+                            <button type="button" data-toggle="modal" ng-click="search()" class="btn btn-primary">查询</button>
+                            <a data-toggle="modal" href="/BMGameManage/ShareRecordExport?activityId={{formData.ActivityId}}" class="btn btn-primary col-md-offset-1">导出(Excel)</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="gridStyle" style="height: 410px; border: 1px solid rgb(212,212,212)" ng-grid="gridDataOptions"></div>
+            </div>
+        </div>
+    </div>
+</div>

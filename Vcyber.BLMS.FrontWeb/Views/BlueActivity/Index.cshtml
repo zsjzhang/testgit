@@ -1,0 +1,111 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "BlueMembers蓝豆清零抽奖活动";
+}
+<script type="text/javascript" src="~/Scripts/layer.js"></script>
+<script type="text/javascript" src="~/Scripts/scroll.js"></script>
+<!--转动插件rotate,js-->
+<script type="text/javascript" src="~/Scripts/awardRotate.js"></script>
+<!--抽奖-->
+<script type="text/javascript" src="~/Scripts/award.js"></script>
+<!--倒计时-->
+<script type="text/javascript" src="~/Scripts/Countdown.js"></script>
+<!--160526新增1---共新增3处-->
+<link href="~/css/award.css" rel="stylesheet" />
+@*<link rel="stylesheet" type="text/css" href="layer/skin/layer.css">*@
+<div>
+    <script>
+    _hmt.push(['_trackPageview', "/blueactivity/index"]);
+    </script>
+
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new {pageName = "Home", showMenu = false})
+    </div>
+    <div class="drawMain">
+        <div class="width100Up">
+            <div class="drawMainCon1">
+                <div class="blueBoyLucky"></div>
+                @if (ViewBag.IsTimeout)
+                {
+                    <!--抽奖结束-->
+                    <div class="drawEnd">
+                        <div class="drawEndbg"></div>
+                        <img src="/Img/rotate.png"/>
+                        <p>
+                            抽奖活动已结束<br>请关注其它活动
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <!--转盘-->
+                    <div id="Award">
+                        <div class="rotate">
+                            <img id="rotate" src="/Img/rotate.png" alt="开始抽奖">
+                        </div>
+                        <div id="Pointer"></div>
+                    </div>
+                }
+                <!--中奖信息-->
+                <div class="winInfor">
+
+                    <h2>活动时间：2016年6月2日-2016年6月8日</h2>
+                    <dl>
+                        <dt></dt>
+                        <dd>
+                            <div class="ddBg"></div>
+                            <div class="winInforCont">
+                                <p class="numb">当前蓝豆：<i id="blue">@ViewBag.TotalBlueBean</i>颗
+                                </p>
+                                <p class="winDrawName">
+                                    <a href="/BlueActivity/Query" target="_self">中奖名单</a>
+                                </p>
+                            </div>
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+        <div class="width100Down">
+            <div class="drawMainCon2">
+
+                <!--抽奖规则-->
+                <div class="ruleTxtBox">
+                    <h6></h6>
+                    <h2>亲爱的bluemembers 蓝缤会员</h2>
+
+                    <p>北京现代bluemembers网站即将全面升级，网站所有蓝豆将于<strong style="color: red;">2016年6月8日晚24：00时</strong>进行清零，尽快开始您的蓝豆兑换节奏吧！为回馈广大会员长久以来的关注支持，您不仅可以在在线商城进行礼品兑换，还可以使用蓝豆参与抽奖活动，奖品丰厚哦。
+                    </p>
+                    <h3>活动规则：</h3>
+                    <p>1. 活动期间，bluemembers蓝缤会员均可以使用蓝豆参与活动。</p>
+                    <p>2. 每次抽奖机会消耗100蓝豆，每位用户的抽奖次数不限。</p>
+
+                    <h3>活动对象：</h3>
+                    <p>北京现代bluemembers 蓝缤所有会员。</p>
+
+                    <h3>活动流程：</h3>
+                    <p>兑换：会员登录--在线商城--蓝豆兑换--礼品邮寄</p>
+                    <p>抽奖：会员登录--抽奖--完善信息--奖品邮寄</p>
+
+                    <h3>注意事项：</h3>
+                    <p>本活动仅限北京现代bluemembers会员参与；</p>
+                    <p>本次活动中奖礼品将会在活动结束后5个工作日进行邮寄，如遇节假日则顺延发出；</p>
+                    <p>抽中奖品的会员，请务必正确填写个人邮寄信息，中奖后保持手机畅通，活动期间若联系无效者，将视为自动放弃领奖机会；</p>
+                    <p>您于本网站提供的个人信息只用于北京现代本次活动与您沟通联络时使用。活动中如有疑问请及时拨打北京现代24小时客服热线：400-800-1100（手机拨打）或咨询bluemembers在线客服。</p>
+                    <p><strong>*本活动最终解释权归北京现代汽车有限公司所有。</strong>
+                    </p>
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+    <div class="footer" style="float: left; margin-top: 0;">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

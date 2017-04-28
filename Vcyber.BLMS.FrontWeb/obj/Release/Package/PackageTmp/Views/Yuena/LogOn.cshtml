@@ -1,0 +1,190 @@
+﻿
+@{
+    ViewBag.Title = "登录";
+    Layout = "~/Views/Shared/_LayoutYuena.cshtml";
+}
+
+<div class="countDown">
+    <div class="swiper-container swiper-count">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide count">
+                <img src="~/Contents/yuena/images/count1.jpg">
+                <img src="~/Contents/yuena/images/count2.jpg">
+                <img src="~/Contents/yuena/images/count3.jpg">
+                <img src="~/Contents/yuena/images/count4.jpg">
+                <img src="~/Contents/yuena/images/count5.jpg">
+                <img src="~/Contents/yuena/images/count6.jpg">
+                <img src="~/Contents/yuena/images/count7.jpg">
+                <img src="~/Contents/yuena/images/count8.jpg">
+                <ul class="slideDot">
+                    <li class="btn_sell1"><a href="javascript:;"></a></li>
+                    <li class="btn_sell2"><a href="javascript:;"></a></li>
+                    <li class="btn_sell3"><a href="javascript:;"></a></li>
+                    <li class="btn_sell4"><a href="javascript:;"></a></li>
+                </ul>
+                <span class="down"><img src="~/Contents/yuena/images/down.png"></span>
+            </div>
+            <div class="swiper-slide">
+                <img class="bg" src="~/Contents/yuena/images/bg.jpg">
+                <div class="login_container">
+                    <img src="~/Contents/yuena/images/login_title.png">
+                    <div class="login_con">
+                        <form>
+                            <dl>
+                                <dt>手机号：</dt>
+                                <dd>
+                                    <input id="homeAccountPhone" class="loginTel formtips" type="text" placeholder="请输入11位手机号">
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>短信验证码：</dt>
+                                <dd>
+                                    <input id="LoginSMSCaptcha" class="loginCode" type="text">
+                                    <a style="font-size:13px;background-color:white;" id="AccountLoginSendSMSCode" class="btngetCode" href="javascript:;"><img src="~/Contents/yuena/images/btn_getCode.jpg"> </a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>图形验证码：</dt>
+                                <dd>
+                                    <input id="LoginCaptcha" class="loginCode" type="text">
+                                    <div class="codeImg">
+                                        @*<img src="/ValidateCode/Index?ID=1" style="width:70px;height:36px;" alt="单击可刷新" onclick="clickRemoveChangeCodeByPhone()">*@
+                                        <img id="imgCodephone" src="/ValidateCode/Index?ID=1" style="width:70px;height:36px;" alt="单击可刷新" onclick="clickRemoveChangeCodeByPhone()">
+                                    </div>
+                                </dd>
+                            </dl>
+                            
+                            <div class="agree_wrap">
+                                <div class="cbt checked" name="check" type="checkbox" val="1"></div>
+                                <span>同意成为bluemembers会员</span>
+                            </div>
+                            @*<a c立即领取按钮lass="btn_login" href="javascript:;"><img src="~/Contents/yuena/images/btn_login.png"></a>*@
+
+                            <a class="btn_login" id="doLogin" href="javascript:;"><img src="~/Contents/yuena/images/btn_login.png"></a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="selldot"><img src="~/Contents/yuena/images/selling1.jpg"><a class="close3" href="javascript:;"><img src="~/Contents/yuena/images/close3.png"></a></div>
+<div class="selldot"><img src="~/Contents/yuena/images/selling2.jpg"><a class="close3" href="javascript:;"><img src="~/Contents/yuena/images/close3.png"></a></div>
+<div class="selldot"><img src="~/Contents/yuena/images/selling3.jpg"><a class="close3" href="javascript:;"><img src="~/Contents/yuena/images/close3.png"></a></div>
+<div class="selldot"><img src="~/Contents/yuena/images/selling4.jpg"><a class="close3" href="javascript:;"><img src="~/Contents/yuena/images/close3.png"></a></div>
+
+<script>
+		$(function(){
+			var mySwiper = new Swiper('.swiper-count',{
+				mode : 'vertical',
+				keyboardControl : true,
+				mousewheelControl : true,
+			});
+			$('.cbt').inputbox();
+		});
+    //获取短信验证码
+		$("#AccountLoginSendSMSCode").click(function () {
+		    var _mobile = $("#homeAccountPhone").val();
+		    //校验是否重复点击
+		    var self = $(this);
+		    if ($(this).attr("disabled")) {
+		        return false;
+		    }
+		    //首先校验手机号
+		    if (!_mobile) {
+		        //请输入手机号
+		        popWindownBlue("请输入手机号");
+		        return false;
+		    }
+		    //验证码发送
+		   //sendCaptchaAndCheckImageCode(_mobile, _imgcode, this);
+		    $.ajax({
+		        url: "/Captcha/SendCaptcha",
+		        dataType: "json",
+		        //获取mvc的内容
+		        //url: "/Captcha/GetContent",
+		        //直接获取mvc的内容
+		        //url: "/Captcha/Index",
+		        type: "post",
+		        data: { mobile: _mobile },
+		        success: function (result) {
+		            if (!result || result.code == "400") {
+		                popWindownBlue( "验证码发送失败,请重新发送");
+		                //popWindownBlue(result.msg);
+		                return false;
+		            }
+		            else if (result.code == "200") {
+		                //更新剩余时长
+		                countDown(self, 60);
+		                popWindownBlue("短信验证码已发送");
+		                return false;
+		            }
+		        },
+		        error: function (err) {
+		            popWindownBlue("err");
+		        }
+		    });
+		});
+        //保存注册信息 信息保存成功后 跳转到获取卡券页面 GetCoupons
+		$("#doLogin").click(function () {
+		    //popWindownBlue( "test");
+		    var account = $('#homeAccountPhone').val();
+		    var captcha = $("#LoginCaptcha").val();
+		    var SMScaptcha = $("#LoginSMSCaptcha").val();
+
+		    if (account === null || account === "") {
+		        //popWindownBlue("请输入手机号码");
+		        return false;
+		    } else {
+		        var PhoneReg = /^(1[3|4|5|7|8|][0-9]{9})$/;
+		        if (!PhoneReg.test(account)) {
+		            //popWindownBlue("请正确输入手机号码");
+		            return false;
+		        }
+		    }
+		    if (captcha === null || captcha === "") {
+		        //popWindownBlue("请输入图片验证码");
+		        return false;
+		    }
+
+		    if (SMScaptcha === null || SMScaptcha === "") {
+		        //popWindownBlue('请输入短信验证码');
+		        return false;
+		    }
+		    var password = "Bm" + account.substring(5, 11);
+		    $.ajax({
+		        url: "/Account/DoLoginByPhone",  //DoAccountLogon
+		        type: "post",
+		        dataType: "json",
+		        data: { UserName: account, Password: password, Captcha: captcha, SMSCaptcha: SMScaptcha, PhoneNumber: account, t: (new Date()).getTime() },
+		        success: function (result) {
+		            if (result === null || result.code === null || result.code == "400") {
+		                popWindownBlue(result.msg);
+		                return false;
+		            }
+		            if (result.code == "300") {
+		                popWindownBlue(result.msg, function () {
+		                    window.location.href = "/Account/ResetPasswd?source=" + source;
+		                });
+		                return false;
+		            }
+		            if (result.code == "200") {
+		                window.location.href = "/Yuena/GetCoupons";
+		                return false;
+		            }
+		        },
+		        error: function (err) {
+
+		        }
+		    })
+		});
+</script>
+
+
+
+
+
+
+
+
+

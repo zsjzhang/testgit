@@ -1,0 +1,241 @@
+body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    font-size: 14px;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-underline: none;
+}
+
+hr {
+    margin: 2px 0;
+}
+
+.boldFont {
+    font-size: 1.3em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.header {
+    background: #ddd;
+    height: 61px;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #ccc;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.positiontitle {
+    margin-bottom: 0 !important;
+}
+
+.tab-left {
+    padding: 0;
+    border: 1px solid #2e6da4;
+}
+
+.tab-right {
+    padding: 0;
+    border: 1px solid #2e6da4;
+    border-left: none;
+}
+
+.btn-primary {
+    border-radius: 1px;
+}
+
+.btn-location {
+    background: #f49600;
+    color: #fff;
+}
+
+.form-control {
+    height: 40px;
+}
+
+.has-success .input-group-addon {
+    background: #fff url('/img/h_iphone.png') no-repeat center;
+    color: #aaa;
+    border-color: #aaa;
+}
+
+.has-success .form-control {
+    border-color: #aaa;
+}
+
+.closeLayerInfo {
+    background: #eee url(https://webapi.amap.com/images/close2.gif) no-repeat center;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    height: 25px;
+    width: 25px;
+    float: left;
+    display: none;
+}
+
+.dottedline {
+    height: 1px;
+    width: 100%;
+    border-top: 1px dotted #aaa;
+}
+
+.callphone {
+    border-radius: 4px !important;
+}
+
+.relocation {
+    margin-left: 25px;
+}
+
+.relocation-img {
+    width: 20px;
+    background: url(/img/dingweirescue.png) center no-repeat;
+    position: absolute;
+    margin-right: 51px;
+    height: 18px;
+    background-size: contain;
+    margin-top: 4px;
+}
+
+.rescue-title {
+    overflow: hidden;
+}
+
+.rescue-title-logo {
+    position: absolute;
+    margin-right: 20px;
+    width: 15px;
+    height: 15px;
+    padding-bottom: 5000px;
+    margin-bottom: -5000px;
+}
+
+    .rescue-title-logo img {
+        max-width: 15px;
+        width: 100%;
+    }
+
+.rescue-title-content {
+    margin-left: 20px;
+    padding-bottom: 5000px;
+    margin-bottom: -5000px;
+}
+
+.markerSpanStyle {
+    display: block;
+    width: 200px;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #FFD068;
+    border: 1px solid #ccc;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 3px;
+    margin-left: -90px;
+    border-radius: 20px;
+}
+
+.markerSpanTitleStyle {
+    color: #000;
+    float: left;
+}
+
+.markerSpanButtonStyle {
+    float: left;
+    width: 100%;
+    font-size: 1.5em;
+    color: #3385ff;
+}
+.markerSpanButtonStyleLink{    
+    border-bottom:1px solid #428bca;
+}
+
+.markerTipsDiv {
+    width: 100%;
+    height: 26px;
+}
+
+#mapContainer {
+    position: absolute;
+    top: 62px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+#showLayerInfo {
+    width: 90%;
+    position: fixed;
+    bottom: 10px;
+    height: 210px;
+    left: 50%;
+    margin-left: -45%;
+    z-index: 998;
+    background: #fff;
+    border: 1px solid #AAA;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+}
+
+#header-ul {
+    padding-top: 10px;
+}
+
+#showResult {
+    display: none;
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    margin-left: -150px;
+    width: 300px;
+    height: 60px;
+    line-height: 60px;
+    border: 1px solid #eee;
+    font-size: 1em;
+    text-align: center;
+}
+
+#rescueline {
+    position: absolute;
+    top: 66px;
+    left: 50%;
+    margin-left: -48%;
+    background: #eee;
+    width: 96%;
+    z-index: 999;
+    float: left;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    display: none;
+    padding-bottom: 5px;
+    bottom: 5px;
+}
+
+#rescue-yuan {
+    text-align: center;
+}
+
+    #rescue-yuan img {
+        max-width: 304px;
+        width: 40%;
+    }
+
+#rescue-logo img {
+    width: 100%;
+    max-width: 253px;
+}

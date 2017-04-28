@@ -1,0 +1,148 @@
+﻿@{
+    Layout = null;
+}
+
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>活动管理 - 活动列表</strong></div>
+</div>
+
+<div class="container panel panel-default" data-ng-init="load()">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" style="text-align:left">活动编号：</label>
+                        <input class="col-md-6 form-control" type="text" placeholder="活动编号" ng-model="formData.ActivityId" />
+                        <div class="col-md-4 form-horizontal">
+                            <button type="button" data-toggle="modal" ng-click="search()" class="btn btn-primary">查询</button>
+                            @*<button type="button" data-toggle="modal" data-target="#editActivityInfoModal" class="btn btn-primary col-md-offset-1">修改选中</button>*@
+                            <button type="button" data-toggle="modal" data-target="#addActivityInfoModal" class="btn btn-primary col-md-offset-1">添加</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gridStyle" style="height: 410px; border: 1px solid rgb(212,212,212)" ng-grid="gridOptions"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addActivityInfoModal" tabindex="-1" role="dialog" aria-labelledby="ActivityInfoModal" aria-hidden="true"
+     style="width:100%;height:100%;padding:0;margin:0">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="addRoleModalLabel">添加活动</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">活动名称:</label>
+                            <div class="col-md-10"><input class="form-control" ng-model="activityInfoData.Name" required /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">开始时间:</label>
+                            <div class="col-md-10"><input class="form-control datepicker" type="date" ng-model="activityInfoData.StartDate" data-date-format="yyyy-mm-dd" required /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">结束时间:</label>
+                            <div class="col-md-10"><input class="form-control datepicker" type="date" ng-model="activityInfoData.EndDate" data-date-format="yyyy-mm-dd" required /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">活动简介:</label>
+                            <div class="col-md-10">
+                                <textarea class="form-control" rows="4" ng-model="activityInfoData.Intro"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" ng-click="addActivityInfo()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="editActivityInfoModal" tabindex="-1" role="dialog" aria-labelledby="ActivityInfoModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="addRoleModalLabel">修改活动</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">活动名称:</label>
+                            <div class="col-md-10"><input class="form-control" ng-model="selectactivityitem.Name" required value="selectactivityitem.Name" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">开始时间:</label>
+                            <div class="col-md-10"><input class="form-control" type="datetime" ng-model="selectactivityitem.StartDate" required value="selectactivityitem.StartDate" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">结束时间:</label>
+                            <div class="col-md-10"><input class="form-control" type="datetime" ng-model="selectactivityitem.EndDate" required value="selectactivityitem.EndDate" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">活动简介:</label>
+                            <div class="col-md-10">
+                                <textarea class="form-control" rows="4" ng-model="selectactivityitem.Intro"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" ng-click="editActivityInfo()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteActivityInfoModal" tabindex="-1" role="dialog" aria-labelledby="ActivityInfoModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width:400px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">结束活动</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <label class="control-label">你确定结束当前选中的活动吗？</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" ng-click="endActivityInfo()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>

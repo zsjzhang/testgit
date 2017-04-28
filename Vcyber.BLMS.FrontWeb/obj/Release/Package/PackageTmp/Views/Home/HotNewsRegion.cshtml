@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.News>
+@{
+    Layout = null;
+}
+
+<style>
+    .list_show dl dd {
+        float: left;
+    }
+
+    p.carNameL {
+        text-align: left;
+        margin-top: 10px;
+    }
+</style>
+<div class="hot_news">
+    <div class="gy_cont">
+        <div class="gy_title">
+            <div class="gy_zi">
+                <a href="/News/NewsPages?pageName=Home"><h1>热门新闻</h1></a>
+                <a href="/News/NewsPages?pageName=Home"><span>Hot News</span></a>
+                <a href="/News/NewsPages?pageName=Home"><img src="/img/arrow.png" class="arrow_n" /></a>
+            </div>
+        </div>
+        <div class="gy_nr">
+            @{
+                if (Model != null && Model.Any())
+                {
+                    string _hotImgUrl = Model.FirstOrDefault().TureMajorImageUrl;
+                    <a href="/News/NewsPages?pageName=Home">
+                        <img src="/img/car.png" onerror="this.src ='@("/img/car.png")'" style="width:268px;" />
+                    </a>
+                    int _newsIndex = 1;
+                    <ul>
+                        @foreach (var item in Model)
+                        {
+                            if (_newsIndex == 4)
+                            {
+
+                                <li style="margin-bottom:10px; overflow:hidden; padding-right:10px; ">
+                                    <span style="float:left;color: #707070;margin-left: 10px;">【新闻】</span>
+                                    @Html.ActionLink(item.Title, "NewsDetail", "News", new { id = item.Id }, new { })
+                                </li>
+                            }
+                            else
+                            {
+                                <li style=" overflow: hidden; padding-right: 10px; ">
+                                    <span style="float:left;color: #707070;margin-left: 10px;">【新闻】</span>
+                                    @Html.ActionLink(item.Title, "NewsDetail", "News", new { id = item.Id }, new { })
+                                </li>
+                            }
+
+                        }
+                    </ul>
+                }
+            }
+
+        </div>
+    </div>
+</div>

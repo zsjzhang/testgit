@@ -1,0 +1,227 @@
+﻿@model Vcyber.BLMS.FrontWeb.Models.ApplicationUser
+
+<style>
+    .logon1 h1 {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        height: 20px;
+        font-size: 16px;
+        font-weight: bold;
+        width: 126px;
+        margin: 0;
+        margin-bottom: 9px;
+        color: #0a5090;
+    }
+
+    .tuNiuImg {
+        width: 100%;
+        height: 32px;
+        margin-bottom: 9px;
+        overflow: hidden;
+    }
+
+    .logon1 dl dt {
+        float: left;
+        width: 119px;
+        height: 119px;
+        border: 1px solid #a6a6a6;
+        padding: 4px;
+        overflow: hidden;
+        border-radius: 3px;
+        background: #fff;
+        margin-top: 25px;
+        margin-left: 14px;
+    }
+
+        .logon1 dl dt img {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            vertical-align: middle;
+            margin:0;
+        }
+
+    .logon1 dl dd {
+        float: left;
+        width: 126px;
+        height: 140px;
+        margin-top: 25px;
+        margin-left: 12px;
+    }
+
+    .logon1 em {
+        display: block;
+        background: url(/img/VipImg/logMeg.png) no-repeat left center;
+        padding-left: 31px;
+        font-size: 14px;
+        color: #f49600;
+        line-height: 20px;
+        overflow: hidden;
+    }
+
+    .logon1 span {
+        color: #0a5090;
+        font-size: 14px;
+        line-height: 25px;
+    }
+
+    .fywz_name {
+        height: 230px;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            url: "/DealerNew/IsDealerMemberShip",
+            data: {},
+            datatype: "json",
+            type: "post",
+            success: function (result) {
+                if (result.code == null || result.code == 400) {
+                    $("#imgTuniuDealer").hide();
+                    $("#imgHaihangDealer").hide();
+                    return false;
+                } else if (result.code == 200) {
+                    if (result.Tuniu) {
+                        $("#imgTuniuDealer").show();
+                        if (result.Haihang) {
+                            $("#imgHaihangDealer").css("margin-left", "20px");
+                            $("#imgHaihangDealer").show();
+                        }
+                        return false;
+                    }
+                    else {
+                        if (result.Haihang) {
+                            $("#imgHaihangDealer").show();
+                        }
+                        return false;
+                    }
+                    return false;
+                }
+            },
+            error: function () { }
+        });
+    });
+</script>
+
+<div class="jinruluntan">
+    <dl>
+        <dt><img src="/img/users.png"></dt>
+        <dd>
+            <h3>
+               @Html.ActionLink("账户管理", "SetUserInfo", "MyCenter", new { }, new { })
+            </h3>
+            <span>
+                <a href="/MyCenter/SetUserInfo">AccountManage</a>
+            </span>
+        </dd>
+    </dl>
+</div>
+<div class="logon1">
+    <div class="fywz_name">
+        @{
+            if (Model != null && !string.IsNullOrEmpty(Model.Id))
+            {
+                string levelName = "注册用户";
+                switch (Model.MLevel)
+                {
+                    case 1:
+                        levelName = "注册用户";
+                        break;
+                    case 10:
+                        levelName = "普卡会员";
+                        break;
+                    case 11:
+                        levelName = "银卡会员";
+                        break;
+                    case 12:
+                        levelName = "金卡会员";
+                        break;
+                }
+                string _defaultUserImage = "/img/VipImg/blueBoyBg.png";
+                if (!string.IsNullOrEmpty(Model.FaceImage))
+                {
+                    _defaultUserImage = Model.FaceImage;
+                }
+                <dl>
+                    <dt><img src="@_defaultUserImage" onerror="this.src='@("/img/VipImg/blueBoyBg.png")'" class="fywz_img" /></dt>
+                    <dd>
+                        <h1 style="height: 20px; overflow: hidden;">@Model.NickName </h1>
+                        <div class="tuNiuImg">
+                            @*<img src="/img/VipImg/tuniu.png" />*@
+                            <span style="display:inline-block;height:30px;margin-top:-30px;">
+                                <img src="~/Img/VipImg/tuniu.png" style="display:none;float:left;height:30px;" id="imgTuniuDealer" alt="途牛五星会员" title="途牛五星会员" />
+                                <img src="~/Img/DealerNew/icon-02.png" style="display: none; float: left; height: 30px;" id="imgHaihangDealer" alt="礼悦会钻石会员" title="礼悦会钻石会员" />
+                            </span>
+                        </div>
+                        <em><a href="/MsgCenter/Index">@Html.Raw(string.Format("未读消息({0})", ViewBag.UnReadMsgCount))</a>  </em>
+                        
+                    
+                        <span>积分：<i style="display:inline-block; line-height:26px; max-width:75px; overflow:hidden; vertical-align:middle;">@ViewBag.totalScore</i></span>
+                        <span>等级：@(levelName)</span>
+                    </dd>
+                </dl>
+
+    <label class="labelZsy_root"><a href="https://www.bluemembers.com.cn/BBS" style="color:#fff;">进入论坛</a></label>
+        <style>
+            #btnHomeLogOffForm {
+
+                width: 122px; height: 33px; line-height: 33px; text-align: center; font-size: 14px; display: block; float: left; color: #fff; margin-left: 16px; margin-top: 14px; cursor: pointer; background: #075090; 
+            }
+            .labelZsy_root {
+                background:#075090; color:#fff;margin-left:10px;
+            }
+                #btnHomeLogOffForm:hover, .labelZsy_root:hover {
+                    background:#0b63b7;
+                }
+        </style>
+    <form action="/Account/LogOff" method="post" id="btnHomeLogOffForm">
+        @Html.AntiForgeryToken()
+        <a href="javascript:void(0);" onclick="document.getElementById('btnHomeLogOffForm').submit();" style="color:#fff;">
+            退出登录
+        </a>
+    </form>
+            }
+}
+    </div>
+</div>
+    <div class="geren_ka">
+        <dl>
+
+            @if (Model.MLevel == 10)
+            {
+                <dt><img src="/Img/VipImg/cardOrd.png"></dt>
+            
+            }
+            @if (Model.MLevel == 11)
+            {
+                <dt><img src="/Img/VipImg/cardS.png"></dt>
+
+            }
+            @if (Model.MLevel == 12)
+            {
+                <dt><img src="/Img/VipImg/cardG.png"></dt>
+
+            } 
+            @if (Model.MLevel == 1)
+            {
+                <dt><img src="/img/yinhangka.png"></dt>
+            }
+            
+           
+            <dd>
+                @{
+                    if (!string.IsNullOrEmpty(Model.No))
+                    {
+                        <p>姓名：@Model.RealName</p>
+                        <p>卡号：@Model.No</p>
+                    }
+                    else
+                    {
+                        <p style="margin-top:8px;">姓名：@Model.RealName</p>
+                    }
+                }
+            </dd>
+        </dl>
+    </div>

@@ -1,0 +1,105 @@
+﻿@model System.Data.DataTable
+@using System.Data;
+@{
+    Layout = null;
+    int pageIndex = Convert.ToInt32(ViewBag.pageIndex);
+    int pageSize = Convert.ToInt32(ViewBag.pageSize);
+    int pcount = Convert.ToInt32(ViewBag.count);    
+        
+}
+<head>
+    
+
+</head>
+<div class="data-container" style="padding-top:30px">
+    <table class="table table-bordered">
+        @if (Model != null)
+        {
+            <thead>
+                <tr>
+                    @for (int i = 0; i < Model.Columns.Count; i++)
+                    {
+                        <th>@Model.Columns[i].ColumnName</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (DataRow row in Model.Rows)
+                {
+                    <tr>
+                        @foreach (var item in row.ItemArray)
+                        {
+                            <td>@item</td>
+                        }
+                    </tr>
+                }
+
+            </tbody>
+        }
+    </table>
+</div>
+<div class="box_a2">
+    <div class="pagbox">
+        <span>共@{@ViewBag.count}条</span>
+        <a href="javascript:void(0);" onclick="GetPageList(1,10)">首页</a>
+        @*<a href="javascript:void(0);" onclick="ShowPages('Pre')"><<</a>*@
+        <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.PrePage,10)">上一页</a>
+        @{
+            int PageIndex = (int)ViewBag.pageIndex;
+            int PageCurrentGroup = (int)(PageIndex / 10);
+        }
+        @for (int i = 1; i <= (int)ViewBag.EndPage; i++)
+        {
+            if ((i < PageCurrentGroup * 10) || (i >= (PageCurrentGroup + 1) * 10))
+            {
+                <a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)" style="display:none;">@i</a>
+            }
+            else
+            {
+                if (i == (int)ViewBag.pageIndex)
+                {<a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)" style="color: red">@i</a> }
+                else
+                {<a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)">@i</a> }
+            }
+        }
+        <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.NextPage, 10)">下一页</a>
+        @*<a href="javascript:void(0);" onclick="ShowPages('Next')">>></a>*@
+        <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.EndPage, 10)">尾页</a>
+    </div>
+</div>
+
+<div id="Pagination" class="right flickr">
+</div>
+<input type="hidden" autocomplete="off" id="hidCurrentPage" value="@ViewBag.pageIndex" />
+<input type="hidden" autocomplete="off" id="hidEndPage" value="@ViewBag.pageSize" />
+<input type="hidden" autocomplete="off" id="hidCurrentGroup" value="@ViewBag.count" />
+<input type="hidden" autocomplete="off" id="hidCurrentGroup" value="@ViewBag.PrePage" />
+<input type="hidden" autocomplete="off" id="hidCurrentGroup" value="@ViewBag.NextPage" />
+<input type="hidden" autocomplete="off" id="hidCurrentGroup" value="@ViewBag.EndPage" />
+<script>
+
+
+    function GetPageList(pageIndex,pageSize) {
+        var data = {
+            CreateTimeStart: $("#CreateTimeStart").val(),
+            CreateTimeEnd: $("#CreateTimeEnd").val(),
+            AuthenticationTimeStart: $("#AuthenticationTimeStart").val(),
+            AuthenticationTimeEnd: $("#AuthenticationTimeEnd").val(),
+            BuyTimeStart: $("#BuyTimeStart").val(),
+            BuyTimeEnd: $("#BuyTimeEnd").val(),
+            CarCategory: $("#CarCategory").val(),
+            pageIndex: pageIndex,
+            pageSize: pageSize
+        };
+        var url = "@Url.Action("CommonPartialPage")";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function (msg) {
+                //alert("123ok");
+                $('#divPageList').html(msg);
+            }
+        });
+    }
+</script>

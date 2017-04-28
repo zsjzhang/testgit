@@ -1,0 +1,298 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "我的兑换车";
+}
+<style>
+    .biaoti_title {
+        width: 100%;
+    }
+
+    .excha_car tbody td p a {
+        width: 26px;
+        height: 26px;
+        border: 1Px solid #b1b1b1;
+        display: block;
+        float: left;
+        cursor: pointer;
+        margin: 0px;
+    }
+
+    .center_s table tbody td a {
+        margin-left: 0;
+    }
+
+        .center_s table tbody td a img {
+            position: relative;
+            top: 8px;
+        }
+
+    .center_r_2 {
+        height: 282px;
+        margin-top: 1px;
+        background: #EEE;
+    }
+
+        .center_r_2 input {
+            background: #fff;
+            width: 235px;
+            height: 28px;
+            border: 1px solid #BEBEBE;
+            margin: 0 auto;
+            display: block;
+            float: left;
+            margin-top: 20px;
+            margin-left: 18px;
+          
+            outline: medium;
+            padding-left: 10px;
+            font-size: 12px;
+        }
+
+        .center_r_2 div.test {
+            width: 248px;
+            float: left;
+            height: 32px;
+            margin-top: 20px;
+        }
+
+        .center_r_2 div.land {
+            width: 248px;
+            float: left;
+            height: 32px;
+            margin-top: 20px;
+        }
+
+        .center_r_2 div.enroll {
+            margin-top: 40px;
+            width: 100%;
+            font-size: 12px;
+            float: left;
+            text-align: center;
+        }
+
+        .center_r_2 input.test_1 {
+            width: 108px;
+            margin-top: 0px;
+        }
+
+        .center_r_2 div.land a.z_h {
+            display: block;
+            background: none;
+            height: 30px;
+            width: 56px;
+            line-height: 30px;
+            cursor: pointer;
+            float: left;
+            font-size: 14px;
+            padding-left: 10px;
+            margin-left: 0px;
+            padding-top: 6px;
+        }
+           .center_r_2 {
+        height: 282px;
+        margin-top: 1px;
+        background: #EEE;
+    }
+
+        .center_r_2 input {
+            background: #fff;
+            width: 235px;
+            height: 28px;
+            border: 1px solid #BEBEBE;
+            margin: 0 auto;
+            display: block;
+            float: left;
+            margin-top: 20px;
+            margin-left: 18px;
+            outline: medium;
+            padding-left: 10px;
+            font-size: 12px;
+        }
+
+        .center_r_2 div.test {
+            width: 248px;
+            float: left;
+            height: 32px;
+            margin-top: 20px;
+        }
+
+        .center_r_2 input.test_1 {
+            width: 108px;
+            margin-top: 0px;
+        }
+
+        .center_r_2 div.land {
+            width: 248px;
+            float: left;
+            height: 32px;
+            margin-top: 20px;
+        }
+
+            .center_r_2 div.land a.z_h {
+                display: block;
+                background: none;
+                height: 30px;
+                width: 56px;
+                line-height: 30px;
+                cursor: pointer;
+                float: left;
+                font-size: 14px;
+                padding-left: 10px;
+                margin-left: 0px;
+                padding-top: 6px;
+            }
+
+        .center_r_2 div.enroll {
+            margin-top: 40px;
+            width: 100%;
+            font-size: 12px;
+            float: left;
+            text-align: center;
+        }
+
+            .center_r_2 div.enroll a {
+                color: #7F7F7F;
+                cursor: pointer;
+            }
+
+    .logConBox {
+        height:285px;
+    }
+    #btnHomePhoneLogon {
+        color:#fff;
+    }
+
+    
+</style>
+<div>
+    <div>
+        @Html.Action("HomeHeader", "Header", new { pageName = "Mall" })
+    </div>
+    <div class="center_s">
+        <div class="online_left">
+            <div style="width:286px; margin-bottom:1px">
+                @Html.Action("CartByMall", "Cart")
+            </div>
+            <div class="center" style="width: 286px; height: auto; margin-top:0;">
+                <div class="logon" style=" margin-top :0px">
+                    @{
+                        if (this.User.Identity.IsAuthenticated)
+                        {
+                            @Html.Action("HomeLogonSuccess", "Account")
+                        }
+                        else
+                        {
+                            @Html.Action("HomeLogon", "Account")
+                        }
+                    }
+                </div>
+            </div>
+
+
+
+
+            @Html.Action("ExchangeList", "Mall")
+        </div>
+
+        <div class="online_right excha_car">
+            <p class="select_menu"><a href="/Mall/Index">在线商城 &gt;</a><a href="">我的兑换车</a></p>
+
+            <input type="hidden" id="mycartUserLogonStatus" value="@ViewBag.UserStatus" />
+            <table cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <td style="width:11%;">
+                            <label for="mycartProductCheckAll"><input type="checkbox" id="mycartProductCheckAll" checked='checked' />全选</label>
+                        </td>
+                        <td style="width:0px;"></td>
+                        <td width="30%">商品名称</td>
+                        <td>颜色</td>
+                        <td>类型</td>
+                        <td>单价</td>
+                        <td width="22%">数量</td>
+                        <td>总价</td>
+                        <td>操作</td>
+                    </tr>
+                </thead>
+                <tbody id="cartList"></tbody>
+            </table>
+            <div class="total">
+                <p>
+                    <label for="mycartBottomProductCheckAll">
+                        <input type="checkbox" id="mycartBottomProductCheckAll" checked="checked" />全选
+                    </label>
+                    <a href="javascript:void(0);" id="mycartRemoveItem" class="delete">删除</a>
+                    <span>总计：<a class="acolor"><label id="mycartProductScoreSum">0</label>积分</a></span>
+                    <b>（已选商品<a class="acolor"> <label id="cartProductCheckQuantity"></label> </a>件）  </b>
+                </p>
+                <a href="javascript:void(0);" id="mycartProductGoOrder" target="_self" class="qujiesuan">去结算</a>
+                <p class="balance">您的余额：<label id="surplusScore">@ViewBag.surplusScore</label>积分
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+    <script type="text/javascript">
+        var _html = "";
+        var mycart = ShoppingCart.MyCart();
+        if (mycart != null && mycart != "" && mycart.totalQuantity > 0) {
+            mycart.productList.forEach(function (objItem) {
+                var _mycartItemCheckProductId = "mycartItemCheckProductId" + objItem.skuId;
+                var _mycartProductCheckItemId = "mycartProductCheckItem" + objItem.skuId;
+                var _mycartItemProductSkuName = "mycartItemProductSkuName" + objItem.skuId;
+                var _mycartItemProductSkuId = "mycartItemProductSkuId" + objItem.skuId;
+                var _mycartItemProductQuantityReduce = "mycartItemProductQuantityReduce" + objItem.skuId;
+                var _mycartItemProductQuantityPlus = "mycartItemProductQuantityPlus" + objItem.skuId;
+                var _mycartItemProductTotalPrice = "mycartItemProductTotalPrice" + objItem.skuId;
+                var _mycartItemProductQuantity = "mycartItemProductQuantity" + objItem.skuId;
+                var _mycartItemProductPrice = "mycartItemProductPrice" + objItem.skuId;
+                var _mycartItemProductType = "mycartItemProductType" + objItem.skuId;
+                var _mycartItemProductDeleteItem = "mycartItemProductDeleteItem" + objItem.skuId;
+                //颜色类型添加                    mycartItemProductCarType mycartItemProductColor
+                var _mycartItemProductColor = "mycartItemProductColor"+objItem.skuId;
+                var _mycartItemProductCarType = "mycartItemProductCarType"+objItem.skuId;
+                //颜色类型添加
+                var _objITemPayTypeValue = "";
+                if (objItem.payType == "Integral") {
+                    _objITemPayType = "积分";
+                }
+               //else {
+               //     _objITemPayType = "蓝豆";
+               // }
+
+                _html += "<tr class='mycartProductItem'><input type='hidden' id=" + _mycartItemCheckProductId + " value=" + objItem.productId + " /><input type='hidden' id=" + _mycartItemProductSkuId + " value=" + objItem.skuId + " />";
+                _html += "<td class='td_line'><label for=" + _mycartProductCheckItemId + "><input type='checkbox' checked='checked' name='mycartProductCheckItem' id=" + _mycartProductCheckItemId + " />选择</label></td>";
+                _html += "<td class='have_br' colspan='2'>";
+                _html += "<a href='/Product/ProductDetail?productId=" + objItem.productId + "' class='car_pro'><img src='" + objItem.imgUrl + "' style='top:22px; width:66px; height:66px;'></a><a class='pro_jieshao'><label id=" + _mycartItemProductSkuName + ">" + objItem.productName + "</label></a>";
+                _html += "</td>";
+                _html += "<td class='td_line'><label id="+_mycartItemProductColor+">" + objItem.productcolor + "</label></td>";
+                _html += "</td>"
+                _html += "<td class='td_line'><label id="+_mycartItemProductCarType +">" + objItem.producttype + "</label></td>";
+                _html += "</td>"
+                _html += "<td class='td_line'><label id=" + _mycartItemProductPrice + ">" + objItem.price+ "</label><label >" + _objITemPayType + "</label></td>";
+                _html += "<td>";
+                _html += "<p>";
+                _html += " <a class='jian'  id=" + _mycartItemProductQuantityReduce + "><img src='/img/min.png'></a>";
+                _html += "<input type='text' style='width:60px;'  id=" + _mycartItemProductQuantity + " value=" + objItem.quantity + "  />";
+                _html += "<a class='jia'  id=" + _mycartItemProductQuantityPlus + "><img src='/img/add.png'></a>";
+                _html += "</p>";
+                _html += "</td>";
+                _html += "<td class='td_line'><label id=" + _mycartItemProductTotalPrice + ">" + parseFloat(objItem.price) * parseFloat(objItem.quantity) + "</label><label id=" + _mycartItemProductType + " title=" + objItem.payType + ">" + _objITemPayType + "</label></td>";
+                _html += "<td class='td_line'><a id=" + _mycartItemProductDeleteItem + " href='javascript:void(" + objItem.skuId + ")' style='float:none;' class='delete'>删除</a></td>";
+                _html += "</tr>";
+            });
+        }
+        $("#cartList").html(_html);
+        $("#surplusBluedou").html(User.mySurplusBlueBean());
+        $("#surplusScore").html(User.mySurplusIntegral());
+        $("#cartProductCheckQuantity").html(ShoppingCart.MyCart().totalQuantity);
+        $("#mycartProductScoreSum").html(ShoppingCart.MyCart().totalIntegral);
+        $("#mycartProductBlueBeanSum").html(ShoppingCart.MyCart().totalBlueBean);
+    </script>
+
+    <div>
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

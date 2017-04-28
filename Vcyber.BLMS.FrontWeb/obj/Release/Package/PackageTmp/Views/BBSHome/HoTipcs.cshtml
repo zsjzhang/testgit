@@ -1,0 +1,13 @@
+﻿@model System.Collections.Generic.List<Vcyber.BLMS.FrontWeb.Models.BBS.BBSGuestBook>
+
+@{
+     
+    Layout = null;
+}
+
+@foreach (var gb in Model)
+{
+    <p class="forum">
+        @Html.ActionLink(gb.G_Title, "Comment", "BBSHome", new { id = gb.Id }, new { })
+    </p>
+}

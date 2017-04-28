@@ -1,0 +1,69 @@
+﻿@model Vcyber.BLMS.Entity.ReturnResult
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "预约成功";
+}
+<div>
+    @Html.Action("HomeHeader", "Header")
+    <div class="n_all_cont">
+        @{
+            int _cardCount = 0;
+            if (Model != null)
+            {
+                //List<Vcyber.BLMS.Entity.SNCard> _cardList = Model.Data as List<Vcyber.BLMS.Entity.SNCard>;
+                //_cardList.Add(new Vcyber.BLMS.Entity.SNCard() { SNCode = "105193979" });
+                //_cardList.Add(new Vcyber.BLMS.Entity.SNCard() { SNCode = "102177086" });
+                List<Vcyber.BLMS.Entity.SNCard> _cardList = ViewBag.SNCodes;
+
+                if (_cardList != null && _cardList.Any())
+                {
+                    _cardCount = _cardList.Count();
+
+
+                    <div>
+                        <label>
+                            尊敬的会员，您已成功申请到 @_cardCount 张候机服务券。请到指定机场出示二维码或串码凭证享受候机服务。
+                        </label>
+                    </div>
+                    <div>
+
+                        <div>
+
+                            @foreach (var item in _cardList)
+                            {
+                                <span>
+                                    <img src='/QrCodeHandler.ashx?e=m&q=Two&s=12&t=@item.SNCode' />
+                                </span>
+                                <span>
+                                    <label>串码：@item.SNCode</label>
+                                </span>
+                            }
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <p>
+                                <h3>此凭证将同步发送到您的手机短信。您还可以下载bluemembers手机客户端或关注bluemembers微信服号查询。</h3><br />
+                            </p>
+                        </div>
+                        <div>
+                            <p>
+                                安装bluemembers手机客户端，请
+                                @Html.ActionLink("点击下载", "AppDownLoad", "Home", new { }, new { })<br />
+                            </p>
+                        </div>
+                        <div>
+                            <p>
+                                关注bluemembers微信服务账号，请
+                                @Html.ActionLink("点击关注", "WeiXinLayer", "Home", new { }, new { })
+                            </p>
+                        </div>
+                    </div>
+                }
+            }
+        }
+
+    </div>
+
+    @Html.Action("Index", "Footer")
+</div>

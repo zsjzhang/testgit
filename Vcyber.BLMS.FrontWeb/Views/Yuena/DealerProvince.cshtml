@@ -1,0 +1,139 @@
+﻿@model IEnumerable<string>
+@{
+    Layout = null;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<tr>
+    <td rowspan="2"><label>经销商 :</label></td>
+    <td>
+        <div class="sl5" name="provice" type="selectbox">
+            <div class="opts">
+                <a href="javascript:;" class="selected" val="省">省</a>
+                @{
+                    if (Model != null && Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <a href="javascript:;" class="selected" val="@item">@item</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div class="sl5" name="city" type="selectbox">
+            <div class="opts">
+                <a href="javascript:;" class="selected" val="市">市</a>
+            </div>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="sl4" name="dealer" type="selectbox">
+            <div class="opts">
+                <a href="javascript:;" class="selected" val="经销商">经销商</a>
+            </div>
+        </div>
+    </td>
+</tr>
+
+<script type="text/javascript">
+    $(function () {
+    //省市联动
+    $('div[name="provice"] .opts a').click(function () {
+        if ($(this).html() == "省") {
+
+            $('div[name="city"]').html('<div class="opts"><a href="javascript:void(0);" val="市" class="selected">市</a></div');
+            $('div[name="city"]').inputbox({ 'height': 53, 'width': 138 });
+            $('div[name="dealer"]').html('<div class="opts"><a href="javascript:void(0);" val="市" class="selected">经销商</a></div');
+            $('div[name="dealer"]').inputbox({ 'height': 53, 'width': 285 });
+        } else {
+            $.ajax({
+                url: "/Yuena/Citys",//城市查询接口地址
+                type: "get",
+                data: { provinceValue: $(this).html() },
+                dataType: "json",
+                success: function (result) {
+                     
+                    var tempStr = "";
+                    tempStr += '<a href="javascript:void(0);" val="请选择" class="selected">请选择</a>';
+                    $(result).each(function (i, obj) {
+
+                        tempStr += '<a href="javascript:void(0);" val="' + obj + '" >' + obj + '</a>';
+
+                    });
+                    //将获取的城市列表填充
+                    //alert(tempStr);
+                    $('div[name="city"]').html('<div class="opts">' + tempStr + '</div');
+                    $('div[name="city"]').inputbox({ 'height': 53, 'width': 138 });
+                   
+
+                    //切换城市
+                    $('div[name="city"] .opts a').click(function () {
+
+                        if ($(this).html() == "市" || $(this).html() == "请选择") {
+                            $('div[name="dealer"]').html('<div class="opts"><a href="javascript:void(0);" val="市" class="selected">经销商</a></div');
+                            $('div[name="dealer"]').inputbox({ 'height': 53, 'width': 285 });
+                        } else {
+                            $.ajax({
+                                url: "/Yuena/Dealers",//经销商查询接口地址
+                                type: "get",
+                                data: { cityValue: $(this).html(), provinceValue: $('input[name="provice"]').val() },
+                                dataType: "json",
+                                success: function (result) {
+
+                                    var tempStr = "";
+                                    tempStr += '<a href="javascript:void(0);" val="请选择" class="selected">请选择</a>';
+                                    $(result).each(function (i, obj) {
+
+                                        tempStr += '<a href="javascript:void(0);" val="' + obj.DealerId + '" >' + obj.Name + '</a>';
+
+                                    });
+                                    //将获取的城市列表填充
+
+                                    $('div[name="dealer"]').html('<div class="opts">' + tempStr + '</div');
+                                    $('div[name="dealer"]').inputbox({ 'height': 53, 'width': 285 });
+                                },
+                                error: function (err) {
+                                    popWindownBlue("error...");
+                                }
+                            });
+                        }
+                    });
+
+                },
+                error: function (err) {
+                    //popWindownBlue( "error...");
+                }
+            });
+        }
+    });
+    })
+</script>
+

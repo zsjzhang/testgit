@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://webService.edenred.com" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="MemberService" targetNamespace="http://webService.edenred.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://webService.edenred.com" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="bindMember" type="tns:bindMember" />
+      <xs:element name="bindMemberResponse" type="tns:bindMemberResponse" />
+      <xs:element name="bindingQuery" type="tns:bindingQuery" />
+      <xs:element name="bindingQueryResponse" type="tns:bindingQueryResponse" />
+      <xs:element name="changePassword" type="tns:changePassword" />
+      <xs:element name="changePasswordResponse" type="tns:changePasswordResponse" />
+      <xs:element name="getDeLicenceNo" type="tns:getDeLicenceNo" />
+      <xs:element name="getDeLicenceNoResponse" type="tns:getDeLicenceNoResponse" />
+      <xs:element name="login" type="tns:login" />
+      <xs:element name="loginResponse" type="tns:loginResponse" />
+      <xs:element name="modifyMemberProfile" type="tns:modifyMemberProfile" />
+      <xs:element name="modifyMemberProfileResponse" type="tns:modifyMemberProfileResponse" />
+      <xs:element name="permanentResidentsSave" type="tns:permanentResidentsSave" />
+      <xs:element name="permanentResidentsSaveResponse" type="tns:permanentResidentsSaveResponse" />
+      <xs:element name="queryIndvCustmFInfo" type="tns:queryIndvCustmFInfo" />
+      <xs:element name="queryIndvCustmFInfoResponse" type="tns:queryIndvCustmFInfoResponse" />
+      <xs:element name="resetPassword" type="tns:resetPassword" />
+      <xs:element name="resetPasswordResponse" type="tns:resetPasswordResponse" />
+      <xs:element name="submitRecruitmentMember" type="tns:submitRecruitmentMember" />
+      <xs:element name="submitRecruitmentMemberResponse" type="tns:submitRecruitmentMemberResponse" />
+      <xs:complexType name="bindingQuery">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:BindingQueryRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="BindingQueryRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:wsRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="mobile" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="wsRequest" abstract="true">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:SecurityRequest">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="SecurityRequest">
+        <xs:sequence>
+          <xs:element name="securityKey" type="xs:string" />
+          <xs:element name="sign" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="bindingQueryResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:BindingQueryResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="BindingQueryResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:WSResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="open_id" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="WSResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:wsResponseSupport">
+            <xs:sequence>
+              <xs:element name="exitCode" type="xs:int" />
+              <xs:element minOccurs="0" name="errorCode" type="xs:string" />
+              <xs:element minOccurs="0" name="errorInfo" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="wsResponseSupport">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="queryIndvCustmFInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:QueryIndvCustmFInfoRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="QueryIndvCustmFInfoRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:SecurityRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="mobile_phone" type="xs:string" />
+              <xs:element minOccurs="0" name="email" type="xs:string" />
+              <xs:element minOccurs="0" name="custNo" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="queryIndvCustmFInfoResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:QueryIndvCustmFInfoResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="QueryIndvCustmFInfoResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:WSResponse">
+            <xs:sequence>
+              <xs:element name="personId" type="xs:int" />
+              <xs:element name="accountId" type="xs:int" />
+              <xs:element minOccurs="0" name="familyName" type="xs:string" />
+              <xs:element minOccurs="0" name="firstName" type="xs:string" />
+              <xs:element minOccurs="0" name="birthday" type="xs:string" />
+              <xs:element minOccurs="0" name="email" type="xs:string" />
+              <xs:element minOccurs="0" name="mobilePhone" type="xs:string" />
+              <xs:element minOccurs="0" name="licenceNo" type="xs:string" />
+              <xs:element minOccurs="0" name="licenceTypeId" type="xs:int" />
+              <xs:element name="civilizationTitleId" type="xs:int" />
+              <xs:element minOccurs="0" name="countryId" type="xs:int" />
+              <xs:element minOccurs="0" name="provinceId" type="xs:int" />
+              <xs:element name="infoChannelId" type="xs:int" />
+              <xs:element minOccurs="0" name="updateInfoChannelId" type="xs:int" />
+              <xs:element minOccurs="0" name="cityId" type="xs:int" />
+              <xs:element minOccurs="0" name="createBy" type="xs:int" />
+              <xs:element minOccurs="0" name="createTime" type="xs:string" />
+              <xs:element minOccurs="0" name="settingBy" type="xs:int" />
+              <xs:element minOccurs="0" name="address" type="xs:string" />
+              <xs:element minOccurs="0" name="zipCode" type="xs:string" />
+              <xs:element minOccurs="0" name="remark" type="xs:string" />
+              <xs:element minOccurs="0" name="personImageUrl" type="xs:string" />
+              <xs:element minOccurs="0" name="password" type="xs:string" />
+              <xs:element minOccurs="0" name="settingTime" type="xs:string" />
+              <xs:element minOccurs="0" name="emailOption" type="xs:int" />
+              <xs:element minOccurs="0" name="addressSN" type="xs:string" />
+              <xs:element minOccurs="0" name="licenceTypeCode" type="xs:string" />
+              <xs:element minOccurs="0" name="civilizationTitleCode" type="xs:string" />
+              <xs:element minOccurs="0" name="civilizationTitleName" type="xs:string" />
+              <xs:element minOccurs="0" name="civilizationTitleNameEn" type="xs:string" />
+              <xs:element minOccurs="0" name="accountBalance" type="xs:string" />
+              <xs:element minOccurs="0" name="pointsEarned" type="xs:string" />
+              <xs:element minOccurs="0" name="accountNumber" type="xs:string" />
+              <xs:element minOccurs="0" name="cardTypeId" type="xs:string" />
+              <xs:element minOccurs="0" name="completeRate" type="xs:int" />
+              <xs:element minOccurs="0" name="roomTransactionNo" type="xs:int" />
+              <xs:element minOccurs="0" name="roomNightNo" type="xs:int" />
+              <xs:element minOccurs="0" name="countryCode" type="xs:string" />
+              <xs:element minOccurs="0" name="provinceCode" type="xs:string" />
+              <xs:element minOccurs="0" name="cityCode" type="xs:string" />
+              <xs:element minOccurs="0" name="PreferenceInfo">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="QuestionAnswerId" type="xs:int" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="accountStatus" type="xs:int" />
+              <xs:element minOccurs="0" name="hotelCode" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="resetPassword">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:ResetPasswordRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ResetPasswordRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:SecurityRequest">
+            <xs:sequence>
+              <xs:element name="account_number" type="xs:string" />
+              <xs:element name="mobile" type="xs:string" />
+              <xs:element name="language" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="resetPasswordResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:ResetPasswordResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ResetPasswordResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:WSResponse">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="permanentResidentsSave">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:PermanentResidentsSaveRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PermanentResidentsSaveRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:SecurityRequest">
+            <xs:sequence>
+              <xs:element name="account_number" type="xs:string" />
+              <xs:element name="family_name" type="xs:string" />
+              <xs:element name="first_name" type="xs:string" />
+              <xs:element name="mobile_phone" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="permanentResidentsSaveResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:PermanentResidentsSaveResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PermanentResidentsSaveResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:WSResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="hotelOrderPersonCode" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="modifyMemberProfile">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:ModifyMemberProfileRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ModifyMemberProfileRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:SecurityRequest">
+            <xs:sequence>
+              <xs:element name="account_number" type="xs:string" />
+              <xs:element minOccurs="0" name="open_id" type="xs:string" />
+              <xs:element name="civilization_title_code" type="xs:string" />
+              <xs:element name="family_name" type="xs:string" />
+              <xs:element name="first_name" type="xs:string" />
+              <xs:element minOccurs="0" name="birthday" type="xs:string" />
+              <xs:element minOccurs="0" name="license_type_code" type="xs:string" />
+              <xs:element minOccurs="0" name="license_no" type="xs:string" />
+              <xs:element name="email" type="xs:string" />
+              <xs:element name="mobile_phone" type="xs:string" />
+              <xs:element minOccurs="0" name="country_code" type="xs:string" />
+              <xs:element minOccurs="0" name="province_code" type="xs:string" />
+              <xs:element minOccurs="0" name="city_code" type="xs:string" />
+              <xs:element minOccurs="0" name="address" type="xs:string" />
+              <xs:element minOccurs="0" name="zip_code" type="xs:string" />
+              <xs:element minOccurs="0" name="remark" type="xs:string" />
+              <xs:element minOccurs="0" name="person_image_url" type="xs:string" />
+              <xs:element minOccurs="0" name="hotel_code" type="xs:string" />
+              <xs:element minOccurs="0" name="email_option" type="xs:int" />
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="question_answer_rel_obj_list" type="tns:MemberQuestion" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="MemberQuestion">
+        <xs:sequence>
+          <xs:element name="question_code" type="xs:string" />
+          <xs:element name="answer_code" type="xs:string" />
+          <xs:element minOccurs="0" name="answer" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="modifyMemberProfileResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:ModifyMemberProfileResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ModifyMemberProfileResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:WSResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="account_number" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="login">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:LoginRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="LoginRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="securityRequest" type="tns:SecurityRequest" />
+          <xs:element minOccurs="0" name="parameter" type="tns:MemberInfoRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="MemberInfoRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="userName" type="xs:string" />
+          <xs:element minOccurs="0" name="password" type="xs:string" />
+          <xs:element minOccurs="0" name="language" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="loginResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:LoginResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="LoginResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:WSResponse">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getDeLicenceNo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:LicenceNoRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="LicenceNoRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:SecurityRequest">
+            <xs:sequence>
+              <xs:element name="licenceNo" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="getDeLicenceNoResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:LicenceNoResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="LicenceNoResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:WSResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="licenceNo" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="bindMember">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:BindMemberRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="BindMemberRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:wsRequest">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="full_name" type="xs:string" />
+              <xs:element minOccurs="0" name="email" type="xs:string" />
+              <xs:element minOccurs="0" name="mobile" type="xs:string" />
+              <xs:element minOccurs="0" name="open_id" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="bindMemberResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:BindMemberResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="BindMemberResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:WSResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="accountId" type="xs:int" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="submitRecruitmentMember">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:RecruitmentMemberRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="RecruitmentMemberRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:SecurityRequest">
+            <xs:sequence>
+              <xs:element name="civilization_title_code" type="xs:string" />
+              <xs:element name="family_name" type="xs:string" />
+              <xs:element name="first_name" type="xs:string" />
+              <xs:element name="email" type="xs:string" />
+              <xs:element name="mobile_phone" type="xs:string" />
+              <xs:element minOccurs="0" name="hotel_code" type="xs:string" />
+              <xs:element minOccurs="0" name="password" type="xs:string" />
+              <xs:element minOccurs="0" name="email_option" type="xs:int" />
+              <xs:element name="language" type="xs:string" />
+              <xs:element minOccurs="0" name="open_id" type="xs:string" />
+              <xs:element minOccurs="0" name="segment" type="xs:int" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="submitRecruitmentMemberResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:RecruitmentMemberResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="RecruitmentMemberResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:WSResponse">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="account_number" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="changePassword">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:ChangePasswordRequest" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ChangePasswordRequest">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:SecurityRequest">
+            <xs:sequence>
+              <xs:element name="account_number" type="xs:string" />
+              <xs:element name="mobile" type="xs:string" />
+              <xs:element name="old_password" type="xs:string" />
+              <xs:element name="new_password" type="xs:string" />
+              <xs:element name="language" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="changePasswordResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:ChangePasswordResponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ChangePasswordResponse">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:WSResponse">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="submitRecruitmentMemberResponse">
+    <wsdl:part name="parameters" element="tns:submitRecruitmentMemberResponse" />
+  </wsdl:message>
+  <wsdl:message name="permanentResidentsSaveResponse">
+    <wsdl:part name="parameters" element="tns:permanentResidentsSaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="resetPassword">
+    <wsdl:part name="parameters" element="tns:resetPassword" />
+  </wsdl:message>
+  <wsdl:message name="loginResponse">
+    <wsdl:part name="parameters" element="tns:loginResponse" />
+  </wsdl:message>
+  <wsdl:message name="bindMemberResponse">
+    <wsdl:part name="parameters" element="tns:bindMemberResponse" />
+  </wsdl:message>
+  <wsdl:message name="getDeLicenceNoResponse">
+    <wsdl:part name="parameters" element="tns:getDeLicenceNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="modifyMemberProfile">
+    <wsdl:part name="parameters" element="tns:modifyMemberProfile" />
+  </wsdl:message>
+  <wsdl:message name="modifyMemberProfileResponse">
+    <wsdl:part name="parameters" element="tns:modifyMemberProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="submitRecruitmentMember">
+    <wsdl:part name="parameters" element="tns:submitRecruitmentMember" />
+  </wsdl:message>
+  <wsdl:message name="bindingQueryResponse">
+    <wsdl:part name="parameters" element="tns:bindingQueryResponse" />
+  </wsdl:message>
+  <wsdl:message name="queryIndvCustmFInfo">
+    <wsdl:part name="parameters" element="tns:queryIndvCustmFInfo" />
+  </wsdl:message>
+  <wsdl:message name="permanentResidentsSave">
+    <wsdl:part name="parameters" element="tns:permanentResidentsSave" />
+  </wsdl:message>
+  <wsdl:message name="getDeLicenceNo">
+    <wsdl:part name="parameters" element="tns:getDeLicenceNo" />
+  </wsdl:message>
+  <wsdl:message name="bindMember">
+    <wsdl:part name="parameters" element="tns:bindMember" />
+  </wsdl:message>
+  <wsdl:message name="changePasswordResponse">
+    <wsdl:part name="parameters" element="tns:changePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="login">
+    <wsdl:part name="parameters" element="tns:login" />
+  </wsdl:message>
+  <wsdl:message name="bindingQuery">
+    <wsdl:part name="parameters" element="tns:bindingQuery" />
+  </wsdl:message>
+  <wsdl:message name="resetPasswordResponse">
+    <wsdl:part name="parameters" element="tns:resetPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="queryIndvCustmFInfoResponse">
+    <wsdl:part name="parameters" element="tns:queryIndvCustmFInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="changePassword">
+    <wsdl:part name="parameters" element="tns:changePassword" />
+  </wsdl:message>
+  <wsdl:portType name="MemberService">
+    <wsdl:operation name="bindingQuery">
+      <wsdl:input name="bindingQuery" message="tns:bindingQuery" />
+      <wsdl:output name="bindingQueryResponse" message="tns:bindingQueryResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="queryIndvCustmFInfo">
+      <wsdl:input name="queryIndvCustmFInfo" message="tns:queryIndvCustmFInfo" />
+      <wsdl:output name="queryIndvCustmFInfoResponse" message="tns:queryIndvCustmFInfoResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="resetPassword">
+      <wsdl:input name="resetPassword" message="tns:resetPassword" />
+      <wsdl:output name="resetPasswordResponse" message="tns:resetPasswordResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="permanentResidentsSave">
+      <wsdl:input name="permanentResidentsSave" message="tns:permanentResidentsSave" />
+      <wsdl:output name="permanentResidentsSaveResponse" message="tns:permanentResidentsSaveResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="modifyMemberProfile">
+      <wsdl:input name="modifyMemberProfile" message="tns:modifyMemberProfile" />
+      <wsdl:output name="modifyMemberProfileResponse" message="tns:modifyMemberProfileResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="login">
+      <wsdl:input name="login" message="tns:login" />
+      <wsdl:output name="loginResponse" message="tns:loginResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getDeLicenceNo">
+      <wsdl:input name="getDeLicenceNo" message="tns:getDeLicenceNo" />
+      <wsdl:output name="getDeLicenceNoResponse" message="tns:getDeLicenceNoResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="bindMember">
+      <wsdl:input name="bindMember" message="tns:bindMember" />
+      <wsdl:output name="bindMemberResponse" message="tns:bindMemberResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="submitRecruitmentMember">
+      <wsdl:input name="submitRecruitmentMember" message="tns:submitRecruitmentMember" />
+      <wsdl:output name="submitRecruitmentMemberResponse" message="tns:submitRecruitmentMemberResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="changePassword">
+      <wsdl:input name="changePassword" message="tns:changePassword" />
+      <wsdl:output name="changePasswordResponse" message="tns:changePasswordResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MemberServiceSoapBinding" type="tns:MemberService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="bindingQuery">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="bindingQuery">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="bindingQueryResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryIndvCustmFInfo">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="queryIndvCustmFInfo">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="queryIndvCustmFInfoResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="resetPassword">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="resetPassword">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="resetPasswordResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="permanentResidentsSave">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="permanentResidentsSave">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="permanentResidentsSaveResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="modifyMemberProfile">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="modifyMemberProfile">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="modifyMemberProfileResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="login">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="login">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="loginResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bindMember">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="bindMember">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="bindMemberResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDeLicenceNo">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getDeLicenceNo">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDeLicenceNoResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="submitRecruitmentMember">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="submitRecruitmentMember">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="submitRecruitmentMemberResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changePassword">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="changePassword">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="changePasswordResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MemberService">
+    <wsdl:port name="MemberServicePort" binding="tns:MemberServiceSoapBinding">
+      <soap:address location="http://127.0.0.1:443/HNAWebService/webService/memberWebService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

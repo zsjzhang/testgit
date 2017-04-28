@@ -1,0 +1,403 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "预约维保";
+}
+@{
+    int currYear = DateTime.Now.Year;
+    int minYear = 2001;
+}
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.3&key=87418772c207aae3709a3a4028248cfc"></script>
+<script src="~/Scripts/CarService/maintenance.js"></script>
+<div class="wrapper global-wrapper" id="wrapper">
+    <div class="form-other-wrap">
+        <form id="mainForm" method="post" novalidate>
+            <div class="form-other-box">
+                <div class="logo">
+                    <img src="~/img/logo.png">
+                </div>
+                <dl class="form-row">
+                    <dt><font color="red">*</font>车型：</dt>
+                    <dd>
+                        <select id="CarSeries" name="CarSeries" class="global-select global-select-other">
+                            @{
+                                var list = (List<Vcyber.BLMS.Entity.Generated.CSBaseCar>)ViewBag.CarTypeList;
+                                if (list.Count() > 0)
+                                {
+                                    foreach (var item in list)
+                                    {
+                                        <option value="@item.Id">@item.SeriesName</option>
+                                    }
+                                }
+                                else
+                                {
+                                    <option value="请选择">请选择</option>
+                                }
+                            }
+                        </select>
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt><font color="red">*</font>经销商：</dt>
+                    <dd>
+                        <select id="sltProvince" name="DealerProvince" class="global-select" onchange="Dealer.city(this);">
+                            <option value="省">省</option>
+                            @{
+                                var provice = (IEnumerable<string>)ViewBag.Provinces;
+                                if (provice != null && provice.Any())
+                                {
+                                    foreach (var item in provice)
+                                    {
+                                        <option value="@item">@item</option>
+                                    }
+                                }
+                            }
+                        </select>
+                        <select id="sltCity" name="DealerCity" class="global-select" onchange="Dealer.list(this, document.getElementById('sltProvince'));">
+                            <option value="市">市</option>
+                        </select>
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dd>
+                        <input type="hidden" id="DealerName" name="DealerName">
+                        <select id="sltDealer" name="DealerId" class="global-select global-select-other">
+                            <option value="经销商">经销商</option>
+                        </select>
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt><font color="red">*</font>车牌号码：</dt>
+                    <dd>
+                        <input type="text" id="LicensePlate" name="LicensePlate" autocomplete="off" placeholder="例如：京A8888" value="" class="global-ipt">
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt>车架号码：</dt>
+                    <dd>
+                        <input type="text" id="VIN" name="VIN" autocomplete="off" placeholder="车架号码" value="" class="global-ipt">
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt>行驶里程：</dt>
+                    <dd>
+                        <input type="text" id="MileAge" name="MileAge" autocomplete="off" placeholder="行驶里程" value="" class="global-ipt">
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt>购车年份：</dt>
+                    <dd>
+                        <select id="PurchaseYear" name="PurchaseYear" class="global-select global-select-other">
+                            @for (int i = currYear; i >= minYear; i--)
+                            {
+                                <option value="@i">@i</option>
+                            }
+                        </select>
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt>服务项目：</dt>
+                    <dd class="selectService">
+                        <input type="checkbox" id="chkMaintenance" name="carReserveMaintenanceMaintenance" value="0" checked="checked" class="radio_btn_cc" style=" border none;" /><b>维修</b>
+                        <input type="checkbox" id="chkRepair" name="carReserveMaintenanceMaintenance" value="1" class="radio_btn_cc" style="margin-left:38px; border: none;" /><b>保养</b>
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt><font color="red">*</font>预计到店时间：</dt>
+                    <dd>
+                        @*<input type="text" class="global-ipt" id="ScheduleDate" name="ScheduleDate" onfocus="WdatePicker({ minDate: '%y-%M-{%d+1}', maxDate: '%y-%M-{%d+60}' })">*@
+                        <input type="text" class="global-ipt" id="ScheduleDate" name="ScheduleDate" readonly="readonly" onfocus="WdatePicker({ minDate: '%y-%M-{%d+1}', maxDate: '%y-%M-{%d+60}' })" placeholder="请选择" />
+                        <script>
+                            $(function () {
+                                laydate({
+                                    elem: '#ScheduleDate',
+                                    //min: laydate.now(+2), //-1代表昨天，-2代表前天，以此类推
+                                    min: laydate.now(+1), //wrl修改
+                                    max: laydate.now(+60),
+                                    istoday: false
+                                });
+                            });
+                        </script>
+                        <p class="arriveTime-tips">尊敬的车主您好，预约维保到店日期有效期为次日至60日内。感谢您的理解与支持，祝您用车愉快。</p>
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt><font color="red">*</font>姓名：</dt>
+                    <dd>
+                        <input type="text" id="UserName" name="UserName" autocomplete="off" value="" class="global-ipt" placeholder="请输入姓名">
+                    </dd>
+                </dl>
+                <dl class="form-row">
+                    <dt><font color="red">*</font>手机号：</dt>
+                    <dd>
+                        <input type="tel" id="Phone" name="Phone" autocomplete="off" value="" class="global-ipt" placeholder="请输入11位手机号码">
+                    </dd>
+                </dl>
+                <div id="errorContainer" class="form-row form-reg-tips"></div>
+                <dl class="form-row">
+                    <dd>
+                        <button id="btnReserveMaintenance" type="button" value="预约" class="global-reg-btn">预约</button>
+                    </dd>
+                </dl>
+            </div>
+
+            @*<input type="hidden" id="ForeignId" name="ForeignId" value="omXbSjqc9-ItKcmVAoq4LLk801LE">*@
+        </form>
+    </div>
+</div>
+
+<script>
+    //预约维修保养
+    $("#btnReserveMaintenance").click(function () {
+        var carSeries = $("#CarSeries").val();//车型
+        var sltProvince = $("#sltProvince").val();//省
+        var sltCity = $("#sltCity").val();//城市
+        var sltDealer = $("#sltDealer").val();//经销商ID
+        var dealerName = $("#sltDealer").find("option:selected").text();//经销商名称
+        var LicensePlate = $("#LicensePlate").val();//车牌号
+        var VIN = $("#VIN").val();//车架号
+        var MileAge = $("#MileAge").val();//里程
+        var PurchaseYear = $("#PurchaseYear").val();//购车年份
+        var r = $("input[name='carReserveMaintenanceMaintenance']:checked");//服务项目
+        var ScheduleDate = $("#ScheduleDate").val();//到店时间
+        var mobile = $("#Phone").val();
+        var name = $("#UserName").val();
+        var maintenance;
+
+        //车型不能为空
+        if (carSeries == null || carSeries == "" || carSeries == "请选择") {
+            //alert("请选择车型");
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>请选择车型。</span>'
+            });
+            return false;
+        }
+
+        //省不能为空
+        if (sltProvince == null || sltProvince == "" || sltProvince == "省" || sltProvince == "请选择") {
+            //alert("请选择省份");
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>请选择省份。</span>'
+            });
+            return false;
+        }
+
+        //市不能为空
+        if (sltCity == null || sltCity == "" || sltCity == "市" || sltCity == "请选择") {
+            //alert("请选择城市");
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>请选择城市。</span>'
+            });
+            return false;
+        }
+
+        //经销商不能为空
+        if (sltDealer == null || sltDealer == "" || sltDealer == "经销商" || sltDealer == "请选择") {
+            //alert("请选择经销商");
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>请选择经销商。</span>'
+            });
+            return false;
+        }
+
+        //车牌号不能为空
+        if (LicensePlate == null || LicensePlate == "") {
+            //alert("请填写车牌号");
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>请填写车牌号。</span>'
+            });
+            return false;
+        }
+
+        if (r.length === 0) {
+            //alert("请选择服务项目");
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>请选择服务项目。</span>'
+            });
+            return false;
+        }
+        if (r.length === 2) {
+            maintenance = 2;
+        }
+        if (r.length === 1) {
+            maintenance = r.val();
+        }
+
+        //到店时间不能为空
+        if (ScheduleDate == null || ScheduleDate == "") {
+            //alert("请选择预计到店时间");
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>请选择预计到店时间。</span>'
+            });
+            return false;
+        }
+
+        //姓名不能为空
+        if (name == null || name == "") {
+            //alert("请输入姓名");
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>请输入姓名。</span>'
+            });
+            return false;
+        }
+
+        //手机号不能为空
+        if (mobile == null || mobile == "") {
+            //alert("请输入11位手机号码");
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>请输入手机号码。</span>'
+            });
+            return false;
+        }
+
+        if (mobile.length != 11) {
+            //alert("请输入11位手机号码");
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>请输入11位手机号码。</span>'
+            });
+            return false;
+        }
+
+        var reg = /^1[3|4|5|8|7|][0-9]\d{4,8}$/;
+        var userName = $("#Phone").val();
+        if (!reg.test(userName)) {
+            //alert("请输入正确的手机号");
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>请输入正确的手机号。</span>'
+            });
+            //$(this).focus();
+            return false;
+        }
+
+        //Car.reserveMaintenance(carType, province, city, dealerId, dealerName, carNumber, frameNumber, ridesNumber, buyYears, maintenance, endTime, userName, gender, mobile);
+        //ajax执行
+        $.ajax({
+            url: "/Common/DoReserveMaintenance",
+            type: "post",
+            dataType: "json",
+            data: { CarSeries: carSeries, DealerProvince: sltProvince, DealerCity: sltCity, DealerId: sltDealer, DealerName: dealerName, LicensePlate: LicensePlate, VIN: VIN, MileAge: MileAge, PurchaseYear: PurchaseYear, ServiceType: maintenance, ScheduleDate: ScheduleDate, UserName: name, Phone: mobile },
+            success: function (result) {
+                if (result !== null && result.code == 200) {
+                    layer.open({
+                        type: 1,
+                        skin: 'bmPop',
+                        title: 0,
+                        shift: 2,
+                        closeBtn: 0,
+                        shadeClose: true,
+                        area: ['5.4rem', '3.23rem'],
+                        btn: ['确定'],
+                        content: '<img src="../img/boy1.png" /><span>恭喜您，您的预约申请已成功提交，北京现代特约店稍后将与您取得联系，请您保持手机畅通。</span>'
+                    });
+                    $("input").val("");
+                    $("#btnReserveMaintenance").val()
+                    return true;
+                } else {
+                    //alert("您已经预约过，请耐心等待，经销商会主动与您取得联系");
+                    layer.open({
+                        type: 1,
+                        skin: 'bmPopErr',
+                        title: 0,
+                        shift: 2,
+                        closeBtn: 0,
+                        shadeClose: true,
+                        area: ['5.4rem', '3.23rem'],
+                        btn: ['确定'],
+                        content: '<img src="../img/boy_err.png" /><span>您已经预约过，请耐心等待，经销商会主动与您取得联系。</span>'
+                    });
+                    return false;
+                }
+            },
+            error: function (err) {
+            }
+        });
+    });
+</script>

@@ -1,0 +1,282 @@
+body{
+	font-family: "微软雅黑";
+	background: #fff;}
+
+
+.nn{
+	margin-left: -1px;
+}
+
+.center_s{
+	width: 1000px;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+.product_buy{
+	width: 100%;
+}
+
+.pic_show{
+	width: 368px;
+	float: left;
+}
+
+
+.product_menu a{
+	font-size: 12px;
+	line-height: 40px;
+	text-decoration: none;
+	color: #8B8B8B;
+}
+
+.product_menu a:last-child{
+	color: #004587;
+}
+
+/* box */
+.box { 
+	width:368px;
+}
+.tb-pic a { display:table-cell; text-align:center; vertical-align:middle; }
+.tb-pic a img {vertical-align:middle; }
+.tb-pic a {*display:block;*font-family:Arial;*line-height:1;}
+.tb-thumb {margin:10px 0 0; overflow:hidden; }
+.tb-thumb li {background:none repeat scroll 0 0 transparent; float:left; height:64px; margin:0 7px 0 0; overflow:hidden;border: 1px solid #bebebe;}
+.tb-s310, .tb-s310 a { height:362px; width:362px; }
+/*.tb-s310, .tb-s310 img {max-height:362px; max-width:362px; }*/
+.tb-s310, .tb-s310 img {max-height:330px; max-width:330px; }
+.tb-s310 a { *font-size:271px;}
+.tb-s40 a { *font-size:35px;}
+.tb-s40, .tb-s40 a { height:64px; width:64px; }
+.tb-booth {position:relative; z-index:1; }
+.tb-thumb .tb-selected {border-color: #004587;}
+.tb-thumb .tb-selected div { background-color:#FFFFFF; border:medium none; }
+div.zoomDiv { z-index:999; position:absolute; top:0px; left:0px; width:362px; height:362px; background:#ffffff; border:1px solid #CCCCCC; display:none; text-align:center; overflow:hidden; }
+div.zoomMask { position:absolute; background:url("../img/mask.png") repeat scroll 0 0 transparent; cursor:move; z-index:1; }
+
+.pic_show p{
+	color: #929396;
+	font-size: 14px;
+	margin-top: 22px;
+}
+
+.pic_show p a{
+	width: 18px;
+	height: 17px;
+	}
+
+.product_choose{
+	width: 632px;
+	float: right;
+	color: #3d3f43;
+}
+
+.product_choose h2{
+	font-size: 26px;
+	line-height: 36px;
+	font-weight: bold;
+}
+
+.scj{
+	font-size: 22px;
+	margin-top: 56px;
+}
+
+.scj b{
+	color: #e74242;
+}
+
+.youhui{
+	margin-top: 38px;
+	font-size: 18px;
+    width:660px;
+}
+
+.youhui span{margin-right: 96px;}
+
+.youhui b{
+	color: #f39800;
+	font-weight: normal;
+}
+
+.product_choose div{
+	margin-top:50px;
+	height: 26px;
+	line-height: 26px;
+	margin-bottom: 20px;
+	}
+	
+.product_choose div p span{
+	float: left;
+	font-size: 18px;
+}
+
+.product_choose a{
+	width: 26px;
+	height: 26px;
+	border: 1Px solid #b1b1b1;
+	display: block;
+	float: left;
+	cursor: pointer;
+
+}
+
+.product_choose a img{
+	margin-left: 10px;
+}
+
+.text_box{
+	width: 64px;
+	height: 24px;
+	border: 1Px solid #b1b1b1;
+	line-height: 26px;
+	outline: none;
+	text-align: center;
+	display: block;
+	float: left;
+	font-family: "微软雅黑";
+	background: #FFFFFF;
+	border-right: none;
+	border-left: none;
+}
+
+.kucun{
+	font-size: 18px;
+	margin-left: 40px;
+}
+
+.kucun b{
+	color: #f39800;
+}
+
+.active_p,.active_ps{
+	height: 32px;
+	font-size: 16px;
+	margin-top: 56px;
+}
+
+.active_p a,.active_ps a{
+	display: block;
+	width: 230px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	text-decoration: none;
+	border: none;
+	margin-right: 36px;
+}
+
+.active_p_ca{
+	background:#f39800 ;
+		color: #FFFFFF;
+}
+
+.active_p_cs{
+	background:#004587 ;
+		color: #FFFFFF;
+}
+
+.active_p_ch{
+	background: #cbcbcb;
+		color: #4b4c50;
+}
+
+
+.product_referral{
+	width: 100%;
+	margin: 0 auto;
+	margin-top: 32px;
+}
+
+.biaoti_title{
+	width: 1000px;
+	height: 32px;
+	padding: 11px 0;
+	background: #EEEEEE;
+}
+
+.biaoti_title dl{
+	height: 32px;
+}
+
+.biaoti_title dl dt{
+	width: 4px;
+	height: 32px;
+	float: left;	
+	background: #f49600;
+	margin-left: 16px;
+	margin-right: 6px;
+}
+
+.biaoti_title dl dd h3{
+	color: #3D3F43;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.biaoti_title dl dd p{
+	color: #3D3F43;
+	font-size: 12px;
+	margin-top: 2px;
+}
+
+
+.product_r_c{
+	width: 998px;
+	margin: 0 auto;
+	border: 1px solid #EEEEEE;
+	}
+
+.product_r_c img{
+	height: 323px;
+	display: block;
+	margin: 28px auto;
+	
+}
+
+.product_r_c p{
+	text-indent: 24px;
+	line-height: 26px;
+	color: #3d3f43;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	padding: 0 21px;
+}
+
+.lwanl{
+	position: fixed;
+	top:430px;
+	right: 50%;
+	margin-right: -590px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

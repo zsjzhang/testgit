@@ -1,0 +1,89 @@
+﻿@{ViewBag.Title = "卡券发放统计";
+Layout = "~/Views/Shared/_Layout.cshtml"; ;
+}
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/bootstrap")
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Scripts/bootstrap-datepicker/datepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+<script src="~/Scripts/bootstrap-datepicker/bootstrap-datepicker.zh-CN.js"></script>
+
+<script>
+    $(function() {
+        //加载活动名称
+        ActNames();
+    });
+
+    function ActNames() {
+        $.get("/CustomCard/GetActiveTagName", function(date) {
+            var select = $("#hd");
+            select.append("<option value=''>全部</option>");
+            $("#hdtype").append("<option value=''>全部</option>");
+            $.each(date, function(i, item) {
+                $("<option value=" + item + ">" + item + "</option>").appendTo(select);
+            });
+        });
+    }
+
+    function getCardType(obj) {
+        var name = $(obj).val();
+        $.get("/CustomCard/GetCustomCardListByAct", { "actName": name }, function(date) {
+            $.each(date, function(i, item) {
+                $("#hdtype").append("<option value='" + item.CardType + "'>" + item.CardTypeName + "</option>");
+            });
+        });
+    }
+
+    function search() {
+        var data = {
+            Name: $("#hd").val(),
+            type: $("#hdtype").val()
+        };
+        var url = "@Url.Action("PartialCard")";
+        $.ajax({
+            url: url,
+            type: 'get',
+            data: data,
+            success: function (msg) {
+                $('#divPageList').html(msg);
+            }
+        });
+    }
+
+
+</script>
+<div class="panel-default">
+    @if (User.Identity.Name.ToLower().Equals("admin"))
+    {
+        <div class="panel-body" style="padding-bottom: 20px">
+
+            <div class="form-group">
+                <label class="col-md-2 control-label text-right" style="padding-top: 10px">活动名称：</label>
+                <div class="col-md-3 text-left">
+                    <select style="width:250px" id="hd" onchange="getCardType(this)">
+                    </select>
+                </div>
+
+                <label class="col-md-2 control-label text-right" style="padding-top: 10px" id="time">卡券类型：</label>
+                <div class="col-md-2 text-left">
+                    <select style="width: 250px;line-height:22px" id="hdtype"></select>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10" style="margin-top: 20px">
+                    <button class="btn btn-primary" type="submit" onclick="search()" style="margin-top: 10px">查询</button>
+                </div>
+
+            </div>
+            <div id="divPageList">
+            </div>
+
+
+        </div>
+    }
+
+</div>

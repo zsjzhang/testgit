@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Address>
+@{
+    Layout = null;
+}
+@*自拍杆四件套收货地址的省市列表*@
+<style type="text/css">
+    div .selected {
+        font-size: 21px;
+    }
+</style>
+<div class="col clearfix">
+    <label>地址：</label>
+    <div class="sl1" name="province" type="selectbox">
+        <div class="opts">
+            <a href="javascript:;" val="" class="selected" style="font-size:21px;">省</a>
+            @{
+                List<Vcyber.BLMS.Common.City.Provinces> _provinceList = ViewData["provinceList"] as List<Vcyber.BLMS.Common.City.Provinces>;
+                if (_provinceList != null && _provinceList.Any())
+                {
+                    foreach (var province in _provinceList)
+                    {
+                        @*<option value="@province.Code" title="@province.ID">@province.Name</option>*@
+    <a href="javascript:;" val="@province.Name" code="@province.Code" class="selected" style="font-size:21px;">@province.Name</a>
+                    }
+                }
+}
+
+        </div>
+    </div>
+    <div class="sl1" name="city" type="selectbox">
+        <div class="opts">
+            <a href="javascript:;" val="市" class="selected" style="font-size:21px;">市</a>
+        </div>
+    </div>
+    <input class="addrDetail" id="detailAddress" type="text">
+</div>
+<script type="text/javascript">
+    $(function () {
+        
+        //省市联动
+        $('div[name="province"] .opts a').click(function () {
+            
+            if ($(this).html() == "省") {
+
+                $('div[name="city"]').html('<div class="opts"><a href="javascript:void(0);" val="市" class="selected">市</a></div');
+                $('div[name="city"]').inputbox({ 'height': 53, 'width': 185 });                
+            } else {
+               
+                $.ajax({
+                    url: "/Yuena/FindCitysByProvince",//城市查询接口地址
+                    type: "get",
+                    data: { provinceCode: $(this).attr("code") },
+                    dataType: "json",
+                    success: function (result) {
+
+                        var tempStr = "";
+                        tempStr += '<a href="javascript:void(0);" val="请选择" class="selected" style="font-size:21px;">请选择</a>';
+                        $(result).each(function (i, obj) {
+
+                            tempStr += '<a href="javascript:void(0);" val="' + obj.Name + '" style="font-size:21px;" >' + obj.Name + '</a>';
+
+                        });
+                        //将获取的城市列表填充
+                        //alert(tempStr);
+                        $('div[name="city"]').html('<div class="opts">' + tempStr + '</div');
+                        $('div[name="city"]').inputbox({ 'height': 53, 'width': 185 });
+                    },
+                    error: function (err) {
+                        //popWindownBlue( "error...");
+                    }
+                });
+            }
+        });
+    });
+</script>

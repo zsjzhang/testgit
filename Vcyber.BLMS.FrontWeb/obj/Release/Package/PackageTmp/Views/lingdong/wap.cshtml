@@ -1,0 +1,346 @@
+﻿@{
+    Layout = null;
+    var oid = ViewBag.oid ?? "";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>北京现代领动上市活动</title>
+    <link href="~/Contents/css/lingdong/main.css" rel="stylesheet" />
+    <!--引入pageSlider所需样式表-->
+    <link rel="stylesheet" href="~/Contents/css/PageSlider/pageSlider.css">
+    <style type="text/css">
+        .hide {
+            display: none;
+        }
+
+        .ground {
+            background-size: 100% 100%;
+            overflow: hidden;
+        }
+
+        .cover {
+            padding: 0;
+            margin: 0;
+            z-index: 100;
+        }
+
+        .botbox {
+            width: 100%;
+        }
+
+        .bot {
+            z-index: 999;
+            width: 12%;
+            position: absolute;
+        }
+
+        .bot1 {
+            animation: botmove 1s infinite;
+            -moz-animation: botmove 1s infinite;
+            -webkit-animation: botmove 1s infinite;
+            -o-animation: botmove 1s infinite;
+        }
+
+        .bot2 {
+            animation: botmove 1s infinite 0.3s;
+            -moz-animation: botmove 1s infinite 0.3s;
+            -webkit-animation: botmove 1s infinite 0.3s;
+            -o-animation: botmove 1s infinite 0.3s;
+        }
+
+        .bot3 {
+            animation: botmove 1s infinite 0.6s;
+            -moz-animation: botmove 1s infinite 0.6s;
+            -webkit-animation: botmove 1s infinite 0.6s;
+            -o-animation: botmove 1s infinite 0.6s;
+        }
+
+        .safa_adj {
+            bottom: 13vh;
+        }
+    </style>
+    <script>
+        function TouchBot(bot, sc) {
+            //$("#" + bot).removeClass("cover");
+            //$("#" + bot).addClass("hide");
+            $("#" + sc).removeClass("hide");
+            $("#" + bot).addClass("cover");
+        }
+        function TouchUp(hide1, hide2, show1) {
+            $("#" + hide1).addClass("hide");
+            $("#" + hide2).addClass("hide");
+            $("#" + show1).removeClass("hide");
+        }
+
+        function go() {
+            var oid = $("#oid").val();
+            var url = common.api("Lingdong/Readme");
+            window.location = url;
+        }
+    </script>
+    <script>
+        function GetRequest() {
+            var url = location.search; //获取url中"?"符后的字串
+            var theRequest = new Object();
+
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                strs = str.split("&");
+                for (var i = 0; i < strs.length; i++) {
+                    theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+                }
+            }
+            return theRequest;
+        }
+
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?0b4e366e453f3524b50e08dc17833d51";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+
+        _hmt.push(['_setCustomVar', 5, 'ques_visitor', '全部', 3]);
+
+        var Request = GetRequest();
+        var sourceId = Request['source'];
+
+        if (sourceId == 'app') {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', 'APP', 3]);
+        }
+        else if (sourceId == 'blms') {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', '网站', 3]);
+        }
+        else if (sourceId == 'weixin') {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', '微信', 3]);
+        }
+        else if (sourceId == 'sms') {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', '短信', 3]);
+        }
+        else if (sourceId == 'weibo') {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', '微博', 3]);
+        }
+        else if (sourceId == 'edm') {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', 'EDM', 3]);
+        }
+        else if (sourceId == "magazine") {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', '杂志', 3]);
+        }
+        else if (sourceId == "sms") {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', '短信', 3]);
+        }
+        else if (sourceId == "dealer") {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', '经销商', 3]);
+        }
+        else if (sourceId == "tieba") {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', '贴吧', 3]);
+        }
+        else if (sourceId == "share") {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', '微信分享', 3]);
+        }
+        else if (sourceId = "shopping") {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', '商场', 3]);
+        }
+        else if (sourceId = "wap") {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', 'wap', 3]);
+        }
+        else {
+            _hmt.push(['_setCustomVar', 5, 'ques_visitor', '其他', 3]);
+        }
+    </script>
+</head>
+<body>
+    <div class="index-main section sec1">
+        <div class="logo" style="height: 2vh;">
+            <img src="~/Contents/images/lingdong/logo.png" />
+        </div>
+        <div style="height: 60vh;width: 100vw;margin-top: 3vh;display:inline-block;text-align: center;">
+            <img src="~/Contents/images/lingdong/home_head.png" style="width: 100%" onclick="go();" />
+        </div>
+        <div style="height: 32vh;text-align:right;">
+            <img src="~/Contents/images/lingdong/car-home1.png" class="car" style="width:100%" />
+        </div>
+        <div style="position: absolute; bottom: 1.5vh; margin-left: 4vw; width: 37vw; padding: 0; ">
+            <img src="~/Contents/images/lingdong/bottom.png" style="width: 100%;" />
+        </div>
+        <div style="text-align: center; height: 3vh;">
+            <img src="~/Contents/images/lingdong/quantou_up.png" class="up2" style="width:7%;" />
+        </div>
+    </div>
+    <div class="section sec2">
+        <div id="s1" class="commonBg show-bg1 ground">
+            <div class="botbox cover" style="margin-left:44.2vw;margin-top: 14vh; ">
+                <img id="touch_1_1" src="~/Contents/images/lingdong/quantou_redbot1.png" class="bot" />
+                <img id="touch_1_2" src="~/Contents/images/lingdong/quantou_redbot2.png" class="bot bot1" />
+                <img id="touch_1_3" src="~/Contents/images/lingdong/quantou_redbot3.png" class="bot bot2" />
+                <img id="touch_1_4" src="~/Contents/images/lingdong/quantou_redbot4.png" class="bot bot3" />
+            </div>
+        </div>
+        <div id="sc1" class="commonBg hide">
+            <img src="~/Contents/images/lingdong/quantou1_cover.png" style="width: 100%; height: 100%;" />
+            <div class="up cover">
+                <img src="~/Contents/images/lingdong/quantou_up.png" style="width:7%;" />
+            </div>
+        </div>
+    </div>
+    <div class="section sec3">
+        <div id="s2" class="commonBg show-bg2 ground">
+            <div class="botbox cover" style="margin-left:43.9vw;margin-top: 31.5vh; ">
+                <img id="touch_2_1" src="~/Contents/images/lingdong/quantou_redbot1.png" class="bot" />
+                <img id="touch_2_2" src="~/Contents/images/lingdong/quantou_redbot2.png" class="bot bot1" />
+                <img id="touch_2_3" src="~/Contents/images/lingdong/quantou_redbot3.png" class="bot bot2" />
+                <img id="touch_2_4" src="~/Contents/images/lingdong/quantou_redbot4.png" class="bot bot3" />
+            </div>
+        </div>
+        <div id="sc2" class="commonBg hide">
+            <img src="~/Contents/images/lingdong/quantou2_cover.png" style="width: 100%; height: 100%;" />
+            <div class="up cover">
+                <img src="~/Contents/images/lingdong/quantou_up.png" style="width:7%;" />
+            </div>
+        </div>
+    </div>
+    <div class="section sec4">
+        <div id="s3" class="commonBg show-bg3 ground">
+            <div class="botbox cover" style="margin-left:39.5vw;margin-top: 28.5vh; ">
+                <img id="touch_3_1" src="~/Contents/images/lingdong/quantou_redbot1.png" class="bot" />
+                <img id="touch_3_2" src="~/Contents/images/lingdong/quantou_redbot2.png" class="bot bot1" />
+                <img id="touch_3_3" src="~/Contents/images/lingdong/quantou_redbot3.png" class="bot bot2" />
+                <img id="touch_3_4" src="~/Contents/images/lingdong/quantou_redbot4.png" class="bot bot3" />
+            </div>
+        </div>
+        <div id="sc3" class="commonBg hide">
+            <img src="~/Contents/images/lingdong/quantou3_cover.png" style="width: 100%; height: 100%;" />
+            <div class="up cover">
+                <img src="~/Contents/images/lingdong/quantou_up.png" style="width:7%;" />
+            </div>
+        </div>
+    </div>
+    <div class="section sec5">
+        <div id="s4" class="commonBg show-bg4 ground">
+            <div class="botbox cover" style="margin-left:33vw;margin-top: 39.5vh; ">
+                <img id="touch_4_1" src="~/Contents/images/lingdong/quantou_redbot1.png" class="bot" />
+                <img id="touch_4_2" src="~/Contents/images/lingdong/quantou_redbot2.png" class="bot bot1" />
+                <img id="touch_4_3" src="~/Contents/images/lingdong/quantou_redbot3.png" class="bot bot2" />
+                <img id="touch_4_4" src="~/Contents/images/lingdong/quantou_redbot4.png" class="bot bot3" />
+            </div>
+            <div class="go cover">
+                <img id="touch_5" src="~/Contents/images/lingdong/go1.png" style="width:30%;" />
+            </div>
+        </div>
+        <div id="sc4" class="commonBg hide">
+            <img src="~/Contents/images/lingdong/quantou4_cover.png" style="width: 100%; height: 100%;" />
+            <div class="go cover">
+                <img id="touch_6" src="~/Contents/images/lingdong/go.png" style="width:30%;" />
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="oid" value="@(oid)" />
+    <script src="~/Contents/Scripts/jquery-1.11.2.min.js"></script>
+    <script src="~/Contents/Scripts/Me/common.method.js"></script>
+    <!--引入pageSlider.js文件-->
+    <script src="~/Contents/Scripts/zepto.js"></script>
+    <script src="~/Contents/Scripts/PageSlider/pageSlider.js"></script>
+    <script>
+        var pageSlider = PageSlider.case();
+        $('#touch_1_1').bind("touchend", function () {
+            TouchBot('bot1', 'sc1');
+        });
+        $('#touch_1_2').bind("touchend", function () {
+            TouchBot('bot1', 'sc1');
+        });
+        $('#touch_1_3').bind("touchend", function () {
+            TouchBot('bot1', 'sc1');
+        });
+        $('#touch_1_4').bind("touchend", function () {
+            TouchBot('bot1', 'sc1');
+        });
+
+        $('#touch_2_1').bind("touchend", function () {
+            TouchBot('bot2', 'sc2');
+        });
+        $('#touch_2_2').bind("touchend", function () {
+            TouchBot('bot2', 'sc2');
+        });
+        $('#touch_2_3').bind("touchend", function () {
+            TouchBot('bot2', 'sc2');
+        });
+        $('#touch_2_4').bind("touchend", function () {
+            TouchBot('bot2', 'sc2');
+        });
+
+        $('#touch_3_1').bind("touchend", function () {
+            TouchBot('bot3', 'sc3');
+        });
+        $('#touch_3_2').bind("touchend", function () {
+            TouchBot('bot3', 'sc3');
+        });
+        $('#touch_3_3').bind("touchend", function () {
+            TouchBot('bot3', 'sc3');
+        });
+        $('#touch_3_4').bind("touchend", function () {
+            TouchBot('bot3', 'sc3');
+        });
+
+        $('#touch_4_1').bind("touchend", function () {
+            TouchBot('bot4', 'sc4');
+        });
+        $('#touch_4_2').bind("touchend", function () {
+            TouchBot('bot4', 'sc4');
+        });
+        $('#touch_4_3').bind("touchend", function () {
+            TouchBot('bot4', 'sc4');
+        });
+        $('#touch_4_4').bind("touchend", function () {
+            TouchBot('bot4', 'sc4');
+        });
+        $('#touch_5, #touch_6').bind("touchend", function () {
+            go();
+        });
+    </script>
+    <script type="text/javascript">
+        var Sys = {};
+
+        var ua = navigator.userAgent.toLowerCase();
+
+        var s;
+
+        (s = ua.match(/msie ([\d.]+)/)) ? Sys.ie = s[1] :
+
+        (s = ua.match(/firefox\/([\d.]+)/)) ? Sys.firefox = s[1] :
+
+        (s = ua.match(/chrome\/([\d.]+)/)) ? Sys.chrome = s[1] :
+
+        (s = ua.match(/opera.([\d.]+)/)) ? Sys.opera = s[1] :
+
+        (s = ua.match(/version\/([\d.]+).*safari/)) ? Sys.safari = s[1] : 0;
+
+        //以下进行测试
+
+        //if (Sys.ie) document.write('IE: ' + Sys.ie);
+
+        //if (Sys.firefox) document.write('Firefox: ' + Sys.firefox);
+
+        //if (Sys.chrome) document.write('Chrome: ' + Sys.chrome);
+
+        //if (Sys.opera) document.write('Opera: ' + Sys.opera);
+
+        //if (Sys.safari) document.write('Safari: ' + Sys.safari);
+        if (Sys.safari) {
+            $("#sc4 .go").addClass("safa_adj");
+            $("#s4 .go").addClass("safa_adj");
+        }
+    </script>
+</body>
+</html>
+<link href="~/Contents/css/lingdong/index-animation.css" rel="stylesheet" />
+<script src="~/Contents/Scripts/lingdongExpired.js"></script>

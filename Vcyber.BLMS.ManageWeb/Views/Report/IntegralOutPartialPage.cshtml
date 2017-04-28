@@ -1,0 +1,109 @@
+﻿@model List<Vcyber.BLMS.Entity.IntegralOutReportInfo>
+@using Vcyber.BLMS.Entity.Enum;
+@using Vcyber.BLMS.Common;
+@using Vcyber.BLMS.ManageWeb.Helper;
+<head>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+            }
+            }
+                catch(e){
+                top.location.href = window.location.href;
+            }
+    </script>
+</head>
+
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+<div class="data-container" style="padding-top:30px">
+    <table class="table table-bordered">
+        <thead>
+            <tr class="l1">
+                <th>序号</th>
+                <th>办事处</th>
+                <th>区域</th>
+                <th>店代码</th>
+                <th>会员卡号</th>
+                <th>会员名称</th>
+                <th>手机号</th>
+                <th>积分兑换方式</th>
+                <th>积分</th>
+                <th>日期</th>
+            </tr>
+        <thead>
+            @{int count = 0;}
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@{int value = ++count;}@value</td>
+                    <td>@item.Region</td>
+                    <td>@item.Area</td>
+                    <td>@item.DealerId</td>
+                    <td>@item.No</td>
+                    <td>@item.RealName</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>@{string modeName = ((EOrderMode)item.OrderMode).GetDiscribe();}@modeName</td>
+                    <td>@item.IntegralValue</td>
+                    <td>@item.CreateTime</td>
+                </tr>
+            }
+        <tbody>
+    </table>
+</div>
+<div class="box_a2">
+    <div class="pagbox">
+        <span>共@{@ViewBag.Total}条</span>
+        <a href="javascript:void(0);" onclick="GetPageList(1)">首页</a>
+        <a href="javascript:void(0);" onclick="ShowPages('Pre')"><<</a>
+        <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.PrePage)">上一页</a>
+        @{
+            int PageIndex = (int)ViewBag.PageIndex;
+            int PageCurrentGroup = (int)(PageIndex / 10);
+        }
+        @for (int i = 1; i <= (int)ViewBag.EndPage; i++)
+            {
+                if ((i < PageCurrentGroup * 10) || (i >= (PageCurrentGroup + 1) * 10))
+                {
+                    <a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)" style="display:none;">@i</a>
+                }
+                else
+                {
+                    if (i == (int)ViewBag.PageIndex)
+                    {<a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)" style="color: blue">@i</a> }
+                    else
+                    {<a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)">@i</a> }
+                }
+            }
+        <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.NextPage, 10)">下一页</a>
+        <a href="javascript:void(0);" onclick="ShowPages('Next')">>></a>
+        <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.EndPage, 10)">尾页</a>
+    </div>
+</div>
+<input type="hidden" autocomplete="off" id="hidCurrentPage" value="@ViewBag.PageIndex" />
+<input type="hidden" autocomplete="off" id="hidEndPage" value="@ViewBag.EndPage" />
+<input type="hidden" autocomplete="off" id="hidCurrentGroup" value="@PageCurrentGroup" />
+
+
+
+

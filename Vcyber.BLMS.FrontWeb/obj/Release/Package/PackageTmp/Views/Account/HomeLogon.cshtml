@@ -1,0 +1,213 @@
+﻿@{
+    Layout = null;
+}
+<!--新增选项卡-->
+<style>
+    .loginBox_z {
+        height: 334px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+   .logConBox{ display:none; height:334px; border:1px solid #eee;}
+.loginTile{ position:relative; height:56px; }
+.loginTile li.logActT{ display:block; border-bottom:none; line-height:56px; width:141px; background:#fff; color:#3D3F43;}
+.logAct{ display:block;  }
+.loginTile li{ float:left; width:141px; height:56px; line-height:56px; border:1px solid #eee;text-align:center; cursor:pointer; background:#eee; color:#777;}
+
+
+    .center .center_r_2 {
+        background: #fff;
+        height: 276px;
+    }
+
+    .reSend {
+        display: inline-block;
+        background: #075090;
+        width: 87px;
+        height: 28px;
+        line-height: 28px;
+        text-align: center;
+        margin-left: 15px;
+        border: 1px solid #bdc7d8;
+        vertical-align: middle;
+        font-size: 12px;
+        color: #fff;
+        margin-top: 20px;
+    }
+    .reSend1{
+        background: #e7e7e7;
+        color: #767575;
+    }
+
+#register_bot,#btnHomePhoneLogon,#btnHomeLogon {
+        position: relative;
+        width: 230px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        border: 0;
+        cursor: pointer;
+        background: #075090;
+        margin-left:26px;
+    }
+
+#register_bot:hover,#btnHomePhoneLogon:hover,#btnHomeLogon:hover {
+            background: #0b63b7;
+            color: #fff;
+        }
+
+#register_bot,#btnHomePhoneLogon,#btnHomeLogon {
+        margin-top: 25px;
+        font-size: 16px;
+    }
+    #btnHomePhoneLogon {
+        width:230px;
+        margin-left:26px;
+    }
+    .logon {
+        margin-top:20px;
+    }
+    .enroll a span {
+        text-decoration:underline;
+        color:#075090;
+    }
+   .center .center_r_2 div.land a.z_h{ float:none; color:#7F7F7F;}
+    .center .center_r_2 div.land a.z_h:hover {
+        color:#075090;
+    }
+    #homeCaptcha {
+        width:130px;
+    }
+    .center .center_r_2 div.enroll {
+        margin-top:37px;
+    }
+
+    .loginTile{ position:relative; height:56px; }
+.loginTile i{ position:absolute; display:block; background:url(/Img/VipImg/indexLogIcon.png) no-repeat; width:56px; height:56px; left:50%; margin-left:-28px; top:1px;}
+.loginTile li.logActT{ display:block; border-bottom:none; line-height:56px; width:141px; background:#fff; color:#3D3F43;}
+.logAct{ display:block;  }
+.loginTile li{ float:left; width:141px; height:56px; line-height:56px; border:1px solid #eee;cursor:pointer; background:#eee; color:#777; font-size:16px; text-indent:2em;}
+
+</style>
+<script>
+ $(function(){
+     $(".loginTile li").on('mouseover',function(){
+         var n=$(this).index();
+         $(".loginTile li").removeClass("logActT");
+         $(".logConBox").removeClass("logAct");
+         $(this).addClass('logActT');
+         $(".logConBox").eq(n).addClass("logAct");
+     });
+ });
+    $(function () {
+        if (!('placeholder' in document.createElement('input'))) {
+            $('input[placeholder],textarea[placeholder]').each(function () {
+                var that = $(this),
+                text = that.attr('placeholder');
+
+                if (that.val() === "") {
+                    that.val(text).addClass('placeholder');
+                }
+                that.focus(function () {
+                    if (that.val() === text) {
+                        that.val("").removeClass('placeholder');
+                    }
+                })
+                .blur(function () {
+                    if (that.val() === "") {
+                        that.val(text).addClass('placeholder');
+                    }
+                })
+                .closest('form').submit(function () {
+                    if (that.val() === text) {
+                        that.val('');
+                    }
+                });
+            });
+        }
+    });
+</script>
+
+<ul class="loginTile">
+    <li class="logActT" style="text-indent:-2em;">账号登录</li>
+    <li>动态密码登录</li>
+    <i></i>
+</ul>
+<div class="center_r_2 logConBox logAct">
+    @Html.AntiForgeryToken()
+
+    <input id="homeAccount" name="UserName" type="text" placeholder="手机/用户名/邮箱/会员卡号" />
+    <input id="homePasswd" name="Password" type="password" placeholder="密码" />
+    <div class="test">
+        <input id="homeCaptcha" type="text" placeholder="验证码" class="test_1" />
+        <!--<a href="javascript:void(0);" id="homeSendCaptcha">获取验证码</a>-->
+        <span style="padding-left:10px;"><img src="/ValidateCode/Index?ID=1" id="imgCode" alt="单击可刷新" onclick="clickRemoveChangeCode()" /></span>
+    </div>
+    <div class="land">
+        <a id="btnHomeLogon" style="cursor: pointer;margin-top:0;text-align:center; color:white;">
+            登录
+        </a>
+        @Html.ActionLink("忘记密码?", "ResetPasswd", "Account", new { }, new { style = "width:63px; float:right;margin-right:-3px;", @class = "z_h" })
+    </div>
+    <div class="enroll">
+        <a href="/Account/AccountRegister" style="text-decoration:none;">还不是会员？<span>立即注册</span></a>
+    </div>
+</div>
+
+
+<div class="center_r_2 logConBox">
+        <p>
+            <input type="tel" id="homeAccountPhone" name="homeAccountPhone" class="logTelBox" placeholder="请输入11位手机号码">
+
+            <span id="homeAccountPhoneError" style="display:none; padding-left:18px;" class="error_red">请输入11位手机号码</span>
+        </p>
+    <p>
+        <input id="LoginCaptcha" name="LoginCaptcha" type="text" placeholder="验证码" style="width:130px;">
+        <img src="/ValidateCode/Index?ID=1" style="margin-top:22px; margin-left:18px;" id="imgCodephone" alt="单击可刷新" onclick="clickRemoveChangeCodeByPhone()" />
+        <span style="display:none;" class="error_red">请输入图片验证码</span>
+    </p>
+        <p>
+            <input placeholder="请输入短信验证码" id="LoginSMSCaptcha" name="LoginSMSCaptcha" type="text" style="width:130px;">
+
+            <span style="display:none;" class="error_red">请输入短信验证码</span>
+            <em id="AccountLoginSendCaptcha" class="reSend" style="cursor:pointer;">获取短信码</em>
+        </p>
+        
+        <p>
+            <input  type="button" id="btnHomePhoneLogon" class="register_bot pay_active" value="登录">
+        </p>
+        <div class="enroll" style="margin-top:26px;">
+            <a href="/Account/AccountRegister" style="text-decoration:none;">还不是会员？<span>立即注册</span></a>
+        </div>
+    
+</div>
+
+
+
+
+
+@*<div class="center_r_2 logConBox">
+    @Html.AntiForgeryToken()
+
+
+    <input id="homeAccountPhone" name="UserNamePhone" type="text" placeholder="手机">
+    <span style="display: none" id="LoginMobileerrorred" class="error_red">请输入手机号</span>
+    <div class="test">
+        
+            
+            <input type="text" id="LoginCaptcha"   placeholder="验证码"   class=" test_1"/>
+            <a id="AccountLoginSendCaptcha" >获取验证码</a>
+            <span  id="loginCaptchaError" style="display: none;" class="error_red">请输入验证码</span>
+       
+    </div>
+    <div class="land">
+        <a id="btnHomePhoneLogon" style="display: block;background: #075090; width: 120px; height: 30px; line-height: 30px;cursor: pointer;margin-left: 18px;float: left; text-align:center; color:white;">
+            登录
+        </a>
+        <a class="z_h" href="https://www.bluemembers.com.cn/Account/ResetPasswd" style=" color:#7F7F7F;padding-left: 30px;">忘记密码</a>
+    </div>
+    <div class="enroll" style="margin-top:10px;">
+        <a href="https://www.bluemembers.com.cn/Account/AccountRegister" style="text-decoration:none;">还不是会员？立即注册2</a>
+    </div>
+</div>*@

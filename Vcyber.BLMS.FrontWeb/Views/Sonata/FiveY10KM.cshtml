@@ -1,0 +1,169 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "5年10万公里整车包修期";
+}
+<style type="text/css">
+    table.gridtable {
+        font-family: "微软雅黑",verdana,arial,sans-serif;
+        font-size: 14px;
+        color: #333333;
+        border-width: 1px;
+        border-color: #666666;
+        border-collapse: collapse;
+    }
+
+        table.gridtable th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #dedede;
+        }
+
+        table.gridtable td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
+            border-collapse: collapse;
+        }
+
+
+            table.gridtable td.name {
+                margin-right: 20px;
+                width: 40%;
+            }
+    table.gridtable tr td{
+        background-color:#fef4d6;
+    }
+
+    .gridtable tr td{
+        text-align:center;
+        vertical-align:middle;
+    }
+</style>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Sonata" })
+    </div>
+    <div class="n_all_cont" style="height:1200px;">
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+
+        </div>
+        <div class="n_right_cont">
+
+            <div class="new_menu">
+                <p class="select_menu">  <a href="/BlueVIP/Index">蓝缤权益</a> ><a href="/CarService/Index">车辆服务</a> >5年10万公里整车包修期</p>
+            </div>
+            <div class="gy_cont" style="margin-top:0;">
+                <!--<div class="gy_zi">
+                    <h1>5年10万公里包修期</h1>
+                    <p>
+                        非营运类车辆自购车发票开具之日起，提供5年或10万公里包修期，以先到者为准。（详细内容可查阅质量保证书）
+                    </p>
+                    <span></span>
+                </div>-->
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>5年10万公里整车包修期</h1>
+                        <span>Five Years Or 100,000 KM Guarantee</span>
+                    </div>
+                </div>
+
+                <div class="fwxq_box">
+                    <p>1. 非营运类汽车包修期： </p>
+                    <p style=" padding-left:25px; ">非营运类汽车:包修期自购车发票开具之日起5年或100000公里，以先到者为准。 (各类零部件包修期，请参考下表)</p>
+                    <p>2. 三包有效期：自购车发票开具之日起2年或50000公里，以先到者为准。（仅适用于家用汽车产品）</p>
+                    <!--<img style="margin-left:40px;" src="~/Img/Sonata01.jpg" />-->
+                   
+                    <p>3. 零部件包修：</p>
+                    <div style="margin-left:40px;">
+                        <table class="gridtable">
+                            <tr>
+                                <td align="center" valign="middle" style="background-color:#ed6d1e;">区分</td>
+                                <td colspan="7" align="center" valign="middle" style="background-color:#ed6d1e;">零部件</td>
+                                <td align="center" valign="middle" style="background-color:#ed6d1e;">包修期</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2" width="60px">A类</td>
+                                <td>音响系统</td>
+                                <td>车身及底盘配件腐蚀</td>
+                                <td>皮带</td>
+                                <td>漆面</td>
+                                <td>离合器压盘</td>
+                                <td>喷油嘴</td>
+                                <td>排气管及消音器</td>
+                                <td rowspan="2" width="110px">3年或100000公里（以先到者为准）</td>
+                            </tr>
+                            <tr>
+                                <td>橡胶类</td>
+                                <td colspan="2">玻璃（前后风挡、车窗、天窗）</td>
+                                <td>制动盘</td>
+                                <td>离合器分离轴承</td>
+                                <td colspan="2">活性碳罐及滤清器</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="4">B类（易损耗零部件）</td>
+                                <td colspan="2">空气滤清器</td>
+                                <td>空调滤清器</td>
+                                <td>火花塞</td>
+                                <td colspan="3">灯泡</td>
+                                <td rowspan="3">1年或20000公里（以先到者为准）</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">燃油滤清器</td>
+                                <td>制动衬片</td>
+                                <td>离合器片</td>
+                                <td colspan="3">轮胎</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">保险丝及普通继电器（不含集成控制单元）</td>
+                                <td>遥控器电池</td>
+                                <td>蓄电池</td>
+                                <td colspan="3"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">机油滤清器</td>
+                                <td colspan="4">刮水器刮片</td>
+                                <td >6个月或5000公里（以先到者为准）</td>
+                            </tr>
+                        </table>
+                        <p>* 具体内容请参见《质量保证书》</p>
+                    </div>
+
+                </div>
+
+                <div class="fwxq_box">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    @Html.Action("Index", "Footer")
+</div>

@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "预约试驾";
+    Layout = "~/Views/Shared/_LayoutYuena.cshtml";
+}
+
+@*<h2>ReserveDriver</h2>*@
+<div class="main">  
+    <div class="bookCar">
+        <h2 class="common_title"><img src="~/Contents/yuena/images/book_title.png"></h2>
+        <div class="bookCar_con">
+            <form>
+                <p>您的好友XXX，推荐“悦纳”给您，即刻预约试驾，成功购车后，得限量礼盒，更有丰富购车积分等您拿！</p>
+                <table>
+                    <tr>
+                        <td><label>预约车型 :</label></td>
+                        <td>
+                            <div class="sl2" name="carType" type="selectbox">
+                                <div class="opts">
+                                    <a href="javascript:;" val="050101">苏州</a>
+                                    <a href="javascript:;" val="050101" class="selected">无锡</a>
+                                    <a href="javascript:;" val="050101" class="selected">常州</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2"><label>经销商 :</label></td>
+                        <td>
+                            <div class="sl3" name="sale_addr" type="selectbox">
+                                <div class="opts">
+                                    <a href="javascript:;" val="050101">苏州</a>
+                                    <a href="javascript:;" val="050101" class="selected">无锡</a>
+                                    <a href="javascript:;" val="050101" class="selected">常州</a>
+                                </div>
+                            </div>
+                            <div class="sl3" name="sale_addr" type="selectbox">
+                                <div class="opts">
+                                    <a href="javascript:;" val="050101">苏州</a>
+                                    <a href="javascript:;" val="050101" class="selected">无锡</a>
+                                    <a href="javascript:;" val="050101" class="selected">常州</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="sl2" name="sale" type="selectbox">
+                                <div class="opts">
+                                    <a href="javascript:;" val="050101">苏州</a>
+                                    <a href="javascript:;" val="050101" class="selected">无锡</a>
+                                    <a href="javascript:;" val="050101" class="selected">常州</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>姓  名 :</label></td>
+                        <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                        <td><label>电  话 :</label></td>
+                        <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <a class="btn_book" href="javascript:;"><img src="~/Contents/yuena/images/btn_book.png"></a>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="cover"></div>
+<!--预约试驾成功弹窗开始-->
+<div class="book_suc">
+    <a class="close" href="javascript:;"><img src="~/Contents/yuena/images/close.png"></a>
+    <div class="book_suc_con">
+        <h2>恭喜您 预约成功</h2>
+        <p>请保持电话畅通，我们将第一时间与您联系！</p>
+        <p>参与活动，即有机会获得惊喜大奖！</p>
+        <a href="javascript:;"><img src="~/Contents/yuena/images/btn_join.png"></a>
+    </div>
+</div>
+<!--预约试驾成功弹窗结束-->
+
+<script>
+  	$(function(){
+			$('div[name="sale_addr"]').inputbox({
+				height:53,
+				width:150
+			});
+			$('div[name="carType"]').inputbox({
+				height:53,
+				width:311
+			});
+			$('div[name="sale"]').inputbox({
+				height:53,
+				width:311
+			});
+		})
+</script>

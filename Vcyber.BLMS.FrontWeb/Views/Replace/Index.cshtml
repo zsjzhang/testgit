@@ -1,0 +1,84 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "置换专区";
+}
+<style>
+    .tab_silder {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    #slider {
+        overflow: hidden;
+        height: 262px;
+        position: relative;
+        width: 100%;
+    }
+
+        #slider ul li {
+            float: left;
+            width: 695px;
+        }
+
+            #slider ul li img {
+                width: 695px;
+                height: 262px;
+            }
+
+        #slider ol {
+            left: 30px;
+        }
+</style>
+
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Replace" })
+    </div>
+
+    <div class="n_all_cont">
+
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+        </div>
+        <div class="n_right_cont">
+            <div class="banner">
+                @Html.Action("ActivesBanner", "Banner")
+            </div>
+            <div class="gy_list" style="float:left; margin-top: 0;">
+                @Html.Action("Doing", "Mavement")
+            </div>
+            <div class="gy_list" style="float:left; margin-top: 0;">
+                @Html.Action("Past", "Mavement")
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

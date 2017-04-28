@@ -1,0 +1,84 @@
+﻿@model List<Vcyber.BLMS.Entity.UserGuide>
+
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "电子手册";
+}
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "Car" })
+    </div>
+    <div class="n_all_cont" style="height:1200px;">
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotManual", "News")
+            </div>
+
+        </div>
+        <div class="n_right_cont">
+            <p class="select_menu"><a href="/Home/Default">首页&gt;</a><a href="javascript:void(0);">电子手册 </a></p>
+            @{
+                if (Model != null && Model.Any())
+                {
+                    <div class="gy_title">
+                        <div class="gy_zi">
+                            <h2>电子手册</h2>
+                        </div>
+                    </div>
+
+                    foreach (var item in Model)
+                    {
+                        int _index = 0;
+                        <div class="download_3">
+                            <dl style="width:670px;" @{if (_index % 2 == 1) { <text> class="have_b_r " </text>                       }}>
+                                <dt>
+                                    <a href="@item.TrueLinkUrl">
+                                        <img src="@item.TrueImageUrl" style="width:83px;height:103px;" onload="javascript:if(this.height>this.width){this.width = parseInt((187 / this.height) * (this.width * 1));this.height=187;}else if(this.height<this.width){this.height = parseInt((145 / this.width) * (this.height * 1));this.width=145;}else{this.width=145;this.height=145;}" />
+                                    </a>
+                                </dt>
+                                <dd>
+                                    <div class="dd_1">@item.Title</div>
+                                    <div class="subst" style="margin-top:20px;overflow:hidden;">
+                                        <p style=" width:450px; line-height: 16px; word-wrap: break-word; word-break: normal; " title="@item.Summary">
+                                            简介：@item.Summary
+                                        </p>
+                                    </div>
+                                    <a class="xiazai" style="height: 25px; line-height: 25px; width: 70px;" href="@item.TrueLinkUrl">
+                                        <span style="line-height:25px;">下<b></b>载</span>
+                                    </a>
+                                </dd>
+                            </dl>
+                        </div>
+
+_index++;
+                    }
+                }
+            }
+        </div>
+    </div>
+
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

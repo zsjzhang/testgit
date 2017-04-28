@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Product>
+@{
+    Layout = null;
+}
+
+<div style="width:100%;">
+    @{
+        if (Model != null && Model.Any())
+        {
+            <ul>
+                @foreach (var item in Model)
+                {
+                    <li style="width:100%; float:left; padding:5px 0;">
+                        <label>@item.Name</label>
+                        <span>
+                            <label>积分</label>
+                            <label>
+                                @item.Integral
+                            </label>
+                        </span>
+                        <span>
+                            <label>蓝豆</label>
+                            <label>
+                                @item.BlueBean
+                            </label>
+                        </span>
+                    </li>
+                }
+            </ul>
+        }
+    }
+</div>

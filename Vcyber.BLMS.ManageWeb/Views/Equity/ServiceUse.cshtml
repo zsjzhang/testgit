@@ -1,0 +1,172 @@
+﻿@{
+    Layout = null;
+}
+<style>
+    /*body {
+        display: none;
+    }*/
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+<style type="text/css">
+    table td { text-align: center; }
+    .table thead > tr > th { white-space: nowrap; }
+</style>
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>报表管理 - 服务使用明细</strong></div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="col-md-2 control-label">预约时间：</label>
+                <div class="col-md-2 text-left">
+                    <input id="createtime" class="form-control datepicker" ng-model="beginTime" data-date-format="yyyy-mm-dd">
+                </div>
+                <label class="col-md-2 control-label">姓名：</label>
+                <div class="col-md-2 text-left">
+                    <input id="realname" class="form-control ng-pristine ng-valid" style="max-width: 800px" type="text" ng-model="Name" autocomplete="off">
+                </div>
+                <label class="col-md-2 control-label">手机号：</label>
+                <div class="col-md-2 text-left">
+                    <input id="phoneNumber" class="form-control ng-pristine ng-valid" style="max-width: 800px" type="text" ng-model="phoneNumber" autocomplete="off">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">渠道：</label>
+                <div class="col-md-2 text-left">
+                    @*<input id="DataSource" placeholder="微信/App/网站" class="form-control ng-pristine ng-valid" style="max-width: 800px" type="text" ng-model="qd" autocomplete="off">*@
+                    @*<select class="form-control" ng-model="provinceDw.select" ng-change="provinceChange()">
+                            <option ng-repeat="it in provinceDw.data" value="{{it.id}}">{{it.value}}</option>
+                        </select>*@
+                    <select class="form-control" id="DataSource">
+                        <option value="">请选择</option>
+                        <option value="网站">网站</option>
+                        <option value="微信">微信</option>
+                        <option value="App">App</option>
+                    </select>
+                </div>
+                <label class="col-md-2 control-label">店代码：</label>
+                <div class="col-md-2 text-left">
+                    <input id="DealerId" class="form-control ng-pristine ng-valid" style="max-width: 800px" type="text" ng-model="ShopCode" autocomplete="off">
+                </div>
+                <label class="col-md-2 control-label">预约机场：</label>
+                <div class="col-md-2 text-left">
+                    <input id="AirportName" class="form-control ng-pristine ng-valid" style="max-width: 800px" type="text" ng-model="ShopCode" autocomplete="off">
+                </div>
+
+            </div>
+            <div class="form-group" style=" text-align:center; ">
+                <label class="col-md-2 control-label">服务状态：</label>
+                <div class="col-md-2 text-left">
+                    <select class="form-control" id="Status">
+                        <option value="">请选择</option>
+                        <option value="待受理">待受理</option>
+                        <option value="系统已受理">系统已受理</option>
+                        <option value="待特约店处理">待特约店处理</option>
+                        <option value="服务记录已完成">服务记录已完成</option>
+                        <option value="已下发">已下发</option>
+                        <option value="已消费">已消费</option>
+                    </select>
+                </div>
+                <label class="col-md-2 control-label">预约项目：</label>
+
+                <div class="col-md-2 text-left">
+                    <select class="form-control" id="OrderType" style="width:180px;">
+                        <option value="">请选择</option>
+                        <option value="上门关怀服务">上门关怀服务</option>
+                        <option value="3年9次免费检测服务">3年9次免费检测服务</option>
+                        <option value="免费取送车服务">免费取送车服务</option>
+                        <option value="一对一专属服务">一对一专属服务</option>
+                        <option value="35个机场候机尊享服务">35个机场候机尊享服务</option>
+                        <option value="长途旅行关怀服务">长途旅行关怀服务</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" type="submit" onclick="search()">查询</button>
+                <input class="btn btn-primary" type="submit" onclick="ToExcel()" value="导出" />
+            </div>
+            <div class="form-group" style="padding:15px;">
+                <div id="divPageList">
+                    @{
+                        Html.RenderAction("GetServiceUse", new
+                        {
+                            index = 1,
+                            size = 10
+                        });
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+    $(function ()
+    {
+        $('.datepicker').datepicker();
+    })
+    //列表分页
+    function GetPageList(pageIndex)
+    {
+        var data = {
+            Createtime: $("#createtime").val().trim(),
+            RealName: $("#realname").val().trim(),
+            phoneNumber: $("#phoneNumber").val().trim(),
+            DataSource: $("#DataSource").val().trim(),
+            AirportName: $("#AirportName").val().trim(),
+            DealerId: $("#DealerId").val().trim(),
+            Status: $("#Status").val().trim(),
+            OrderType: $("#OrderType").val().trim(),
+            index: pageIndex,
+            size: 10
+        };
+
+        var url = "@Url.Action("GetServiceUse")";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function (msg)
+            {
+                $('#divPageList').html(msg);
+            }
+        });
+    }
+
+    //保存查询条件
+    function search()
+    {
+        GetPageList(1);
+    }
+    //导出
+    function ToExcel()
+    {
+        var Createtime = $("#createtime").val().trim();
+        var RealName = $("#realname").val().trim();
+        var phoneNumber = $("#phoneNumber").val().trim();
+        var DataSource = $("#DataSource").val().trim();
+        var AirportName = $("#AirportName").val().trim();
+        var DealerId = $("#DealerId").val().trim();
+        var Status = $("#Status").val().trim();
+        var OrderType = $("#OrderType").val().trim();
+        window.location = '/Equity/SerViceUserToExcel?Createtime=' + Createtime + '&RealName=' + RealName + "&phoneNumber=" + phoneNumber +
+            "&DataSource=" + DataSource + "&AirportName=" + AirportName + "&DealerId=" + DealerId + "&Status=" + Status + "&OrderType=" + OrderType;
+        return false;
+    }
+
+</script>

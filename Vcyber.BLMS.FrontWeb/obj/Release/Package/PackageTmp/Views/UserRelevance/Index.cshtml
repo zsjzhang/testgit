@@ -1,0 +1,73 @@
+﻿@using Vcyber.BLMS.FrontWeb.Models;
+@using Vcyber.BLMS.Entity.Enum;
+@{
+    ViewBag.Title = "关联账户";
+}
+@{
+    var dataResult = ViewBag.Datas as List<UserRelevanceV>;
+    string disabled = ((ELoginMode)ViewBag.LoginMode) == ELoginMode.CYT ? "" : "style='display:none'";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/UserRegister/UserRelevance.js"></script>
+<link href="~/css/UserRelevance.css" rel="stylesheet" />
+<div>
+    <div >
+        <label>我的关联账户</label> <a href="#" onclick="userRevevance.ShowDiv();" @disabled>【立即绑定】</a>
+        <hr />
+    </div>
+    <div>
+        @foreach (var item in dataResult)
+        {
+            <div style="border:2px solid BurlyWood;">
+                <table style="width:100%">
+                    <tr>
+                        <td rowspan="2" style="width:250px;">
+                            <div>
+                                <img src="@item.MallImg" />
+                                <label id="mallName">平台名称：@item.MallName</label>
+                            </div>
+                        </td>
+                        <td>会员名称：<label id="userName">@item.UserName</label></td>
+                    </tr>
+                    <tr>
+                        <td>绑定手机：<label id="phoneNumber">@item.PhoneNumber</label></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        }
+    </div>
+    <div id="RelevanceRegister" class="Relevance">
+        <div>
+            <table>
+                <tr>
+                    <td><label>平台：</label></td>
+                    <td>
+                        <select id="mallCode">
+                            <option value="402894894a9f6463014a9f657a950000">马自达</option>
+                            <option value="402894894ab39d0e014ab3adc23b0001">车联邦</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>会员名：</label></td>
+                    <td><input type="text" id="mallUserName" /></td>
+                </tr>
+                <tr>
+                    <td><label>密码：</label></td>
+                    <td><input type="password" id="password" /></td>
+                </tr>
+            </table>
+            <hr />
+        </div>
+        <div>
+            <div>
+                <input type="checkbox" id="Agree" /><label for="Agree">同意</label><a href="#">《车音通账户关联协议》</a>
+            </div>
+            <div>
+                <input type="button" id="save" value="确认" onclick="userRevevance.Save();" /> <input type="button" id="cancel" value="取消" onclick="    userRevevance.HidenDiv();" />
+            </div>
+        </div>
+    </div>
+</div>
+

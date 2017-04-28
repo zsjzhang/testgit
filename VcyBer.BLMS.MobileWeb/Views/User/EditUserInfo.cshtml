@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "修改用户信息";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Vcyber.BLMS.Entity.Membership
+<head>
+    <title>修改用户信息</title>
+</head>
+@Html.AntiForgeryToken()
+<script src="~/Scripts/page/user.editUserInfo.js"></script>
+
+<div class="wrapper global-wrapper clearfix" id="wrapper">
+    <div class="form-box">
+        <form id="mainForm" method="post">
+            <input type="hidden" name="Id" autocomplete="off" value="@Model.Id" />
+            <div class="logo">
+                <img src="~/img/logo.png" />
+            </div>
+            <div class="form-row">
+                <div class="form-row-hd">用户名：</div>
+                <input type="text" id="NickName" name="NickName" placeholder="用户名" autocomplete="off" value="@Model.NickName" class="global-ipt" />
+            </div>
+            @if (Model.SystemMType == 2)//车主
+            {
+                <div id="divIdentityNumber" class="form-row">
+                    <div class="form-row-hd">身份证号：</div>
+                    <input type="text" name="IdentityNumber" placeholder="身份证号" autocomplete="off" value="@Model.IdentityNumber" class="global-ipt" readonly="readonly" />
+                </div>
+            }
+            <div class="form-row">
+                <div class="form-row-hd">性别：</div>
+                <select id="Gender" name="Gender" class="global-select global-select-other">
+                    <option value="0">选择性别</option>
+                    @{
+                        if (Model.Gender == "1")
+                        {
+                            <option selected="selected" value="1">男</option>
+                            <option value="2">女</option>
+                        }
+                        else if (Model.Gender == "2")
+                        {
+                            <option value="1">男</option>
+                            <option selected="selected" value="2">女</option>
+                        }
+                        else
+                        {
+                            <option value="1">男</option>
+                            <option value="2">女</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-row">
+                <div class="form-row-hd">生日：</div>
+                <input id="Birthday" readonly="readonly" autocomplete="off" name="Birthday" value="@Model.Birthday" class="global-ipt" />
+            </div>
+            <div class="form-row">
+                <div class="form-row-hd">地址：</div>
+                <input type="text" id="Address" name="Address" autocomplete="off" placeholder="请输入您的收件地址，以便礼品邮寄" value="@Model.Address" class="global-ipt" />
+            </div>
+            <div id="errorContainer" class="form-row form-reg-tips"></div>
+            <div class="form-row">
+                <input type="button" id="editusermsg" autocomplete="off" value="提交" class="global-reg-btn" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    //提交
+    $("#editusermsg").click(function () {
+        var obj = {
+            Id: $("input[name='Id']").val(),
+            NickName: $("#NickName").val(),
+            IdentityNumber: $("input[name='IdentityNumber']").val(),
+            Gender: $("#Gender").find("option:selected").val(),
+            Birthday: $("input[name='Birthday']").val(),
+            Address: $("input[name='Address']").val(),
+            __RequestVerificationToken: document.getElementsByName('__RequestVerificationToken')[0].value
+        };
+        //debugger
+        var requestData = $("#mainForm").serialize();
+        $.post("/User/SetBaseInfoSave", obj, function (result) {
+            if (result == null || result.code == "" || result.code == "401") {
+                AlertFalse(result.msg);
+                return false;
+            }
+            if (result.code == "200") {
+                AlertSuccess(result.msg, function () {
+                    window.location.href = "/MyCenter/Index"
+                });
+            }
+        });
+    });
+</script>

@@ -1,0 +1,351 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Product>
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "商城分类";
+}
+<style>
+    .biaoti_title {
+        width: 100%;
+    }
+
+    .curr {
+        background-color: #075090;
+        color: white;
+    }
+
+
+    .center_r_2 {
+        height: 282px;
+        margin-top: 1px;
+        background: #EEE;
+    }
+
+    .center_r_2 input {
+        background: #fff;
+        width: 235px;
+        height: 28px;
+        border: 1px solid #BEBEBE;
+        margin: 0 auto;
+        display: block;
+        float: left;
+        margin-top: 20px;
+        margin-left: 18px;
+
+        outline: medium;
+        padding-left: 10px;
+        font-size: 12px;
+    }
+
+    .center_r_2 div.test {
+        width: 248px;
+        float: left;
+        height: 32px;
+        margin-top: 20px;
+    }
+
+    .center_r_2 div.land {
+        width: 248px;
+        float: left;
+        height: 32px;
+        margin-top: 20px;
+    }
+
+    .center_r_2 div.enroll {
+        margin-top: 40px;
+        width: 100%;
+        font-size: 12px;
+        float: left;
+        text-align: center;
+    }
+
+    .center_r_2 input.test_1 {
+        width: 108px;
+        margin-top: 0px;
+    }
+
+    .center_r_2 div.land a.z_h {
+        display: block;
+        background: none;
+        height: 30px;
+        width: 56px;
+        line-height: 30px;
+        cursor: pointer;
+        float: left;
+        font-size: 14px;
+        padding-left: 10px;
+        margin-left: 0px;
+        padding-top: 6px;
+    }
+    .center_r_2 {
+        height: 282px;
+        margin-top: 1px;
+        background: #EEE;
+    }
+
+    .center_r_2 input {
+        background: #fff;
+        width: 235px;
+        height: 28px;
+        border: 1px solid #BEBEBE;
+        margin: 0 auto;
+        display: block;
+        float: left;
+        margin-top: 20px;
+        margin-left: 18px;
+        outline: medium;
+        padding-left: 10px;
+        font-size: 12px;
+    }
+
+    .center_r_2 div.test {
+        width: 248px;
+        float: left;
+        height: 32px;
+        margin-top: 20px;
+    }
+
+    .center_r_2 input.test_1 {
+        width: 108px;
+        margin-top: 0px;
+    }
+
+    .center_r_2 div.land {
+        width: 248px;
+        float: left;
+        height: 32px;
+        margin-top: 20px;
+    }
+
+    .center_r_2 div.land a.z_h {
+        display: block;
+        background: none;
+        height: 30px;
+        width: 56px;
+        line-height: 30px;
+        cursor: pointer;
+        float: left;
+        font-size: 14px;
+        padding-left: 10px;
+        margin-left: 0px;
+        padding-top: 6px;
+    }
+
+    .center_r_2 div.enroll {
+        margin-top: 40px;
+        width: 100%;
+        font-size: 12px;
+        float: left;
+        text-align: center;
+    }
+
+    .center_r_2 div.enroll a {
+        color: #7F7F7F;
+        cursor: pointer;
+    }
+
+    .logConBox {
+        height: 285px;
+    }
+    #btnHomePhoneLogon {
+        color: #fff;
+    }
+
+</style>
+<script>
+    $(function() {
+        $("li:contains('途牛')").hide();
+    });
+</script>
+<div>
+
+    <div>
+        @Html.Action("HomeHeader", "Header", new { pageName = "Mall" })
+    </div>
+
+
+    <div class="center_s">
+        <div class="online_left" >
+            <div style="width:286px; margin-bottom:1px">
+                @Html.Action("CartByMall", "Cart")
+            </div>
+            <div class="center" style="width: 286px; height: auto; margin-top:0;">
+                <div class="logon" style=" margin-top :0px">
+                    @{
+                        if (this.User.Identity.IsAuthenticated)
+                        {
+                            @Html.Action("HomeLogonSuccess", "Account")
+                        }
+                        else
+                        {
+                            @Html.Action("HomeLogon", "Account")
+                        }
+                    }
+                </div>
+                </div>
+                @Html.Action("ExchangeList", "Mall")
+            </div>
+
+        <div class="online_right">
+            <p class="select_menu"><a href="/Mall/Index">在线商城 &gt;</a><a href="/MallCategory/Index?levelonecategory=@ViewBag.levelOneCategory&Name=@ViewBag.TitleName">@ViewBag.TitleName</a></p>
+            @Html.Action("MallLevelTwo", "MallCategory", new { oneLevel = ViewBag.levelOneCategory })
+
+            <div id="pro_list">
+                <ul>
+                    <li class="list_click">
+
+                        <a href="javascript:void(0);)" onclick="productQuery(this);"> 默认排序<input type="hidden" name="ordertype" value="1" /> </a>
+                    </li>
+                    <p>/</p>
+                    <li>
+                        <a href="javascript:void(0);)" onclick="productQuery(this);"> 销量<input type="hidden" name="ordertype" value="3" /> </a>
+                    </li>
+                    <p>/</p>
+                    <li>
+                        <a href="javascript:void(0);)" onclick="productQuery(this);"> 分值<input type="hidden" name="ordertype" value="2" /> </a>
+                    </li>
+                </ul>
+                
+                <div class="fanye">
+                    <a class="min"  onclick="prePage() "><img src="/img/min.png"></a>
+                    <span><b class="list_click"> <label id="mycategoryPageCurIndex">@ViewBag.pageIndex</label> </b> / <label id="mycategoryPageCountIndex">@ViewBag.pageCount</label> </span>
+                    <a class="add"  onclick="nextPage()"><img src="/img/add.png"></a>
+                </div>
+            </div>
+
+            <div class="product_show show_list">
+                <div class="MallProductPagers">
+                    @Html.Action("ProductListByMall", "Product", new { productList = Model, totalCount = ViewBag.totalCount })
+                </div>
+            </div>
+
+            <div class="f_y_1">
+                <div class="pagers">
+                    @Html.Action("MallPagerShop", "Pagers", new { Category=ViewBag.levelOneCategory, pageIndex = ViewBag.pageIndex, pageSize = ViewBag.pageSize, totalCount = ViewBag.totalCount })
+                    <script type="text/javascript">
+                        function ck(i){
+                            alert(i);
+                        }
+                        function nextPage()
+                        {  
+                         
+                            var pageindex =$("#mycategoryPageCurIndex").html();
+                            pageindex = parseInt(pageindex) + 1;
+                            var pagecount = $("#mycategoryPageCountIndex").html();
+                            pagecount = parseInt(pagecount);
+                            if (pageindex <= pagecount)
+                                goPager(pageindex);
+                        }
+                        function prePage() {
+                            var pageindex = $("#mycategoryPageCurIndex").html();
+                            pageindex = parseInt(pageindex) - 1;
+                           
+                            if (pageindex >= 1)
+                                goPager(pageindex);
+                        }
+                        function goPager(pageIndex) {
+                            $.ajax({
+                                url: "/Pagers/MallPagerShop",
+                                type: "get",
+                                data: { Category:@ViewBag.levelOneCategory, pageIndex: pageIndex, pageSize: '@ViewBag.pageSize', totalCount: '@ViewBag.totalCount', t: (new Date()).getTime() },
+                                success: function (pagerResult) {
+                                    $(".pagers").html(pagerResult);
+                                    $("#mycategoryPageCurIndex").html(pageIndex);
+                                },
+                                error: function (err) { }
+                            });
+                            $.ajax({
+                                url: "/Product/AjaxProductPagers",
+                                type: "get",
+                                data: {  levelOneCategory:@ViewBag.levelOneCategory,pageIndex: pageIndex, t: (new Date()).getTime() },
+                                success: function (result) {
+                                    $(".MallProductPagers").html(result);
+                                },
+                                error: function (err) { }
+                            });
+
+                        }
+
+
+                        function getUrlParam(name) {
+                            var arr = decodeURIComponent(location.search.split('?')[1]).split('&');
+                            var request = [];
+                            var temp = [];
+                            for (var i = 0; i < arr.length; i++) {
+                                temp = arr[i].split('=');
+                                request[temp[0]] = temp[1];
+                            }
+                            return request[name] || null;
+                        }
+
+
+
+                        var productQuery = function (obj) {
+                            var _domain = window.location.href.split("?")[0];
+                            var _levelonecategory = getUrlParam("levelonecategory");
+                            var _leveltwocategory = getUrlParam("leveltwocategory");
+                            var _exchangetype = getUrlParam("exchangetype");
+                            var _orderTypeStr = getUrlParam("ordertype");
+
+
+                            switch ($(obj).find("input").attr("name")) {
+
+                            case "leveltwocategory":
+                                if (_leveltwocategory == null || _leveltwocategory == "") {
+                                    _domain = window.location.href + "&leveltwocategory=" + $(obj).find("input").val();
+                                } else {
+                                    _domain = _domain + "?levelonecategory=" + _levelonecategory + "&leveltwocategory=" + $(obj).find("input").val();
+                                    if (_exchangetype != null && _exchangetype != "") {
+                                        _domain = _domain + "&exchangetype=" + _exchangetype;
+                                    }
+                                    if (_orderTypeStr != null && _orderTypeStr != "") {
+                                        _domain = _domain + "&ordertype=" + _orderTypeStr;
+                                    }
+                                }
+                                break;
+                            case "exchangetype":
+                                if (_exchangetype == null || _exchangetype == "") {
+                                    _domain = window.location.href + "&exchangetype=" + $(obj).find("input").val();
+                                } else {
+                                    _domain = _domain + "?levelonecategory=" + _levelonecategory + "&exchangetype=" + $(obj).find("input").val();
+                                    if (_leveltwocategory != null && _leveltwocategory != "") {
+                                        _domain = _domain + "&leveltwocategory=" + _leveltwocategory;
+                                    }
+                                    if (_orderTypeStr != null && _orderTypeStr != "") {
+                                        _domain = _domain + "&ordertype=" + _orderTypeStr;
+                                    }
+                                }
+                                break;
+                            case "ordertype":
+                                if (_orderTypeStr == null || _orderTypeStr == "") {
+                                    _domain = window.location.href + "&ordertype=" + $(obj).find("input").val();
+                                } else {
+                                    _domain = _domain + "?levelonecategory=" + _levelonecategory + "&ordertype=" + $(obj).find("input").val();
+                                    if (_leveltwocategory != null && _leveltwocategory != "") {
+                                        _domain = _domain + "&leveltwocategory=" + _leveltwocategory;
+                                    }
+                                    if (_exchangetype != null && _exchangetype != "") {
+                                        _domain = _domain + "&exchangetype=" + _exchangetype;
+                                    }
+                                }
+                                break;
+                            default:
+                                _domain = window.location.href;
+                                break;
+                            }
+                            window.location = _domain;
+                        }
+                    </script>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+
+</div>

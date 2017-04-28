@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "专属服务";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<style>
+    .sonata-service-row .planico {
+        background: url("@Url.Content("~/img/NewImg/life_pic1.png")") #fff no-repeat center 15%;
+        background-size: 31% auto;
+    }
+     .sonata-service-row .tuniuico {
+    background: url("@Url.Content("~/img/NewImg/life_pic2.png")") #fff no-repeat center 15%;
+    background-size: 31% auto;
+    }
+     .sonata-service-row .yueico {
+    background: url("@Url.Content("~/img/NewImg/life_pic3.png")") #fff no-repeat center 15%;
+    background-size: 31% auto;
+    }
+</style>
+<div class="wrapper" id="wrapper">
+    <div class="sonata-hd-bar">
+        <h2>生活服务</h2>
+    </div>
+    <div class="sonata-service-row">
+        <ul class="sonata-service-list">
+            <li class="planico">
+                <a href="@Url.Action("AirportIndex", "LifeService")">50个机场候机尊享服务</a>
+            </li>
+            @*<li class="tuniuico">
+                <a href="@Url.Action("TuniuIndex", "LifeService")">途牛</a>
+            </li>*@
+            <li class="yueico">
+                <a id="gotohnagroup" href="@Url.Action("LiyueIndex", "LifeService")">礼悦会</a>
+            </li>
+            <li class="ico-menpiao">
+                <a href="#">景区门票兑换</a>
+            </li>
+            <li class="ico-xbk">
+                <a href="#">星巴克</a>
+            </li>
+            <li class="ico-dyp">
+                <a href="#">网票网电子影票</a>
+            </li>
+            <li class="ico-birth">
+                <a href="#">生日特权</a>
+            </li>
+            <li class="ico-tujia">
+                <a href="@Url.Action("TujiaIndex", "LifeService")">途家</a>
+            </li>
+            <li class="ico-magazine">
+                <a href="@Url.Action("Index", "OnlineRead")">在线阅读</a>
+            </li>
+            @*<li class="ico-s14">
+                <a href="javascript:;">&nbsp;</a>
+            </li>*@
+        </ul>
+    </div>
+    <div class="sonata-hd-bar">
+        <h2>车辆服务</h2>
+    </div>
+    <div class="sonata-service-row">
+        <ul class="sonata-service-list">
+            <li class="ico-s1"><a href="@Url.Action("RoadRescue","carService")">24小时免费道路救援服务&nbsp;</a></li>
+            <li class="ico-s6"><a href="@Url.Action("FreeCar", "carService")">免费取送车服务&nbsp;</a></li>
+            <li class="ico-yanghufuwu"><a href="#">车辆养护产品&nbsp;</a></li>
+            <li class="ico-chq"><a href="@Url.Action("CardSaleAfter", "carService")">春/夏/冬季售后卡券&nbsp;</a></li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(".sonata-service-row li a[href='#']").click(function () {
+            AlertFalse("功能未上线，敬请期待！");
+        })
+    })
+</script>

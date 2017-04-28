@@ -1,0 +1,187 @@
+﻿@{
+    ViewBag.Title = "权限- 角色管理";
+    Layout = null;
+}
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>权限- 角色管理</strong></div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <span class="col-md-6">角色管理</span>
+            <div class="col-md-6 text-right"><button type="button" data-toggle="modal" data-target="#addRoleModal" class="btn btn-primary">添加</button></div>
+        </div>
+    </div>
+    <div class="gridStyle" style="height: 410px; border: 1px solid rgb(212,212,212)" ng-grid="gridOptions">
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="addRoleModal" tabindex="-1" role="dialog" aria-labelledby="addRoleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="addRoleModalLabel">添加角色</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">角色名称:</label>
+                            <div class="col-md-10"><input class="form-control" ng-model="roleData.Name" required /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">角色描述:</label>
+                            <div class="col-md-10">
+                                <textarea class="form-control" rows="4" ng-model="roleData.Describe"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" ng-click="addRole()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="editRoleModal" tabindex="-1" role="dialog" aria-labelledby="editRoleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="editRoleModalLabel">编辑角色</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">角色名称:</label>
+                            <div class="col-md-10"><input class="form-control" ng-model="roleData.Name" required /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">角色描述:</label>
+                            <div class="col-md-10">
+                                <textarea class="form-control" rows="4" ng-model="roleData.Describe"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" ng-click="editRole()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="eidtRoleFunctionModal" tabindex="-1" role="dialog" aria-labelledby="eidtRoleFunctionLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="eidtRoleFunctionLabel">权限设置</h4>
+            </div>
+            @*<div class="modal-body" style="height: 400px; overflow: scroll">
+                    <div class="row" style="height: 400px">
+                        <form class="form-horizontal" style="height: 400px">
+                            <div>
+                                <ul ng-repeat="rootItem in Functions">
+                                    <li class="item_{{$index}}" my-customer>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" ng-bind="rootItem.id" ng-model="rootItem.IsChecked" ng-checked="rootItem.IsChecked">
+                                                {{rootItem.Name}}
+                                            </label>
+                                        </div>
+                                        <ul ng-repeat="item in rootItem.data">
+                                            <li class="item_{{$index}}">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" ng-bind="item.id" ng-model="item.IsChecked" ng-checked="item.IsChecked">
+                                                        {{item.Name}}
+                                                    </label>
+                                                </div>
+                                                <ul ng-repeat="lastItem in item.data">
+                                                    <li>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" ng-bind="lastItem.id" ng-model="lastItem.IsChecked" ng-checked="lastItem.IsChecked">
+                                                                {{lastItem.Name}}
+                                                            </label>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </form>
+                    </div>
+                </div>*@
+            <div class="tree" style="height:400px; overflow-y:scroll">
+                <ul>
+                    <li ng-repeat="rootItem in vm.Functions" ng-class="{closed:vm.tree.isFolded(rootItem)}">
+                        <div>
+                            <input type="checkbox" ng-model="rootItem.IsChecked" ng-change="vm.tree.check(rootItem,rootItem.IsChecked)"
+                                   ng-class="{intermediate:vm.tree.isSemiChecked(rootItem)}" />
+                            <span ng-click="vm.tree.toggleFold(rootItem)">
+                                <span class="glyphicon" ng-class="vm.tree.isFolded(rootItem)?'glyphicon-plus':'glyphicon-minus'"></span>
+                                {{rootItem.Name}}
+                            </span>
+                        </div>
+                        <ul ng-class="{hidden: vm.tree.isFolded(rootItem)}">
+                            <li ng-repeat="item in rootItem.data" ng-class="{closed:vm.tree.isFolded(item)}">
+                                <input type="checkbox" ng-model="item.IsChecked" ng-change="vm.tree.check(item, item.IsChecked)"
+                                       ng-class="{intermediate: vm.tree.isSemiChecked(item)}" />
+                                <span ng-click="vm.tree.toggleFold(item)">
+                                    <span class="glyphicon" ng-class="vm.tree.isFolded(item)?'glyphicon-plus':'glyphicon-minus'"></span>
+                                    {{item.Name}}
+                                </span>
+                                <ul ng-class="{hidden: vm.tree.isFolded(item)}">
+                                    <li ng-repeat="lastItem in item.data">
+                                        <label>
+                                            <input type="checkbox" ng-model="lastItem.IsChecked" ng-change="vm.tree.check(lastItem, lastItem.IsChecked)" />
+                                            {{lastItem.Name}}
+                                        </label>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+           
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" ng-click="functionSave()">保存</button>
+                </div>
+            </div>
+    </div>
+</div>
+

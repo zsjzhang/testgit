@@ -1,0 +1,220 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "纯正配件查询";
+}
+<style>
+    <!-- 新增-- > .czpjBl_zsy {
+        border: none;
+        padding: 0;
+        text-indent: 0;
+    }
+
+    .czpjBl_zsy p {
+        text-indent: 0;
+        height: auto;
+        line-height: 22px;
+        font-size: 14px;
+    }
+
+        .czpjBl_zsy p.czpjTil {
+            color: #0b4d89;
+            font-weight: bold;
+        }
+
+    .czpjBl_zsy div.czpj_seaBox {
+        height: 60px;
+        clear:both;
+    }
+
+    .czpjBl_zsy .czpj_seaBox p {
+        text-align: center;
+        width: 100%;
+        margin: 10px auto;
+        text-indent: 0px;
+    }
+
+        .czpjBl_zsy .czpj_seaBox p label {
+            float: left;
+            width: 140px;
+            height: 30px;
+            margin-top: 0;
+            line-height: 30px;
+            cursor: pointer;
+        }
+
+        .czpjBl_zsy .czpj_seaBox p input {
+            float: left;
+            padding: 0 5px;
+            height: 28px;
+            width: 210px;
+        }
+
+        .czpjBl_zsy .czpj_seaBox p a {
+            float: left;
+            display: inline-block;
+            background: #075090;
+            color: #fff;
+            width: 140px;
+            height: 30px;
+            margin-left: 10px;
+            margin-top: 0;
+        }
+
+    .czpjBl_zsy div.czpj_res {
+        padding: 15px;
+        height: 110px;
+        background: #f4f7fd;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #cfd3db;
+    }
+</style>
+<script >
+
+    function pjyz() {
+
+        var pjyzcode = $("#peijiancode").val();
+        if (pjyzcode == null || pjyzcode == "") {
+            popWindownBlue( "请输入配件防伪码");
+            return false;
+        }
+        var reg = new RegExp("^[0-9]{13}|[0-9a-zA-Z]{16}$");
+        if (!reg.test(pjyzcode)) {
+            popWindownBlue("请您输入正确防伪码");
+            $("#peijiancode").val("");
+            return false;
+        }
+
+        $.ajax({
+            url: "/Car/DoFittingValidate",
+            type: "post",
+            dataType: "json",
+            data: { code: pjyzcode, address: "", Longitude: 0, Latitude: 0, Altitude: 0, ctype: 'bmsite' },
+            success: function (result) {
+                if (result !== null && result.code == 200) {
+                    if (result.data == "1") {
+                        $(".czpj_res").css("display", "none");
+                        $("#firstresult").css("display", "block");
+                        $("#firstresult").find("p").eq(1).text("防伪码：" + pjyzcode);
+                    }
+                    if (result.data == "2") {
+                        $(".czpj_res").css("display", "none");
+                        $("#secondresult").css("display", "block");
+                        $("#secondresult").find("p").eq(1).text("防伪码：" + pjyzcode);
+                    }
+                    if (result.data == "3") {
+                        $(".czpj_res").css("display", "none");
+                        $("#threeresult").css("display", "block");
+                        $("#threeresult").find("p").eq(1).text("防伪码：" + pjyzcode);
+                    }
+
+
+                } else {
+                    popWindownBlue( result.msg);
+                    return false;
+                }
+            },
+            error: function (err) {
+            }
+        });
+    }
+
+
+</script>
+<script src="~/Content/laydate/laydate.js"></script>
+<div>
+
+
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "BlueVIP" })
+    </div>
+    <div class="n_all_cont" style="height:1200px;">
+        <div class="n_left_cont">
+            <div class="center logon" style=" width: 286px; height: auto; margin-top:0;">
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+            </div>
+            <div class="homereserve">
+                @Html.Action("ReserveRegion", "Home")
+            </div>
+            <div class="homeShortcut">
+                @Html.Action("ShortcutRegion", "Home")
+            </div>
+            <div class="homeproduct">
+                @Html.Action("HotExchangeProductList", "Product")
+            </div>
+            <div class="homehotnews">
+                @Html.Action("HotNewsRegion", "home")
+            </div>
+        </div>
+        <div class="n_right_cont">
+            <!--修改内容-->
+            <div class="gy_cont" style="margin-top:0;">
+                <div class="gy_title">
+                    <div class="gy_zi">
+                        <h1>纯正配件查询</h1>
+                        <span>Genuine Parts</span>
+                    </div>
+                </div>
+                <div class="gy_nr" style="overflow:hidden">
+
+                    <div class="home_cont" style="margin-bottom:20px;">
+                        <div class="czpjBl_zsy">
+                            <p style="margin: 20px 10px 10px 10px; width:auto;">北京现代汽车以追求卓越品质，共创幸福生活为企业宗旨。我们坚持追求汽车安全和汽车品质，有效支持纯正配件，为用户打造高效无忧的汽车生活。北京现代纯正配件，保障您出行安全！</p>
+                            <hr>
+
+                            <div class="czpj_seaBox">
+                                <p class="clearfix">
+                                    <label for="peijiancode">请输入配件防伪码：</label>
+                                    <input type="text" placeholder="请输入配件13位防伪码" id="peijiancode" name="peijiancode">
+                                    <a class="thre_cc" href="javascript:void(0);" onclick="pjyz()">查询</a>
+                                </p>
+                            </div>
+
+                            <!--显示结果1-->
+                            <div class="czpj_res" id="firstresult" style=" display :none ">
+                                <p class="czpjTil"></p>
+                                <p>尊敬的客户：</p>
+                                <p>该产品为北京现代摩比斯汽车配件有限公司供应的北京现代纯正配件，请您放心使用。如有任何疑问，请联系当地北京现代特约店，或拨打北京现代客户服务热线：400-800-1100</p>
+                            </div>
+
+                            <!--显示结果2-->
+                            <div class="czpj_res" id="secondresult" style=" display :none">
+                                <p class="czpjTil"></p>
+                                <p>尊敬的客户：</p>
+                                <p>该产品为非北京现代纯正配件，请谨防假冒！如有任何疑问，请联系当地北京现代特约店，或拨打北京现代客户服务热线：400-800-1100</p>
+                            </div>
+                            <!--显示结果3-->
+                            <div class="czpj_res" id="threeresult" style=" display :none">
+                                <p class="czpjTil"></p>
+                                <p>尊敬的客户：</p>
+                                <p>该产品已多次扫码，建议您选择当地北京现代特约店购买配件或咨询配件问题。如有任何疑问，请联系当地北京现代特约店，或拨打北京现代客户服务热线：400-800-1100</p>
+                            </div>
+                            <div id="divContent">
+
+                                <p>北京现代纯正配件：</p>
+                                <p>是指由北京现代摩比斯汽车配件有限公司供应给北京现代4S店及特约服务站，与北京现代汽车有限公司整车配件质量相同的、供售后服务使用的配件。</p>
+                                <p>纯正配件可以为您的车辆提供最佳性能，保障车辆的最佳安全性和可靠性。</p>
+                                <p>北京现代客服中心：</p>
+                                <p class="czpjTil">400-800-1100</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="footer">
+    @Html.Action("Index", "Footer")
+</div>
+
+</div>

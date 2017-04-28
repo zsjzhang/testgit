@@ -1,0 +1,97 @@
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLMS MEMBERS</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/webix.js")
+    @Styles.Render("~/Content/webix.css")
+    @Scripts.Render("~/Scripts/Help.js")
+        @Scripts.Render("~/bundles/bootstrap")
+    <link href="~/Scripts/app/ng-grid-2.0.12/ng-grid.min.css" rel="stylesheet" />
+    <style type="text/css">
+        .table thead > tr > th{white-space: nowrap;}
+        .data-container{overflow: auto;clear: both;}
+            .data-container > table > thead > tr {
+                background-color: #eaeaea;
+            }
+         .btn#btn-submit-cs{padding-left:-15px;}
+    </style>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+
+        $(function() {
+            if (self == top) {
+                var theBody = document.getElementsByTagName('body')[0];
+                theBody.style.display = "block";
+            } else
+            {
+                top.location = self.location;
+            }
+        });
+
+
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 text-left">
+                <img src="~/Content/Image/logo1.png" /><span>后台管理系统</span>
+            </div>
+            <div class="col-lg-6 text-right">
+                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <span> | 欢迎您 -@User.Identity.Name</span><a href="#/Account/UpdatePwd"> | 修改密码</a><span> | </span><a href="javascript:document.getElementById('logoutForm').submit()">退出登录</a><span> | </span>
+                }
+
+            </div>
+        </div>
+    </div>
+    <div ng-controller="TopmenuCtrl">
+        <div class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse" id="topmenu">
+                    @Html.Action("TopMenu", "Menu")
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 container">
+                    <div id="leftmenu"></div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="container panel panel-default">
+                        <div class="panel-body"><strong>@ViewBag.Title</strong></div>
+                    </div>
+                    <div id="data-container" class="container panel panel-default panel-body">
+                        @RenderBody()
+                    </div>
+                    </div>
+        </div>
+    </div>
+</div>
+<footer class="text-center">
+    <p>&copy; 2005-2014</p>
+</footer>
+</body>
+</html>

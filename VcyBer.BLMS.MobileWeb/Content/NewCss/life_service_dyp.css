@@ -1,0 +1,17 @@
+﻿body{height:100%;background-color:#f5f5f5;border-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box}
+.wrapper{position:relative;margin:0 auto;min-height:100%}
+.xbkTitle{color:#00684d;font-size:.14rem;font-weight:700;overflow:hidden;height:.5rem;line-height:.5rem;background-color:#fff;padding-left:.15rem}
+.xbkTitle i{float:left;margin-right:.18rem;vertical-align:middle;line-height:.5rem}
+.pXbk{line-height:.26rem;font-size:.14rem;text-indent:2em;margin-bottom:.2rem;font-family:'微软雅黑'}
+.gy_list_box{padding:0 .2rem}
+.centerP{text-align:center;margin-bottom:.2rem}
+.grayWPW{margin-bottom:.2rem;padding-bottom:.4rem}
+.grayWPW .picWPW{margin:.3rem auto;width:5.45rem;height:1.57rem}
+.picWPW img{width:100%}
+.movieWPW h2{text-align:center;font-size:.3rem;font-family:微软雅黑;color:#0763b7;font-weight:800}
+.movieWPW_info{font-size:.23rem;font-family:微软雅黑;color:#333;margin-left:.5rem;margin-top:.08rem;margin-bottom:.3rem;text-align:left}
+.movieWPW_info{line-height:.4rem}
+.movieWPW h3{width:5.46rem;height:.7rem;border-top:1px dashed #d3d3d4;text-align:center;line-height:.7rem;margin-left:.5rem;color:#0763b7;font-weight:800;font-size:.3rem}
+.FlowChart_WPW{margin:0 auto;width:6rem;height:1.16rem}
+.FlowChart_WPW img{width:100%}
+a.btnWPWBg{display:block;width:140px;font-size:16px;height:31px;margin:.4rem auto;background:#f49600;line-height:31px;text-align:center;color:#fff}

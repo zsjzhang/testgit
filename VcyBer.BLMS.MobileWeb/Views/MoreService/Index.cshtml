@@ -1,0 +1,59 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "更多服务";
+}
+<script type="text/javascript">
+    var currdate = '@ViewBag.CurrDate';
+</script>
+
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<script src="~/Scripts/js/jquery-migrate-1.2.1.js"></script>
+<script src="~/Scripts/common.method.js"></script>
+<script src="~/Scripts/Me/WeChat.js"></script>
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.3&key=87418772c207aae3709a3a4028248cfc"></script>
+<script src="~/Scripts/MoreService/service.more.js?date=@DateTime.Now.Ticks"></script>
+<style>
+    .form-other-box {
+        width: 100%;
+        text-align: center;
+        height: 100%;
+        overflow:auto;
+    }
+
+    .weather-double {
+        width: 60px;
+    }
+
+    .form-other-wrap {
+        height: 400px;
+    }
+    /*.layui-layer layer-anim-02 layui-layer-page bmPopErr{
+       left:33px !important;
+    }*/
+</style>
+
+<div class="wrapper" id="wrapper">
+    <div class="moreService-hd">
+        <div class="weather" id="weatherPanl">
+        </div>
+        <div class="weather-row" id="areaPanl">
+        </div>
+        <div class="weather-double" id="stopPanl">
+        </div>
+        <img src="~/img/test_img_16.jpg">
+    </div>
+    <div class="moreService-bar">
+        <ul class="moreService-tab">
+            <li><a href="javascript:;" class="currServiceTab">违章查询</a></li>
+            <li><a href="@Url.Action("GasStationCarPark", "MoreService", new { maptype = 1 })">附近加油站</a></li>
+            <li><a href="@Url.Action("GasStationCarPark", "MoreService", new { maptype = 2 })">附近停车场</a></li>
+            <li><a href="@Url.Action("PartsQuery", "Common", null)">纯正配件查询</a></li>
+        </ul>
+    </div>
+    <div class="form-other-wrap">
+        <div class="form-other-box">
+            <iframe width="100%" height="100%" frameborder="0" scrolling="no" src="http://www.cheshouye.com/api/weizhang/?t=aaa" name="weizhang" id="weizhang"></iframe>
+        </div>
+    </div>
+</div>

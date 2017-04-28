@@ -1,0 +1,95 @@
+﻿@using VcyBer.BLMS.MobileWeb.Models
+@model CarItem
+@{
+    ViewBag.Title = Model.SeriesName + "-车型报价";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/car_Offer.css" rel="stylesheet" />
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<style>
+    .testDriving-hd-bar a {
+        width: 24%;
+    }
+</style>
+<div class="wrapper" style="visibility: visible;">
+    <div class="testDriving-hd">
+        <div class="testDriving-hd-bar">
+            <a href="@Url.Action("Car_Feature", "Car", new { carType = Model.CarType, seriesName = Model.SeriesName })">产品特性</a>
+            @if (ViewBag.HasVideo)
+            {
+                <a href="@Url.Action("Car_Video", "Car", new { carType = Model.CarType, seriesName = Model.SeriesName })">精彩视频</a>
+            }
+            else
+            {
+                <a href="javascript:AlertFalse('敬请期待！');">精彩视频</a>
+            }@*<a href="@Url.Action("Car_Feature", "Car", new { carType = Model.CarType })" style="border-left: none;">动态页面</a>*@
+            <a href="@Url.Action("Car_Item", "Car", new { carType = Model.CarType, seriesName = Model.SeriesName })" style="border-left: none;" class="currAutoMobile">车型报价</a>
+            <a href="@Url.Action("TestDrive", "Car", new { carType = Model.CarType, seriesName = Model.SeriesName })" id="btnTestDrive">预约试驾</a>
+        </div>
+    </div>
+
+    <div class="carPrice_table">
+        @if (Model.CarType.Equals("Yuena"))
+        {
+            <span style="line-height:0.74rem;">悦纳三厢</span>
+            <table>
+                <thead align="center" valign="center">
+                    <tr>
+                        <th width="60%" class="carPrice_borl">车型</th>
+                        <th width="40%" class="carPrice_borr">官方报价（元）</th>
+                    </tr>
+                </thead>
+
+                <tbody align="center" valign="center">
+                    @foreach (var item in Model.CarPriceList)
+                    {
+                        <tr>
+                            <td class="carPrice_borl">@item.Name</td>
+                            <td class="carPrice_borr">@item.Price</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <span style="line-height:0.74rem;">悦纳两厢</span>
+            <table>
+                <thead align="center" valign="center">
+                    <tr>
+                        <th width="60%" class="carPrice_borl">车型</th>
+                        <th width="40%" class="carPrice_borr">官方报价（元）</th>
+                    </tr>
+                </thead>
+                <tbody align="center" valign="center">
+                    @foreach (var item in Model.CarPrices)
+                    {
+                        <tr>
+                            <td class="carPrice_borl">@item.Name</td>
+                            <td class="carPrice_borr">@item.Price</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <table>
+                <thead align="center" valign="center">
+                    <tr>
+                        <th width="60%" class="carPrice_borl">车型</th>
+                        <th width="40%" class="carPrice_borr">官方报价（元）</th>
+                    </tr>
+                </thead>
+
+                <tbody align="center" valign="center">
+                    @foreach (var item in Model.CarPriceList)
+                    {
+                        <tr>
+                            <td class="carPrice_borl">@item.Name</td>
+                            <td class="carPrice_borr">@item.Price</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>

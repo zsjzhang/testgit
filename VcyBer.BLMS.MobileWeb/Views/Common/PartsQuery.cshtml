@@ -1,0 +1,72 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <title>纯正配件查询</title>
+</head>
+<body>
+    <div class="accSearchBox">
+        <p>尊敬的用户，您可通过扫描配件外包装标识上的二维码（或输入数字代码），进行原厂配件辨别查验。</p>
+        <p><img src="~/img/peijianchaxun_M1.png" /></p>
+
+        <h2>方法一</h2>
+        <p>在下方文本框内输入配件标签上的数字代码，点击"查询"按钮进行验证查询。</p>
+
+        <div class="accInpBox">
+            <input type="text" id="inputkey" autocomplete="off" placeholder="请输入配件13位防伪码" class="myinput">
+        </div>
+
+        <div class="accBtn" id="btn_commit" href="javascript:void(0);" onclick="FittingsantifakeCode()">
+            查&nbsp;询
+        </div>
+        <!--<img src="img/peijianchaxun_btn.jpg" onclick="go();" id="btn_commit" style="width: 72.2%">-->
+        <h2>方法二</h2>
+        <p>点击微信右上角+号，选择扫一扫，将二维码图片置于矩形方框内，系统会自动识别二维码验证查询。</p>
+        <p>注：每个配件标签限制查询次数，请勿频繁多次查询</p>
+    </div>
+</body>
+
+<script>
+    //配件防伪码查询
+    function FittingsantifakeCode() {
+
+        var code = $("#inputkey").val();
+        if (code == null || code == "") {
+            //alert("请输入配件防伪码");
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>请输入配件防伪码。</span>'
+            });
+            return false;
+        }
+        var reg = new RegExp("^[0-9]{13}|[0-9a-zA-Z]{16}$");
+        if (!reg.test(code)) {
+            //alert("请您输入正确防伪码");
+            layer.open({
+                type: 1,
+                skin: 'bmPopErr',
+                title: 0,
+                shift: 2,
+                closeBtn: 0,
+                shadeClose: true,
+                area: ['5.4rem', '3.23rem'],
+                btn: ['确定'],
+                content: '<img src="../img/boy_err.png" /><span>请您输入正确防伪码。</span>'
+            });
+            $("#inputkey").val("");
+            return false;
+        }
+        var curWwwPath = window.document.location.href;
+        var pathName = window.document.location.pathname;
+        var pos = curWwwPath.indexOf(pathName);
+        var localhostPath = curWwwPath.substring(0, pos);
+        window.location = localhostPath + "/Common/PartsResult?code=" + code;
+    }
+</script>

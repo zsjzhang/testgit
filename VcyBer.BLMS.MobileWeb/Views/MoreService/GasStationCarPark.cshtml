@@ -1,0 +1,110 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>地图跳转</title>
+    <link href="~/Content/css/common.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Content/layer/skin/layer.css" />
+    <link href="~/Content/css/alert.css" rel="stylesheet" />
+    <script src="~/Scripts/js/jquery-1.11.2.min.js"></script>
+    <script src="~/Scripts/js/jquery-migrate-1.2.1.js"></script>
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.3&key=87418772c207aae3709a3a4028248cfc"></script>
+    <script src="~/Content/layer/layer.min.js"></script>
+    <script src="~/Scripts/js/common.js"></script>
+    <script src="~/Scripts/common.method.js"></script>
+    <script src="~/Scripts/Me/WeChat.js"></script>
+    <script type="text/javascript">
+        function mapRedirecting(obj,maptype) {
+            //maptype 1=加油站 2=停车场
+            obj.getLocation(function (res) {
+                var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+                var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+                var speed = res.speed; // 速度，以米/每秒计
+                var accuracy = res.accuracy; // 位置精度
+                //alert(common.format("度：{0}，纬度：{1}，速度：{2}，位置经度：{3}", latitude, longitude, speed, accuracy));
+                var mapParameter = {
+                    locations: "'" + longitude + "," + latitude + "'",
+                    keywords: "加油站,停车场",
+                    defaultIndex: maptype,
+                    defaultView: "list",
+                    searchRadius: 5000,
+                    key: "87418772c207aae3709a3a4028248cfc"
+                };
+                location.href = "http://m.amap.com/around/?" + parseParam(mapParameter);
+            });
+        }
+
+        var parseParam = function (param, key) {
+            var paramStr = "";
+            if (param instanceof String || param instanceof Number || param instanceof Boolean) {
+                paramStr += "&" + key + "=" + encodeURIComponent(param);
+            } else {
+                $.each(param, function (i) {
+                    var k = key == null ? i : key + (param instanceof Array ? "[" + i + "]" : "." + i);
+                    paramStr += '&' + parseParam(this, k);
+                });
+            }
+            return paramStr.substr(1);
+        };
+        $(function () {
+            //WeChat.readyCallback = function () {
+            // mapRedirecting(obj,@ViewBag.MapType);
+            //}
+            getLocation();
+        });
+        function getLocation()
+        {
+            if (navigator.geolocation)
+            {
+                navigator.geolocation.getCurrentPosition(showPosition ,onError,{ enableHighAccuracy: true, maximumAge: 1000 }); // 这里设置超时为10000毫秒，即10秒);
+            }
+            else
+            {
+                AlertFalse("该浏览器不支持获取地理位置");
+            }
+        }
+        //失败时
+        function onError(error) {
+            switch (error.code) {
+                case 1:
+                    AlertFalse("位置服务被拒绝");
+                    break;
+                case 2:
+                    AlertFalse("暂时获取不到位置信息");
+                    break;
+                case 3:
+                    AlertFalse("获取信息超时");
+                    break;
+                case 4:
+                    AlertFalse("未知错误");
+                    break;
+            }
+        }
+        function showPosition(position)
+        {
+            //maptype 1=加油站 2=停车场
+            var latitude = position.coords.latitude; // 纬度，浮点数，范围为90 ~ -90
+            var longitude = position.coords.longitude; // 经度，浮点数，范围为180 ~ -180。
+            var mapParameter = {
+                locations: "'" + longitude + "," + latitude + "'",
+                keywords: "加油站,停车场",
+                defaultIndex: @ViewBag.MapType,
+                defaultView: "list",
+                searchRadius: 5000,
+                key: "87418772c207aae3709a3a4028248cfc"
+            };
+            location.href = "http://m.amap.com/around/?" + parseParam(mapParameter);
+        }
+    </script>
+</head>
+<body>
+    <div>
+    </div>
+</body>
+</html>

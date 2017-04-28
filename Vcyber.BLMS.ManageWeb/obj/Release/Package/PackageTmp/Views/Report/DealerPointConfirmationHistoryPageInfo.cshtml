@@ -1,0 +1,99 @@
+﻿@model Vcyber.BLMS.Entity.DealerPointConfirmationOutPut
+
+<style>
+    body {
+        display: none;
+    }
+</style>
+
+<script>
+
+    $(function () {
+        if (self == top) {
+            var theBody = document.getElementsByTagName('body')[0];
+            theBody.style.display = "block";
+        } else {
+            top.location = self.location;
+        }
+    });
+
+
+</script>
+
+    @*BM列表信息展示*@
+    <div class="data-container" style="padding-top:30px">
+        <table class="table table-bordered">
+            <thead>
+                <tr class="l1">
+                    <th>序号</th>
+                    <th>结算开始时间</th>
+                    <th>结算截止时间</th>
+                    <th>经销商ID</th>
+                    <th>经销商</th>
+                    <th>积分获取总量</th>
+                    <th>积分兑换总量</th>
+                    <th>积分兑换金额</th>
+                    <th>结算金额</th>
+                    <th width="200px">备注</th>
+                </tr>
+            </thead>
+            @{int count = 0;}
+            <tbody>
+                @if (Model.IntegralCountReportInfoList.Count() > 0)
+                {
+                    foreach (var item in Model.IntegralCountReportInfoList)
+                    {
+                        <tr>
+                            <td>@{int value = ++count;}@value</td>
+                            <td>@DateTime.Parse(item.DateStart).ToString("yyyy-MM-dd")</td>
+                            <td>@DateTime.Parse(item.DateEnd).ToString("yyyy-MM-dd")</td>
+                            <td>@item.DealerId</td>
+                            <td>@item.DealerName</td>
+                            <td>@item.RewardPoints</td>
+                            <td>@item.ConsumePoints </td>
+                            <td>@item.PointCost</td>
+                            <td>@item.SettlementY</td>
+                            <td>@item.Remark</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @*BM列表分页*@
+    <div class="box_a2">
+        <div class="pagbox">
+            <span>共@{@ViewBag.Total}条<</span>
+            <a href="javascript:void(0);" onclick="GetPageList(1)">首页</a>
+            <a href="javascript:void(0);" onclick="ShowPages('Pre')"><<</a>
+            <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.PrePage)">上一页</a>
+            @{
+                    int PageIndex = (int)ViewBag.PageIndex;
+                    int PageCurrentGroup = (int)(PageIndex / 10);
+                }
+                @for (int i = 1; i <= (int)ViewBag.EndPage; i++)
+                {
+                    if ((i < PageCurrentGroup * 10) || (i >= (PageCurrentGroup + 1) * 10))
+                    {
+                        <a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)" style="display:none;">@i</a>
+                    }
+                    else
+                    {
+                        if (i == (int)ViewBag.PageIndex)
+                        {<a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)" style="color: blue">@i</a> }
+                        else
+                        {<a id="@i" href="javascript:void(0);" onclick="GetPageList(@i, 10)">@i</a> }
+                    }
+                }
+            <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.NextPage, 10)">下一页</a>
+            <a href="javascript:void(0);" onclick="ShowPages('Next')">>></a>
+            <a href="javascript:void(0);" onclick="GetPageList(@ViewBag.EndPage, 10)">尾页</a>
+        </div>
+    </div>
+
+<input type="hidden" id="hidCurrentPage" value="@ViewBag.PageIndex" />
+<input type="hidden" id="hidEndPage" value="@ViewBag.EndPage" />
+<input type="hidden" id="hidCurrentGroup" value="@PageCurrentGroup" />
+
+

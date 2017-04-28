@@ -1,0 +1,55 @@
+﻿@{
+    Layout = null;
+}
+
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+<div class="container panel panel-default">
+    <div class="panel-body"><strong>内容管理 - 编辑新闻</strong></div>
+</div>
+<div class="row">
+    <form class="form-horizontal" data->
+        <div class="form-group">
+            <div class="col-md-10" ng-show="0"><label class="form-control" ng-model="editData.Id" /></div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">标题:{{editData.Title}}</label>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">缩略图:</label>
+            <div class="col-md-10">
+                <img src="{{editData.MajorImageUrl}}" alt="...">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">标题:{{editData.Content}}</label>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">支持在线报名:{{editData.SignUp}}</label>
+            
+        </div>
+       
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="button" class="btn btn-default">关闭</button>
+                    <button type="button" class="btn btn-primary" ng-click="edit()">保存</button>
+                </div>
+            </div>
+    </form>
+</div>

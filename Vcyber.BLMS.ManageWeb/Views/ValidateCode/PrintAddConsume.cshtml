@@ -1,0 +1,27 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+@*新增消费记录打印*@
+<head>
+    <script language="javascript">
+        function printme() {
+            document.body.innerHTML = document.getElementById('div2').innerHTML;
+            window.print();
+        }
+    </script>
+</head>
+<body>
+    <div style="width:250px;height:100px;margin-left:100px;">
+        <!--<button onclick="printme();" style="width:150px;height:50px;margin-left:100px;">打印</button>-->
+        <a href="#" onclick="printme();"><img src="~/Content/Image/Print.jpg" /></a>
+    </div>
+
+    <div style="width:800px;height:800px;" id="div2">
+        <img src="@Url.Action("PrintAddConsumeRecord", "ValidateCode", ViewBag.Data)" />
+    </div>
+</body>
+</html>

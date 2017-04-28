@@ -1,0 +1,78 @@
+﻿@{
+    Layout = null;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<script>
+    $(function () {
+        if (!('placeholder' in document.createElement('input'))) {
+            $('input[placeholder],textarea[placeholder]').each(function () {
+                var that = $(this),
+                text = that.attr('placeholder');
+
+                if (that.val() === "") {
+                    that.val(text).addClass('placeholder');
+                }
+                that.focus(function () {
+                    if (that.val() === text) {
+                        that.val("").removeClass('placeholder');
+                    }
+                })
+                .blur(function () {
+                    if (that.val() === "") {
+                        that.val(text).addClass('placeholder');
+                    }
+                })
+                .closest('form').submit(function () {
+                    if (that.val() === text) {
+                        that.val('');
+                    }
+                });
+            });
+        }
+    });
+</script>
+<div class="center_r_2">
+    @Html.AntiForgeryToken()
+    <input id="homeAccount" name="UserName" type="text" placeholder="手机/用户名/邮箱" />
+    <input id="homePasswd" name="Password" type="password" placeholder="密码" />
+    <div class="test">
+        <input id="homeCaptcha" type="text" placeholder="验证码" class="test_1" />
+        <!--<a href="javascript:void(0);" id="homeSendCaptcha">获取验证码</a>-->
+        <span style="padding-left:10px;"><img src="/ValidateCode/Index?ID=1" id="imgCode" alt="单击可刷新" onclick="clickRemoveChangeCode()" /></span>
+    </div>
+    <div class="land">
+        <a id="btnHomeLogon" style="display: block;background: #075090; width: 120px; height: 30px; line-height: 30px;cursor: pointer;margin-left: 18px;float: left; text-align:center; color:white;">
+            登录
+        </a>
+        @Html.ActionLink("忘记密码", "ResetPasswd", "Account", new { }, new { style = " color:#7F7F7F;padding-left: 30px;", @class = "z_h" })
+    </div>
+    <div class="enroll">
+        @Html.ActionLink("还不是会员？立即注册", "AccountRegister", "Account", new { }, new { style = "text-decoration:none;" })
+    </div>
+</div>

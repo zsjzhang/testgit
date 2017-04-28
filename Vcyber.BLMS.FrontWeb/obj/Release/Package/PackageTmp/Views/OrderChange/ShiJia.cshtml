@@ -1,0 +1,156 @@
+﻿@{
+    Layout = null;
+}
+@{
+    int currYear = DateTime.Now.Year;
+    int minYear = 2001;
+}
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/ExChangeStyle.css">
+    <link rel="stylesheet" type="text/css" href="/css/ExChangeAward.css">
+    <link rel="stylesheet" type="text/css" href="/layer/skin/layer.css">
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <!--转动插件rotate,js-->
+    <script type="text/javascript" src="~/Scripts/ExChangeAwardRotate.js"></script>
+    <!--抽奖-->
+    <script type="text/javascript" src="~/Scripts/ExChangeAward.js"></script>
+    <!--弹出层layer-->
+    <script type="text/javascript" src="/layer/layer.js"></script>
+    <script src="~/Scripts/controller/orderchange.exchange.js"></script>
+    <script src="/Scripts/controller/DealerController.js"></script>
+    <script src="~/Scripts/controller/UserController.js"></script>
+    <title>置换月活动_预约</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="mainBox">
+            <div class="header">
+                <dl>
+                    <dd class="on"><a href="/OrderChange/Index">首　页</a></dd>
+                    <dd><a href="/OrderChange/JieShao">活动介绍</a></dd>
+                    <dt><a href="/"></a></dt>
+                    <dd><a href="/OrderChange/JiangPing">奖品设置</a></dd>
+                    <dd><a href="/OrderChange/ZhongJiang">中奖名单</a></dd>
+                </dl>
+            </div>
+            <div class="mainCont yuyue">
+                <ul class="tabTilBox">
+                    <li class="on" tag="shijia">预约试驾</li>
+                    <li tag="zhihuan">预约置换</li>
+                </ul>
+                <div class="tabConBox">
+                    <dl>
+                        <dt>
+                            <span>
+                                <input type="radio" id="lingDong1" name="CarSeriers" value="领动" @(ViewBag.Flag == 1 ? "checked='checked'" : "")>
+                                <label for="lingDong1">领动</label>
+                            </span>
+                            <span>
+                                <input type="radio" name="CarSeriers" id="shengDa1" value="全新胜达" @(ViewBag.Flag == 2 ? "checked='checked'" : "")>
+                                <label for="shengDa1">全新胜达</label>
+                            </span>
+                            <em>选择车型</em>
+                        </dt>
+                        <dd class="couponsBox" style="display:block;">
+                            <form>
+                                <p>
+                                    @Html.Action("ProvinceCity", "Car", new { IsDingChe = 1 })
+                                </p>
+                                <p><input type="text" id="Name" placeholder="请输入您的姓名" /></p>
+                                <p><input type="text" id="Mobile" placeholder="请输入您的手机号码" /></p>
+                                <p>
+                                    <select id="Province" name="Province" class="select-city" onchange="User.FindCityByProvince(this);">
+                                        <option value="">省份</option>
+                                        @{
+                                            List<Vcyber.BLMS.Common.City.Provinces> _provinceList = ViewData["provinceList"] as List<Vcyber.BLMS.Common.City.Provinces>;
+                                            if (_provinceList != null && _provinceList.Any())
+                                            {
+                                                foreach (var province in _provinceList)
+                                                {
+                                                    <option value="@province.Code" title="@province.ID">@province.Name</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                    <select id="myOrderAddressCitySpan" name="myOrderAddressCitySpan" class="select-city" onchange="User.FindAreasByCity(this);">
+                                        <option value="">城市</option>
+                                    </select>
+                                    <select id="myOrderAddressAreaSpan" name="myOrderAddressAreaSpan" class="select-city">
+                                        <option value="">地区</option>
+                                    </select>
+                                </p>
+                                <p><input type="text" id="SendAddress" placeholder="请输入您的详细地址　　　　(发放礼品使用)" /></p>
+                                <p><input type="text" id="InviteCode" placeholder="活动邀约码　　　　　经销商邀约使用(选填)" /></p>
+                                <p class="towInput" tag="zhihuan" style="display:none">
+                                    <input type="text" id="OldCarBrand" placeholder="原品牌" />
+                                    <input type="text" id="OldCarSeriers" placeholder="原车型" />
+                                </p>
+                                <p class="spanSel" tag="zhihuan" style="display:none">
+                                    <span>首上牌时间</span>
+                                    <select id="OldCarLicenseYear" class="select-city">
+                                        <option value="">年</option>
+                                        @for (int i = currYear; i >= minYear; i--)
+                                        {
+                                            <option value="@i">@i</option>
+                                        }
+                                    </select>
+                                    <select id="OldCarLicenseMonth" class="select-city">
+                                        <option value="">月</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </p>
+                                <p tag="zhihuan" style="display:none"><input type="text" id="OldCarDriver" placeholder="行驶公里数(如12万)" /></p>
+                                <input type="hidden" id="hidSource" value="@ViewBag.Source" />
+                                <input type="hidden" id="hidFlag" value="@ViewBag.Flag" />
+                                <a href="javascript:void(0);" id="btnAddOrderChange" class="btnS1">确认提交</a>
+                                <em class="redWhite">告诉你个小秘密，提交信息立即参与抽奖哟！</em>
+                            </form>
+                        </dd>
+                    </dl>
+                </div>
+
+
+                <div class="footTextBox">
+                    <h3>温馨提示：</h3>
+                    <p>1、我们将对您的个人信息采取保密措施，请您务必如实填写。</p>
+                    <p>2、请确保试驾当日携带有效驾照。</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?0b4e366e453f3524b50e08dc17833d51";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        _hmt.push(['_trackPageview', "/OrderChange/ShiJia?Source=@ViewBag.Source"]);
+    </script>
+    <script type="text/javascript">
+        try {
+            if (/Android|webOS|iPhone|iPod|BlackBerry|iPad/i.test(navigator.userAgent)) {
+                window.location.href = window.location.protocol + "//" + window.location.host + "/weixin/OrderChange/Exchange?Source=@ViewBag.Source";
+            }
+        } catch (e) { }
+    </script> 
+</body>
+</html>

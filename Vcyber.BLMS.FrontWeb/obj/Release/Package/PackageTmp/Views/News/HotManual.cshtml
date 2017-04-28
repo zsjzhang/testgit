@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.UserGuide>
+@{
+    Layout = null;
+}
+
+<div class="hot_news">
+    <div class="gy_cont">
+        <div class="gy_title">
+            <div class="gy_zi">
+                <a href="/News/MagazineApply"><h1>申请电子杂志</h1></a>
+                <a href="/News/MagazineApply"><span>Magazine Apply</span></a>
+                <a href="/News/MagazineApply"><img src="/img/arrow.png" class="arrow_n" /></a>
+            </div>
+        </div>
+        <br />
+        <div class="gy_title">
+            <div class="gy_zi">
+                <a href="/UserGuide/Index"><h1>电子手册</h1></a>
+                <a href="/UserGuide/Index"><span>Hot News</span></a>
+                <a href="/UserGuide/Index"><img src="/img/arrow.png" class="arrow_n" /></a>
+            </div>
+        </div>
+        <div class="gy_nr">
+            @{
+                if (Model != null && Model.Any())
+                {
+                    string _hotImgUrl = Model.FirstOrDefault().ImageUrl;
+                    <a href="#">
+                        <img src="@_hotImgUrl" onerror="this.src =@_hotImgUrl" style="width:85px; padding-left:15px" />
+                    </a>
+                    int _newsIndex = 1;
+                    <ul>
+                        @foreach (var item in Model)
+                        {
+                            if (_newsIndex == 4)
+                            {
+
+                                <li style="margin-bottom:10px; overflow:hidden; padding-right:10px; ">
+                                    <span style="float:left;">【电子手册】@(item.Title.Length > 13 ? item.Title.Substring(0, 13) : item.Title)</span>
+                                    <a style="float:left;" href="@item.LinkUrl" title="点击下载"><img src="~/Img/minor.png" style="margin:2px 0px 0px 5px; padding-left:15px" /></a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li style=" overflow: hidden; padding-right: 10px;">
+                                    <span style="float:left;">【电子手册】@(item.Title.Length > 13 ? item.Title.Substring(0, 13) : item.Title)</span>
+                                    <a style="float:left;" href="@item.LinkUrl" title="点击下载"><img src="~/Img/minor.png" style="margin: 2px 0px 0px 5px; padding-left: 15px" /></a>
+                                </li>
+                            }
+
+                        }
+                    </ul>
+                }
+            }
+
+        </div>
+    </div>
+</div>

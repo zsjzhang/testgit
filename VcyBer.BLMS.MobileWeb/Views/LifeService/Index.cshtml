@@ -1,0 +1,65 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "生活服务";
+}
+
+<link href="~/Content/css/style.css?date=@DateTime.Now.Ticks" rel="stylesheet" />
+<style>
+    .sonata-service-row .planico {
+        background: url("@Url.Content("~/img/life_pic1.png")") #fff no-repeat center 15%;
+        background-size: 31% auto;
+    }
+     .sonata-service-row .tuniuico {
+    background: url("@Url.Content("~/img/life_pic2.png")") #fff no-repeat center 15%;
+    background-size: 31% auto;
+    }
+     .sonata-service-row .yueico {
+    background: url("@Url.Content("~/img/life_pic3.png")") #fff no-repeat center 15%;
+    background-size: 31% auto;
+    }
+</style>
+
+<div class="wrapper" id="wrapper">
+    <div class="sonata-hd-bar">
+        <h2>生活服务</h2>
+    </div>
+    <div class="sonata-service-row">
+        <ul class="sonata-service-list">
+            <li class="planico">
+                <a href="@Url.Action("AirportIndex", "LifeService")">50个机场候机尊享服务</a>
+            </li>
+            @*<li class="tuniuico">
+                <a id="gototuniu" href="@Url.Action("TuniuIndex", "LifeService")">途牛</a>
+            </li>*@
+            <li class="yueico">
+                <a id="gotohnagroup" href="@Url.Action("LiyueIndex", "LifeService")">礼悦会</a>
+            </li>
+        </ul>
+    </div>
+    <div class="sonata-service-row">
+        <ul class="sonata-service-list">            
+            <li class="ico-tujia">
+                <a href="@Url.Action("TujiaIndex", "LifeService")">途家</a>
+            </li>
+            <li class="ico-magazine">
+                <a href="@Url.Action("Index", "OnlineRead")">在线阅读</a>
+            </li>
+            @*<li class="ico-s14">
+                <a href="javascript:;">&nbsp;</a>
+            </li>*@
+            @*<li class="ico-dyp">
+                    <a href="@Url.Action("dyp", "Merchant")">网票网电子影票</a>
+                </li>
+                @*<li class="ico-dyp">
+                    <a href="@Url.Action("dyp", "Merchant")">网票网电子影票</a>
+                </li>
+                <li class="ico-birth">
+                    <a href="@Url.Action("BirthdayGift", "Member")">生日特权</a>
+                </li>
+                <li class="ico-tujia">
+                    <a href="@Url.Action("Tujia", "Member")">途家</a>
+                </li>*@
+        </ul>
+    </div>
+</div>
+

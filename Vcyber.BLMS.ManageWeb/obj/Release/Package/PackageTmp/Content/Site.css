@@ -1,0 +1,224 @@
+﻿body {
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+
+<!---->
+
+.top-menu {
+    margin-bottom: 20px;
+}
+.top-menu-btn
+{
+    /*color:white;
+    float: left; 
+    display:inline-block;
+    height: 40px;
+    width: 200px; 
+    text-align:center; 
+    padding-top:10px;
+    cursor:pointer;*/
+}
+.top-menu-btn:hover
+{
+    /*background-color:#666666;*/
+}
+.menu-selected {    
+    /*background-color:#F7AE16;*/
+}
+
+.left-menu {
+    width:200px; 
+    min-height:500px; 
+    border: 1px #DFDFDF solid; 
+    border-radius:6px;
+    float:left; 
+    margin-right:10px; 
+    background-color:white; 
+    padding-top: 50px; 
+    overflow:hidden;
+}
+.left-menu-content {
+    border:0 !important;
+}
+.left-menu-content a.webix_list_item {
+    font-size:16px;
+    font-family:'Microsoft YaHei';
+    font-weight:bold;
+    color:#F7AE16;
+    padding-left:30px;
+}
+.left-menu-content a.select {
+    background-color:#DFDFDF;
+}
+.left-menu a.leftmenu-selected {
+    background-color:#DFDFDF;
+}
+/*main body*/
+.main-body {
+    float:right; width:990px;
+}
+.main-header {
+    width:990px;
+    height: 40px;
+    margin-bottom:10px;
+    border: 1px #DFDFDF solid; 
+    border-radius:6px;
+    background-color: white;
+    font-size:14px;
+    font-weight:bold;
+    padding-top:8px;
+    padding-left:30px;
+}
+.main-content {
+    width:990px;
+    /*border: 1px #DFDFDF solid; 
+    background-color: white;
+    padding:20px 30px 0 30px*/
+}
+
+/*内容页面样式*/
+.padb30 {
+    padding-bottom:30px;
+}
+.marb30 {
+    margin-bottom:30px;
+}
+.g_page_header {
+    height: 40px;
+    margin-bottom:10px;
+    border: 1px #DFDFDF solid; 
+    border-radius:6px;
+    background-color: white;
+    font-size:14px;
+    font-weight:bold;
+    padding-top:8px;
+    padding-left:30px;
+}
+.g_page_quick_statistics {
+    border: 1px #DFDFDF solid; 
+    border-radius:6px;
+    background-color: white;
+    height: 80px;
+    padding-left:30px;
+    margin-bottom:10px;
+    padding-top:25px;
+}
+.g_page_quick_statistics a {
+    padding-right:30px;
+}
+.g_page_content {
+    background-color: white;
+    padding-left:30px;
+    border: 1px #DFDFDF solid; 
+    border-radius:6px;
+    margin-bottom:30px;
+}
+.g_page_content_title {
+    margin:0px 30px 10px 0px;
+    height: 50px;
+    padding-top:30px;
+    font-size:14px;
+    font-weight:bold;
+    border-bottom: 1px #DFDFDF solid; 
+}
+.g_page_content_title_detail {
+    padding-left:30px;
+    margin-bottom:20px;
+}
+.g_page_grid {
+    margin-right:30px;
+}
+.g_page_grid table{
+    border: 1px #DFDFDF solid;
+    width:100%;   
+}
+.g_page_grid table thead .thc{
+    height:60px;
+    background-color:#F3F3F3;
+    text-align:center;
+}
+.g_page_grid table tr.trc {
+    height:100px;
+}
+.g_page_grid table tr, .g_page_grid table td{
+    border: 1px #DFDFDF solid;
+}
+
+.g_page_grid_form {
+    margin-right:30px;
+}
+.g_page_grid_form table {
+    border: 1px #DFDFDF solid;
+    width:100%;  
+}
+.g_page_grid_form tr {
+    height:50px;
+}
+.g_page_grid_form tr,.g_page_grid_form td{
+    border: 1px #DFDFDF solid;
+}
+.g_page_grid_form tr td.td_title {
+    background-color:#F3F3F3;
+    text-align:right;
+}
+.g_page_grid table tr td, .g_page_grid_form table tr td{
+    padding-left:5px;
+    padding-right:5px;  
+}
+.webix_layout_head {
+    border: 1px #DFDFDF solid; 
+    border-radius:6px;
+}
+
+.tree li {
+  cursor: pointer;
+  padding-left: 1.3em;
+}
+
+.tree ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.intermediate {
+  opacity: 0.3;
+}

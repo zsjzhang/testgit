@@ -1,0 +1,611 @@
+* {
+    font-family:'微软雅黑';
+}
+
+.center{
+	width: 1000px;
+	height: 533px;
+	margin: 0 auto;
+	margin-top: 30px;
+}
+.center .center_r{
+	width: 286px;
+	float: right;
+}
+.center .center_r_1{
+	/*background: url(/img/center_1.png) no-repeat;*/
+    position:relative;
+    background: url(/img/center_11.gif) no-repeat;
+	width: 286px;
+	height: 51px;
+}
+.center .center_r_2{
+	height: 282px;
+	margin-top: 1px;
+	background: #EEE;
+}
+.center .center_r_2 input{
+	background: #fff;
+	width: 235px;
+	height: 28px;
+	border: 1px solid #BEBEBE;
+	margin: 0 auto;
+	display: block;
+	float: left;
+	margin-top: 20px;
+	margin-left: 18px;
+	/*color: #CFCFCF;*/
+	outline:medium;
+    padding-left:10px;
+    font-size: 12px;
+}
+.center .center_r_2 div.test{
+	width: 248px;
+	float: left;
+	height: 32px;
+	margin-top: 20px;
+}
+.center .center_r_2 input.test_1{
+	width: 108px;
+	margin-top: 0px;
+}
+.center .center_r_2 div.test a{
+	display: block;
+	float: left;
+	color: #075090;
+	cursor: pointer;
+	font-family: "宋体";
+	font-size: 14px;
+	line-height: 32px;
+	padding-left:10px ;
+	padding-top:6px ;
+}
+.center .center_r_2 div.land{
+	width: 248px;
+	float: left;
+	height: 32px;
+	margin-top: 20px;
+}
+.center .center_r_2 div.land a{
+	display: block;
+	background: #075090;
+	width: 110px;
+	height: 30px;
+	line-height: 30px;
+	cursor: pointer;
+	margin-left: 18px;
+	float: left;
+}
+.center .center_r_2 div.land a.z_h{
+	display: block;
+	background:none;
+	height: 30px;
+	width: 56px;
+	line-height: 30px;
+	cursor: pointer;
+	float: left;
+	font-size: 14px;
+	padding-left:10px ;
+	margin-left: 0px;
+	padding-top:6px ;
+}
+.center .center_r_2 div.land a.z_h:hover{
+  text-decoration: underline;
+}
+.center .center_r_2 div.land a span{
+	line-height: 30px;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	color: #fff;
+	float: left;
+	padding: 0px 22px;
+}
+.center .center_r_2 div.land a b{
+	width: 19px;
+	height: 19px;
+	background: #fff;
+	border-radius: 10px;
+	margin-top: 6px;
+	float: left;
+	display: block;
+	line-height: 16px;
+	text-align: center;
+}
+.center .center_r_2 div.test a:hover{
+	text-decoration: underline;
+}
+.center .center_r_2 div.enroll{
+	margin-top: 40px;
+	width: 100%;
+	font-size: 12px;
+	float: left;
+	text-align: center;
+}
+
+.center .center_r_2 div.enroll a{
+	color: #7F7F7F;
+	cursor: pointer;
+	
+}
+.center .center_r_2 div.enroll a:hover{
+	text-decoration: underline;
+}
+.center .center_r_34{
+	height: 73px;
+	margin-top: 10px;
+}
+.center .center_r_34 a{
+	cursor: pointer;
+}
+.weird{
+	width: 1000px;
+	height: 340px;
+	margin: 0 auto;
+	margin-top: 30px;
+}
+.weird .weird_f{
+	float: left;
+	width: 560px;
+}
+.weird .weird_f dl{
+	width: 255px;
+	float: left;
+	margin-top: 25px;
+}
+.weird .weird_f dl dt{
+	float: left;
+	width: 135px;
+	height: 175px;
+	overflow: hidden;
+}
+.weird .weird_f dl dt img{
+	width: 135px;
+	height: 175px;
+	display: block;
+}
+.weird .weird_f dl dd{
+	width: 110px;
+	float: right;
+}
+.weird .weird_f dl dd .dd_1{
+	line-height: 28px;
+	font-family: "宋体";
+	font-size: 14px;
+	font-weight: bold;
+}
+.weird .weird_f dl dd .dd_2{
+	line-height: 28px;
+	font-family: "宋体";
+	font-size: 12px;
+	font-weight: bold;
+}
+.weird .weird_f dl dd p{
+	overflow: hidden;
+	line-height: 24px;
+	font-family: "宋体";
+	font-size: 12px;
+}
+.weird .weird_f dl dd a{
+	display: block;
+	background: #075090;
+	width: :110px;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 20px;
+	cursor: pointer;
+}
+.weird .weird_f dl dd a span{
+	line-height: 30px;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	color: #fff;
+	float: left;
+	padding: 0px 12px;
+	margin-left: 14px;
+}
+.weird .weird_f dl dd a b{
+	width: 19px;
+	height: 19px;
+	background: #fff;
+	border-radius: 10px;
+	margin-top: 6px;
+	float: left;
+	display: block;
+	line-height: 15px;
+	text-align: center;
+}
+.weird .weird_1{
+	width: 100%;
+	height: 27px;
+	border-bottom: 2px solid #075090;
+}
+.weird .weird_1 span{
+	background: #075090;
+	padding: 0px 30px;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	color: #fff;
+	display: block;
+	line-height: 27px;
+	float: left;
+}
+.weird .weird_1 div.bg{
+	float: left;
+	width: 15px;
+	height: 27px;
+	background: url(../img/weird_1.png) no-repeat;
+}
+.weird .weird_1 a{
+	display: block;
+	float: right;
+	font-size: 12px;
+	color: #000;
+	margin-top: 10px;
+	text-decoration: none;
+}
+
+.center_lt .weird_1{
+	width: 100%;
+	height: 27px;
+	border-bottom: 2px solid #075090;
+    margin-bottom:24px;
+}
+.center_lt .weird_1 span{
+	background: #075090;
+	padding: 0px 30px;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	color: #fff;
+	display: block;
+	line-height: 27px;
+	float: left;
+}
+.center_lt .weird_1 div.bg{
+	float: left;
+	width: 15px;
+	height: 27px;
+	background: url(../img/weird_1.png) no-repeat;
+}
+.center_lt .weird_1 a{
+	display: block;
+	float: right;
+	font-size: 12px;
+	color: #000;
+	margin-top: 10px;
+	text-decoration: none;
+}
+.weird .weird_r{
+	float: right;
+	width: 400px;
+}
+.weird .weird_r .img{
+	margin-top: 25px;
+}
+.weird .weird_r .img a{
+	cursor: pointer;
+}
+
+.weird .weird_r .img img{
+	border: 1px solid #CDCDCD;
+	border-radius: 5px;
+	width: 122px;
+	height: 173px;
+}
+.weird .weird_r .img a.cen{
+	padding: 0 6px;
+}
+
+.tab_silder_right {
+    margin:0 auto; 
+    width: 695px;
+    background: #000;
+}
+
+.tab_silder {
+    margin:0 auto;
+    margin-top:18px;
+    width: 1000px;
+    background: #000;
+}
+.center_l {
+    width:700px;
+    float:left;
+}
+.center_lt {
+    width:100%;
+    height:180px;
+}
+.center_lt_title {
+    width:100%;
+    height:27px;
+    border-bottom:2px solid #075090;
+}
+.s_img {
+    width:404px;
+    height:125px;
+    float:left;
+    position:relative
+}
+.s_word {
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+}
+.s_word p {
+    width:100%;
+    height:19px;
+    line-height:19px;
+    background:#000;    
+    opacity:0.5;    
+}
+.s_word span {
+    display:block;
+    width:100%;
+    height:19px;
+    line-height:19px;
+    text-align:center;
+    color:#fff;
+    font-size:12px;
+    position:absolute;
+    left:0;
+    bottom:0;
+}
+.ul_list {
+    display:block;
+    width:324px;
+    float:right
+}
+.ul_list li {
+    height:20px;
+    line-height:20px;
+    list-style:inside;
+    font-size:12px;
+}
+.ul_list li a {
+    color:#656565;
+    text-decoration:none;
+}
+    .ul_list li a:hover {
+        text-decoration:underline;
+    }
+    .ul_list li b {
+        color:#3d3f43;
+        font-weight:300;
+    }
+.center_lb {
+    width:100%;
+    height:394px;
+    float: left;
+}
+.center_lb_title {
+    width:100%;
+    height:54px;
+    border-bottom:2px solid #075090;
+    margin-top:30px
+}
+.center_lb_cont {
+    width:654px;
+    height:232px;
+    padding:22px;
+    border:1px solid #eeeeee;
+    border-top:none;
+}
+.c_ll {
+    width:320px;
+    float:left;
+}
+.pp {
+    width:100%;
+    height:22px;
+    line-height:22px;
+    margin-bottom:14px;
+
+}
+.pp span {
+    width:67px;
+    text-align:center;
+    height:22px;
+    line-height:22px;
+    background:#3d3d3d;
+    display:block;
+    color:#fff;
+    font-size:12px;
+}
+.c_ll p {
+    width:100%;
+    height:26px;
+    line-height:26px;
+    margin-bottom:17px; 
+}
+.c_ll p span {
+    display:block;
+    width:8px;
+    color:#075090;
+    font-size:12px;
+    float:left;
+    height:20px;
+}
+.c_ll p label {
+    font-size:12px;
+    color:#000;
+    margin-left:2px;
+    width:85px;
+    display:block;
+    float:left;
+    height:20px;
+}
+.c_ll p input{
+    width:205px;
+    height:14px;
+    padding-left:10px;
+    float:left;
+    background: #fff;
+}
+
+.c_ll p input[type="text"]{
+	 border:1px solid #eeeeee;
+	 height: 24px;
+	line-height: 24px;
+}
+
+.xz_in {
+    width:99px !important;
+    text-indent:12px !important;
+    padding:0 !important;
+}
+.radio_btn {
+    width:20px !important;
+}
+.wm {
+    font-size: 12px;
+    line-height: 20px;
+    float: left;
+    margin-right: 12px;
+}
+.submit_cont {
+    width:100%;
+    height:30px;
+    line-height:30px;
+}
+.submit_cont img {
+    float:left;
+    cursor:pointer;
+    width: 80px;
+}
+.submit_cont p {
+    font-size:12px;
+    color:#808080;
+    float:left;
+    margin-left:4px;
+}
+a{
+	text-decoration: none;
+	color: #3D3F43
+}
+.navs a span img{
+	float: left;
+	margin-top: 17px;
+	margin-right: 4px;
+
+}
+.navs{float:left;margin-right:2px;height:54px;line-height:54px;padding: 0 20px;background: #eeeeee;cursor: pointer;}
+/*.navs{float:left;margin-left:2px;height:54px;line-height:54px;padding: 0 20px;background: #eeeeee;cursor: pointer;}*/
+
+.link{font-family:"微软雅黑";float:left;margin-left:-54px;height:0;line-height:0;border:0;border-left:28px solid transparent;border-top:28px solid #3d3d3d;color:#fff;font-size:16px;text-decoration:none;}
+
+.link span{display:block;margin-top:-54px;padding:0 20px;height:54px;line-height:54px;text-align:center;cursor:pointer;}
+.navs .navs2{border-left: none;margin-left: 28px;}
+.navs1{margin: 0}
+
+
+.actives{background: #fff}
+
+
+
+
+
+#slider ul li{float:left;width: 1000px;}
+#slider ul li img{
+	width: 1000px;
+	height: 305px;
+}
+#slider ul{position: relative;}
+#slider{overflow: hidden;height:305px; position: relative;width: 1000px;}
+#slider ol {position: absolute;bottom: 10px;right:20px;color:#cecece;z-index:999}
+#slider ol li{float:left;width:11px;height:11px;margin:0 3px;background:#fff;border:solid 1px #fff;border-radius: 10px;text-align: center;}
+#slider ol li.add{background: #075090;}
+
+
+
+
+/*   用户登录后    */
+
+.user_login{
+	height: 51px;
+	width: 248px;
+	background: #EEEEEE;
+	line-height: 51px;
+	text-align: center;
+	color: #075090;
+	font-family: "微软雅黑";
+	font-weight: bold;
+}
+
+.user_pic{
+	width: 126px;
+	height: 125px;
+	display: block;
+	margin: 0 auto;
+	padding-top: 8px;
+}
+
+.user_mess h2{
+	font-size: 20px;
+	color: #075090;
+	text-align: center;
+	margin-top:8px;
+}
+
+.user_mess p{
+	font-size: 12px;
+	color: #3D3F43;
+	margin-top:8px;
+	text-align: center;
+}
+
+.jihuo_vip{
+	display: block;
+	width: 210px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	color: #8e8e8e;
+	font-size: 14px;
+	text-decoration: none;
+	border: 1px solid #BEBEBE;
+	margin: 0 auto;
+	background: #FFFFFF;
+	margin-top: 12px;
+	}
+	
+
+.user_mess p a{
+	color: #FFFFFF;
+	text-decoration: none;
+	width: 98px;
+	height: 32px;
+	background: #075090;
+	display: block;
+	float: left;
+	line-height: 32px;
+	margin-left: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

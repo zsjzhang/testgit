@@ -1,0 +1,52 @@
+﻿
+.car {
+    animation: carmove 1.5s ease;
+    -moz-animation: carmove 1.5s ease;
+    -webkit-animation: carmove 1.5s ease;
+    -o-animation: carmove 1.5s ease;
+}
+
+@keyframes carmove {
+    0% {
+        width: 30%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+@-moz-keyframes carmove /* Firefox */
+{
+    0% {
+        width: 30%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+@-webkit-keyframes carmove /* Safari and Chrome */
+{
+     0% {
+        width: 30%;
+    }
+
+  
+
+    100% {
+        width: 100%;
+    }
+}
+
+@-o-keyframes carmove /* Opera */
+{
+    0% {
+        width: 30%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}

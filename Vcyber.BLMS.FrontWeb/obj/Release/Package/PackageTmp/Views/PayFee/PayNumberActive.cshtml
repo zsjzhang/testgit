@@ -1,0 +1,14 @@
+﻿@{
+    Layout = null;
+}
+<div style="background: url(/img/car_tanchuang2.png) no-repeat; width:413px; position: fixed;  left: 62%; margin-left: -206px; ">
+    <div style="margin: 0 auto; margin-top: 40px; margin-bottom: 20px; margin-left: 67px; ">
+        <span style=" font-size: 18px;">请填写您在天猫上购买的货币号：</span>
+        <input type="text" id="TmallPayNumber" style="height: 30px;line-height: 30px;text-indent: 12px;width: 282px;margin-top: 18px;" />
+        <p style="height: 32px; margin-top: 34px;">
+            <input type="hidden" id="SonataActiveCancelLayerIndex" />
+            <a style="  display: block;float: left;text-align: center;width: 134px;height: 30px;line-height: 30px;color: #FFFFFF;font-size: 14px;background: #075090;border: 1px solid #075090;margin-right: 16px;" href="javascript:void(0);" onclick="layer.close(document.getElementById('SonataActiveCancelLayerIndex').value);">放 弃</a>
+            <a style="  display: block;float: left;text-align: center;width: 134px;height: 30px;line-height: 30px;color: #FFFFFF;font-size: 14px;background: #075090;border: 1px solid #075090;margin-right: 16px;" href="javascript:void(0);" onclick="Sonata.InputPayNumberToActiveSave(document.getElementById('TmallPayNumber').value);">确认提交</a>
+        </p>
+    </div>
+</div>

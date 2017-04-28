@@ -1,0 +1,64 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <title>经销商查询</title>
+</head>
+<script>
+    $(function () {
+        $("#DealerProvince").val("选择省份");
+    });
+</script>
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.3&key=87418772c207aae3709a3a4028248cfc"></script>
+<script type="text/javascript">
+        var agencyMapBtn = $(".agencyMapBtn"), MapWrap = $("#MapWrap"), doc = $(document);
+        agencyMapBtn.on("click", function () {
+            MapWrap.show();
+            console.log(MapWrap)
+        });
+        MapWrap.on("click", function () {
+            MapWrap.hide();
+        });
+        function recmap(position, address) {
+            var pos = position.split(",");
+            location.href = "http://m.amap.com/navi/?dest=" + pos[1] + "," + pos[0] + "&destName=" + address + "&hideRouteIcon=0&key=87418772c207aae3709a3a4028248cfc"
+        }
+</script>
+<script src="~/Scripts/Dealer/dealer.search.js"></script>
+
+<div class="wrapper" id="wrapper">
+    <div class="agency-hd">
+        <div class="agency-hd-bar">
+            <a href="/Common/DealerNear">附近的经销商</a>
+            <a href="/Common/DealerQuiry" class="currAgency">经销商查询</a>
+        </div>
+    </div>
+    <div class="agencySearch-bar">
+        <ul class="agency-select clearfix">
+            <li>
+                <select id="DealerProvince" name="DealerProvince">
+                    <option>选择省份</option>
+                    @{ 
+                        foreach (var province in ViewBag.Provinces)
+                        {
+                            if (!string.IsNullOrEmpty(province))
+                            {
+                                <option>@province</option>
+                            }
+                        }
+                    }
+                </select>
+            </li>
+            <li>
+                <select id="DealerCity" name="DealerCity">
+                    <option>选择城市</option>
+                </select>
+            </li>
+        </ul>
+    </div>
+    <div id="dealerPanl">
+
+    </div>
+</div>
+
+

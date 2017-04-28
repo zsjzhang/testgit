@@ -1,0 +1,88 @@
+﻿@model  IEnumerable<Vcyber.BLMS.Entity.XDLotteryRecord>
+@{
+    Layout = null;
+}
+
+
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/ExChangeStyle.css">
+    <link rel="stylesheet" type="text/css" href="/css/ExChangeAward.css">
+    <link rel="stylesheet" type="text/css" href="/layer/skin/layer.css">
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <!--转动插件rotate,js-->
+    <script type="text/javascript" src="~/Scripts/ExChangeAwardRotate.js"></script>
+    <!--抽奖-->
+    <script type="text/javascript" src="~/Scripts/ExChangeAward.js"></script>
+    <!--弹出层layer-->
+    <script type="text/javascript" src="/layer/layer.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //中奖名单滚动数值
+            $('.Listover').myScroll({
+                speed: 30, //数值越大，速度越慢
+                rowHeight: 46 //li的高度
+            });
+
+        });
+    </script>
+    <title>置换月活动_中奖名单 </title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="mainBox jieshao">
+            <div class="header">
+                <dl>
+
+                    <dd><a href="/OrderChange/Index">首　页</a></dd>
+                    <dd><a href="/OrderChange/JieShao">活动介绍</a></dd>
+                    <dt><a href="/"></a></dt>
+                    <dd><a href="/OrderChange/JiangPing">奖品设置</a></dd>
+                    <dd class="on"><a href="/OrderChange/ZhongJiang">中奖名单</a></dd>
+                </dl>
+            </div>
+            <div class="jieshaoCon jiangping">
+                <div class="imgBox1"><img src="/images/jiangPing.png" /></div>
+                <h4 class="firstBtn">中奖名单</h4>
+                <p class="winTitle">
+                    <span>手机号</span>
+                    <span>奖品</span>
+                </p>
+                <div class="winList">
+                    <div class="Listover">
+                        <ul>
+                            @foreach (var m in Model)
+                            {
+                                var tel = "";
+                                if (!string.IsNullOrEmpty(m.UserMobile))
+                                {
+                                    int entlen = m.UserMobile.Length - 4;
+                                     tel = string.Format("{0}****{1}", m.UserMobile.Substring(0, 3),
+                                         m.UserMobile.Substring(entlen, 4));
+                                }
+                                <li><span>@tel</span><i>@m.LotteryName</i></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div style="height:40px;"></div>
+        </div>
+    </div>
+
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?0b4e366e453f3524b50e08dc17833d51";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        _hmt.push(['_trackPageview', "/OrderChange/ZhongJiang?Source=@ViewBag.Source"]);
+    </script>
+</body>
+</html>

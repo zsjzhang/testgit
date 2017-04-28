@@ -1,0 +1,182 @@
+﻿
+@{
+    ViewBag.Title = "常见问题_会员计划";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/NewCss/resetzsy.css" rel="stylesheet" />
+<script src="~/Scripts/VipPlan/VipPlan.js"></script>
+<div class="wrapper">
+    <section class="mpBox">
+        <div class="mpBanner">
+            <img src="@Url.Content("~/img/Newimg/mp_bluemembers2.jpg")" />
+        </div>
+
+        <p class="faqParTitle1">常见问题</p>
+        <p class="faqParTitle2">会员规则</p>
+
+        <h2 class="mpBoxh2">
+            <b class="faqB">1</b>
+            <strong>bluemembers是什么？</strong>
+            <i></i>
+        </h2>
+        <div class="h2Pcont" style="display:block;">
+            <p class="faqPar">A：您好，bluemembers（蓝缤）是北京现代秉承“从现代 到未来”战略，以打造卓越品牌力为驱动，在客户服务领域为车主倾心打造的创新服务品牌。bluemembers（蓝缤）以会员制为核心，深度洞察会员需求，不断创新服务，致力于为全系车主会员提供全方位、高品质、专业化的优质服务。成为bluemembers会员，获得丰厚积分奖励，享受优质车辆服务及生活服务，开启尊享之旅。</p>
+        </div>
+
+        <h2 class="mpBoxh2">
+            <b class="faqB">2</b>
+            <strong>如何加入bluemembers会员？</strong>
+            <i></i>
+        </h2>
+        <div class="h2Pcont">
+            <p class="faqPar">A：您好，目前bluemembers会员入会申请有2种方式：</p>
+            <p class="faqPar">1）线下申请：北京现代特约店→（索取）《北京现代bluemembers会员申请表》→填写个人资料并缴纳会费→短信收取会员认证通知（会员卡号、初始密码）。</p>
+            <p class="faqPar">
+                2）线上申请：登陆bluemembers门户网站、App或微信→填写个人资料→认证通过并缴纳会费→通过手机号+密码登录系统→查看会员卡号。
+            </p>
+        </div>
+
+        <h2 class="mpBoxh2">
+            <b class="faqB">3</b>
+            <strong>bluemembers普卡/银卡/金卡会员的有效期是多久？</strong>
+            <i></i>
+        </h2>
+        <div class="h2Pcont">
+            <p class="faqPar">A：您好，bluemembers银卡/金卡的有效期为1年，bluemembers普卡会员终身有效。</p>
+        </div>
+
+        <h2 class="mpBoxh2">
+            <b class="faqB">4</b>
+            <strong>bluemembers会员需要交费吗？</strong>
+            <i></i>
+        </h2>
+        <div class="h2Pcont">
+            <p class="faqPar">A：您好，2016年4月1日后购车的用户需要缴纳会费，第九代索纳塔、全新途胜、全新胜达、ix25、ix35、名图、名驭的车主，一次性缴纳100元会费即可获得价值400元积分奖励；朗动、悦动、瑞纳、领动、瑞奕车主，一次性缴纳50元会费即可获得价值200元积分奖励。会员身份终身有效，申请退会，入会费不予返还。</p>
+        </div>
+
+        <h2 class="mpBoxh2">
+            <b class="faqB">5</b>
+            <strong>普卡会员如何升级为银卡/金卡会员？</strong>
+            <i></i>
+        </h2>
+        <div class="h2Pcont">
+            <p class="faqPar">A：您好，系统每天根据会员购车/消费/返厂频次自动判定，满足条件即可晋级。普卡会员入会当天开始计算，1年内累计，增换购1次即可晋级为银卡会员；除首保外，返厂消费2次或消费金额达到1500元以上即可晋级银卡会员；银卡会员自升级当天开始计算，1年内累计，增换购2次以上（含2次）即可晋级为金卡会员；除首保外，返厂消费4次或消费金额达到3000元以上即可晋级金卡会员。</p>
+        </div>
+
+        <h2 class="mpBoxh2">
+            <b class="faqB">6</b>
+            <strong>银卡/金卡会员是否会降级，如何降级的呢？</strong>
+            <i></i>
+        </h2>
+        <div class="h2Pcont">
+            <p class="faqPar">A：您好，系统每天根据会员购车/消费/返厂频次自动判定保降级。银卡会员自会员升级当天计算，1年内累计，返厂消费1次或消费金额达到750元，即可保级；如未达到则进行普卡。金卡会员自会员升级当天计算，1年内累计，返厂消费3次或消费金额达到2250元，即可保级，如未达到则降级。</p>
+        </div>
+
+        <p class="faqParTitle2">积分规则</p>
+
+        <h2 class="mpBoxh2">
+            <b class="faqB">7</b>
+            <strong>已购车并完成入会，为什么没有积分？</strong>
+            <i></i>
+        </h2>
+        <div class="h2Pcont">
+            <p class="faqPar">A：您好，首次购车/增换购积分针对2016年4月1日后购车的车主，三个月内成功入会即可获得相应的奖励积分。2016年4月1日前购车入会的会员可以通过维修保养获取积分累计。</p>
+        </div>
+
+
+        <h2 class="mpBoxh2">
+            <b class="faqB">8</b>
+            <strong>积分有效期是多久？如何获取？</strong>
+            <i></i>
+        </h2>
+        <div class="h2Pcont">
+            <p class="faqPar">A：您好，积分有效期为2年，按照月度统计失效，积分扣除按照先进先出原则。 首次购车、增换购、维保消费均可获取积分，您也可以关注并参与bluemembers相关活动获取积分。</p>
+        </div>
+
+        <h2 class="mpBoxh2">
+            <b class="faqB">9</b>
+            <strong>增换购车辆，可以获得多少积分呢?</strong>
+            <i></i>
+        </h2>
+        <div class="h2Pcont">
+            <p class="faqPar">
+                A：您好，如您2016年4月1日后有增购/换购车辆，车辆为第九代索纳塔、全新途胜、全新胜达、ix25、ix35、名图、名驭，可以获取7000积分。如果是朗动、悦动、瑞纳、领动、瑞奕，可以获取4000积分。
+            </p>
+        </div>
+
+        <h2 class="mpBoxh2">
+            <b class="faqB">10</b>
+            <strong>普卡会员可以获得积分吗？</strong>
+            <i></i>
+        </h2>
+        <div class="h2Pcont">
+            <p class="faqPar">
+                A：您好，2016年4月1日后购车车主，3个月内入会，完成缴费即可获取积分。如您为2016年4月1日以前购车主并入会为普卡会员，可通过维修保养消费获取积分，也可参与bluemembers相关活动获取积分。
+            </p>
+        </div>
+
+        <p class="faqParTitle2">会员缴费</p>
+
+        <h2 class="mpBoxh2">
+            <b class="faqB">11</b>
+            <strong>如何进行缴费操作？</strong>
+            <i></i>
+        </h2>
+        <div class="h2Pcont">
+            <p class="faqPar">
+                A：您好，完成注册后即可进行缴费操作，也可登陆个人中心进行缴费操作。<br>
+                缴费可选择线下缴费/在线支付，相关操作如下：<br>
+                线下缴费：选择缴费的经销商店→点击“向经销商申请”→提交<br>
+                在线支付：选择缴费的经销商店→点击“在线支付”→新开网页购买天猫入会产品→返回bluemembers缴费页面，填写核销码→提交
+            </p>
+        </div>
+
+        <p class="faqParTitle2">老会员相关</p>
+        <h2 class="mpBoxh2">
+            <b class="faqB">12</b>
+            <strong>原来是银卡会员，体系升级后是什么级别？</strong>
+            <i></i>
+        </h2>
+        <div class="h2Pcont">
+            <p class="faqPar">
+                A：您好，原有银卡会员级别不变，有效期为1年。
+            </p>
+        </div>
+
+        <h2 class="mpBoxh2">
+            <b class="faqB">13</b>
+            <strong>原来是银卡会员，体系升级后积分有变化吗？</strong>
+            <i></i>
+        </h2>
+        <div class="h2Pcont">
+            <p class="faqPar">
+                A：您好，原来银卡会员的积分数保持不变。
+            </p>
+        </div>
+
+        <h2 class="mpBoxh2">
+            <b class="faqB">14</b>
+            <strong>原来是普卡会员，体系升级后有什么影响？ </strong>
+            <i></i>
+        </h2>
+        <div class="h2Pcont">
+            <p class="faqPar">
+                A：您好，2016年4月1日（含4月1日）前购车的车主没有首次购车/增换购积分，您可以通过维修保养消费获取积分，享受普卡会员权益。如您2016年4月1日后购车，完成缴费即可获取相应的积分。
+            </p>
+        </div>
+
+        <h2 class="mpBoxh2">
+            <b class="faqB">15</b>
+            <strong>2016年4月1日之后购车，体系升级前已入会为普卡会员，如何获取积分？</strong>
+            <i></i>
+        </h2>
+        <div class="h2Pcont">
+            <p class="faqPar">
+                A：您好，您可以至个人中心选择线上缴费或直接到经销商店内缴费，完成缴费即可获取相应的积分。
+            </p>
+        </div>
+
+    </section>
+
+</div>

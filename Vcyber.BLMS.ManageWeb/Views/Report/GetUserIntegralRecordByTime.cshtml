@@ -1,0 +1,253 @@
+﻿@model System.Data.DataTable
+@using System.Data;
+@{ViewBag.Title = "报表管理--按年月日统计积分增长量和消耗量";
+Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/bootstrap")
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+<script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+
+<script src="~/Scripts/highcharts/highcharts.js"></script>
+@*<script src="~/Scripts/highcharts/highstock.js"></script>*@
+<script src="~/Scripts/highcharts/exporting.js" charset="GB2312"></script>
+
+<div class="panel-default">
+    @if (User.Identity.Name.ToLower().Equals("admin"))
+    {
+        <div class="panel-body">
+
+
+            <div class="form-group">
+                @*<label class="col-md-2 control-label text-right" style="padding-top:10px">报表类型--按车型区域会员入会数量统计</label>*@
+
+                <label class="col-md-2 control-label">时间：</label>
+                <input type="text" autocomplete="off" ng-model="formData.CreateTimeStart" id="CreateTimeStart" name="CreateTimeStart" onfocus="WdatePicker({ startDate: '%y-%M-%d 00:00:00', skin: 'whyGreen', dateFmt: 'yyyy-MM-dd HH:mm:ss', onpicked: function () { $(this).trigger('change') }, maxDate: '#F{$dp.$D(\'CreateTimeEnd\')}' }); " class="Wdate col-md-2 form-control datepicker" />
+                <span style="float:left; line-height:initial">--</span>
+                @*<label class="col-md-2 control-label">会员入会时间：</label>*@
+                @*<input class="Wdate col-md-2 form-control datepicker" id="CreateTimeEnd" placeholder="结束时间" data-date-format="yyyy-mm-dd" ng-model="formData.EndCreateTime" />*@
+                <input type="text" autocomplete="off" ng-model="formData.CreateTimeEnd" id="CreateTimeEnd" name="CreateTimeEnd" onfocus="WdatePicker({ startDate: '%y-%M-{%d+1} 00:00:00', skin: 'whyGreen', dateFmt: 'yyyy-MM-dd HH:mm:ss', onpicked: function () { $(this).trigger('change') }, minDate: '#F{$dp.$D(\'CreateTimeStart\')}' }); " class="Wdate col-md-2 form-control " />
+            </div>
+            <div class="form-group" style=" clear: both">
+                <label class="col-md-2 control-label">统计维度：</label>
+
+                <select class=" col-md-2  form-control" id="TimeType">
+                    <option value="m">月</option>
+                    <option value="y">年</option>
+                    <option value="d">日</option>
+
+                </select>
+
+
+
+            </div>
+
+            <div class="form-group">
+                <label style="color:red">注：所有的时间段都是大于等于第一个时间，小于等于第二个时间 </label>
+
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn btn-primary" type="submit" onclick="search()" style="margin-top:10px">查询</button>
+                    @*<button class="btn btn-primary" type="submit" onclick="toReportExcel()" style="margin-top:10px">导出</button>*@
+                </div>
+
+            </div>
+            <div id="divPageList">
+
+                @*@{
+                        Html.RenderAction("CommonPartialPage", new { index = 1, size = 10 });
+                    }*@
+            </div>
+
+            <div id="container" style="min-width: 700px; width:100%; height: 400px">
+            </div>
+
+
+        </div>
+
+    }
+
+</div>
+
+
+
+
+<script>
+    var columnName = "";
+    var Key = "";
+    var date = new Array();
+    var newval = new Array();
+    var val = new Array();
+    $(function () {
+        search();
+
+
+    });
+    function search() {
+        var data = {
+            CreateTimeStart: $("#CreateTimeStart").val(),
+            CreateTimeEnd: $("#CreateTimeEnd").val(),
+            TimeType: $("#TimeType").val()
+
+
+        };
+        var url = "@Url.Action("GetUserIntegralRecordByTimePage")";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            async: false,
+            success: function (msg) {
+                date.splice(0, date.length);//清空数组
+                newval.splice(0, newval.length);//清空数组
+                val.splice(0, val.length);//清空数组
+                if (msg != null && msg != "") {
+                    var str2 = $.parseJSON(msg);
+
+                    if (str2.length > 0) {
+
+
+                        //var lastMonth = ""; //上一次的月份
+                        var lastUserIntegralType = ""; //上一次的积分值类型
+                        var flg = true;               //标识上一个月份的第几次，false=第一次，true=第二次
+                        for (var i = 0; i < str2.length; i++) {
+                            //alert(str2[i].months);
+                            //alert(str2[i].UserIntegralNumber);
+
+                            //此处楼主需要显示的X轴为"X月份"这么个字符串，后台取得的数据而仅仅为数字，对此进行加工
+                            var strsub = "";
+                            if ($("#CarCategory").val() == "y") {
+                                strsub = "年";
+                            }
+                            else if ($("#CarCategory").val() == "m") {
+                                strsub = "月份";
+                            }
+                            else if ($("#CarCategory").val() == "d") {
+                                strsub = "日期";
+                            }
+                            else {
+                                strsub = "月份";
+                            }
+                            //alert(date);
+                            //alert(d);
+
+                            var d = date.indexOf(str2[i].months + strsub);//返回-1  不存在于数组中
+                            //alert(d);
+                            //************************************虽然你们可能看不懂，但是不要动这块代码**********************************************//
+                            if (d == -1) {
+                                date.push(str2[i].months + strsub);
+                                if (flg == false) {
+                                    if (lastUserIntegralType == "消耗")//如果上次是消耗，需要给新增的数组加一个默认值
+                                    {
+                                        newval.push(parseFloat(0));
+                                    }
+                                    else {//如果上次是新增，需要给消耗的数组加一个默认值
+                                        val.push(parseFloat(0));
+                                    }
+
+                                }
+                                flg = false; //第一次
+                                //lastMonth = str2[i].months;
+                                lastUserIntegralType = str2[i].UserIntegralType;
+                            }
+                            else {
+                                flg = true; //第二次
+                                //lastMonth = str2[i].months;
+                                lastUserIntegralType = str2[i].UserIntegralType;
+                            }
+                            //************************************虽然你们可能看不懂，但是不要动这块代码**********************************************//
+                            if (str2[i].UserIntegralType == "消耗") {
+
+                                //也可以在对数据的处理放在highchart 中进行处理。
+                                val.push(parseFloat(str2[i].UserIntegralNumber));
+                            }
+                            if (str2[i].UserIntegralType == "新增") {
+
+                                newval.push(parseFloat(str2[i].UserIntegralNumber));
+                            }
+                        }
+
+                    }
+                }
+            }
+        });
+
+        showContainer();
+    }
+
+
+
+
+    onload = function () {
+
+        showContainer();
+
+    }
+
+    function showContainer() {
+        $('#container').highcharts({
+            chart: {
+                type: 'column'
+                //type: 'bar'
+            },
+            title: {
+                text: '按年月日统计积分增长量和消耗量'
+            },
+            subtitle: {
+                text: '注：横坐标最多显示40个值,如果查询X轴的多于40个值,请分段查询'
+            },
+            xAxis: {
+                categories: date
+                //, tickPixelInterval: 40  //设置横坐标密度
+            },
+
+            yAxis: {
+                // min: 0,
+                title: {
+                    text: '积分值'
+                },
+                lables: {
+                    step: 1
+                }
+            },
+            ////scrollbar: {
+            ////    enabled: true
+            ////},
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f}积分</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                //name: '积分值',
+                //data: val
+                name: '新增',
+                data: newval
+            }, {
+                name: '消耗',
+                data: val
+            }
+
+          //  }
+            ]
+        });
+    }
+
+
+</script>
+

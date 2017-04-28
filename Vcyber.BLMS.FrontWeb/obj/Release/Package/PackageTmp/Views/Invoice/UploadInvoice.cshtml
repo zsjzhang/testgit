@@ -1,0 +1,77 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>UploadInvoice</title>
+    <style>
+        li {
+            list-style: none;
+            margin: 5px 0;
+            border-bottom: 1px dotted #aaa;
+        }
+    </style>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="/Scripts/jquery.form.js"></script>
+</head>
+<body>
+    <form id="formUpload" action="/Invoice/DoUploadInvoice" method="post" enctype="multipart/form-data">
+        <ul>
+            <li>
+                <label style="font-size: 14px; color: #3d3f43;  height: 30px; line-height: 30px; ">请选择凭证:</label>
+                <span>
+                    <input type="file" name="invoiceFile" accept="image/png,image/jpeg,image/gif,image/pjpeg,image/gif,image/x-png" />
+                </span>
+            </li>
+            <li>
+                <label style="font-size: 14px; color: #3d3f43;  height: 30px; line-height: 30px; ">服务类型:</label>
+                <select id="ServiceType" name="ServiceType">
+                    <option value="">请选择</option>
+                    <option>维修/保养</option>
+                    <option>5年10万公里整车包修期</option>
+                    <option>一对一专属服务</option>
+                    <option>上门关怀服务</option>
+                    <option>3年9次免费检测服务</option>
+                    <option>免费取送车服务</option>
+                    <option>24小时免费道路救援服务</option>
+                    <option>35个机场候机尊享服务</option>
+                </select>
+            </li>
+            <li>
+                <input type="submit" value="凭证上传" />
+                <label style="color:red;">(上传图片格式为.jpg,.png,.gif,最大20M)</label>
+            </li>
+            <li>
+                <img id="uploadsuccessimg" style="width:150px; height:150px;" />
+            </li>
+        </ul>
+    </form>
+    <script type="text/javascript">
+        $(function () {
+            $("#formUpload").ajaxForm({
+                success: function (resultData) {
+                    var data = $.parseJSON(resultData);
+                    if (data && data.code == "200") {
+                        popWindownBlue( "上传成功");
+                        $("#uploadsuccessimg").attr("src", data.imgurl);
+                        $("#uploadsuccessimg").show();
+                        return false;
+                    }
+                    else if (data && data.code == "401") {
+                        popWindownBlue( data.msg);
+                        return false;
+                    }
+                    else if (data.code == "400") {
+                        popWindownBlue( "上传失败");
+                        return false;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

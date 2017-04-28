@@ -1,0 +1,305 @@
+﻿@{
+    ViewBag.Title = "车主认证";
+    Layout = "~/Views/Shared/_LayoutYuena.cshtml";
+}
+
+@*<h2>@*CarOwerAuthentication</h2>*@
+<style type="text/css">
+   div .selected{font-size:20px;}
+</style>
+<div class="main">
+    <div class="czrz">
+        <h2 class="common_title"><img src="~/Contents/yuena/images/czrz_01.png"></h2>
+        <div class="czrz_con">
+            <div class="mainContent" style="display:block">
+                <p>验证车主身份可抽取定制好礼，更<br />能享受bluemembers会员专属服务。</p>
+                <ul>
+                    <li>到店消费返积分</li>
+                    <li>车辆服务免费享</li>
+                    <li>生活服务嗨翻天</li>
+                    <li>积分商城换好礼</li>
+                </ul>
+                <dl>
+                    <dt>身份证号码 :<input id="accountCarPaperWork" type="hidden" value="1" /></dt>
+                    <dd><input id="identitynumber" type="text"></dd>
+                </dl>
+                <span>*请正确填写购车时身份证号码</span>
+                <input type="hidden" id="accountCarPaperWork" value="1">
+                <a href="javascript:void(0)" class="btnAuthentication" onclick="toCheckCarownerSave()"><img src="~/Contents/yuena/images/btn_certificate.png"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="cover"></div>
+<!--认证后，中奖弹窗开始-->
+<div class="czrz_prize">
+
+    <div class="czrz_prize_top clearfix">
+        <div class="czrz_prize_img">
+            <img id="layaImg" style="display:none" src="~/Contents/yuena/images/prize1.png">
+            <img id="sijiImg" style="display:none" src="~/Contents/yuena/images/prize2.png">
+        </div>
+
+        <div class="czrz_prize_txt">
+            <h2 class="haveChecked" style="display:none">您已是车主，恭喜您</h2>
+            <h2 class="atChecked" style="display:none">恭喜您认证成功</h2>
+            <h3 id="lanyaH3" style="display:none">获得蓝牙自拍杆一个</h3>
+            <h3 id="sijiH3" style="display:none">获得旅行四件套一个</h3>
+            <p>奖品将在活动结束后5个工作日内邮寄</p>
+        </div>
+    </div>
+    <div class="czrz_prize_bot">
+        <a class="close2" style="cursor:default;" href="/Yuena/LoginAfter"><img src="~/Contents/yuena/images/close.png"></a>
+        <form>
+            <div class="col clearfix">
+                <label>姓名 :</label><input id="getPrizeName" type="text" value="">
+                <label class="lbl_tel">手机号 :</label><input id="getPrizeTel" type="text" value="">
+            </div>
+            @Html.Action("GetPrizeAddress","Yuena")
+            <a class="btn_sub2" id="btn_GetPrize" href="javascript:;"><img src="~/Contents/yuena/images/btn_sub2.png"></a>
+            <input type="hidden" id="activityId" value="" />
+            <input type="hidden" id="prizeId" value="" />
+        </form>
+    </div>
+</div>
+
+<!--中奖弹窗结束-->
+<!--未中奖弹窗开始-->
+<div class="czrz_noprize" style="display:none">
+    <a class="close" style="cursor:default;" href="/Yuena/LoginAfter"><img src="~/Contents/yuena/images/close.png"></a>
+    <div class="czrz_noprize_con">
+        <h2>认证成功</h2>
+        <p>很遗憾，您未中奖</p>
+        <a href="/Yuena/LoginAfter"><img src="~/Contents/yuena/images/btn_Super.png"></a>
+    </div>
+</div>
+<!--车主认证失败-->
+<div class="czrz_noprize2" style="display:none">
+    <a class="close" style="cursor:default;" href="/Yuena/LoginAfter"><img src="~/Contents/yuena/images/close.png"></a>
+    <div class="czrz_noprize_con">
+        <h2>认证失败</h2>
+        <p style="font-size:18px;">很抱歉，您的身份未绑定成功，请拨打400-800-1100</p>
+        <a href="/Yuena/LoginAfter"><img src="~/Contents/yuena/images/btn_Super.png"></a>
+    </div>
+</div>
+<div class="czrz_noprize3" style="display:none">
+    <a class="close" style="cursor:default;" href="/Yuena/LoginAfter"><img src="~/Contents/yuena/images/close.png"></a>
+    <div class="czrz_noprize_con">
+        <h2>您已认证并且领取过奖品</h2>
+        <p></p>
+        <a href="/Yuena/LoginAfter"><img src="~/Contents/yuena/images/btn_Super.png"></a>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('div[name="province"]').inputbox({
+            height: 53,
+            width: 185
+        });
+        $('div[name="city"]').inputbox({
+            height: 53,
+            width: 185
+        });
+        CheckHavePrize();
+        //填写中奖信息后提交按钮点击事件
+        $("#btn_GetPrize").on("click", function () {
+            //获取参数
+            var activityId = $("#activityId").val();
+            var prizesId = $("#prizeId").val();
+            var province = $('input[name="province"]').val();
+            var city = $('input[name="city"]').val();
+            var detailAddress = $("#detailAddress").val();
+            var userTel=$("#getPrizeTel").val();
+            var userName = $("#getPrizeName").val();
+
+            var reg_phone = /^[1][3587][0-9]{9}$/;
+            if (!reg_phone.test(userTel)) {
+                popWindownBlue("请输入正确电话号码！");
+                return;
+            }
+            var data = { activityId: activityId, prizesId: prizesId, userTel:userTel,userName:userName, province: province, city: city, address: detailAddress };
+            $.post("/Yuena/GetPrize", data, function (rsp) {
+                //返回结果
+                if (rsp.Errors=="200") {
+                    //信息保存成功
+                    $(".czrz_prize").css("display", "none");
+                    //popWindownBlue(rsp.Message);
+                    window.location.href = "/Yuena/LoginAfter";
+                } else {
+                    popWindownBlue(rsp.Message);
+                }
+            });
+        })
+    })
+    //进入页面后判断是否是车主，是车主，返回发奖信息
+    function CheckHavePrize() {
+        $.ajax({
+            url: "/Yuena/CheckHavePrize",
+            type: "get",
+            success: function (result) {
+                if (result === null || result.Errors === null || result.Errors === "") {
+                    popWindownBlue("未查询到信息");
+                    return false;
+                }
+                //是车主 
+                //是车主且已领过奖
+                if (result.Errors == "401") {
+                    //有中奖信息  判断是否已领过奖
+                    if (result.Data.State == "1") {
+                        $(".mainContent").css("display", "none");
+                        $(".czrz_noprize3").css('display', 'block');
+                        return false;
+                    }
+                }
+                //是车主且有发奖记录但未领过奖
+                if (result.Errors == "402") {
+                    $(".mainContent").css("display", "none");
+                    $("#activityId").val(result.Data.ActivityId);
+                    $("#prizeId").val(result.Data.Id);
+
+                    if (result.Data.PrizeLevel == 1) {
+                        $("#layaImg").css('display', 'block');
+                        $("#layaH3").css('display', 'block');
+                    } else {
+                        $("#sijiImg").css('display', 'block');
+                        $("#sijiH3").css('display', 'block');
+                    }
+                    $(".haveChecked").css('display', 'block');
+                    $(".czrz_prize").css('display', 'block');
+                    return false;
+                }
+                //是车主但没有发奖记录  发奖 返回发的奖品信息
+                if (result.Errors == "200") {
+                    
+                    //没有中奖记录则发奖，插入中奖记录 拿到奖品信息
+
+                    if (result.Data.ActivityId != "0")
+                    {
+                        $("#activityId").val(result.Data.ActivityId);
+                        $("#prizeId").val(result.Data.Id);
+                        if (result.Data.PrizeLevel == 1) {
+                            $("#layaImg").css('display', 'block');
+                            $("#layaH3").css('display', 'block');
+                        } else {
+                            $("#sijiImg").css('display', 'block');
+                            $("#sijiH3").css('display', 'block');
+                        }
+                        $(".haveChecked").css('display', 'block');
+                        $(".czrz_prize").css("display", "block");
+                        $(".czrz_noprize").css('display', 'none');
+                        return false;
+                    }
+                    //未中奖
+                    if (result.Data.ActivityId == "0") {
+
+                        $(".czrz_prize").css("display", "none");
+                        $(".czrz_noprize").css('display', 'block');
+                        return false;
+                    }
+                    
+                }
+            }, error: function () {
+
+            }
+        });
+    }
+    //立即认证按钮点击事件
+    //输入身份证号，车主认证 获得礼品
+    function toCheckCarownerSave() {
+        var mycenterIdentityReg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+        var _identityNumber = $("#identitynumber").val();
+        var _paperwork = $("#accountCarPaperWork").val();
+
+        if (!_paperwork || _paperwork < 0) {
+            popWindownBlue("请选择证件类型");
+            return false;
+        }
+
+        if (_identityNumber == null || _identityNumber == "") {
+            popWindownBlue('请正确输入证件号码');
+            return false;
+        }
+
+        if (1 == _paperwork) {
+            identityReg = /(^\d{15}$)|(^\d{17}([0-9]|X)$)/;
+            if (!identityReg.test(_identityNumber)) {
+                popWindownBlue("请正确输入证件号码");
+                return false;
+            }
+        }
+        if (2 == _paperwork) {
+            identityReg = /^[a-zA-Z0-9]{3,21}$|^(P\d{7})|(G\d{8})$/;
+            if (!identityReg.test(_identityNumber)) {
+                popWindownBlue("请正确输入证件号码");
+                return false;
+            }
+        }
+        if (3 == _paperwork) {
+            identityReg = /^[a-zA-Z0-9]{7,21}$/;
+            if (!identityReg.test(_identityNumber)) {
+                popWindownBlue("请正确输入证件号码");
+                return false;
+            }
+        }
+        $.ajax({
+            url: "/Yuena/ToCheckCarownerSave",
+            type: "post",
+            data: { identityNumber: _identityNumber, mtype: _paperwork },
+            dataType: "json",
+            success: function (result) {
+                if (result === null || result.Errors === null || result.Errors === "") {
+                    popWindownBlue("认证信息保存失败");
+                    return false;
+                }
+                //请正确输入证件号码
+                if (result.Errors == "304") {
+                    //popWindownBlue(result.msg);
+                    $(".czrz_prize").css("display", "none");
+                    popWindownBlue(result.Message)
+                    return false;
+                }
+                //认证失败 身份证未成功绑定车辆
+                if (result.Errors == "301") {
+                    $(".czrz_prize").css("display", "none");
+                    $(".czrz_noprize").css("display", "none");
+                    $(".czrz_noprize2").css("display", "block");
+                    return false;
+                }
+                //认证成功
+                if (result.Errors == "200") {
+                    //未中奖
+                    if (result.Data.ActivityId == "0") {
+
+                        $(".czrz_prize").css("display", "none");
+                        $(".czrz_noprize").css('display', 'block');
+                        return false;
+                    }
+                    //中奖
+                    else {
+
+                        $("#activityId").val(result.Data.ActivityId);
+                        $("#prizeId").val(result.Data.Id);
+                        if (result.Data.PrizeLevel == 1)
+                        {
+                            $("#layaImg").css('display', 'block');
+                            $("#layaH3").css('display', 'block');
+                        } else {
+                            $("#sijiImg").css('display', 'block');
+                            $("#sijiH3").css('display', 'block');
+                        }
+                        $(".atChecked").css("display", "block");
+                        $(".czrz_prize").css("display", "block");
+                        $(".czrz_noprize").css('display', 'none');
+                    }
+                    return false;
+                }
+
+            }, error: function () {
+
+            }
+        });
+    };
+
+</script>

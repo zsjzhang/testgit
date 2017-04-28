@@ -1,0 +1,74 @@
+﻿@model List<Vcyber.BLMS.Entity.QuestionnaireWinning>
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "获奖名单";
+}
+<link href="~/css/base/questionnaire.css" rel="stylesheet" />
+<div class="header">
+    @Html.Action("HomeHeader", "Header", new { pageName = "QuestionnaireResult" })
+</div>
+<div class="Questionnaire">
+    @{
+        var quesInfo = ViewData["questionnaire"] as Vcyber.BLMS.Entity.Questionnaire;
+        @*if (string.IsNullOrEmpty(quesInfo.Image))
+            {
+                <input type="image" src="/Img/default_banner.png" style="display:block; margin: auto; float: none;margin-top:15px;" />
+            }
+            else
+            {
+                string imgPath = System.Web.Configuration.WebConfigurationManager.AppSettings["ImgPath"];
+                <input type="image" src="@string.Format(imgPath+"{0}",quesInfo.Image)" style="display: block; margin: auto; float: none; margin-top: 15px;" />
+            }*@
+
+        if (!string.IsNullOrEmpty(quesInfo.Image))
+        {
+            string imgPath = System.Web.Configuration.WebConfigurationManager.AppSettings["ImgPath"];
+            <input type="image" src="@string.Format(imgPath+"{0}",quesInfo.Image)" style="display: block; margin: auto; float: none;" />
+        }
+        if (this.User.Identity.IsAuthenticated)
+        {
+            var userinfo = ViewData["userinfo"] as Vcyber.BLMS.FrontWeb.Models.ApplicationUser;
+            <div style="height: 39px; background-image: url('/Img/bg_resulttitle.png'); background-repeat: repeat-x;">
+                <p style="line-height: 30px; color :#F49600;font-size:15px;margin-left:20px;vertical-align:middle;">
+                    亲爱的bluemembers会员 <span id="spanNickName" style="color: #075090;">@userinfo.NickName</span> ,您好！
+                </p>
+            </div>
+        }
+        else
+        {
+            <div style="height: 39px; background-image: url('/Img/bg_resulttitle.png'); background-repeat: repeat-x;">
+                <input type="button" id="inputAccountLogin" style="margin-left:30px;" class="resultInputButton" value="登录" onclick="Questionnaire.ResultLoginCallBack()" />
+                <input type="button" id="inputAccountRegister" class="resultInputButton" value="注册" onclick="Questionnaire.ResultRegisterCallBack()" />
+            </div>
+        }
+        <div style="border: 1px solid #E3E3E3; min-height: 300px; padding-bottom: 20px; margin-top: 2px;">
+            <p class="QuestionnaireTheme"> 问卷调查获奖名单 </p>
+            <p class="QuestionnaireAltTheme">@quesInfo.Theme</p>
+            @*<div style="text-align:center; font-size: 18px; line-height: 50px; color: #F49600;">
+                    本期问卷调查活动中奖会员名单
+                </div>*@
+            <br />
+            <table style="margin-left:20px; width: 96%;">
+                <tr style="color: #014488;font-weight:bold; height: 30px; border-radius: 3px; border-bottom: 1px solid #014488;">
+                    <th style=" vertical-align: middle; width: 200px">姓名</th>
+                    <th style=" vertical-align: middle; width: 200px">奖品</th>
+                    <th style=" vertical-align: middle; width: 300px">电话号码</th>
+                </tr>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var mode in Model)
+                    {
+                        <tr style="height:30px; text-align:center;">
+                            <td style=" vertical-align: middle; width: 200px">@mode.WName</td>
+                            <td style=" vertical-align: middle; width: 200px">@mode.Prize</td>
+                            <td style=" vertical-align: middle; width: 300px">@mode.WPhoneNumber</td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    }
+</div>
+<div class="footer">
+    @Html.Action("Index", "Footer")
+</div>

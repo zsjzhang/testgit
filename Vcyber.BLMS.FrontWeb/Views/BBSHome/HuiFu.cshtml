@@ -1,0 +1,57 @@
+﻿@model Vcyber.BLMS.FrontWeb.Models.BBS.BBSGuestBook
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+                top.location.hostname;
+                if (top.location.hostname != window.location.hostname) {
+                top.location.href =window.location.href;
+            }
+            }
+                catch(e){
+                top.location.href = window.location.href;
+            }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+ 
+<h2>留言回复</h2>
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.Id)
+        <table class="HuiFu">
+            <tr>
+                <td>主题：</td>
+                <td>@Model.G_Title</td>
+            </tr>
+            <tr>
+                <td>正文：</td>
+                <td class="HuiFu_Content">@Model.G_Content</td>
+            </tr>
+            <tr>
+                <td>回复：</td>
+                <td>
+                    @Html.TextAreaFor(model => model.G_HF_Content, 6, 60, null)
+                    @Html.ValidationMessage("G_HF_Content")
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="提交回复" class="input_ok" /></td>
+            </tr>
+        </table>
+    }
+</div>
+

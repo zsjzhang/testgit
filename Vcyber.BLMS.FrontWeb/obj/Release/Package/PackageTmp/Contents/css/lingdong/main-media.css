@@ -1,0 +1,5 @@
+﻿@media(max-height:910px) {
+    .index-main {
+        overflow-y: auto;
+    }
+}

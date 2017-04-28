@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Category>
+@{
+    Layout = null;
+}
+<style>
+    .show_menu {
+        height:262px;
+        overflow:hidden;
+    }
+</style>
+<ul class="show_menu">
+    @{
+        if (Model != null && Model.Any())
+        {
+            <li><a href="/MallCategory/Index?levelonecategory=0" class="show_menu1">全部</a></li>
+        
+            int i = 2;
+            foreach (var item in Model)
+            {
+                string _className = "show_menu" + i;
+                <li><a href="/MallCategory/Index?levelonecategory=@item.ID" class="@_className">@item.Name</a></li>
+                i++;
+            }
+        }
+    }
+</ul>

@@ -1,0 +1,62 @@
+﻿@model IList<Vcyber.BLMS.Entity.Product>
+@{
+    Layout = null;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+<div class="MallProductPagers">
+    @{
+        if (Model != null && Model.Any())
+        {
+            <ul>
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <span>
+                            <a href="/Product/ProductDetail?productId=@item.ID"><img src="@item.Image" /></a>
+                        </span>
+                        <span>
+                            <label>
+                                @item.Name
+                            </label>
+                            <label>
+                                @item.Integral
+                            </label>
+                            <label>
+                                @item.BlueBean
+                            </label>
+                        </span>
+                    </li>
+                }
+            </ul>
+        }
+    }
+</div>
+<div class="pagers">
+    @Html.Action("MallPager", "Pagers", new { pageIndex = ViewBag.PageIndex, pageSize = ViewBag.PageSize, totalCount = ViewBag.totalCount })
+</div>

@@ -1,0 +1,94 @@
+﻿@model Vcyber.BLMS.FrontWeb.Models.BBS.BBSGuestBook
+
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "车主论坛";
+}
+<style>
+    .row {
+        margin: 10px 0;
+        height: 35px;
+        line-height: 35px;
+        width: 100%;
+        font-size: 14px;
+        color: #707070;
+    }
+
+    .col-left {
+        width: 100px;
+        text-align: right;
+    }
+
+    #G_Content {
+        width: 600px;
+        resize: none;
+        height: 200px;
+    }
+
+    #G_Title {
+        width: 500px;
+    }
+</style>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header", new { pageName = "BBSHome" })
+    </div>
+
+    <div class="n_all_cont" style="border:1px solid #c0c0c0">
+        <div style="background-color: #eeeeee; padding: 20px 100px;">
+            <div style=" height: 25px; line-height: 25px; font-size: 14px; font-weight: 700; color: #000; cursor: auto; padding: 10px 0 10px 100px;">发表新帖</div>
+
+            @using (Html.BeginForm())
+            {
+                <div>
+                    <table>
+                        <tr class="row">
+                            <td class="col-left">标题：</td>
+                            <td>
+                                @Html.TextBoxFor(model => model.G_Title)
+                                @Html.ValidationMessageFor(model => model.G_Title, "标题不得为空！")
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td class="col-left">栏目：</td>
+                            <td>@Html.DropDownListFor(model => model.Column_Id, (IEnumerable<SelectListItem>)ViewBag.PList, new { style = "width: 95px;" })</td>
+                        </tr>
+                        <tr>
+                            <td class="col-left" style="  vertical-align: middle;">
+                                <span style="width: 100px; word-wrap: break-word; font-size: 14px; color: #707070;">
+                                    内容：<br />(350字以内)
+                                </span>
+
+                            </td>
+                            <td>
+                                @Html.TextAreaFor(model => model.G_Content, 6, 60, null)
+                                @Html.ValidationMessage("G_content")
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td class="col-left">验证码：</td>
+                            <td>
+                                @Html.TextBox("YanZheng", null, new { style = "width:100px;" })
+                                <img alt="验证码" id="validimg" src="@Url.Action("createimagecode", "googlecaptcha")"
+                                     onclick=" reloadcode() " width="50" height="20" style="  position: relative;top: 4px;" />
+                                <script type="text/javascript">
+                                    function reloadcode() {
+                                        var verify = document.getElementById('validimg');
+                                        verify.setAttribute('src', '@Url.Content("~/GoogleCaptcha/CreateImageCode?")' + Math.random());
+                                    }
+                                </script>
+                                @Html.ValidationMessage("YanZhengError")
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td></td>
+                            <td>
+                                <input type="submit" value="提交" class="input_ok" style="color:#2d64b3; padding: 0 18px 0 15px; height: 28px; line-height: 28px; overflow: hidden; display: inline-block; text-align: center; background-position: right -320px;" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>

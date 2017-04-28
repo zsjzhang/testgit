@@ -1,0 +1,61 @@
+﻿@model Vcyber.BLMS.FrontWeb.Models.ApplicationUser
+@{
+    Layout = null;
+}
+<head>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+</head>
+
+<script>
+    if (self == top) {
+        var theBody = document.getElementsByTagName('body')[0];
+        theBody.style.display = "block";
+    } else {
+        top.location = self.location;
+    }
+</script>
+
+<div>
+    @{
+        if (Model != null && string.IsNullOrEmpty(Model.Id))
+        {
+            <div style="width: 100%; float: left;">
+                会员申请进度
+            </div>
+            <div style="width: 100%; float: left;">
+                <span style="width: 30%; float: left; color:#fff;">
+                    提交申请
+                </span>
+                <span style="width:40%; float:left;">
+                    审核中
+                </span>
+                <span style="width: 30%; float: left;">
+                    成为会员
+                </span>
+            </div>
+            if (Model.SystemMType == 3 && Model.IsPay == 0)
+            {
+                <div style="width: 100%; float: left; text-align:center; margin:0 auto;">
+                    <a href="javascript:void(0);" id="mycenter_progress_toapplymember">缴费成为会员</a>
+                </div>
+            }
+        }
+    }
+
+</div>
+

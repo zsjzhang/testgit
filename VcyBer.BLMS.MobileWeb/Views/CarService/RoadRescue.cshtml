@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "24小时免费道路救援服务";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<input type="hidden" id="UserId" name="UserId" value="@ViewBag.userId">
+<input type="hidden" id="UserType" name="UserType" value="@ViewBag.userType">
+<div class="wrapper" id="wrapper">
+    <div class="s9-wrap">
+        <div class="s9-wrap-title">
+            <img src="~/img/service/24hour.png" />
+            <span>24小时免费道路救援服务</span>
+            <p>北京现代委托专业道路救援公司（安援救援）向第九代索纳塔、第九代索纳塔混合动力、全新途胜、16年全新胜达、悦纳的车主会员提供24小时免费道路救援服务。</p>
+            <a href="javascript:void(0);" class="button" id="add_road_rescue">拨打救援电话</a>
+        </div>
+        <hr>
+
+        <p>
+            2016年12月31日前购买北京现代第九代索纳塔、第九代索纳塔混合动力或全新途胜的车主会员，自购车之日起1年内赠送24小时免费道路救援服务。该服务为您在中国大陆境内提供全天24小时，全年365天的免费道路救援服务。
+
+        </p>
+        <p>
+            <strong>服务对象：</strong><br>
+            2016年12月31日前购车的第九代索纳塔车主会员、第九代索纳塔混合动力车主会员、全新途胜车主会员、16年全新胜达车主会员、悦纳车主会员。
+        </p>
+        <p>
+            <strong>服务方式：</strong><br>
+            拨打北京现代24小时道路救援热线
+        </p>
+        <p>
+            <strong>新增道路救援服务项目说明：</strong><br>
+            道路救援服务包括：紧急拖车、电瓶搭电、吊车清障、更换轮胎、派送车钥匙、派送燃油、现场小修、继续旅行、酒店住宿等服务
+        </p>
+    </div>
+</div>
+<script src="~/Scripts/CarService/roadRescue.js"></script>

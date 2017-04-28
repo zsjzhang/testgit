@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Vcyber.BLMS.Entity.Shopping>
+
+@{
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+    ViewBag.Title = "订单确认";
+}
+<style>
+    .choose_A {
+        width: 160px;
+    }
+
+        .choose_A select {
+            width: 150px;
+        }
+
+    .biaoti_title {
+        width: 100%;
+    }
+
+    .list_show dl dd{ float:left;}
+p.carNameL{ text-align:left; margin-top:10px;}
+.product_show ul{ height:260px;}
+.carName{ font-size:12px; text-align:center; line-height:20px;}
+.carName span{ display:block; color:#f49600; height:25px;}
+.carName b{ display:block; /*color:#065090;*/color:#f49600; height:25px;}
+.carName em{ display:block; /*color:#777;*/color:#f49600; height:25px;}
+.list_show dl{ height:125px;}
+.tab_silder {margin-top: 0;}
+.bluePopup{ height:200px;}
+    .bluePopup .layui-layer-content {
+        height:90px;
+    }
+
+</style>
+<div>
+    <div class="header">
+        @Html.Action("HomeHeader", "Header")
+    </div>
+    <div>
+
+
+        <div class="center_s">
+            <div class="online_left" style="width:286px;">
+                <input type="hidden" id="isProductCardType" value="@ViewBag.isCard" />
+                <div style="margin-bottom:1px;">
+                    @Html.Action("CartByMall", "Cart")
+                </div>
+
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Action("HomeLogonSuccess", "Account")
+                    }
+                    else
+                    {
+                        @Html.Action("HomeLogon", "Account")
+                    }
+                }
+                @Html.Action("ExchangeList", "Mall")
+            </div>
+
+
+            <div class="online_right">
+
+                <div class="shouhuo_dizhi">
+                    @Html.Action("MyAddress", "User", new { userId = ViewBag.userId })
+
+                    @Html.Action("ComfirmOrder", "Order", new { productList = Model })
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="clearfix"></div>
+
+    </div>
+    <div class="footer">
+        @Html.Action("Index", "Footer")
+    </div>
+</div>

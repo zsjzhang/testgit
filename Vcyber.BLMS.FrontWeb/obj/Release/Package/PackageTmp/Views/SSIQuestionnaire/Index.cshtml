@@ -1,0 +1,157 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>调研问卷</title>
+    <link rel="stylesheet" href="~/Contents/css/Question/reset.css" />
+    <link rel="stylesheet" href="~/Contents/css/Question/QuestionNaire.css">
+    <link rel="stylesheet" href="~/Scripts/Question/layer/need/layer.css" />
+    <script type="text/javascript" src="~/Scripts/Question/js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Question/js/fontSize.js"></script>
+    <script type="text/javascript" src="~/Scripts/Question/layer/layer.js"></script>
+    <script type="text/javascript" src="~/Scripts/Question/js/QuestionNaire.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="header">
+
+        </div>
+        <!-- /header -->
+        <div class="section">
+            <div class="section_box">
+                <h2>北京现代新购车客户销售满意度调研</h2>
+                <p class="section_thanks">欢迎您成为北京现代的新车主，本次调研旨在对您的购车流程进行满意度调研，以便为您提供更优质的服务，感谢您的配合！</p>
+                <div class="section_write">
+                    <label>您的姓名：</label>
+                    <input type="text" id="section_name" maxlength="16">
+                </div>
+                <div class="section_write">
+                    <label>购车时联系电话：</label>
+                    <input type="tel" maxlength="11" id="section_tel" maxlength="16">
+                </div>
+                <div class="section_write">
+                    <label>所购北京现代车型：</label>
+                    <input type="text" id="section_car" maxlength="16">
+                </div>
+                <div class="section_write">
+                    <label>车辆颜色：</label>
+                    <input type="text" id="section_color" maxlength="16">
+                </div>
+                <div class="section_from">
+                    <!--question1-->
+                    <p>Q1. 请问您进4S店后2分钟内是否有销售人员主动接待？</p>
+                    <p>
+                        <input type="radio" id="confirm0" value="A" name="question0" />
+                        <label for="confirm0">是</label>
+                        <input type="radio" id="cancel0" value="B" name="question0" />
+                        <label for="cancel0">否</label>
+                    </p>
+                    <!--question2-->
+                    <p>Q2. 请问看车时，销售顾问是否向您演示新车上的各项功能，并邀请您动手操作？</p>
+                    <p>
+                        <input type="radio" id="confirm1" value="A" name="question1" />
+                        <label for="confirm1">是</label>
+                        <input type="radio" id="cancel1" value="B" name="question1" />
+                        <label for="cancel1">否</label>
+                    </p>
+                    <!--question3-->
+                    <p>Q3. 请问销售顾问是否用纸质或其他形式的报价单向您清楚的说明价格组成情况？</p>
+                    <p>
+                        <input type="radio" id="confirm2" value="A" name="question2" />
+                        <label for="confirm2">是</label>
+                        <input type="radio" id="cancel2" value="B" name="question2" />
+                        <label for="cancel2">否</label>
+                    </p>
+                    <!--question4-->
+                    <p>Q4. 请问您是否在购车的4S店处试乘试驾过您买的同种车型？</p>
+                    <p>
+                        <span>
+                            <input type="radio" id="change0" value="A" name="question3" />
+                            <label for="change0">特约店主动提供</label>
+                        </span>
+                        <span>
+                            <input type="radio" id="change1" value="B" name="question3" />
+                            <label for="change1">特约店被动提供</label>
+                        </span>
+                        <span>
+                            <input type="radio" id="change2" value="C" name="question3" />
+                            <label for="change2">我不需要试乘试驾</label>
+                        </span>
+                        <span>
+                            <input type="radio" id="change3" value="D" name="question3" />
+                            <label for="change3">天气、修路等客观原因不能试乘试驾</label>
+                        </span>
+                        <span>
+                            <input type="radio" id="change4" value="E" name="question3" />
+                            <label for="change4">特约店无法提供（没有试乘试驾车、场地、时间等）</label>
+                        </span>
+                    </p>
+                    <!--question5-->
+                    <p>Q5. 请问销售顾问是否主动介绍了衍生产品，如保险、精品、信贷、延保业务？</p>
+                    <p>
+                        <input type="radio" id="confirm4" value="A" name="question4" />
+                        <label for="confirm4">是</label>
+                        <input type="radio" id="cancel4" value="B" name="question4" />
+                        <label for="cancel4">否</label>
+                    </p>
+                    <!--question6-->
+                    <p>Q6. 请问您到店提车时，是否有服务顾问帮助您了解后续保养维修事宜？</p>
+                    <p>
+                        <input type="radio" id="confirm5" value="A" name="question5" />
+                        <label for="confirm5">是</label>
+                        <input type="radio" id="cancel5" value="B" name="question5" />
+                        <label for="cancel5">否</label>
+                    </p>
+                    <!--question7-->
+                    <p>Q7. 请问4S店是否为您举行了交车仪式？</p>
+                    <p>
+                        <input type="radio" id="confirm6" value="A" name="question6" />
+                        <label for="confirm6">是</label>
+                        <input type="radio" id="cancel6" value="B" name="question6" />
+                        <label for="cancel6">否</label>
+                    </p>
+
+                    <!--question8-->
+                    <p>Q8. 请问您到店提车时，销售顾问是否向您介绍了快速入门手册、车辆各项功能的操作方法？</p>
+                    <p>
+                        <input type="radio" id="confirm7" value="A" name="question7" />
+                        <label for="confirm7">是</label>
+                        <input type="radio" id="cancel7" value="B" name="question7" />
+                        <label for="cancel7">否</label>
+                    </p>
+                    <!--question9-->
+                    <p>Q9. 请问4S店是否介绍了会员俱乐部政策并推荐入会?</p>
+                    <p>
+                        <input type="radio" id="confirm8" value="A" name="question8" />
+                        <label for="confirm8">是</label>
+                        <input type="radio" id="cancel8" value="B" name="question8" />
+                        <label for="cancel8">否</label>
+                    </p>
+
+                    <!--question10-->
+                    <p>Q10. 请问在您提车回家后，4S店是否在24小时之内向您致电，并询问车辆的使用情况？</p>
+                    <p>
+                        <input type="radio" id="confirm9" value="A" name="question9" />
+                        <label for="confirm9">是</label>
+                        <input type="radio" id="cancel9" value="B" name="question9" />
+                        <label for="cancel9">否</label>
+                    </p>
+
+                </div>
+                <a href="javascript:;" class="from_btn">提交</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

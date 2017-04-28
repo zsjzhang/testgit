@@ -1,0 +1,144 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="user-scalable=no, width=device-width,height=device-height,initial-scale=1.0, maximum-scale=1.0" />
+    <title>用户登录</title>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/controller/Main.js"></script>
+    <script src="~/Scripts/controller/UserController.js"></script>
+    <script src="~/Scripts/controller/WapQuestionnaireController.js"></script>
+
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+        }
+        }
+            catch(e){
+            top.location.href = window.location.href;
+        }
+    </script>
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            min-width: 320px;
+        }
+
+        .divtitle {
+            height: 40px;
+            line-height: 40px;
+            width: 100%;
+            color: white;
+            text-align: center;
+            background-color: #3D3F43;
+        }
+
+        .inputinfo {
+            height: 35px;
+            width: 85%;
+            margin: 2em auto;
+            padding-left: 10px;
+            padding-right: 10%;
+            float: none;
+            display: block;
+            border-radius: 8px;
+            border: 1px solid gray;
+        }
+
+        .errmsg {
+            width: 100%;
+            color: red;
+            margin: 5px auto 10px 15px;
+            font-size: 14px;
+            float: left;
+        }
+
+        #btnWapLoginSubmit {
+            background-color: #075090;
+            color: white;
+            margin: 1em auto;
+            font-size: 15px;
+            font-weight: bold;
+            text-align: center;
+            padding:0;
+        }
+
+            #btnWapLoginSubmit:hover, #btnWapRegisterSubmit:hover {
+                background-color: #0094ff;
+            }
+        #btnWapRegisterSubmit {
+            background-color: #f49600;
+            color: white;
+            margin: 1em auto;
+            font-size: 15px;
+            font-weight: bold;
+            text-align: center;
+            padding: 0;
+            line-height: 35px;
+            cursor: pointer;
+        }
+            #btnWapLoginSubmit:hover, #btnWapRegisterSubmit:hover {
+                background-color: #F4B900;
+            }
+         a, a:hover, a:visited, a:link {
+            text-align: center;
+            line-height: 35px;
+            display: block;
+            width: 85%;
+            margin: 5px auto;
+            text-decoration: none;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .forgetpwd {
+            font-size: 15px;
+            font-weight: normal;
+            width: auto;
+            color: gray;
+            margin: 0;
+            text-align: left;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="divwaplogin">
+        <div class="divtitle">
+            登&nbsp;录
+        </div>
+        <input type="image" autocomplete="off" src="/Img/bluememberLogo.jpg" style="width:100%;margin-top:10px;" />
+        <form method="post" action="/Account/WapLogin" id="LogonPageForm" style="margin-top:25px;">
+            @*<form>*@
+            @Html.AntiForgeryToken()
+            <input type="hidden" autocomplete="off" id="returnUrl" name="returnUrl" value="@ViewBag.returnUrl" />
+            <input type="text" autocomplete="off" id="LogonPageAccount" name="UserName" placeholder="手机/用户名/邮箱"
+                   style="background: url(/img/h_iphone.png) 98% center no-repeat;" class="inputinfo" />
+            <input placeholder="输入密码" autocomplete="off" id="LogonPagePasswd" name="Password" type="password" style="background: url(/img/h_lock.png) 98% center no-repeat; " class="inputinfo" />
+            <div style="padding-right:0;padding-left:0;border:none;margin-bottom:0;margin-top:1em;" class="inputinfo">
+                <input autocomplete="off" style="width: 75%; float: none; display: inline-block; height: 35px; background: url(/img/h_lock.png) 98% center no-repeat; padding-left: 10px; padding-right: 15%; border-radius: 8px; border: 1px solid gray;" id="LogonCaptcha" name="Captcha" type="text" placeholder="验证码" />
+                <img src="/ValidateCode/Index?ID=1" style="vertical-align:middle;height:35px;float: right; top:4px;display:inline-block;" id="imgCode" alt="单击可刷新" onclick="clickRemoveChangeCode()" />
+            </div>
+            <a href="/Account/ResetPasswd"><div class="forgetpwd">忘记密码？</div></a>
+            <input type="submit" autocomplete="off" class="inputinfo" id="btnWapLoginSubmit" style="border-radius: 8px; border: 1px solid #808080;" value="登录" />
+            @*<p style="text-align:center;"><a href="/Account/AccountRegister" class="no_huiyuan">还不是会员？立即注册</a></p>*@
+            @*<a href="/WapQuestionnaire/WapRegister"><div style="background-color: #f49600; border-radius: 8px; border: 1px solid #808080;">还不是会员？立即注册</div></a>*@
+            <div class="inputinfo" id="btnWapRegisterSubmit" style="border-radius: 8px; border: 1px solid #808080; ">还不是会员？立即注册</div>
+            @*<a href="@ViewBag.returnUrl"><div style="background-color: #f49600; border-radius: 8px; border: 1px solid #808080;">返回</div></a>*@
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+﻿@{
+    Layout = null;
+}
+<head>
+    <script>
+        try{
+            top.location.hostname;
+            if (top.location.hostname != window.location.hostname) {
+            top.location.href =window.location.href;
+            }
+            }
+                catch(e){
+                top.location.href = window.location.href;
+            }
+    </script>
+</head>
+<footer class="footer">
+    <div class="nav_f"><a>联系我们</a>/<a>网站地图</a>/<a>隐私条款</a>/<a>北京现代官网</a></div>
+    <p>Copyright 2014 beijing hyundai motor company Corporation, All Rights Reserved.</p>
+    <p>北京市顺义区林河工业开发区顺通路18号</p>
+    <p><a style="color: #A8A9AA" href="http://www.miibeian.gov.cn/state/outPortal/loginPortal.action" target="_blank">京ICP备05030295号</a></p>
+    <script language="javascript"> if (self!=top) window.top.location.replace(self.location); </script>
+</footer>
